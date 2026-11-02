@@ -1,0 +1,337 @@
+/** Documents tab **/
+
+#tab_docs td.grid-cell-shared {
+    background-color: #ffff7f;
+}
+
+#tab_docs td.grid-cell-private {
+    background-color: #ff7f7f;
+}
+
+#tab_docs td.grid-cell-perspective_org {
+    font-style: italic;
+}
+
+#document-editor div.ctrl-line {
+    margin-bottom: 4px;
+    height: 26px;
+}
+
+#document-editor div.ctrl-line label {
+    /* display: inline-block; */
+    float: left;
+    line-height: 26px;
+    padding-right: 8px;
+    text-align: right;
+    width: 135px;
+}
+
+#document-editor div.ctrl-line .form-control {
+    display: inline-block;
+}
+
+#document-editor div.ctrl-line input.form-control {
+    height: 24px;
+    padding-left: 3px;
+    box-sizing: border-box;
+}
+
+#document-editor div.ctrl-line .static {
+    color: gray;
+    line-height: 26px;
+    text-shadow: 0 1px 0 lightgray;
+}
+
+
+#document-viewer div.info-line {
+    margin-bottom: 4px;
+    height: 26px;
+}
+
+#document-viewer div.info-line label {
+    display: inline-block;
+    float: left;
+    line-height: 26px;
+    padding-right: 8px;
+    text-align: right;
+    width: 135px;
+}
+
+#document-viewer div.info-line div {
+    line-height: 26px;
+}
+
+
+/*IWI doc section file upload start*/
+.modern-file-upload {
+    position: relative;
+    display: inline-block;
+    margin: 10px 0 0 10px;
+}
+
+.modern-file-upload input[type="file"] {
+    display: none;
+}
+
+.modern-file-upload label {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.modern-file-upload label:hover {
+    background-color: #2563eb;
+}
+
+.modern-file-upload svg {
+    margin-right: 16px;
+    height: 18px;
+    width: 18px;
+}
+
+.file-info {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #555;
+    margin-left: 20px;
+}
+
+button[data-op="doc-save"] {
+
+    background: #45a0499c;
+
+    color: white;
+
+}
+
+button[data-op="doc-save"]:hover {
+
+    background: #45a0499c !important;
+
+}
+
+/*IWI doc section file upload end*/
+
+
+/*IWI Record Details Page Redesign 10092026 start*/
+#tab_docs div.toolbar img {
+	display: none;
+}
+#tab_docs div.toolbar {
+	align-items: center;
+	width: 100%;
+	min-height: 44px;
+	padding: 5px 7px;
+	box-sizing: border-box;
+	background: #f7f9fc;
+	border: 1px solid #dfe5ec;
+	border-radius: 6px;
+	gap: 5px;
+}
+#tab_docs div.toolbar .toolbar-accessory {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	min-width: 32px;
+	height: 32px;
+	margin-right: 4px;
+	padding: 0;
+	border-right: 1px solid #dfe5ec;
+	box-sizing: border-box;
+}
+#tab_docs div.toolbar .toolbar-accessory:before {
+	content: "\f15b";
+	font-family: FontAwesome;
+	font-size: 17px;
+	color: #2866C2;
+}
+#tab_docs div.toolbar .toolbar-accessory span {
+	display: none;
+}
+#tab_docs div.toolbar button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	float: none;
+	height: 30px;
+	min-height: 30px;
+	margin: 0;
+	padding: 0 10px;
+	box-sizing: border-box;
+	border: 1px solid #d5dce5;
+	border-radius: 4px;
+	background: #fff;
+	color: #465365;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 28px;
+	text-decoration: none;
+	white-space: nowrap;
+	box-shadow: none;
+	cursor: pointer;
+}
+#tab_docs div.toolbar .jqx-widget,
+#tab_docs div.toolbar .jqx-button,
+#tab_docs div.toolbar .jqx-fill-state-normal,
+#tab_docs div.toolbar .jqx-fill-state-hover,
+#tab_docs div.toolbar .jqx-fill-state-pressed,
+#tab_docs div.toolbar .jqx-fill-state-focus,
+#tab_docs div.toolbar .jqx-rc-all {
+	box-shadow: none;
+}
+#tab_docs div.toolbar [data-op="doc-create"]:before {
+	content: "\f067";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="filteractive"]:before {
+	content: "\f058";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="filterclosed"]:before {
+	content: "\f057";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="exportxlsx"]:before {
+	content: "\f1c3";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="doc-open"]:before {
+	content: "\f06e";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="doc-copy"]:before {
+	content: "\f0c5";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="doc-delete"]:before {
+	content: "\f014";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="doc-webview-newwin"]:before {
+	content: "\f0ac";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="doc-save"]:before {
+	content: "\f0c7";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="doc-upver"]:before {
+	content: "\f021";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="doc-close"]:before {
+	content: "\f00d";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_docs div.toolbar [data-op="doc-create"] {
+	min-width: 82px;
+	border-color: #2866C2;
+	background: #2866C2;
+	color: #fff;
+	font-weight: 600;
+}
+#tab_docs div.toolbar [data-op="doc-create"]:before {
+	color: #fff;
+}
+#tab_docs div.toolbar [data-op="doc-create"]:hover {
+	border-color: #2259aa;
+	background: #2259aa;
+	color: #fff;
+}
+#tab_docs div.toolbar [data-op="filteractive"]:hover,
+#tab_docs div.toolbar [data-op="filterclosed"]:hover,
+#tab_docs div.toolbar [data-op="doc-open"]:hover,
+#tab_docs div.toolbar [data-op="doc-copy"]:hover,
+#tab_docs div.toolbar [data-op="doc-webview-newwin"]:hover,
+#tab_docs div.toolbar [data-op="doc-upver"]:hover,
+#tab_docs div.toolbar [data-op="doc-close"]:hover {
+	border-color: #b8c5d3;
+	background: #fff;
+	color: #2866C2;
+}
+#tab_docs div.toolbar [data-op="exportxlsx"] {
+	margin-left: auto;
+}
+#tab_docs div.toolbar [data-op="doc-delete"] {
+	margin-left: 2px;
+	border-color: #e1d7d7;
+	color: #a85454;
+}
+#tab_docs div.toolbar [data-op="doc-delete"]:before {
+	color: #b45757;
+}
+#tab_docs div.toolbar [data-op="doc-delete"]:hover {
+	border-color: #dfb6b6;
+	background: #fff6f6;
+	color: #c33b3b;
+}
+#tab_docs div.toolbar [data-op="doc-delete"]:hover:before {
+	color: #c33b3b;
+}
+#tab_docs div.toolbar [data-op="doc-save"] {
+	border-color: #2866C2;
+	background: #2866C2;
+	color: #fff;
+	font-weight: 600;
+}
+#tab_docs div.toolbar [data-op="doc-save"]:before {
+	color: #fff;
+}
+#tab_docs div.toolbar [data-op="doc-save"]:hover {
+	border-color: #2259aa;
+	background: #2259aa;
+	color: #fff;
+}
+#tab_docs div.toolbar .toolbar-separator {
+	width: 1px;
+	min-width: 1px;
+	height: 22px;
+	margin: 0 7px;
+	background: #dfe5ec;
+}
+#tab_docs div.toolbar button:disabled,
+#tab_docs div.toolbar button[aria-disabled="true"] {
+	opacity: .5;
+	cursor: default;
+}
+#tab_docs div.toolbar #doc-import {
+	margin: 0 4px 0 auto !important;
+}
+@media (max-width: 650px) {
+	#tab_docs div.toolbar button {
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+}
+/*IWI Record Details Page Redesign 10092026 end*/

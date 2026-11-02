@@ -1,0 +1,13 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{crdi_no.n}:</th><td>{^xfields.crdi_no:<span class="gray">---</span>}</td></tr>
+		<tr><th>{crdi_date.n}:</th><td>{#if:^xfields.crdi_date:{^xfields.crdi_date}~date("Y-m-d")~}{#ifnot:^xfields.crdi_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{crdi_amt.n}:</th><td><b>{^xfields.crdi_amt.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{chgbk_amt.n}:</th><td><b>{^xfields.chgbk_amt.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{chgbk_to.n}:</th><td>{^xfields.chgbk_to:<span class="gray">---</span>}</td></tr>
+	</table>
+
+	<h5>{remarksf.n}</h5>
+	{#if:^xfields.remarksf:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 120px; overflow: auto;">{^xfields.remarksf}~nl2br~</div>}
+	{#ifnot:^xfields.remarksf:<div class="gray" style="text-indent: 20px;">-----</div>}
+}

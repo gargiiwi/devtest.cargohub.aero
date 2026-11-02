@@ -1,0 +1,2 @@
+DropzoneJS (http://www.dropzonejs.com/), a fancy file upload that supports image previews, multiple files select and drag&drop uploading
+  v 5.5.0

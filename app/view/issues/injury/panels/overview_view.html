@@ -1,0 +1,60 @@
+{#use:%ist.xfield_def:
+<table>
+	<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">---</span>}</td></tr>
+	<tr><th>{respo.n}:</th><td>{^xfields.respo.value:<span class="gray">---</span>}</td></tr>
+	<tr><th>Date &amp; Time:</th><td>
+		{#if:^xfields.date:{^xfields.date}~date("Y-m-d")~ &middot; {^xfields.time:<span class="gray">---</span>}}
+		{#ifnot:^xfields.date:<span class='gray'>---</span>}
+	</td></tr>
+	<tr><th>{area.n}:</th><td>{^xfields.area.value:<span class="gray">---</span>}</td></tr>
+	<tr><th>{area_supr.n}:</th><td>{^xfields.area_supr:<span class="gray">---</span>}</td></tr>
+	<tr><th>{place.n}:</th><td>
+		{#if:^xfields.place:{^xfields.place}{#if:^xfields.place_id: ({^xfields.place_id})}}
+		{#ifnot:^xfields.place:<span class="gray">---</span>}</td>
+	</tr>
+	<tr><th>{station.n}:</th><td>{^xfields.station:<span class="gray">---</span>}</td></tr>
+	<tr><th>{inj_type.n}:</th><td class="thick">{^xfields.inj_type.value:<span class="gray">---</span>}</td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+	<tr><th>{dmg_to.n}:</th><td>{#ifnot:^xfields.dmg_to:<span class="gray">---</span>}{#repeat:^xfields.dmg_to:<span class="itembox">{value}</span>}</td></tr>
+</table>
+
+<h5>What happened:</h5>
+{#if:^xfields.descr:
+<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.descr}~nl2br~</div>}
+{#ifnot:^xfields.descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+<h4>Injury specifics</h4>
+<table>
+	<tr><th>{acc_person.n}:</th><td>{^xfields.acc_person:<span class="gray">---</span>}</td></tr>
+	<tr><th>{acc_persrole.n}:</th><td>
+		{#if:^xfields.acc_persrole.value!=-1:<label>{^xfields.acc_persrole.value}</label>}
+		{#ifnot:^xfields.acc_persrole.value:<span class='gray'>---</span>}
+	</td></tr>
+	<tr><th>{acc_duringwork.n}:</th><td>
+		{#if:^xfields.acc_duringwork.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_duringwork.key: checked="checked"}> {^xfields.acc_duringwork.value}</label>}
+		{#ifnot:^xfields.acc_duringwork.value:<span class='gray'>---</span>}
+	</td></tr>
+	<tr><th>{injury.n}:</th><td>{^xfields.injury:<span class="gray">---</span>}</td></tr>
+	<tr><th>{acc_hosp_visit.n}:</th><td>
+		{#if:^xfields.acc_hosp_visit.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_hosp_visit.key: checked="checked"}> {^xfields.acc_hosp_visit.value}</label>}
+		{#ifnot:^xfields.acc_hosp_visit.value:<span class='gray'>---</span>}
+	</td></tr>
+	<tr><th>{acc_hospital.n}:</th><td>{^xfields.acc_hospital:<span class="gray">---</span>}</td></tr>
+	<tr><th>{acc_polyclinic.n}:</th><td>
+		{#if:^xfields.acc_polyclinic.value!=-1:<label>{^xfields.acc_polyclinic.value}</label>}
+		{#ifnot:^xfields.acc_polyclinic.value:<span class='gray'>---</span>}
+	</td></tr>
+	<tr><th>{acc_workinsp.n}:</th><td>
+		{#if:^xfields.acc_workinsp.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_workinsp.key: checked="checked"}> {^xfields.acc_workinsp.value}</label>}
+		{#ifnot:^xfields.acc_workinsp.value:<span class='gray'>---</span>}
+	</td></tr>
+<tr><td colspan="2"><hr /></td></tr>
+	<tr><th>{acc_sick.n}:</th><td>{^xfields.acc_sick.value:<span class='gray'>---</span>}</td></tr>
+	<tr><th>{acc_sickstart.n}:</th><td>{#if:^xfields.acc_sickstart:{^xfields.acc_sickstart}~date("Y-m-d")~}{#ifnot:^xfields.acc_sickstart:<span class='gray'>---</span>}</td></tr>
+	<tr><th>{acc_sickend.n}:</th><td>{#if:^xfields.acc_sickend:{^xfields.acc_sickend}~date("Y-m-d")~}{#ifnot:^xfields.acc_sickend:<span class='gray'>---</span>}</td></tr>
+	<tr><th>{acc_inj_perm.n}:</th><td>
+		{#if:^xfields.acc_inj_perm.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_inj_perm.key: checked="checked"}> {^xfields.acc_inj_perm.value}</label>}
+		{#ifnot:^xfields.acc_inj_perm.value:<span class='gray'>---</span>}
+	</td></tr>
+</table>
+}

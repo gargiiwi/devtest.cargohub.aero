@@ -1,0 +1,262 @@
+/* These are the styles which depend on the defined issue types. They should be kept in sync */
+.priorityselect, .statusselect {
+	text-indent: 24px;
+	background-repeat: no-repeat;
+}
+
+/* Special rendering related to Priorities */
+.priorityrender > div {
+    margin-left: 32px;
+    margin-top: 6px;
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	background-color: transparent;
+}
+
+.priorityrender .__Critical_, .priorityselect.__Critical_ {
+	background-image: url("/img/icons16/priorities/1crt.png");
+}
+.priorityrender .__Urgent_, .priorityselect.__Urgent_ {
+	background-image: url("/img/icons16/priorities/2urg.png");
+}
+.priorityrender .__High, .priorityselect.__High {
+	background-image: url("/img/icons16/priorities/3hgh.png");
+}
+.priorityrender .__Medium, .priorityselect.__Medium {
+	background-image: url("/img/icons16/priorities/4med.png");
+}
+.priorityrender .__Low, .priorityselect.__Low {
+	background-image: url("/img/icons16/priorities/5low.png");
+}
+.priorityrender .unavailable {
+	background-image: url("/img/icons16/help.png");
+}
+
+/* Special rendering related to Statuses */
+.statusrender > div {
+	margin-left: 6px;
+	margin-top: 6px;
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	background-color: transparent;
+	text-indent: 20px;
+}
+.statusrender .Arrived, .statusselect.Arrived {
+	background-image: url("/img/icons16/statuses/arr.png");
+}
+.statusrender .Confirmed, .statusselect.Confirmed {
+	background-image: url("/img/icons16/statuses/conf.png");
+}
+.statusrender .Departed, .statusselect.Departed {
+	background-image: url("/img/icons16/statuses/dep.png");
+}
+.statusrender .New, .statusselect.New {
+	background-image: url("/img/icons16/statuses/new.png");
+}
+.statusrender .Scheduled, .statusselect.Scheduled {
+	background-image: url("/img/icons16/statuses/time.png");
+}
+.statusrender .Submitted, .statusselect.Submitted {
+	background-image: url("/img/icons16/statuses/subm.png");
+}
+.statusrender .Delivered, .statusselect.Delivered {
+	background-image: url("/img/icons16/statuses/dlv.png");
+}
+.statusrender .Transferred, .statusselect.Transferred {
+	background-image: url("/img/icons16/statuses/xfer.png");
+}
+.statusrender .Monitoring, .statusselect.Monitoring {
+	background-image: url("/img/icons16/statuses/moni.png");
+}
+.statusrender .Processing, .statusselect.Processing {
+	background-image: url("/img/icons16/statuses/inpr.png");
+}
+.statusrender .Open, .statusselect.Open {
+	background-image: url("/img/icons16/statuses/open.png");
+}
+.statusrender .Waiting, .statusselect.Waiting {
+	background-image: url("/img/icons16/statuses/wr.png");
+}
+.statusrender .Replied, .statusselect.Replied {
+	background-image: url("/img/icons16/statuses/repl.png");
+}
+.statusrender .Investigation, .statusselect.Investigation {
+	background-image: url("/img/icons16/statuses/inve.png");
+}
+.statusrender .On_Hold, .statusselect.On_Hold {
+	background-image: url("/img/icons16/statuses/onh.png");
+}
+.statusrender .Stuck, .statusselect.Stuck {
+	background-image: url("/img/icons16/statuses/glue.png");
+}
+.statusrender .Resolved, .statusselect.Resolved {
+	background-image: url("/img/icons16/statuses/clos.png");
+}
+.statusrender .Unresolved, .statusselect.Unresolved {
+	background-image: url("/img/icons16/statuses/unr.png");
+}
+.statusrender .Expected, .statusselect.Expected {
+	background-image: url("/img/icons16/statuses/exp.png");
+}
+.statusrender .Manifested, .statusselect.Manifested {
+	background-image: url("/img/icons16/statuses/mani.png");
+}
+.statusrender .Checked_in, .statusselect.Checked_in {
+	background-image: url("/img/icons16/statuses/chki.png");
+}
+.statusrender .Loading, .statusselect.Loading {
+	background-image: url("/img/icons16/statuses/load.png");
+}
+.statusrender .Non_discharged, .statusselect.Non_discharged {
+	background-image: url("/img/icons16/statuses/ndis.png");
+}
+.statusrender .Discharged, .statusselect.Discharged {
+	background-image: url("/img/icons16/statuses/disc.png");
+}
+.statusrender .Info__sent, .statusselect.Info__sent {
+	background-image: url("/img/icons16/statuses/isen.png");
+}
+.statusrender .Info__incomplete, .statusselect.Info__incomplete {
+	background-image: url("/img/icons16/statuses/iinc.png");
+}
+.statusrender .Partly_discharged, .statusselect.Partly_discharged {
+	background-image: url("/img/icons16/statuses/pdis.png");
+}
+.statusrender .Pre_Collection, .statusselect.Pre_Collection {
+	background-image: url("/img/icons16/statuses/pcol.png");
+}
+.statusrender .Final_Collection, .statusselect.Final_Collection {
+	background-image: url("/img/icons16/statuses/fcol.png");
+}
+.statusrender .Locked, .statusselect.Locked {
+	background-image: url("/img/icons16/statuses/lock.png");
+}
+.statusrender .Verified, .statusselect.Verified {
+	background-image: url("/img/icons16/statuses/tick.png");
+}
+.statusrender .Outdated, .statusselect.Outdated {
+	background-image: url("/img/icons16/statuses/outd.png");
+}
+.statusrender .Expired, .statusselect.Expired {
+	background-image: url("/img/icons16/statuses/expi.png");
+}
+.statusrender .Customs_declared, .statusselect.Customs_declared {
+	background-image: url("/img/icons16/statuses/frsk.png");
+}
+.statusrender .Acknowledged, .statusselect.Acknowledged {
+	background-image: url("/img/icons16/statuses/ack.png");
+}
+.statusrender .Reviewing, .statusselect.Reviewing {
+	background-image: url("/img/icons16/statuses/rev.png");
+}
+.statusrender .Proposal, .statusselect.Proposal {
+	background-image: url("/img/icons16/statuses/prop.png");
+}
+.statusrender .Negociation, .statusselect.Negociation {
+	background-image: url("/img/icons16/statuses/neg.png");
+}
+.statusrender .Proposal_accepted, .statusselect.Proposal_accepted {
+	background-image: url("/img/icons16/statuses/proa.png");
+}
+.statusrender .Payment_process, .statusselect.Payment_process {
+	background-image: url("/img/icons16/statuses/pay.png");
+}
+.statusrender .Completed, .statusselect.Completed {
+	background-image: url("/img/icons16/statuses/comp.png");
+}
+.statusrender .Settled, .statusselect.Settled {
+	background-image: url("/img/icons16/statuses/sttl.png");
+}
+.statusrender .Rejected, .statusselect.Rejected {
+	background-image: url("/img/icons16/statuses/rej.png");
+}
+.statusrender .Revoked, .statusselect.Revoked {
+	background-image: url("/img/icons16/statuses/rvok.png");
+}
+.statusrender .Chargeback, .statusselect.Chargeback {
+	background-image: url("/img/icons16/statuses/rech.png");
+}
+.statusrender .Insurance, .statusselect.Insurance {
+	background-image: url("/img/icons16/statuses/insu.png");
+}
+.statusrender .No_insurance, .statusselect.No_insurance {
+	background-image: url("/img/icons16/statuses/nins.png");
+}
+.statusrender .Legal_proceeding, .statusselect.Legal_proceeding {
+	background-image: url("/img/icons16/statuses/leg.png");
+}
+.statusrender .End_Tracing, .statusselect.End_Tracing {
+	background-image: url("/img/icons16/statuses/eot.png");
+}
+.statusrender .Evaluation, .statusselect.Evaluation {
+	background-image: url("/img/icons16/statuses/eval.png");
+}
+.statusrender .CaPa_Started, .statusselect.CaPa_Started {
+	background-image: url("/img/icons16/statuses/capa.png");
+}
+/* Extra statuses for Development Item */
+.statusrender .Idea_Concept, .statusselect.Idea_Concept {
+	background-image: url("/img/icons16/statuses/idea.png");
+}
+.statusrender .Request, .statusselect.Request {
+	background-image: url("/img/icons16/statuses/req.png");
+}
+.statusrender .Brainstorming, .statusselect.Brainstorming {
+	background-image: url("/img/icons16/statuses/brn.png");
+}
+.statusrender .Planning, .statusselect.Planning {
+	background-image: url("/img/icons16/statuses/plan.png");
+}
+.statusrender .Work_started, .statusselect.Work_started {
+	background-image: url("/img/icons16/statuses/prog.png");
+}
+.statusrender .Missing_info_, .statusselect.Missing_info_ {
+	background-image: url("/img/icons16/statuses/miss.png");
+}
+.statusrender .Testing, .statusselect.Testing {
+	background-image: url("/img/icons16/statuses/test.png");
+}
+.statusrender .Deployed-_-Live, .statusselect.Deployed-_-Live {
+	background-image: url("/img/icons16/statuses/live.png");
+}
+.statusrender .Feedback, .statusselect.Feedback {
+	background-image: url("/img/icons16/statuses/feed.png");
+}
+.statusrender .Cancelled, .statusselect.Cancelled {
+	background-image: url("/img/icons16/statuses/can.png");
+}
+.statusrender .Outsourced, .statusselect.Outsourced {
+	background-image: url("/img/icons16/statuses/outs.png");
+}
+.statusrender .WebAPI, .statusselect.WebAPI {
+	background-image: url("/img/icons16/statuses/api.png");
+}
+.statusrender .Meeting_minute, .statusselect.Meeting_minute {
+	background-image: url("/img/icons16/statuses/mmin.png");
+}
+.statusrender .Time_barred, .statusselect.Time_barred {
+	background-image: url("/img/icons16/statuses/tbar.png");
+}
+.statusrender .Replaced_by_Formal, .statusselect.Replaced_by_Formal {
+	background-image: url("/img/icons16/statuses/frml.png");
+}
+.statusrender .MRN_Allocated, .statusselect.MRN_Allocated {
+	background-image: url("/img/icons16/statuses/mrn.png");
+}
+.statusrender .Inspection, .statusselect.Inspection {
+	background-image: url("/img/icons16/statuses/insp.png");
+}
+.statusselect.Approved, .statusrender.Approved {
+    background-image: url("/img/icons16/statuses/aprv.png");
+}
+.statusrender .Missing_Docs, .statusselect.Missing_Docs {
+    background-image: url("/img/icons16/statuses/miss.png");
+}
+
+.statusrender .unavailable {
+	background-image: url("/img/icons16/help.png");
+	margin-left: 32px;
+	text-indent: 0;
+}

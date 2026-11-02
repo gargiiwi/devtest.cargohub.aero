@@ -1,0 +1,153 @@
+<?php
+/**
+ * Record processing plugin for "Quality Manager"
+ *
+ * @author Wavetrex Infinity <wavetrex@gmail.com>
+ * @package CargoConnect
+ * @subpackage Controllers
+ * @version 2021.05.17
+ */
+class App_Plugin_Record_Qman extends App_Model_Statistics implements App_Plugin_Record
+{
+	public function __construct()
+	{
+		if(!isset(self::$cache_ttl['records_per_group']))
+			self::$cache_ttl['records_per_group'] = 3600; // Update per hour (bla!)
+	}
+
+	private static $risk_matrix = array(
+		// Columns are "Severity" (Impact), Rows are Probability => 1 = Very Low; 2 = Low; 3 = Medium; 4 = High; 5 = Very high; 6 = Extreme
+		"1"=> array(-1=> 1, 1=> 1, 2=> 2, 3=> 3, 4=> 3),
+		"2"=> array(-1=> 1, 1=> 2, 2=> 3, 3=> 3, 4=> 4),
+		"3"=> array(-1=> 2, 1=> 3, 2=> 3, 3=> 4, 4=> 5),
+		"4"=> array(-1=> 3, 1=> 3, 2=> 4, 3=> 5, 4=> 6),
+		"5"=> array(-1=> 3, 1=> 4, 2=> 5, 3=> 6, 4=> 6)
+	);
+
+	/**
+	 * Auto-Calculations on update of record
+	 * (Not yet implemented for this record type)
+	 *
+	 * @see App_Plugin_Record::process_Data()
+	 */
+	public function process_Data($rec_id, &$metadata, &$xfields)
+	{
+		// Panel Outcome - Currency copy to other 5 fields, Risk ROI evaluation
+		if(!empty($xfields['frisk']['int_value'])) {
+			// Currency copy to the rest of fields
+			$xfields['fmaxli']['int_value'] = $xfields['frisk']['int_value'];
+			$xfields['fins']['int_value'] = $xfields['frisk']['int_value'];
+			$xfields['fprov']['int_value'] = $xfields['frisk']['int_value'];
+			$xfields['fsug']['int_value'] = $xfields['frisk']['int_value'];
+			$xfields['frisk2']['int_value'] = $xfields['frisk']['int_value'];
+			$xfields['fchback']['int_value'] = $xfields['frisk']['int_value'];
+			// under remarks
+			$xfields['finv']['int_value'] = $xfields['frisk']['int_value'];
+			$xfields['fsol']['int_value'] = $xfields['frisk']['int_value'];
+		}
+
+		// Risk ROI evaluation
+		$xfields['roi_potential']['int_value'] = null;
+		$xfields['roi_actual']['int_value'] = null;
+		if(!empty($xfields['finv']['value']) || !empty($xfields['fsol']['value'])) {
+			$inv_sol = isset($xfields['finv']['value'])? $xfields['finv']['value']: 0 + isset($xfields['fsol']['value'])? $xfields['fsol']['value']: 0;
+			if(!empty($xfields['frisk']) && $inv_sol != 0)
+				$xfields['roi_potential']['value'] = round(($xfields['frisk']['value'] - $inv_sol) / $inv_sol * 100, 2);
+			else
+				$xfields['roi_potential']['value'] = null;
+
+			if(!empty($xfields['frisk2']) && $inv_sol != 0)
+				$xfields['roi_actual']['value'] = round(($xfields['frisk2']['value'] - $inv_sol) / $inv_sol * 100, 2);
+			else
+				$xfields['roi_actual']['value'] = null;
+		} else {
+			$xfields['roi_potential']['value'] = null;
+			$xfields['roi_actual']['value'] = null;
+		}
+
+		// Exists only in panel [Event Followup]
+		if(!empty($xfields['severity']['int_value'])) {
+
+			// Change first 3 values of Investigation based on Risk (no, rc, req) - If it exists
+			$inv_done_binary = array(
+				'no'=> false,
+				'rc'=> false,
+				'req'=> false,
+				'ds'=> false,
+				'st'=> false,
+				'end'=> false,
+			);
+
+			if(!empty($xfields['probability']['int_value'])) {
+			// Variant "A", complete - Investigation depends on both severity and probability, use the $risk_matrix to get the $risk field
+				$xfields['risk']['int_value'] = self::$risk_matrix[$xfields['probability']['int_value']][$xfields['severity']['int_value']];
+
+				if($xfields['risk']['int_value'] == "1" || $xfields['risk']['int_value'] == "2")
+					$inv_done_binary['no'] = true;
+				elseif($xfields['risk']['int_value'] == "3")
+					$inv_done_binary['rc'] = true;
+				elseif($xfields['risk']['int_value'] == "4" || $xfields['risk']['int_value'] == "5" || $xfields['risk']['int_value'] == "6")
+					$inv_done_binary['req'] = true;
+			} else {
+			// Variant "B", severity only
+				if($xfields['severity']['int_value'] == "-1" || $xfields['severity']['int_value'] == "1") {
+					$inv_done_binary['no'] = true;
+					$xfields['risk']['int_value'] = 2;
+				} elseif($xfields['severity']['int_value'] == "2") {
+					$inv_done_binary['rc'] = true;
+					$xfields['risk']['int_value'] = 3;
+				} elseif($xfields['severity']['int_value'] == "3") {
+					$inv_done_binary['req'] = true;
+					$xfields['risk']['int_value'] = 4;
+				} elseif($xfields['severity']['int_value'] == "4") {
+					$inv_done_binary['req'] = true;
+					$xfields['risk']['int_value'] = 6;
+				}
+			}
+
+			// UPDATE mode only (user checkboxes)
+			if(!empty($rec_id)) {
+				// Grab existing values for inv_done (The checkboxes aren't turned off, only on)
+				if(!empty($xfields['inv_done']['value']))
+					$inv_cb_user = json_decode($xfields['inv_done']['value'], true);
+				else
+					$inv_cb_user = array();
+
+				// If dates are present, turn on values inside $inv_done_binary
+				if(!empty($xfields['inv_date']['int_value']) || in_array('ds', $inv_cb_user)) // ds
+					$inv_done_binary['ds'] = true;
+				if(!empty($xfields['inv_start_date']['int_value']) || in_array('st', $inv_cb_user)) // st
+					$inv_done_binary['st'] = true;
+				if(!empty($xfields['inv_end_date']['int_value']) || in_array('end', $inv_cb_user)) // end
+					$inv_done_binary['end'] = true;
+			}
+
+			// Store the (re)constructed "Investigation"
+			$xfields['inv_done']['value'] = json_encode(array_keys(array_filter($inv_done_binary)));
+		}
+	}
+
+// Customized functions for Quality Manager //
+
+	/**
+	 * Setup chart configuration
+	 *
+	 * @param int $rt_id
+	 * @param array $params
+	 * @return boolean
+	 */
+	protected function ccfg_records_per_group($rt_id, $params)
+	{
+		if(empty($this-> user_groups))
+			$this-> user_groups = self::user_Available_Groups($rt_id);
+
+		// Extra name hack for "Event" - If group name is in the format "CCC | ...", it only shows the 3-letter
+		foreach($this-> user_groups as &$group)
+			if(preg_match('/^[A-Z]{3} \|/', $group['name']))
+				$group['name'] = substr($group['name'], 0, 3);
+
+		$this-> chart_config['name'] = "Events per Category";
+		return $this-> ccfg_Setup_Period($params['period'], $this-> chart_config['name']);
+	}
+
+}

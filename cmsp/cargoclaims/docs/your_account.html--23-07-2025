@@ -1,0 +1,50 @@
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">{@}</span></p>
+<div><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">{#plugin:jqxtabs}</span>
+<div id="tabs-cargoclaim" style="margin-top: 0 !important;">
+<ul><!-- <li style="margin-left: 20px;"><img src='/img/icons16/world.png' />Tab3</li> --></ul>
+<span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><!--Tab1 start--></span>
+<div style="width: 900px; margin-left: auto; margin-right: auto;">
+<div class="contentblock" style="padding-left: 45px;">
+<div style="margin-left: 20px;"><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;</span></div>
+<div style="margin-left: 20px;">
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong><br /><span style="font-size: 14pt;">HOW TO SECTION FOR CLAIMANTS</span></strong><br /><br />1. <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/howto_submit_claim">How to submit a claim</a><br />2. <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/your_account">View and update your claims</a>&nbsp;<br /><br /><br /><br /><strong><br /><br />2. VIEW AND UPDATE YOUR CLAIMS&nbsp;<br /><br /></strong></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong>2.1</strong> <strong>Account creation and login</strong></span></p>
+<p><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">After creating a Cargo Claims form for the first time you will receive an email with your free account.</span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">To view your existing claim you may login <strong><a href="https://www.cargoclaims.aero/contact/access?action=login">here&nbsp;</a></strong></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><img src="https://cargohub.aero/vich/83e3d019e28a269dbec7a2ef515b22617457c3e9" width="491" height="258" /></span><br /><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><br />Forgot Password, click <a href="https://www.cargoclaims.aero/contact/access?action=recover_password">here</a><br /><br /></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong>&nbsp;</strong></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong>2.2</strong>&nbsp;<strong>Account features</strong></span></p>
+<p><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">The &ldquo;Submitted data&rdquo; tab is an overview of your claims. Here you can:</span></p>
+<ul>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">View the status of your claims</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">Unsent claims</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">Update a claim -</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">Submit a new claim</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">Update your contact information</span></li>
+</ul>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong><br />2.2.1&nbsp;</strong><strong>Claims overview and status&nbsp;</strong></span></p>
+<p><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">Open a record by clicking on the tracking ID link</span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><img src="https://cargohub.aero/vich/718b670302904affc113d84c26ff43edfbd22cdb" width="884" height="117" /></span><br /><br /><br /></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong>2.2.2</strong>&nbsp;<strong>Unsent claim</strong></span></p>
+<p><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">If you haven&rsquo;t sent the claim after submitting the form, a &ldquo;no E-mail sent&rdquo; notification will show up in your overview. Open the claim to proceed with the sending process.</span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-weight: 400;">In order to sent the claim to the carrier, clic</span><span style="font-weight: 400;">k on the link in the red box above. You will be redirected to the submission form.&nbsp;&nbsp;</span><span style="font-weight: 400;">Follow the &ldquo;</span><em><span style="font-weight: 400;">Update claim</span></em><span style="font-weight: 400;">&rdquo; procedure to send the claim.<br /><br /></span></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong><br /></strong></span><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong>2.2.3</strong>&nbsp;<strong>Update and sent a claim</strong></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-weight: 400;">Open a claim and add files and financial information in the data panels. </span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">When finished, press the green &ldquo;Update information&rdquo; button below, to send the claim.</span></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;<a href="https://docs.google.com/document/d/1s6n_LPOWiM2FyEfNoictHSO0JIo61NbiZlTvDROs7Ls/edit#heading=h.n7vennjz66ak"><span style="font-weight: 400;"><img src="https://cargohub.aero/vich/945e50856f6d3b6685d0417c19b0be87ddc7cfc4" width="858" height="270" /></span></a></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong><br /><br /><img src="https://cargohub.aero/vich/50b132a74ab623ebd14d3e094733e7a877582044" width="754" height="371" /><br /><br /><br /></strong><strong>2.2.4</strong>&nbsp;<strong>Update to a Formal claim</strong></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-weight: 400;">Open a claim and fill in any financial information and enter the </span><strong>Final claim amount</strong><span style="font-weight: 400;"> in the yellow box. Checkmark the documents you are sending. </span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">*Press the &ldquo;Guidelines..&rdquo; button for more information about submitting documents. Click on the &ldquo;Drag &amp; Drop&rdquo; box to upload files. </span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">When finished, press the green &ldquo;Update information&rdquo; button, to send the claim.</span></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;</span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-weight: 400;"><img src="https://cargohub.aero/vich/45fa2037762611e05517516575b4ffcfaeea5c60" width="861" height="175" /><br /></span><span style="font-weight: 400;"><br /></span><a href="https://docs.google.com/document/d/1s6n_LPOWiM2FyEfNoictHSO0JIo61NbiZlTvDROs7Ls/edit#heading=h.n7vennjz66ak"><span style="font-weight: 400;"><br /></span></a></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><strong>2.2.5</strong>&nbsp;<strong>Contact details</strong></span></p>
+<p><span style="font-weight: 400; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">Here you can update your contact information.</span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><span style="font-weight: 400;">To add an area of information, click on the &ldquo;Select&rdquo; feature, and the line will appear below in your overview.</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">The &ldquo;Save&rdquo; button on top, appears after you have made any changes.</span></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><br /><br /><br /></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><br /><br /><span style="font-weight: 400;">&nbsp;</span><br /></span></p>
+<hr />
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><br /><br /></span><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;"><br /><br /></span></p>
+<p><span style="font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;">&nbsp;</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>

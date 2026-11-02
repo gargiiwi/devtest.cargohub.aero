@@ -1,0 +1,6285 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
+/* font-family: 'Noto Serif', serif;
+font-family: 'Poppins', sans-serif; */
+ 
+/*font-family: 'Roboto', sans-serif;*/ 
+
+
+/***********************  Login Page redesign START ***********************/
+
+
+div.site > div.header > div.jqx-widget-itsblack{
+    font-size: 13px !important;
+    padding: 5px 0 !important;
+} 
+  
+div.access_login_page {
+    background: #f3f3f3; 
+    padding: 40px 30px !important;    
+    width: auto !important;  
+    display: flex;     
+    justify-content: center;
+    gap: 20px;  
+}  
+   
+div.access_login_page > div.rec-updates{
+    margin-bottom: 0 !important;
+}
+
+div.access_login_page > div.form {
+    width: 30% !important;
+    padding: 20px !important;
+    background: #fff;
+    margin-left: 0 !important;
+}
+
+div.access_login_page > div.logo {
+    padding: 0;
+    width: 33%;
+    display: none;
+}
+
+div.access_login_page > div.rec-updates > div#rec-upt > div{
+    margin-bottom: 15px !important;
+    border-radius: 5px;
+    box-shadow: none !important;
+}
+div.access_login_page > div.form > h3{
+    color: #000000;
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 0 !important;
+    margin-bottom: 10px;
+}
+
+div.access_login_page > div.form >.jqx-rc-all{
+    color: gray;
+    border: none !important;
+    padding: 0 20px !important;
+    margin-top: 20px !important;
+    text-align: center !important;
+    background-color: transparent !important;
+}
+div.access_login_page > div.form > .jqx-rc-all > br{
+    display: none;
+}
+div.access_login_page > div.form > form > h3{
+    color: #000000;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+div.access_login_page > div.form div.field {
+    background-color: white !important;
+    width: auto !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 15px;
+}
+
+div.access_login_page > div.form div.field > input {
+    width: 100% !important;
+    font-size: 14px !important;
+    text-indent: 8px !important;
+    line-height: 20px !important;
+    padding: 7px 0 !important;
+    border: 1px solid #cfcfcf !important;
+}
+
+
+div.access_login_page > .main_logger > form > input.jqx-widget-classic {
+    width: 100% !important;
+    border-color: #2196f3 !important;
+    background-color: #198de0 !important;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#18a2ea),to(#198de0)) !important;
+    color: #fff !important;
+    padding: 8px !important;
+    font-size: 14px!important;
+    font-weight: 600!important;
+    margin-top: 15px!important;
+    cursor: pointer;
+}
+
+
+div.access_login_page > div.form > div#rec-upt{
+    max-height: 260px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
+}
+
+/***********************  Login Page redesign END ***********************/
+
+
+/***********************  Forgot passwor Page redesign Start ***********************/
+
+div.site > div.page > div#pwreset {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    background: #f3f3f3;
+}
+div.site > div.page > div#pwreset > div.logo{
+    display: none;
+}
+
+div.site > div.page > div#pwreset > div.form {
+    width: 30% !important;
+    padding: 30px 20px !important;
+    background: #fff !important;
+}
+div.site > div.page > div#pwreset > div.form > form > h3{
+    color: #3c89bc !important;
+    font-weight: 500 !important;
+    margin-bottom: 10px !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+div.site > div.page > div#pwreset > div.form div.field {
+    background-color: transparent !important;
+    width: 100% !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+div.site > div.page > div#pwreset > div.form div.field > input {
+    width: 100% !important;
+    font-size: 14px !important;
+    text-indent: 8px!important;
+    line-height: 19px !important;
+    border: 1px solid #ccc !important;
+    padding: 7px 0 !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+div.site > div.page > div#pwreset > div.form > form > input.jqx-widget-classic {
+    width: 100% !important;
+    border-color: #2196f3 !important;
+    background-color: #198de0 !important;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#18a2ea),to(#198de0)) !important;
+    color: #fff !important;
+    padding: 8px !important;
+    font-size: 14px!important;
+    font-weight: 600!important;
+    margin-top: 15px!important;
+    cursor: pointer;
+}
+
+
+
+/***********************  Forgot passwor Page redesign END ***********************/
+
+
+.twofa_off_btn{
+    background: -moz-linear-gradient(top, #ffffff 0%, #efeff1 1%, #ededf0 4%, #d2d2d8 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(1%,#efeff1), color-stop(4%,#ededf0), color-stop(100%,#d2d2d8));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#efeff1 1%,#ededf0 4%,#d2d2d8 100%);
+    border: 1px solid #a9a9a9;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #e1e1e1;
+}
+
+
+
+/*++++++++++++++++++++ Preliminary Air Cargo Claim START +++++++++++++++++++++++++*/
+
+
+div.site > .page > .zone_header{
+    background: #ebebeb;
+    border: 1px solid #e1e1e1 !important;
+}
+
+div.site > .page > .zone_header a.mbtn{
+    font-size: 14px;
+    border: 1px solid white;
+    padding: 6px 12px;
+    background-color: #fff !important;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+div.site > .page > .zone_header{
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+div.site > .page > .zone_header a.mbtn:hover {
+    background-color: #ffe234 !important;
+    color: #2553bd;
+}
+#issue_view{
+    background: #f3f3f3;
+    padding: 15px 15px;
+    border: 1px solid #f1f1f1;
+}
+
+.sec_information_and_communication{
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+.sec_information_and_communication h4{
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: #dfdfdf;
+    border-bottom: none;
+}
+
+.sec_information_and_communication .column2{
+    width: auto !important;
+    float: none !important;
+    margin-right: 0 !important;
+    padding: 10px 15px;
+}
+
+.sec_information_and_communication .gray{
+    font-size: 13px !important;
+}
+#convos-box .jqx-rc-all{
+    margin-top: 10px !important;
+    border: 1px solid #d5d5d5  !important;
+    background-color: #fefefe !important;
+}
+
+#convos-box > .jqx-rc-all > a{
+    padding: 8px 0 !important;
+    background-color: #f3f3f3 !important;
+    color: #000 !important;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+.sec_information_claim_aspects{
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+.sec_information_claim_aspects h4{
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: #dfdfdf;
+    border-bottom: none;
+}
+.sec_information_claim_aspects .column2{
+    width: auto !important;
+    float: none !important;
+    margin-right: 0 !important;
+    padding: 10px 15px;
+}
+
+.sec_information_claim_aspects > .column2:first-of-type > table{
+    width: 48% !important;
+    float: left;
+    text-align: left;
+    line-height: 24px;
+}
+
+.sec_information_claim_aspects > .column2:last-of-type > table:last-child{
+    width: 48% !important;
+    text-align: left;
+    line-height: 24px;
+}
+.sec_information_claim_aspects > .column2 > hr{
+    display: none !important;
+}
+
+.sec_information_claim_aspects > .column2:first-of-type > div{
+    float: right;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+.sec_information_claim_aspects > .column2 > .infotable{
+    width: 100% !important;
+}
+table.claim-aspects{
+    background: #f3f3f3;
+    padding: 10px;
+    line-height: 20px;
+}
+
+
+.sec_update_financial_information{
+    background: #fff;
+    margin-bottom: 20px;
+}
+.sec_update_financial_information h4{
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: #dfdfdf;
+    border-bottom: none;
+}
+
+.sec_update_financial_information .column2{
+    width: 47% !important;
+    float: left;
+    margin-right: 0 !important;
+    padding: 10px 15px;
+}
+
+.sec_update_financial_information .column2 div.center.jqx-rc-all{
+    border: none !important;
+    color: black;
+    padding: 6px 0;
+    text-align: left !important;
+    margin-bottom: 6px;
+    line-height: 18px;
+    background:#fff !important;
+}
+
+.sec_update_financial_information .column2 .jqx-rc-all{
+    background-color: #f3f3f3 !important;
+    padding: 10px !important;
+    border: 1px solid #e1dbdb !important;
+}
+.sec_documents_you_are_attaching {
+    background: #fff;
+}
+.sec_documents_you_are_attaching h4{
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: #dfdfdf;
+    border-bottom: none;
+}
+
+.sec_documents_you_are_attaching .column2{
+    /*width:auto!important;*/
+    float: left;
+    margin-right: 0 !important;
+    padding: 10px 15px;
+}
+
+.sec_documents_you_are_attaching div.twocolcbox label{
+    line-height: 24px;
+}
+
+.sec_upload_more{
+    background: #fff;
+}
+
+.sec_upload_more h4{
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: #dfdfdf;
+    border-bottom: none;
+}
+.sec_upload_more .dropzone {
+    /*min-height: 160px;*/
+    overflow: auto;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 50px;
+    background: #f7f7f7;
+}
+.sec_upload_more .dropzone.dz-clickable{
+    /*background-size: 80%;*/
+}
+
+.sec_customer_survey{
+    background: #fff;
+}
+.sec_customer_survey h4{
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: #dfdfdf;
+    border-bottom: none;
+    margin-top: 20px !important;
+}
+
+.sec_customer_survey > div{
+    width: 38% !important;
+    padding: 20px;
+}
+.sec_customer_survey > div:last-of-type{
+    padding: 0 !important;
+    margin: 0 auto!important;
+    padding-bottom: 20px !important;
+}
+
+div.site > .page > .zone_footer{
+    background: #ebebeb;
+    border: 1px solid #e1e1e1 !important;
+}
+
+div.site > .page > .zone_footer a.mbtn{
+    font-size: 14px;
+    border: 1px solid white;
+    padding: 6px 12px;
+    background-color: #fff !important;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+div.site > .page > .zone_footer{
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+div.site > .page > .zone_footer a.mbtn:hover {
+    background-color: #ffe234 !important;
+    color: #2553bd;
+}
+
+
+.sec_customer_survey button.jqx-button, .sec_customer_survey input[type=button].jqx-button, .sec_customer_survey input[type=submit].jqx-button{
+
+    background-color: #3087e1 !important;
+    background-image: linear-gradient(to bottom, #3087e1, #3087e1) !important;
+    border: 1px solid #3087e1 !important;
+    padding: 8px 15px !important;
+    cursor: pointer;
+    text-shadow: none !important;
+
+}
+
+.sec_upload_more button.jqx-button, .sec_upload_more input[type=button].jqx-button, .sec_upload_more input[type=submit].jqx-button{
+
+    background-color: #3087e1 !important;
+    background-image: linear-gradient(to bottom, #3087e1, #3087e1) !important;
+    border: 1px solid #3087e1 !important;
+    padding: 8px 15px !important;
+    cursor: pointer;
+    text-shadow: none !important;
+
+}
+.sec_documents_you_are_attaching button.jqx-button, .sec_documents_you_are_attaching input[type=button].jqx-button, .sec_documents_you_are_attaching input[type=submit].jqx-button{
+
+    background-color: #3087e1 !important;
+    background-image: linear-gradient(to bottom, #3087e1, #3087e1) !important;
+    border: 1px solid #3087e1 !important;
+    padding: 8px 15px !important;
+    cursor: pointer;
+    text-shadow: none !important;
+
+}
+.sec_information_claim_aspects button.jqx-button, .sec_information_claim_aspects input[type=button].jqx-button, .sec_information_claim_aspects input[type=submit].jqx-button{
+
+    background-color: #3087e1 !important;
+    background-image: linear-gradient(to bottom, #3087e1, #3087e1) !important;
+    border: 1px solid #3087e1 !important;
+    padding: 8px 15px !important;
+    cursor: pointer;
+    text-shadow: none !important;
+
+}
+
+.section_grid_view .jqx-window-content > h4 > a{
+    float: right;
+    color: #ffffff;
+    background: #166eb7;
+    padding: 5px 12px !important;
+    text-indent: 4px;
+    margin: -5px;
+
+}
+
+
+
+/*++++++++++++++++++++ Preliminary Air Cargo Claim END +++++++++++++++++++++++++*/
+
+
+
+.jqx-tabs-content-element > #recentRecord_Div {
+    float: none;
+    width: 100% !important;
+    padding-top: 0 !important;
+    background: #fff;
+    margin-top: 15px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > h4{
+    padding: 7px;
+    text-indent: 10px !important;
+}
+.jqx-tabs-content-element > #recentRecord_Div > h4 > button.jqx-fill-state-normal{
+    font-size: 13px;
+    border-color: #4888dd;
+    background: #4888dd;
+    color: #fff;
+    cursor: pointer;
+    margin: -3px;
+    padding: 4px 10px;
+    float: right !important;
+    display: flex;
+}
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record{
+    border-spacing: 0 5px;
+    width: 100%;
+    padding: 10px;
+}
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #cargoclaim{
+    background: #e6f4ff;
+    font-size: 13px;
+}
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#cargoclaim > td{
+    padding: 10px 15px;
+}
+
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #damage{
+    background: #fff4f4;
+    font-size: 13px;
+}
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#damage > td{
+    padding: 10px 15px;
+}
+
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #train{
+    background: #fff2e2;
+    font-size: 13px;
+}
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#train > td{
+    padding: 10px 15px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #event{
+    background: #ffebfe;
+    font-size: 13px;
+}
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#event > td{
+    padding: 10px 15px;
+}
+
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #audit{
+    background: #ededed;
+    font-size: 13px;
+}
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#audit > td{
+    padding: 10px 15px;
+}
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#doc > td{
+    padding: 10px 15px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #doc{
+    background: #f1eeff;
+    font-size: 13px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#dev > td{
+    padding: 10px 15px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #dev{
+    background: #d1e3fb;
+    font-size: 13px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #csr{
+    background: #d4ffe2;
+    font-size: 13px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#csr > td{
+    padding: 10px 15px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > #nctsfw{
+    background: #eedff7;
+    font-size: 13px;
+}
+
+.jqx-tabs-content-element > #recentRecord_Div > table#recent_record > tbody > tr#nctsfw > td{
+    padding: 10px 15px;
+}
+
+
+
+
+/*++++++++++++++++++++++++ Export +++++++++++++++++++++*/
+/*IWI front end user record list page new design start*/
+/*div#export-commands{
+    float: none !important;
+    height: 50px !important;
+    width: 42%;
+    margin: 0 auto;
+}
+
+div#export-commands > div:last-child{
+    margin-right: 0 !important;
+}*/
+
+/*#tab_issues div.method_1 {
+    margin-bottom: 15px !important;
+    background: #f3f3f3;
+    padding: 15px !important;
+    width: 46%;
+    float: left;
+    margin-right: 15px;
+}
+
+#tab_issues div.method_2 {
+    margin-bottom: 15px !important;
+    background: #f3f3f3;
+    padding: 15px !important;
+    width: 47%;
+    float: left;
+
+}*/
+
+/*#tab_issues div.query-area h2{
+    color: #2c76a8;
+    font-weight: 600;
+    font-size: 17px;
+}
+#tab_issues div.query-area br{
+    display: none;
+}
+#tab_issues div.query-area ul{
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+#tab_issues div.query-area ul li{
+    line-height: 28px;
+}
+
+#tab_issues div#tid-query.query-area p{
+    padding-left: 0 !important;
+}
+
+#tab_issues div.issueEmailSection{
+    background: #f3f3f3;
+    clear: both;
+    padding: 15px;
+    margin-bottom: 15px;
+    float: none !important;
+    margin-right: 0 !important;
+    position: relative;
+}
+#tab_issues div.issueEmailSection br{
+    display: none;
+}
+#tab_issues #contact-name{
+    display: inline-block;
+    width: 40%;
+    text-align: center;
+}
+#tab_issues div.issueEmailSection h3{
+    color: #2c76a8;
+    font-weight: 600;
+    font-size: 14px;
+}
+#tab_issues div.query-area {
+    margin-bottom: 15px;
+    padding: 14px;
+    background: #f3f3f3;
+}*/
+/*#tab_issues div#iss-table{
+    margin-bottom: 15px;
+    width: auto !important;
+    height: 202px !important;
+    overflow-x: scroll !important;// IWI front end user record list page new design 
+    overflow-x: auto; IWI front end user record list page new design  
+    overflow-y: hidden; IWI front end user record list page new design  
+    
+}*/
+#tab_issues div#iss-table{
+    margin-bottom: 15px;
+    width: auto !important;
+    /*height: 202px !important;*/
+    /*overflow-x: scroll !important;*/ 
+}
+/*IWI front end user record list page new design end*/
+div.accountRecordList{
+    width: 1140px !important;
+}
+div.accountRecordList > div.header > div.jqx-widget-itsblack{
+    width: auto !important;
+}
+div.accountRecordList > div.page div#contact-account{
+    width: auto !important;
+}
+#tab_issues div#iss-table > div.jqx-overflow-hidden {
+    overflow: initial !important;
+}
+div#iss-table > div.jqx-grid-pager, div#iss-table > div.jqx-background-reset{
+    width: auto !important;
+}
+#pageriss-table{
+    width: 100% !important;
+}
+
+
+/*IWI front end user record list page new design start*/ 
+
+/*.submit_button_section a{
+    position: absolute;
+    right: 30px;
+    top: 25px;
+    background-color: #E8E8E8;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fafafa),to(#dadada));
+    padding: 7px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    border: 1px solid #ccc;
+    align-items: center;
+    gap:5px;
+}
+
+.submit_button_section a > .submit_button{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}*/
+/*IWI front end user record list page new design end*/
+
+
+/*IWI Record Details Page Redesign 10092026 start
+#tabs-container .jqx-tabs-headerWrapper ul {
+    margin-left: 0 !important;
+    
+}
+
+#tabs-container .jqx-tabs-headerWrapper ul li {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+IWI Record Details Page Redesign 10092026 end*/
+#tab_documents > .publish_documents_div_section{
+    float: none !important;
+    width: 100% !important;
+    padding-top: 20px !important;
+}
+#tab_documents > .publish_documents_div_section table{
+    width: 100%;
+}
+#tab_documents > .publish_documents_div_section table tr:first-child td{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px;
+}
+#publish_documents td {
+    padding: 6px;
+}
+#tab_documents > .publish_documents_div_section table tr#dev{
+    background: #cbe6f9;
+}
+
+#tab_documents > .publish_documents_div_section table tr#dev td{
+    padding: 6px;
+}
+
+#tab_documents > .publish_documents_div_section table tr#doc{
+    background: #fbf4ba;
+}
+
+#tab_documents > .publish_documents_div_section table tr#doc td{
+    padding: 6px;
+}
+
+#tab_documents > .publish_documents_div_section table tr#doc td:nth-child(3){
+    /*display: flex;*/
+    /*gap:10px;*/
+    /*align-items: center;*/
+    /*width: 140px !important;*/
+}
+#tab_documents > .publish_documents_div_section table tr#dev td:nth-child(3){
+    display: flex;
+    gap:5px;
+    align-items: center;
+    width: 140px !important;
+}
+#tab_documents > .publish_documents_div_section table tr td:nth-child(1){
+    width: 6% !important;
+    text-align: center;
+}
+#tab_documents > .publish_documents_div_section table tr td:nth-child(3){
+    /* width: 100% !important;
+    display: flex; */
+    width: 35% !important;
+}
+
+#tab_documents > .publish_documents_div_section table tr td:nth-child(3) a{
+    background: #f4faff;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 32px;
+}
+#tab_documents > .publish_documents_div_section table tr td:nth-child(2) {
+    width: 12% !important;
+}
+#tab_documents > .publish_documents_div_section table tr td{
+    text-align: left;
+}
+
+#tab_documents > .publish_documents_div_section table tr td:nth-child(4){
+    width: 13% !important;
+}
+#tab_documents > .publish_documents_div_section table tr td:nth-child(5){
+    width: 11%;
+}
+#tab_documents > .publish_documents_div_section table tr td:nth-child(6){
+    width: 15%;
+    text-align: center;
+}
+#tab_documents > .publish_documents_div_section table tr td:nth-child(7){
+    width: 15%;
+}
+
+#tab_documents > .publish_documents_div_section table tr#cargoclaim {
+    background: #fee;
+}
+#tab_documents > .publish_documents_div_section table tr#cargoclaim td{
+    padding: 6px;
+}
+#tab_documents > .publish_documents_div_section table tr#cargoclaim td img{
+    height: 16px;
+}
+/*++++++++++++++++++++++++ ACCOUNT OVERVIEW +++++++++++++++++++++*/
+
+/*
+
+.spacey #user-account{
+    background: #fff;
+}
+.spacey #user-account h4{
+    padding: 5px;
+}
+.spacey form.vertiform div.mce-tinymce{
+    width: 100% !important;
+}
+form.vertiform{
+    padding: 10px;
+}
+
+.spacey #user-organization, .spacey #user-statistics, .spacey #user-twofactor{
+    background: #fff;
+    width: 430px !important;
+}
+
+.spacey #user-organization h4, .spacey #user-statistics h4, .spacey #user-twofactor h4{
+    padding: 5px;
+}
+.spacey #user-twofactor .infotext{
+    padding: 10px;
+}
+#user-twofactor p{
+    padding: 0 10px;
+}
+.vertiform ul > li{
+    height: auto;
+}
+.vertiform ul > li label{
+    text-align: left !important;
+}
+#user-organization .vertiform ul li:nth-child(4) label{
+    display: none;
+}
+.spacey #user-statistics table.infotable{
+    width: 100% ;
+    padding: 0 10px;
+}
+.spacey #user-statistics table.infotable tr th{
+    width: 50% !important;
+    text-align: left !important;
+}
+.spacey #user-account {
+    float: left;
+    width: 650px !important;
+}
+.spacey {
+    padding: 15px !important;
+}
+*/
+
+
+/*++++++++++++++++++++++++ ACCOUNT OVERVIEW +++++++++++++++++++++*/
+
+
+#document-editor div.ctrl-line label{
+    text-align: left !important;
+    /*width: 130px !important;*/
+    width: 157px !important; /*  IWI pdf to doc*/
+}
+#document-editor div.ctrl-line{
+    display: flex;
+}
+
+#document-editor div.ctrl-line input.publish_for_radio{
+    height: auto !important;
+}
+
+
+
+/*++++++++++++++++++++++ DropDown +++++++++++++++++++++++*/
+
+.radpr{
+    margin-bottom: 10px;
+}
+.radpr fieldset {
+    border: none;
+}
+.radpr .mainl {
+    line-height: 17px !important;
+}
+.radpr fieldset > label::after {
+    content: ":";
+}
+.radpr select,
+.radpr details {
+    display: inline-block;
+    width: 59%;
+    background-color: #dddde2;
+    cursor: pointer;
+    position: relative;
+    z-index: 999;
+}
+.radpr select,
+.radpr summary {
+    border: 1px solid #8e8e97;
+    border-collapse: collapse;
+    border-radius: 4px;
+    padding: 4px;
+    width: 100%;
+    background: -webkit-linear-gradient(top, #ffffff 0%,#efeff1 1%,#ededf0 4%,#d2d2d8 100%);
+    cursor: pointer;
+}
+
+.radpr details[open] > summary::marker {
+    text-align: end !important;
+    text-align-last: end !important;
+}
+
+.radpr ul {
+    list-style: none;
+    margin: 0px;
+    padding: 5px 5px;
+    background:#fff;
+    min-height:100px !important;
+    box-shadow: 1px 7px 4px 1px #e9e9e9;
+    width: 100%;
+    overflow-y: scroll;
+    max-height:300px !important;
+
+}
+.radpr li {
+    margin: 0px;
+    padding: 0px;
+}
+label.radprl {
+    cursor: pointer;
+    display: inline-block;
+    width: 100% !important;
+    min-width: 95%;
+}
+.radpr li > label:hover,
+.radpr li > label:has(input:checked) {
+    background-color: #ccc;
+    color: #000;
+}
+
+
+.Rrecords-list > table > tbody > tr:nth-child(odd){
+    background: #f5f5f5;
+}
+.Rrecords-list > table > tbody > tr:nth-child(even){
+    background: #f5f5f5;
+}
+
+
+/*++++++++++ra left +++++++++++++++++*/
+
+/*  IWI Record Details Page Redesign 10092026 start
+.raleft {
+    width: 56%;
+    background: #e5f0ff;
+    padding: 15px 15px;
+}
+
+.raleft p {
+    margin: 0;
+    font-size: 13px;
+    color: #1f1f1f;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.raleft ul {
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.raleft ul li {
+    font-size: 14px;
+    color: #1f1f1f;
+    line-height: 24px;
+}
+
+.raright {
+    width: 38%;
+    padding: 15px 15px;
+    background: #e5f0ff;
+}
+
+.raopndays {
+    display: flex;
+    justify-content: space-between;
+    background: #E4F0FE;
+    padding: 10px;
+    align-items: center;
+}
+
+.raopndays .taskitem p {
+    display: inline;
+    background: #8E8D8A;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.raopndays .staleft {
+    display: flex;
+    justify-content: start;
+    width: 220px;
+}
+
+.raopndays .staleft h2 {
+    margin-bottom: 0;
+    font-size: 15px;
+    margin-left: 10px;
+    font-weight: 700;
+    color: #262626;
+    font-family: system-ui, sans-serif;
+}
+
+.staright label span {
+    font-size: 14px;
+    color: #262626;
+    font-family: system-ui, sans-serif;
+    font-weight: 600;
+    margin-right: 30px;
+    position: relative;
+}
+
+.staright label span::before {
+    content: '';
+    position: absolute;
+    left: -23px;
+    top: 1px;
+    width: 20px;
+    height: 20px;
+    background: url(/img/icons16/ist/new-file.png) no-repeat 0 0;
+}
+
+.staright label a {
+    font-size: 14px;
+    color: #166EB7;
+    font-family: system-ui, sans-serif;
+    font-weight: 600;
+    position: relative;
+}
+
+.staright label a::after {
+    content: '';
+    position: absolute;
+    left: -23px;
+    top: 1px;
+    width: 20px;
+    height: 20px;
+    background: url(/img/icons16/ist/close.png) no-repeat 0 0;
+}
+
+.rastas {
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+#rec-operations {
+    height: 215px !important;
+}
+
+.staleft {
+    
+}
+
+.staright {
+    text-align: right;
+    
+}
+
+.ratask {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.taskitem {
+    
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1.5px dashed #c2d4ed;
+    flex-grow: 1;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.taskitem p {
+    margin: 0;
+}
+
+.raclose {
+    background: #e95757a3;
+    border: none;
+    padding: 5px 16px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.opend {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.staright label,
+.staright span {
+    font-size: 14px;
+}
+
+ IWI Record Details Page Redesign 10092026  end */
+
+
+#content2,
+#content3 {
+    display: none;
+}
+
+.ratabs .nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.ratabs .nav-tabs {
+    display: flex;
+}
+.ratabs .nav-tabs>li {
+    margin-bottom: -2px;
+}
+
+/* .ratabs .nav-tabs>li>a {
+    margin-right: 8px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+
+.ratabs .nav-tabs>li>a {
+    margin-right: 6px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    padding: 8px 30px;
+    text-decoration: none;
+    background: #e9e9ed;
+} */
+
+/* .ratabs .nav-tabs>li>button {
+    margin-right: 8px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+} */
+
+.ratabs .nav-tabs>li>button {
+    margin-right: 6px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    padding: 8px 30px;
+    text-decoration: none;
+    background: #e9e9ed;
+    cursor: pointer;
+}
+
+.ratabs .nav-tabs>li.active button{
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom: none;
+
+}
+
+
+.ratabs .nav-tabs>li.active>a, .ratabs .nav-tabs>li.active>a:focus, .ratabs .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+.ratabs #content{
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.ratabs{
+    margin-bottom: 15px;
+    position: relative;
+}
+.ratbsearch{
+    text-align: right;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+}
+.ratbsearch input{
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+}
+.rasearch{
+    background: #e9e9ec;
+    color: #000;
+    padding: 7px 25px;
+    border-radius: 4px;
+    border: 1px solid #bdbdbd;
+    font-size: 14px;
+    cursor: pointer;
+}
+.sacheck input{
+    width: 15px;
+}
+
+/* Sminnner */
+
+.simple-spinner {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+}
+
+.simple-spinner span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #1A73E8;
+    border-radius: 50%;
+    border-right-color: rgba(255, 255, 255, 0.7);
+    animation: spinner-anim 0.8s linear infinite;
+}
+
+.simple-spinner-chart{
+    position: absolute;
+    width: 98%;
+    height: 95%;
+    background: #fafafa00;
+    backdrop-filter: blur(7px);
+    z-index: 999;
+}
+
+.simple-spinner-chart span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #1A73E8;
+    border-radius: 50%;
+    border-right-color: rgba(255, 255, 255, 0.7);
+    animation: spinner-anim 0.8s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spinner-anim {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Sminnner */
+
+/* Dropdown Department */
+.rafiltertab{
+    text-align: right;
+    padding: 6px 0;
+}
+
+.rafiltertab select{
+    width: 300px;
+    padding: 3px 10px;
+    border: 1px solid #adadad;
+}
+
+.rafiltertab label{
+    font-size: 13px;
+    color: #262626;
+}
+
+
+/* Dropdown Department */
+
+
+.simple-spinner-dot-dot{
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
+
+.simple-spinner-dot-dot span img{
+    width: 40px;
+}
+.swal2-container{
+    z-index: 999999 !important;
+}
+
+/* blur background */
+
+
+.simple-spinner-dot-dot-full-page{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #ffffff00;
+    backdrop-filter: blur(7px);
+    z-index: 9999999999;
+}
+
+.simple-spinner-dot-dot-full-page span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* blur background */
+.swal2-title{
+    font-size:18px !important;
+}
+/* ++++++++++++++++++++++++ overview tabs +++++++++++++++++++++++++++ */
+.pr8{
+    padding-right: 8px;
+}
+.pl8{
+    padding-left: 8px;
+}
+.claimchart{
+    padding: 15px;
+    background: #efefef;
+    position: relative;
+}
+
+.nextcontent{
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+}
+.ra_maintab .nav-tabs>li>a {
+    color: #8f8f8f;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 0;
+    border-bottom: 2px solid #fff;
+    padding: 10px 15px;
+}
+
+.ra_maintab > .nav-tabs>li.active>a, .ra_maintab > .nav-tabs>li.active>a:focus, .ra_maintab > .nav-tabs>li.active>a:hover {
+    background-color: inherit;
+    color: #000;
+    border: 0;
+    border-bottom: 2px solid #1654b0;
+    border-radius: inherit;
+    font-weight: 600;
+}
+.ra_maintab > .nav-tabs{
+    border-bottom: none;
+}
+
+
+/* .rachartbox_main{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.rachartbox{   
+    width: 49%;
+}
+@media (min-width: 1440px) and (max-width: 2500px) {
+    .rachartbox{
+        width: 23.3%;
+
+    }
+
+} */
+.rachart{
+    background: #fff;
+    padding: 15px 15px;
+    margin-bottom: 15px;
+    /* box-shadow: 0px 7px 16px 6px #ebe8e8; */
+    border: 1px solid #e9e9e9;
+    border-radius: 15px;
+}
+.ratab{
+    border: 1px solid #e9e9e9;
+    border-radius: 15px;
+    padding: 15px;
+}
+.rachart h2{
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0;
+}
+
+.claimchart .nav-pills>li+li{
+    margin-left: 5px;
+    border-radius: none;
+}
+.claimchart .nav-pills>li {
+    /* background: #dfdfdf;
+    border-radius: 5px; */
+}
+.claimchart .nav{
+    margin-left: 15px;
+}
+.radflex_start{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.radflex_start label{
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+.radflex_start .form-control {
+    border: 1px solid #e9e9e9;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+}
+.radflex_start .form-group{
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+.radflex_start label span{
+    color: #ef2929;
+}
+.claimchart .nav-pills>li>a{
+    color: #8f8f8f;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: none;
+    border-bottom: 2px solid #fff;
+    padding: 10px 8px;
+}
+.claimchart .nav-pills>li>a:hover{
+    background-color: inherit;
+    color: #000;
+    border-bottom: 2px solid #1654b0;
+    border-radius: inherit;
+}
+.claimchart .nav-pills>li.active>a{
+    background-color: inherit;
+    color: #000;
+    border-bottom: 2px solid #1654b0;
+    border-radius: inherit;
+    font-weight: 600;
+}
+.claimchart .nav-pills>li.active>a, .claimchart .nav-pills>li.active>a:focus{
+    background-color: inherit;
+    color: #000;
+}
+.radflex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.radflex_end{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.pb-15{
+    padding-bottom: 15px;
+}
+.pb-20{
+    padding-bottom: 20px;
+}
+.bscolor{
+    background: #4ea192;
+    color: #fff;
+}
+.bscolor:hover{
+    color: #fff;
+}
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{
+    outline: none;
+    outline-offset: 0;
+}
+
+.claim_search label{
+    font-size: 13px;
+    font-weight: 800;
+    /* 08012024 Audit control report changes */
+    font-family: 'Roboto', sans-serif;
+}
+.claim_search label span{
+    color: #ef2929;
+}
+.claim_search .form-control{
+    border: 1px solid #e9e9e9;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+}
+.claim_search .form-group{
+    margin-bottom: 10px;
+}
+.rayear{
+    margin-bottom: 15px;
+}
+.rayear label{
+    display: flex;
+    align-items: center;
+    line-height: 28px;
+}
+.rayear .radio-inline+.radio-inline {
+    margin-left: 0;
+}
+.claim_title{
+    font-size: 22px;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.rachart ul{
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.rachart ul li{
+    list-style: none;
+    width: 50%;
+    border: 1px solid #f1f1f1;
+    padding: 4px;
+    font-size: 11px;
+}
+
+.sectrecords{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.sectrecords .badge{
+    color: #fff;
+    background-color: #333;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+.preliminary{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.preliminary .badge{
+    color: #fff;
+    background-color: #337ab7;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+.formal{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.formal .badge{
+    color: #fff;
+    background-color: #5cb85c;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+.claim_amount{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.claim_amount .badge{
+    color: #fff;
+    background-color: #9177e7;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+.amount{
+    float: right;
+}
+.rootc{
+    background: #cacfe9;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.radownload{
+    background: inherit;
+    color: #5e5e5e;
+    font-size: 13px;
+}
+.rabtn{
+    background: #1654b0;
+    color: #fff;
+    font-size: 13px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #1654b0;
+    width: 90px;
+    padding: 8px 12px;
+}
+.rabtnsub{
+    background: #1654b0;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 8px;
+    border: 1px solid #1654b0;
+    width: 90px;
+    padding: 8px 12px;
+}
+.rabtnsub:hover{
+    color: #fff;
+}
+.rayear_box label{
+    font-size: 12px;
+    color: #000;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+.rayear_box .radflex_end > div {
+    margin-right: 20px;
+}
+.rayear_box p{
+    font-size: 12px;
+    margin-bottom: 0;
+    color: #898989;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+.rayear_box span{
+    font-size: 12px;
+    color: #1654b0;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.dropbtn {
+    background-color: #1654b0;
+    color: white;
+    padding: 8px 15px;
+    font-size: 13px;
+    border: none;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.radropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.radropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 100%;
+}
+
+.radropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.radropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.radropdown:hover .radropdown-content {
+    display: block;
+}
+
+.radropdown:hover .dropbtn {
+    background-color: #1654b0;
+}
+
+/* ++++++++++++++++++++++++ overview tabs +++++++++++++++++++++++++++ */
+
+/* #issuelist .site{
+    width: 1140px !important;
+}
+#issuelist .site .jqx-widget-header{
+    width: 100% !important;
+}
+#issuelist .jqx-grid{
+    width: 100% !important;
+} */
+
+.raleft_panel{
+    width: 240px;
+    background: #fff;
+    font-family: "Nunito", sans-serif;
+    font-weight: 500;
+    padding-right: 15px;
+    z-index: 11;
+    transition: width 0.25s ease, background 0.25s ease;
+    -webkit-transition: width 0.25s ease, background 0.25s ease;
+    -moz-transition: width 0.25s ease, background 0.25s ease;
+    -ms-transition: width 0.25s ease, background 0.25s ease;
+}
+.raright_panel{
+    width: calc(100% - 240px);
+    transition: width 0.25s ease, margin 0.25s ease;
+}
+.mdflex{
+    display: flex;
+    justify-content: space-between;
+}
+@media (min-width: 992px){
+    .sidebar-icon-only .raleft_panel {
+        width: 0;
+        opacity: 0;
+    }
+    .sidebar-icon-only .raright_panel{
+        width: calc(100% - 0px);
+    }
+
+}
+
+
+/* @media (max-width: 1440px){
+    .col-md-6 {
+        width: 50%;
+    }
+    
+    }
+
+@media (min-width: 1440px){
+.col-lg-3 {
+    width: 25%;
+}
+
+} */
+
+#module-info h2#module-title {
+    color :rgb(43, 41, 108);
+    display :block;
+    font-family :Calibri, Geneva, Arial, Helvetica, sans-serif;
+    font-size :16px;
+    font-weight :400;
+    margin-top: 0;
+}
+#module-info #module-description {
+    margin-right: 4px;
+    float: right;
+    color: lightgray;
+    font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 0;
+}
+#module-info img#module-icon {
+    float: left;
+    margin:0 4px !important;
+}
+
+.rastack ul{
+    padding: 0;
+    width: 100%;
+    display: block;
+}
+.rastack ul li{
+    list-style: none;
+    width: 100%;
+    border: none;
+    padding: 4px;
+    font-size: 13px;
+}
+.rastack ul li label{
+    width: 65px;
+    font-weight: 500;
+}
+
+.rastack ul li span{
+    color: #4274be;
+    font-weight: 600;
+
+}
+
+.formal_txt {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0;
+}
+
+#addAwbsModal .modal-dialog , #editAwbsModal .modal-dialog {
+    height: 80% !important;
+    padding-top:10%;
+}
+
+.addawbs{
+    background: #2866C2;
+    padding: 8px 15px;
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #fff !important;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.addawbs:hover, .addawbs:focus{
+    text-decoration: none;
+    outline: none;
+}
+
+.modal_txt{
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0;
+}
+
+#addAwbsModal .modal-header, #editAwbsModal .modal-header{
+    border-bottom: none;
+    padding-bottom: 0;
+}
+#addAwbsModal .modal_txt, #editAwbsModal .modal_txt{
+    font-size: 18px;
+}
+#addAwbsModal .modal-body, #editAwbsModal .modal-body{
+    padding: 35px;
+}
+
+#addAwbsModal .form-control, #editAwbsModal .form-control{
+    margin-bottom: 10px;
+    height: 38px;
+}
+#addAwbsModal.modal, #editAwbsModal.modal{
+    background: #0000009c;
+}
+.edit-submit-awbs-issued, .submit-awbs-issued{
+    width: 100%;
+    margin-top: 20px;
+}
+/* .modal-backdrop{
+    background-color: inherit;
+} */
+
+
+.raallow{
+    background: #16b087;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid #16b087;
+    padding: 8px 22px;
+    cursor: pointer;
+}
+.radisallow{
+    background: #df5f5f;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid #df5f5f;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    width: 300px;
+    color: white;
+    font-size: 12px;
+    background-color: #192733;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+}
+
+.tooltip-hover-text:hover .tooltip-text {
+    visibility: visible;
+}
+
+.tooltip-top {
+    top: -70px;
+    left: -50%;
+}
+.tooltip-top::before {
+    top: 90%;
+    left: 8%;
+}
+
+
+.tooltip-hover-text {
+    position: relative;
+    display: inline-block;
+    font-family: Arial;
+    text-align: center;
+}
+.tooltip-text::before {
+    content: "";
+    position: absolute;
+    transform: rotate(45deg);
+    background-color: #192733;
+    padding: 5px;
+    z-index: 1;
+}
+.highlight-text{
+    color: #1a73e8;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#tab_publication_access_active th.sorting::before{
+    content: "▲" !important;
+}
+#tab_publication_access_active th.sorting::after{
+    content: "▼" !important;
+}
+#tab_publication_access_not_active th.sorting::before{
+    content: "▲" !important;
+}
+#tab_publication_access_not_active th.sorting::after{
+    content: "▼" !important;
+}
+
+div.site > div.page{
+    position: relative;
+}
+
+.raumd{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 999;
+}
+.raumd a{
+    display: flex;
+    text-decoration: none;
+    color: #000;
+}
+.raumd a img{
+    margin-right: 6px;
+}
+
+/* newoverviewjs */
+
+.radflx{
+    display: flex;
+    flex-wrap: wrap;
+    background: #F3F3F3;
+    padding: 1.5rem 1.5rem !important;
+    justify-content: flex-start;
+    gap: 19px;
+}
+.overflex{
+    display: flex;
+    justify-content: space-between;
+}
+.rabox{
+    background: #F3F3F3;
+    padding: 1.5rem 1.5rem;
+}
+.mainbox{
+    column-gap: 20px;
+    row-gap: 20px;
+}
+.cargobox{
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 4px 6px 0px #e9e9e9;
+    padding: 15px 15px;
+    width: 20.9%;
+    font-family: system-ui,serif,sans-serif;
+}
+.cargobox:hover{
+    box-shadow: 1px 6px 9px 3px #dddddd;
+}
+
+.cargobox a{
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+.cargobox a:hover{
+    text-decoration: none;
+}
+.cargobox h2{
+    margin-bottom: 0;
+}
+.cargobox h2 a{
+    margin-bottom: 1rem;
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+    line-height: 0;
+    color: #000;
+}
+.cargobox h2 a span{
+    font-family: system-ui,serif,sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #2E2E2E;
+}
+.cargobox a i{
+    color: #5542E9;
+    font-size: 1.1rem;
+}
+.raleftr{
+    /* width: 60%; */
+}
+.rarightr{
+    text-align: right;
+    width: 40%;
+}
+.rarightr p{
+    margin-top: 0;
+}
+.rarightr p a{
+    font-size: 1rem;
+    color: #2D2D2D;
+    font-weight: 700;
+}
+.assign{
+    font-size: 0.8rem !important;
+    color: #2D2D2D;
+    font-weight: 600;
+}
+.assign a{
+    color: #000 !important;
+}
+.rarightr p span{
+    display: block;
+    font-size: 12px;
+    color: #8E8E8E;
+    line-height: 1;
+}
+.raleftr span{
+    display: block;
+    font-size: 12px;
+    color: #8E8E8E;
+    line-height: 1;
+    text-align: center;
+}
+
+
+/* newoverviewjs */
+
+
+
+
+.radial-bar {
+    margin: 0 auto;
+    width: 60px; /* Updated width */
+    height: 60px; /* Updated height */
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.radial-bar__mask {
+    clip: rect(0px, 60px, 60px, 30px); /* Updated clip values */
+    -webkit-backface-visibility: hidden;
+    transition: -webkit-transform 1s;
+    transition: -ms-transform 1s;
+    transition: transform 1s;
+    width: 60px; /* Updated width */
+    height: 60px; /* Updated height */
+    position: absolute;
+    border-radius: 50%;
+}
+
+.radial-bar__fill {
+    -webkit-backface-visibility: hidden;
+    transition: -webkit-transform 1s;
+    transition: -ms-transform 1s;
+    transition: transform 1s;
+    border-radius: 50%;
+    clip: rect(0px, 30px, 60px, 0px); /* Updated clip values */
+    background-color: #72dd77;
+    width: 60px; /* Updated width */
+    height: 60px; /* Updated height */
+    position: absolute;
+}
+
+.radial-bar__inset {
+    width: 54px;
+    height: 54px;
+    position: absolute;
+    margin-left: 3px;
+    margin-top: 3px;
+    background-color: #fbfbfb;
+    border-radius: 50%;
+    display: table-cell;
+}
+
+.radial-bar__percent {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000;
+    font-size: 12px; /* Adjusted font size */
+}
+
+.readonly_publish_documents_div_section{
+    float: none !important;
+    width: 100% !important;
+    padding-top: 8px !important;
+}
+.readonly_publish_documents_div_section .rafiltertab select{
+    width: 290px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.readonly_publish_documents_div_section #publish_documents{
+    width: 100% !important;
+}
+.readonly_publish_documents_div_section #publish_documents td:nth-child(1){
+    width: 6% !important;
+}
+.readonly_publish_documents_div_section #publish_documents td:nth-child(2){
+    width: 12% !important;
+}
+.readonly_publish_documents_div_section #publish_documents td:nth-child(3){
+    width: 35% !important;
+}
+.readonly_publish_documents_div_section #publish_documents td:nth-child(4){
+    width: 12% !important;
+}
+.readonly_publish_documents_div_section #publish_documents td:nth-child(5){
+    width: 10% !important;
+}
+.readonly_publish_documents_div_section #publish_documents td:nth-child(6){
+    width: 10% !important;
+}
+.readonly_publish_documents_div_section #publish_documents td:nth-child(7){
+    width: 10% !important;
+}
+.readonly_publish_documents_div_section #publish_documents tr:first-child td{
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px;
+}
+
+.readonly_publish_documents_div_section #publish_documents tr#cargoclaim {
+    /*background: #fee;*/
+}
+
+.readonly_publish_documents_div_section #publish_documents tr#dev {
+    /*background: #cbe6f9;*/
+}
+
+#module-info{
+    padding-top: 20px !important;
+    height: auto !important;
+    padding-bottom: 20px !important;
+}
+
+.readonly_publish_documents_div_section #publish_documents tr:nth-child(2n+3){
+    display: none;
+}
+.readonly_publish_documents_div_section table{
+    border-spacing: 0 8px !important;
+}
+.readonly_publish_documents_div_section #publish_documents tr td:nth-child(3){
+    display: flex;
+    width: 100% !important;
+    align-items: center;
+}
+
+/* new header style */
+
+div.site > div.header{
+    padding: 0 !important;
+    /* overflow: hidden; */
+}
+div.header > div.header-bar{
+    margin-bottom: 0 !important;
+}
+div.header-bar#operation-bar {
+    background: #ffffff !important; 
+    height: 71px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    border-bottom: 2px solid #dddbdb !important;
+}/* new header*/
+.jqx-fill-state-normal-itsblack, .jqx-widget-header-itsblack{
+    border-radius: 0 !important;
+    border-color: #2A2A2A !important;
+    background: #2A2A2A !important;
+    width: 100% !important;
+}
+
+/* .carimg li.ralogo{
+    padding: 0 8px !important;
+} */
+#operation-bar #global-search{
+    width: auto !important;
+}
+/* .glbsearch input{
+    height: auto !important;
+    padding: 10px 10px !important;
+    font-size: 1.1rem !important;
+    border: none !important;
+    width: 320px !important;
+    border-radius: 25px;
+    box-shadow: none !important;
+    margin:0 !important;
+} */
+ .glbsearch {    /*new header_start*/ 
+    position: relative;
+    background-color: white;
+    padding: 2px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.glbsearch::before {
+   
+    position: absolute;
+    left: 12px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.glbsearch input {
+    height: auto !important;
+    padding: 8px 10px 8px 30px !important;
+    font-size: 14px !important;
+    border: none !important;
+    width: 250px !important;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    outline: none;
+    box-shadow: none !important;
+    margin: 0 !important;
+}                       
+
+.glbsearch input::placeholder {
+    color: #b8b8b8;
+}                                  /*new header_end*/
+.glbsearch input:focus-visible{
+    outline: none !important;
+}
+.rafelx{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+.raaddcargo ul li{
+    float: left;
+    padding: 0 10px;
+}
+.raaddcargo ul li a{
+    display: inline-block;
+    color: #fff;
+    font-size: 17px;
+    text-decoration: none;
+}
+.raopentask ul li{
+    float: left;
+    padding: 0 10px;
+}
+.raopentask ul li a{
+    display: inline-block;
+    color: #fff;
+    font-size: 13px;
+    text-decoration: none;
+    position: relative;
+}
+.jqx-menu{
+    border: none !important;
+}
+.opentext{
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 28px;
+}
+.opentext span{
+    background: #fff;
+    color: #2866c2;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 25px;
+}
+#main-menu-icon > img{
+    margin: 0 !important;
+    float: none !important;
+}
+#operation-bar #main-menu-icon {
+    width: auto !important;
+    padding: 3px 5px;
+}
+#main-menu{
+    top: 58px !important;
+}
+.noti{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #FFB66D;
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: 0;
+}
+#rt-list11{
+    padding-right: 0 !important;
+}
+.rcupate{
+    border: 1px solid #ccc;
+    margin: 15px 22px;
+}
+.rcupate h4{
+    margin-bottom: 0 !important;
+    padding: 7px 15px;
+}
+.rcupate h3{
+    margin-bottom: 0 !important;
+    padding: 12px 15px ;
+}
+.rcupate hr{
+    display: none !important;
+}
+/* #tabs-container{
+    margin-top: 15px;
+} */
+#issue-types-bar{
+    margin-top: 15px !important;
+}
+/* If you like this, be sure to �?��? it. */
+.wrapper {
+    /* This part is important for centering the content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* End center */
+}
+
+
+.modal {
+    visibility: visible;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(14 14 14 / 70%);
+    transition: all .4s;
+    z-index: 9999;
+}
+
+.modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__content {
+    border-radius: 20px;
+    position: relative;
+    width: 800px;
+    max-width: 90%;
+    background: #F2F5FF;
+    padding: 1em 2em;
+    height: 560px;
+    overflow: auto;
+}
+
+.modal__footer {
+    text-align: right;
+    a {
+        color: #585858;
+    }
+    i {
+        color: #d02d2c;
+    }
+}
+.modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #585858;
+    text-decoration: none;
+}
+
+/* new header style */
+
+.publish_documents_div_section #publish_documents tr:nth-child(2n+3){
+    display: none;
+}
+.publish_documents_div_section table{
+    border-spacing: 0 8px !important;
+}
+
+.org_logo_sec{
+    max-width: 16% !important;
+    padding-left: 6px !important;
+}
+/* .modal-backdrop{
+    display: none;
+} */
+
+#doc-overview{
+    height: 95% !important;
+}
+#doc-info{
+    height: 95% !important;
+}
+.racrate{
+    display: block;
+    padding: 20px;
+    margin-bottom: 0 !important;
+}
+.racrate label{
+    font-size: 13px;
+    width: 120px;
+    display: inline-block;
+}
+
+.racrate input.form-control{
+    padding: 0 10px !important;
+    background: #f7f7f7 !important;
+    height: 37px !important;
+    width: 300px !important;
+    line-height: 37px;
+}
+.racrate .jqx-datetimeinput-fresh{
+    border-color: #cdcdcd;
+    width: 100% !important;
+    height: 37px !important;
+}
+.racrate .training_date{
+    border-color: #cdcdcd;
+    width: 100% !important;
+    height: 37px !important;
+}
+.racrate .training_date .jqx-action-button{
+    height: 100%;
+    width: 39px !important;
+    left: 283px !important;
+}
+.racrate .training_date #inputxfd_date_train{
+    background: #f7f7f7;
+}
+.racrate .jqx-max-size #inputxfd_date_train{
+    width: 100% !important;
+    margin-top: 0 !important;
+    padding: 11px !important;
+    box-sizing: border-box ;
+}
+.racrate .jqx-max-size > .jqx-fill-state-normal-fresh{
+    height: 100% !important;
+    width: 50px !important;
+    right: 0 !important;
+    border-color: #c3c3c3 !important;
+    left: 85% !important;
+}
+.racrate input.trainee_pass, .racrate input.trainee_fail{
+    width: 10% !important;
+    height: 15px !important;
+    margin: 7px 0;
+}
+#panels-docker{
+    display: flex;
+}
+#panels-docker .jqx-resize{
+    height: auto !important;
+}
+#panels-docker .datatable {
+    /*height: auto !important; //IWI Record Details Page Redesign 10092026*/
+}
+.raauth{
+    width: 42%;
+    position: absolute;
+    font-size: 14px;
+    font-weight: 700;
+    top: 2.2%;
+    font-family: system-ui;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.actauth{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.d-none{
+    display: none;
+}
+.tfa{
+    color: #ffbf00;
+}
+.gfa{
+    color: #28d555;
+}
+
+.mandatory-field{
+    font-size: 14px;
+    color: #ff0000;
+}
+
+#tab_trainee .jqx-fill-state-pressed-fresh{
+    color: white !important;
+}
+#record-module-info{
+    padding: 13px 10px;
+}
+#record-module-info h2{
+   font-weight: bold;
+    margin-bottom: 13px;  /* header design chnge -10-09-25 start*/
+    font-size: 13px;      
+    color: black;       
+    background-color: #e6f2ff;  
+    padding: 10px 15px;           
+    border-radius: 6px;
+    border: 1px solid #ccd7e7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);     /* header design chnge -10-09-25 end*/
+}
+
+
+
+
+.record-module-info {
+    margin-right: 4px;
+    float: right;
+    color: lightgray;
+    font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+.custom_green_btn{
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 6px 6px;
+}
+
+
+
+img#sw_rt-purchase_order{
+    max-width: 32px;
+}
+
+/* ra 26.04.2024 start */
+
+.traing_table{
+    padding: 10px;
+}
+.rastable{
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+}
+.rastable thead tr{
+    background: #e6e6e6;
+}
+.rastable td, .rastable th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.rastable tbody tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+
+/* 
+.select-wrapper {
+    position: relative;
+    width: 200px;
+  }
+  .select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    background-color: #fff;
+    display: none;
+  }
+  .select-dropdown.show {
+    display: block;
+  }
+  .select-option {
+    padding: 5px;
+    cursor: pointer;
+  }
+  .select-option:hover {
+    background-color: #f9f9f9;
+  } */
+
+/* ra 26.04.2024 End */
+
+
+.training-record-docs_section td input{
+    width: 90px;
+    border: 1px solid #d4d4d4;
+    padding: 6px 10px;
+    background: #ffffff;
+}
+
+
+
+
+
+#training-record-docs-edit-form.training-record-edit-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+#training-record-docs-edit-form .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 380px;
+    border-radius: 5px;
+    box-shadow: 1px 7px 10px #808080;
+    position: relative;
+    max-height: 610px;
+    overflow: auto;
+}
+
+/* The Close Button */
+#training-record-docs-edit-form .close {
+    color: #aaaaaa;
+    font-size: 22px;
+    font-weight: bold;
+    position: absolute;
+    right: 7px;
+    top: 4px;
+}
+
+#training-record-docs-edit-form .close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.trainingRecordForm label{
+    font-size: 14px;
+    padding-bottom: 7px;
+    display: block;
+    color: #000;
+    font-family: system-ui;
+}
+.trainingRecordForm input{
+    padding: 8px 5px;
+    font-size: 15px;
+    background: #efefef;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: #595959;
+}
+.submit-btn{
+    background: #2866C2 !important ;
+    color: #fff !important;
+    font-size: 14px !important;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 10px !important;
+    margin-bottom: 0 !important;
+}
+
+.trainingRecordForm input:focus-visible {
+    outline: none;
+}
+
+.trainingResultDiv{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.trainingResultDiv input[type="radio"]{
+    width: 40px;
+}
+.trainingReportTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.trainingReportTitle > h1{
+    margin-bottom: 0;
+    font-size: 18px;
+}
+.trainingReportTitle > button >  img{
+    width: 18px;
+}
+.trainingReportTitle > button{
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+    padding: 3px 8px;
+}
+
+.license-monitor-edit-form-modal .modal-title{
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    color: #313131;
+    font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+}
+
+.licenseMonitorForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.licenseMonitorForm label{
+    font-size: 14px;
+    color: #595959;
+    margin-bottom: 7px;
+
+}
+
+.licenseMonitorForm input{
+
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    font-size: 14px;
+
+}
+
+.licenseMonitorForm .submit-btn{
+    margin-top: 15px;
+}
+
+.create-button{
+    text-align: center;
+    line-height: 21px;
+    background: #cedcff;
+    border: 1px solid #b4c7f7;
+    border-radius: 3px;
+    padding: 3px 12px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.create-button img{
+    width: 16px;
+    margin-right: 5px !important;
+}
+
+.licenseMonitorForm input:focus {
+    outline: none;
+}
+
+
+@media print {
+
+    .rastable{
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+        border: 1px solid #dee2e6;
+    }
+    .rastable thead tr{
+        background: #e6e6e6;
+    }
+    .rastable td, .rastable th {
+        padding: .75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .rastable tbody tr:nth-of-type(odd) {
+        background-color: #fff;
+    }
+
+
+}
+
+/* 28-05-2024 created by iwi | start */
+
+@media (min-width: 1800px) and (max-width: 2500px) {
+
+    .jqx-menu-wrapper > .jqx-menu-vertical-fresh{
+        left: 900px !important;
+        top: 400px !important;
+     }
+
+    .jqx-menu-wrapper > .popup_menu-statuses-div{
+        top: 353px !important;
+        left: 902px !important;
+    }
+
+    
+    
+
+
+}
+@media (min-width: 1450px) and (max-width: 1799px) {
+
+    .jqx-menu-wrapper > .jqx-menu-vertical-fresh{
+        left: 760px !important;
+        top: 400px !important;
+     }
+
+
+    .jqx-menu-wrapper > .popup_menu-statuses-div{
+        left: 751px !important;
+        top: 353px !important;
+    }
+    
+    
+
+
+
+}
+
+@media (min-width: 1300px) and (max-width: 1440px) {
+
+    .jqx-menu-wrapper > .jqx-menu-vertical-fresh{
+        left: 650px !important;
+        top: 400px !important;
+     }
+
+    .jqx-menu-wrapper > .popup_menu-statuses-div{
+        left: 630px !important;
+        top: 353px !important;
+    }
+
+    
+
+    /* #training-record-docs-edit-form .modal-content {
+        max-height: 500px;
+        overflow: auto;
+    } */
+
+}
+
+/* 28-05-2024 created by iwi | End */
+
+/* 20052024 created by iwi | start */
+
+
+#license-monitor-edit-form-modal.license-monitor-edit-form-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 99; /* Sit on top */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+#license-monitor-edit-form-modal .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 380px;
+    border-radius: 5px;
+    box-shadow: 1px 7px 10px #808080;
+    position: relative;
+    max-height: 610px;
+    overflow: auto;
+}
+
+/* The Close Button */
+#license-monitor-edit-form-modal .close {
+    color: #aaaaaa;
+    font-size: 22px;
+    font-weight: bold;
+    position: absolute;
+    right: 7px;
+    top: 4px;
+}
+
+#license-monitor-edit-form-modal .close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* 20052024 created by iwi | end */
+
+.btnDisabled{
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* 22052024 created by iwi | start */
+#_license_monitor_record_section .rastable tbody tr td:nth-child(5), td:nth-child(6), td:nth-child(7)   {
+    white-space: nowrap;
+}
+/* 22052024 created by iwi | end */
+
+/* 28052024 created by iwi | start */
+#trainingReportViewSec{
+    margin-top: 30px;
+}
+/* 28052024 created by iwi | end */
+
+
+#cert-answer,#cert-question{
+    height: auto !important;
+}
+
+.LicenseMonitorAnsEditPage tr td h5{
+    margin-top: 0;
+}
+.LicenseMonitorAnsEditPage tr{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+
+}
+.LicenseMonitorAnsEditPage tr td input{
+    width: 345px !important;
+}
+.LicenseMonitorAnsEditPage tr td:first-of-type{
+    width: 41%;
+}
+.LicenseMonitorAnsEditPage tr td:last-of-type{
+    width: 50%;
+}
+
+/* 10062024 created by iwi | start */
+.filter_report{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    position: relative;
+    width: 50%;
+}
+.filter_report p{
+    margin-right: 10px;
+}
+/* .filter_report_btn{
+    margin-left: 10px;
+    border: 1px solid #2866c2;
+    border-radius: 5px;
+    padding: 6px 20px;
+    background: #2866c2;
+    color: #fff;
+    font-size: 13px;
+    
+    //remove start
+    position: absolute;
+    right: 0;
+    top: 10px; 
+    //remove end
+} */
+/* 10062024 created by iwi | end*/
+/* .msgFuncIconSec .jqx-buttongroup{
+    margin-right: 10px;
+    cursor: pointer;
+} */
+
+/*IWI  to view sender details, resend mail and print this mail in add / edit message start*/
+ .msgFuncIconSec .jqx-button{
+    cursor: pointer;
+ }
+ 
+ /*IWI  to view sender details, resend mail and print this mail in add / edit message end*/
+
+ /* 11062024  created by iwi | start*/
+.filter_report .external_users {
+    
+    margin-left: 15px;
+}
+/* 11062024  created by iwi | end*/
+
+
+.jqx-rc-all .content h4{
+    background-color: transparent;
+    border-bottom: inherit;
+}
+.dropzone{
+    background: #fff;
+    border: 2px dashed #d3dbf7 !important;
+}
+.dropzone.dz-clickable{
+    background-image:url(../../img/upload.png) !important;
+}
+.div#submit-proceed-box{
+    margin-top: 0 !important;
+    border: none !important;
+    background-image: none !important;
+}
+.rasubmit input{
+    height: 37px !important;
+    box-shadow: none;
+    background: #2866c2;
+    border: 1px solid #2866c2;
+    color: #fff;
+    cursor: pointer;
+}
+#issue_group_combo{
+    border-color: #c5c5c5;
+    background-color: #ffffff;
+    height: 33px;
+    margin-bottom: 5px;
+}
+#dropdownlistContentissue_group_combo, #dropdownlistArrowissue_group_combo,#dropdownlistArrowissue_group_combo{
+    height: 33px;
+}
+
+
+/*  27092024 expiry report changes  start*/
+    .div_filter_section{
+        display: flex;
+        justify-content: space-between;
+            margin-bottom: 0;
+        padding: 15px;
+        background: #f5f5f5;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .filter_report > div{
+        display: flex;
+        align-items: center;
+        line-height: 24px;
+        gap: 10px;
+        row-gap: 10px
+    }
+    .filter_report > div:first-of-type{
+        margin-bottom: 20px;
+    }
+
+    .insearch{
+        width: 180px;
+        padding: 10px;
+        border: 1px solid #e8e8e8;
+        border-radius: 5px;
+        background: #f2f2f2;
+    }
+
+    #search_person_btn{
+        background: #2866c2;
+        color: #fff;
+        padding: 10px 10px;
+        border: 1px solid #2866c2;
+        border-radius: 0 5px 5px 0;
+        margin-left: -9px;
+    }
+    .filter_report > div > .raradio > label{
+        background: #fff;
+        padding: 4px 12px 4px 12px;
+        border-radius: 30px;
+        cursor: pointer;
+        display: inline-block;
+        width: 120px;
+        max-width: 120px;
+        text-align: center;   
+        color: #000;
+    }
+
+    .filter_report > div > .raradio > .rtd_active{
+        background: #d3e5ff;
+    }
+
+    .filter_report > div > .raradio > input{
+        margin-top:0;
+    }
+    .raradio .external_users{
+        margin-left: 5px;
+
+    }
+    .filter_report > div > .rauser_pic > label{
+        background: #fff;
+        padding: 4px 12px 4px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        display: inline-block;
+        width: 160px;
+        max-width: 160px;
+        text-align: center; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    
+    }
+    .rauser_pic .user_pic{
+        height: 18px;
+        margin-right: 10px;
+    }
+    .filter_report > div > .rauser_pic > .rut_active{
+        background: #d3e5ff;
+    }
+
+    .rasubmt{
+        margin-top: 15px;
+    }
+    #advance-report{
+        .nextcontent {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .raleft_panel{
+            width: 280px;
+            padding: 15px;
+            margin-right: 15px;
+        }
+    }
+    .trexpiry{
+        margin-left: 20px;
+    }
+/*  27092024 expiry report changes end */
+
+
+.genaral_damage .calendar{
+    width: 50% !important;
+    height: 30px !important;
+}
+.genaral_damage .theclock{
+    width: 38% !important;
+}
+.genaral_damage #issue_group_combo{
+    width: 97% !important;
+}
+.genaral_damage .jqx-combobox-arrow-normal{
+    width: 30px !important;
+    left: 324px !important;
+}
+.genaral_damage .timeEntry-control{
+    margin-top: 6px;
+}
+.genaral_damage .jqx-action-button{
+    width: 35px !important;
+    left: inherit !important;
+    right: 0;
+}
+.genaral_damage .jqx-combobox-state-normal, .genaral_damage .jqx-combobox-input, .genaral_damage .jqx-combobox-content, 
+.genaral_damage .jqx-combobox-arrow-normal{
+    height: 30px !important;
+}
+.genaral_damage .tiny{
+width: 98% !important;
+}
+.genaral_damage #content1 select.jqx-input {
+    width: 74% !important;
+}
+.genaral_damage .jqx-button{
+    height: 32px;
+}
+.genaral_damage .content table tr td{
+    box-shadow: none !important;
+}
+.genaral_damage .content table tr td h5{
+    margin-top: 0 !important;
+}
+.genaral_damage #content4 .required{
+    display: none !important;
+}
+.genaral_damage textarea{
+    background: #fff;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.genaral_damage #content2 .medium{
+    width: 95% !important;
+}
+.genaral_damage #content2 table tr td textarea{
+    border-color: #e7e7e7;
+    background: #f9f9f9;
+}
+.genaral_damage #content2 table tr td select, .genaral_damage #content2 table tr td input{
+    border-color: #e7e7e7;
+    background: #f9f9f9;
+}
+
+/* .filter_report > div > .rauser_pic{
+    position: relative;
+    padding: 4px 36px 4px 5px;
+} */
+.rauser_pic .user_pic{
+    height: 16px;
+    margin-top: 1px;
+    position: absolute;
+    top: 6px;
+    left: 13px;
+}
+.search-section{
+    align-self: end;
+}
+
+/* .section_grid_view > .jqx-docking > .jqx-docking-panel{
+    display: flex;
+    justify-content: space-between;
+    width: 100% !important;
+    min-width:99.4% !important;
+    float: none !important;
+}
+.section_grid_view > .jqx-docking{
+    display: flex;
+}
+.section_list_view > #panels-docker{
+    display: inline-block !important;
+}
+.section_grid_view #panels-docker .jqx-resize{
+    width: 99% !important;
+}
+.section_grid_view .jqx-window-header{
+    width: 99% !important;
+}
+.section_grid_view #panels-docker .datatable{
+    width: 99% !important;
+}
+
+ */
+
+
+/*IWI Increase publication page width start*/
+.publicationContainer .site{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 70px;
+    background: #f7f9fc;
+}
+
+/*IWI Increase publication page width end*/
+
+
+/* 19062024 start */
+/*.doc-12 > .jqx-docking-panel {
+    display: flex;
+    width: 100%;
+    min-width: 99.5% !important;
+}*/
+/* 19062024 end */
+
+#training-report-button{
+    float: left;
+    background: #ffe2cd;
+    box-shadow: none;
+    color: #000;
+    border: 1px solid #ddb598;
+    text-shadow: none;
+}
+#training-report-button i{
+    color: #f17215;
+    font-weight: 600;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+
+
+
+/* 08072024 added by iwi */
+.toolbar_next{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 12px;
+}
+.next_expiry_div{
+    line-height: 42px;
+}
+
+
+/* 02082024 start */
+    /* .number-of-trainee{
+        margin-left: 500px !important;
+    }  21112024 Training Scheduler Training Date section work start*/
+
+    /* .number-of-trainee{
+        position: absolute;
+        right: 0;
+    }
+    .trainee-delete-btn{
+        position: absolute;
+        right: 163px;
+    }    */
+
+
+    #train-tlist .training_edit, #train-tlist .training_save, #train-tlist .training_cancel{
+        /* display: none; 09092024 remove */
+    }
+/* 02082024 end */
+
+
+/* 14082024 start */
+#trainingExpiryReportData thead .training_expiry_record_sorting{
+    cursor: pointer;    
+}
+#trainingExpiryReportData .training_expiry_record_sorting{
+    position: relative;
+}
+#trainingExpiryReportData .training_expiry_record_sorting.sort-asc::after{
+    content: "↑";
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 14px;
+    color: #000;
+    z-index: 9999;
+}
+#trainingExpiryReportData .training_expiry_record_sorting.sort-desc::after{
+    content: "↓";
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 14px;
+    color: #000;
+    z-index: 9999;
+}
+/* 14082024 end */
+
+/* 22082024 added by iwi | start */
+#issues-grid .goDetailFrmPnl{
+    color:#166EB7 
+}
+#issues-grid .goDetailFrmPnl:hover{
+    text-decoration: underline;
+}
+/* 22082024 added by iwi | end */
+
+
+
+/*IWI status popup menu design issue fix start*/
+/* raj 23-08-2024 Start */
+
+#rec-operations div.operations-section{
+    position: relative;
+}
+.statusGenPop,.prioritiesGenPop{
+    position: absolute;
+/*    right: 0; IWI Record Details Page Redesign 10092026
+    top: 0; IWI Record Details Page Redesign 10092026*/
+    background: #d2d2d8;
+    z-index: 9999;
+    border-radius: 2px;
+
+}
+.statusGenPop ul,.prioritiesGenPop ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 170px !important;
+}
+.statusGenPop ul li,.prioritiesGenPop ul li{
+    border: 1px solid transparent;
+    text-indent: 0;
+    list-style: none;
+    padding: 4px 6px 4px 6px;
+    left: 100%;
+    overflow: hidden;
+    color: inherit;
+    right: 0;
+    margin: 0px 1px 0px 1px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.statusGenPop ul li:hover,.prioritiesGenPop ul li:hover{
+    box-shadow: 0 2px 3px rgb(0,0,0,.15);
+    border-color: #5a5e64;
+    color: #000;
+    text-shadow: 0 1px 0 #aaa;
+    background: -webkit-linear-gradient(top, #cacdd5 0%, #a3a7b4 93%, #a6aab7 100%);
+    background: linear-gradient(top, #cacdd5 0%, #a3a7b4 93%, #a6aab7 100%);
+}
+.statusGenPop ul li img,.prioritiesGenPop ul li img{
+    float: left;
+    width: 16px;
+    margin-right: 5px;
+    margin-top: 1px;
+    border: none;
+}
+
+
+
+
+
+
+
+/* raj 23-08-2024 End */
+/*IWI status popup menu design issue fix end*/
+
+
+
+/*IWI  to view sender details, resend mail and print this mail in add / edit message start*/
+.msgFuncIconSec .jqx-button{
+    cursor: pointer;
+}
+ 
+ /*IWI  to view sender details, resend mail and print this mail in add / edit message end*/
+
+
+ /* 06092024 start */
+.tRCertExpirytDiv{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.tRCertExpirytDiv input[type="radio"]{
+    width: 40px;
+}
+/* .div-section-disable{
+    pointer-events: none;
+    opacity:0.5;
+}   remove */
+/* 06092024 end */
+
+/* 09092024 start */
+.training-record-action-btn{
+    background: none;
+    border: none;
+}
+.training-record-action-btn > .inline-icon16{
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+/* 09092024 end */
+
+
+
+/*IWI agent section start 17092024*/
+#agent .radflex{
+    align-items:inherit;
+}
+
+.align-items{
+    align-items: center !important;
+}
+.btn-radflex{
+    display: flex;
+    margin-right: 10px;
+    width: 350px;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+/*IWI agent section end*/
+
+
+
+
+/* 23092024 Training Expiry Report filter add */
+
+.sub_filter_section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    margin-bottom: 15px;
+
+    .report_filter_section{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+
+        label{
+        font-size: 13px;
+        color: #000;
+        margin-right: 5px;  
+        font-weight: 600;   
+        font-family: 'Roboto', sans-serif;  
+        }
+        .form-control{
+            height: 30px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px; 
+            width: 100px;   
+        }
+        input{
+            height: 30px;
+            padding: 0 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 8px; 
+        }
+    }
+}
+
+/* 23092024 Training Expiry Report filter add */
+
+
+
+
+/*  IWI pdf to doc start */
+
+.doc-file-opload{
+    display: inline-block;
+    padding: 5px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 7px;
+}
+
+/*  IWI pdf to doc end */
+
+
+
+/* 08102024 expiry report changes  start*/
+
+.disabled-section {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+/* 08102024 expiry report changes end */
+
+
+/* 09102024 Agent Report filter modify */
+.agent-report-rs-main{
+    margin-bottom: 15px;
+    align-items: end !important;
+}
+.agent-report-rs{
+    display: flex;
+	align-items: end;
+    gap: 10px;
+}
+.agent-report-rs-filter{
+    gap: 10px;
+    align-items: center;
+    display: flex;
+    width:60%;
+
+    .rs-filter-item{
+        width: 33%;
+    }
+}
+.agent-report-rs-download{
+    width: 30%;
+}
+.agent-report-rs-btn-filter{
+    display: flex;
+    gap: 10px;
+}
+/* 09102024 Agent Report filter modify end */
+
+/* 15102024 Audit control add  extra sec start */
+/*23012025 capa form css with structure  changes | 160125* css start*/
+/* #tab_audit_activity {
+
+    table{
+        background: #fff;
+    }
+    .racrate{
+        padding: 20px;
+        .racrate label{
+            font-size: 13px;
+        }
+        .form-control{
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 0px 0 !important;
+            width: 100% !important;
+            background: none !important;
+            font-size: 14px;
+        }
+        select.form-control{
+            background: none;
+            padding: 6px 0 !important;
+            color: #575757cc;
+
+        }
+        select.form-control:focus-visible{
+            border: none !important;
+            box-shadow: none !important;
+            outline: none;
+        }
+    }
+} */
+/*23012025 capa form css with structure  changes | 160125* css end*/
+
+
+/* 15102024 Audit control add  extra sec start */
+
+.get_flx{
+    display: flex; 
+justify-content: space-between; 
+align-items: center;
+margin-bottom: 30px;
+}
+.get_pub{
+    background-color: transparent;
+    color: #2866c2;
+    border-bottom: none;
+    font-size: 20px;
+    margin-bottom: 0;
+    padding: 0;
+    font-weight: 600;
+}
+.log_pub{
+    max-width: 200px;
+}
+.back_link{
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 2px;
+}
+.back_link a{
+    color: #a18c8c ;
+    font-weight: 600;
+}
+
+
+
+.swal2-styled.swal2-confirm{
+    background: #4CAF50 !important;
+}
+
+
+
+
+
+
+/* Ankita  caro list report chart css start | 05112024 Audit control  chart Changes  */
+.raright_panel_report{
+    border: solid 1px #cccccc87!important;
+    border-radius: 10px !important;
+}
+.raright_panel_report h3{
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    background-color: #fff;
+    padding: 10px 20px 10px;
+    border-radius: 8px;
+}
+.chart_graphs{
+    background-color: #d1cccc52;
+    padding: 14px 15px 10px 15px;
+}
+#audit-report-by-chart .raright_panel{
+    position: relative;
+    border: solid 1px #a5a0a061;
+    padding: 0px 15px;
+    border-radius: 10px;
+}
+.pdf_icon{
+    position: absolute;
+    right: 16px;
+    top: -44px;
+    border: solid 1px #bfb8b885;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #000;
+    font-size: 12px;
+    cursor: pointer;
+}
+.pdf_icon i{
+    color: red;
+    padding-right: 5px;
+}
+
+/* 07112024  Audit control new changes */
+.audit_report_title h3{
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+/* .total_report_dv{
+    margin-bottom: 14px;
+} */
+/* Ankita  caro list report chart css end | 05112024 Audit control  chart Changes */
+
+
+
+
+
+
+/* 07112024 Audit Plan created by iwi |  start */
+
+.linecreate{
+    text-align: right;
+	/* position: absolute;
+    right: 250px;
+    bottom: 376px;
+	z-index: 9; */
+    position: absolute;
+    left: 17px;
+    transform: translate(-17px, 0px);
+    z-index: 2;
+    display: flex;
+}
+#auditPlanFormSec{
+	background: #f9f9f9;
+	padding: 20px;
+	border-radius: 10px;
+
+	.form-control{
+	background: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    box-shadow: none;
+	}
+}
+.removeFieldBtn{
+	background: none;
+	border: none;
+}
+.mh_srcl{
+	height: 370px;
+    overflow: auto;
+}
+.audit_tupe{
+	background: #fff;
+	border-radius: 10px;
+	border-collapse: separate;
+	padding: 20px;
+}
+
+#auditPlanCreateFormBtn, #auditPlanCloseFormBtn, #auditPlanSaveFormBtn, #createScheduleAuditBtn{
+    width: 115px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    direction: ltr;
+    font-family: SF Pro TextHelvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    line-height: 1.47059;
+    min-width: 30px;
+    overflow: visible;
+    padding: 4px 15px;
+    text-align: center;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    border-color: #8e8e97;
+    background: -webkit-linear-gradient(top, #ffffff 0%, #efeff1 1%, #ededf0 4%, #d2d2d8 100%);
+    margin: 0 5px;
+}
+.linecreate span{
+    padding-right: 4px !important;
+}
+
+
+/*12.11.24 Anita css strt */
+#auditPlanReportDataHtml,.dt-layout-row{
+    flex-direction: row-reverse;
+}
+#auditPlanReportDataHtml,.dt-layout-start{
+    margin-right: 0px !important;
+}
+#auditPlanReportDataHtml,.dt-layout-end{
+    margin-left: 0px !important;
+}
+.frm_btn_grp{
+    display: flex !important;
+}
+/* 07112024 Audit Plan created by iwi |  start */
+#auditPlanReportDataHtml .dt-search{ /*  13112024 audit plan Schedule section work */
+
+    padding-left: 150px;
+}
+
+
+
+
+
+
+
+
+
+/* 21112024 Training Scheduler Training Date section work  */
+
+
+.number-of-trainee {
+    position: absolute;
+    right: 0px !important;
+    bottom: 0% !important;
+}
+.trainee-delete-btn {
+    position: absolute;
+    right: 170px;
+}
+
+.trainee_result_update_ops_wrap {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    /*width: 36%;*/
+}
+
+#trainee-result-update-ops {
+    select {
+        width: 127px;
+        height: 26px;
+    }
+}
+
+#tab_trainee .toolbar{
+    position: relative;
+}
+
+div.toolbar button.jqx-widget {
+    padding: 4px 6px;
+} 
+/* 21112024 Training Scheduler Training Date section work  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 27112024 Customer Inquiry -> CAPA sec added by iwi start */
+/*23012025 capa form css with structure  changes | 160125* css end*/
+/* #capa_sec_by_customer_inquiry {
+
+    table{
+        background: #fff;
+    }
+    .racrate{
+        padding: 20px;
+        .racrate label{
+            font-size: 13px;
+        }
+        .form-control{
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 0px 0 !important;
+            width: 100% !important;
+            background: none !important;
+            font-size: 14px;
+        }
+        select.form-control{
+            background: none;
+            padding: 6px 0 !important;
+            color: #575757cc;
+
+        }
+        select.form-control:focus-visible{
+            border: none !important;
+            box-shadow: none !important;
+            outline: none;
+        }
+    }
+} */
+/*23012025 capa form css with structure  changes | 160125* css end*/
+/* 27112024 Customer Inquiry -> CAPA sec added by iwi start */
+
+
+
+
+
+
+
+
+
+
+
+/* 28112024 Quality Event -> CAPA sec added by iwi start */
+/*23012025 capa form css with structure  changes | 160125* css start*/
+/* #capa_sec_by_quality_event {
+
+    table{
+        background: #fff;
+    }
+    .racrate{
+        padding: 20px;
+        .racrate label{
+            font-size: 13px;
+        }
+        .form-control{
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 0px 0 !important;
+            width: 100% !important;
+            background: none !important;
+            font-size: 14px;
+        }
+        select.form-control{
+            background: none;
+            padding: 6px 0 !important;
+            color: #575757cc;
+
+        }
+        select.form-control:focus-visible{
+            border: none !important;
+            box-shadow: none !important;
+            outline: none;
+        }
+    }
+} */
+/*23012025 capa form css with structure  changes | 160125* css end*/
+/* 28112024 Quality Event -> CAPA sec added by iwi start */
+
+
+
+
+
+
+
+
+
+/* 17122024 Training record Toggle Switch btn start*/
+
+.tr-record-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+.tr-record-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.tr-record-toggle .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 25px;
+}
+.tr-record-toggle .slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+.tr-record-toggle input:checked + .slider {
+    background-color: #007bff;
+}
+.tr-record-toggle input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.isCheckedTrainingToggleSec .slider {
+    background-color: #28a745;
+}
+.isCheckedTrainingToggleSec input:checked + .slider {
+    background-color: #db3545;
+}
+.isCheckedTrainingToggleSec .slider:before {
+    width: 20px;
+    height: 20px;
+}
+.isCheckedTrainingToggleSec input:disabled + .slider {
+    background-color: #e0e0e0; 
+    cursor: not-allowed;
+}
+/* 17122024 Training record Toggle Switch btn end*/
+
+
+
+
+
+
+/* 26122024 form and grid section changes | start */
+
+#auditActivityForm .racrate_dv{
+    /*margin-top: 47px;23012025 capa form css with structure  changes | 160125* css*/
+    line-height: 35px !important;
+}
+
+#capaSecByCustomerInquiryForm .racrate_dv{
+    /*margin-top: 47px;23012025 capa form css with structure  changes | 160125* css*/
+    line-height: 35px !important;
+}
+
+#capaSecByQualityEventForm .racrate_dv{
+   /*margin-top: 47px;23012025 capa form css with structure  changes | 160125* css*/
+    line-height: 35px !important;
+}
+
+/* 26122024 form and grid section changes | start */
+
+
+/* caPaReportAdvanceReportDataHtml css start 31122024*/
+/* 
+08012024 Audit control report changes
+#caPaReportAdvanceReportDataHtml .dt-search{
+    margin-left: 200px;
+} */
+.radio_btn{
+    display: flex;
+    gap: 25px;
+    position: absolute;
+    /* top: 17.5%; */
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 1;
+    cursor: pointer;
+    transform: translate(10px, 21px);
+}
+/* caPaReportAdvanceReportDataHtml css end 31122024*/
+
+
+
+
+
+
+
+/* 06012025 Audit control capa report changes css start */
+#audit-advance-report .raleft_panel{
+    background-color: #e9e9e9ad;
+    padding: 10px 15px;
+    width: 230px !important; 
+ }
+ #audit-report-by-chart .raleft_panel{
+    background-color: #e9e9e9ad;
+    padding: 10px 15px;
+    width: 230px !important; 
+ }
+
+ #auditControlAdvanceReportDataHtml{
+    margin-top: -61px;
+ }
+/* 06012025 Audit control capa report changes css end */
+
+
+/* 03012025 custmer inquery, Quality Event capa report  css changes start */
+/* 08012024 Audit control report changes
+ #caPaReportAdvanceReportDataHtml .dt-search{
+    margin-left: 188px;
+    margin-top: 15px;
+} */
+
+#caPaReportAdvanceReportDataHtml,
+.dt-layout-row,
+.dt-layout-table{
+    /* margin-top: -9px !important; */           /* report design fix 08-12-25*/
+}
+
+#caPaReportAdvanceReportDataHtml,.dt-buttons{
+    margin-top: 17px;
+     margin-bottom: 20px;
+                            /* report design fix 08-12-25 start*/
+    color: #0e0e0e;
+    border: none !important;
+                             /* report design fix 08-12-25 end*/
+}
+
+.radio_btn{
+    display: flex;
+    gap: 3px;
+    position: absolute;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 1;
+    cursor: pointer;
+    transform: translate(0px, -34px);
+}
+
+#caPaReportAdvanceReportData_wrapper{
+    margin-top: -55px;
+}
+div.dt-container .dt-search input{
+    padding: 4px 5px !important;
+}
+.buttons-html5, .buttons-print{
+    padding: 4px 10px !important;
+}
+
+
+/* 08012024 Audit control report changes */
+.close_btn{
+    border: solid 1px #e6e6e6;
+    background-color: transparent;
+    padding: 4px 20px 7px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* .tabs {
+    display: flex;
+    height: 7vh;         */
+    /* margin-top: 12px; report design fix 08-12-25 */
+/* }  */
+
+.active_report{
+    border: solid 1px transparent;
+    background-color: #e6e6e6;
+    padding: 4px 20px 9px 20px;
+    cursor: pointer;
+    font-weight: bold;
+} 
+
+
+.selector_item_radio{
+    appearance:none;
+    display:none;
+}
+
+#caPa-report-by-chart .raright_panel {
+    margin-top: -37px;
+    /* 08012024 Audit control report changes */
+}
+
+/*
+14012025 capa report filter changes
+#caPa-advance-report .raleft_panel {
+    background-color: #e9e9e9ad;
+    padding: 10px 15px;
+    width: 230px;
+} 
+
+#caPa-report-by-chart .raleft_panel{
+    background-color: #e9e9e9ad;
+    padding: 10px 15px;
+	width: 230px;
+}
+*/
+
+
+
+
+
+
+
+
+/* ####################################### capa report latest changes################################################################ */
+/* 08012024 Audit control report changes */
+#caPaReportAdvanceReportDataHtml .dt-search{
+    /* margin-left: 274px;
+    margin-top: 10px; */
+     margin-left: 948px;       /* report design fix 08-12-25*/
+    margin-top: 3px;           /* report design fix 08-12-25*/
+    position: relative;
+    label{
+        display: none !important;
+       
+    }
+    
+
+    input{
+        position: relative;
+        margin-left: 10px;
+        margin-left: 10px;
+        height: 36px;
+        width: 275px;
+        margin-top: -5px;
+    }
+}
+
+#caPaReportAdvanceReportDataHtml .dt-search::before{
+    position: absolute;
+    font-family: "Font Awesome 5 Free";
+    content: "\1F50D";
+    width: 35px;
+    height: 36px;
+    transform: translate(-14px, 6px);
+    z-index: 999;
+    background-color: #2866c252;
+    padding: 8px;
+    border-radius: 6px 0 0 6px;
+    top: -11px;
+    left: -14px;
+    margin-left: 4px;
+    line-height: 22px;
+    
+}
+
+.close_btn{
+    border: solid 1px #e6e6e6;
+    background-color: transparent;
+    padding: 3px 20px 9px 20px !important;
+    cursor: pointer;
+    font-weight: bold
+}
+
+.active_report{
+    border: solid 1px transparent;
+    background-color: #e6e6e6;
+    padding: 3px 20px 9px 20px !important;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* 12032025 css changes by capa tab */
+.capa-report-tabs {
+    display: flex;
+    /* height: 7vh; */
+    /* margin-top: -12px; */
+}
+/* @media (max-width: 1366px) {
+    #caPaReportViewSec  .tabs {
+        display: flex;
+        height: 7vh;
+        
+    }
+}
+
+@media (min-width: 1367px) and (min-height: 769px) {
+    #caPaReportViewSec .tabs {
+        display: flex;
+        height: 5vh;
+    }
+} */
+ 
+ /* @media (max-width: 1366px) and (max-height: 768px){
+    #caPaReportViewSec  .tabs {
+    display: flex;
+    align-items: center;
+    position: static !important;  
+    margin-top: -16px;
+    z-index: 1;
+    }
+}
+ @media (min-width: 1367px) and (min-height: 769px){
+ #caPaReportViewSec .tabs {
+     display: flex;
+    align-items: center;
+    position: static !important;  
+    margin-top: 15px;
+    z-index: 1;
+ }
+} */
+  #caPaReportViewSec  .tabs {
+    display: flex;
+    align-items: center;
+    position: static !important;  
+    margin-top: 15px;
+    z-index: 1;
+    }
+@media (min-width: 1367px) and (min-height: 769px){
+ #caPaReportViewSec .tabs {
+     display: flex;
+    align-items: center;
+    position: static !important;  
+    margin-top: 17px;
+    z-index: 1;
+ }
+}
+
+/* 12032025 css changes by capa tab */
+.audit_report_titles {
+    margin-right: 10px;
+    display: flex;
+}
+
+.audit_report_titles h3 {
+    color: #000;
+    font-size: 27px;
+    font-weight: bold;
+    text-align: start;
+    position: relative;
+    background-color: #eaeaee;
+    border-radius: 5px;
+    padding: 10px 22px;
+}
+
+.capa-report-1140{
+    #caPaReportAdvanceReportDataHtml .dt-search{
+        margin-left: 215px;
+    }
+}
+/* 08012024 Audit control report changes */
+
+
+
+/* 14012025 capa report filter changes start */
+#caPa-advance-report .raleft_panel{
+    /* background-color: #e9e9e9ad;
+    padding: 10px 15px; */
+    margin-top: -82px;
+}
+
+#caPa-advance-report .filter-report-lft-panel{
+    background-color: transparent !important;
+    /* margin-top: -31px;
+    margin-bottom: 30px; */
+     margin-top: 10px;                          /* report design fix 08-12-25*/
+    margin-bottom: 30px;
+    margin-left: -20px;
+    overflow: hidden;                             /* report design fix 08-12-25*/
+}
+
+.claim_search{
+    background-color: #e9e9e9ad;
+    padding: 10px 15px;
+     margin-top: -29px;     /* report design fix 08-12-25 */
+}
+.ra_maintab{
+    margin-top: 40px;
+}
+#caPa-advance-report .raleft_panel > .filter-report-lft-panel .nav-tabs>li>a {
+    color: #8f8f8f;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 0;
+    border-bottom: 2px solid #fff;
+    padding: 10px 15px;
+}
+
+#caPa-advance-report .raleft_panel > .filter-report-lft-panel >.nav-tabs>li.active>a, #caPa-advance-report .raleft_panel > .filter-report-lft-panel > .nav-tabs>li.active>a:focus, #caPa-advance-report .raleft_panel > .filter-report-lft-panel > .nav-tabs>li.active>a:hover {
+    background-color: inherit;
+    color: #000;
+    border: 0;
+    border-bottom: 2px solid #1654b0;
+    border-radius: inherit;
+    font-weight: 600;
+}
+#caPa-advance-report .raleft_panel > .filter-report-lft-panel > .nav-tabs{
+    border-bottom: none;
+}
+#caPa-report-by-chart .raleft_panel{
+    /* background-color: #e9e9e9ad;
+    padding: 10px 15px; */
+    margin-top: -37px;
+}
+
+#caPa-report-by-chart .filter-report-lft-panel{
+    background-color: transparent !important;
+    /* margin-top: -80px !important;
+    margin-bottom: 72px !important; */
+                                           /* report design fix 08-12-25 start*/
+     margin-top: -33px;
+    margin-bottom: 30px;
+    margin-left: -20px;
+    overflow: hidden;
+                                            /* report design fix 08-12-25 end*/
+}
+.claim_search{
+    background-color: #e9e9e9ad;
+    padding: 10px 15px;
+}
+#caPa-report-by-chart {
+    .ra_maintab{
+        margin-top: 40px;
+    }
+    
+}
+#caPa-report-by-chart .raleft_panel > .filter-report-lft-panel .nav-tabs>li>a {
+    color: #8f8f8f;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 0;
+    border-bottom: 2px solid #fff;
+    padding: 10px 15px;
+}
+
+#caPa-report-by-chart .raleft_panel > .filter-report-lft-panel >.nav-tabs>li.active>a, #caPa-report-by-chart .raleft_panel > .filter-report-lft-panel > .nav-tabs>li.active>a:focus, #caPa-report-by-chart .raleft_panel > .filter-report-lft-panel > .nav-tabs>li.active>a:hover {
+    background-color: inherit;
+    color: #000;
+    border: 0;
+    border-bottom: 2px solid #1654b0;
+    border-radius: inherit;
+    font-weight: 600;
+}
+#caPa-report-by-chart .raleft_panel > .filter-report-lft-panel > .nav-tabs{
+    border-bottom: none;
+}
+/* 14012025 capa report filter changes end */
+
+
+
+
+
+
+
+/* 03012025 custmer inquery, Quality Event capa report  css changes end */
+
+
+/* 23012025 Documents Tab create form section| start document-editor*/
+.create_frm{
+    padding-top: 15px;
+}
+/*#doc-description, #doc-visibility{
+    width: 300px !important
+}
+#doc-template, #doc-edit_access{
+    width: 300px !important
+}
+.ctrl-line .form-control{
+    width: 300px !important
+}
+.file_upld .form-control{
+    width: 66% !important
+}*/
+#document-editor div.ctrl_line{
+    justify-content: center !important;
+}
+/* .file_upld{
+    flex-wrap: wrap;
+} */
+#document-editor div.ctrl-line{
+    margin-bottom: 10px !important; 
+}
+/* .doc-file-opload{
+    margin-left: 29px;
+    margin-top: 4px;
+} */
+#doc-title{
+    font-size: 12px !important;
+    padding-left: 3px !important
+}
+.create_frm{
+    display: flex;
+    justify-content: space-evenly;
+}
+.published_frm{
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 26px !important;
+    gap: 0 !important;
+    margin-bottom: 40px;
+   
+}
+.published_left_part, .published_right_part{
+    width: 50%;
+}
+.publish_link {
+    margin-top: -7% !important;
+}
+.after_days_dropdown{
+    margin-left: 2% !important  ; 
+}
+
+/* 23012025 Documents Tab create form section| end document-editor*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 23012025 capa form css with structure  changes |  160125* css start*/
+
+
+/*capa form css start*/
+
+.capaReportAddEditForm .racrate textarea{
+    width: 316px !important;
+    padding: 10px 15px !important;
+    border-radius: 5px;
+    border: solid 1px #000;
+    opacity: 80%;
+    height: 74px !important;
+    border-radius: 5px;
+    line-height: 20px !important;
+    color: #000 !important ;
+    font-size: 14px;
+    font-family: Verdana, Arial, sans-serif;
+    overflow-y: scroll;
+
+}
+#capaSecByCustomerInquiryForm .racrate textarea{
+    height: 72px !important;
+}
+.capaReportAddEditForm .racrate textarea::placeholder{
+    color: #000 !important;
+}
+.capaReportAddEditForm .capa-right-form-button{
+    margin-top: -50px;
+    /*margin-left: -40px;*/
+}
+#capaSecByQualityEventForm .capa-right-form-button{
+    margin-top: -50px;
+    margin-left: 0px;
+}
+#capaSecByCustomerInquiryForm .capa-right-form-button{
+    margin-top: -50px;
+    margin-left: 0px;
+}
+.capaReportAddEditForm .racrate .form-control{
+    width: 315px !important;
+    padding: 6px 15px !important;
+    border-radius: 5px;
+    border: solid 1px #000;
+    opacity: 80%;
+    height: 22px !important;
+    line-height: 10px;
+    color: #000 !important;
+   
+}
+
+.capaReportAddEditForm .racrate .form-control::placeholder{
+    color: #000 !important;
+}
+.capaReportAddEditForm .racrate label{
+    font-weight: 600;
+    color: #000;
+    opacity: 80%;
+    cursor: pointer;
+    height: 22px !important;
+}
+.capaReportAddEditForm input[type="radio"]{
+    visibility: hidden;
+    
+}
+
+.capaReportAddEditForm div > input[type="radio"]:checked + label{
+    /*background-color: #77B5FF !important;*/
+    color: #fff !important;
+}
+.capaReportAddEditForm .capa_report_capa_status_tabs_frm{
+    display: flex;
+    gap: 18px;
+
+    label{
+        padding: 8px 20px;
+        width: 35px;
+        border-radius: 7px;
+        color: #000 !important;
+        font-weight: 500;
+        line-height: 14px;
+        display: flex;
+        justify-content: center;
+        border: solid 1px #5b5b5b;
+        margin-left: -40px;
+        height: 16px !important;
+        font-size: 15px;
+    }
+}
+
+.capaReportAddEditForm .racrate select.form-control{
+    padding: 10px 15px !important;
+    width: 347px !important;
+    padding: 6px 15px !important;
+    border-radius: 5px;
+    border: solid 1px #000 !important;
+    /* background: #f7f7f7 !important; */
+    opacity: 80%;
+    height: 36px !important;
+    color: #000 !important;
+    
+}
+.capaReportAddEditForm select.form-control:focus-visible{
+    border: solid 1px #000 !important;
+    box-shadow: none !important;
+    outline: 0;
+}
+.capaReportAddEditForm .racrate select.form-control::placeholder{
+    color: #000 !important;
+}
+.capaReportAddEditForm{
+        background: #fff;
+}
+.capaReportAddEditForm #audit_status_active:checked + label{
+        background-color: #209025 !important;
+        border: solid 1px #ededed;
+}
+.capaReportAddEditForm #audit_status_close:checked + label{
+    background-color: #df0f00cc !important;
+    border: solid 1px #ededed;
+}
+/* .capaReportAddEditForm #size_1:checked + label {
+  background-color: #155724 !important;
+}
+
+.capaReportAddEditForm #size_2:checked + label   {
+  background-color: #856404 !important;
+}
+
+.capaReportAddEditForm #size_3:checked + label  {
+  background-color: #721c24 !important;
+} */
+  .capaReportAddEditForm #size_1:checked + label,
+.capaReportAddEditForm #size_2:checked + label,
+.capaReportAddEditForm #size_3:checked + label {
+    background-color: #e6f2ff !important;  
+    border: 1px solid #007bff !important;  
+    color: #007bff !important;             
+}                                                     /*iwi capa button color change*/
+
+i.fa.fa-times.text-danger{
+    color: red;
+}
+/*capa report form end*/
+.center-align{
+    display: flex;
+    /* gap: 5px; */
+}
+
+button[data-op="audit-activity-close"]{
+    background: #80808029 !important;
+    border: solid 1px #f5f5f5 !important;
+    color: #000 !important;
+    box-shadow: none;
+    width: 95px;
+    height: 33px;
+    border-radius: 5px;
+    margin-top: 3px !important;
+}
+button[data-op="audit-activity-save"]{
+    background: #2866C2  !important;
+    border: solid 1px #2866C2  !important;
+    color: #ffff !important;
+    box-shadow: none;
+    width: 95px;
+    height: 33px;
+    border-radius: 5px;
+    margin-top: 3px !important;
+}
+button[data-op="capa-by-quality-event-save"]{
+    background: #2866C2  !important;
+    border: solid 1px #2866C2  !important;
+    color: #ffff !important;
+    box-shadow: none;
+    width: 95px;
+    height: 33px;
+    border-radius: 5px;
+    margin-top: 3px !important;
+}
+button[data-op="capa-by-quality-event-close"]{
+    background: #80808029 !important;
+    border: solid 1px #f5f5f5 !important;
+    color: #000 !important;
+    box-shadow: none;
+    width: 95px;
+    height: 33px;
+    border-radius: 5px;
+    margin-top: 3px !important;
+}
+button[data-op="capa-by-customer-inq-save"]{
+    background: #2866C2  !important;
+    border: solid 1px #2866C2  !important;
+    color: #ffff !important;
+    box-shadow: none;
+    width: 95px;
+    height: 33px;
+    border-radius: 5px;
+    margin-top: 3px !important;
+}
+button[data-op="capa-by-customer-inq-close"]{
+    background: #80808029 !important;
+    border: solid 1px #f5f5f5 !important;
+    color: #000 !important;
+    box-shadow: none;
+    width: 95px;
+    height: 33px;
+    border-radius: 5px;
+    margin-top: 3px !important;
+}
+
+#caPa_procedure , #caPa_oth_procedures{
+    margin-left: -7px;
+   
+}
+/* 
+#caPa_procedure .form-control{
+    width: 318px !important;
+} */
+/*23012025 capa form css with structure  changes | 160125* css end*/
+
+
+
+
+
+
+
+
+/*20012025 capa report header-icon css add start */
+
+.ul-header-icon{
+    display: flex;
+    img{
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.noti{
+    width: 13px;
+    height: 12px;
+    border-radius: 10px;
+    background-color: #FFB66D;
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: -2px;
+    line-height: 15px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.opentext-noti span{
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    background-color: #FFB66D;
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: -7px;
+    line-height: 15px;
+    text-align: center;
+    font-size: 10px;
+    color: #000;
+}
+
+.opentext-noti{
+    .capa-count{
+        right: -12px !important;
+    }
+}
+
+.header-icon{
+    height: 25px !important;
+    width: 25px !important;
+}/*20012025 capa report header-icon css add end */
+
+
+
+
+
+/* 02122024 Training Scheduler upload multiple files */
+#trainee_tab_display_all_files div{
+    border: solid 1px #ccc;
+    padding: 6px 32px;
+    position: relative;
+    display: inline-block;
+    margin: 0 10px 15px 0; 
+}
+.tr_scheduler_tab_single_trainee_file_id{
+    position: absolute;
+    right: 0;
+    top: -2px;
+    font-size: 11px;
+    cursor: pointer;
+}
+/* 02122024 Training Scheduler upload multiple files */
+
+
+
+
+
+.create_frm .left_part .ctrl-line .form-control,.create_frm .left_part .ctrl-line #doc-template  {
+    width: 400px !important;
+} 
+
+.create_frm .right_side .ctrl-line .form-control {
+    width: 250px !important;
+}
+#document-editor .right_side  div.ctrl-line label{
+    width: 120px !important; /*/IWI doc section file upload*/
+}
+
+
+
+
+
+
+
+
+/* Madhumanti Paul Changes Start 11032025*/
+/* 07-03-2025 */
+.opentext-noti span {
+    width: 36px !important;
+    height: 15px;
+    border-radius: 0;
+    background-color: #FFB66D;
+    display: block;
+    position: absolute;
+    top: -20px !important;
+    right: -7px !important;
+    line-height: 15px;
+    text-align: center;
+    font-size: 10px;
+    color: #000;
+    border-radius: 3px;
+}
+.rafelx {
+    padding: 22px 0 16px;
+}
+.opentext-noti span::before{
+    position: absolute;
+    content: "";
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-bottom: 5px solid #ffb66d;
+    border-right: 6px solid #ffb66d;
+    bottom: -2px;
+    left: 13px;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    z-index: 0;
+}
+.opentext-noti span.capa-count{
+    right: -7px !important;
+}
+div.header-bar#operation-bar{
+    height: 80px !important;
+}
+/* Madhumanti Paul Changes End 11032025 */
+
+
+
+
+/* record_details_unassign_user css changes start */
+/*table#meta-overview td{
+    position: relative;
+}
+.record_details_unassign_user_btn{
+    position: absolute;
+     right: 60px; 
+     top: 50%; 
+     transform:  translate(0%, -50%); 
+    border: none;
+    background: transparent;
+    left: 130px;
+    bottom: 0;
+    cursor: pointer;
+}*/
+
+/* record_details_unassign_user css changes end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+.action_type{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 12px;
+
+}
+.action_list{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.licen_type{
+    width: 150px !important;
+   }
+   .searchLicenseData{
+    height: 23px;
+    cursor: pointer;
+   }
+   .saveLicenseDataByDocTab{
+    height: 23px;
+    width: 60px;
+    background: #2866c2;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+   }
+
+   .number-of-trainee{
+        position: absolute;
+        right: 0px !important;
+        bottom: 0% !important;
+    }
+    .trainee-delete-btn{
+        position: absolute;
+        right: 170px;
+    }   
+    
+    
+/* Ankita  caro list report chart css start */
+.raright_panel_report{
+    border: solid 1px #cccccc87!important;
+    border-radius: 10px !important;
+}
+.raright_panel_report h3{
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    background-color: #fff;
+    padding: 10px 20px 10px;
+    border-radius: 8px;
+}
+.chart_graphs{
+    background-color: #d1cccc52;
+    padding: 14px 15px 10px 15px;
+}
+#audit-report-by-chart .raright_panel{
+    position: relative;
+    border: solid 1px #a5a0a061;
+    padding: 0px 15px;
+    border-radius: 10px;
+}
+
+
+
+.pdf_icon{
+    position: absolute;
+    right: 20px;
+    top: -44px;
+    border: solid 1px #bfb8b885;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #000;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/*08-01-25 audit_report_title new chages start*/
+
+.audit_report_titles{
+    margin-right: 10px;
+    display: flex;
+}
+.audit_report_titles h3{
+    /* position: absolute;
+    color: #000;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transform: translate(270%, -380%); */
+    color: #000;
+    font-size: 27px;
+    font-weight: bold;
+    text-align: start;
+    /* width: 81%;
+    margin: 25px -7px 20px auto; */
+    position: relative;
+    background-color: #eaeaee;
+    border-radius: 5px;
+    padding: 10px 22px;
+}
+
+/* .audit_report_title h3::after{
+    position: absolute;
+    content: "";
+    width: 35px;
+    height: 2px;
+    background-color: #323233;
+    transform: translate(5px, 14px);
+}
+.audit_report_title h3::before{
+    position: absolute;
+    content: "";
+    width: 36px;
+    height: 2px;
+    background-color: #323233;
+    transform: translate(-42px, 15px);
+} */
+/*08-01-25 audit_report_title new chages end*/
+
+/*08-01-25 total_report_dv new chages start*/
+
+.total_report_dv{
+    margin-bottom: 14px;
+     margin-top: 20px;     /* report design fix 08-12-25*/
+}
+
+/*08-01-25 total_report_dv new chages start*/
+
+/* Ankita  caro list report chart css end */
+
+
+
+
+/* 07112024 Audit Plan created by iwi |  start */
+
+.linecreate{
+    text-align: right;
+	/* position: absolute;
+    right: 250px;
+    bottom: 376px;
+	z-index: 9; */
+    position: absolute;
+    left: 17px;
+    transform: translate(-17px, 0px);
+    z-index: 2;
+    display: flex;
+}
+#auditPlanFormSec{
+	background: #f9f9f9;
+	padding: 20px;
+	border-radius: 10px;
+
+	.form-control{
+	background: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    box-shadow: none;
+	}
+}
+
+
+/* 02122024 Training Scheduler upload multiple files */
+#trainee_tab_display_all_files div{
+    border: solid 1px #ccc;
+    padding: 6px 32px;
+    position: relative;
+    display: inline-block;
+    margin: 0 10px 15px 0; 
+}
+.tr_scheduler_tab_single_trainee_file_id{
+    position: absolute;
+    right: 0;
+    top: -2px;
+    font-size: 11px;
+    cursor: pointer;
+}
+/* 02122024 Training Scheduler upload multiple files */
+
+/* 24122024 document-editor css start */
+    .create_frm{
+        padding-top: 15px;
+    }
+/*    #doc-description, #doc-visibility{
+        width: 300px !important
+    }*/
+/*    #doc-template, #doc-edit_access{
+        width: 300px !important
+    }
+    .ctrl-line .form-control{
+        width: 300px !important
+    }
+    .file_upld .form-control{
+        width: 200px !important
+    }*/
+    #document-editor div.ctrl_line{
+        justify-content: center !important;
+    }
+    /* .file_upld{
+        flex-wrap: wrap;
+    } */
+    #document-editor div.ctrl-line{
+        margin-bottom: 10px !important; 
+    }
+    /* .doc-file-opload{
+        margin-left: 29px;
+        margin-top: 4px;
+    } */
+    #doc-title{
+        font-size: 12px !important;
+        padding-left: 3px !important
+    }
+    .create_frm{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .published_frm{
+        display: flex;
+        justify-content: space-evenly;
+        padding-left: 26px !important;
+        gap: 0 !important;
+        margin-bottom: 40px;
+       
+    }
+    .published_left_part, .published_right_part{
+        width: 50%;
+    }
+    .publish_link {
+        margin-top: -7% !important;
+    }
+    .after_days_dropdown{
+        margin-left: 2% !important  ; 
+    }
+    
+
+/* 24122024 document-editor css end */
+/* 09-01-25 css chang start */
+#caPaReportAdvanceReportDataHtml .dt-search{
+    margin-left: 274px;
+    margin-top: 15px;
+    position: relative;
+    label{
+        display: none !important;
+       
+    }
+
+    input{
+        position: relative;
+        margin-left: 10px;
+        margin-left: 10px;
+        height: 36px;
+        width: 275px;
+        margin-top: -5px;
+    }
+}
+
+#caPaReportAdvanceReportDataHtml .dt-search::before{
+    position: absolute;
+    font-family: "Font Awesome 5 Free";
+    content: "\1F50D";
+    width: 35px;
+    height: 36px;
+    transform: translate(-14px, 6px);
+    z-index: 999;
+    background-color: #2866c252;
+    padding: 8px;
+    border-radius: 6px 0 0 6px;
+    top: -11px;
+    left: -14px;
+    margin-left: 4px;
+    line-height: 22px;
+    
+}
+
+/* 09-01-25 css chang start */
+
+/*8-1-25 #caPa-report-by-chart .raright_panel start */
+
+#caPa-report-by-chart .raright_panel{
+    margin-top: -39px;
+}
+
+/*8-1-25 #caPa-report-by-chart .raright_panel end */
+
+#caPa-advance-report .raleft_panel{
+    /* background-color: #e9e9e9ad;
+    padding: 10px 15px; */
+    margin-top: -82px;
+}
+
+#caPa-report-by-chart .raleft_panel{
+    /* background-color: #e9e9e9ad;
+    padding: 10px 15px; */
+    margin-top: -37px;
+}
+
+/* 03012025 custmer inquery, Quality Event capa report  css changes start */
+
+
+/* 06012025 Audit control capa report changes css start */
+
+ #audit-advance-report .raleft_panel{
+    background-color: #e9e9e9ad;
+    padding: 10px 15px;
+ }
+ #audit-report-by-chart .raleft_panel{
+    background-color: #e9e9e9ad;
+    padding: 10px 15px;
+ }
+
+ #auditControlAdvanceReportDataHtml{
+    margin-top: -54px;
+ }
+
+ /*08-01-25 serach_icon css add start */
+
+ #caPaReportAdvanceReportDataHtml .dt-layout-end{
+    position: relative;
+ }
+
+
+ @media (min-width: 1140px) and (max-width: 1180px){
+    #caPaReportAdvanceReportDataHtml .dt-search{
+        margin-left: 220px !important;
+    }
+}
+
+ /*08-01-25 serach_icon css add end */
+
+/* 06012025 Audit control capa report changes css end */
+/* 10-1-25 css add */
+capa-report-1140{
+    #caPaReportAdvanceReportDataHtml .dt-search{
+        margin-left: 215px;
+    }
+}
+
+/* 14-01-25 css add */
+
+
+/* archivePageLink readonly_publish_documents_div_section  css change  start*/
+/*    .archivePageLink{
+        background: transparent !important;
+        i{
+            color: #7ea3da;
+        }
+    }*/
+    /* 16-01-25 archive & read & sign css start */
+    
+    /*IWI front end user record list page new design start*/
+/*    .div_wrap{
+        display: flex;
+        justify-content: end;
+        gap: 20px;
+    }*/
+    /*IWI front end user record list page new design end*/
+    /* 16-01-25 archive & read & sign css end */
+/* archivePageLink readonly_publish_documents_div_section  css change  end*/
+
+/* 150125 css start */
+#dropdownlistContentcaPa_procedure{
+    width: 345px !important
+}
+/* 150125 css end */
+#chartViewSec .raright_panel {
+    /*max-width: 68%;*/
+}
+#claim .mdflex{
+        justify-content: normal;
+}
+
+
+
+/*IWI Cargo claim chart page changes 22052025 start*/
+#chartViewSec .claimchart .mdflex{
+    display: grid;
+}
+#chartViewSec .claimchart .raleft_panel, #chartViewSec .claimchart .raright_panel{
+    width: 100%;
+}
+
+
+#chartViewSec .claim_Chart_Table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+   #chartViewSec  .claim_Chart_Table th, #chartViewSec .claim_Chart_Table td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #chartViewSec .claim_Chart_Table th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+
+    #chartViewSec .claim_Chart_Table tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    #chartViewSec .claim_Chart_Table td {
+      background-color: #fff;
+    }
+    
+    #chartViewSec .filterSection{
+        display: flex;
+    /* justify-content: space-between; */
+     /* align-items: center; */
+        gap: 5rem;
+        
+    margin-top: 10px;
+    border-radius: 10px;
+    }
+    #chartViewSec .filterSection.claim_search .form-group {
+    display: flex;
+    /*width: 100%;*/
+    align-items: center;
+    margin-right: 10px;
+}
+
+
+#chartViewSec .filterSection.claim_search label {
+    font-size: 13px;
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+}
+#chartViewSec .filterSection label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+#chartViewSec .filterSection .raStatus{
+    display: flex;
+}
+
+#chartViewSec .claimchart{
+    background: #fff;
+}
+#chartViewSec .raleft_panel{
+    padding-right: 0px;
+}
+#chartViewSec .ra_maintab .nav-tabs>li {
+    float: left;
+    margin-bottom: -1px;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #7eb6ff;
+    border-bottom: 2px solid #1654b0;
+    cursor: pointer;
+}
+#chartViewSec .nextcontent{
+    padding-top: 0;
+}
+#chartViewSec .main-tab-content {
+    border: 1px solid #ccc;
+}
+#chartViewSec .claimchart .nav{
+    margin-left: 0;
+}
+
+/*IWI Cargo claim chart page changes 22052025 end*/
+
+
+
+
+/*<!--IWI doc section file upload start-->*/
+.saparate_upload_section .upload-section {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 1.2rem;
+    background-color: #f9f9f9;
+    /*max-width: 600px;*/
+    /*margin: 2rem 0;*/
+}
+.saparate_upload_section{
+    margin: 2rem;
+}
+.saparate_upload_section .section-header {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.saparate_upload_section .form-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.saparate_upload_section .doc-file-opload {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.saparate_upload_section .doc-file-opload:hover {
+    background-color: #0056b3;
+}
+.saparate_upload_section input[type="file"].doc-file {
+  padding: 0.4rem;
+  font-size: 0.95rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.saparate_upload_section input[type="file"].doc-file:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.saparate_upload_section input[type="file"].doc-file:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+
+.create_frm .right_side .ctrl-line .form-control {
+    width: 400px !important;
+}
+#document-editor .left_part{
+    width: 50%;
+}
+
+#document-editor .right_side{
+    width: 40%;
+}
+  /*<!--IWI doc section file upload end-->*/
+  /*IWI how to page like add start*/
+  li:has(.cmsHowToLi){
+      background-color: #378dc84f;
+  }
+  /*IWI how to page like add end*/
+  
+  /* IWI create api for getting record details start */
+
+
+.modal_content:has(.modal_content_secret_key) {
+  height:  100% !important;
+}
+.modal_content:has(.modal_content_secret_key) + .modal_buttons {
+  display: none;
+}
+.adminOrgTooolber button.jqx-widget{
+        padding: 4px !important;
+}
+
+/* Modal container */
+.professional-modal {
+  font-family: 'Inter', Arial, sans-serif;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  padding: 21px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid #007bff;
+}
+
+/* Labels */
+.label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Secret Key Box */
+.secret-key-box .key-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f6fa;
+  border-radius: 8px;
+  padding: 14px 16px;
+  gap: 12px;
+  word-break: break-all;
+}
+
+#the_secret_key {
+  font-size: 14px;
+  background: transparent;
+  padding: 0;
+  color: #212529;
+}
+
+.copy-btn {
+  background-color: #0069ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  background-color: #0052cc;
+}
+
+/* Status Box */
+.status-box .status-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-badge.active {
+  background-color: #e6f4ea;
+  color: #2f8a4f;
+}
+
+.status-badge.inactive {
+  background-color: #fce8e6;
+  color: #c53030;
+}
+
+.toggle-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #0069ff;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #0052cc;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.regenerate-btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  background-color: #ffc107;
+  color: #212529;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.regenerate-btn:hover {
+  background-color: #e0a800;
+}
+
+.create-btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+      color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.create-btn:hover {
+  color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+}
+
+/* IWI create api for getting record details end */
+/* report design fix 08-12-25 start*/
+@media (min-width: 1140px) and (max-width: 1920px) {
+
+    #caPaReportAdvanceReportDataHtml {
+
+        .dt-search {
+            margin-left: 282px !important;
+            margin-top: 19px !important;
+        }
+        .tabs{
+            margin-top: 38px;
+        }
+
+
+        .dt-buttons {
+            margin-bottom: 3px !important;
+        }
+    }
+}
+
+/* report design fix 08-12-25 end*/
+
+
+.header #site-logo img {
+    /*width: 100%;*/
+}
+.overview-kpis {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    margin-bottom: 20px;
+}
+
+.kpi-card {
+    flex: 1;
+    min-width: 220px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.kpi-label,
+.kpi-inline span {
+    display: block;
+    font-size: 13px;
+    text-align: center;
+    color:#000;
+}
+
+.kpi-amount,
+.kpi-inline strong {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 4px;
+}
+.kpi-subline {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    margin-top: 6px;
+    
+}
+
+.kpi-subline a {
+     color: #666;
+    text-decoration: none;
+}
+
+/*IWI dashboard design change start*/
+
+.dashboardTopSec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    background: #f0f1f5;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.ractive {
+    background: #DCEBFE;
+    padding: 5px 10px;
+    border-radius: 3px;
+    width: 140px;
+    color: #1677b9;
+}
+
+.ractive .actissCountByDep {
+    background: #fff;
+    width: 20px;
+    display: inline-block;
+    border-radius: 2px;
+    text-align: center;
+    color: #000;
+}
+
+.ractive .actissCount {
+    width: 52px;
+    display: inline-block;
+    color: #000;
+}
+
+.ramydesk {
+    background: #DCEBFE;
+    padding: 5px 10px;
+    border-radius: 3px;
+    width: 90%;
+    color: #1677b9;
+
+}
+
+.dashboardTableSec {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    overflow-x: auto;
+    /* Allows horizontal scroll if needed */
+    background: #F0F1F5;
+    font-size: 15px;
+}
+
+.dashboardTopSec h4 {
+    color: black;
+    display: block;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 3px;
+    text-indent: 10px;
+    background: none;
+    border: none;
+}
+
+.dashboardTableSec table tr td {
+    border: none;
+}
+
+.dashboardTableSec table tr td span img {
+    margin-bottom: -5px;
+}
+
+.dashboardTableSec table tr {
+    border-bottom: 1px solid #DDDDDD;
+}
+
+/* .actissCount{
+    width: 50px;
+    display: inline-block;
+} */
+.dashboardTableSec table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #DDDDDD;
+}
+
+.dashboardTableSec td {
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    text-align: left;
+}
+
+.dashboardTableSec tr:nth-child(even) {
+    background-color: #F5F8FD;
+}
+
+.dashboardTableSec tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.dashboardTableSec a {
+    cursor: pointer;
+    color: #000;
+}
+
+.dashboardTableSec a:hover {
+    text-decoration: none;
+}
+
+.dashboardTableSec .myAssCountLbl,
+.dashboardTableSec .orgCountLbl,
+.dashboardTableSec .depCountLbl {
+    color: #1677b9;
+}
+
+.goToPubPageSec {
+    background: #4BB02E;
+    padding: 10px 15px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.goToPubPageSec img {
+    margin-right: 5px;
+}
+
+.goToPubPageSec a {
+    color: #fff;
+}
+
+.goToPubPageSec a span {
+    background-color: #FF5F61;
+    color: #fff;
+    border-radius: 7px;
+    padding: 1px 5px;
+
+}
+
+.dashboardTableSec tr > td:nth-child(1) {width: 25%;}
+.dashboardTableSec tr > td:nth-child(2) { width: 12%; }
+.dashboardTableSec tr > td:nth-child(3) { width: 12%; }
+.dashboardTableSec tr > td:nth-child(4) { width: 12%; }
+.dashboardTableSec tr > td:nth-child(5) { width: 28%; }
+.dashboardTableSec tr > td:nth-child(6) { width: 8%; }
+
+/*IWI dashboard design change end*/
+
+
+
+/*IWI new design 17072026 start*/
+.user_overview_dashboard div.site , .user_overview div.site{
+    width: 90% !important;
+}
+#tabs-container{
+     width: 100% !important;
+}
+/*#user-menu-bar,
+#operation-bar{
+    display:none;
+}*/
+
+#cargo-header{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+    padding:0 18px;
+    /*background:#0b5dbb;*/
+    background:#071a43;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    box-sizing:border-box;
+    z-index:1000;
+    /*font-family:Arial, Helvetica, sans-serif;*/
+}
+
+
+.cargo-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    min-width:280px;
+}
+
+.cargo-icon-btn{
+    width:40px;
+    height:40px;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    border-radius:6px;
+    transition:.2s;
+}
+
+.cargo-icon-btn:hover{
+    background:rgba(255,255,255,.15);
+}
+
+.cargo-icon-btn img{
+    width:22px;
+    height:22px;
+}
+
+
+.cargo-logo{
+    display:flex;
+    align-items:center;
+    max-width: 100%;
+}
+
+.cargo-logo img{
+    height:auto;
+    max-width:40px;
+    object-fit:contain;
+}
+.cargo-logo img ,.cargo-action img{
+    filter: brightness(0) invert(1);
+}
+
+
+a.cargo-logout{
+    color:#fff;
+}
+.cargo-title a{
+    color:#fff;
+    font-size:14px;
+    font-weight:500;
+    white-space:nowrap;
+    letter-spacing:.2px;
+}
+.menu_separetor{
+    cursor: default;
+    height: 40px;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    padding: 0px;
+}
+
+.cargo-center{
+    /*flex:1;*/
+    display:flex;
+    justify-content:center;
+}
+
+
+.cargo-search{
+    width:120%;
+    height:40px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    border-radius:10px;
+    padding:0 14px;
+    box-shadow:0 1px 4px rgba(0,0,0,.12);
+}
+
+.cargo-search img{
+    width:18px;
+    opacity:.55;
+    margin-right:10px;
+}
+
+.cargo-search input{
+    flex:1;
+    border:0;
+    outline:none;
+    background:none;
+    font-size:14px;
+}
+
+.cargo-search input::placeholder{
+    color:#999;
+}
+
+
+.cargo-right{
+    display:flex;
+    align-items:center;
+    gap: 2px;
+}
+
+
+.cargo-action{
+    position:relative;
+    width:38px;
+    height:38px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:8px;
+    transition:.2s;
+    text-decoration:none;
+}
+.cargo-action:hover{
+    background:rgba(255,255,255,.15);
+}
+.cargo-action img{
+    width:22px;
+    height:22px;
+}
+.cargo-badge{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    min-width:18px;
+    height:18px;
+    padding:0 4px;
+    background:#ff5722;
+    color:#fff;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:bold;
+    line-height:18px;
+    text-align:center;
+}
+.cargo-user{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding-left: 30px;
+}
+.cargo-user-btn{
+    background:none;
+    border:0;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 8px;
+    border-radius:8px;
+    transition:.2s;
+}
+#cargo-user-popup{
+    top: 100%;
+    left: 13%;
+}
+.cargo-user-btn:hover{
+    background:rgba(255,255,255,.15);
+}
+.cargo-arrow{
+    font-size:10px;
+}
+.cargo-logout{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#fff;
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:8px;
+    transition:.2s;
+}
+.cargo-logout:hover{
+    background:rgba(255,255,255,.15);
+}
+.cargo-logout img{
+    width:18px;
+}
+.cargo-popup{
+    display:none;
+    position:absolute;
+    background:#fff;
+    width:240px;
+    border-radius:10px;
+    box-shadow:0 10px 35px rgba(0,0,0,.18);
+    overflow:hidden;
+    z-index:99999;
+    padding:6px 0;
+}
+/* menu popup */
+#cargo-menu-popup{
+    top:80%;
+    left:18px;
+}
+.cargo-popup a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px 16px;
+    color:#444;
+    text-decoration:none;
+    font-size:14px;
+    transition:.2s;
+}
+.cargo-popup a:hover{
+    background:#f5f8fc;
+}
+.cargo-popup img{
+    width:18px;
+    height:18px;
+}
+
+#cargo-auth-icon{
+    margin-right:4px;
+}
+@media(max-width:1200px){
+    .cargo-title{
+        display:none;
+    }
+    .cargo-search{
+        width:100%;
+    }
+}
+
+@media(max-width:900px){
+    .cargo-center{
+        display:none;
+    }
+}
+.cargo-search::before{
+    font-family: FontAwesome;
+    content: "\f002";
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    color: #9999a6;
+    font-size: 14px;
+    padding: 0 5px;
+}
+.erp-kpi-row,.dashboard-layout{
+    padding: 0 20px;
+}
+
+
+
+
+
+
+
+
+
+/*IWI new design 17072026 end*/
+
+.search_global div.site{
+    width: 80%;
+}

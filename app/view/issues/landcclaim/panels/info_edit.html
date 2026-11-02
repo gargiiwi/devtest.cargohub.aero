@@ -1,0 +1,109 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:pstage:<tr{#if:display.req: class='required'}>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	<tr>{#use:claim_type:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td>{#repeat:options:<label><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label><br />}</td>
+	}</tr>
+	
+	
+	{#use:claim:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:claim_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	<tr>
+		<th><label for='{id}'>Damage:</label></th>
+		<td>
+			{#use:dmg_pieces: <input style='width: 50px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Pieces}
+			{#use:dmg_weight: <input style='width: 80px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Kg}
+		</td>
+	</tr>
+	<tr>
+		<th><label for='{id}'>Loss:</label></th>
+		<td>
+			{#use:loss_pieces: <input style='width: 50px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Pieces}
+			{#use:loss_weight: <input style='width: 80px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Kg}<br />
+		</td>
+	</tr>
+	<tr>
+		<th><label for='{id}'>Delay:</label></th>
+		<td>
+			{#use:delay_pieces: <input style='width: 50px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Pieces}
+			{#use:delay_weight: <input style='width: 80px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Kg}<br />
+		</td>
+	</tr>
+	{#use:insurance:<tr{#if:display.req: class='required'}>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:freight:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:freight_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{#use:dmg_repair:<tr{#if:display.req: class='required'}>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	
+	{#use:repair:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:repair_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{#use:salvage:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:salvage_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{#use:invoice:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:invoice_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+</table>
+
+{#use:what_happened:
+	<h5>{display.label}</h5>
+	<textarea id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; height: 100px;" placeholder="">{value}</textarea>
+}
+
+{#use:documents:
+<h4 style="margin-top: 8px; background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">{display.label}:</h4>
+<div class='twocolcbox'>
+	{#repeat:options:<label><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label>}
+	<input type='hidden' name='{name}' value='' />
+</div>}
+<div class="clear"></div>
+
+
+</form>}

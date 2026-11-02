@@ -1,0 +1,139 @@
+{#use:%ist.xfield_def:
+	<h4 style="background-image: url('/img/icons16/balance_unbalance.png'); background-repeat: no-repeat; background-position: 4px;">Risk assessement</h4>	
+	<table>
+		<tr><th>{risk_class.n}:</th><td>{#ifnot:^xfields.risk_class:<div class="gray" style="text-indent: 20px;">---</div>}{#repeat:^xfields.risk_class:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{capa_area.n}:</th><td>{#ifnot:^xfields.capa_area:<span class='gray'>---</span>}{#repeat:^xfields.capa_area:<span class="itembox">{value}</span>}</td></tr>
+	<!--	<tr><th>{capa_ard.n}:</th><td>{^xfields.capa_ard:<span class="gray">---</span>}</td></tr>
+		<tr><th>{lic_link.n}:</th><td>
+			{#if:^xfields.lic_link:<a href="/record/process:{^xfields.lic_link}#panels" target="_blank">{^xfields.lic_link}</a>}
+			{#ifnot:^xfields.lic_link:<span class='gray'>---</span>}
+		</td></tr> -->
+		<tr><th>{severity.n}:</th><td>{^xfields.severity.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{probability.n}:</th><td>{^xfields.probability.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{risk.n}:</th><td>{#use:^xfields.risk:{#if:value:<span class='itembox' style='background-color:{#if:key=1: #00B0EF}{#if:key=2: #DCE4EF}{#if:key=3: #8FD153}{#if:key=4: #FFFF00}{#if:key=5: #FEBA00}{#if:key=6: red};'>{value}</span> <span class='gray'>(auto calculated)</span>}{#ifnot:value:<span class="gray">-- not calculated --</span>}}</td></tr>
+		<tr><th>{inv_done.n}:</th><td>{#repeat:^xfields.inv_done:<span class="itembox{#if:key=req: inv-red}{#if:key=rc: inv-orange}">{value}</span>}</td></tr>
+	</table>
+	<div style="text-align: center;">
+		<input style="margin: 8px;" type="button" class="info-window" value="Risk calculation matrix" data-window="620,450,Risk calculation" data-template='risk-calc' />
+	</div>
+    <br/><br/><br/>
+     
+	<h4 style="background-image: url('/img/icons16/question2.png'); background-repeat: no-repeat; background-position: 4px;">Investigation</h4>
+<!--	<div>
+		<table style="width: 99%;">
+			<tr>
+				<td style="width: 33%; text-align: center;">Deadline</td>
+				<td style="width: 33%; text-align: center;">Started</td>
+				<td style="width: 33%; text-align: center;">Completed</td>
+			</tr>
+			<tr>
+				<td class="center">{#if:^xfields.inv_date:<span class='red'>{^xfields.inv_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_date:<span class='gray'>---</span>}</td>
+				<td class="center">{#if:^xfields.inv_start_date:<span class='blue'>{^xfields.inv_start_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_start_date:<span class='gray'>---</span>}</td>
+				<td class="center">{#if:^xfields.inv_end_date:<span class='green'>{^xfields.inv_end_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_end_date:<span class='gray'>---</span>}</td>
+			</tr>
+		</table>
+	</div>
+	<hr />
+	<table>
+		<tr><th>Person in charge:</th><td>{^xfields.inv_pers:<span class="gray">---</span>}</td></tr>
+	</table>-->
+
+<!--	<h5 class="left" style="display: inline-block; width: 158px;">{inv_descr.n}</h5>
+	{!<a href="http://cargohub.nl/root-cause-analysis/5whys/" target="_blank">Method | 5 whys</a>}
+	{!<input style="margin: 0;" type="button" class="left info-window" value="Method | 5 whys" data-window="950,600,Root Cause Analysis - 5 Whys" data-template='five-whys' />}
+	<div class="clear"></div>
+	{#if:^xfields.inv_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; height: 150px;max-height:150px; overflow: auto;">{^xfields.inv_descr}~nl2br~</div>}
+	{#ifnot:^xfields.inv_descr:<div class="gray" style="text-indent: 20px;" >-----</div>}
+    
+   <h5>{inv_remarks.n}:</h5>
+	{#if:^xfields.inv_remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; height: 150px;max-height:150px; overflow: auto;">{^xfields.inv_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.inv_remarks:<div class="gray" style="text-indent: 20px;">-----</div>}-->
+
+
+
+<div class="show_extra_manage_sec" id="capa_sec_by_quality_event">
+        <div class='toolbar jqx-widget jqx-rc-all' style="height:40px; position: relative;">
+            <div class='toolbar-accessory' style="margin-top: 0px;">
+                <img src="/img/icons/13321426.png" alt="Audit Actions" class="info-tip" 
+                     data-tooltip="All Audit related Actions" /><span style="font-size:12px;" >CaPa Actions</span>
+            </div>
+            <div id='capa-by-quality-event-create-op' style="">
+                <button type="button" id="capa-by-quality-event-create-additional"  style="margin-top: 6px;" class="info-tip" data-tooltip="Creates a new Action to this record">
+                    <img src='/img/icons16/add.png' style="margin:0 6px 0 0" /> Create</button>
+            </div>
+		</div>
+	</div>
+
+	<div>
+		<span style="font-weight: bold;">Total Number of Capa: 
+			<span id="no_trainee" style="font-weight: bold; min-width: 20px; display: inline-block;">0</span>
+		</span>
+		<span style="font-weight: bold;margin-left: 71px;">Started Capa: 
+			<span id="active_trainee_count_view" style="font-weight: bold; min-width: 20px; display: inline-block;">0</span>
+		</span>
+		<span style="font-weight: bold;margin-left: 66px;">Closed Capa: 
+			<span id="closed_trainee_count_view" style="font-weight: bold; min-width: 20px; display: inline-block;">0</span>
+		</span>
+	</div>
+
+	<h5>{summary.n}:</h5>
+	{#if:^xfields.summary:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; height: 150px;max-height:150px; overflow: auto;">{^xfields.summary}~nl2br~</div>}
+<!--	{#ifnot:^xfields.summary:<div class="gray" style="text-indent: 20px;">-----</div>}-->
+
+{#ifnot:^xfields.summary:<div class="gray" style="text-indent: 20px;">
+   {^xfields.inv_descr} 
+   {^xfields.inv_remarks} 
+</div>}
+
+
+
+<!-- 18122024 capa code comment out by iwi | start-->
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<h4 style="margin-top: 15px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Responsibility</h4>	
+<table>
+      	<tr><th>{respo.n}:</th><td>{#ifnot:^xfields.respo|^xfields.respo:<span class='gray'>---</span>}{#repeat:^xfields.respo:<span class="itembox">{value}</span>}
+			{#if:^xfields.respo:<span class="itembox">{^xfields.respo}</span>}
+		</td></tr>
+  
+		<tr><th>{inv_deps_list.n}:</th><td>{#ifnot:^xfields.inv_deps_list|^xfields.inv_deps:<span class='gray'>---</span>}{#repeat:^xfields.inv_deps_list:<span class="itembox">{value}</span>}
+			{#if:^xfields.inv_deps:<span class="itembox">{^xfields.inv_deps}</span>}
+		</td></tr>
+
+       <tr><th>{inv_emps.n}:</th><td>{^xfields.inv_emps:<span class="gray">---</span>}</td></tr>
+	
+
+		<tr><th>{involved.n}:</th><td>{#ifnot:^xfields.involved|^xfields.involved:<span class='gray'>---</span>}{#repeat:^xfields.involved:<span class="itembox">{value}</span>}
+			{#if:^xfields.involved:<span class="itembox">{^xfields.involved}</span>}
+		</td></tr>
+	</table>
+	<!-- 18122024 capa code comment out by iwi | end-->
+	<!-- <h5>{respo.n}</h5>
+	{#ifnot:^xfields.respo:<div class='gray center'>---</div>}
+	{#repeat:^xfields.respo:<span class="itembox">{value}</span>}
+	<div class="clear"></div> -->
+	<!-- <h5>{involved.n}</h5>
+	{#ifnot:^xfields.involved:<div class='gray center'>---</div>}
+	{#repeat:^xfields.involved:<span class="itembox">{value}</span>}
+	{#if:^xfields.involved_oth:<span class="itembox">{^xfields.involved_oth}</span>}
+	<div class="clear"></div> -->
+
+	
+
+	<!--<h4 style="margin-top: 15px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Contributing factors</h4>-->
+	<p style="margin-top: 15px; border-bottom: 2px solid #ccc; padding-bottom: 5px; display: inline-block; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: left center; padding-left: 24px;">Contributing factors</p>
+    
+	<table>
+		<tr><th>{cf_behav.n}:</th><td>{#ifnot:^xfields.cf_behav:<span class='gray'>---</span>}{#repeat:^xfields.cf_behav:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_behav_oth:<span class="itembox">{^xfields.cf_behav_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_rules.n}:</th><td>{#ifnot:^xfields.cf_rules:<span class='gray'>---</span>}{#repeat:^xfields.cf_rules:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_rules_oth:<span class="itembox">{^xfields.cf_rules_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_eq.n}:</th><td>{#ifnot:^xfields.cf_eq:<span class='gray'>---</span>}{#repeat:^xfields.cf_eq:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_eq_oth:<span class="itembox">{^xfields.cf_eq_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_org.n}:</th><td>{#ifnot:^xfields.cf_org:<span class='gray'>---</span>}{#repeat:^xfields.cf_org:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_org_oth:<span class="itembox">{^xfields.cf_org_oth}</span>}
+		</td></tr>
+	</table>
+}

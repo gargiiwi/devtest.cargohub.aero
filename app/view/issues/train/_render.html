@@ -1,0 +1,161 @@
+<div style="margin: 10px; max-width: 300px;">{#use:issue:
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Overview:</h4>
+<table style="width: 100%; color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}
+</table>
+
+{#if:%parts.contacts|%override:<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Contact(s)</h4>
+<table style="width: 100%; color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	{#repeat:contact_links:
+		<tr><th valign="top">{label}:</th><td data-con_id='{contact.id}'><div>{contact.name} &lt;<a href="mailto:{contact.email}">{contact.email}</a>&gt;</div>
+		{#if:contact.xdata.company_name:<div><span style="color: #999;">Company name:</span> {contact.xdata.company_name}</div>}
+		{#if:contact.xdata.phone:<div><span style="color: #999;">Phone number:</span> {contact.xdata.phone}</div>}
+		</td></tr>}
+</table>
+}
+
+{#if:%parts.train-emp|%override:
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Employee:</h4>
+{#use:%ist.xfield_def:
+	<table style="width: 100%; color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Department:</th><td style='font-weight: bold;'>{^group.name}</td></tr>	
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Surname/Name(s):</th><td>{^xfields.emp_surname} {^xfields.emp_name}</td></tr>		
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{emp_birth.n}:</th><td>{^xfields.emp_birth:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{emp_phone.n}:</th><td>{^xfields.emp_phone:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	{#if:^xfields.emp_info:
+	<h5>Extra personal information</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.emp_info}~nl2br~</div>}
+	{#ifnot:^xfields.emp_info:<div style="color: #999; margin-top: 12px;">(no personal details)</div>}
+
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-top: 16px; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Employment details</h4>
+	<table style="width: 100%; color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{emp_hire.n}:</th><td>{^xfields.emp_hire:<span style="color: #999;">---</span>}</td></tr>
+{!		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{emp_dep.n}:</th><td>{^xfields.emp_dep:<span style="color: #999;">---</span>}</td></tr>}
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{emp_job.n}:</th><td>{^xfields.emp_job.value:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+
+	{#if:^xfields.emp_roles:
+		<h5 style='margin-bottom: 6px; margin-top: 10px;'>Job roles</h5>	
+		{#repeat:^xfields.emp_roles:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+		<div style="clear: both;"></div>
+	}
+	{#if:^xfields.emp_rem:
+	<h5>Employment remarks</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.emp_rem}~nl2br~</div>}
+	{#ifnot:^xfields.emp_rem:<div style="color: #999; margin-top: 12px;">(no employment remarks)</div>}
+	
+}
+}
+
+{#if:%parts.train-tlist|%override:
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-top: 20px; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Trainings:</h4>
+{#use:%ist.xfield_def:
+<table style="width: 100%; color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	<tr><td>&nbsp;</td><td style="width: 100px;">From</td><td style="width: 100px;">To</td></tr>
+	<tr><td{#if:^xfields.trns.0.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.0.active: checked="checked"} /> {^xfields.trns.0.value} [Intro]</td>
+		<td>{#if:^xfields.tr_intro_from:{^xfields.tr_intro_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_intro_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_intro_to:{^xfields.tr_intro_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_intro_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.1.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.1.active: checked="checked"} /> {^xfields.trns.1.value} [SAW]</td>
+		<td>{#if:^xfields.tr_saw_from:{^xfields.tr_saw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_saw_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_saw_to:{^xfields.tr_saw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_saw_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.2.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.2.active: checked="checked"} /> {^xfields.trns.2.value} [CAW]</td>
+		<td>{#if:^xfields.tr_caw_from:{^xfields.tr_caw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_caw_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_caw_to:{^xfields.tr_caw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_caw_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.3.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.3.active: checked="checked"} /> {^xfields.trns.3.value} [DGAW]</td>
+		<td>{#if:^xfields.tr_dgaw_from:{^xfields.tr_dgaw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgaw_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_dgaw_to:{^xfields.tr_dgaw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgaw_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.4.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.4.active: checked="checked"} /> {^xfields.trns.4.value} [ENVAW]</td>
+		<td>{#if:^xfields.tr_envaw_from:{^xfields.tr_envaw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_envaw_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_envaw_to:{^xfields.tr_envaw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_envaw_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.5.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.5.active: checked="checked"} /> {^xfields.trns.5.value} [PILAW]</td>
+		<td>{#if:^xfields.tr_pilaw_from:{^xfields.tr_pilaw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_pilaw_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_pilaw_to:{^xfields.tr_pilaw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_pilaw_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.6.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.6.active: checked="checked"} /> {^xfields.trns.6.value} [SAFAW]</td>
+		<td>{#if:^xfields.tr_safaw_from:{^xfields.tr_safaw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_safaw_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_safaw_to:{^xfields.tr_safaw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_safaw_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+<tr><td colspan="3"><hr /></td></tr>
+	<tr><td{#if:^xfields.trns.7.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.7.active: checked="checked"} /> {^xfields.trns.7.value} [EAC]</td>
+		<td>{#if:^xfields.tr_eac_from:{^xfields.tr_eac_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_eac_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_eac_to:{^xfields.tr_eac_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_eac_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.8.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.8.active: checked="checked"} /> {^xfields.trns.8.value} [CAC]</td>
+		<td>{#if:^xfields.tr_cac_from:{^xfields.tr_cac_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_cac_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_cac_to:{^xfields.tr_cac_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_cac_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.9.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.9.active: checked="checked"} /> {^xfields.trns.9.value} [Sec Spv]</td>
+		<td>{#if:^xfields.tr_secspv_from:{^xfields.tr_secspv_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_secspv_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_secspv_to:{^xfields.tr_secspv_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_secspv_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.10.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.10.active: checked="checked"} /> {^xfields.trns.10.value} [BAL]</td>
+		<td>{#if:^xfields.tr_bal_from:{^xfields.tr_bal_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_bal_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_bal_to:{^xfields.tr_bal_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_bal_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.11.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.11.active: checked="checked"} /> {^xfields.trns.11.value} [DG ADR]</td>
+		<td>{#if:^xfields.tr_dgadr_from:{^xfields.tr_dgadr_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgadr_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_dgadr_to:{^xfields.tr_dgadr_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgadr_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.12.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.12.active: checked="checked"} /> {^xfields.trns.12.value} [DG IATA]</td>
+		<td>{#if:^xfields.tr_dgiata_from:{^xfields.tr_dgiata_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgiata_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_dgiata_to:{^xfields.tr_dgiata_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgiata_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.13.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.13.active: checked="checked"} /> {^xfields.trns.13.value} [PGS&nbsp;15:2016]</td>
+		<td>{#if:^xfields.tr_pgs15_from:{^xfields.tr_pgs15_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_pgs15_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_pgs15_to:{^xfields.tr_pgs15_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_pgs15_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.14.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.14.active: checked="checked"} /> {^xfields.trns.14.value} [RA IATA]</td>
+		<td>{#if:^xfields.tr_raiata_from:{^xfields.tr_raiata_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_raiata_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_raiata_to:{^xfields.tr_raiata_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_raiata_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.15.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.15.active: checked="checked"} /> {^xfields.trns.15.value} [PIL-AR IATA]</td>
+		<td>{#if:^xfields.tr_piliar_from:{^xfields.tr_piliar_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_piliar_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_piliar_to:{^xfields.tr_piliar_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_piliar_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.16.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.16.active: checked="checked"} /> {^xfields.trns.16.value} [PIL-C IATA]</td>
+		<td>{#if:^xfields.tr_pilic_from:{^xfields.tr_pilic_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_pilic_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_pilic_to:{^xfields.tr_pilic_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_pilic_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.17.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.17.active: checked="checked"} /> {^xfields.trns.17.value} [JCC]</td>
+		<td>{#if:^xfields.tr_jcc_from:{^xfields.tr_jcc_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_jcc_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_jcc_to:{^xfields.tr_jcc_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_jcc_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.18.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.18.active: checked="checked"} /> {^xfields.trns.18.value} [CC]</td>
+		<td>{#if:^xfields.tr_cc_from:{^xfields.tr_cc_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_cc_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_cc_to:{^xfields.tr_cc_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_cc_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.19.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.19.active: checked="checked"} /> {^xfields.trns.19.value} [FLO]</td>
+		<td>{#if:^xfields.tr_flo_from:{^xfields.tr_flo_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_flo_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_flo_to:{^xfields.tr_flo_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_flo_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.20.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.20.active: checked="checked"} /> {^xfields.trns.20.value} [XRay]</td>
+		<td>{#if:^xfields.tr_xray_from:{^xfields.tr_xray_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_xray_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_xray_to:{^xfields.tr_xray_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_xray_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.21.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.21.active: checked="checked"} /> {^xfields.trns.21.value} [BHV]</td>
+		<td>{#if:^xfields.tr_bhv_from:{^xfields.tr_bhv_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_bhv_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_bhv_to:{^xfields.tr_bhv_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_bhv_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.22.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.22.active: checked="checked"} /> {^xfields.trns.22.value} [VOG]</td>
+		<td>{#if:^xfields.tr_vog_from:{^xfields.tr_vog_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_vog_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_vog_to:{^xfields.tr_vog_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_vog_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.23.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.23.active: checked="checked"} /> {^xfields.trns.23.value} [VOG]</td>
+		<td>{#if:^xfields.tr_cito_from:{^xfields.tr_cito_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_cito_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_cito_to:{^xfields.tr_cito_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_cito_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.24.active: style="font-weight: bold;"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.24.active: checked="checked"} /> {^xfields.trns.24.value} [VGB]</td>
+		<td>{#if:^xfields.tr_vgb_from:{^xfields.tr_vgb_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_vgb_from:<span style="color: #999;">---</span>}</td>
+		<td>{#if:^xfields.tr_vgb_to:{^xfields.tr_vgb_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_vgb_to:<span style="color: #999;">---</span>}</td>
+	</tr>
+</table>
+}
+}
+
+}</div>

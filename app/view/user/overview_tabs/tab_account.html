@@ -1,0 +1,122 @@
+{#raw:includes/pwindicator.css}
+{#use:session:{!Most of the user information is in Session}
+<div id="user-account">
+	<h4>Account information:</h4>
+	<form class='vertiform' id='edit-account' action="?action=update_account" method="post">
+	<ul>
+		<li><label>Account ID:</label><div class="static"><b>{user.user}</b> (used for login)</div></li>
+		<li><label>Name:</label><div class="static">{user.name}</div></li>
+		<li><label>E-mail:</label><div class="static">{user.email}</div></li>
+{!		<li><label for="usr_name">My name:</label><input id="usr_name" name="usr[name]" type="text" value="{user.name}" disabled="disabled" /></li>
+		<li><label for="usr_email">Email Address:</label><input id="usr_email" name="usr[email]" type="text" value="{user.email}" disabled="disabled" /></li>}
+		<li><div class="static center" style="font-size: 85%;">Please contact Cargohub Support (support@cargohub.nl) if changes are needed to ID, Name and E-mail</div></li>
+		<li id="acc_smtp_active"{#ifnot:user.email_smtp: style="display: none;"}><label>SMTP Activated:</label><div class="static">
+			<b class='green'>YES</b> (<a href="#vcard">Check settings</a>)
+		</div></li>
+		<li style="height: auto;"><label for="usr_signature_ifr">Signature:</label><div class="clear"></div>
+			<div style="display: inline-block;">{!Container for TinyMCE}
+				<textarea id="usr_signature">{user.signature}</textarea>{!xjs.tinymce}
+			</div>
+		</li>
+		<li><label>&nbsp;</label><div class="static">Only fill the password fields if you want to change the password</div></li>
+		<li><label class="left" for="usr_password">Change password:</label>
+			<input class="left" id="usr_password" name="usr[password]" type="password" autocomplete="off" data-indicator="pwindicator" />
+			<div class="left" id="pwindicator">
+				<div class="bar"></div>
+				<div class="label"></div>
+			</div>
+		</li>
+		<li><label for="usr_passwordr">Repeat password:</label>
+			<input id="usr_passwordr" name="usr[passwordr]" type="password" autocomplete="off" />
+		</li>
+		{#if:status_ex:hidden:<li><label>&nbsp;</label>
+			<div class="static">I am not visible to the other users (hidden)</div>
+		</li>}
+		<li><label>&nbsp;</label>
+			<input type="submit" value="Update signature and/or password" />
+		</li>
+	</ul>
+	<div class="gray" style="margin: 20px;">
+		<hr />
+		<h3>Hints for entering a strong password:</h3>
+		<p>
+		- It should contain at least <b>8</b> characters<br />
+		- Both <i>small letters</i> and <i>CAPITAL LETTERS</i> should exist in your password<br />
+		- Add a few <i>numbers</i> too, preferably not 1234... <br />
+		- <i>Punctuation</i> like % $ , : ! - greatly increase the strength of the password<br />
+		- Password can contain <i>space</i>s [&nbsp;&nbsp;&nbsp;]<br />
+		- For maximum security, unusual characters like |, ~, ] or * which aren't normally used for text are making sure the password is impossible to guess.
+		</p>
+		<p class='red'><b>Never</b> use your name, birthday, phone number, e-mail or other easily identifiable personal information as your password (or as part of your password)!</p>
+	</div>
+	</form>
+</div>
+
+<div id="user-organization">
+	<h4>Organization and Active department:</h4>
+	<form class='vertiform' id='edit-membership' action="?action=update_membership" method="post">
+	<ul>
+		<li><label>My organization:</label>
+			{#if:%features.org_selector:<div id='org_select' name="usr[org_id]"></div>}
+			{#ifnot:%features.org_selector:<div class="static">{organization.name}</div>}
+		</li>
+		<li><label>Organization type:</label><div id="org_type" class="static">{organization.orgtype.name}</div></li>
+		<li><label>Active department:</label><div id='dep_select' name="usr[cdep_id]"></div></li>
+		<li><label>&nbsp;</label><input type="submit" value="Update membership" /></li>
+		<li><div class="static" style="text-align: center;">Changing membership settings will log you out!</div></li>
+	</ul>
+	</form>
+</div>
+
+<div id="user-statistics">	
+	<h4>Usage Statistics:</h4>
+	<table class="infotable"><tbody>
+		<tr><th>Messages sent:</th><td>{user.count.msgs}</td></tr>
+		<tr><th>Unread convos:</th><td>{user.count.unread}</td></tr>
+		<tr><th>Uploaded files:</th><td>{user.count.files}</td></tr>
+		<tr><th>Assigned issues:</th><td>{user.count.issues}</td></tr>
+		<tr><th>Assigned tasks:</th><td>{user.count.tasks}</td></tr>
+		<tr><th>Contact records:</th><td>{user.count.ctx}</td></tr>
+	</tbody></table>
+</div>
+
+<div id="user-twofactor">
+	<h4>Two-Factor Authentication (2FA):</h4>
+	{#ifnot:%features.twofa:
+	<p>You can increase the security of your account greatly by activating <a href="http://en.wikipedia.org/wiki/Two_factor_authentication" target="_blank">Two-Factor authentication</a>.</p>
+	<div id="twofa-enable" style="margin: 0 auto;"></div>
+	<div class="infotext">
+	<p>This feature will require you to use the <a href="http://en.wikipedia.org/wiki/Google_Authenticator" target="_blank">Google Authenticator</a> on your mobile phone (or other devices) to obtain a security PIN.
+		This number is only valid once and changes value every 30 seconds both on your personal device and on the server.</p>
+	<p>Even if someone somehow steals your password, without access to your phone or security device (which presumably has it's own passwords or other login methods) they won't be able to access your account, making it nearly-invulnerable to cracking.<br />
+		When you activate this function you will be required to scan a QR code with the Google Authenticator app, or enter the generated &quot;key&quot; in the app, then type in the PIN which is shown. If it matches, the 2FA will be turned on for your account.</p>
+	<hr />
+	<p>After it is turned on, the only way to turn it off is by contacting <a href="mailto:support@cargohub.nl">support@cargohub.nl</a></p>
+	</div>}
+	{#if:%features.twofa:
+	<p>Two-Factor Authentication was activated on date:<br /><span style="color: blue; font-size: 1.2em; margin-left: 20px;">{%features.twofa}</span></p>
+	<h3>Congratulations! Your account is using maximum security!</h3>
+        
+       <!--Two factor off from user account Start-->
+        <button id="twofa-off-btn" class="twofa_off_btn" >Want to Off Two-Factor Authentication </button>
+        <!--Two factor off from user account End-->
+        
+	<p class="infotext">Changing the password and/or your e-mail addres in this form (Update Account) will require you to enter the PIN from your mobile device (Google Authenticator)</p>
+	<hr />
+	<p class="infotext">Please remember, in case you ever lose your phone (or it breaks) making it impossible for you to login into the application, you can always <a href="mailto:support@cargohub.nl">contact support</a> explaining your situation.
+	Your account can then be reset to a non-2FA state, allowing you to login and activating it with another mobile device.</p>
+	}
+</div>
+
+<div class="clear"></div>
+}
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="template-twofa" type="text/dryjstpl">{@
+	<h3 style="text-align: center;">Please scan this with the Google Authenticator App, or use the code shown below</h3>
+	<div style="color: #930e22; font-weight: bold; font-size: 1.5em; text-align: center; padding: 0 auto;"><img src="http://chart.apis.google.com/chart?chs={$size}x{$size}&cht=qr&chld=M|0&chl={$chl}" alt="{$authid}" /><br />{$oathkey}</div>
+	<hr />
+	<div style="text-align: center; margin-bottom: 4px;">Once the App shows you the PIN, type it below and press OK.</div>
+	<div style="text-align: center;"><input id="twofa_otp" type="text" maxlength="6" style="width: 140px; background-color: yellow; font-size: 1.2em; font-weight: bold; letter-spacing: 0.5em; text-align: center;" name="key" />
+	<div>If the key matches, your Two-Factor Authentication will be enabled !</div>
+}</script>

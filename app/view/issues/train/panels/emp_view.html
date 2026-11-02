@@ -1,0 +1,29 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>Surname/Name(s):</th><td>{^xfields.emp_surname} {^xfields.emp_name}</td></tr>
+		<tr><th>{emp_birth.n}:</th><td>{^xfields.emp_birth:<span class="gray">---</span>}</td></tr>
+		<tr><th>{emp_phone.n}:</th><td>{^xfields.emp_phone:<span class="gray">---</span>}</td></tr>
+		<!-- 22082024 add email field -->
+		<tr><th>{emp_email.n}:</th><td>{^xfields.emp_email:<span class="gray">---</span>}</td></tr>
+		<!-- 22082024 add email field -->
+	</table>
+	{#if:^xfields.emp_info:<h5>Extra personal information</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.emp_info}~nl2br~</div>}
+	{#ifnot:^xfields.emp_info:<div class="gray" style="text-indent: 20px;">(no personal details)</div>}
+
+	<h4 style="margin-top: 16px; url('/img/icons16/company-building-icon.png'); background-repeat: no-repeat; background-position: 4px;">Employment details</h4>
+	<table>
+		<tr><th>{emp_hire.n}:</th><td>{#if:^xfields.emp_hire:{^xfields.emp_hire}~date("Y-m-d")~}{#ifnot:^xfields.emp_hire:<span class='gray'>---</span>}</td></tr>
+		<!-- <tr><th>{emp_dep.n}:</th><td>{^xfields.emp_dep:<span class="gray">---</span>} <span class='gray'>(Deprecated, use the top selector)</span></td></tr> 29082024-->
+		<tr><th>{emp_job.n}:</th><td>{^xfields.emp_job.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{emp_id.n}:</th><td>{^xfields.emp_id:<span class="gray">---</span>}</td></tr>
+	</table>
+
+	{#if:^xfields.emp_roles:
+		<h5>Job roles</h5>	
+		{#repeat:^xfields.emp_roles:<span class="itembox">{value}</span>}
+		<div class="clear"></div>
+	}
+	
+	{#if:^xfields.emp_rem:<h5>Employment remarks</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.emp_rem}~nl2br~</div>}
+	{#ifnot:^xfields.emp_rem:<hr style="margin-top: 12px;" /><div class="gray" style="text-indent: 20px;">(no employment remarks)</div>}
+}

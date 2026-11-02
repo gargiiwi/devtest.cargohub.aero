@@ -1,0 +1,113 @@
+<div id="" class="readonly_publish_documents_div_section "> 
+    <!--Add option to set or change logo from organization start-->
+<!--<h4 style="text-indent:0px;"> </h4>-->
+    <div class="get_flx">
+    <div >
+        <h4 class="get_pub" style="color:#000000;">Documentation Library</h4>
+    </div>
+        <div class="search-container-sec">
+    <div class="search-container">
+        <div class="dropdown">
+            <button class="dropdown-button">Search By <i class='fa fa-angle-down'></i></button>
+            <div class="dropdown-content">
+                <label><input type="checkbox" name="search_publish_documents_type" checked="" value="by_name"> Name</label>
+                <label><input type="checkbox" name="search_publish_documents_type" checked="" value="by_desc"> Description </label>
+                <!-- <label><input type="checkbox" name="search_publish_documents_type" checked="" value="by_ref_no"> Ref. No. </label> IWI ref no for documents  -->
+            </div>
+        </div>
+        <input type="text" id="search_publish_documents" class="search-box" placeholder="Search...">
+        <input type="hidden" id="search_publish_documents_type" value="department" />
+    </div>
+</div>
+<!--    <div>
+        <img class="log_pub"  alt="" src="{orgLogo}" style="margin-right: 6px;">
+    </div>-->
+</div>
+
+    <!--Add option to set or change logo from organization end-->
+    
+    
+    
+    <div>
+
+       
+        
+        
+<!--IWI publication search functionality and design  check and fix end-->
+
+        <div class="ratabs">
+            <div class="simple-spinner">
+                <span></span>
+              </div>
+              
+            <div id="tabsall">
+                <ul class="nav nav-tabs" id="user-nav-tabs">
+                    <!--IWI Create section for Notification start-->
+                    <!--<li role="presentation" id="fetch_all_data"><button>Organizations</button></li>-->
+                    <li role="presentation" id="fetch_all_notification"><button><i class="fa fa-bell" aria-hidden="true"></i> Announcement </button></li>
+                    <!--IWI Create section for Notification end-->
+                    <li role="presentation" class="active"  id="fetch_department_data"><button>Departments</button></li>
+                    <li role="presentation" id="fetch_private_data"><button>Private</button></li>
+                    <!--<li role="presentation" id="fetch_my_data"><button>Published By Me</button></li>-->
+                    <!--<li role="presentation" id="fetch_my_allocate_data"><button>Published</button></li>--> <!-- IWI user can view all published doc by assigned organization -->
+                    {#if:publish_all_linked_department=='1':
+                    <li role="presentation" id="fetch_all_published_by_org"><button>All Published</button></li> <!-- IWI user can view all published doc by assigned organization -->
+                    }
+                    
+                    
+                </ul>
+            </div>
+
+            <div id="content">
+                <div id="content1">
+                    
+    
+    <!--IWI all doc list needs to read & sign start-->
+    <!-----NEW DIV ADD START---------->
+    <div class="div_wrap" style="display: flex;align-items: center;gap: 10px;justify-content: end;margin-bottom: 10px;">
+        <div class="myReadSignNotiSec">
+            <a class="myReadSignNotiLink" href="/user/publication?action=get_all_read_sign" target="_blank">({read_sign_count}) Read & Sign <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="archivePageLinkSec" style="display: none;">
+            <a class="archivePageLink" href="/user/publication?action=get_all_archive_doc" title="Click to view all Archive Docs" target="_blank"><i class='fa fa-archive'></i> Archive </a>
+        </div>
+        <div class="archivePageLinkSecAnnounecement" style="display: none;">                                   <!--Iwi archived announcement start-->
+            <a class="archivePageLink" href="/user/publication?action=get_all_archive_announcement" title="Click to view all Archive Docs" target="_blank"><i class='fa fa-archive'></i> Archive </a>
+        </div>                                                                                                <!--Iwi archived announcement start-->
+    </div>
+     <!-----NEW DIV ADD END---------->
+    
+    <!--IWI all doc list needs to read & sign end-->
+                    <div class="rafiltertab">
+                        <label for="search_by_department_list">Department : </label> <!-- IWI publication published section changes as per 26082024 -->
+                        <select name="search_by_department_list" id="search_by_department_list">
+                            <option value="" disabled="disabled" selected>Select Department </option>
+                            {assign_departments_list}
+                        </select>
+                    </div>
+                    
+                    <!--IWI Create an icon for archived published doc start-->
+                    <!-- <div class="archivePageLinkSec" style="display: none;">
+                        <a class="archivePageLink" href="/user/publication?action=get_all_archive_doc" title="Click to view all Archive Docs" target="_blank"><i class='fa fa-archive'></i> Archive </a>
+                    </div> -->
+                    <!--IWI Create an icon for archived published doc end-->
+                    
+                    <div>
+                        <table border="0" cellspacing="0"  id="publish_documents" style="border-spacing:0 5px;">
+                        </table>
+                        
+                        
+                        
+                         <div id="jqxGrid"></div>
+                    </div>
+                </div>
+                
+<!--                <div id="dataTable">
+                </div> -->
+            </div>
+        </div>
+
+
+    </div>
+
+</div> 

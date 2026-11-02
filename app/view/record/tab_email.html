@@ -1,0 +1,89 @@
+{!Version 2019.02.08}
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img alt="@" src="/img/icons/contact_email.png" class="info-tip" data-tooltip="<div style='text-align: left;'>- To share record data, use <b>Build e-mail</b> function to select Organization/Department(s)<br />- To send an arbitrary message, Enter or Select your Contacts, type Subject and Content.<br />When finished, <b>Send</b> your e-mail !</div>" />
+	</div>
+	<button data-op="send" class="info-tip" data-tooltip="Send this E-mail !" id="button-proceed"><img src='/img/icons16/email_go.png' alt="[^]" /><span class='thick'>&nbsp;Send&nbsp;</span></button>
+	<div class='toolbar-separator'></div>
+	<button data-op="transfer" class="info-tip{#if:hidebtntxt: icnonly}" data-tooltip="{#if:hidebtntxt:<b>Build E-mail from data</b><br />}Select recipients, subject and content automatically<br />by choosing target Organization and Department(s)"><img src='/img/icons16/bricks.png' alt="[>]" />{#ifnot:hidebtntxt:Build e-mail}</button>
+	<button data-op="attach" class="info-tip{#if:hidebtntxt: icnonly}" data-tooltip="{#if:hidebtntxt:<b>Attachments</b><br />}Attach new computer files or review existing ones"><img src='/img/icons16/email_attach.png' alt="[&]" />{#ifnot:hidebtntxt:Attachments}</button>
+	<div class='toolbar-separator'></div>
+	<button data-op="contacts" class="info-tip{#if:hidebtntxt: icnonly}" data-tooltip="{#if:hidebtntxt:<b>Contacts</b><br />}Select one or more contacts from your address book"><img src='/img/icons16/book_addresses.png' alt="[@]" />{#ifnot:hidebtntxt:Contacts}</button>
+	<button data-op="ccself" class="info-tip{#if:hidebtntxt: icnonly}" data-tooltip="{#if:hidebtntxt:<b>CC me</b><br />}Include my own e-mail in the list of carbon-copies (CC)"><img src='/img/icons16/cc.png' alt="CC" />{#ifnot:hidebtntxt:CC me}</button>
+	{#if:has_aliases:
+		<button data-op="aliases" class="info-tip{#if:hidebtntxt: icnonly}" data-tooltip="{#if:hidebtntxt:<b>My aliases</b><br />}Switch to another alias used as sender"><img src='/img/icons16/mask.png' alt="UA" />{#ifnot:hidebtntxt:Aliases}</button>}
+	{!On the right}
+	<button data-op="reset" class="right info-tip{#if:hidebtntxt: icnonly}" data-tooltip="{#if:hidebtntxt:<b>Empty</b><br />}Resets the E-mail form, clearing recipients, subject, content." data-tooltip_position="bottom-left" data-tooltip_left="38"><img src="/img/icons16/trash.png" alt="[x]" />{#ifnot:hidebtntxt:Reset}</button>
+</div>
+
+{!Compose Message - Used in the new "compose" component}
+<div id="message-attach_info"><span class='gray'>(No attachments)</span></div>
+<div id="message-from"></div>
+<div class='clear'></div>
+<div id="message-controls">
+	{#raw:components/compose.html}
+</div>
+<div class='toolbar jqx-widget jqx-rc-all' style="margin-top: 30px;">
+	<button data-op="send" class="info-tip" data-tooltip="Send this E-mail !" id="button-proceed"><img src='/img/icons16/email_go.png' alt="[^]" /><span class='thick'>&nbsp;Send&nbsp;</span></button>
+	<div class='toolbar-separator'></div>
+	<div class="toolbar-accessory email-options">
+		<div id="opt-cloud"><img src="/img/icons16/cloud-blue.png" class="inline-icon16" alt="[no]"><span class='info-tip' data-tooltip="Makes E-mails much smaller by not including the actual attached files.<br />Instead, the E-mail will contain links to those files to be downloaded from CargoHub servers">Cloud-stored attachments</span></div>
+		<div id="opt-signature"><img src="/img/icons16/signature.png" class="inline-icon16" alt="[sig]"><span class='info-tip' data-tooltip="If you have defined a signature in your account information,<br />it will be appended to the E-mail">Signature</span></div>
+		<div id="opt-selfcopy"><img src="/img/icons16/copy.png" class="inline-icon16" alt="[bcc]"><span class='info-tip' data-tooltip="Your E-mail is automatically included in the recipients as Bcc<br />Recipients will only see you as Sender">BCC me</span></div>
+	</div>
+	<div class='toolbar-separator'></div>
+	<div class="toolbar-accessory email-options">
+		<div id="opt-contacts"><img src="/img/icons16/vcard.png" class="inline-icon16" alt="[vcard]"><span class='info-tip' data-tooltip="All recipients in the <b>To:</b> and <b>Cc:</b> lines will appear in the Contacts tab of this record">Link recipients to record</span></div>
+		<div id="opt-share"><img src="/img/icons16/handshake.png" class="inline-icon16" alt="[share]"><span class='info-tip' data-tooltip="Contacts placed on the <b>To:</b> line are searched in the CargoHub organization database.<br />If a match is found, the record is shared automatically with the organization.">Partner data sharing</span></div>
+	</div>
+</div>
+<div id='message-signature_preview' class="jqx-widget jqx-rc-all" style="border: 1px solid lightgray; display: none;">
+	<h4 class="jqx-rc-top">Signature preview</h4>
+	<div style="padding: 10px;">{signature:<div class='gray center'>(Personal signature not defined yet)</div>}</div>
+</div>
+
+{!The aliases window, used to select the sender contact}
+<script id="win-select_alias" type="text/dryjstpl">{@
+	<div class="spacey">
+		<div style="margin-bottom: 6px;">Choose which alias you wish to use for this message:</div>
+		<div id="alias-selector"></div>
+		<div id="alias-persistent" style="margin-top: 6px;">Keep selection until logout</div>
+	</div>
+}</script>
+
+{!The attachments window, containing four zones}
+<script id="win-email_attachments" type="text/dryjstpl">{@
+	<div id="attach-navbar" class="jqx-rc-all">
+		<button data-zone='existing'><img src="/img/icons16/email_attach.png" alt="Eml" class="inline-icon"> Current attachments [<span id='ca-count'>0</span>]</button> 
+		<button data-zone='uploadnew'><img src="/img/icons16/upload.png" alt="Up!" class="inline-icon"> Upload new attachments</button>
+		<button data-zone='importfiles'><img src="/img/icons16/attach.png" alt="Fil" class="inline-icon"> Attach record files</button>
+		<button data-zone='importdocs'><img src="/img/icons16/document_image_ver.png" alt="Doc" class="inline-icon"> Import from documents</button>
+	</div>
+	<div id="attach-existing" class="attach-zone" style="display: none; overflow: auto;">
+		<div id="attach-datatable" style="min-height: 382px;"></div>
+	</div>
+	<div id="attach-uploadnew" class="attach-zone" style="display: none;">
+		<div id="email-dropzone" class="dropzone jqx-rc-all"></div>
+		<div id="email-dropzone-helper" style="visibility: hidden;">
+			Click anywhere on the white space in the box above<br />or drag & drop your files there to <b>upload more attachments</b>
+		</div>
+	</div>
+	<div id="attach-importfiles" class="attach-zone" style="display: none; overflow: auto;">
+		<div id="importfiles-datatable" style="min-height: 382px;"></div>
+	</div>
+	<div id="attach-importdocs" class="attach-zone" style="display: none; overflow: auto;">
+		<div id="importdocs-datatable" style="min-height: 382px;"></div>
+	</div>
+}</script>
+
+{!Line used on the Attachments window title or the Attachments quick-info on the right of Compose}
+<script id="template-attach_info" type="text/dryjstpl">{@
+{#exists:count:File attachments: <b>{$count}</b> - Total size: <b>{$dsize}</b> {$sunit}{#exists:oversize: <span class="red thick">Attention, very large E-mail !</span>}}{#missing:count:No files are currently attached}
+}</script>
+
+{!Block to show an attachment in the main compose area}
+<script id="template-compose_atts" type="text/dryjstpl">{@
+	<span class="jqx-rc-all"><img src="/img/mime16/{$mimetype}.png" class="inline-icon16" alt="#" />
+		<img src="/img/icons16/delete.png" class="right" alt="DEL" title="Delete this attachment" data-index="{$index}" />
+	<span>{$title}</span></span>
+}</script>

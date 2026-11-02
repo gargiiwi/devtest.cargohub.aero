@@ -1,0 +1,50 @@
+div.toolbar span#selected_user {
+	display: inline-block;
+	height: 25px;
+	line-height: 25px; 
+	margin: 6px 12px 6px 0;
+}
+
+/* Special rendering related to User Statuses */
+
+.statusselect {
+	text-indent: 20px;
+	background-repeat: no-repeat;
+}
+
+.statusrender > div {
+	margin-left: 6px;
+	margin-top: 6px;
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	background-color: transparent;
+	text-indent: 20px;
+}
+.statusrender .active, .statusselect.active {
+	background-image: url("/img/icons16/user_statuses/active.png");
+}
+.statusrender .online, .statusselect.online {
+	background-image: url("/img/icons16/user_statuses/online.png");
+}
+.statusrender .disabled, .statusselect.disabled {
+	background-image: url("/img/icons16/user_statuses/disabled.png");
+}
+.statusrender .invisible, .statusselect.invisible {
+	background-image: url("/img/icons16/user_statuses/invisible.png");
+}
+.statusrender .supervisor, .statusselect.supervisor {
+	background-image: url("/img/icons16/user_statuses/supervisor.png");
+}
+.statusrender .admin, .statusselect.admin {
+	background-image: url("/img/icons16/user_statuses/admin.png");
+}
+.statusrender .jumper, .statusselect.jumper {
+	background-image: url("/img/icons16/user_statuses/jumper.png");
+}
+.statusrender .eula, .statusselect.eula {
+	background-image: url("/img/icons16/user_statuses/eula.png");
+}
+.statusrender .readonly, .statusselect.readonly {
+	background-image: url("/img/icons16/user_statuses/readonly.png");
+}

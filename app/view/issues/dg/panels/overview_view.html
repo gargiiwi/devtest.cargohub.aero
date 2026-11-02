@@ -1,0 +1,15 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{shp_id.n}:</th><td>{^xfields.shp_id:<span class="gray">---</span>}</td></tr>
+{!		<tr><th>{subclass.n}:</th><td>{^xfields.subclass:<span class="gray">---</span>}</td></tr>}
+		<tr><th>{imex.n}:</th><td>{^xfields.imex.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{f_un.n}:</th><td>{^xfields.f_un:<span class="gray">---</span>}</td></tr>
+		<tr><th>{pg.n}:</th><td>{^xfields.pg.value:<span class="gray">---</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{sh_descr.n}:</th><td>{^xfields.sh_descr:<span class="gray">---</span>}</td></tr>
+		<tr><th>Pieces and Qty /piece:</th><td>{#if:^xfields.sh_pcs:<b>{^xfields.sh_pcs}</b> Pcs ; <b>{^xfields.sh_qtypce}</b> items/pc}{#ifnot:^xfields.sh_qtypce:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{sh_tqty.n}:</th><td>{^xfields.sh_tqty:<span class="gray">---</span>}</td></tr>
+	</table>
+}

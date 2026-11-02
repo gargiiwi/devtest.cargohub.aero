@@ -1,0 +1,119 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{resp.n}:</th><td>{^xfields.resp.value:<span class="gray">-----</span>}</td></tr>
+	</table>
+	<h4>Investigation</h4>
+	<table>
+		<tr><th>{inv_done.n}</th>
+		<td>
+			{#if:^xfields.inv_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.inv_done.key: checked="checked"}> {^xfields.inv_done.value}</label>}
+			{#ifnot:^xfields.inv_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{inv_pers.n}:</th><td>{^xfields.inv_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{inv_details.n}:</th><td>{#repeat:^xfields.inv_details:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+	<h5>{inv_remarks.n}:</h5>
+	{#if:^xfields.inv_remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.inv_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.inv_remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<h5>{inv_descr.n}:</h5>
+	{#if:^xfields.inv_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.inv_descr}~nl2br~</div>}
+	{#ifnot:^xfields.inv_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h4 style="margin-top: 8px;">Weather conditions</h4>
+	<table>
+		<tr><th>{wc_vis.n}:</th><td>{^xfields.wc_vis:<span class="gray">---</span>} <span class="gray">meters</span></td></tr>
+		<tr><th>{wc_wind.n}:</th><td>{^xfields.wc_wind:<span class="gray">---</span>} <span class="gray">knots</span></td></tr>
+		<tr><th>{wc_temp.n}:</th><td>{^xfields.wc_temp:<span class="gray">---</span>} <span class="gray">celcius</span></td></tr>
+		<tr><th>{wc_light.n}:</th><td>{^xfields.wc_light.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{wc_surface.n}:</th><td>{#repeat:^xfields.wc_surface:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+
+	<h4 style="margin-top: 8px;">Vehicle / ramp equipment details and condition report</h4>
+	<table>
+		<tr><th>{eq_sfn.n}:</th><td>{^xfields.eq_sfn:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eq_type.n}:</th><td>{^xfields.eq_type:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eq_owner.n}:</th><td>{^xfields.eq_owner:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eq_area.n}:</th><td>{^xfields.eq_area:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eq_age.n}:</th><td>{^xfields.eq_age:<span class='gray'>---</span>}
+			<div class="ra_250">
+				<label class="ra_label">Last Overhaul:</label>
+				{#if:^xfields.eq_lasto:{^xfields.eq_lasto}~date("Y-m-d")~}{#ifnot:^xfields.eq_lasto:<span class='gray'>---</span>}
+			</div></td></tr>
+	</table>
+
+	<h5>{eq_remarks.n}:</h5>
+	{#if:^xfields.eq_remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.eq_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.eq_remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<h4 style="margin-top: 8px;">Contributing factors:</h4>
+	<table>
+		<tr><th>{cf_behav.n}:</th><td>{#ifnot:^xfields.cf_behav:<span class='gray'>---</span>}{#repeat:^xfields.cf_behav:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_behav_oth:<span class="itembox">{^xfields.cf_behav_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_rules.n}:</th><td>{#ifnot:^xfields.cf_rules:<span class='gray'>---</span>}{#repeat:^xfields.cf_rules:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_rules_oth:<span class="itembox">{^xfields.cf_rules_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_eq.n}:</th><td>{#ifnot:^xfields.cf_eq:<span class='gray'>---</span>}{#repeat:^xfields.cf_eq:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_eq_oth:<span class="itembox">{^xfields.cf_eq_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_org.n}:</th><td>{#ifnot:^xfields.cf_org:<span class='gray'>---</span>}{#repeat:^xfields.cf_org:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_org_oth:<span class="itembox">{^xfields.cf_org_oth}</span>}
+		</td></tr>
+	</table>
+	<h4 style="margin-top: 8px;">Corrective/Preventive actions (CaPa)</h4>
+	<table>
+		<tr><th>{capa_done.n}</th>
+		<td>
+			{#if:^xfields.capa_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.capa_done.key: checked="checked"}> {^xfields.capa_done.value}</label>}
+			{#ifnot:^xfields.capa_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{capa_dl.n}:</th><td>{#if:^xfields.capa_dl:{^xfields.capa_dl}~date("Y-m-d")~}{#ifnot:^xfields.capa_dl:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{capa_pers.n}:</th><td>{^xfields.capa_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{capa_date.n}:</th><td>{#if:^xfields.capa_date:{^xfields.capa_date}~date("Y-m-d")~}{#ifnot:^xfields.capa_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	
+	<h5>{capa_descr.n}:</h5>
+	{#if:^xfields.capa_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.capa_descr}~nl2br~</div>}
+	{#ifnot:^xfields.capa_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<h4 style="margin-top: 8px;">Evaluation/Closure</h4>
+	<table>
+		<tr><th>{eval_done.n}</th>
+		<td>
+			{#if:^xfields.eval_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eval_done.key: checked="checked"}> {^xfields.eval_done.value}</label>}
+			{#ifnot:^xfields.eval_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{eval_pers.n}:</th><td>{^xfields.eval_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eval_date.n}:</th><td>{#if:^xfields.eval_date:{^xfields.eval_date}~date("Y-m-d")~}{#ifnot:^xfields.eval_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	
+	<h5>{eval_descr.n}:</h5>
+	{#if:^xfields.eval_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.eval_descr}~nl2br~</div>}
+	{#ifnot:^xfields.eval_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<hr style="margin-top: 4px;" />
+	<table>
+		<tr><th>{close_date.n}:</th><td>{#if:^xfields.close_date:{^xfields.close_date}~date("Y-m-d")~}{#ifnot:^xfields.close_date:<span class='gray'>(...still open)</span>}</td></tr>
+	</table>
+	<h4>Financial situation</h4>
+	<table>
+		<tr><th>{expected.n}:</th><td><b>{^xfields.expected_curr.value}~cut(4)~{^xfields.expected}~numberformat(2)~</b></td></tr>
+		<tr><th>{insured.n}:</th><td><b>{^xfields.insured_curr.value}~cut(4)~{^xfields.insured}~numberformat(2)~</b>
+				<span style="float: right; margin-right: 20px;"><label>Ins. Ref. #:</label> {^xfields.insref:<span class='gray'>---</span>}</span>
+		</td></tr>
+		<tr><th>{provision.n}:</th><td><b>{^xfields.provision_curr.value}~cut(4)~{^xfields.provision}~numberformat(2)~</b></td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{liable.n}:</th><td>
+			{#if:^xfields.liable.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.liable.key: checked="checked"}> {^xfields.liable.value}</label>}
+			{#ifnot:^xfields.liable.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{claim_link.n}:</th><td>
+			{#if:^xfields.claim_link:<a href="/record/process:{^xfields.claim_link}#panels" target="_blank">{^xfields.claim_link}</a>}
+			{#ifnot:^xfields.claim_link:<span class='gray'>---</span>}
+		</td></tr>
+	</table>		
+}

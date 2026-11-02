@@ -1,0 +1,101 @@
+<div class='toolbar jqx-widget jqx-rc-all adminOrgTooolber'>
+	<button data-op="add" title='Create organization'><img src='/img/icons16/add.png' /> Create organization</button>
+	<div id='org_edit_operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="edit" title="View and edit"><img src='/img/icons16/eye.png' /> Open</button>
+		<button data-op="contacts" title="Manage contacts for the organization and it's departments"><img src='/img/icons16/book_addresses.png' /> Contacts</button>
+		<button data-op="tasks" title="Manage organization's tasks"><img src='/img/icons16/to_do_list_cheked_1.png' /> Tasks</button>
+		<div class='toolbar-separator'></div>
+		<button id="button-delete" data-op="delete" title="Remove selected" data-confirm="true" data-confirm_msg="remove selected organization ?"><img src='/img/icons16/bin.png' /> Remove selected</button>
+                
+                 <!--IWI create api for getting record details start-->
+                 <div class='toolbar-separator'></div>
+                    <button id='selected_org_secretKey' style="display: none" data-op="secretKey" data-org="" title='API Secret Key'><img src='/img/icons16/key.png' />API Secret Key</button>
+                 <!--IWI create api for getting record details end-->
+		{!<button data-op="toggle" title="Disable or enable">Disable or enable</button>}
+		<span id='selected_org'></span>
+                
+	</div>
+</div>
+<div id="orgs_grid"></div>
+ 
+<br /><div class='info-expander'>
+	<div>Operational information (click to open/close)</div>
+	<div class='spacey'>
+		<h3>This is the organizations manager.</h3>
+		<p>All organizations which use (or might use) the system are displayed here.<br />
+		For now, all information is loaded at the start of this module so filtering and sorting is done locally in your browser (will be changed when there are more than 1000 organizations in system)</p>
+		<p>The columns display the following information:</p>
+		<ul>
+			<li><b>Active:</b> This organization is set as active and it should have users operating issues. If inactive, issues can only be submitted by e-mail.</li>
+			<li><b>Type:</b> What kind of organization it is (Airline, Claim Agent, Sales Agent, Shipper, Trucker, etc.)</li>
+			<li><b>Primary URL:</b> This is the main portal address for this organization, where issues can be submitted. (There can be other addresses with different purposes)</li>
+			<li><b>Managed by:</b> The user which is set as the manager of this organization.</li>
+			<li><b>Users:</b> Number of user accounts connected to this organization.</li>
+			<li><b>Issues:</b> Issues associated with this organizations.</li>
+			<li><b>Msgs:</b> Messages to and from this organization. A high number usually indicates a very active organization.</li>
+			<li><b>Files:</b> Files uploaded for this organization. A high number indicates large server space usage.</li>
+			<li><b>Dept's:</b> Number of departments in this organization. More than one indicates this is a wide-area corporation.</li>
+			<li><b>Domains:</b> Internet addresses which direct to this organization. In most cases each organization has only one domain.</li>
+			<li><b>Groups:</b> Number of groups connected to the organization. Groups are of multiple types and managed in the groups module.</li>
+		</ul>
+		<hr />
+		<p>When selecting a row, buttons will appear that allow to view details about that organization or remove it (after confirming <i>twice</i>)</p>
+		<p><span style='color: red;'>Please <b>BE CAREFUL</b> with the delete function, it's not reversible !</span> Once an organizaiton has been deleted, data cannot be recovered.<br />
+		It is possible however to lock the delete function for organizations by directly editing the database (not from the interface). This can avoid accidental deletions</p>
+		<p>To create an organization, use the provided button, in which a name, type and first internet domain name must be specified. After the organization is created, it can be further configured by using View and edit button.<br />
+		Each organization must have an unique name (the system will refuse creation if the same name has already been used), and the primary domain must not exist in the system yet.</p>
+	</div>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template_add_org" type="text/dryjstpl">
+	<form class='vertiform' name='addorg' action="?action=add_organization" method="post">
+		<ul>
+		<li><label for="org_name">Name:</label><input id="org_name" name="org[name]" type="text" value="" /></li>
+		<li><label>Type:</label><div id='org_type' name="org[type_id]"></div></li>
+		<li><label for="domain_name">Primary domain:</label><input id="domain_name" name="domain[name]" type="text" value="" /></li>
+		<li><label>CSS Theme:</label><div id='domain_css_theme' name="domain[css_theme]"></div></li>
+		</ul>
+	</form>
+</script>}
+
+
+
+<!--IWI create api for getting record details start-->
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script type="text/dryjstpl" id="template_org_secret">
+<div class="modal_content_secret_key professional-modal">
+  <div class="secret-key-box">
+    <label class="label">Secret Key</label>
+    <div class="key-wrapper">
+      <code id="the_secret_key">de2e7d2a62762259bd51a7f93bca0e66</code>
+      <button id="copy_secret" class="btn copy-btn">
+        <i class="fa fa-clipboard"></i>
+      </button>
+    </div>
+  </div>
+  <div class="status-box">
+    <label class="label">Status</label>
+    <div class="status-wrapper">
+      <span id="org_status_text" class="status-badge active">Active</span>
+      <button id="toggle_status" class="btn toggle-btn">Deactivate</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="regenerate_key" class="btn regenerate-btn">
+      <i class="fa fa-refresh"></i> Regenerate Key
+    </button>
+  </div>
+
+</div>
+
+
+  
+</script>}
+
+
+
+<!--IWI create api for getting record details end-->

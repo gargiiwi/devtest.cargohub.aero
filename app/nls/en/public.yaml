@@ -1,0 +1,19 @@
+# Strings visible on the public area
+---
+
+index:
+  issue:
+    submit: Submit an issue
+    submit_ex: Submit and manage your issue
+    view: Find my issue
+    view_ex: Find and review status of my submitted issues
+  claim:
+    submit: Submit Cargo Claim
+    submit_ex: Fill in the form and upload documents
+    view: Search submitted claims
+    view_ex: Review your existing claims
+  damage:
+    submit: Submit a damage report
+    submit_ex: Provide details on what happened with the cargo
+    view: Find my damage report
+    view_ex: Check status of my submitted damage reports

@@ -1,0 +1,78 @@
+{!Template for rendering the Cargo Claim as a string (html). This kind of view doesn't use any javascript for displaying the information and could be used to save a HTML file or send as a message/email
+  Contacts have a "mailto:" href in them; Attachments are sent as links back into the system; All other values are simply formatted text}
+{!TODO: A way to reorder these components (user, system, includes, issue data)}
+{!The system might add it's own piece of text in certain situations}
+{#if:_contents_system:<div class="system_contents">{_contents_system}</div>}
+{!Users are able to add their own text}
+{#if:_contents_user:<div class="user_contents">{_contents_user}</div>}
+{!Support including extra templates here, which use the same data as this main template}
+{#if:_includes:{#repeat:_includes:
+	<div class="included_contents">{#include:%:{$}}</div>}}
+{#use:issue:
+<div style="max-width: 700px; padding: 5px; border: 1px solid lightgray; font-size: 12px;">
+
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Dispute overview:</h4>
+{#use:%ist.xfield_def:
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Carrier:</th><td><b style='font-size: 16px;'>{^group.name}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{mawb.n}:</th><td><b style='font-size: 16px;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>		
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{valid.n}:</th><td><b>{^xfields.valid.value}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{await_con.n}:</th><td><b>{^xfields.await_con.value}</b></td></tr>
+	</table>
+
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb_date.n}:</th><td>{#if:^xfields.awb_date_date:{^xfields.awb_date_date}~date("Y-m-d")~}{#ifnot:^xfields.awb_date_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{date_close.n}:</th><td>{#if:^xfields.date_close:{^xfields.date_close}~date("Y-m-d")~}{#ifnot:^xfields.date_close:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Financial data</h4>
+	{#use:%ist.xfield_def:<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{frei_am.n}:</th><td><b>{^xfields.frei_am.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{oth_charge.n}:</th><td><b>{^xfields.oth_charge.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{ttl_awb.n}:</th><td><b>{^xfields.ttl_awb.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{vat_awb.n}:</th><td><b>{^xfields.vat_awb.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{rate_app.n}:</th><td><b>{^xfields.rate_app.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{val_yn.n}:</th><td>
+			{#if:^xfields.val_yn.value:<label><input type='checkbox' style="float: left;" disabled="disabled"{#if:^xfields.val_yn.key=1: checked="checked"}> {^xfields.val_yn.value}</label>}
+			{#ifnot:^xfields.val_yn.value:<span style="color: #999;">---</span>}
+		</td></tr>
+	</table>
+
+<div style="clear: both;"></div>
+
+
+<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+<div>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{orig_location.n}:</th>
+			<td>
+				{#if:^xfields.orig_location.value:<b>{^xfields.orig_location.value.IATA}</b> <span style='color: darkblue;'>({^xfields.orig_location.value.country})</span>}{#ifnot:^xfields.orig_location.value:---}
+			</td>
+		</tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{dest_location.n}:</th>
+			<td>
+				{#if:^xfields.dest_location.value:<b>{^xfields.dest_location.value.IATA}</b> <span style='color: darkblue;'>({^xfields.dest_location.value.country})</span>}{#ifnot:^xfields.dest_location.value:---}
+			</td>
+		</tr>
+	</table>
+
+</div>}
+
+{!Deprecated... but unfortuantely still used in the frontend submit (until that one is recoded as well)}
+{#if:%parts.attachments|%override:{#if:issue.files:<div style="max-width: 600px; padding: 5px; margin-top: 5px;">
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 5px; padding: 3px; text-indent: 20px;'>Attached documents (links):</h4>
+	<div id='attachments' style="margin-bottom: 8px;">
+		{#repeat:issue.files:
+		<div style="margin-bottom: 5px; padding: 5px 0px 5px 2px; border-bottom: 1px dotted lightgray;">
+			<a target='_blank' href='http://{%html.domain}/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'>
+			<img style="float: left; margin-right: 10px; border: none;" src='http://{%html.domain}/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span style="color: #999;">({description})</span>}<br />
+			<span style="color: #999;">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span style="color: #999;">Size:</span> {size}~numberformat~ bytes	
+			<div style="clear: both; height: 0px !important;"></div>
+		</div>
+		}
+	</div>
+</div>}}
+}}

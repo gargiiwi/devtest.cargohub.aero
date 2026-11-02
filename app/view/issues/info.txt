@@ -1,0 +1,9 @@
+Most recently checked/updated
+
+
+Update 2.7 - 2015.10.07
+All _render templates verified, "primary" panel remved or simplified.
+----
+
+ac_inc - 2015.09.07
+ulddr - 2015.09.07

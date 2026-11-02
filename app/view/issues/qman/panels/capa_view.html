@@ -1,0 +1,57 @@
+{#use:%ist.xfield_def:
+	<h4>Ca/Pa:
+		{#if:^xfields.capa_done.value:<label{#if:^xfields.capa_done.key==3: class='red'}{#if:^xfields.capa_done.key==1: class='green thick'}{#if:^xfields.capa_done.key==2: class='blue'}>{^xfields.capa_done.value} <input type='checkbox' disabled="disabled"{#if:^xfields.capa_done.key==1: checked="checked"}></label>}
+		{#ifnot:^xfields.capa_done.value:<span class='gray'>---</span>}
+	</h4>
+	<div>
+		<table style="width: 99%;">
+			<tr>
+				<td style="width: 33%; text-align: center;">Deadline</td>
+				<td style="width: 33%; text-align: center;">Started</td>
+				<td style="width: 33%; text-align: center;">Completed</td>
+			</tr>
+			<tr>
+				<td class="center">{#if:^xfields.capa_dl:<span class='thick red'>{^xfields.capa_dl}~date("Y-m-d")~</span>}{#ifnot:^xfields.capa_dl:<span class='gray'>---</span>}</td>
+				<td class="center">{#if:^xfields.capa_start_date:<span class='thick blue'>{^xfields.capa_start_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.capa_start_date:<span class='gray'>---</span>}</td>
+				<td class="center">{#if:^xfields.capa_date:<span class='thick green'>{^xfields.capa_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.capa_date:<span class='gray'>---</span>}</td>
+			</tr>
+		</table>
+	</div>
+	<hr />
+	<table>
+		<tr><th>Responsible for CaPa:</th><td>{^xfields.capa_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{recov_done.n}:</th>{!This is really CaPa type - TODO: Rename the key when possible}
+		<td>{#ifnot:^xfields.recov_done:<span class='gray'>N/A</span>}{#repeat:^xfields.recov_done:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>Procedures:</th><td>{#ifnot:^xfields.capa_proc_cb:<span class='gray'>---</span>}{#repeat:^xfields.capa_proc_cb:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.capa_proc_oth:<tr><th>{capa_proc_oth.n}:</th><td>{^xfields.capa_proc_oth}</td></tr>}
+		<tr><th>{capa_class.n}:</th><td>{#ifnot:^xfields.capa_class:<span class='gray'>---</span>}{#repeat:^xfields.capa_class:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+	<hr />
+	<h5>{ca_descr.n}:</h5>
+	{#if:^xfields.ca_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.ca_descr}~nl2br~</div>}
+	{#ifnot:^xfields.ca_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+{!	<table>
+		<tr><th>Responsible:</th><td>{^xfields.ca_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>Completed on:</th><td>{#if:^xfields.ca_date:{^xfields.ca_date}~date("Y-m-d")~}{#ifnot:^xfields.ca_date:<span class='gray'>---</span>}</td></tr>
+	</table>}
+	<h5>{capa_descr.n}:</h5>
+	{#if:^xfields.capa_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.capa_descr}~nl2br~</div>}
+	{#ifnot:^xfields.capa_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/flag_finish.png'); background-repeat: no-repeat; background-position: 4px;">Evaluation / Closure</h4>
+	<table>
+		<tr><th>{eval_done.n}</th>
+		<td>
+			{#if:^xfields.eval_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eval_done.key: checked="checked"}> {^xfields.eval_done.value}</label>}
+			{#ifnot:^xfields.eval_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{eval_pers.n}:</th><td>{^xfields.eval_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eval_date.n}:</th><td>{#if:^xfields.eval_date:{^xfields.eval_date}~date("Y-m-d")~}{#ifnot:^xfields.eval_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<h5>{eval_descr.n}</h5>
+	{#if:^xfields.eval_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.eval_descr}~nl2br~</div>}
+	{#ifnot:^xfields.eval_descr:<div class="gray" style="text-indent: 20px;">-----</div><hr style="margin-top: 4px;" />}
+	<table>
+		<tr><th>{close_date.n}:</th><td>{#if:^xfields.close_date:{^xfields.close_date}~date("Y-m-d")~}{#ifnot:^xfields.close_date:<span class='gray'>(...still open)</span>}</td></tr>
+	</table>
+}

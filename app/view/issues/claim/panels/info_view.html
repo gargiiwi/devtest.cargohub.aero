@@ -1,0 +1,23 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td style="font-weight: bold;">{^xfields.title:<span class="gray">(not completed)</span>}</td></tr>
+		<tr><th>{mawb.n}:</th><td><b><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>
+		<tr><th>{station.n}:</th><td>{^xfields.station:<span class="gray">(not specified)</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>Date &amp; Time:</th><td>
+			{#if:^xfields.ev_date:{^xfields.ev_date}~date("Y-m-d")~ &middot; {^xfields.ev_time:<span class="gray">(not specified)</span>}}
+			{#ifnot:^xfields.ev_date:<span class='gray'>(missing)</span>}
+		</td></tr>
+		<tr><th>{type.n}:</th><td>{^xfields.type.value}</td></tr>
+		<tr><th>{indication.n}:</th><td><b>{^xfields.indication.serialized:<span class='gray'>(not set)</span>}</b></td></tr>
+		{!<tr><th>{claimants.n}:</th><td>{#repeat:^xfields.claimants:[{value}] }</td></tr>}
+		<tr><th>{company.n}:</th><td>{^xfields.company:<span class="gray">(not specified)</span>}</td></tr>
+		<tr><th>{reference.n}</th><td>{^xfields.reference:<span class="gray">(not specified)</span>}</td></tr>
+	</table>
+	{#if:^xfields.details:
+		<h5>{details.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.details}~nl2br~</div>}
+	{#ifnot:^xfields.details:<div class="gray" style="text-indent: 20px; margin-top: 8px;">(no details were mentioned)</div>}
+	<br />
+}

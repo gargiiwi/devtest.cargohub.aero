@@ -1,0 +1,27 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td>{^xfields.title}</td></tr>
+		<tr><th>{dl_soft.n}:</th><td>{#if:^xfields.dl_soft:{^xfields.dl_soft}~date("Y-m-d")~}{#ifnot:^xfields.dl_soft:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{dl_hard.n}:</th><td>{#if:^xfields.dl_hard:{^xfields.dl_hard}~date("Y-m-d")~}{#ifnot:^xfields.dl_hard:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{ticket_link.n}:</th><td>
+			{#if:^xfields.ticket_link:<a href="/record/process:{^xfields.ticket_link}#panels" target="_blank">{^xfields.ticket_link}</a>}
+			{#ifnot:^xfields.ticket_link:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<h5>{descr.n}</h5>
+	{#if:^xfields.descr:<div style="border: 1px solid lightgray; padding: 4px; max-height: 300px; overflow: auto; background-color: white;">{^xfields.descr}~nl2br~</div>}
+	{#ifnot:^xfields.descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+	<h4 style="margin-top: 12px;">Item details</h4>
+	<table>
+		<tr><th>{rt.n}:</th><td>{^xfields.rt.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{customer.n}:</th><td>{^xfields.customer:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{init.n}:</th><td>{^xfields.init.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{app_ver.n}:</th><td>{^xfields.app_ver:<span class='gray'>---</span>}</td></tr>
+	</table>
+	
+	<h4 style="margin-top: 12px;">Estimations</h4>
+	<table>
+		<tr><th>{e_diff.n}:</th><td>{^xfields.e_diff.value}~cut(100,3)~</td></tr>
+		<tr><th>Est. Hours:</th><td>{#if:^xfields.e_hr_min:{^xfields.e_hr_min} - {^xfields.e_hr_max}}{#ifnot:^xfields.e_hr_min:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

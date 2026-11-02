@@ -1,0 +1,657 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+        <b style="margin-left: 204px;">Buying</b>
+        <b style="margin-left: 118px;">Selling</b>
+        <tr>
+            <th><label for='{id}'>{air_freight_buying.display.label}:</label></th>
+            <td>
+                {#use:air_freight_buying:<input type='text' id='{id}' name='{name}' value='{value}'
+                 class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'
+                 {#if:display.error: data-tooltip='{display.error}'} 
+                 style="margin-right: 10px;"/>}
+                
+            </td>
+            <td style="display: none;">
+                {#use:air_freight_buying_curr:
+                <select id="air_freight_buying_curr" name="{name}" style="width: 70px;margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            
+            <td>
+                {#use:air_freight_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:air_freight_selling_curr:
+                    <select id='air_freight_selling_curr' name='{name}' style='width: 70px;margin-left: 44px;' class='jqx-input jqx-input-{%jqxtheme}' 
+                    onchange="
+                        document.getElementById('fuel_surcharge_selling_curr').value = this.value;
+                        document.getElementById('security_surcharge_selling_curr').value = this.value;
+                        document.getElementById('terminal_handling_fee_selling_curr').value = this.value;
+                        document.getElementById('trucking_selling_curr').value = this.value;
+                        document.getElementById('customs_clearance_selling_curr').value = this.value;
+                        document.getElementById('security_scanning_selling_curr').value = this.value;
+                        document.getElementById('handling_fee_selling_curr').value = this.value;
+                        document.getElementById('packing_fee_selling_curr').value = this.value;
+                        document.getElementById('profit_selling_curr').value = this.value;
+                        
+                        document.getElementById('air_freight_buying_curr').value = this.value;
+                        document.getElementById('fuel_surcharge_buying_curr').value = this.value;
+                        document.getElementById('security_surcharge_buying_curr').value = this.value;
+                        document.getElementById('terminal_handling_fee_buying_curr').value = this.value;
+                        document.getElementById('trucking_buying_curr').value = this.value;
+                        document.getElementById('customs_clearance_buying_curr').value = this.value;
+                        document.getElementById('security_scanning_buying_curr').value = this.value;
+                        document.getElementById('handling_fee_buying_curr').value = this.value;
+                        document.getElementById('packing_fee_buying_curr').value = this.value;
+                        document.getElementById('profit_buying_curr').value = this.value;">
+                <!-- <option value='' selected='selected' hidden='hidden'>Select:</option>
+                {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>} -->
+                <option value='' selected='selected' hidden='hidden'>Select:</option>
+                {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                <option value="978" selected="selected">EUR €</option>
+            </select>}
+            </td>
+            
+        </tr>
+        
+        <!-- <tr>
+            <th><label for='{id}'>{fuel_surcharge_buying.display.label}:</label></th>
+            <td>
+                {#use:fuel_surcharge_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:fuel_surcharge_buying_curr:
+                <select id='fuel_surcharge_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                </select>}
+            </td>
+        </tr> -->
+        <tr>
+            <th>
+                <label>{fuel_surcharge_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:fuel_surcharge_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:fuel_surcharge_buying_curr:
+                <select id="fuel_surcharge_buying_curr" name="{name}" style="width: 70px;margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:fuel_surcharge_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:fuel_surcharge_selling_curr:
+                <select id="fuel_surcharge_selling_curr" name="{name}" style="width: 70px;margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+        
+        
+        
+       
+        <!-- <tr>
+            <th><label for='{id}'>{security_surcharge_buying.display.label}:</label></th>
+            <td>{#use:security_surcharge_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:security_surcharge_buying_curr:
+                    <select id='security_surcharge_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <tr>
+            <th>
+                <label>{security_surcharge_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:security_surcharge_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:security_surcharge_buying_curr:
+                <select id="security_surcharge_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:security_surcharge_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:security_surcharge_selling_curr:
+                <select id="security_surcharge_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+         
+        <!-- <tr>
+            <th><label for='{id}'>{terminal_handling_fee_buying.display.label}:</label></th>
+            <td>{#use:terminal_handling_fee_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:terminal_handling_fee_buying_curr:
+                    <select id='terminal_handling_fee_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+           
+        <tr>
+            <th>
+                <label>{terminal_handling_fee_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:terminal_handling_fee_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:terminal_handling_fee_buying_curr:
+                <select id="terminal_handling_fee_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:terminal_handling_fee_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:terminal_handling_fee_selling_curr:
+                <select id="terminal_handling_fee_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+        <!-- <tr>
+            <th><label for='{id}'>{trucking_buying.display.label}:</label></th>
+            <td>{#use:trucking_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:trucking_buying_curr:
+                    <select id='trucking_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <tr>
+            <th>
+                <label>{trucking_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:trucking_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:trucking_buying_curr:
+                <select id="trucking_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:trucking_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:trucking_selling_curr:
+                <select id="trucking_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+
+        <!-- <tr>
+            <th><label for='{id}'>{customs_clearance_buying.display.label}:</label></th>
+            <td>{#use:customs_clearance_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:customs_clearance_buying_curr:
+                    <select id='customs_clearance_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <tr>
+            <th>
+                <label>{customs_clearance_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:customs_clearance_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:customs_clearance_buying_curr:
+                <select id="customs_clearance_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:customs_clearance_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:customs_clearance_selling_curr:
+                <select id="customs_clearance_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+
+        <!-- <tr>
+            <th><label for='{id}'>{security_scanning_buying.display.label}:</label></th>
+            <td>{#use:security_scanning_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:security_scanning_buying_curr:
+                    <select id='security_scanning_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <tr>
+            <th>
+                <label>{security_scanning_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:security_scanning_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:security_scanning_buying_curr:
+                <select id="security_scanning_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:security_scanning_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:security_scanning_selling_curr:
+                <select id="security_scanning_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+
+        
+        <!-- <tr>
+            <th><label for='{id}'>{handling_fee_buying.display.label}:</label></th>
+            <td>{#use:handling_fee_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:handling_fee_buying_curr:
+                    <select id='handling_fee_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+        <tr>
+            <th>
+                <label>{handling_fee_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:handling_fee_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:handling_fee_buying_curr:
+                <select id="handling_fee_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:handling_fee_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:handling_fee_selling_curr:
+                <select id="handling_fee_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+
+        <!-- <tr>
+            <th><label for='{id}'>{packing_fee_buying.display.label}:</label></th>
+            <td>{#use:packing_fee_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:packing_fee_buying_curr:
+                    <select id='packing_fee_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <tr>
+            <th>
+                <label>{packing_fee_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:packing_fee_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:packing_fee_buying_curr:
+                <select id="packing_fee_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:packing_fee_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:packing_fee_selling_curr:
+                <select id="packing_fee_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+
+        <!-- <tr>
+            <th><label for='{id}'>{profit_buying.display.label}:</label></th>
+            <td>{#use:profit_buying:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:profit_buying_curr:
+                    <select id='profit_buying_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+        <tr>
+            <th>
+                <label>{profit_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:profit_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:profit_buying_curr:
+                <select id="profit_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:profit_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:profit_selling_curr:
+                <select id="profit_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+
+              
+    </table>
+    
+    <!-- <table> -->
+        <!-- <b>Selling</b> -->
+        <!-- <tr>
+            <th><label for='{id}'>{air_freight_selling.display.label}:</label></th>
+            <td>{#use:air_freight_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:air_freight_selling_curr:
+                    <select id='air_freight_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}' 
+                onchange="
+                    document.getElementById('fuel_surcharge_selling_curr').value = this.value;
+                    document.getElementById('security_surcharge_selling_curr').value = this.value;
+                    document.getElementById('terminal_handling_fee_selling_curr').value = this.value;
+                    document.getElementById('trucking_selling_curr').value = this.value;
+                    document.getElementById('customs_clearance_selling_curr').value = this.value;
+                    document.getElementById('security_scanning_selling_curr').value = this.value;
+                    document.getElementById('handling_fee_selling_curr').value = this.value;
+                    document.getElementById('packing_fee_selling_curr').value = this.value;
+                    document.getElementById('profit_selling_curr').value = this.value;">
+            <option value='' selected='selected' hidden='hidden'>Select:</option>
+            {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+        </select>}
+            </td>
+        </tr> -->
+        <!-- <tr>
+            <th><label for='{id}'>{fuel_surcharge_selling.display.label}:</label></th>
+            <td>{#use:fuel_surcharge_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:fuel_surcharge_selling_curr:
+                    <select id='fuel_surcharge_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+        <!-- <tr>
+            <th><label for='{id}'>{security_surcharge_selling.display.label}:</label></th>
+            <td>{#use:security_surcharge_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:security_surcharge_selling_curr:
+                    <select id='security_surcharge_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <!-- <tr>
+            <th><label for='{id}'>{terminal_handling_fee_selling.display.label}:</label></th>
+            <td>{#use:terminal_handling_fee_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:terminal_handling_fee_selling_curr:
+                    <select id='terminal_handling_fee_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+         
+        <!-- <tr>
+            <th><label for='{id}'>{trucking_selling.display.label}:</label></th>
+            <td>{#use:trucking_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:trucking_selling_curr:
+                    <select id='trucking_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <!-- <tr>
+            <th><label for='{id}'>{customs_clearance_selling.display.label}:</label></th>
+            <td>{#use:customs_clearance_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:customs_clearance_selling_curr:
+                    <select id='customs_clearance_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <!-- <tr>
+            <th><label for='{id}'>{security_scanning_selling.display.label}:</label></th>
+            <td>{#use:security_scanning_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:security_scanning_selling_curr:
+                    <select id='security_scanning_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+<!--  
+        <tr>
+            <th><label for='{id}'>{handling_fee_selling.display.label}:</label></th>
+            <td>{#use:handling_fee_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:handling_fee_selling_curr:
+                    <select id='handling_fee_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <!-- <tr>
+            <th><label for='{id}'>{packing_fee_selling.display.label}:</label></th>
+            <td>{#use:packing_fee_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:packing_fee_selling_curr:
+                    <select id='packing_fee_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+        <!-- <tr>
+            <th><label for='{id}'>{profit_selling.display.label}:</label></th>
+            <td>{#use:profit_selling:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+                {#use:profit_selling_curr:
+                    <select id='profit_selling_curr' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+                    <option value='' selected='selected' hidden='hidden'>Select:</option>
+                    {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+                    }
+                </select>}
+            </td>
+        </tr> -->
+
+     <!-- </table> -->
+} 
+</form>

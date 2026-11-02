@@ -1,0 +1,51 @@
+<div class="spacey">
+	{#if:link:<div class="linked-element jqx-rc-all">
+		<h4>Composing a message that will be attached to the following {link.type.name}:</h4>
+		{#include:link:private/commcenter/linked_{link_class}.html}	
+	</div>}
+	<div id="compose-left-side">
+		<div id="compose-frame" class="jqx-rc-all">
+				<img id="compose-recipient-add" alt="Add recipient" src="/img/icons/add.png" />
+			<div id="compose-recipient" tabindex="0">
+				<img alt="Compose message" src="/img/icons16/draw_calligraphic.png"> <b>To:</b> <span class='gray'>(click here to search recipient)</span>
+			</div>
+			<div class='carboncopy' id="compose-extra-recipients" style="display: none;">
+				<img alt="Carbon Copy" src="/img/icons16/group_edit.png"><b>Cc:</b>
+				<ul>
+				</ul>
+				<p style="float: none; color: gray; margin-left: 50px; font-size: 0.9em;">(Click on an e-mail address to remove it.)</p>
+			</div>
+				<img id="compose-canned-toggle" alt="Canned toggle" src="/img/icons/jar_empty.png" class="info-tip" data-tooltip="Toggle canned messages selector.<br />First click turns it on, second click shows the Subject line again." />
+			<div id="compose-subject">
+				<input type="text" placeholder="(message subject)" class="gray" />
+			</div>
+			<div id="compose-content" style="height: 300px;" tabindex="2">
+			</div>
+		</div>
+		<div id="compose-commands" class="toolbar jqx-rc-all" style="background-color: #F4F4F8;">
+			<button id="compose-send" class="info-tip" data-tooltip="Sends the message to the selected recipient(s)"><img src="/img/icons16/email_send.png" alt="Send" /> Send message</button>
+			<button id="compose-preview" class="info-tip" data-tooltip="Previews this message like it would show up in the recipients e-mail client"><img src="/img/icons16/eye.png" alt="Preview" /> Preview message</button>			
+			<button id="compose-signature" class="info-tip" data-tooltip="Add your signature at the end of the message"><img src="/img/icons16/signature.png" alt="Signature" /> Add your signature</button>
+			<div class="toolbar-separator"></div>
+			<button id="compose-discard" class="info-tip" data-tooltip="Discards anything that has been typed goes back to previous location"><img src="/img/icons16/cross.png" alt="Discard" /> Discard all content</button>
+		</div>
+	</div>
+	<div id="compose-right-side">
+		<div class="right-side-block">
+			<h4>Favourite contacts:</h4>
+			{#repeat:contacts:
+				<div class="compose-contact jqx-rc-all">
+					<button class='cmd16 user16' data-op="view-contact" data-id="{id}" title='View details for {name}'></button>		
+					<h3 style='margin-left: 26px;' class="contact-item" data-con_id="{id}">{name}</h3>
+					<h5>{email}</h5>
+				</div>
+			}
+			{#ifnot:contacts:
+				<div id="compose-no-contacts" class="jqx-rc-all">
+					Currently, there are no contacts.
+				</div>
+			}
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

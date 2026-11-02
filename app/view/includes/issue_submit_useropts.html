@@ -1,0 +1,27 @@
+{!Some staff-user options which can be added to the issue submit form}
+<table style="margin-bottom: 0;"><tr>
+{#if:%CFG.issue_submit.user_flags.priority:{#use:priority:<td style="width: 200px; border-right: 1px solid lightgray;" valign="top">
+	<h3>Initial priority:</h3>
+	<div id='priority_radios' style="margin: 12px 34px;">
+		{#repeat:%ist.priorities_ex:<div id="prio_{*}"><img src='/img/icons16/priorities/{*}.png' alt="{$}" style="margin-left: 6px;" /> {$}~cut(100,2)~</div>}
+		<input id='issue_priority' type='hidden' name='{name}' value='{value}' />
+	</div>
+</td>}}
+<td valign="top">
+	<h3 style="margin-top: 12px;">Operation to perform after recording data:</h3>
+	<div id="submit-process-options" style="margin: 12px 34px;">
+		<div data-value="record">Open the <b>Data panels</b> for review <span class='inline-icon icon-info info-tip' data-tooltip="To send this record to another organization, use the <b>Share</b> button."></span></div>
+		<div data-value="transfer">Activate <b>Build E-mail</b> (Share) window</div>
+		<div data-value="tasks">Setup one or more <b>Tasks</b></div>
+	</div>
+</td>
+</tr></table>
+
+{!<hr />
+<h3>What to show after issue has been processed:</h3>
+<div id="submit-finalize-options">
+	<div data-value="show">The overview with all recorded information</div>
+	<div data-value="print">A clean, white background version which can be easily printed</div>
+	<div data-value="repeat">This form again with the same data (to add another similar issue)</div>
+	<div data-value="form">The form again with all fields empty</div>
+</div>}

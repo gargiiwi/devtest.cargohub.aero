@@ -1,0 +1,549 @@
+<!-- {@<style type="text/css">
+/* Some styles specific to claims */
+label.dualcolcbx {
+	display: block;
+	width: 250px;
+	float: left;
+}
+</style>} -->
+
+{@<style type="text/css">
+	/* Some styles specific to claims */
+	div#file-submit-area input {
+		width: 500px;
+	}
+	label.documents {
+		display: block;
+		width: 250px;
+		float: left;
+		line-height: 24px;
+	}
+	.steps{
+	margin:10px 0px;
+	background:#d4d6dd;
+	padding:55px 0px;
+	}
+	.steps .step-btn{
+	width:45px;
+	height:45px;
+	background:#ffff;
+	margin-bottom:60px;
+	display:flex;
+	justify-content:center;
+	color:#000080;
+	border-radius:30px;
+	align-items:center;
+	}
+	
+	#issue_form{
+	display:flex;
+	justify-content:center;
+	}
+	.btn-text{
+	color:black;
+	margin-left: 20px;
+	}
+	.btn-text span{
+		display: block;
+		margin-bottom: 5px;
+		color: black;
+	}
+	.steps-container{
+	margin:0px 50px;
+	/* display:flex;
+	justify-content:space-between; */
+	}
+	.step-position1{
+	position:relative;
+	display: flex;
+	}
+	.line1{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position2{
+	position:relative;
+	display: flex;
+	}
+	.line2{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position3{
+	position:relative;
+	display: flex;
+	}
+	.line3{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position4{
+	position:relative;
+	display: flex;
+	}
+	.step-position4 .step-btn{
+		margin-bottom: 0;
+	}
+	/* .line4{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	} */
+	.nav-btn{
+	margin:0px 0px 0px 250px;
+	padding:10px 50px;
+	background:#000080;
+	color:#ffff;
+	border:none;
+	}
+	#next-btn{
+		width: 60px;
+		background: #2866c2;
+		color: #ffff;
+		padding: 10px 15px;
+		text-align: center;
+		border: none;
+		margin-left: 0;
+		text-transform: capitalize;
+		font-size: 14px;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.prv-next-btns{
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+	
+	div.site > div.page{
+		display: flex;
+	   width:99%;
+	}
+	.steps{
+		width: 30%;
+		margin: 0;
+		border-radius: 10px 0 0 10px;
+	}
+	div.site > div.page div.zone{
+		width: 70%;
+		margin-bottom: 0;
+		background: #F2F5FF;
+		border-radius: 0 10px 10px 0;
+		padding: 30px 0;
+		 
+		overflow: auto;
+	} 
+	#issue_form .required{
+		background: #F2F5FF;
+	}
+	#issue_form div.clabel, #issue_form div.column2 th{
+		text-align: left;
+	}
+	#issue_form td > input[type='text'], #issue_form td > select{
+		height: 33px !important;
+		background: #fff;
+		border-radius: 4px;
+		padding: 5px 10px;
+		margin-bottom: 5px;
+	}
+	.raprv{
+		background: #e1e1e1 !important;
+		color: #000 !important;
+	}
+	.steps .steps-container .step-btn.active{
+		background-color: #fff !important;
+	}
+	.steps .steps-container .completed .step-btn{
+		background-color: #19a956 !important;
+		position: relative;
+	}
+	.steps .steps-container .completed .step-btn > img{
+		display: none;
+	}
+	.steps .steps-container .notCompleted {
+		opacity: 0.5;
+	}
+	.steps .steps-container .notCompleted.active {
+		opacity: 1;
+	}
+	.steps .steps-container .completed .step-btn::after{
+	content: "";
+	background-image: url(/img/icons/tick.png);
+	background-repeat: no-repeat;
+	width: 19px;
+	height: 13px;
+	position: absolute;
+	left: 14px;
+	top: 16px;
+	}
+	.steps .steps-container .completed .line1, .steps .steps-container .completed .line2, .steps .steps-container .completed .line3, .steps .steps-container .completed .line4{
+		background: #19a956;
+	}
+	
+	</style>} 
+
+
+<div class="steps">
+	<div class="steps-container">
+	<div class="step-position1">
+		<div class="step-btn" id="btn1" data-step="1"><img src="/img/icons/usern.png" alt=""></div>
+		<div class="btn-text"> <span>Step 1</span> Report an Issue </div>
+		<div class="line1"></div>
+	</div>
+	
+	<div class="step-position2">
+		<div class="step-btn" id="btn2" data-step="2"><img src="/img/icons/reportn.png" alt=""></div>
+		<div class="btn-text"><span>Step 2</span> Details Information</div>
+		<div class="line2"></div>
+	</div>
+
+	<div class="step-position3">
+		<div class="step-btn" id="btn3" data-step="3"><img src="/img/icons/checklist.png" alt=""></div>
+		<div class="btn-text"><span>Step 3</span> Attachment & Submit </div>
+		<div class="line4"></div>
+	</div>
+	</div>
+
+</div>
+
+
+<div id='issue_submit' class='zone jqx-rc-all'><form action="?action=form" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">{#use:form:
+<!-- {!Left column}
+<div class='column2'> -->
+	<div id="content1" class="content">
+		<div id="step-1-info">
+
+			<!-- <h4 style="background-image: url('/img/icons16/contact_email.png'); background-repeat: no-repeat; background-position: 4px;" class="info-tip" data-tooltip="The button beside the e-mail address is used to enter more information<br />(company name, phone number, postal address, etc.).">Enter your <b>e-mail address</b> and complete your contact details:</h4> -->
+			<div id="issue-contacts" style="display: none;"></div>
+			<div style="margin-bottom: 20px; height: 27px; padding-top: 2px;display: none;">
+				<input type="button" value="Add another contact..." data-action="add-contact" style="margin-left: 182px;" />
+				<img src="/img/icons16/question.png" alt="Info" class="info-tip" data-tooltip="Use this button if you need to specify other e-mail addresses besides your own." style='margin-left: 6px;' />
+			</div>
+
+				<!-- <h4 style="background-image: url('/img/icons16/question2.png'); background-repeat: no-repeat; background-position: 4px;">What is this ticket about</h4> -->
+			<table>
+				{#if:%CFG.issue_submit.groups:{#use:group:<tr{#if:display.req: class='required'}>
+					<th><label>Category:</label></th>
+					<td><div id='{id}_combo'></div><input type='hidden' id='{id}' name='{name}' value='{value}' /></td>
+				</tr>}}
+				{#use:title:<tr{#if:display.req: class='required'}>
+					<th><label for='{id}'>{display.label}:</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' style="width: 365px;" class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+				</tr>}
+				{#use:customer:<tr{#if:display.req: class='required'}>
+					<th><label for='{id}'>{display.label}:</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' style="width: 365px;" class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+				</tr>}
+				<tr><td colspan="2" class="gray center" style="font-size: 80%;">(if submitting this ticket in the name of a 3rd party)</td></tr>
+			</table>
+			{#use:descr:<div{#if:display.req: class='required'}>
+				<h5 style="text-indent: 10px;">Problem/ Question/ Suggestion/ Idea</h5>
+				<textarea id='{id}' name='{name}' class='whitebg jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: vertical; border-width: 1px; height: 145px; min-height: 64px; max-height: 640px; width: 542px; margin-bottom: 16px; overflow: auto;">{value}</textarea>
+			</div>}
+	    </div>
+		<div class="prv-next-btns">
+			<div class=""></div>
+			<div class="step-btn" id="next-btn"onclick="cargoClaimStep(2)">next</div>
+		</div>
+		<div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+    </div>
+
+
+<div id="content2" class="content">
+	<!-- <h4 onClick='$(".hideable").toggle();' style="cursor: pointer; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Detailed information <span style="font-weight: normal;">(for support department)</span> - <span class='green'>Click to show/hide</span></h4>
+
+		<table class="hideable" style="display: none;">
+			{#use:browser:<tr{#if:display.req: class='required'}>
+				<td><h3>Internet Browser(s) used:</h3>{#repeat:options:<label class='dualcolcbx'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}<div class="clear"></div><br /></td>
+			</tr>}
+			{#use:opsys:<tr{#if:display.req: class='required'}>
+				<td><h3>Computer's Operating System(s):</h3>{#repeat:options:<label class='dualcolcbx'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			</tr>}
+		</table>
+
+    <h4 class="hideable" style="display: none; background-image: url('/img/icons16/wrench.png'); background-repeat: no-repeat; background-position: 4px;">Extra information</h4>
+		<table class="hideable" style="display: none;">
+			{#use:section:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}:</label></th>
+				<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long'>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}</select></td>
+			</tr>}	
+			{#use:loc_det:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}
+			{#use:repeat:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}:</label></th>
+				<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+			</tr>}
+			{#use:reproduce:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}:</label></th>
+				<td><textarea rows="7" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none;">{value}</textarea></td>
+			</tr>}
+		<tr><td colspan="2"><hr /></td></tr>
+			{#use:work:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}</label></th>
+				<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long'>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}</select></td>
+			</tr>}
+			{#use:phone_supp:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}</label></th>
+				<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+			</tr>}
+			{#use:phone_cback:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}
+		</table> -->
+
+		<h4 style="background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">
+			Detailed information <span style="font-weight: normal;">(for support department)</span>
+		</h4>
+
+		<table style="width:100%;">
+    <tr>
+        <!-- LEFT COLUMN -->
+        <td style="width:50%; vertical-align: top;">
+            <h3>Internet Browser(s) used:</h3>
+            {#use:browser:
+                {#repeat:options:
+                    <label class="dualcolcbx" style="display:block; margin-bottom:6px;">
+                        <input name="{name}" type="checkbox" value="1"{#if:active: checked="checked"}>
+                        {display}
+                    </label>
+                }
+            }
+        </td>
+
+        <!-- RIGHT COLUMN -->
+        <td style="width:50%; vertical-align: top;">
+            <h3>Computer's Operating System(s):</h3>
+            {#use:opsys:
+                {#repeat:options:
+                    <label class="dualcolcbx" style="display:block; margin-bottom:6px;">
+                        <input name="{name}" type="checkbox" value="1"{#if:active: checked="checked"}>
+                        {display}
+                    </label>
+                }
+            }
+        </td>
+    </tr>
+       </table>
+
+	   <tr><td colspan="2"><hr /></td></tr>
+
+		<h4 style="background-image: url('/img/icons16/wrench.png'); background-repeat: no-repeat; background-position: 4px;">
+			Extra information
+		</h4>
+
+		<table>
+			{#use:section:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}:</label></th>
+				<td>
+					<select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long' style="width: 222px;">
+						{#repeat:options:
+							<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+						}
+					</select>
+				</td>
+			</tr>}
+			{#use:loc_det:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td>
+					<input type='text' id='{id}' name='{name}' value='{value}'style="width: 222px;"
+						class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'
+						{#if:display.error: data-tooltip='{display.error}'} />
+				</td>
+			</tr>}
+			{#use:phone_supp:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}</label></th>
+				<td>
+					{#repeat:options:
+						<label style='display: block; width: 95px; float: left;'>
+							<input name='{^name}' type='radio' value='{value}'  {#if:active: checked='checked'}>
+							{display}
+						</label>
+					}
+				</td>
+			</tr>}
+			{#use:phone_cback:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td>
+					<input type='text' id='{id}' name='{name}' style="width: 222px;" value='{value}'
+						class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'
+						{#if:display.error: data-tooltip='{display.error}'} />
+				</td>
+			</tr>}
+			{#use:work:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}</label></th>
+				<td>
+					<select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long' style="width: 222px;">
+						{#repeat:options:
+							<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+						}
+					</select>
+				</td>
+			</tr>}
+			{#use:repeat:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}:</label></th>
+				<td>
+					{#repeat:options:
+						<label style='display: block; width: 95px; float: left;'>
+							<input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}>
+							{display}
+						</label>
+					}
+				</td>
+			</tr>}
+			{#use:reproduce:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}:</label></th>
+				<td>
+					<textarea rows="7" id='{id}' name='{name}'
+						class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'
+						{#if:display.error: data-tooltip='{display.error}'}
+						style="resize: vertical;border-width: 1px;height: 95px;min-height: 64px;max-height: 640px;width: 400px;margin-bottom: 16px;overflow: auto;background: white;";>{value}</textarea>
+				</td>
+			</tr>}
+			
+		
+			
+		</table>
+
+
+		<div class="prv-next-btns">
+			<div class="step-btn raprv" id="next-btn"onclick="cargoClaimPreviousStep(2)">Previous</div>
+			<div class="step-btn" id="next-btn"onclick="cargoClaimStep(3)">Next</div>
+		</div>
+		<div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>	
+</div>
+
+
+<div id="content3" class="content">
+
+		<!-- <h4 style="background-image: url('/img/icons16/check_box_list.png'); background-repeat: no-repeat; background-position: 4px;">Self service quick checklist</h4> -->
+		<!-- <ul style="padding-left: 16px; margin-bottom: 40px;">
+			<li>Recommended internet browsers for Cargohub software are: <span class='gray'>(links)</span>
+			<ul>
+				<li><a href="https://www.google.com/chrome/index.html" target="_blank">Google Chrome</a></li>
+				<li><a href="https://www.mozilla.org/en-US/firefox/" target="_blank">Mozilla Firefox</a></li>
+				<li><a href="https://www.opera.com/" target="_blank">Opera Browser</a></li>
+				<li><a href="https://www.microsoft.com/en-us/windows/microsoft-edge" target="_blank">Microsoft Edge</a></li>
+			</ul>
+			<p>This software doesn't work on very old internet browsers like <i>Internet Explorer 8, 9</i>, or not updated, more than 5 years old iMac or MacBook with Safari.<br />
+			Keep your computer software up to date for security and performance!</p></li>
+			<li>Mobile browsers (Android Phone/Tablet, iPhone, iPad) might work, but they are not officially supported. If encountering problems, please switch to a PC/Laptop</li>
+			<li>If you have ad-blockers, popup-blockers and internet &quot;protection&quot; software we recommend whitelisting this address, as they might interfere with normal operation<br />
+			Corporate firewalls and other restrictions on your connection might also interfere with the software.</li>
+			<li>JavaScript must be turned on and not blocked by any browser extension</li>
+			<li>Check your computer to be malware free!</li>
+		</ul>
+
+		<h4 style="background-image: url('/img/icons16/images.png'); background-repeat: no-repeat; background-position: 4px;">Screenshots, documents, examples</h4>
+		<table>
+			<tr><td>
+				{#if:%attachments:<br /><h4>Attached pictures and documents:</h4>{!Fallback mode, showing files on IE8}
+				<div id='attachments' style="margin-bottom: 8px; display: none;">
+				{#repeat:%attachments:
+					<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{type}.png' alt="{type}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+					<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+					<div class='clear'></div></div>
+				}
+				</div>}
+				<div id="uploads-dropzone" class="dropzone">{!The fancy DropZone}</div>
+				<div id="uploads-helper" style="display: none;">
+					Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+				</div>
+			</td></tr>
+		</table> -->
+
+		{!Right column}
+		<div class='column2'>
+			<!-- <h4 style="background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">Upload pictures, documents and other computer files:
+				<img src="/img/icons16/question.png" alt="?" class="right info-tip" style="margin-right: 4px;"
+					data-tooltip_position="left" data-tooltip="Multiple files can be uploaded at once.<br />Select them all in the upload box,<br />or drag &amp; drop several files at once" />
+			</h4> -->
+		  {#if:%attachments:<br /><h4>Attached pictures and documents:</h4>{!Fallback mode, showing files on IE8}
+			<div id='attachments' style="margin-bottom: 8px; display: none;">
+			{#repeat:%attachments:
+				<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{type}.png' alt="{type}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+				<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+				<div class='clear'></div></div>
+			}
+			</div>}
+			<div id="uploads-dropzone" class="dropzone">{!The fancy DropZone}
+				<div class="fallback">
+					<div style='margin: 0 0 0 26px;'>
+						<h3>Choose documents from your computer</h3>
+						<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+					</div>
+					<div id="file-submit-area">
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+					</div>
+					<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+					<p class="gray" style="font-size: 0.9em;">Please use a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a> in order to view the upload feedback and allow simultaneous multiple files selections. The very outdated <b>Internet Explorer</b> does not support many of the advanced features that this application provides.</p>
+				</div>
+			</div>
+			<div id="uploads-helper" style="display: none;">
+				Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+			</div>
+	
+			<!-- <table style="margin-top: 20px;">
+				{#use:rep_name:<tr{#if:display.req: class='required'}>
+					<td style='width: 250px;'><h3>Internal report prepared by:</h3></td>
+					<th><label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+				</tr>}
+				{#use:rep_function:<tr{#if:display.req: class='required'}>
+					<td>&nbsp;</td>
+					<th><label for='{id}'>Function:{#if:display.req: <span>&nbsp;</span>}</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+				</tr>}
+				<tr><td colspan="3" class="center gray">(Please specify when using shared account or someone else prepared the report)</td></tr>
+			</table> -->
+			
+			
+			<div id="issue-contacts" style="display: none;"></div>
+			<div class="prv-next-btns" id="prv-next-btns4">
+				<div class="step-btn raprv" id="next-btn"onclick="cargoClaimPreviousStep(3)">Previous</div>
+				<div class="submit" > {#include::includes/submit_proceed_box1.html} </div>
+				</div>
+				<div class='required d-none' style='text-align: center; margin-top: 0;'>
+					<span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span>
+				</div>
+	    </div>
+</div>
+
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+}
+</form></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_submit_jstpl.html}
+{#raw:includes/issue2message.html}

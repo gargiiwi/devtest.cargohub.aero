@@ -1,0 +1,11 @@
+[ org_types ]
+  Instead of a very rarely changing database table, available organization types are stored as YAML files inside this folder
+
+[ canned_placeholders.yaml ]
+  List of placeholders used in canned messages (grouped into categories)
+
+[ notifications_tree.yaml ]
+  Base data for the Notification Tree
+  ID's are constructed as: {type}_{subtype}
+  For "Issue" notifications ID's are {type}_{subtype}_{istkey}
+ 

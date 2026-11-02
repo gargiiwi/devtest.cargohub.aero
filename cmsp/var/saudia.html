@@ -1,0 +1,86 @@
+<p>Some markers for existing, roadmap or not planned features:</p>
+<ol>
+<li><span style="background-color: #00ff00;">Color GREEN - Existing feature, can be used immediately</span></li>
+<li><span style="background-color: #00ffff;">Color BLUE - Existing feature but needs adjustments/improvements to work with the requirments</span></li>
+<li><span style="background-color: #ffff00;">Color YELLOW - Function is already under work or planned for immediate future</span></li>
+<li><span style="background-color: #ff9900;">Color ORANGE - Function is on the roadmap, but work hasn't started on it, and is not planned to start in the next 2-3 months</span></li>
+<li><span style="background-color: #ff0000; color: #ffffff;">Color RED - Function is not part of the roadmap yet, there is no plan or even documentation for it right now</span></li>
+<li><span style="background-color: #000000; color: #ffffff;">Color BLACK (Inverted) - Such function is not possible within the scope of the application</span></li>
+</ol>
+<p><span style="font-size: 18pt;"><strong>Customer Information Center (CIC)</strong></span></p>
+<p>Login system:</p>
+<ul>
+<li><span style="background-color: #ff9900;">Software roadmap is aiming for unified login system ( same Login function for anyone logging in: Claimants, Agents, Claim handlers, Administrators, Supervisors, etc... )</span></li>
+<li>Of course, the abilities of the person logged in will depend on the security settings and which organization they belong<br />(or in case of claimants - automatic accounts not belonging to any "entity" yet - But they could be moved later into an actual customer organization, with an account upgrade)</li>
+<li>This means, there is no separate "CIC Function, Claims Function, CIC Super Function" and so on... just different abilities of the software turned On/Off depending on account settings (via access rights)</li>
+<li><span style="background-color: #ff0000; color: #ffffff;">We need more information about what those "Functions" actually are, to see if they fit into the application profile already, or need to be created in the future.</span></li>
+</ul>
+<p><span style="background-color: #ff9900;"><span style="background-color: #00ffff;"><strong>Note:</strong> While the application works just fine on a mobile ( as a webpage ), it's not very "small screen friendly" (hard to see the inputs).</span><br />Possibly solutions have been discussed but at the moment we don't have the necessary manpower to support two separate systems ( Website + Mobile App ), so I'm afraid a "Mobile App" cannot be implemented in the near future.</span></p>
+<p>CIC Inquiries / Requirements:</p>
+<ul>
+<li><span style="background-color: #00ff00;">This is actually a new data type (just like Claim, Incident, Quality Event, etc.). We can create more of these anytime (and doesn't take very long).</span></li>
+<li>Obviouosly, the format of this data type needs to be understood and constructed</li>
+<li><span style="background-color: #00ff00;">Filtering is already part of the system ( main grid, just switch to the new "Customer Inquiry" data type</span></li>
+<li><span style="background-color: #00ff00;">Distribution or data records is possible by user assignment.</span> <span style="background-color: #ffff00;">Automatic assignment is already on the roadmap and will be implemented as soon as possible.</span></li>
+<li><span style="background-color: #ff9900;">Activity log - Unfortunately we don't have this yet, even if it was discussed for quite a while. However, it is on the roadmap and will be implemented.</span></li>
+<li><span style="background-color: #00ff00;">Communication is obviously part of the system from the begninng. A major upgrade to the communication system is near completion and will be deployed this month.</span></li>
+<li><span style="background-color: #00ff00;">Statuses are already shown to the partner/beneficiary</span></li>
+<li><span style="background-color: #00ffff;">User accounts can be controlled ( and disabled ). Since automatic assignment doesn't exist yet, this feature needs to be connected</span></li>
+<li><span style="background-color: #ffff00;">We are already working on a configurable and flexible graphical dashboard, but right now it's in it's early stages. No estimate yet on when it will be completed</span></li>
+</ul>
+<p>Flowchart (Page 4)</p>
+<ul>
+<li><span style="background-color: #00ff00;">The software is supporting data submit through the Www since the beginning, to both organization accounts and public (customers)</span></li>
+<li><span style="background-color: #00ff00;">The new data type "Customer Inquiry", when implemented, can be searched for, viewed, changed and processed by staff users, just like a "Cargo Claim"</span></li>
+<li><span style="background-color: #ff9900;">We have on the roadmap the ability to create one data type from another ( Like a Cargo Claim from a Customer Inquiry, however it's in experimental stage and not ready for customers )</span></li>
+</ul>
+<p>Requirements for the "Claims Application"</p>
+<ul>
+<li><span style="background-color: #00ff00;">You are already receiving claims through the website</span></li>
+<li><span style="background-color: #00ff00;">And getting documents uploaded</span></li>
+<li><span style="background-color: #ffff00;">As specified before, automatic record assignment is planned for the near future</span></li>
+<li><span style="background-color: #00ff00;">The main data grid is able to sort and locate data in various ways, accelerated by the use of "Views"</span></li>
+<li><span style="background-color: #00ff00;">Communication is part of the system from the beginning</span></li>
+<li><span style="background-color: #00ff00;">Same as before, user accounts can be controlled ( and disabled ) on demand.</span></li>
+<li><span style="background-color: #ff0000; color: #ffffff;">Cannot respond about "integration with financial system" is. Need more information.</span></li>
+<li><span style="background-color: #ffff00;">Dashboard system is being worked on. When ready, it will apply for any data type ( Claim, Inquiry, Damage report, etc.)</span></li>
+</ul>
+<p>Acceptance Gateway</p>
+<ul>
+<li><span style="background-color: #00ff00;">Yet again, our software is flexible enough to create another data type named for example: "Acceptance Request"</span></li>
+<li><span style="background-color: #00ff00;">All the functions specified before, just like the other data types</span></li>
+<li><span style="background-color: #ff0000; color: #ffffff;">No ability to send SMS yet, we need a conneciton to a 3rd party to supply that functionality</span></li>
+<li><span style="background-color: #ff0000; color: #ffffff;">No information about integrating with any other system. Need information on how those systems operate first.</span></li>
+</ul>
+<p>Users and roles:</p>
+<ul>
+<li><span style="background-color: #00ff00;">We have the ability to create an unlimited amount of "Organizations" - One can be yours (Saudia Cargo), and others could be any of your partners or customers, like an Agent/Shipper organization, Consignee organization, etc.</span></li>
+<li><span style="background-color: #00ff00;">Users can be sorted into departments, like "CIC Agents", "Saudi Customs" or any other arbitrary names, and each one can be configured independently</span></li>
+</ul>
+<p>Flowchart (pages 8/9/10)</p>
+<ul>
+<li><span style="background-color: #00ff00;">The application already supports such a process, exchanging data, uploading documents, and communication with outside parties via E-mails</span></li>
+</ul>
+<p><strong><span style="font-size: 18pt;">Customer Relationship Management (CRM)</span></strong></p>
+<ul>
+<li><span style="background-color: #00ffff;">While we have a free-access system, it was designed for submitting Cargo Claims, Incidents and other 1-way data transmissions.</span> <span style="background-color: #ff9900;">It's abilities for efficient 2-way interactions are very limited.</span></li>
+<li><span style="background-color: #00ffff;">It would theoretically be possible to use normal "Accounts" to give access to various data types to your customers,</span> but right now accounts cannot be created automatically. <span style="background-color: #ff9900;">New functions for creation of accounts by the visitors themselves need to be developed.</span></li>
+<li><span style="background-color: #00ff00;">We have E-mail sending abilitites right from the beginning</span>, <span style="background-color: #ff0000; color: #ffffff;">but we do not have SMS abilities. Those will have to be negociated with a 3rd party and integrated in the system.</span></li>
+<li><span style="background-color: #000000; color: #ffffff;">The software's purpose is not designed for marketing/mass mailing.</span> Some other tool need to be used for that. <span style="background-color: #ff9900;">We will provide however a method of extracting customer e-mails from the system.</span></li>
+<li><span style="background-color: #ff9900;">Live chat is part of the roadmap without being a priority</span></li>
+<li><span style="background-color: #00ff00;">Same login system for everyone. Only abilities differ. VIP customers will have their own "organizations" in the system, set as "partner" to yours (Saudia Cargo), so you are able to communicate and share data with them</span></li>
+<li><span style="background-color: #ff0000;">"Setup a process to track all CRM activities" - This requirement is not clear. What do you mean?</span></li>
+<li><span style="background-color: #00ffff;">"CRM Supervisor screen" - We already have the data grid which has the ability to locate information very easily. Is this what you mean ?</span></li>
+<li><span style="background-color: #ff0000; color: #ffffff;">"Loyalty Program option" - Please explain this requirement</span></li>
+<li><span style="background-color: #ff0000; color: #ffffff;">"Ability to generate detailed and highly targeted e-mailshots" - What exactly is this ?</span></li>
+<li><span style="background-color: #ff0000; color: #ffffff;">Cannot answer to any question related to "Integration" with another software until we have detailed information about what that software does and how it works.</span> <span style="background-color: #000000; color: #ffffff;">It might even not be possible to connect to other software if it is closed-source and cannot be modified (or no longer supported by it's original vendor)</span></li>
+</ul>
+<p>Extra:</p>
+<ul>
+<li><span style="background-color: #00ff00;">The software already supports "Closing" of data records, which is similar to your Archiving request. Those can be reopened when necessary.</span></li>
+<li><span style="background-color: #ff9900;">Multi-version and rollback have been discussed in the past but are not part of current roadmap. Such implementation requires significant changes to the core code and is not an easy operation (Might take several months)</span></li>
+<li><span style="background-color: #ff9900;">A new, richer, user monitoring dashboard is part of the roadmap but work hasn't started on it yet.</span></li>
+<li><span style="background-color: #ffff00;">As mentioned for the CIC parts, a general data-analysis dashboard is already being worked on and trials will begin in the near future.</span></li>
+</ul>
+<p>For any software design/implementation discussions, please write to <a href="mailto:tech@cargohub.nl">tech@cargohub.nl</a></p>
+<p>&nbsp;</p>

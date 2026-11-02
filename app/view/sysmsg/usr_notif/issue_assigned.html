@@ -1,0 +1,18 @@
+{#store:subject:{notif.xdata.type} {notif.xdata.track} was assigned to you}
+{#if:_use_css:<style type="text/css">{#raw:{_use_css}}</style>}
+<div style="background-color: #F0F0F0; border: 1px solid lightgray; padding: 10px 8px; ">
+	<div style="text-align: center; width: 120px; float: right; font-size: 12px; border: 1px solid gray; padding: 5px;"><a href="https://{html.domain}/?action=evan_confirm&amp;id={notif.id}&amp;time={notif.time}&amp;user_id={notif.user_id}">Click here to confirm this notification.</a></div>
+	<div style="font-size: 1.2em; font-style: italic; line-height: 32px;">Dear {user.name},</div>
+	<div>The {notif.xdata.type} {notif.xdata.track} has been assigned to you:</div>
+</div>
+<h3 style=" padding: 15px 0; "><img alt="{notif.type}" src="cid:embed0@{html.domain}" style="float: left; text-align: center; margin: 0 8px;">{notif.title}</h3>
+{#if:_include:{#include::{_include}}}
+{#ifnot:_include:<ul>
+	<li>Tracking number: <a href="https://{html.domain}/issue?action=view&amp;track={notif.xdata.track}&amp;key={notif.xdata.access_key}">{notif.xdata.track}</a> <span style="color: lightgray;">(click on it to view the {notif.xdata.type})</span></li>
+	<li>Primary data: <b>{notif.xdata.primary}</b></li>
+	{#if:notif.xdata.secondary:<li>Secondary data: <b>{notif.xdata.secondary}</b></li>}
+	{#if:notif.xdata.tertiary:<li>Tertiary data: <b>{notif.xdata.tertiary}</b></li>}
+	<li>Notification priority: {#if:notif.importance=="high":<b>Very important</b>}{#if:notif.importance=="med":General interest}{#if:notif.importance=="low":Low priority}</li>
+</ul>}
+<p>You can also <a href="https://{html.domain}/record/process:{notif.xdata.track}#panels">click here to open</a> this {notif.xdata.type} as a staff member (Requires LOGIN)</p>
+{#if:notif.description:<hr /><p>{notif.description}~nl2br~</p>}

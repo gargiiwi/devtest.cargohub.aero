@@ -1,0 +1,52 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/handshake.png" /><span>Business Partners</span>
+	</div>		
+	{#if:%acls.unrestricted:{!Only the admin has access to editing partnerships}
+	<button data-op="par-link" title="Connect a partner"><img src='/img/icons16/link_add.png' /> Connect partners</button>
+	<div id='par-operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="par-edit" title="View/Edit"><img src='/img/icons16/eye.png' /> View/Edit</button>
+		<button data-op="par-unlink" title="Disconnect selected"><img src='/img/icons16/link_break.png' /> Disconnect selected</button>
+		<div class='toolbar-accessory' id='selected-partner'></div>
+	</div>}
+	{#ifnot:%acls.unrestricted:{!Normal users can only view partnership relation}
+	<div id='par-operations' style='display: none;'>
+		<button data-op="par-view" title="View relation"><img src='/img/icons16/link.png' /> View relation</button>
+		<div class='toolbar-accessory' id='selected-partner'></div>
+	</div>}
+</div>
+<div id="partners-grid"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template_partner_editor" type="text/dryjstpl">
+	<form method="post" action="?action=save_domain">
+
+	</form>
+</script>}
+
+{@<script id="template_partner_details" type="text/dryjstpl">
+<table class="infotable spacey">
+	<col width="180" />
+	<tr><th>Name:</th><td>{$name}</td></tr>
+	<tr><th>Type:</th><td>{$type_name}</td></tr>
+	<tr><th>Description:</th><td>{$description}</td></tr>
+	<tr><th>Issues currently shared:</th><td>{$shared}</td></tr>
+	<tr><th>Total issues sent:</th><td>{$sent_total}</td></tr>
+	<tr><th valign="top">Details:</th><td id="partner_details_description"></td></tr>
+</table>
+</script>}
+
+{@<script id="template_partner_connect" type="text/dryjstpl">
+	<h3>Choose organization type:</h3>
+	<div id="partner-org_type"></div>
+	<h3 style="margin-top: 8px;">Select organizations to connect:</h3>
+	<div id="partner-orgs_select"></div>
+	<div class="multiselect_buttons">
+		<button data-cmd="check_all">Select all</button>
+		<button data-cmd="clear_all">Clear selection</button>
+		<button data-cmd="check_invert" style="margin-right: 0px;">Invert selection</button>
+	</div>
+	<p>Short description for these new relations:<br />
+	<input type='text' id="partner_comment" style='width: 352px; height: 20px; line-height: 25px;' /></p>
+</script>}

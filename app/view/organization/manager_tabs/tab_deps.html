@@ -1,0 +1,53 @@
+{!Note: If the organization doesn't use departments, this entire tab doesn't show up}
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/plugin.png" /><span>Organization's departments</span>
+	</div>
+	{#if:acls.privileges.org_deps_manager|acls.unrestricted:
+	<button data-op="dep-add" title="Add new department"><img src='/img/icons16/add.png' /> Add new</button>
+	<div id='dep_edit_operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="dep-edit" title="View/Edit selected"><img src='/img/icons16/eye.png' /> View/Edit</button>
+		<button data-op="dep-del" title="Delete selected"><img src='/img/icons16/delete.png' /> Delete selected</button>
+		<div class='toolbar-accessory' id='selected_dep'></div>
+	</div>
+	}
+</div>
+{#if:has_deps:<div id="departments_splitter" class='jqx-rc-all'>
+	<div>
+		<div style="border: none;" id="deps_quicklist"></div>
+	</div>
+	<div id="dep_view" style="overflow: auto;">
+		<div class="clear" style='padding: 18px 56px;'>
+			<h2>Please select a department from the left side.</h2>
+			<hr />
+			{#ifnot:acls.privileges.org_deps_manager|acls.unrestricted:
+			<p>Once selected, you will be able to view information about the department, depending on your privileges</p>}
+			{#if:acls.privileges.org_deps_manager|acls.unrestricted:
+			<p>As a department manager, you will be able to view full information about the selected department, modify data,<br />and if you are also an organization user manager, add and remove users in the department.</p>
+			<p>You can also create new departments by using the <b>[ Add new ]</b> button.</p>}
+		</div>
+	</div>
+</div>}
+{#ifnot:has_deps:<div class='jqx-rc-all'>
+	<div class="clear" style='padding: 18px 56px;'>
+		<h2>Currently this organization doesn't have any departments.</h2>
+		<hr />
+		<p>Please use the <b>[ Add new ]</b> button to create a department, then you will be able to add and manage it's members, configure department level access and other department related operations.</p>
+		<p>Without departments, <i>all users are considered equal</i> and they inherit the organization-wide access rights. Individual rights cannot be configured. In order to organize access for users at least one department must be created, and any users added to it can either inherit department-level access or be configured individually.</p>
+		<p><b>Important note:</b> If the organization doesn't have any users yet, you will not be able to create a department, as the create procedure asks for one user to become the initial <i>Chief</i> of this department. Make sure the organization has at least one user before creating a department !</p> 
+	</div>
+</div>}
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template_add-dep" type="text/dryjstpl">
+<div class="spacey">
+	<form class='vertiform' name='adddep' action="/manager/department?action=add" method="post">
+		<ul>
+			<li><label for="dep_name">Name:</label><input id="dep_name" name="dep[name]" type="text" value="" style="width: 300px;" /></li>
+			<li><label>Chief (optional):</label><div id='dep_chief' name="dep[chief_id]"></div></li>
+		</ul>
+	</form>
+	<p>When an initial chief is selected, that user is automatically added as a member of the new department.</p>
+</div>
+</script>}

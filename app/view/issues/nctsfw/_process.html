@@ -1,0 +1,90 @@
+{@<style type="text/css">
+/* Some styles specific to Road Transit */
+.itembox {
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+label.twocolcbox {
+	display: block;
+	width: 250px;
+	float: left;
+}
+label.threecolcbox {
+	display: block;
+	width: 180px;
+	float: left;
+}
+
+
+span.awb {
+	width: 120px; 
+	display: inline-block;
+}
+span.awbp {
+	margin-right: 15px; 
+	width: 35px; 
+	display: inline-block; 
+	text-align: right;
+}
+span.awbkg {
+	width: 45px; 
+	display: inline-block; 
+	text-align: right;
+}
+div.ra_250 {
+	display: inline-block;
+	float: right;
+	width: 250px;
+}
+label.ra_label {
+	display: inline-block;
+	margin-right: 5px;
+	width: 100px;
+	text-align: right;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="nctsfw-overview" data-panel='0' style='height: 600px;' data-editable="1" data-edittpl="overview" data-editheight="800">
+	<div><img src='/img/icons16/ist/truck.png' alt="{track}" />Transit Dashboard</div>
+	<div class="datatable">
+{#include::panels/overview_view.html}
+	</div>
+</div>
+
+<div id="nctsfw-customs" data-panel='1' style='height: 850px;' data-editable="1" data-edittpl="customs" data-editheight="910">
+	<div><img src='/img/icons16/menus/nctsfw-customs.png' />Customs and Collection</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/customs_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>
+
+
+<div id="nctsfw-followup" data-panel='1' style='height: 775px;' data-editable="1" data-edittpl="followup" data-editheight="720">
+	<div><img src='/img/icons16/menus/nctsfw-followup.png' alt="F" />Followup and Documentation</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" style="background-color: #f4f4f4;">
+{#include::panels/followup_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+<div id="nctsfw-fork" data-panel='1' style='height: 450px;' data-editable="1" data-edittpl="fork" data-editheight="550">
+	<div><img src='/img/icons16/menus/nctsfw-fork.png' />Warehouse Area</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/fork_view.html}	
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>
+[PROCESS]
+ Please write me !
+[PROCESS]
+ Please write me !
+[PROCESS]
+ Please write me !
+[PROCESS]
+ Please write me !

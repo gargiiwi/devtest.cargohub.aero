@@ -1,0 +1,106 @@
+<!-- 17012025 track link add start-->
+<div class="show_extra_manage_sec 222-test-class" id="tab_sharing_link_activity" 
+style="margin-bottom: 30px;border-bottom: 2px solid;padding-bottom: 30px;">
+    <div class='toolbar jqx-widget jqx-rc-all' style="height:40px; position: relative;">
+        <div class='toolbar-accessory' style="margin-top: 0px;">
+            <img src="/img/icons/13321426.png" alt="Audit Actions" class="info-tip" 
+                 data-tooltip="All Audit related Actions" /><span style="font-size:14px;" >Module Data Sharing</span>
+        </div>
+        <div id='sharing-link-activity-create-op' style="">
+            <button data-op="sharing-link-activity-create"  style=""class="info-tip" data-tooltip="Creates a new Action to this record">
+                <img src='/img/icons16/add.png' style="margin:0 6px 0 0" /> Create </button>
+            <button data-op="exportxlsx" title="Export table as ExcelX" style=""  id="taskXls"><img src='/img/icons16/34534543543.png' style="margin:0 6px 0 0;" /> Export XLSX </button>
+	    </div>
+        <div id='sharing-link-activity-open-ops' style='display: none;'  >
+             
+                <button data-op="sharing-link-activity-save" class="info-tip" 
+                data-tooltip="Save Activity" style=""><img src='/img/icons16/save.png' style="margin: 0 6px 0 0;" /> Save </button>
+                <div class='toolbar-separator' style='margin: 9px 12px 6px 0;'></div>
+                <button data-op="sharing-link-activity-close" class="info-tip"
+                    data-tooltip="Close without saving" style="">
+                  <img src='/img/icons16/cross.png' style="margin: 0 6px 0 0;" /> Close</button>
+        </div>
+        <div id='sharing-link-activity-row-ops' style="display: none;margin-right: 130px;">
+            <div class='toolbar-separator'></div>
+                <button data-op="sharing-link-activity-delete" style="" class="sharing-link-activity-delete-btn info-tip right" 
+                data-tooltip_position="left" 
+                data-tooltip="Remove selected document.<br /><span class='red'><b>Warning:</b> This action is not reversible!</span>">
+                <img src='/img/icons16/delete.png' style="margin: 0 6px 0 0;" /> Delete</button>
+        </div>
+               
+    </div>
+
+    <div id="document-viewer" style="margin-bottom: 6px; display: none;">
+        <div style="padding-left: 2px;"></div>
+        <div>{!jqxExpander body}</div>
+    </div>
+    <div id="document-editor" style="margin-bottom: 6px; display: none;">
+        <div style="padding-left: 2px;"></div>
+        <div>{!jqxExpander body}
+            <form method="post" action="/record/process?action=save_track_link_by_sharing_tab" id="auditActivityForm">
+                <table style="width: 100%; border-spacing: 6px;">
+                    <colgroup><col style="width: 50%;" /><col style="width: 50%;" /></colgroup>
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <!-- <table class="racrate">
+                                	<tr>
+                                        <td style="padding:10px 5px;">
+                                            <label for='track-title'>Track :  </label>
+                                        </td>
+                                        <td style="padding:6px 0px;">
+                                            <input type='text' id='ref_track_id' name='ref_track_id' 
+                                            class="form-control left jqx-input jqx-rc-all" style='width: 400px;' 
+                                            maxlength="240" placeholder="Track" />
+                                        </td>
+                                        <input type="hidden" value="0" id="module_data_id">
+                                    </tr>
+            
+                                </table>                -->
+                               
+                                <table class="racrate" style="border-collapse: collapse; width: 100%;">
+                                    <tr>
+                                        <td style="padding: 10px 5px; text-align: right; vertical-align: middle; white-space: nowrap;">
+                                            <label for="track-title" style="font-weight: bold; font-size: 14px;">Track Id:</label>
+                                        </td>
+                                        <td style="padding: 6px 0px; text-align: left;">
+                                            <input 
+                                                type="text" 
+                                                id="ref_track_id" 
+                                                name="ref_track_id" 
+                                                class="form-control left jqx-input jqx-rc-all" 
+                                                style="all: unset; width: 100%; max-width: 400px; padding: 8px; border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 4px; color: black;" 
+                                                maxlength="240" 
+                                                placeholder="Enter track" 
+                                            />
+                                        </td>
+                                        <input type="hidden" value="0" id="module_data_id">
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            
+        </div>
+    </div>
+
+    <div class="jqx-datatable-2" id="_sharing_link_activity_record"></div>
+</div>
+<!-- 17012025 track link add end-->
+
+
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/handshake.png" alt="[hands]" class="info-tip" data-tooltip="Organizations sharing certain data from this record.<br />Used for transparency of data processing" /><span>Partner data sharing</span>
+	</div>
+	
+	<div id='sharing-row-ops' style='display: none;'>{!Note: These are only valid for admins}
+		<button data-op="sharing-perspective" class="info-tip" data-tooltip="Views the record from the perspective of the selected organization"><img src='/img/icons16/company-building-icon.png' /> Switch Perspective</button>
+		<button data-op="sharing-set_master" class="info-tip" data-tooltip="Switches this organization to be the <b>Master</b> of the record"><img alt="Master" src="/img/icons16/key.png"> Set Master</button>
+		<button data-op="sharing-toggle" id="sharing-toggle" class="info-tip" data-tooltip="Toggles access for this organization on/off"><img alt="Off" src="/img/icons16/lightbulb_off.png"> Disable Org.</button>
+		<button data-op="sharing-detach" style="float: right;" class="info-tip" data-tooltip_width="480" data-tooltip_position="left" data-tooltip="Deletes organization link from the record.<br /><b>DO NOT USE THIS BUTTON!!</b> Instead, use <i>Disable Org.</i><br /><span class='red'><b>Warning:</b> The link information can't be recovered!</span>"><img alt="Delete" src="/img/icons16/delete.png ">Disconnect</button>
+	</div>
+</div>
+<div class="jqx-datatable" id="_record-sharing"></div>

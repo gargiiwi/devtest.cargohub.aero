@@ -1,0 +1,838 @@
+/* Column layout variants. Multiple sequences of colums of different arrangements possible in the same form */
+
+
+
+/* Do not divide the layout vertically */
+
+#issue_submit div.column1 {
+
+	width: 1134px;
+
+}
+
+
+
+/* Divide the layout into two columns */
+
+#issue_submit div.column2 {
+
+	width: 548px;
+
+	float: left;
+ 
+	margin-right: 7px;
+
+	border: 1px solid transparent;
+
+}
+
+
+
+/* Divide the layout into three columns */ 
+
+#issue_submit div.column3 {
+
+	width: 362px;
+
+	float: left;
+
+	margin-right: 7px;
+
+}
+
+
+
+/* Divide the layout into six columns */
+
+#issue_submit div.column6 {
+
+	width: 195px;
+
+	float: left;
+
+	
+
+}
+
+
+
+/* Asymmetrical 2-column layout where the left column is smaller than the right one */ 
+
+#issue_submit div.column_left {
+
+	width: 470px;
+
+	float: left;
+
+	margin-right: 12px;
+
+}
+
+#issue_submit div.column_right {
+
+	width: 630px;
+
+	float: right;
+
+}
+
+
+
+/* General field table styles */
+
+#issue_form table {
+
+	border-collapse: collapse;
+
+	width: 100%;
+
+	margin-bottom: 32px;
+
+}
+
+
+
+	#issue_form .field_error {
+
+		background-color: white !important;
+
+		color: Black;
+
+		border: 1px solid black;
+
+		padding: 2px;
+
+	}
+
+
+
+	#issue_form div.column2 th {
+
+		width: 175px;
+
+		text-align: right;
+
+		padding-right: 5px;
+
+		font-weight: normal;
+
+	}
+
+	
+
+		#issue_form th label {
+
+			cursor: pointer;
+
+		}
+
+
+
+/** Div based label which is similar to the table ones **/
+
+#issue_form div.clabel {
+
+		float: left;
+
+		width: 172px;
+
+		margin: 5px 0px;
+
+ 		padding-left: 3px;
+
+ 		padding-right: 5px;
+
+		text-align: right;
+
+		margin-right: 2px;
+
+		overflow: hidden;
+
+		white-space: nowrap;
+
+		text-overflow: ellipsis;
+
+	}
+
+	
+
+		#issue_form div.clabel label {
+
+			font-weight: normal;
+
+			cursor: pointer;
+
+		}
+
+
+
+/** ContactSearchSystem related **/
+
+#issue_form div#issue-contacts {
+
+	margin-bottom: 10px;
+
+}
+
+		
+
+#issue_form div#issue-contacts div.issue-contact {
+
+	height: 27px;
+
+	padding-top: 2px;
+
+	position: relative;
+
+}
+
+
+
+ 	#issue-contacts div.issue-contact button {
+
+ 		position: absolute;
+
+		right: 3px;
+
+		top: 3px;
+
+ 		background-image: url("/img/icons16/vcard.png");
+
+ 		background-repeat: no-repeat;
+
+ 		background-position: center center;
+
+	}
+
+ 	
+
+ 	#issue-contacts div.issue-contact button:HOVER {
+
+		background-color: yellow;
+
+ 	}
+
+
+
+	#issue-contacts div.issue-contact > span, div#submit-contact-search > span {
+
+		float: left;
+
+		display: inline-block;
+
+		height: 20px;
+
+		line-height: 20px;
+
+		padding: 1px 0px 1px 2px;
+
+		font-size: 13px;
+
+		overflow: hidden;
+
+		white-space: nowrap;
+
+		text-overflow: ellipsis;
+
+		width: 61%; 
+
+	}
+
+	
+
+	#issue-contacts div.issue-contact > span.contact-error, div#submit-contact-search > span.contact-error {
+
+		text-decoration: line-through;
+
+		color: red;
+
+	}
+
+		
+
+table.infotable.contact-result-row {
+
+	color: inherit;
+
+}
+
+
+
+	table.infotable.contact-result-row th {
+
+		text-align: right;
+
+		width: 60px;
+
+	}
+
+	
+
+	table.infotable.contact-result-row div.contact-name {
+
+		font-size: 16px;
+
+		font-weight: bold;
+
+		margin-bottom: 4px;
+
+	}
+
+	
+
+	table.infotable.contact-result-row div.contact-email {
+
+		text-decoration: underline;
+
+	}
+
+
+
+/* The contact editor */
+
+div#contact-label {
+
+	height: 26px;
+
+	padding: 1px;
+
+}
+
+
+
+	div#contact-label label {
+
+		text-align: right;
+
+		float: left;
+
+		margin-right: 6px;
+
+		color: #808080;
+
+		width: 142px;
+
+		line-height: 24px;
+
+	}
+
+	
+
+	div#contact-label input {
+
+		float: left;
+
+		height: 20px;
+
+		line-height: 20px;
+
+    	border-style: solid;
+
+	    border-width: 1px;
+
+		width: 150px;		
+
+	}
+
+		
+
+/* Form field styling */
+
+#issue_form td > input[type='text'], #issue_form td > textarea, #issue_form td > select, span.fake-input {
+
+	border-style: solid;
+
+	border-width: 1px;
+
+}
+
+
+
+	/* Standardized height and lengths of inputs, for uniform styling */
+
+	#issue_form td > input[type='text'], #issue_form td > select {
+
+		line-height: 22px;
+
+		height: 22px;
+
+		box-sizing: border-box;
+
+		/*width: 220px;*/
+
+	}	
+
+	#issue_form div.column2 .maxlen {
+
+		width: 362px;
+
+	}
+
+        .submit > .rasubmit > input{
+
+		width: 90px;
+
+		font-weight: bold; 
+
+
+
+	}
+
+	#issue_form div.column2 .long {
+
+		width: 220px;
+
+	}
+
+	#issue_form div.column2 .medium {
+
+		 width: 135px; 
+		/* width: 220px; */
+
+	}
+
+	#issue_form div.column2 .short {
+
+		width: 83px;
+
+	}
+
+	#issue_form div.column2 .tiny {
+
+		width: 50px; 
+		/* width:362px; */
+
+	}
+
+	
+
+	span.fake-input {
+
+		background-color: white;
+
+	}
+
+
+
+#issue_form table.dual_col_table td {
+
+	border: 1px solid lightgray;
+
+	padding: 3px 3px 12px 3px;
+
+	width: 50%;
+
+}
+
+#issue_form table.dual_col_table td label, #issue_form table.radiotable td label, #issue_form td.radiotable label {
+
+	display: block;
+
+	width: 100%;
+
+	cursor: pointer;
+
+}
+
+#issue_form table.dual_col_table td label:HOVER, #issue_form table.radiotable td label:HOVER, #issue_form td.radiotable label:HOVER {
+
+	background-color: #F9F3DE;
+
+}
+
+
+
+#issue_form table.tri_col_table td {
+
+	border: 1px solid lightgray;
+
+	padding: 2px 2px 10px 2px;
+
+	width: 33%;
+
+	text-align: center;
+
+}
+
+
+
+#issue_form table.quad_col_table td {
+
+	border: 1px solid lightgray;
+
+	padding: 2px 2px 10px 2px;
+
+	width: 25%;
+
+	text-align: center;
+
+}
+
+
+
+#issue_form table.quad_col_table td:HOVER {
+
+	background-color: #F9F3DE;	
+
+}
+
+
+
+#issue_form .required {
+
+	background-color: #cce8ff;
+
+}
+
+	#issue_form th {
+
+		height: 27px;
+
+	}
+
+
+
+/*	
+
+	#issue_form .required label span, .req_bullet {
+
+		background: url("/img/extra/required2.png") no-repeat;
+
+		display: inline-block;
+
+		width: 12px;
+
+		height: 12px;
+
+	}
+
+*/
+
+	
+
+h4.login-warn {
+
+	background-color: ForestGreen;
+
+	color: White;
+
+	padding: 6px 0;
+
+	border: none;
+
+	text-align: center;
+
+	font-weight: normal;
+
+	box-shadow: 1px 4px 2px LightGray;
+
+}
+
+
+
+div#uploads-helper {
+
+	padding: 6px 24px;
+
+	background-color: #F8F8FA;
+
+	font-style: italic;
+
+	font-size: 14px;
+
+	text-align: center;
+
+}
+
+
+
+div#attachments {
+
+	overflow: auto;
+
+}
+
+
+
+	div#attachments div.file-download {
+
+		margin-bottom: 6px;
+
+		padding: 4px 0px 6px 2px;
+
+		border-bottom: 1px dotted lightgray;
+
+	}
+
+	
+
+	div#attachments div.file-download img {
+
+		float: left;
+
+		margin-right: 10px;
+
+		border: none;
+
+	}
+
+	
+
+label.documents {
+
+	display: block;
+
+	width: 250px;
+
+	float: left;
+
+}
+
+
+
+div#file-submit-area {
+
+	position: relative;
+
+}
+
+	div#file-submit-area input {
+
+		width: 500px;
+
+		position: absolute;
+
+		left: 26px;
+
+	}
+
+
+
+	div#file-submit-area span {
+
+		display: block;
+
+		height: 24px;
+
+		line-height: 24px;
+
+		margin-top: 2px;
+
+		margin-bottom: 5px;
+
+	}
+
+	
+
+	div#file-submit-area span:HOVER {
+
+		background-color: #F0F0F0;
+
+	}
+
+
+
+	div#file-submit-area span button {
+
+		background-image: url("/img/icons16/delete.png");
+
+		background-repeat: no-repeat;
+
+		background-position: center center;
+
+		float: left;
+
+		margin-top: 1px;
+
+	}
+
+	
+
+	div#file-submit-area span button:HOVER {
+
+		background-color: yellow;
+
+	}
+
+	
+
+div#submit-proceed-box {
+
+	margin-top: 25px;
+
+	border: 1px solid lightgray;
+
+	background-image: url("/img/bgs/gray_patt1.png");
+
+}
+
+
+
+	div#submit-proceed-box h3 {
+
+		margin-top: 12px;
+
+		text-indent: 34px;
+
+	}
+
+
+
+	#submit-disclaimer {
+
+		font-size: 0.8em;
+
+		margin: 18px;
+
+		text-align: justify;
+
+	}
+
+
+
+	#accept-disclaimer {
+
+		margin: 18px;
+
+		padding: 10px;
+
+		background-color: #ECECF4;
+
+		border: 1px solid lightgray;
+
+	}
+
+		
+
+.theclock {
+
+	width: 60px;
+
+	height: 24px !important;
+
+	line-height: 24px !important;
+
+}
+
+
+/*Cargoclaim add post page modification start*/
+
+/* Main container */
+#content4 {
+    color: #333;
+}
+
+/* Section headers inside content4 */
+#content4 > div[style*="background-color"] {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2B2B2B;
+    border-radius: 6px;
+    background-color: #e7e7e7 !important;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+/* Tables full width, no gaps */
+#content4 table {
+    width: 92%;
+    border-collapse: collapse;
+}
+
+/* Checkbox list container */
+#content4 .documents {
+    display: inline-flex;
+    align-items: center; /* vertical alignment */
+    cursor: pointer;
+    margin: 6px 12px 6px 0;
+    font-size: 14px;
+    /*padding: 8px 12px;*/
+    border-radius: 8px;
+    /* background-color: #f3f4f6; */
+    transition: all 0.2s ease;
+}
+
+/* Hover effect for checkboxes */
+#content4 .documents:hover {
+    background-color: #e2e6ef;
+    transform: translateY(-1px);
+}
+
+/* Hide native checkbox */
+#content4 .documents input[type="checkbox"] {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #4CAF50; /* modern checkbox color */
+    flex-shrink: 0;
+}
+
+/* Dropzone box styling */
+#content4 .dropzone {
+    border: 2px dashed #bbb;
+    border-radius: 8px;
+    background-color: #fafafa;
+    padding: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+#content4 .dropzone:hover {
+    border-color: #4CAF50;
+    background-color: #f0fdf4;
+}
+
+/* Upload helper text */
+#content4 #uploads-helper,
+#content4 #uploads-helper_2 {
+    font-size: 12px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Submit / navigation buttons */
+#content4 .prv-next-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#content4 .prv-next-btns .step-btn,
+#content4 .prv-next-btns .submit input[type="button"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#content4 .prv-next-btns .step-btn:hover,
+#content4 .prv-next-btns .submit input[type="button"]:hover {
+    background-color: #43a047;
+}
+
+/* Required fields info */
+#content4 .required {
+    font-size: 10px;
+    font-weight: bold;
+    color: #1a73e8;
+    margin-top: 10px;
+}
+#issue_form #content4  label{
+    height: 35px;
+}
+
+.dropzone .dz-preview{
+    margin: 0;
+}
+
+
+/*Cargoclaim add post page modification end*/

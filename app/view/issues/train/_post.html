@@ -1,0 +1,433 @@
+<!-- {@<style type="text/css">
+/* Some styles specific to Training record */
+div#file-submit-area input {
+	width: 500px;
+}
+label.dualcolcbox {
+	display: block;
+	width: 265px;
+	float: left;
+}
+label.triplecolcbox {
+	display: block;
+	width: 180px;
+	float: left;
+}
+</style>} -->
+{@<style type="text/css">
+	/* Some styles specific to claims */
+	div#file-submit-area input {
+		width: 500px;
+	}
+	label.documents {
+		display: block;
+		width: 250px;
+		float: left;
+		line-height: 24px;
+	}
+	.steps{
+	margin:10px 0px;
+	background:#d4d6dd;
+	padding:55px 0px;
+	}
+	.steps .step-btn{
+	width:45px;
+	height:45px;
+	background:#ffff;
+	margin-bottom:60px;
+	display:flex;
+	justify-content:center;
+	color:#000080;
+	border-radius:30px;
+	align-items:center;
+	}
+	
+	#issue_form{
+	display:flex;
+	justify-content:center;
+	}
+	.btn-text{
+	color:black;
+	margin-left: 20px;
+	}
+	.btn-text span{
+		display: block;
+		margin-bottom: 5px;
+		color: black;
+	}
+	.steps-container{
+	margin:0px 50px;
+	/* display:flex;
+	justify-content:space-between; */
+	}
+	.step-position1{
+	position:relative;
+	display: flex;
+	}
+	.line1{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position2{
+	position:relative;
+	display: flex;
+	}
+	.line2{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position3{
+	position:relative;
+	display: flex;
+	}
+	.line3{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position4{
+	position:relative;
+	display: flex;
+	}
+	.step-position4 .step-btn{
+		margin-bottom: 0;
+	}
+	.line4{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.nav-btn{
+	margin:0px 0px 0px 250px;
+	padding:10px 50px;
+	background:#000080;
+	color:#ffff;
+	border:none;
+	}
+	#next-btn{
+		width: 60px;
+		background: #2866c2;
+		color: #ffff;
+		padding: 10px 15px;
+		text-align: center;
+		border: none;
+		margin-left: 0;
+		text-transform: capitalize;
+		font-size: 14px;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.prv-next-btns{
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+	
+	div.site > div.page{
+		display: flex;
+	   width:99%;
+	}
+	.steps{
+		width: 30%;
+		margin: 0;
+		border-radius: 10px 0 0 10px;
+	}
+	div.site > div.page div.zone{
+		width: 70%;
+		margin-bottom: 0;
+		background: #F2F5FF;
+		border-radius: 0 10px 10px 0;
+		padding: 30px 0;
+		 
+		overflow: auto;
+	} 
+	#issue_form .required{
+		background: #F2F5FF;
+	}
+	#issue_form div.clabel, #issue_form div.column2 th{
+		text-align: left;
+	}
+	#issue_form td > input[type='text'], #issue_form td > select{
+		height: 33px !important;
+		background: #fff;
+		border-radius: 4px;
+		padding: 5px 10px;
+		margin-bottom: 5px;
+	}
+	.raprv{
+		background: #e1e1e1 !important;
+		color: #000 !important;
+	}
+	.steps .steps-container .step-btn.active{
+		background-color: #fff !important;
+	}
+	.steps .steps-container .completed .step-btn{
+		background-color: #19a956 !important;
+		position: relative;
+	}
+	.steps .steps-container .completed .step-btn > img{
+		display: none;
+	}
+	.steps .steps-container .notCompleted {
+		opacity: 0.5;
+	}
+	.steps .steps-container .notCompleted.active {
+		opacity: 1;
+	}
+	.steps .steps-container .completed .step-btn::after{
+	content: "";
+	background-image: url(/img/icons/tick.png);
+	background-repeat: no-repeat;
+	width: 19px;
+	height: 13px;
+	position: absolute;
+	left: 14px;
+	top: 16px;
+	}
+	.steps .steps-container .completed .line1, .steps .steps-container .completed .line2, .steps .steps-container .completed .line3, .steps .steps-container .completed .line4{
+		background: #19a956;
+	}
+	
+	</style>}
+
+
+<div class="steps">
+	<div class="steps-container">
+	<div class="step-position1">
+		<div class="step-btn" id="btn1" data-step="1"><img src="/img/icons/usern.png" alt=""></div>
+		<div class="btn-text"> <span>Step 1</span> Person details </div>
+		<div class="line1"></div>
+	</div>
+	
+	<div class="step-position2">
+		<div class="step-btn" id="btn2" data-step="2"><img src="/img/icons/reportn.png" alt=""></div>
+		<div class="btn-text"><span>Step 2</span> Provided Documents & Submit</div>		
+	</div>
+	</div>
+
+</div>
+
+<div id='issue_submit' class='zone jqx-rc-all'><form action="?action=form" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">{#use:form:
+{!Left column}
+<div class='column2'>
+
+<div id="content1" class="content">
+  <div id="step-1-info">
+
+        <!-- <h4 style="background-image: url('/img/icons16/contact_email.png'); background-repeat: no-repeat; background-position: 4px;" class="info-tip" data-tooltip="The button beside the e-mail address is used to enter more information<br />(company name, phone number, postal address, etc.).">Enter your <b>e-mail address</b> and complete your contact details:</h4> -->
+		 <div id="issue-contacts" style="display: none;"></div>
+		<!-- <div style="margin-bottom: 20px; height: 27px; padding-top: 2px;">
+			<input type="button" value="Add another contact..." data-action="add-contact" style="margin-left: 182px;" />
+			<img src="/img/icons16/question.png" alt="Info" class="info-tip" data-tooltip="Use this button if you need to specify other e-mail addresses besides your own." style='margin-left: 6px;' />
+		</div> -->
+
+        <!-- <h4 style="background-image: url('/img/icons16/user1.png'); background-repeat: no-repeat; background-position: 4px;">Person details</h4> -->
+		<table style="margin-bottom: 0;">
+			<tr{#if:emp_name.display.req: class='required'}>
+				<th><label for='{id}'>Surname &amp; Given name(s):</label></th>
+				<td>
+					{#use:emp_surname:<input type='text' id='{id}' name='{name}' value='{value}' placeholder='(e.g. Johnson)' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+					{#use:emp_name:<input type='text' id='{id}' name='{name}' value='{value}' placeholder='(e.g. Robert)' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				</td>
+			</tr>
+			{#use:emp_birth:<tr{#if:display.req: class='required'}>
+				 <th><label for='{id}'>
+					<!-- <img src="/img/icons16/question.png" alt="Info" class="info-tip info-click" data-tooltip="This is not a date selector !<br />Enter the date manually, it will be stored as text." style='margin-left: 6px; vertical-align: middle;' /> -->
+					{display.label}:</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}
+			{#use:emp_phone:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}
+			{#use:emp_email:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}
+		</table>
+		{#use:emp_info:
+			<h5>Extra personal information</h5>
+			<textarea rows="5" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 542px; margin-bottom: 16px; background-color: white;" placeholder="(e-mail, home address, other phone numbers, related people, etc.)">{value}</textarea>
+		}
+
+       <!-- <h4 style="background-image: url('/img/icons16/company-building-icon.png'); background-repeat: no-repeat; background-position: 4px;">Employment info</h4> -->
+		<table style="margin-bottom: 0;">
+			{#use:emp_hire:<tr{#if:display.req: class='required'}>
+				<th><label>
+					<!-- <img src="/img/icons16/question.png" alt="Info" class="info-tip info-click" data-tooltip="ISO 8601 date format: Year-Month-Day" style='margin-left: 6px; vertical-align: middle;' /> -->
+					{display.label}:</label></th>
+				<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+			</tr>}
+			<tr><td colspan="1" style="height: 10px;"></td></tr>
+
+			{#use:emp_job:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}:</label></th>
+				<td><select id='{id}' name='{name}' class='dropselect' data-name='{name}' data-width="104" data-dwidth="104" data-dheight="99">
+					<option value=''>---</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}</select></td>
+			</tr>}
+			<tr>
+				<td colspan="1" style="height: 10px;"></td>
+			</tr>
+			{#if:%CFG.issue_submit.groups:{#use:group:<tr{#if:display.req: class='required'}>
+				<th><label>Department:{#if:display.req: <span>&nbsp;</span>}</label></th>
+				<td><div id='{id}_combo'></div><input type='hidden' id='{id}' name='{name}' value='{value}' /></td>
+			</tr>}}
+		{!	{#use:emp_dep:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' style="background-color: white;"class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}}
+			{#use:emp_id:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}
+			{#use:emp_roles:<tr{#if:display.req: class='required'}>
+				<th><label for='{id}'>{display.label}:</label></th>
+				<td><select id='{id}' class="dropselect multi-select" data-name='{name}' data-width="135" data-dwidth="135" data-dheight="210" data-filterable="1">
+					{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select></td>
+			</tr>}
+		</table>
+	{#use:emp_rem:
+		<h5>Employment remarks</h5>
+		<textarea rows="7" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 542px; margin-bottom: 16px; background-color: white;" placeholder="">{value}</textarea>
+	}
+
+{!Temporarely disabled for submit - uncertain if they should be here or not
+   <h4>Trainings</h4>
+	<table style="margin-bottom: 0;">{!This special field is visually associated with other fields}
+		<tr><td>&nbsp;</td><td style="text-align: center; width: 110px;">From</td><td style="text-align: center; width: 110px;">To</td></tr>
+		<tr><td><label>{#use:trns.options.0:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_intro_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_intro_to: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.1:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_bsa_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_bsa_to: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.2:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_afsec_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_afsec_to: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.3:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_dgoo_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_dgoo_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.4:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_dgiata_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_dgiata_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.5:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_seca_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_seca_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.6:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_phar_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_phar_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.7:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_caw_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_caw_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.8:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_ramp_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_ramp_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.9:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_env_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_env_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+		<tr><td><label>{#use:trns.options.10:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+			<td>{#use:tr_fork_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			<td>{#use:tr_fork_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		</tr>
+	</table>
+	}
+
+	<div class="prv-next-btns">
+		<div class=""></div>
+		<div class="step-btn" id="next-btn"onclick="cargoClaimStep(2)">next</div>
+	</div>
+	<div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+</div>	
+
+</div>
+
+<div id="content2" class="content">
+{!Right column}
+<div class='column2'>
+<!-- <h4>Photos, Scans, Documents:</h4> -->
+	<table>
+		<tr><td>
+			{#if:%attachments:<br /><h4>Attached pictures and documents:</h4>{!Fallback mode, showing files on IE8}
+			<div id='attachments' style="margin-bottom: 8px; display: none;">
+			{#repeat:%attachments:
+				<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{type}.png' alt="{type}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+				<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+				<div class='clear'></div></div>
+			}
+			</div>}
+			<div id="uploads-dropzone" class="dropzone">{!The fancy DropZone}
+				<div class="fallback">
+					<div style='margin: 0 0 0 26px;'>
+						<h3>Choose documents from your computer</h3>
+						<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+					</div>
+					<div id="file-submit-area">
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+						<span><input type="file" name="uploads[]" /></span>
+					</div>
+					<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+					<p class="gray" style="font-size: 0.9em;">Please use a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a> in order to view the upload feedback and allow simultaneous multiple files selections. The very outdated <b>Internet Explorer</b> does not support many of the advanced features that this application provides.</p>
+				</div>
+			</div>
+			<div id="uploads-helper" style="display: none;">
+				Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+			</div>
+		</td></tr>
+	</table>
+
+	<div class="prv-next-btns">
+		<div class="step-btn raprv" id="next-btn"onclick="cargoClaimPreviousStep(2)">Previous</div>
+	   <div class="submit" > {#include::includes/submit_proceed_box1.html} </div>
+	</div>
+		<div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+</div>
+
+<!-- {!End of right column}</div>
+<div class='clear'></div> -->
+<!-- 
+<div class='column2'>
+	<div class='required' style='text-align: center;'><span style='padding: 7px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> (Fields with this background color are required)</span></div>	
+</div> -->
+<div class='column2'>
+</div>
+<div class='clear'></div>
+
+}
+</form></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_submit_jstpl.html}
+{#raw:includes/issue2message.html}

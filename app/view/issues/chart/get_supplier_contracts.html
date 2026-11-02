@@ -1,0 +1,181 @@
+<div id="contractReportPage" class="crv-page">
+    <div class="crv-wrapper">
+        <div class="crv-header">
+            <div class="crv-header-left">
+                <h2>
+                    <i class="fa fa-handshake-o"></i>
+                    Contract Management Report
+                </h2>
+                <p>
+                    Centralized contract monitoring and analytics
+                </p>
+            </div>
+            <div class="ca-header-right">
+<!--              <a href="/issue/list?action=get_supplier_contracts"  class="supplier_report"   title="Supplier Report">
+                    <i class="fa fa-users"></i>
+                    <span>Supplier Report</span>
+                </a>-->
+
+<a href="/issue/list?action=contracts_analytics" class="contract_analytics"  title="Contract Analytics">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>Contract Analytics</span>
+                </a>
+
+                <a href="/issue/list?action=get_all_assets" class="asset_report"  title="Asset Report">
+                    <i class="fa fa-cubes"></i>
+                    <span>Asset Report</span>
+                </a>
+            </div>
+        </div>
+        <div class="crv-filter-section">
+            <div class="crv-filter-row">
+                <div class="crv-filter-group">
+                    <label>Supplier Name</label>
+                    <select id="filter_supplier" class="crv-input">
+                        <option value="">All Suppliers</option>
+                    </select>
+                </div>
+                <div class="crv-filter-group">
+                    <label>Group</label>
+                    <select id="filter_group" class="crv-input">
+                        <option value="">All Groups</option>
+                    </select>
+                </div>
+                <div class="crv-filter-group">
+                    <label>Contract Period</label>
+                    <select id="filter_contract_type" class="crv-input">
+                        <option value="">All Types</option>
+                        <option value="Fixed Term">Fixed Term</option>
+                        <option value="Auto renewal">Auto renewal</option>
+                        <option value="Open ended">Open ended</option>
+                    </select>
+                </div>
+                <div class="crv-filter-group">
+                    <label>End Date</label>
+                    <input type="date" id="filter_end_date" class="crv-input">
+                </div>
+                <div class="crv-filter-group">
+                    <label>Notice Date</label>
+                    <select id="filter_terminate" class="crv-input">
+                        <option value="">All </option>
+                        <option value="30">Upcoming 30 Days</option>
+                        <option value="60">Upcoming 60 Days</option>
+                        <option value="90">Upcoming 90 Days</option>
+                    </select>
+                </div>
+                <div class="crv-filter-group crv-filter-actions">
+                    <button class="crv-btn crv-btn-primary" id="btn_apply_filter">
+                        <i class="fa fa-filter"></i>
+                        Apply Filter
+                    </button>
+                    <button class="crv-btn crv-btn-light" id="btn_reset_filter">
+                        <i class="fa fa-refresh"></i>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="crv-kpi-wrapper">
+            <div class="crv-kpi-card totalKpiBlock">
+                <div class="crv-kpi-head">
+                    <span>Total Contracts</span>
+                    <strong id="kpi_total_contract">0</strong>
+                </div>
+                <div class="crv-kpi-grid">
+                    <div class="kpi-active">
+                        <label>Active</label>
+                        <b id="kpi_active_contract">0</b>
+                    </div>
+                    <div class="kpi-closed">
+                        <label>Closed</label>
+                        <b id="kpi_closed_contract">0</b>
+                    </div>
+                </div>
+            </div>
+
+            <div class="crv-kpi-card crv-kpi-large contractTypeKpiBlock">
+                <div class="crv-kpi-head">
+                    <span>Contract Period</span>
+                    <strong id="kpi_contract_period_total">0</strong>
+                </div>
+                <div class="crv-kpi-grid">
+                    <div>
+                        <label>Fixed Term</label>
+                        <b id="kpi_fixed_term">0</b>
+                    </div>
+                    <div>
+                        <label>Auto Renewal</label>
+                        <b id="kpi_auto_renewal">0</b>
+                    </div>
+                    <div>
+                        <label>Open Ended</label>
+                        <b id="kpi_open_ended">0</b>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="crv-kpi-card">
+                <div class="crv-kpi-head">
+                    <span>Contract Type</span>
+                    <strong id="kpi_contract_type_total">0</strong>
+                </div>
+                <div class="crv-kpi-grid">
+                    <div class="kpi-leased">
+                        <label>Leased</label>
+                        <b id="kpi_leased">0</b>
+                    </div>
+                    <div class="kpi-owned">
+                        <label>Owned</label>
+                        <b id="kpi_owned">0</b>
+                    </div>
+                </div>
+            </div> -->
+            <div class="crv-kpi-card terminationKpiBlock">
+                <div class="crv-kpi-head">
+                    <span>Upcoming Termination</span>
+                    <strong id="kpi_terminate_total">0</strong>
+                </div>
+                <div class="crv-kpi-grid">
+                    <div>
+                        <label>30 Days</label>
+                        <b id="kpi_terminate_30">0</b>
+                    </div>
+                    <div>
+                        <label>60 Days</label>
+                        <b id="kpi_terminate_60">0</b>
+                    </div>
+                    <div>
+                        <label>90 Days</label>
+                        <b id="kpi_terminate_90">0</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="crv-table-toolbar">
+            <div class="crv-toolbar-left">
+                <div class="crv-status-filter">
+                    <button class="crv-status-btn active" data-status="active">
+                        Active
+                    </button>
+                    <button class="crv-status-btn" data-status="closed">
+                        Closed
+                    </button>
+                </div>
+            </div>
+            <div class="crv-toolbar-center">
+                <div class="crv-search-box">
+                    <i class="fa fa-search"></i>
+                    <input type="text" id="contract_search" placeholder="Search contract...">
+                </div>
+            </div>
+            <div class="crv-toolbar-right">
+                <button class="crv-btn crv-btn-export">
+                    <i class="fa fa-download"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="crv-table-wrapper">
+            <div id="contract_report_table"></div>
+        </div>
+    </div>
+</div>

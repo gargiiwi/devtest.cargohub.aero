@@ -1,0 +1,45 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/lock.png" /><span>Organization level access</span>
+	</div>
+	<button data-op="acls-submit" title="Update Access Control"><img src='/img/icons16/lock_go.png' /> Update Access Control</button>
+</div>
+
+<div style="padding: 5px; border: 1px solid lightgray; background-color: yellow; text-align: center; margin-bottom: 10px;">
+Base access settings for all organization users. They can be overridden on <b>department level</b> or at <b>user level</b> for each department the user is a member of.<br />
+These settings define what the users can see and do, but don't affect the organization itself. Use the <b>Setup</b>, <b>Record Groups</b> tabs to manage the organization.
+</div>
+
+{!First part - ACLs, split in two columns}
+<table style="width: 100%; margin-top: 8px;"><tr>
+	<td style="width: 49%;" valign="top">{!Left side}
+		<h4>Basic settings</h4>
+		<p class="gray" style="text-align: center;">The organization needs to have the <a href="#setup">Record Modules</a> enabled first.</p>			
+		<table>
+			<tr class="acl">
+				<th>Access to Modules:</th>
+				<td><div id="acls_access-ids_ist"></div></td>
+			</tr>
+		</table>
+	</td>
+	<td style="width: 49%;" valign="top">{!Right side}
+		<h4>Data groups access</h4>
+		<p class="gray" style="text-align: center;">Use the <a href="#groups">Record Groups</a> tab to manage organization to group links.</p>  
+		<div id="acls_access-groups"></div>
+		<div id="groups-select-commands" style="text-align: center; margin-top: 4px;">
+			<input type="button" value="Select all" data-cmd="check_all" /> &nbsp;
+			<input type="button" value="Select visible" data-cmd="check_visible" /> &nbsp;
+			<input type="button" value="Clear selection" data-cmd="clear_all" />
+			<input type="button" value="Invert selection" data-cmd="check_invert" />
+		</div>
+	</td>
+</tr></table>
+		
+<h4 style="margin-top: 16px;">Access privileges matrix</h4>
+{#include::private/privileges_editor.html}
+
+{!<div>
+	<label class='acl'>Data filters:</label>
+	<div id="data-access-filters"></div>
+	<div class="clear"></div>
+</div>}

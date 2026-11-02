@@ -1,0 +1,63 @@
+{#use:%ist.xfield_def:
+	<h4 style="background-image: url('/img/icons16/blueprint.png'); background-repeat: no-repeat; background-position: 4px;">Planning</h4>
+	<table>
+		<tr><th>{pick_est_time.n}:</th><td>{^xfields.pick_est_time.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Estimated arrival (ETA):</th><td>
+			<div style="display: inline-block; width: 160px;"><span class="gray">Time:</span> {^xfields.atd_time:<span class="gray">---</span>}</div>
+			<span class="gray">Date:</span> {#if:^xfields.pick_date:{^xfields.pick_date}~date("Y-m-d")~}{#ifnot:^xfields.pick_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{trans_id.n}:</th><td>{^xfields.trans_id:<span class='gray'>---</span>}</td></tr>
+	</table>
+
+	<h4 style="background-image: url('/img/icons16/timeline.png'); background-repeat: no-repeat; background-position: 4px;">Arrival at warehouse</h4>
+	<table>
+		<tr><th>Actual arrival (ATA):</th><td>
+			<div style="display: inline-block; width: 160px;"><span class="gray">Time:</span> {^xfields.arrival:<span class="gray">---</span>}</div>
+			<span class="gray">Date:</span> {#if:^xfields.apick_date:{^xfields.apick_date}~date("Y-m-d")~}{#ifnot:^xfields.apick_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{atd_time.n}:</th><td>{^xfields.atd_time:<span class="gray">---</span>}</td></tr>
+		<tr><th>{uta_time.n}:</th><td>{^xfields.uta_time:<span class="gray">---</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>Total Weight/Volume:</th><td>
+			<div style="display: inline-block; width: 160px;">{^xfields.pack_weight:<span class="gray">---</span>} kg</div>
+			{^xfields.total_volume:<span class="gray">---</span>} m&sup3;
+		</td></tr>
+		<tr><th>Pieces/Units:</th><td>
+			<div style="display: inline-block; width: 160px;"><span class="gray">Loose:</span> {^xfields.loose_pieces:<span class="gray">---</span>}</div>
+			<span class="gray">ULDs:</span> {^xfields.intact_units:<span class="gray">---</span>}
+		</td></tr>
+{!		<tr><th>Transport mode:</th><td>{^xfields.trans_mode.value:<span class='gray'>---</span>}}
+	</table>
+	<h4 style="background-image: url('/img/icons16/menus/truck-fork.png'); background-repeat: no-repeat; background-position: 4px;">Loading process and departure</h4>
+	<table>
+		<tr><th>{dock.n}:</th><td>
+			<div style="display: inline-block; width: 40px; font-size: 1.2em;">{^xfields.dock:<span class='gray'>---</span>}</div>
+			<span class="gray">Loader: </span>{^xfields.ldr_name:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>Loading:</th><td>
+			<div style="display: inline-block; width: 160px;"><span class='gray'>Start: </span>{^xfields.loading:<span class="gray" style="display: inline-block; width: 40px;">--</span>}</div>
+			<span class='gray'>End: </span>{^xfields.loading_end:<span class="gray">---</span>}
+		</td></tr>
+	</table>
+	<h5 style="margin-left: 20px;">{cnotes.n}</h5>
+	{#if:^xfields.cnotes:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.cnotes}~nl2br~</div>}
+	{#ifnot:^xfields.cnotes:<div class="gray" style="text-indent: 20px;">-----</div><hr style="margin-top: 4px;" />}
+	<table>
+		<tr><th>Departure:</th><td>
+			<div style="display: inline-block; width: 160px;"><span class="gray">Time:</span> {^xfields.departure:<span class="gray">---</span>}</div>
+			<span class="gray">Date:</span> {#if:^xfields.truck_date:{^xfields.truck_date}~date("Y-m-d")~}{#ifnot:^xfields.truck_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{delays.n}:</th><td>
+			<label><input type='checkbox' disabled="disabled"{#if:^xfields.delays.key: checked="checked"}> {^xfields.delays.value}</label>
+		</td></tr>
+		<h5>{delays_causes.n}</h5>
+		{#ifnot:^xfields.delays_causes:<span class='gray'>---</span>}
+		{#repeat:^xfields.delays_causes:<span class="itembox">{value}</span>}
+		{#if:^xfields.delays_oth:<span class="itembox">{^xfields.delays_oth}</span>}
+			<div class="clear"></div>
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{mrn_no.n}</th><td>{#if:^xfields.mrn_no:{^xfields.mrn_no}~uppercase~}{#ifnot:^xfields.mrn_no:<span class="gray">---</span>}</td></tr>
+	</table>
+}

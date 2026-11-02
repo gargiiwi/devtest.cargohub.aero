@@ -1,0 +1,35 @@
+{#use:%ist.xfield_def:
+	<table style="height: 20px;"> 
+		<tr><th>{training_ttl.n}:</th><td>{^xfields.training_ttl:<span class="gray">---</span>}</td></tr>
+	    <tr><th>{place_train.n}:</th><td>{^xfields.place_train:<span class="gray">---</span>}</td></tr> 
+		<tr><th>{trainer_name.n}:</th><td>{^xfields.trainer_name:<span class="gray">---</span>}</td></tr>   
+	  <tr ><th>{train_loc.n}:</th><td>{^xfields.train_loc.value:<span class="gray">---</span>}</td></tr>
+
+	  <!-- 26092024   train_scheduler_classroom_type  -->
+	    <tr>
+		{#if:^xfields.train_loc.value=='Classroom':
+		<th>{classroom_type.n}:</th><td>{^xfields.classroom_type.value:<span class="gray">---</span>}</td>
+		}
+		</tr>
+	  <!-- 26092024   train_scheduler_classroom_type  -->
+
+	    <!-- <tr><th>{no_train.n}:</th><td>{^xfields.no_train:<span class="gray">---</span>}</td></tr> -->
+		<!-- 01082024 added by iwi | start -->
+		<tr><th>{max_trainee.n}:</th><td>{^xfields.max_trainee:<span class="gray">---</span>}</td></tr> 
+			<tr><th>{no_train.n}:</th><td>{^xfields.no_train:<span class="gray">---</span>}</td></tr>
+		<!-- 01082024 added by iwi | end -->
+		
+
+		<!-- 13082024 changes by iwi | start -->
+	  	<tr><th>{date_train.n}:</th><td class="train_scheduler_dt">{^xfields.date_train:<span class="gray">---</span>}</td></tr>
+		<!-- 13082024 changes by iwi | end -->
+
+	   <tr><th>{date_end.n}:</th><td>{^xfields.date_end:<span class="gray">---</span>}</td></tr>
+	   
+		<tr ><th>{certificate_expiry.n}:</th><td>{^xfields.certificate_expiry.value:<span class="gray">---</span>}</td></tr><!-- 06092024 added by iwi  -->
+	  <tr><th>{train_exp.n}:</th><td>{^xfields.train_exp:<span class="gray">---</span>}</td></tr>
+	   <tr><th>{training_remarks.n}:</th><td>{^xfields.training_remarks:<span class="gray">---</span>}</td></tr>
+	  
+ 	</table>
+	
+}

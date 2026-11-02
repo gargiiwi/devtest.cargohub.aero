@@ -1,0 +1,59 @@
+<div id="docLicReportViewSec" class="docLic_report_page" style="display:block;">
+    <div class="simple-spinner-chart"><span></span></div>
+
+    <div class="audit_report_titles">
+        <div class="div1"></div>
+        <div class="div2" style="width: 100%; margin-bottom: 30px; text-align: center;">
+            <h3 style="font-size: 24px; font-weight: bold; color: #333; margin: 0;">
+                License control - documented process monitoring
+            </h3>
+        </div>
+    </div>
+
+    <!-- Main Tabs -->
+    <div id="tab_container" class="tab_container" style="">
+        <div id="License_Monitor_Tab" class="tab active" data-tab="license"
+            style="">
+            License Type
+        </div>
+        <div id="Documentation_Tab" class="tab" data-tab="documentation"
+            style="">
+            Documentation
+        </div>
+    </div>
+
+    <!-- Content Box -->
+    <div id="sub_tab_container" class="sub_tab_container" style="">
+
+        <!-- License Monitor Subtabs -->
+        <div id="sub_tab_License_Monitor" class="active" data-subtab="License_Monitor">
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <div id="doc_connected" class="subtab active" data-subtab="doc_connected"
+                    style="">
+                    Documented
+                </div>
+                <div id="doc_not_connected" class="subtab" data-subtab="doc_not_connected"
+                    style="">
+                    Not Documented
+                </div>
+            </div>
+        </div>
+
+        <!-- Documentation Subtabs -->
+        <div id="sub_tab_Documentation" data-subtab="Documentation">
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <div id="license_connected" class="subtab" data-subtab="license_connected"
+                    style="">
+                    Documented
+                </div>
+                <div id="license_not_connected" class="subtab" data-subtab="license_not_connected"
+                    style="">
+                    Not Documented
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Grid -->
+        <div id="report_grid"></div>
+    </div>
+</div>

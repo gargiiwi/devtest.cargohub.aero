@@ -1,0 +1,46 @@
+/** Styles used by in-application HTML containing CargoClaim data - Usually used inside in-application messages */ 
+div.msg-content table {
+    margin-bottom: 8px;
+    width: 100%;
+}
+div.msg-content th {
+    font-weight: normal;
+    padding-right: 6px;
+    text-align: right;
+    width: 180px;
+}
+div.msg-content .iss_claim_type {
+	padding: 1px 4px;
+	margin-right: 5px;
+	color: white;		
+}
+div.msg-content #iss_ct_Delay {
+	border: 1px solid darkblue;
+	background-color: blue;
+}
+div.msg-content #iss_ct_Damage {
+	border: 1px solid brown;
+	background-color: red;
+}
+div.msg-content #iss_ct_Loss {
+	border: 1px solid black;
+	background-color: gray;
+}
+div.msg-content .iss_document {
+	padding: 1px 4px;
+	margin-right: 5px;
+	color: green;
+	border: 1px solid lightgray;		
+}
+
+div.msg-content	div#attachments div.file-download {
+	margin-bottom: 6px;
+	padding: 4px 0px 6px 2px;
+	border-bottom: 1px dotted lightgray;
+}
+	
+	div.msg-content	div#attachments div.file-download img {
+		float: left;
+		margin-right: 10px;
+		border: none;
+	}

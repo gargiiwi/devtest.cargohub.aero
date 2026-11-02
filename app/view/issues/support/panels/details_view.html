@@ -1,0 +1,41 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{customer.n}:</th><td>{^xfields.customer:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{section.n}:</th><td>{^xfields.section.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{loc_det.n}:</th><td>{^xfields.loc_det:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<h5 style="margin-left: 20px;">Problem/ Question/ Suggestion/ Idea</h5>
+	{#if:^xfields.descr:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 160px; overflow: auto;">{^xfields.descr}~nl2br~</div>}
+	{#ifnot:^xfields.descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<h4 style="background-image: url('/img/icons16/computer.png'); background-repeat: no-repeat; background-position: 4px; margin-top: 10px;">Computing environment</h4>
+	<table>
+		<tr><th>{browser.n}:</th><td>{#ifnot:^xfields.browser:<span class='gray'>---</span>}{#repeat:^xfields.browser:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{opsys.n}:</th><td>{#ifnot:^xfields.opsys:<span class='gray'>---</span>}{#repeat:^xfields.opsys:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+
+	<h4 style="background-image: url('/img/icons16/ist/support.png'); background-repeat: no-repeat; background-position: 4px;">Support department interaction</h4>
+	<table>
+		<tr><th>{work.n}</th><td>{^xfields.work.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{phone_supp.n}</th><td>
+			{#if:^xfields.phone_supp.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.phone_supp.key: checked="checked"}> {^xfields.phone_supp.value}</label>}
+			{#ifnot:^xfields.phone_supp.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{phone_cback.n}:</th><td>{^xfields.phone_cback:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{phone_call.n}</th><td>
+			{#if:^xfields.phone_call.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.phone_call.key: checked="checked"}> {^xfields.phone_call.value}</label>}
+			{#ifnot:^xfields.phone_call.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{repeat.n}:</th><td>
+			{#if:^xfields.repeat.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.repeat.key: checked="checked"}> {^xfields.repeat.value}</label>}
+			{#ifnot:^xfields.repeat.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<h5 style="margin-left: 20px;">{reproduce.n}:</h5>
+	{#if:^xfields.reproduce:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.reproduce}~nl2br~</div>}
+	{#ifnot:^xfields.reproduce:<div class="gray" style="text-indent: 20px;">-----</div>}
+}

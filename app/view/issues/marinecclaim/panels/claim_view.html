@@ -1,0 +1,32 @@
+{#use:%ist.xfield_def:
+	{!Various types of data output customizations that are specific to this issue type, directly in the template}
+	<table>
+		<tr><th>{pstage.n}:</th><td><b>{^xfields.pstage.value}</b></td></tr>
+		<tr><th>{acdate.n}:</th><td>{#if:^xfields.acdate:{^xfields.acdate}~date("Y-m-d")~}{#ifnot:^xfields.acdate:<span class='gray'>(not specified)</span>}</td></tr>			
+		<tr><th>{claim_type.n}:</th><td>{#repeat:^xfields.claim_type:<span class='iss_claim_type' id='iss_ct_{key}'>{value}</span>}</td></tr>
+		{#if:^xfields.dmg_pieces:<tr><th>Damage:</th><td><b>{^xfields.dmg_pieces}</b> Pieces ; <b>{^xfields.dmg_weight}</b> Kg</td></tr>}
+		{#if:^xfields.loss_pieces:<tr><th>Loss:</th><td><b>{^xfields.loss_pieces}</b> Pieces ; <b>{^xfields.loss_weight}</b> Kg</td></tr>}
+		{#if:^xfields.delay_pieces:<tr><th>Delay:</th><td><b>{^xfields.delay_pieces}</b> Pieces ; <b>{^xfields.delay_weight}</b> Kg</td></tr>}
+		<tr><th>{claim_amount.n}:</th><td><b>{^xfields.claim_curr.value}~cut(4)~{^xfields.claim_amount}~numberformat(2)~</b></td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{insurance.n}:</th><td>
+			{#if:^xfields.insurance.key!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.insurance.value="Yes": checked="checked"}> {^xfields.insurance.value}</label>}
+			{#ifnot:^xfields.insurance.key!=-1:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{freight_value.n}:</th><td><b>{^xfields.freight_curr.value}~cut(4)~{^xfields.freight_value}~numberformat(2)~</b></td></tr>
+		<tr><th>{dmg_repair.n}:</th><td>
+			{#if:^xfields.dmg_repair.key!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.dmg_repair.value="Yes": checked="checked"}> {^xfields.dmg_repair.value}</label>}
+			{#ifnot:^xfields.dmg_repair.key!=-1:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{repair_value.n}:</th><td><b>{^xfields.repair_curr.value}~cut(4)~{^xfields.repair_value}~numberformat(2)~</b></td></tr>
+		<tr><th>{salvage_value.n}:</th><td><b>{^xfields.salvage_curr.value}~cut(4)~{^xfields.salvage_value}~numberformat(2)~</b></td></tr>
+		<tr><th>{invoice.n}:</th><td><b>{^xfields.invoice_curr.value}~cut(4)~{^xfields.invoice}~numberformat(2)~</b></td></tr>
+		<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>{documents.n}:</th><td>{#repeat:^xfields.documents:<span class='iss_document' id='iss_doc_{key}'>{value}</span>}</td></tr>
+	</table>
+	<h5>{what_happened.n}:</h5>
+	{#if:^xfields.what_happened:<div style="border: 1px solid lightgray; padding: 4px; margin-bottom: 8px;">{^xfields.what_happened}~nl2br~</div>}
+	{#ifnot:^xfields.what_happened:<div class="gray" style="text-indent: 20px; margin-bottom: 8px;">(event description not completed)</div>}
+}

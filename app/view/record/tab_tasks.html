@@ -1,0 +1,675 @@
+{!Version 2020.01.29}
+<div class='toolbar jqx-widget jqx-rc-all'>
+    <div class='toolbar-accessory'>
+        <img src="/img/icons/to_do_list_checked_1.png" alt="[task]" class="info-tip" data-tooltip="Define operational tasks and assign them to yourself or other users" /><span>Tasks</span>
+    </div>
+    <div class='tasks-master-ops' style="display: none;">
+        <button data-op="task-create" class="info-tip" id="task-create" data-tooltip="Define a new task and optionally assign it to a person or a department."><img src='/img/icons16/add.png' />Define task</button>
+        {!		<div class="right" id="tasks-show_closed" style="line-height: 18px; margin: 10px; display: none;">View <b>hidden</b></div>}
+    </div>
+    <div class='tasks-row-ops' style='display: none;'>
+        <div class='toolbar-separator'></div>
+        <button data-op="task-open" class="info-tip" data-tooltip="Open selected task"><img src="/img/icons16/document_inspector.png" alt="[o.]" /> Open</button>
+        <span class='tasks-master-ops' style="display: none;">{!Full access}
+            {!			<button data-op="task-copy" class="info-tip" data-tooltip="Create a copy of selected task<br />(Will start as unassigned)"><img src='/img/icons16/page_copy.png' /> Copy</button>}
+            <button data-op="task-delete" title="Delete the task" class="info-tip right" data-tooltip_position="left" data-tooltip="Remove selected task from the database.<br /><span class='red'><b>Warning:</b> This action is not reversible!</span>"><img src='/img/icons16/trash_empty.png' />Delete</button>
+        </span>
+    </div>
+    <div class='tasks-open-ops' style='display: none;'>
+        <div class='toolbar-separator'></div>
+        <span class='tasks-write-ops' style="display: none;">
+            <button data-op="task-save" class="info-tip" data-tooltip="Save task"><img src='/img/icons16/save.png' /> Save</button>
+        </span>
+        <button data-op="task-close" class="info-tip" data-tooltip="Close task editor without saving"><img src='/img/icons16/cross.png' /> Close</button>
+    </div>
+    <div class='tasks-master-ops' style="display: none;">
+<!--        <button data-op="filteractive" title="Active Tasks" id="taskAct">Active Tasks [<span id="act_task">0</span>]</button> // IWI all task should be list in one page , start with open tasks-->
+        <!--<button data-op="filterfailed" title="Failed Task" id="taskFal">Closed Tasks [<span id="fail_task">0</span>]</button> //IWI all task should be list in one page , start with open tasks-->
+       
+        <button data-op="exportxlsx" title="Export table as ExcelX" id="taskXls"><img src='/img/icons16/table_export.png' /> Export XLSX</button>
+    </div>
+</div>
+<div id="task-viewer" style="display: none;">
+    <div style="padding-left: 2px;"></div>
+    <div>{!jqxExpander body}</div>
+</div>
+<div id="task-editor" style="display: none;">
+    <div style="padding-left: 2px;padding: 5px;font-size: 12px;font-weight: 600;"></div> <!--miscellaneous changes -->
+    <div>{!jqxExpander body}
+        <form method="post">
+            {!Section for editing existing tasks - Shows creation date, current assignment, Current due date (if it exists), Current Status and Progress; Not visible in "create" mode}
+            <section id="task-overview" style="display: none;">
+                <div style="width: 100%; padding: 6px; box-sizing: border-box;">
+                    <div class='ctrl-line' id="task-dt">
+                        <label>Created on <img src='/img/icons16/add.png' class="inline-icon info-tip" data-tooltip="Exact moment when this task was created (read-only)"></label>
+                        <div style="line-height: 26px;">&mdash;</div>
+                    </div>
+                    <div class='ctrl-line' id="task-createdby">
+                        <label>Created by <img src='/img/icons16/user_suit.png' class="inline-icon info-tip" data-tooltip="Which user has defined this task"></label>
+                        <div style="line-height: 26px;">&mdash;</div>
+                    </div>
+                    <div class='ctrl-line' id="task-asginfo">
+                        <label>Assigned to <img src='/img/icons16/arrow_right.png' class="inline-icon info-tip" data-tooltip="Person or Department that is currently assigned to perform this task"></label>
+                        <div style="line-height: 26px;">&mdash;</div>
+                    </div>
+                    <div class='ctrl-line' id="task-delegate" style="display: none;">
+                        <label>Dept. delegate <img src='/img/icons16/user.png' class="inline-icon info-tip" data-tooltip="Which user has defined this task"></label>
+                        <div style="line-height: 26px;">&mdash;</div>
+                    </div>
+                    <div class='ctrl-line' id="task-dlinfo">
+                        <label>Due date <img src='/img/icons16/calendar.png' class="inline-icon info-tip" data-tooltip="Day until this task should be set to Completed or Failed"></label>
+                        <div style="line-height: 26px;">&mdash;</div>
+                    </div>
+                    <div class='ctrl-line' id="task-statinfo">
+                        <label>Status <img src='/img/icons16/flag_2.png' class="inline-icon info-tip" data-tooltip="Current status and progress for this task"></label>
+                        <div style="line-height: 26px;">&mdash;</div>
+                    </div>
+                </div>
+                <hr class="task-edit-master" style="display: none;" />
+            </section>
+            <section class="task-edit-master" style="display: none;">
+                  <div style="margin: 12px 0; font-size: 12px; font-weight: 600;background-color: #8E8D8A;height: 31px;">
+                    <img src="/img/icons16/user_go.png" class="info-tip inline-icon" data-tooltip_position="top" 
+                        data-tooltip="Assigning the task to other people will trigger (an) assignment notification(s)<br />An extra notification will be sent when approaching deadline and when passed" 
+                        style="margin-left: 5px; vertical-align: middle;margin-top: 6px;" />
+                    <p style="margin-top: -14px;margin-left: 27px;color:black;">Task Details</p>
+                </div>
+                <div style="width: 100%; padding: 6px; box-sizing: border-box;">
+                    <div class='ctrl-line' id="task-tpl-line" style="display: none;">
+                        <label>Use template <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="The template may use information from the record<br />After the task is created, any changes to the record will not affect the existing task !"></label>
+                        <div id="task-template"></div>
+                    </div><br>
+                    <div class='ctrl-line'>  
+                        <label for='task-title'>Title <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Quick task information<br />The title can be used to locate this task in the Task Manager"></label>
+                        <input type='text' id='task-title' class="form-control jqx-input jqx-rc-all" value="" style='width: 855px;' />
+                    </div>    <!--miscellaneous changes -->
+                </div>
+            </section>
+            {!Section for "update" mode, shows Title and Description as read-only blocks (Not form inputs); Not visible in "create" and "master-edit" modes}
+            <section id="task-readonly" style="display: none;">
+                <h4><img src="/img/icons16/info_rhombus.png" class="inline-icon" />
+                    <span id="task-title-ro"></span></h4>
+                <div id="task-descr-ro"></div>
+            </section>
+            <section id="task-update" style="display: none;"> <!--miscellaneous changes start-->
+                <!-- <h4><img src="/img/icons16/forward16.png" class="info-tip inline-icon" data-tooltip_position="top" data-tooltip="Update the progress done for this task.<br /><br />Enter information on what has been done and<br />change progress percent if needed." />
+                    Progress update</h4> -->
+                <div style="width: 100%; padding: 6px; box-sizing: border-box;">
+                    <div class="ctrl-line" style="height: 32px;" id="task-status-line">
+                        <label style="line-height: 32px;">Status:</label>
+                        {!Status buttongroup is dynamically added and readded every time the editor is initialized}
+                    </div>
+                    <div class="ctrl-line leftchildren" style="margin-bottom: 10px;">
+                        <label>Progress:</label>
+                        <div id="task-progress"></div><span style="line-height: 26px; margin: 0 15px 0 3px">%</span><div class="unselectable"><div id="task-progress_slider"></div></div>
+                    </div>
+                      <!-- <div class='ctrl-line' style="margin-bottom: 10px;">
+                        <label for='task-title'>Title <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Quick task information<br />The title can be used to locate this task in the Task Manager"></label>
+                        <input type='text' id='task-title' class="form-control jqx-input jqx-rc-all" value="" style='width: 855px;' />
+                    </div>                                miscellaneous changes end -->
+                  
+                    <div class="ctrl-line">
+                        <label for="task-update-comment">Update reason <img src="/img/icons16/information.png" class="inline-icon info-tip" data-tooltip="Describe what was done since the last update,<br />the reason for updating the task"></label>
+                        <input type='text' id='task-update-comment' class="form-control jqx-input jqx-rc-all" value="" style='width: 855px;' />
+                    </div>
+                </div>
+            </section>
+            {!Section for "create" and "master-edit" modes, containing input fields for setting up and changing the task's important information; Not visible in "update" mode}
+             <!-- <section class="task-edit-master" style="display: none;">
+                <h4><img src="/img/icons16/user_go.png" class="info-tip inline-icon" data-tooltip_position="top" data-tooltip="Assigning the task to other people will trigger (an) assignment notification(s)<br />An extra notification will be sent when approaching deadline and when passed" />
+                    Assignment and notifications</h4>
+                <table style="width: 100%; border-spacing: 6px;">
+                    <colgroup><col style="width: 59%;" /><col style="width: 41%;" /></colgroup>
+                    <tbody>
+                    <div style="margin-left: 78px;" class='ctrl-line'>
+                        <span >Task type: </span>
+                        <select id='task-type' name='' class='jqx-input jqx-input-classic' style="height: 24px;width: 464px;padding-left: 4px;">
+                            <option value='Custom' >Custom</option>
+                            <option value='Finding' >Finding</option>
+                            <option value='Finding (minor)' >Finding (minor)</option>
+                            <option value='Finding (Major)' >Finding (Major)</option>
+                            <option value='Observation' >Observation</option>
+                            <option value='Observation (minor)' >Observation (minor)</option>
+                            <option value='Observation (Major)' >Observation (Major)</option>
+                            <option value='Improvement opportunity' >Improvement opportunity</option>
+                        </select>
+                    </div>
+                    <div style="margin-left: 45px;" class='ctrl-line'>
+                        <span class="left inline-text24">Document ref.: </span>
+                        <input style="height: 24px;margin-left: 6px;width: 460px;padding-left: 4px;" maxlength="12" type="text" id="task-ref" name="" value="" class="audit-track jqx-rc-all jqx-input jqx-input-classic">
+                    </div>
+                    <div style="margin-left: 505px;margin-top: -23px;">
+                        <span id = "viewDetails" style="display:none;">  </span>
+                    </div>
+                    <br>
+                    <tr><td valign="top">{!Left side}
+                            <div class='ctrl-line'>
+                                <label>Assign to:</label>
+                                <div id="asgtype-radios" style="padding: 5px 0;">
+                                    <div data-value="self" data-tooltip="Assign the task to myself" data-tooltip_position="top">Myself</div>
+                                    <div data-value="user" data-tooltip="Select one specific user to perform this task" data-tooltip_position="top">A person</div>
+                                    <div data-value="dep" data-tooltip="Any user from the selected department may provide updates to the task" data-tooltip_position="top">Department</div>
+                                    {!									<div data-disabled="true" data-value="usrgrp" data-tooltip="Disabled because custom user groups do not yet exist" data-tooltip_position="top">User Group</div>}
+                                </div>
+                            </div>
+                            <div class='ctrl-line' style="display: none;">
+                                <label>Department:</label><div id="task-assign-dep"></div>
+                            </div>
+                            <div class='ctrl-line' id='task-user-line'>
+                                <label>User:</label><div class="form-control"></div><button type="button" style="margin-left: 4px; display: none;" class="form-control info-tip" data-tooltip="Cancel delegation of department task handling"><img style="margin: 1px 3px -1px 3px;" src="/img/icons16/cancel.png" alt="[x]" /></button>
+                            </div>
+
+                            <!--IWI Create a files upload section in task  start-->
+                             <!-- <div class='ctrl-line file_upld'>
+                        <label for='doc-description-tasks' style="display: inline-block; vertical-align: middle;">Upload files <img src='/img/icons16/information.png' class="inline-icon info-tip " style="vertical-align: middle; margin-left: -2px;" data-tooltip="Upload files"></label>
+                        <input type='file'  class="form-control jqx-input jqx-rc-all task-file" multiple="multiple"  style='width: 250px;' placeholder="(Optional)" /><br>
+                    </div>  -->
+                            <!--IWI Create a files upload section in task end-->
+
+                             <!-- <div class='ctrl-line gray' id='task-user-info'>
+                                <label><img src="/img/icons16/information.png" class="inline-icon" /></label><div style="line-height: 26px;"> Select assignment mode to activate the controls !</div>
+                            </div>
+                            {!							<div class='ctrl-line' style="display: none;">
+                                <label>How to inform <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="If the assignee(s) are regularly logging into the system<br />the E-mail might be turned off to reduce the clutter in their Inbox"></label>
+                                <div id="task-ntf-type" style="padding: 5px 0;">
+                                    <div data-value="email">Send E-mail(s)</div>
+                                    <div data-value="sys">In-system only</div>
+                                </div>
+                            </div>}
+                        </td><td valign="top">{!right side}
+                            <div class='ctrl-line'>
+                                <label>Notifications  <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="The system will send automated notifications on the selected dates<br />Use the control for quickly entering a timeframe, or manually select the dates<br /><br />Please note thate there are some restrictions on the dates<br />(not in the past; reminder cannot be set after due date)"></label><div id='task-ntfsetup'></div>
+                            </div>
+                            <div class='ctrl-line'>
+                                <label>Due date <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="The last day (Deadline) when this task can be finished or failed.<br />If status is not set to &quot;<b>Completed</b>&quot; or &quot;<b>Failed</b>&quot; before or on this date<br />the system will send a notification to the assignee(s) and the task creator"></label>
+                                <div id='task-deadline' class='form-control calendar'></div><span class='static'></span>
+                            </div>
+                            <div class='ctrl-line'>
+                                <label>Reminder date <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="When set, a reminder is being sent to the assignee(s)<br />at the specified reminder date<br /><br /><b>Note:</b> If the Due Date is tomorrow, there will be no reminder !"></label>
+                                <div id='task-reminder' class='form-control calendar'></div><span class='static'></span>
+                            </div>
+                            <div class='ctrl-line'>
+                                <label>Overdue notif. <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="If the task is not completed by due date,<br />periodic reminders will be sent to the assignee(s)<br />at the specified interval, until status is changed<br />or the overdue notificatios are turned off"></label>
+                                <div id='task-overdue'></div>
+                            </div>
+                            <div class='ctrl-line' style="display: none;">
+                                <label>Repeat limit <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="How many times the overdue notification is allowed to repeat ?"></label>
+                                <div id='task-ovdlimit' class='form-control'></div><span class='static'></span>
+                            </div>
+                        </td></tr>
+                    </tbody>
+                </table>   --> 
+                  
+                <section class="task-edit-master" style="display: none; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 14px; color: #333;">
+                <div style="margin: 12px 0; font-size: 15px; font-weight: 600;background-color: #8E8D8A;height: 31px;">
+                    <img src="/img/icons16/user_go.png" class="info-tip inline-icon" data-tooltip_position="top" 
+                        data-tooltip="Assigning the task to other people will trigger (an) assignment notification(s)<br />An extra notification will be sent when approaching deadline and when passed" 
+                        style="margin-left: 5px; vertical-align: middle;margin-top: 6px;" />
+                    <p style="margin-top: -17px;margin-left: 23px;color:black;">Assignment and Due date</p>
+                </div>
+
+    <table style="width: 100%; border-spacing: 6px; background: #fafafa; border: 1px solid #ccc; padding: 10px; border-radius: 6px;">
+    <!--<colgroup><col style="width: 80%;" /><col style="width: 20%;" /></colgroup>-->
+    <tbody>
+
+        <!-- Row for Task Type and Document Reference -->
+        <tr>
+            <td colspan="2" style="vertical-align: top; padding-bottom: 4px; ">
+                <!-- <div style="margin-bottom: 10px;">
+                    <span style="font-weight: 500;">Task type:</span>
+                    <select id='task-type' class='jqx-input jqx-input-classic' 
+                        style="height: 28px;  margin-left: 63px; width: 464px; padding-left: 6px; border-radius: 4px; border: 1px solid #ccc; background: #fff;">
+                        <option value='Custom'>Custom</option>
+                        <option value='Finding'>Finding</option>
+                        <option value='Finding (minor)'>Finding (minor)</option>
+                        <option value='Finding (Major)'>Finding (Major)</option>
+                        <option value='Observation'>Observation</option>
+                        <option value='Observation (minor)'>Observation (minor)</option>
+                        <option value='Observation (Major)'>Observation (Major)</option>
+                        <option value='Improvement opportunity'>Improvement opportunity</option>
+                    </select>
+                </div> -->
+
+                <!-- <div style="margin-bottom: 10px;">
+                    <span style="font-weight: 500;">Document ref.:</span>
+                    <input style="height: 28px; margin-left: 32px; width: 456px;  border-radius: 4px; border: 1px solid #ccc;" 
+                        maxlength="12" type="text" id="task-ref" value="" 
+                        class="audit-track jqx-rc-all jqx-input jqx-input-classic">
+                </div> -->
+
+                
+               
+            
+                <div style="margin-bottom: 18px; display: flex; align-items: center; gap: 10px;">
+                    <label style="font-weight: 500; white-space: nowrap;">Assign to:</label>
+                   <div id="asgtype-radios" style="display: flex; gap: 6px; margin-left: 58px;width: 462px;">
+                        <div data-value="self" style="cursor: pointer; padding: 6px; width: 40px; background: rgb(218 224 233); border: 1px solid #99c2ff; border-radius: 3px; font-size: 12px;">Myself</div>
+                        <div data-value="user" style="cursor: pointer; padding: 6px; width: 40px; background: rgb(218 224 233); border: 1px solid #99c2ff; border-radius: 3px; font-size: 12px;">A person</div>
+                        <div data-value="dep" style="cursor: pointer; padding: 6px; width: 50px; background: rgb(218 224 233); border: 1px solid #99c2ff; border-radius: 3px; font-size: 12px;">Department</div>
+                    </div>
+                </div>
+                
+<!--                <div id='task-user-info' style="margin-top: 12px;">
+                <img src="/img/icons16/information.png" style="vertical-align: middle; margin-right: 6px;" alt="Info">
+                <span style="line-height: 26px;">Select assignment mode to activate the controls!</span>
+               </div>-->
+
+
+               <!-- <div style="display: none; flex-direction: row; align-items: center;margin-bottom: 10px;">
+                <label style="font-weight: 500; white-space: nowrap; margin-right: 8px;">Department:</label>
+                <div id="task-assign-dep" style="display: inline-block; min-width: 200px;margin-left: 6px;"></div>
+            </div> -->
+
+                 <div style="display: none; flex-direction: row; align-items: center;margin-bottom: 23px;">
+                <label style="font-weight: 500; white-space: nowrap; margin-right: 8px;">Department:</label>
+                <div id="task-assign-dep" style="display: inline-block; min-width: 200px;margin-left: 38px;"></div>
+            </div>
+
+             <div id='task-user-line' style="display: flex; align-items: center; margin-bottom: 13px;">
+                    <label style="font-weight: 500; margin-right: 8px; min-width: 120px; white-space: nowrap;">User:</label>
+                    <div id="user_deligated" class="form-control" style="display: inline-block; margin-left: 0px;"></div>
+                    <button type="button" style="margin-left: 4px; display: none; padding: 3px 6px;" class="form-control info-tip">
+                        <img style="margin: 1px 3px -1px 3px;" src="/img/icons16/cancel.png" alt="[x]" />
+                    </button>
+                </div>
+<!-- Iwi setting button task start -->
+                <!-- <div style="margin-bottom: 13px; display: flex; align-items: center; gap: 8px;">
+                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                    Notifications: -->
+                    <!--<img src='/img/icons16/information.png' class="inline-icon info-tip" style="margin-left: 4px;">-->
+                <!-- </label>
+                <div id='task-ntfsetup' style="margin-left: 35px;margin-top: -7px;" ></div>
+            </div> -->
+
+            <!-- <div style="margin-bottom: 13px; display: flex; align-items: center; gap: 8px;">
+                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                        Due date: -->
+                        <!--<img src='/img/icons16/information.png' class="inline-icon info-tip">-->
+                    <!-- </label>
+                    <div id='task-deadline' class='form-control calendar' style="margin-left: 59px; "></div>
+                    <span class='static'></span>
+                </div>   -->
+
+                <div style="margin-bottom: 17px; display: flex; align-items: center; gap: 10px;">
+    
+                    <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                        Due date:
+                    </label>
+                    <div id="task-deadline" class="form-control calendar" style="width: 150px;margin-left: 58px;"></div>
+
+
+                    <!-- <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center; margin-left: 1px;">
+                        Notifications:
+                    </label> -->
+                    <div id="task-ntfsetup" style="width: 271px;"></div>
+                </div>
+  <!-- Iwi setting button task end -->              
+
+                  <!--IWI doc section file upload start-->
+                <div style="margin-bottom: 10px;">
+                    <label for='doc-description-tasks' style="font-weight: 500;">Attach File: 
+                        <!--<img src='/img/icons16/information.png' style="vertical-align: middle; margin-left: -2px;">-->
+                    </label>
+                    <div style="display: flex; align-items: center; margin-top: -33px; margin-left: 0px;">
+                     <div id="doc-attach-task-file" style="margin-left:130px;margin-top: 1%;"></div>
+                      <span style="margin-left: 12px;margin-top: 3px;"><b>OR</b></span>
+                      <div class="modern-file-upload">
+                            <label for="task-file-input" style="width: 138px;height:11px;margin-left: -1px;">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M4 12l8-8 8 8M12 4v12"/>
+                                </svg>
+                                Upload Files
+                            </label>
+                            <input id="task-file-input" type="file" class="task-file"    />
+                            <div id="task-file-info" class="file-info"></div>
+                        </div>
+<!--                      <input type='file' class="form-control jqx-input jqx-rc-all task-file" multiple 
+                        style='width: 209px; height: 21px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; margin-top: 6px;margin-left: 11px;' />-->
+                   </div>
+                </div>
+                  <!--IWI doc section file upload end-->
+
+               <!-- <div style="margin-bottom: 10px;">
+                    <label for="doc-description-tasks" style="font-weight: 500;">
+                        Attach File 
+                        <img src="/img/icons16/information.png" style="vertical-align: middle; margin-left: -2px;">
+                    </label>
+
+                    
+                    <button type="button" class="openTaskFilePopup" 
+                            style="margin-left: 43px; padding: 5px 10px; border-radius: 4px; 
+                                border: 1px solid #ccc; cursor: pointer; background: rgb(218 224 233); border: 1px solid #99c2ff;">
+                                <img src="/img/icons16/import.svg" style="vertical-align: middle; margin-left: -2px;">
+                    Import File
+                    </button>
+                </div>
+                    <div id="popupModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;background-color: rgba(0, 0, 0, 0.4); z-index: 1000; justify-content: center; align-items: center;">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px;width: 420px; position: relative; display: flex; flex-direction: column;">
+                    <span class="closeTaskFilePopup"  style="position: absolute; top: 8px; right: 12px; font-weight: bold; font-size: 18px; cursor: pointer;">&times;</span>
+
+                    <div style="display: flex; align-items: center; margin-top: 20px;">
+                    <div id="doc-attach-task-file" style="margin-left:10px; margin-top: 1%;"></div>
+                    
+                    <input type="file" class="form-control jqx-input jqx-rc-all task-file" multiple 
+                        style="width: 209px; height: 21px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; margin-top: 6px; margin-left: 11px;">
+                    </div>
+                </div>
+                </div> -->
+
+
+
+ 
+
+                <!-- <div id='task-user-info' style="margin-top: 12px; background: #f8f8f8; padding: 10px; border: 1px dashed #ccc; border-radius: 4px;">
+                    <label><img src="/img/icons16/information.png" /></label>
+                    <div style="line-height: 26px; margin-left: 4px;">Select assignment mode to activate the controls!</div>
+                </div> -->
+
+
+                <div id="task-image-preview" style='
+                    margin-top: 15px;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                    background: #f9f9f9;
+                    width:91%;
+                ' >
+                <div class="image-box">
+                
+                </div>
+            </div>
+
+            </td>
+
+
+
+             <!-- Right Column -->
+              
+            <td valign="top" >
+
+                <!-- Iwi setting button task start -->
+
+                 <div style="position: relative; ">
+                    <button id="open-settings-task" type="button" style="color: white; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; transition: background-color 0.3s ease; margin-left: 368px;margin-top: -8px; border-color: black;">
+                        <img src="/img/icons/cog.png" alt="Settings">
+                    </button>
+
+                    <div id="settings-modal-task" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 999; justify-content: center; align-items: center;">
+                        <div style="background-color: #fff; padding: 20px; border-radius: 8px; width: 400px; box-shadow: 0 0 10px rgba(0,0,0,0.3); position: relative;">
+                        
+                        <!-- <h3 style="margin-top: 0; margin-left: 173px;color:black;">Task Settings</h3><br>  -->
+                            <h3 style="width:100%;margin: 0;margin-left: -20px;padding: 10px 20px;font-size: 20px;font-weight: 600;color: #333;
+                                            background: linear-gradient(to right, #f0f0f0, #ffffff);border-top-left-radius: 8px; border-top-right-radius: 8px;"> <i class="fa fa-wrench" aria-hidden="true"></i> Task Settings
+                            </h3><br>                                                 <!--miscellaneous changes -->
+ 
+                             <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                                        Overdue notif. 
+                                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                                    </label>
+                                    <div id='task-overdue' style="margin-left: 2px;"></div>
+                                </div>
+
+                                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                                        Reminder date 
+                                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                                    </label>
+                                    <div id='task-reminder' class='form-control calendar'></div>
+                                    <span class='static'></span>
+                                </div>
+
+                            <div style="text-align: right;">
+                                <button id="close-settings-task" type="button" style="padding: 5px 10px; border-radius: 4px; border: none; background-color: #ccc; cursor: pointer;">Close</button>
+                            </div>
+
+                         </div>
+                    </div>
+                </div>
+                
+
+               
+
+                <div style="display: none;margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                    <label style="font-weight: 500; white-space: nowrap; display: none; align-items: center;">
+                        Repeat limit 
+                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                    </label>
+                    <div id='task-ovdlimit' class='form-control' style="margin-left: 17px; display: none;"></div>
+                    <span class='static'></span>
+                </div>
+                
+                     <!-- Iwi setting button task end -->
+
+                                <!-- <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                                        Overdue notif. 
+                                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                                    </label>
+                                    <div id='task-overdue' style="margin-left: 2px;"></div>
+                                </div>
+
+                                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                                        Reminder date 
+                                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                                    </label>
+                                    <div id='task-reminder' class='form-control calendar'></div>
+                                    <span class='static'></span>
+                                </div> -->
+
+                
+
+                            
+             
+
+                
+
+                <!-- <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                        Overdue notif. 
+                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                    </label>
+                    <div id='task-overdue' style="margin-left: 2px;"></div>
+                </div> -->
+
+                
+            </td>
+        </tr>
+
+        <!-- Main Form Section -->
+        <tr>
+            <!-- Left Column -->
+            <!-- <td valign="top" style="padding-right: 10px; padding-top: 0;">
+                <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                    <label style="font-weight: 500; white-space: nowrap;">Assign to:</label>
+                    <div id="asgtype-radios" style="display: flex; gap: 6px;">
+                        <div data-value="self" style="cursor: pointer; padding: 6px 6px; margin-left: 27px; background:rgb(218 224 233); border: 1px solid #99c2ff; border-radius: 3px; font-size: 12px;">Myself</div>
+                        <div data-value="user" style="cursor: pointer; padding: 6px 6px; background:rgb(218 224 233); border: 1px solid #99c2ff; border-radius: 3px; font-size: 12px;">A person</div>
+                        <div data-value="dep" style="cursor: pointer; padding: 6px 6px; background: rgb(218 224 233); border: 1px solid #99c2ff; border-radius: 3px; font-size: 12px;">Department</div>
+                    
+                    </div>
+                </div>
+
+
+               <div style="display: none; flex-direction: row; align-items: center;margin-bottom: 15px;">
+                <label style="font-weight: 500; white-space: nowrap; margin-right: 8px;">Department:</label>
+                <div id="task-assign-dep" style="display: inline-block; min-width: 200px;margin-left: 6px;"></div>
+            </div>
+
+                <div id='task-user-line' style="margin-bottom: 10px;">
+                    <label style="font-weight: 500;">User:</label>
+                    <div class="form-control" style="display: inline-block; margin-left: 2px;"></div>
+                    <button type="button" style="margin-left: 4px; display: none; padding: 3px 6px;" class="form-control info-tip">
+                        <img style="margin: 1px 3px -1px 3px;" src="/img/icons16/cancel.png" alt="[x]" />
+                    </button>
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                    <label for='doc-description-tasks' style="font-weight: 500;">Upload files 
+                        <img src='/img/icons16/information.png' style="vertical-align: middle; margin-left: -2px;">
+                    </label>
+                    <input type='file' class="form-control jqx-input jqx-rc-all task-file" multiple 
+                        style='width: 250px; height: 28px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; margin-top: 6px;' />
+                </div>
+
+                <div id='task-user-info' style="margin-top: 12px; background: #f8f8f8; padding: 10px; border: 1px dashed #ccc; border-radius: 4px;">
+                    <label><img src="/img/icons16/information.png" /></label>
+                    <div style="line-height: 26px; margin-left: 4px;">Select assignment mode to activate the controls!</div>
+                </div>
+            </td> -->
+
+            <!-- Right Column -->
+            <!-- <td valign="top" style="padding-left: 10px;">
+                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                    Notifications  
+                    <img src='/img/icons16/information.png' class="inline-icon info-tip" style="margin-left: 4px;">
+                </label>
+                <div id='task-ntfsetup' style="margin-left: 5px;" ></div>
+            </div>
+
+             <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                        Overdue notif. 
+                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                    </label>
+                    <div id='task-overdue' style="margin-left: 2px;"></div>
+                </div>
+
+                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                        Due date 
+                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                    </label>
+                    <div id='task-deadline' class='form-control calendar' style="margin-left: 34px;"></div>
+                    <span class='static'></span>
+                </div>
+
+                <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                        Reminder date 
+                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                    </label>
+                    <div id='task-reminder' class='form-control calendar'></div>
+                    <span class='static'></span>
+                </div>
+
+                <!-- <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                        Overdue notif. 
+                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                    </label>
+                    <div id='task-overdue' style="margin-left: 2px;"></div>
+                </div> -->
+
+                <!--<div style="display: none;margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                    <label style="font-weight: 500; white-space: nowrap; display: flex; align-items: center;">
+                        Repeat limit 
+                        <img src='/img/icons16/information.png' class="inline-icon info-tip">
+                    </label>
+                    <div id='task-ovdlimit' class='form-control' style="margin-left: 17px;"></div>
+                    <span class='static'></span>
+                </div>
+            </td> -->
+        </tr>
+    </tbody>
+</table>
+
+</section>
+
+             
+
+                <section style="background: #f9f9f9;border: 2px solid #cacaca;border-radius: 6px;">  <!--miscellaneous changes -->
+                <!-- <p class="gray center" style="margin: 9px auto 5px auto;"><b>Detailed description</b> <img src="/img/icons16/information.png" class="info-tip inline-icon" data-tooltip_position="top" data-tooltip="Text length is limited to about 60000 characters.<br />Please keep this information short." /></p> -->
+                <p class="gray" style="margin: 9px auto 5px auto; text-align: left;margin-left: 20px;">
+                    <img src="/img/icons16/information.png" class="info-tip inline-icon" data-tooltip_position="top" data-tooltip="Text length is limited to about 60000 characters.<br />Please keep this information short." style="vertical-align: middle; margin-right: 6px;" />
+                    <b>Detailed description</b>
+                </p>
+                <!-- components.tinymce -->
+                <textarea id="task-descr" rows='1' readonly="readonly" style="height: 1px; width: 1px;"></textarea>{!Gets replaced with TinyMCE}
+                <div id="task-descr-placeholder" class="loading-pleasewait" style='height: 235px;'></div>
+            </section>
+            <div class='toolbar jqx-widget' style='text-align: center; margin: 10px 6px;'>
+                <button type="button" style="float: none;" data-op="task-save" class="info-tip" data-tooltip="Save task"><img src='/img/icons16/save.png' /> Save the task</button>
+                <button type="button" style="float: none;" data-op="task-close" class="info-tip" data-tooltip="Close task editor without saving"><img src='/img/icons16/cross.png' /> Discard changes and Close</button>
+            </div>
+            <section id="task-history" style="display: none;">
+                <h4><img src="/img/icons16/clock_history_frame.png" class="info-tip inline-icon" data-tooltip_position="top" data-tooltip="Updates on the progress of this task" />
+                    View Update history</h4>   <!--- IWI update reason grid view -->
+                        <!-- <button id="toggle-task-grid" type="button" style="background: none; margin-left: 945px;margin-bottom: 10px;cursor: pointer;background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(1%, #efeff1), color-stop(4%, #ededf0), color-stop(100%, #d2d2d8));padding: 4px 6px;border-color: #d3d3db;">
+                        View Update History <span id="toggle-icon">▼</span>
+                    </button> -->
+ 
+                        <!--IWI show description update history start-->
+                        <button id="toggle-task-grid" type="button"
+                                style="margin-left: 936px; margin-bottom: 10px; cursor: pointer;background: linear-gradient(to bottom, #ffffff, #f3f4f6);padding: 6px 12px;
+                            border: 1px solid #d1d5db;border-radius: 8px; font-size: 14px;font-weight: 500;color: #1f2937;box-shadow: 0 1px 2px rgba(0,0,0,0.05);transition: background 0.3s ease;">
+                            Description History <span id="toggle-icon">▼</span>
+                        </button>
+
+                       <div id="task-history-grid" style="display: none; padding: 16px; border-radius: 10px; background-color: #f3f4f6; margin-bottom: 30px; font-family: 'Segoe UI', sans-serif;">
+                            
+                            <div style="max-height: 300px; overflow-y: auto;">
+                                <div style="padding: 20px; border: 1px solid #ccc; border-radius: 8px; background: #fff; position: relative;">
+
+                                    <div style="position: absolute; top: 0; left: 40px; bottom: 0; width: 4px; background: #d1d5db;"></div>
+
+<!--                                    <div style="position: relative; padding-left: 60px; margin-bottom: 30px;">
+                                        <div style="position: absolute; top: 5px; left: 10px; width: 20px; height: 20px; border: 3px solid #3b82f6; border-radius: 50%; background: #fff;"></div>
+                                        <div style="font-weight: bold; font-size: 16px; margin-bottom: 6px;">26th, July 2025 12:36 PM</div>
+                                        <div style="line-height: 1.5; color: #374151;" class="description">Task was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to JohnTask was created and assigned to John</div>
+                                    </div>
+
+                                    <div style="position: relative; padding-left: 60px; margin-bottom: 30px;">
+                                        <div style="position: absolute; top: 5px; left: 10px; width: 20px; height: 20px; border: 3px solid #3b82f6; border-radius: 50%; background: #fff;"></div>
+                                        <div style="font-weight: bold; font-size: 16px; margin-bottom: 6px;">28th, July 2025 12:36 PM</div>
+                                        <div style="line-height: 1.5; color: #374151;" class="description">test rs no test rs no test rs no...</div>
+                                    </div>
+
+                                    <div style="position: relative; padding-left: 60px; margin-bottom: 30px;">
+                                        <div style="position: absolute; top: 5px; left: 10px; width: 20px; height: 20px; border: 3px solid #3b82f6; border-radius: 50%; background: #fff;"></div>
+                                        <div style="font-weight: bold; font-size: 16px; margin-bottom: 6px;">28th, July 2025 09:36 AM</div>
+                                        <div style="line-height: 1.5; color: #374151;" class="description">Task edited by Adrija</div>
+                                    </div>-->
+
+                                </div>
+                            </div>
+                      </div>
+
+                        <!--IWI show description update history end-->
+                    
+                <div class="jqx-datatable" id="_record-task_history" style="margin: 1px;"></div>
+            </section>
+        </form>
+    </div>
+</div>
+<h4 id='tasks-table-title' style="display: none; margin-top: 40px;"><img src="/img/icons16/to_do_list.png" class="inline-icon" /> Task list</h4>
+<div class="jqx-datatable" id="_record-tasks"></div>
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template-task-viewer" type="text/dryjstpl">{@
+    <div class='info-line'>
+    <label>Created on <img src='/img/icons16/add.png' class="inline-icon info-tip" data-tooltip="Exact moment when this task was created (read-only)"></label><div>{$dt_format}</div>
+    </div>
+    <div class='info-line'>
+    <label>Created by <img src='/img/icons16/user_suit.png' class="inline-icon info-tip" data-tooltip="Which user has defined this task"></label><div>{$creator_name}</div>
+    </div>
+    <div class='info-line'>
+    <label>Assigned to <img src='/img/icons16/arrow_right.png' class="inline-icon info-tip" data-tooltip="Person or Department that is currently assigned to perform this task"></label><div>{$asgn_format}</div>
+    </div>
+    <div class='info-line'>
+    <label>Due date <img src='/img/icons16/calendar.png' class="inline-icon info-tip" data-tooltip="Day until this task should be set to Completed or Failed"></label><div>{$deadline_format}</div>
+    </div>
+    <div class='info-line'>
+    <label>Status <img src='/img/icons16/flag_2.png' class="inline-icon info-tip" data-tooltip="Current status and progress for this task"></label><div>{$status_format}</div>
+    </div>
+    <h4><img src="/img/icons16/info_rhombus.png" class="inline-icon" /> {$title}</h4>
+    <div style="padding: 10px;">{$description}</div>
+    }</script>
+<script id="template-status-button" type="text/dryjstpl">{@
+    <button style="padding: 6px 16px;"><div class="info-tip" data-tooltip="{$explain}"><img src="/img/icons16/task_statuses/{$status}.png" alt="{$status}" class="inline-icon"> {$text}</div></button>
+    }</script>
+   

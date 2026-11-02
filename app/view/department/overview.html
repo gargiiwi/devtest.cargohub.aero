@@ -1,0 +1,45 @@
+<div class='spacey clear'>{#use:department:
+	<h1>{name}</h1><hr />
+	<table class="infotable" style='padding: 6px;'><tbody>
+	{!Basic fields}
+	{#if:chief_id:
+		<tr><th>Chief:</th><td>{chief.name} ({chief.email})</td></tr>
+	}
+	{!Data count}
+	{#if:^acls.privileges.org_view_stats|^acls.unrestricted:
+		<tr><th valign="top">Total members:</th><td>{count.members}</td></tr>
+	}
+	</tbody></table>
+
+	{#if:^acls.privileges.org_users_view|^acls.unrestricted:{#if:members:<h1>Current members:</h1>
+		<table class='jqx-grid jqx-reset jqx-rc-all jqx-widget jqx-widget-content datatable'>
+		<tr class='tab-header'>
+			<th style='width: 23%;'>Name:</th>
+			<th>Comment:</th>
+			<th style='width: 105px;'>Current dep?</th>
+			<th style='width: 105px;'>Hidden user?</th>
+			<th style='width: 100px;'>Disabled?</th></tr>
+		{#repeat:members:<tr>
+			<td>{name}</td>
+			<td>{comment}</td>
+			<td class='center'>{#if:current:YES}{#ifnot:current:<span class='gray'>no</span>}</td>
+			<td class='center'>{#if:hidden:YES}{#ifnot:hidden:-}</td>
+			<td class='center'>{#if:disabled:YES}{#ifnot:disabled:-}</td>
+		</tr>}
+		</table>
+	}}
+	
+	{!Department level ACLs overrides - Privileges and Access Ids}
+	
+	
+	{#if:access_ids_or.ist:
+		<h1>Record types override:</h1>
+		{#include:acls_or.rt:includes/record_types.html}
+	}
+	
+	{#if:privileges_or:<h1>Privileges override:</h1>
+		{#include:acls_or.privileges:private/privileges_matrix.html}
+		<hr />
+	}
+		
+}</div>

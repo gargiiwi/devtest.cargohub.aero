@@ -1,0 +1,113 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:ext_ref:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error} maxlen'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:prces:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 110px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	<tr>{#use:fw_istage:
+		<th><label for='{id}'>Internal stage:</label></th>
+		<td><select id='{id}' name='{name}' class="dropselect" data-width="250" data-dwidth="250" data-dheight="200">
+			<option value=''></option>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+		</select></td>
+	}</tr>
+</table>
+{#use:fw_irem:
+	<h5>{display.label}:</h5>
+	<textarea rows="4" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>
+}
+<hr />
+{#use:fw_customer:
+	<h5>{display.label}:</h5>
+	<textarea rows="4" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>
+}
+<table>
+	{#use:project_no:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error} long'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:purch_no:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error} long'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:shipm_no:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error} long'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	<tr><td colspan="2">
+		{#use:fw_remarks:
+			<h5>{display.label}:</h5>
+			<textarea rows="6" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>
+		}
+	</td></tr>
+</table>
+
+<h4>Settlement: <a href="http://www.cargohub.nl/sdr-calculator/" target="_blank" style="float: right; text-indent: 20px; margin-right: 30px; font-weight: bold; background-image: url('/img/icons16/calculator.png'); background-repeat: no-repeat; background-position: left;">SDR Calculator</a></h4>
+<table>
+{!	<tr>{#use:fw_formal_claim:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		{#use:fw_formal_curr:<select id='{id}' name='{name}' style='width: 70px'>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}
+		</select>}
+		</td>
+	</tr>}
+	<tr>{#use:fw_acdate:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+	}</tr>
+	<tr>{#use:fw_final_costs:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input style="height: 22px;" maxlength="8"  type='text' id='{id}' name='{name}' value='{value}' class='left jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		{#use:fw_final_curr:<select id='{id}' name='{name}' style="width: 70px; margin-left: 6px;" class="left">
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}
+		</select>}
+		{#use:fw_pcarridate:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar left' style="margin-left: 6px;"></div>}
+		</td>
+	</tr>
+	{#use:fw_payedins:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:fw_payedins_curr:<select id='{id}' name='{name}' style='width: 70px;'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	<tr>{#use:fw_provision:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		{#use:fw_provision_curr:<select id='{id}' name='{name}' style='width: 70px'>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}
+		</select>}
+		</td>
+	</tr>
+	<tr>{#use:fw_proposal:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		{#use:fw_proposal_curr:<select id='{id}' name='{name}' style='width: 70px'>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}
+		</select>}
+		</td>
+	</tr>
+	<tr>{#use:fw_paidagent:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input style="height: 22px;" maxlength="8"  type='text' id='{id}' name='{name}' value='{value}' class='left jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		{#use:fw_paidagent_curr:<select id='{id}' name='{name}' style="width: 70px; margin-left: 6px;" class="left">
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}
+		</select>}
+		{#use:fw_pagntdate:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar left' style="margin-left: 6px;"></div>}
+		</td>
+	</tr>
+</table>
+</form>}

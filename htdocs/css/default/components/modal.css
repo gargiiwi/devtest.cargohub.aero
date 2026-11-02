@@ -1,0 +1,114 @@
+/** Styles related to various pop-up modals **/
+div.modal_content {
+	overflow: hidden !important;
+}
+
+div.modal_content form > div {
+	height: 26px;
+	margin-bottom: 4px;
+}
+
+	div.modal_content form > div > * {
+		float: left;
+	}
+
+	div.modal_content form > div > label {
+		display: block;
+		line-height: 26px;
+		width: 120px;
+		text-align: right;
+		padding-right: 8px;
+	}
+
+	div.modal_content form > div > input {
+		padding: 1px 0px;
+		height: 24px;
+	}
+	
+	/** Non-editable lines **/
+	
+	div.modal_content form > div > div.static {
+		line-height: 26px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}	
+	
+/*	div.modal_content form > div > span {
+		display: block;
+		height: 26px;
+		line-height: 26px;
+		font-size: 85%;
+		margin-left: 6px;
+		color: gray;
+	}*/
+/*	
+	div.modal_content textarea {
+		border: 1px solid gray;
+		width: 100%;
+		resize: none; 
+		overflow: auto;
+	}*/
+
+
+/* Only contact-editor window */	
+	
+	div.modal_content div#contact-link > span {
+		float: left;
+		display: inline-block;
+		height: 22px;
+		line-height: 22px;
+		padding: 1px 0px 1px 2px;
+		font-size: 13px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		border-style: solid;
+		border-width: 1px;
+		width: 360px;		
+	}
+	
+	div.modal_content div#contact-link > span.contact-error {
+		text-decoration: line-through;
+		color: red;
+	}
+
+	div.modal_content div#contact-search-scope > div {
+		margin-bottom: 6px;
+	}
+	
+		div.modal_content div#contact-search-scope > div > span {
+			display: block;
+			padding-left: 26px;
+		}
+
+/* Check these ones, not sure if used anymore */
+/*
+	div.modal_content img#email-address-add {
+		width: 26px;
+		margin-left: 8px;
+		cursor: pointer;
+	}
+	
+	div.modal_content div#email-cc-list ul {
+		display: block;
+		width: 358px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		margin: 2px 0 2px 0;
+	}
+	
+	div.modal_content div#email-cc-list li {
+		text-overflow: ellipsis;
+		height: 19px;
+		line-height: 19px;
+		margin-top: 1px;
+		display: block;
+		border-bottom: 1px solid #F0F0F0;
+		cursor: url(/img/extra/cursor_delete.png), auto;
+	}
+	div.modal_content div#email-cc-list li:HOVER {
+		background-color: lightgray;
+	}
+*/

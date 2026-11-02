@@ -1,0 +1,46 @@
+{#use:%ist.xfield_def:
+	{#ifnot:^xfields.documents:<span class="gray">-----</span>}
+	{#repeat:^xfields.documents:<span class='itembox'>{value}</span>}
+	{#if:^xfields.docs_oth:<span class="itembox">{^xfields.docs_oth}</span>}
+		<div class='clear'></div>
+	<h5>{docs_remarks.n}</h5>
+	{#if:^xfields.docs_remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.docs_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.docs_remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+	<table>
+		<tr><th>{docs_req.n}:</th><td>{^xfields.docs_req:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{docs_enough.n}?</th><td>{^xfields.docs_enough.value:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<hr />
+	<h5>{docs_cause.n}</h5>
+	{#if:^xfields.docs_cause:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.docs_cause}~nl2br~</div>}
+	{#ifnot:^xfields.docs_cause:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<h5>{ndis_reason.n}</h5>
+	{#ifnot:^xfields.ndis_reason:<span class='gray'>---</span>}
+	{#repeat:^xfields.ndis_reason:<span class="itembox">{value}</span>}
+	{#if:^xfields.ndis_reason_oth:<span class="itembox">{^xfields.ndis_reason_oth}</span>}
+		<div class="clear"></div>	
+	
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/judge-hammer.png'); background-repeat: no-repeat; background-position: 4px;">{resp.n}</h4>
+	{#ifnot:^xfields.resp:<div class='gray center'>---</div>}
+	{#repeat:^xfields.resp:<span class="itembox">{value}</span>}
+		<div class="clear"></div>
+	<h5>{involved.n}</h5>
+	{#ifnot:^xfields.involved:<div class='gray center'>---</div>}
+	{#repeat:^xfields.involved:<span class="itembox">{value}</span>}
+	{#if:^xfields.involved_oth:<span class="itembox">{^xfields.involved_oth}</span>}
+		<div class="clear"></div>
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Contributing factors</h4>
+	<table>
+		<tr><th>{cf_behav.n}:</th><td>{#ifnot:^xfields.cf_behav:<span class='gray'>---</span>}{#repeat:^xfields.cf_behav:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.cf_behav_oth:<tr><th>{cf_behav_oth.n}:</th><td>{^xfields.cf_behav_oth}</td></tr>}
+		<tr><th>{cf_rules.n}:</th><td>{#ifnot:^xfields.cf_rules:<span class='gray'>---</span>}{#repeat:^xfields.cf_rules:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.cf_rules_oth:<tr><th>{cf_rules_oth.n}:</th><td>{^xfields.cf_rules_oth}</td></tr>}
+		<tr><th>{cf_eq.n}:</th><td>{#ifnot:^xfields.cf_eq:<span class='gray'>---</span>}{#repeat:^xfields.cf_eq:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.cf_eq_oth:<tr><th>{cf_eq_oth.n}:</th><td>{^xfields.cf_eq_oth}</td></tr>}
+		<tr><th>{cf_org.n}:</th><td>{#ifnot:^xfields.cf_org:<span class='gray'>---</span>}{#repeat:^xfields.cf_org:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.cf_org_oth:<tr><th>{cf_org_oth.n}:</th><td>{^xfields.cf_org_oth}</td></tr>}
+	</table>
+	
+}

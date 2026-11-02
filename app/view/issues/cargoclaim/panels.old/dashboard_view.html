@@ -1,0 +1,137 @@
+{#use:%ist.xfield_def:
+	{!Various types of data output customizations that are specific to this issue type, directly in the template}
+	<table>
+		<tr><th>{mawb.n}:</th><td><b style='font-size: 16px;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>		
+		<tr><th>{pstage.n}:</th><td><b>{^xfields.pstage.value}</b></td></tr>
+		<tr><th>{nature_of_goods.n}:</th><td>{^xfields.nature_of_goods}</td></tr>
+		<tr><th>MAWB Total:</th><td>{#if:^xfields.mawb_pieces:<b>{^xfields.mawb_pieces}</b> Pieces ; <b>{^xfields.mawb_weight}</b> Kg}{#ifnot:^xfields.mawb_pieces:<span class='gray'>---</span>}</td></tr>
+                <!--For grid and list view START--> 
+                <tr><th>{shipper_n.n}:</th><td>{^xfields.shipper_n:<span class="gray">---</span>}</td></tr>
+		<tr><th>{consig_n.n}:</th><td>{^xfields.consig_n:<span class="gray">---</span>}</td></tr>
+                <!--For grid and list view END--> 
+	</table>
+	<hr />
+	<table>
+		<tr><th>{subm_type.n}:</th><td>{^xfields.subm_type.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{mawb_date.n}:</th><td>{#if:^xfields.mawb_date:{^xfields.mawb_date}~date("Y-m-d")~}{#ifnot:^xfields.mawb_date:<span class='gray'>(missing)</span>}</td></tr>
+		<tr><th>{carry_date.n}:</th><td>{#if:^xfields.carry_date:{^xfields.carry_date}~date("Y-m-d")~}{#ifnot:^xfields.carry_date:<span class='gray'>(missing)</span>}</td></tr>
+		<tr><th>{arrival_date.n}:</th><td>{#if:^xfields.arrival_date:{^xfields.arrival_date}~date("Y-m-d")~}{#ifnot:^xfields.arrival_date:<span class='gray'>(missing)</span>}</td></tr>
+		<tr><th>{pickup_date.n}:</th><td>{#if:^xfields.pickup_date:{^xfields.pickup_date}~date("Y-m-d")~}{#ifnot:^xfields.pickup_date:<span class='gray'>(missing)</span>}</td></tr>
+		<tr><th>{claim_notice.n}:</th><td>{^xfields.claim_notice.value}</td></tr>  
+	</table>
+
+	<h4>{claim_type.n}:</h4>
+	<table class="claim-aspects">
+		<tr>
+			{#repeat:^xfields.claim_type:
+				<td{#if:active: id='ca-{key}'}>{value}</td>}
+		</tr>
+		<tr>{!Pieces}
+			<td{#if:^xfields.claim_type.0.active: class='ca-active'}>{^xfields.dmg_pieces}~suffix(" pcs","-")~</td>
+			<td{#if:^xfields.claim_type.1.active: class='ca-active'}>{^xfields.loss_pieces}~suffix(" pcs","-")~</td>
+			<td{#if:^xfields.claim_type.2.active: class='ca-active'}>{^xfields.delay_pieces}~suffix(" pcs","-")~</td>
+			<td{#if:^xfields.claim_type.3.active: class='ca-active'}>{^xfields.ploss_pieces}~suffix(" pcs","-")~</td>
+			<td{#if:^xfields.claim_type.4.active: class='ca-active'}>{^xfields.pilf_pieces}~suffix(" pcs","-")~</td>
+		</tr>
+		<tr>{!Weight}
+			<td{#if:^xfields.claim_type.0.active: class='ca-active'}>{^xfields.dmg_weight}~suffix(" kg","-")~</td>
+			<td{#if:^xfields.claim_type.1.active: class='ca-active'}>{^xfields.loss_weight}~suffix(" kg","-")~</td>
+			<td{#if:^xfields.claim_type.2.active: class='ca-active'}>{^xfields.delay_weight}~suffix(" kg","-")~</td>
+			<td{#if:^xfields.claim_type.3.active: class='ca-active'}>{^xfields.ploss_weight}~suffix(" kg","-")~</td>
+			<td{#if:^xfields.claim_type.4.active: class='ca-active'}>{^xfields.pilf_weight}~suffix(" kg","-")~</td>
+		</tr>
+	</table>
+
+	<h4>{what_happened.n}:</h4>		
+	{#if:^xfields.what_happened:<div style="border: 1px solid lightgray; padding: 4px; margin: 8px 0px;">{^xfields.what_happened}~nl2br~</div>}
+	{#ifnot:^xfields.what_happened:<div class="gray" style="text-indent: 20px; margin: 8px 0px;">(no information provided)</div>}
+
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/coins.png'); background-repeat: no-repeat; background-position: 4px;">Financial data:</h4>		
+	<table class="financial_data_section">
+		<tr><th>{invoice_val.n}:</th><td><b>{^xfields.invoice_val.serialized:<span class='gray'>---</span>}</b></td></tr>
+		
+		<tr><th>{repair_amt.n}:</th><td><b>{^xfields.repair_amt.serialized:<span class='gray'>---</span>}</b>
+		<tr><th>{freight_amt.n}:</th><td><b>{^xfields.freight_amt.serialized:<span class='gray'>---</span>}</b>
+		<tr><th>{dmg_repair.n}:</th><td>
+			{#if:^xfields.dmg_repair.key!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.dmg_repair.value="Yes": checked="checked"}> {^xfields.dmg_repair.value}</label>}
+			{#ifnot:^xfields.dmg_repair.key!=-1:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{salvage_amt.n}:</th><td><b>{^xfields.salvage_amt.serialized:<span class='gray'>---</span>}</b>
+		<tr><th>{insurance.n}:</th><td>
+			{#if:^xfields.insurance.value:<label><input type='checkbox' style="float: left;" disabled="disabled"{#if:^xfields.insurance.key=1: checked="checked"}> {^xfields.insurance.value}</label>}
+			{#ifnot:^xfields.insurance.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{ins_cert.n}:</th><td>{^xfields.ins_cert}</td></tr>
+		<tr><th>{claim_amt.n}:</th><td><b>{^xfields.claim_amt.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{claim_usd.n}:</th><td><b>{^xfields.claim_usd.serialized:<span class='gray'>---</span>}</b></td></tr>
+	</table>
+
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">{documents.n}:</h4>
+	{#repeat:^xfields.documents:<span class="itembox green">{value}</span>}
+	{#ifnot:^xfields.documents:<div class="gray" style="text-indent: 20px; margin: 8px 0px;">(no documents mentioned)</div>}
+	<div class="clear"></div>
+	
+	<hr />
+	<table>
+            <!--For grid and list view START--> 
+<!--		<tr><th>{shipper_n.n}:</th><td>{^xfields.shipper_n:<span class="gray">---</span>}</td></tr>
+		<tr><th>{consig_n.n}:</th><td>{^xfields.consig_n:<span class="gray">---</span>}</td></tr>-->
+<!--For grid and list view END--> 
+		<tr><th>{hawb1.n}:</th><td>{#if:^xfields.hawb1:{^xfields.hawb1}}{#ifnot:^xfields.hawb1:<span class='gray'>(missing)</span>}</td></tr>
+		{#if:^xfields.hawb2:<tr><th>{hawb2.n}:</th><td>{^xfields.hawb2}</td></tr>}
+		{#if:^xfields.hawb3:<tr><th>{hawb3.n}:</th><td>{^xfields.hawb3}</td></tr>}
+		{#if:^xfields.hawb4:<tr><th>{hawb4.n}:</th><td>{^xfields.hawb4}</td></tr>}
+		{#if:^xfields.hawb5:<tr><th>{hawb5.n}:</th><td>{^xfields.hawb5}</td></tr>}
+		{#if:^xfields.hawb6:<tr><th>{hawb6.n}:</th><td>{^xfields.hawb6}</td></tr>}
+		{#if:^xfields.hawb7:<tr><th>{hawb7.n}:</th><td>{^xfields.hawb7}</td></tr>}
+		{#if:^xfields.hawb8:<tr><th>{hawb8.n}:</th><td>{^xfields.hawb8}</td></tr>}
+		{#if:^xfields.hawb9:<tr><th>{hawb9.n}:</th><td>{^xfields.hawb9}</td></tr>}
+	</table>
+
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/menus/claim-shipment.png'); background-repeat: no-repeat; background-position: 4px;">Flight information:</h4>	
+	<table style="width: 99%;">
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">Flight No. 1</td>
+			<td style="text-align: center; width: 33%;">{flight_no_2.n}</td>
+			<td style="text-align: center; width: 33%;">{flight_no_3.n}</td>
+		</tr>
+		<tr style="height: 25px;">
+			<td style="text-align: center;">{^xfields.flight_no:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{^xfields.flight_no_2:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{^xfields.flight_no_3:<span class="gray">---</span>}</td>
+		</tr>
+		<tbody{#ifnot:^xfields.flight_no_4|^xfields.flight_no_5|^xfields.flight_no_6: style='display: none;'}>
+			<tr style="height: 20px;">
+				<td style="text-align: center;">{flight_no_4.n}</td>
+				<td style="text-align: center;">{flight_no_5.n}</td>
+				<td style="text-align: center;">{flight_no_6.n}</td>
+			</tr>
+			<tr style="height: 25px;">
+				<td style="text-align: center;">{^xfields.flight_no_4:<span class="gray">---</span>}</td>
+				<td style="text-align: center;">{^xfields.flight_no_5:<span class="gray">---</span>}</td>
+				<td style="text-align: center;">{^xfields.flight_no_6:<span class="gray">---</span>}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<hr />
+		<table style="width: 99%;">
+			<tr>
+				<td style="width: 33%; text-align: center;">{orig_loc.n}</td>
+				<td style="width: 33%; text-align: center;">{viaa.n}</td>
+				<td style="width: 33%; text-align: center;">{dest_loc.n}</td>
+			</tr>
+			<tr>
+				{#if:^xfields.orig_loc.value:<th class="info-tip center" data-tooltip="{^xfields.orig_loc.value.name}<br /><span class='darkblue'>{^xfields.orig_loc.value.country}</span>">{^xfields.orig_loc.value.IATA}</th>}
+					{#ifnot:^xfields.orig_loc.value:<td class="gray center">---</td>}
+				{#if:^xfields.viaa.value:<th class="info-tip center" data-tooltip="{^xfields.viaa.value.name}<br /><span class='darkblue'>{^xfields.viaa.value.country}</span>">{^xfields.viaa.value.IATA}</th>}
+					{#ifnot:^xfields.viaa.value:<td class="gray center">---</td>}
+				{#if:^xfields.dest_loc.value:<th class="info-tip center" data-tooltip="{^xfields.dest_loc.value.name}<br /><span class='darkblue'>{^xfields.dest_loc.value.country}</span>">{^xfields.dest_loc.value.IATA}</th>}
+					{#ifnot:^xfields.dest_loc.value:<td class="gray center">---</td>}
+			</tr>
+		</table>
+	</div>
+	<table>
+		<tr><th>{route.n}:</th><td>{^xfields.route:<span class="gray">---</span>}</td></tr>
+	</table>
+}

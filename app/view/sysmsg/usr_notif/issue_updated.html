@@ -1,0 +1,6 @@
+{#store:subject:{html.title} - {notif.xdata.type} updated: {notif.xdata.track}}
+{#if:_use_css:<style type="text/css">{#raw:{_use_css}}</style>}
+<div style="background-color: #F0F0F0; border: 1px solid lightgray; padding: 8px;">
+    <div style="font-size: 1.2em; font-style: italic; line-height: 32px;">Dear {user.name},</div>
+</div>
+{#if:_include:{#include::{_include}}}

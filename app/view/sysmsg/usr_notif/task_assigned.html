@@ -1,0 +1,15 @@
+{#store:subject:Task assigned to you: {notif.title}}
+{#if:_use_css:<style type="text/css">{#raw:{_use_css}}</style>}
+<div style="background-color: #F0F0F0; border: 1px solid lightgray; padding: 8px;">
+	<div style="text-align: center; width: 120px; float: right; font-size: 12px; border: 1px solid gray; padding: 5px;"><a href="https://{html.domain}/?action=evan_confirm&amp;id={notif.id}&amp;time={notif.time}&amp;user_id={notif.user_id}">Click here to confirm this notification.</a><br />Thank you !</div>
+	<div style="font-size: 1.2em; font-style: italic; line-height: 32px;">Dear {user.name},</div>
+	<div>A task has been assigned to you:</div>
+</div>
+<h3><img alt="{notif.type}" src="cid:embed0@{html.domain}" style="float: left; text-align: center; margin: 0 8px;">{notif.title}</h3>
+{#if:_include:{#include::{_include}}}
+{#ifnot:_include:<ul>
+	{#if:notif.xdata.deadline:<li>Deadline: <b>{notif.xdata.deadline}</b></li>}
+	{#if:notif.xdata.progress:<li>Task progress: <b>{notif.xdata.progress}%</b></li>}
+	<li>Notification priority: {#if:notif.importance=="high":<b>Very important</b>}{#if:notif.importance=="med":General interest}{#if:notif.importance=="low":Low priority}</li>
+</ul>}
+{#if:notif.description:<hr /><p>{notif.description}~nl2br~</p>}

@@ -1,0 +1,333 @@
+{@<style type="text/css">
+div.left-area {
+	float: left;
+	width: 620px;
+	margin: 40px 0 0;
+}
+
+div.right-area {
+	float: right;
+	width: 440px;
+}
+
+div.opzone {
+	width: 400px;
+	min-height: 80px;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+}
+	div.opzone a {
+		font-size: 20px;
+		display: block;
+		margin-top: 14px;
+		font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+		color: #2B296C;
+	}
+	
+	div.opzone img {
+		float: left;
+		margin: 0px 20px 20px 20px;
+		text-decoration: none;
+		border: none;
+	}
+	
+div.contentblock {
+	width: 600px;
+	border-radius: 7px;
+}
+
+	div.contentblock a {
+		border: none;
+		color: #166EB7;
+	}
+	
+div#tabs-cargoclaim div.jqx-tabs-content {
+	padding: 8px;
+}
+
+td.worldwide {
+	background: url(/img/icons16/world.png) no-repeat center center;
+}
+
+table#airlines-per-station {
+	width: 100%;
+	border-collapse: collapse;	
+}
+
+table#airlines-per-station tr:HOVER {
+	background-color: #F0F0F8;
+}
+
+table#airlines-per-station th {
+	text-align: left;
+	color: white;
+}
+table#airlines-per-station td {
+	height: 20px;
+	line-height: 20px;
+}
+
+table#airlines-per-station a, table#airlines-per-station a:VISITED {
+	color: #166EB7;
+}
+
+.benefits {
+    text-align: center;
+    margin: 20px 0;
+	}
+li.bx-clone {
+    display: inline-block;
+    list-style-type: none;
+    width: 24%;
+	text-align:center;
+}
+li.bx-clone img { max-width: 100%; max-height: 70px;}
+.carousel { padding: 0;}
+div#searchbox {
+    margin-left: 35px;
+}
+.customers {
+    font-size: 23px;
+    text-align: center;
+    margin: 50px 0 30px 0;
+    color: #5b5a5a;
+}
+div#tabs-cargoclaim {
+    margin: 30px 0;
+}
+.videos { text-align: center;}
+.videos .box { width: 40%; display: inline-block; margin: 20px; }
+.videos .box img { max-width: 100%;}
+.tracker { margin-top: 40px;}
+.tracker span { margin: 4px 30px; font-size: 20px;
+    display: block;
+    font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+    color: #2B296C; font-weight: bold;}
+.tracker form { margin: 10px 30px;}
+.tracker img { margin: 26px !important;}
+.tracker p { margin: 0; font-size: 11px; }
+</style>}
+
+<div style="margin: 26px 20px;">
+    {#plugin:jqxtabs}
+<div id="tabs-cargoclaim">
+	<ul>
+		<li style="margin-left: 20px;">Worldwide Index</li>
+		<li>How to submit a Cargo Claim</li>
+		<li>Claim period for damage, delay or loss</li>
+		<li>Terms and Conditions</li>
+	</ul>
+	<div>
+		<div class="left-area">
+			<div id="searchbox">
+		<div class="center" style="margin-bottom: 20px;">
+			<h1 style="background-color: #214e78; color: white; display: block; width: 490px; padding: 5px; border-radius: 18px;">SEARCH AIRLINE AND SUBMIT A CLAIM</h1>
+		</div>
+		{#plugin:airfind}
+		
+		
+	</div>
+	<p><b>Step 1.</b> Complete the claim form and submit (no login required)</p>
+	  <p><b>Step 2.</b> Enter email address of the airline or select available contacts</p>
+	  <p><b>Step 3.</b> Click the on the send email button and receive claim copy by email</p>
+	 
+		</div>
+		
+		<div class="right-area">
+			<div class="opzone" style='margin-top: 44px;'>
+				<b><a href="/contact/account?hash=issues"><img alt="Find my claim" src="/cmsup/cms/search.png">Login to your account</a></b>
+				<p>View or update your claims</p>
+			</div>
+			<div class="tracker opzone">
+			<img alt="Track your code" src="/cmsup/cms/air-cargo.png">
+			<span>Shipment delayed or lost?</span>
+			<p>AWB format 123-12345675</p>
+			<form action="http://connect.track-trace.com/for/cargoclaims" method="post" target="_blank">
+			  <input type="hidden" name="shipper" value="aircargo">
+			  <input type="text" name="number">
+			  <input type="submit" value="Track">
+			</form></div>
+		</div>
+		<div class="clear"></div>
+	
+	  
+	  
+	 
+		
+	</div>
+	<div>
+		<div style="margin-left: 16px;">
+			<p><b>{html.title}</b> offers you an easy way for electronically lodging cargo claims.<br />
+			Your cargo claim can be submitted to the carrier involved in the contract of carriage.</p>
+			<p>The <i>CARGO Claims</i> software will provide you all the tools to manage your cargo claim. You will receive confirmation of your claim immediately after its submission. Claim departments of the selected Carrier will be notified and instructed to process your cargo claim with priority.</p>
+			<p>We offer you <b>24/7 tracking information</b> on your cargo claims.</p>
+			<hr />
+		</div>
+	
+		<h3 style="margin-top: 8px; margin-left: 16px;" id="how_to_submit">How to submit a Cargo Claim</h3>
+		<ul>
+			<li>Complete the details of your claim in the submittance form</li>
+			<li>Attach the necessary documents</li>
+			<li>You will receive our confirmation immediately</li>
+			<li>Your claim will be processed by Claim departments of the selected airlines with priority</li>
+		</ul>
+		
+		<h3 style="margin-top: 8px; margin-left: 16px;" id="how_eclaims_benefit">How E-claims service will benefit our customers</h3>
+		<ul>
+			<li>Submit your claim in just a few easy steps</li>
+			<li>Immediate confirmation of receipt per email</li>
+			<li>Providing our customer 24/7 online registration</li> 
+			<li>Increases the speed of processing your cargo claim </li> 
+			<li>Online tracking of claims processing 24/7</li>
+		 	<li>Providing overview of all your cargo claims</li>
+			<li>All communication and documentation stored with your account</li>
+		</ul>
+	</div>
+	<div>
+		<p>
+		Receipt by the person entitled to delivery of the cargo without complaint shall be prima facie evidence that the cargo has been delivered in good condition and in accordance with the contract of carriage.<br />
+		In the case of loss of, damage or delay to cargo a complaint must be made to the Carrier by the person entitled to delivery.</p> 
+		<p>
+		Based upon the time limits as set forth in the Warsaw Convention as amended at the Hague 1955 and the Montreal Convention 1999, a preliminary claim must be filed shortly after receipt of your shipment.<br />
+		The time limits reffered to above are:</p>
+		<div style="margin: 0 auto;">
+
+	<h2>Time periods for filing a claim:</h2>
+	<p>A cargo claim is a written complaint demanding financial compensation for damage, loss or delay of cargo whilst under a contract of carriage.</p>
+
+	<table id="timeperiods" style="width: 100%; border-collapse: collapse; border-spacing: 1px; border: 1px solid gray;">
+		<tbody>
+		<tr>
+		<th style="text-align: left; text-indent: 20px; width: 20%;">Damage</th>
+		<td style="text-align: left; width: 40%;">To consignment whole or in part</td>
+		<td style="text-align: left; width: 40%;"><span class='thick'>&nbsp;&nbsp;14</span> days from receiving consignment</td>
+		</tr>
+		<tr>
+		<th style="text-align: left; text-indent: 20px;">Loss</th>
+		<td style="text-align: left;">Loss of whole consignment</td>
+		<td style="text-align: left;"><span class='thick'>120</span> days from the AWB issuing date</td>
+		</tr>
+		<tr>
+		<th style="text-align: left; text-indent: 20px;">Partial Loss</th>
+		<td style="text-align: left;">Loss of part of the consignment</td>
+		<td style="text-align: left;"><span class='thick'>&nbsp;&nbsp;14</span> days from receiving consignment</td>
+		</tr>
+		<tr>
+		<th style="text-align: left; text-indent: 20px;">Delay</th>
+		<td style="text-align: left;">To complete consignment or part of it</td>
+		<td style="text-align: left;"><span class='thick'>&nbsp;&nbsp;21</span> days from the placing date</td>
+		</tr>
+		<tr>
+		<th style="text-align: left; text-indent: 20px;">Pilferage</th>
+		<td style="text-align: left;">To consignment whole or in part</td>
+		<td style="text-align: left;"><span class='thick'>&nbsp;&nbsp;14</span> days from receiving consignment</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<table style="width: 100%; margin-top: 20px;">
+	<tr><td style="width: 50%; vertical-align: top;">
+		<h2>Applicable laws:</h2>
+		<ul>
+			<li><a href='/cms?path=/cargoclaims/montreal-convention' target='_blank'>Montreal Convention 1999</a></li>
+			<li><a href='/cms?path=/cargoclaims/the-hague-protocol-1955' target='_blank'>The Hague Protocol 1955</a></li>
+			<li><a href='/cms?path=/cargoclaims/warsaw-convention' target='_blank'>Warsaw Convention 1929</a></li>
+		</ul>
+	</td><td style="width: 50%; vertical-align: top;">
+		<h2>Relevant articles:</h2>
+		<ul>
+			<li><a href='/cms?path=/cargoclaims/airtransport_nl' target='_blank'>Luchtvervoer [NL]</a></li>
+		</ul>
+	</td></tr>
+	</table>
+
+	
+</div>
+	</div>
+	<div>
+		<p>This software is using E-mail technology to forward the information submitted to this application to the intended recipient. Although we are updating our contacts in accordance with the latest information available,
+		we shall not accept any liability in case your data doesn't reach the recipient, for any reason, technical or caused by human error.</p>
+		<p>If you did not receive a copy of your data by e-mail after submitting a claim, or notice that the automatically provided addresses are incorrect,<br />please contact <a href="mailto:support@cargohub.nl">support@cargohub.nl</a> or by telephone: <b>+31(0)20 6586220</b>.</p>
+	</div>
+</div>
+
+<div class="spacey">
+	<a style="float: right; margin-right: 20px;" href="http://www.cargohub.nl/wp-content/uploads/2015/12/Cargo-Claims-CCLP-3.0.mp4?_=1" target="_blank"><img src="/cmsup/cms/worldwideimg.jpg" alt="Worldwide Image" /></a>
+	<div class="contentblock" style="margin-left: 20px;">
+		<div>
+		<img src="/cmsup/cms/iata.png" alt="Air Cargo Innovation Award 2015 Finalist"/>
+		<p style="text-align: justify; margin-top: 24px;">CargoClaims streamlines the claims handling process within the air cargo industry. By connecting all cargo supply chain parties on a centralized platform, connected stakeholders are offered efficiency, transparency and an increased speed of service recovery.</p>
+		<p> The IATA cargo innovation awarded platfrom increases the customer experience and contributes to the competitiveness of the air cargo product. <b>Benefit and support by just using our services!</b> </p>   
+		
+		<div class="benefits"> <a href="http://www.cargohub.nl/worldwide-cargo-claims-platform">Benefits for airlines</a> | <a href="http://www.cargohub.nl/blog/claim-management-for-forwarders-made-simple"> Benefits for forwarders</a> </div>
+	</div>
+	</div>
+	
+	<div class="clear"></div>
+</div>
+ 
+<div class="videos">
+  <div class="customers">CARGO CLAIMS AND LOSS PREVENTION</div>
+		
+<div class="box">
+					<div class="textwidget"><h3 style="color:#605fc1;">CargoHub at IATA 12th CCLP  Conference - Raoul Paul - </h3> 
+		<a href="https://www.youtube.com/watch?v=zsjSkHMco6U" target="_blank"><img src="/cmsup/cms/youtube1.jpg" alt="CargoHub at IATA 12th CCLP  Conference - Raoul Paul"/></a></div>
+				
+		  </div>
+		  <div class="box">
+					<div class="textwidget"><h3 style="color:#605fc1;">Brussels Airlines at 12th CCLP Conference -  Daphne van Landuyt - </h3>
+		 <a href="https://www.youtube.com/watch?v=gzd4cb_eaHA" target="_blank"><img src="/cmsup/cms/youtube2.jpg" alt="Brussels Airlines at 12th CCLP Conference -  Daphne van Landuyt"/></a>
+		</div>
+	</div>
+</div>
+
+
+<div class="customersarea">
+<div class="customers">SOME OF OUR <b>VALUED CUSTOMERS</b></div>
+<ul class="carousel">
+	<li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/atlas-logo.png" alt="Atlas Air" title="Atlas Air"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/polar-air-logo-1.png" alt="Polar Air Logo" title="Polar Air Logo"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/brussels-airlines-cargo.jpg" alt="Brussels Airlines Cargo" title="Brussels Airlines Cargo"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/saudia-cargo.png" alt="Saudia Cargo" title="Saudia Cargo"></div>
+   </li>   
+</ul>
+</div>
+
+
+<div class="customersarea">
+<div class="customers"></div>
+<ul class="carousel">
+	<li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/aramex.png" alt="Atlas Air" title="Atlas Air"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/crane.png" alt="Polar Air Logo" title="Polar Air Logo"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/fast-forward-freight.png" alt="Brussels Airlines Cargo" title="Brussels Airlines Cargo"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/hdr-knnl2.png" alt="Saudia Cargo" title="Saudia Cargo"></div>
+   </li>   
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/iaa.png" alt="Atlas Air" title="Atlas Air"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/ip-handlers.png" alt="Polar Air Logo" title="Polar Air Logo"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/kales.png" alt="Brussels Airlines Cargo" title="Brussels Airlines Cargo"></div>
+   </li>
+   <li class="bx-clone">
+      <div class="helper"><img src="/cmsup/cms/kwe.png" alt="Saudia Cargo" title="Saudia Cargo"></div>
+   </li>   
+</ul>
+</div>
+</div>

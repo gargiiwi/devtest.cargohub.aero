@@ -1,0 +1,33 @@
+{#use:%ist.xfield_def:
+	<h4 style="background-image: url('/img/icons16/menus/event-capa.png'); background-repeat: no-repeat; background-position: 4px;">Corrective/Preventive actions (CaPa)</h4>
+	<table>
+		<tr><th>{capa_done.n}</th>
+		<td>
+			{#if:^xfields.capa_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.capa_done.key: checked="checked"}> {^xfields.capa_done.value}</label>}
+			{#ifnot:^xfields.capa_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{capa_dl.n}:</th><td>{#if:^xfields.capa_dl:{^xfields.capa_dl}~date("Y-m-d")~}{#ifnot:^xfields.capa_dl:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{capa_pers.n}:</th><td>{^xfields.capa_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{capa_date.n}:</th><td>{#if:^xfields.capa_date:{^xfields.capa_date}~date("Y-m-d")~}{#ifnot:^xfields.capa_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<h5 style="margin-left: 20px;">{capa_descr.n}</h5>
+	{#if:^xfields.capa_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.capa_descr}~nl2br~</div>}
+	{#ifnot:^xfields.capa_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/flag_finish.png'); background-repeat: no-repeat; background-position: 4px;">Evaluation/Closure</h4>
+	<table>
+		<tr><th>{eval_done.n}</th>
+		<td>
+			{#if:^xfields.eval_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eval_done.key: checked="checked"}> {^xfields.eval_done.value}</label>}
+			{#ifnot:^xfields.eval_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{eval_pers.n}:</th><td>{^xfields.eval_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eval_date.n}:</th><td>{#if:^xfields.eval_date:{^xfields.eval_date}~date("Y-m-d")~}{#ifnot:^xfields.eval_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<h5 style="margin-left: 20px;">{eval_descr.n}</h5>
+	{#if:^xfields.eval_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.eval_descr}~nl2br~</div>}
+	{#ifnot:^xfields.eval_descr:<div class="gray" style="text-indent: 20px;">-----</div><hr style="margin-top: 4px;" />}
+	<table>
+		<tr><th>{close_date.n}:</th><td>{#if:^xfields.close_date:{^xfields.close_date}~date("Y-m-d")~}{#ifnot:^xfields.close_date:<span class='gray'>(...still open)</span>}</td></tr>
+	</table>
+}

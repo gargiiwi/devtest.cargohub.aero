@@ -1,0 +1,13 @@
+{#if:departments:<h3>Departments with access overrides for group: <b>{group_name}</b></h3>
+	<table class='jqx-grid jqx-reset jqx-rc-all jqx-widget jqx-widget-content datatable'>
+	<tr class='tab-header'>
+		<th>Name:</th>
+	{#repeat:departments:<tr>
+		<td><a href='/manager/department?id={id}#acls'>{name}</a></td>
+	</tr>}
+	</table>
+}
+{#if:notfound:
+	<h3>No results found.</h3>
+	<p>This data group is either not used or available to the entire organization.<br />Please verify Organization-level access.</p>
+}

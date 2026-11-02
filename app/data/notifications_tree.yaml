@@ -1,0 +1,68 @@
+# Base data for the Notification Tree
+# ID's are constructed as: {type}_{subtype}
+# For "Issue" notifications ID's are {type}_{subtype}_{istkey}
+-
+  label: System notifications
+  type: system
+  children: Yes
+  subtypes: # Types of system-sent messages
+    -
+      label: General system message
+      subtype: message
+    -
+      label: Application shutdown
+      subtype: shutdown
+    -
+      label: Application boot
+      subtype: boot
+    -
+      label: Software is updated
+      subtype: updated
+      lockedon: Yes # This notification cannot be turned off
+    -
+      label: Error discovered
+      subtype: error
+      lockedon: Yes # This notification cannot be turned off
+-
+  label: Primary-Records events
+  type: issue
+  children: Yes
+  subtypes: # All of them have a dynamic extra subcategory that depends on record type
+    -
+      label: Record Created # Global
+      prefix: Created
+      subtype: created
+      children: Yes
+      special: issuetypes
+    -
+      label: Record Assigned # Received only by the user who is assigned
+      prefix: Assigned
+      subtype: assigned
+      children: Yes
+      special: issuetypes
+    -
+      label: Record Updated # Only for the assigned user
+      prefix: Updated
+      subtype: updated
+      children: Yes
+      special: issuetypes
+-
+  label: Task activities
+  type: task
+  children: Yes
+  subtypes:
+    -
+      label: New task has been assigned to me
+      subtype: assigned
+    -
+      label: New task assigned to my department
+      subtype: assigdep
+    -
+      label: My task was unassigned or reassigned
+      subtype: unassigned
+    -
+      label: Tasks created by me are set to on-hold, completed, or failed
+      subtype: stop
+    -
+      label: Task was removed (deleted)
+      subtype: deleted

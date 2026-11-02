@@ -1,0 +1,31 @@
+/** Templates Page **/
+div.site > div.page > div.templates {
+}
+
+	div.site > div.page > div.templates div#tree {
+		border: none;
+	}
+
+	div.site > div.page > div.templates div#tree li img {
+		float: left;
+		margin-right: 5px;
+	}
+	
+	div.site > div.page > div#message_box {
+		padding-top: 10px;
+		height: 27px;
+		float: left;
+		font-size: 14px;
+		line-height: 27px;	
+	}
+
+	div.site > div.page > div#command_buttons {
+		padding-top: 10px;
+		height: 27px;
+		float: right;
+	}
+	
+		/* Hide the buttons until they are needed */
+		div#command_buttons input {
+			display: none;
+		}

@@ -1,0 +1,16 @@
+<br /><div class='info-expander'>
+	<div>About the <b>Category</b> group (click to open)</div>
+	<div class='spacey'>
+		<p>A category can contain any kind of data, it's a general-purpose group.</p>
+		<p>When using this type of data group, issue types can choose which values are visible (partial selection)</p>
+	</div>
+</div>
+
+<script id="template_edit_general" type="text/dryjstpl">{@
+	<form method="post" action="?action=save_group&amp;type=general{#exists:uid:&amp;id={$uid}}">
+		<div><label for="group_name">Category name:</label><input type="text" id="group_name" name="group[name]" class='jqx-input jqx-rc-all {$_itc}' value='{$name}' style='width: 325px;'></div>
+		<div><div class="static" style="text-align: center; width: 100%;">Please keep the name short, it will be used in a dropdown</div></div>
+		{#missing:uid:}
+		{#exists:uid:}
+	</form>	
+}</script>

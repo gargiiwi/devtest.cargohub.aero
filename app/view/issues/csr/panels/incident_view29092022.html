@@ -1,0 +1,114 @@
+{#use:%ist.xfield_def:
+	<table>
+		<!-- <tr><th>{inc_date.n}:</th><td>{#if:^xfields.inc_date:{^xfields.inc_date}~date("Y-m-d")~}{#ifnot:^xfields.inc_date:<span class='gray'>---</span>} -->
+			<!-- <div class="ra_200"> -->
+				<!-- <label class="ra_label">{procDate.n}:</label>{#if:^xfields.procDate:{^xfields.procDate}~date("Y-m-d")~}{#ifnot:^xfields.procDate:<span class='gray'>---</span>} -->
+			<!-- </div> -->
+		<!-- </td></tr> -->
+		
+		<tr>
+			<th style="width: 125px;">{inc_date.n}:</th>
+			<th style="text-align:center;">{procDate.n}:</th>
+			<th style="text-align:center;">{trc_date.n}:</th>
+			
+		</tr>
+		<tr>
+			<td>{#if:^xfields.inc_date:{^xfields.inc_date}~date("Y-m-d")~}{#ifnot:^xfields.inc_date:<span class='gray'>---</span>}</td>
+			<td style="text-align:center">{#if:^xfields.procDate:{^xfields.procDate}~date("Y-m-d")~}{#ifnot:^xfields.procDate:<span class='gray'>---</span>}</td>
+			<td style="text-align:center">{#if:^xfields.trc_date:{^xfields.trc_date}~date("Y-m-d")~}{#ifnot:^xfields.trc_date:<span class='gray'>---</span>}</td>			
+		</tr>
+		
+		
+		<!-- tracing date -->
+		<!-- <tr><th>{trc_date.n}:</th><td>{#if:^xfields.trc_date:{^xfields.trc_date}~date("Y-m-d")~}{#ifnot:^xfields.trc_date:<span class='gray'>---</span>}</td></tr> -->
+		
+		<!-- <tr><th>{dossLength_Days.n}:</th><td> -->
+			<!-- {#if:^xfields.dossLength_Days:<label>{^xfields.dossLength_Days}</label>} -->
+			<!-- {#ifnot:^xfields.dossLength_Days:<span class='gray'>---</span>}  -->
+		<!-- </td></tr> -->
+		
+		<tr><th>{dossLength_Days.n}:</th><td>{^xfields.dossLength_Days:<span class="gray">---</span>}
+	</table><hr/>
+<table>	
+		
+		<!-- <tr><th>{slaLevel_achi.n}:</th><td>{^xfields.slaLevel_achi:<span class="gray">---</span>} -->
+		<!-- </td></tr> -->
+		
+		
+		<tr><th>Involved pieces:</th><td>
+			{#if:^xfields.invo_pcs:<span class='size70'><b>{^xfields.invo_pcs}</b> pc{#if:^xfields.invo_pcs>1:s}</span>
+			<b>{^xfields.invo_weight:<span class='gray'>--</span>}</b> Kg}{#ifnot:^xfields.invo_pcs:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr><th>{rep_stat.n}:</th><td>{#use:^xfields.rep_stat:
+			{#if:value:<span class="thick info-tip" data-tooltip="{value.name}<br /><span class='darkblue'>{value.country}</span>">{value.IATA}</span>}
+			{#ifnot:value:<span class='gray'>---</span>}
+		}</td></tr>
+		<tr><th>{last_loc.n}:</th><td>{^xfields.last_loc:<span class="gray">---</span>}
+		<div class="ra_200">
+			<label class="ra_label" style="display: inline-block;margin-right: 5px;width: 125px;text-align: right;">{phys_check.n}:</label>
+				{#if:^xfields.phys_check.value!=-1:<input type='checkbox' disabled="disabled"{#if:^xfields.phys_check.key: checked="checked"}> {^xfields.phys_check.value}}
+				{#ifnot:^xfields.phys_check.value:<span class='gray'>---</span>}
+		</div>
+		</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{process.n}:</th><td>
+			{#if:^xfields.process.value:<span class="itembox thick">{^xfields.process.value}</span>}
+			{#ifnot:^xfields.process.value:<span class="gray">---</span>}
+		</td></tr>
+		<tr><th>{trc_aspct.n}:</th><td>
+			{#ifnot:^xfields.trc_aspct:<span class='gray'>---</span>}
+			{#repeat:^xfields.trc_aspct:<span class="itembox"{#if:value~=MSCA: style="border-color: #ee7600; background-color: #ee7600; color: white;"}>{value}</span>}
+		</td></tr>
+		<tr><th>{add_aspct.n}:</th><td>{#ifnot:^xfields.add_aspct:<span class='gray'>---</span>}{#repeat:^xfields.add_aspct:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+	<hr />
+
+	<table>
+		<tr><th>{tracer.n}:</th><td>{^xfields.tracer.value:<span class="gray">---</span>}
+		<div class="ra_200">
+			<label class="ra_label">{trc_status.n}:</label>
+			{#if:^xfields.trc_status.key=-1:<span class="gray">---</span>}{^xfields.trc_status.value}
+		</div>
+		</td></tr>
+		<!-- <tr><th>{trc_status.n}:</th><td>{#if:^xfields.trc_status.key=-1:<span class="gray">---</span>}{^xfields.trc_status.value}</td></tr> -->
+		
+		<tr><th>{inc_stat.n}:</th><td>{#use:^xfields.inc_stat:
+			{#if:value:<span class="thick info-tip" data-tooltip="{value.name}<br /><span class='darkblue'>{value.country}</span>">{value.IATA}</span>}
+			{#ifnot:value:<span class='gray'>---</span>}
+		}</td></tr>
+		<tr><th>{outcome.n}:</th><td>{^xfields.outcome:<span class="gray">---</span>}</td></tr>
+	</table>
+	
+	<h5>{remrks.n}:</h5>
+	<div class="clear"></div>
+	{#if:^xfields.remrks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.remrks}~nl2br~</div>}
+	{#ifnot:^xfields.remrks:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h5>Customs reporting:</h5>
+	<table>
+		<tr><th>{rep_cust.n}:</th><td>{^xfields.rep_cust.value:<span class="gray">---</span>}</td><td style="width: 220px">Date: {#if:^xfields.rep_date:{^xfields.rep_date}~date("Y-m-d")~}{#ifnot:^xfields.rep_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{act_cust.n}:</th><td>{^xfields.act_cust.value:<span class="gray">---</span>}</td><td style="width: 220px">Date: {#if:^xfields.act_date:{^xfields.act_date}~date("Y-m-d")~}{#ifnot:^xfields.act_date:<span class='gray'>---</span>}</td></tr>
+{!		<tr><th>{ref_cust.n}:</th><td colspan="2">{^xfields.ref_cust:<span class="gray">---</span>}</td></tr>}
+	</table>
+
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">Documents:</h4>
+	{#ifnot:^xfields.documents:<span class='gray'>---</span>}{#repeat:^xfields.documents:<span class="itembox green">{value}</span>}
+	<div class="clear"></div>
+
+	<h5>{docrmk.n}:</h5>
+	{#if:^xfields.docrmk:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.docrmk}~nl2br~</div>}
+	{#ifnot:^xfields.docrmk:<div class="gray"><br />-----</div>}
+	<h5>{docreq.n}:</h5>
+	{#if:^xfields.docreq:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.docreq}~nl2br~</div>}
+	{#ifnot:^xfields.docreq:<div class="gray"><br />-----</div>}
+	<table>
+		<tr><th>{doc_full.n}</th><td>
+			{#if:^xfields.doc_full.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.doc_full.key: checked="checked"}> {^xfields.doc_full.value}</label>}
+			{#ifnot:^xfields.doc_full.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{doc_share_auth.n}:</th><td>{#if:^xfields.doc_share_auth:{^xfields.doc_share_auth}~date("Y-m-d")~}{#ifnot:^xfields.doc_share_auth:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{doc_share_princ.n}:</th><td>{#if:^xfields.doc_share_princ:{^xfields.doc_share_princ}~date("Y-m-d")~}{#ifnot:^xfields.doc_share_princ:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

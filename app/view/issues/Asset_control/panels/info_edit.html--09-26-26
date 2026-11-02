@@ -1,0 +1,49 @@
+ {#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+		<table>
+			{#use:type:<tr>
+				<th><label>{display.label}:</label></th>
+				<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+			</tr>}
+			<!-- {#use:supplier:<tr{#if:display.req: class='required'}>
+					<th><label>{display.label}:</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+				</tr>} -->
+				{#use:invoice_number:<tr{#if:display.req: class='required'}>
+					<th><label>{display.label}:</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+				</tr>}
+				{#use:date_purchase:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+			</tr>}
+			{#use:warranty_date:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+			</tr>}
+			{#use:pur_price:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:pur_price_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{#use:rest_price:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:rest_price_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+		
+	</table>
+	{#use:remarks:
+		<h5>{display.label}</h5>
+		<textarea autocorrect="off" spellcheck="false" style="margin-bottom: 6px;" rows="8" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} fullwidth{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}>{value}</textarea>
+	}
+</form>}

@@ -1,0 +1,94 @@
+/* Tabs styles */
+.tab, .subtab {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-right: 2px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.tab.active, .subtab.active {
+    background-color: white;
+    border-bottom: 1px solid white;
+}
+
+.tab:hover, .subtab:hover {
+    background-color: #eaeaea;
+}
+
+/* Content visibility */
+.report-content {
+    display: none;
+}
+
+.report-content.active {
+    display: block;
+}
+
+.report-table {
+    margin-bottom: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.doc-report-table th, .rastable th {
+    padding: 8px;
+    text-align: left;
+}
+
+.doc-report-table td, .rastable td {
+    padding: 8px;
+}
+
+/* Icon hover */
+.fa-trash {
+    cursor: pointer;
+}
+
+.docLic_img img {
+    width: 80%;
+}
+
+#docLicReportViewSec-not-access-page {
+    text-align: center;
+}
+.subtab.active{
+    background-color: #c5deff; border: 1px solid #7eb6ff; padding: 6px 12px; border-radius: 4px; cursor: pointer;
+}
+.subtab{
+        background-color: #ccc;
+    border: 1px solid #b4bac1;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.tab.active{
+    /*margin-right: 10px;*/
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #7eb6ff;
+    border-bottom: 0;
+    background: #fff;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-bottom: -1px;
+}
+.tab_container{    
+    display: flex; 
+    /*margin-left: 22px;*/
+    margin-bottom: -5px; font-weight: 500; font-size: 16px;
+}
+.sub_tab_container{
+    border: 1px solid #ccc; padding: 20px; margin-top: 5px;
+    border-radius: 0 10px 10px 10px;
+    background: #f9f9f9;
+}
+
+#contenttablereport_grid a:hover {
+    color: #ffffff;
+}

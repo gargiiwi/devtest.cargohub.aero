@@ -1,0 +1,108 @@
+/** Content Management System **/
+
+div#status-bar {
+	margin-top: 10px;
+	height: 27px;
+	font-size: 14px;
+	line-height: 27px;	
+}
+
+div#splitter-naved {
+}
+
+	#splitter-naved #navigator {
+		border: none;
+	}
+
+		#splitter-naved #navigator li img {
+			float: left;
+			margin-right: 5px;
+		}
+		
+	#splitter-naved #editor-content {
+		width: 100%; height: 100%;
+		border: 0; padding: 0; margin 0; resize: none;
+	}
+	
+	#splitter-naved #editor-inactive {
+		padding: 12px;
+		background-color: white;
+		height: 100%;
+		overflow: hidden;
+	}
+	
+div#page-information table {
+	width: 100%;
+}
+	div#page-information table tr {
+		height: 20px;
+	}
+
+	div#page-information table th {
+		width: 14%;
+	}
+	
+	div#page-information table a {
+		font-weight: bold;
+		color: #48B4DB;
+	}
+	
+	div#page-information table img {
+		float: left;
+		margin-right: 6px;
+	}
+	
+	div#page-information #page-description {
+		border: 1px solid transparent;
+	}
+	
+		div#page-information #page-description:HOVER {
+			border-color: lightgray;
+		}
+		
+	div#page-information #page-title:HOVER {
+		background-color: Yellow;
+	}
+	
+div.modal_content form > div {
+	height: 26px;
+	margin-bottom: 4px;
+}
+
+	div.modal_content form > div > * {
+		float: left;
+	}
+
+	div.modal_content form > div > label {
+		display: block;
+		line-height: 25px;
+		width: 120px;
+		text-align: right;
+		padding-right: 8px;
+	}
+
+	div.modal_content form > div > input {
+		padding: 1px 0px;
+		height: 25px;
+	}
+	/** Other content, not editable **/	
+	div.modal_content form > div > div.static {
+		line-height: 25px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}	
+	
+	div.modal_content form > div > span {
+		display: block;
+		height: 25px;
+		line-height: 25px;
+		font-size: 85%;
+		margin-left: 6px;
+		color: gray;
+	}
+	
+	div.modal_content textarea {
+		border: 1px solid gray;
+		width: 100%;
+		resize: none; 
+	}

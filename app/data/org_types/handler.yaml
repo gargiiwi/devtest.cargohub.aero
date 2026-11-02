@@ -1,0 +1,98 @@
+# The name and short name of the organization type. Appended beside the name of the organization when using partnership functions 
+name: Ground Handler
+shortname: GH
+
+# CSV list of controllers (without the App_Ctrl_ prefix) that this organization type has access to
+controllers:
+  - user_overview
+  - user_settings
+  - user_commcenter
+  - global_operations
+  - global_contact
+  - global_note
+  - global_task
+  - global_comm # Centralized e-mail / communication API - All modules which need to send something will plug into this
+  - manager_organization
+  - manager_department
+  - manager_user
+  - manager_contacts # Contacts manager (personal, department, organization, global)
+  - manager_tasks
+  - issue_list 
+  - issue_listexport
+  - issue_item
+  - record_process # Complete control over record information ( tab-based )
+  - record_view # Clean view of record data
+  - record_edit # Full edit mode for records (big form, no panels)
+  - record_print
+  - search_global # Global list/search for records (all types). Used to locate records of any kinds
+  - contact_account
+  - contact_operations
+  - datasource_exchange
+  - user_publication #publication read only
+  - issue_capa
+  - record_reports
+
+mainmenu:
+  -
+    name: Dashboard
+    icon: dashboard.png
+    access: Yes
+    route: "/user/overview#dashboard"
+  -
+    name: Records Grid
+    icon: table.png
+    access: Yes
+    route: /issue/list
+  -
+    name: Charts
+    icon: chart_bar.png
+    access: Yes
+    route: "/user/overview#modules"
+  -
+    name: Tasks
+    icon: to_do_list_checked_1.png
+    access: Yes
+    route: /manager/tasks:record
+  -
+    name: Organization
+    icon: company-building-icon.png
+    access: Yes
+    route: "/manager/organization#overview"
+  -
+    name: Contacts
+    icon: book_addresses.png 
+    access: Yes
+    route: /manager/contacts
+  -
+    name: Notifications
+    icon: bell.png
+    access: Yes
+    route: "/user/overview#notify"
+  -
+    name: Settings
+    icon: cog.png
+    access: Yes
+    route: /user/settings
+  -
+    name: Currency Exchange
+    icon: exchange.png
+    access: Yes
+    route: /datasource/exchange
+  -
+    name: Support
+    icon: support.png
+    access: Yes
+    route: "/user/overview#updates"
+
+# Default features for organizations of this type
+default_features:
+
+# Default privilege set for organizations of this type
+default_privileges:
+
+# Default access ids information for organizations of this type
+default_access_ids:
+
+# Issue Type Overrides for this type of organization
+ist_or:
+  "1": 15

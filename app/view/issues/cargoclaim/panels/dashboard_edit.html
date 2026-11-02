@@ -1,0 +1,271 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+<tr>{!MAWB line}
+	<th><label for='{mawb_p.id}'>{mawb_p.display.label}:</label></th>
+	<td>
+		<input type='text' id='{mawb_p.id}' name='{mawb_p.name}' value='{mawb_p.value}' maxlength="3" style='width: 30px;' class="jqx-input whitebg jqx-input-{%jqxtheme} only-numbers" /> - 
+		<input type='text' id='{mawb_s.id}' name='{mawb_s.name}' value='{mawb_s.value}' maxlength="8" style='width: 70px;' class="jqx-input whitebg jqx-input-{%jqxtheme} only-numbers" />
+	</td>
+</tr>
+{#use:pstage:<tr>
+	<th><label>{display.label}:</label></th>
+	<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+</tr>}
+{#use:nature_of_goods:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+</tr>}
+<tr>{!AWB Pieces and Weight}
+	<th><label for='{mawb_pieces.id}'>MAWB Total:</label></th>
+	<td>
+	{#use:mawb_pieces: <input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pcs }
+	{#use:mawb_weight: <input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> kg}
+	</td>
+</tr>
+ {#use:shipper_n:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:consig_n:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+  {#use:issue_agent:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+
+<hr />
+<table>
+{#use:subm_type:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long'>
+		<option value=''>(not specified)</option>
+		{#repeat:options:<option value="{value}"{#if:active: selected='selected'}>{display}</option>
+		}</select></td>
+</tr>}
+{#use:mawb_date:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+</tr>}
+{#use:carry_date:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+</tr>}
+{#use:arrival_date:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+</tr>}
+{#use:pickup_date:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+</tr>}
+</table>
+
+<h4>{claim_type.display.label}:</h4>
+<table id="claim-aspects-edit">
+	<tr id="claim-aspects-header">{#use:claim_type:
+		{#repeat:options:
+			<td id="ca-{value}-edit"><label><input class='sync-container' name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label></td>}
+		<input type='hidden' name='{name}' value='' />
+	}</tr>
+	<tr>
+		{#use:dmg_pieces: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pcs</td>}
+		{#use:loss_pieces: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pcs</td>}
+		{#use:delay_pieces: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pcs</td>}
+		{#use:ploss_pieces: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pcs</td>}
+		{#use:pilf_pieces: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pcs</td>}
+	</tr>
+	<tr>
+		{#use:dmg_weight: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> kg</td>}
+		{#use:loss_weight: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> kg</td>}
+		{#use:delay_weight: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> kg</td>}
+		{#use:ploss_weight: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> kg</td>}
+		{#use:pilf_weight: <td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} tiny only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> kg</td>}
+	</tr>
+</table>
+
+<h4>{what_happened.display.label}</h4>
+{#use:what_happened:
+	<textarea autocorrect="off" spellcheck="false" style="margin-bottom: 6px;" rows="7" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} fullwidth{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}>{value}</textarea>
+}
+
+<h4 style="margin-top: 8px; background-image: url('/img/icons16/coins.png'); background-repeat: no-repeat; background-position: 4px;">Financial data</h4>
+<table>
+	{#use:invoice_val:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:invoice_val_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	<tr>
+		<th><label for='{id}'>{repair_amt.display.label}</label></th>
+		<td>{#use:repair_amt:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:repair_amt_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	<tr>
+		<th><label for='{id}'>{freight_amt.display.label}</label></th>
+		<td>{#use:freight_amt:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:freight_amt_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{#use:dmg_repair:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	<tr>
+		<th><label for='{id}'>{salvage_amt.display.label}</label></th>
+		<td>{#use:salvage_amt:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:salvage_amt_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{#use:insurance:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:ins_cert:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:claim_amt:<tr style='background-color: yellow;'>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:claim_amt_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+			<div>If a value is entered here, the claim becomes <b>Formal</b></div>
+		</td>
+	</tr>
+	<tr>
+		<th><label for='{id}'>{claim_usd.display.label}</label></th>
+		<td>{#use:claim_usd:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short' disabled="disabled" />} &nbsp;USD
+			<div class='gray'>Amount in USD is automatic and cannot be entered manually</div>
+		</td>
+	</tr>
+</table>
+
+{#use:documents:
+<h4 style="margin-top: 8px; background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">{display.label}:</h4>
+<div class='twocolcbox'>
+	{#repeat:options:<label><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label>}
+	<input type='hidden' name='{name}' value='' />
+</div>}
+<div class="clear"></div>
+
+<hr />
+<table>
+	 
+	<tr>{#use:hawb1:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:hawb2:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:hawb3:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:hawb4:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:hawb5:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:hawb6:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:hawb7:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:hawb8:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:hawb9:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+</table>
+
+<h4 style="margin-top: 8px; background-image: url('/img/icons16/menus/claim-shipment.png'); background-repeat: no-repeat; background-position: 4px;">Flight information:</h4>
+<table style="width: 99%;">
+	<tr>
+		<td style="text-align: center; width: 33%;">Flight No. 1</td>
+		<td style="text-align: center; width: 33%;">{flight_no_2.display.label}</td>
+		<td style="text-align: center; width: 33%;">{flight_no_3.display.label}</td>
+	</tr>
+	<tr>
+		{#use:flight_no:<td style="text-align: center;"><input type='text' id='{id}' name='{name}' value='{value}' class='short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+		{#use:flight_no_2:<td style="text-align: center;"><input type='text' id='{id}' name='{name}' value='{value}' class='short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+		{#use:flight_no_3:<td style="text-align: center;"><input type='text' id='{id}' name='{name}' value='{value}' class='short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	</tr>
+	<tr>
+		<td style="text-align: center;">{flight_no_4.display.label}</td>
+		<td style="text-align: center;">{flight_no_5.display.label}</td>
+		<td style="text-align: center;">{flight_no_6.display.label}</td>
+	</tr>
+	<tr>
+		{#use:flight_no_4:<td style="text-align: center;"><input type='text' id='{id}' name='{name}' value='{value}' class='short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+		{#use:flight_no_5:<td style="text-align: center;"><input type='text' id='{id}' name='{name}' value='{value}' class='short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+		{#use:flight_no_6:<td style="text-align: center;"><input type='text' id='{id}' name='{name}' value='{value}' class='short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	</tr>
+</table>
+
+<table>
+	<tr>{#use:orig_loc:
+		<th><label>{display.label}:</label></th>
+		<td><div class='searchbox' data-id='#{id}' data-sourceurl='?action=suggest_airport' data-width='348'></div>
+			<input type="hidden" id="{id}" name="{name}" value="{value}" />}
+			{#use:orig_loc_text:<input type="hidden" id="{id}" name="{name}" value="{value}" />}
+		</td>
+	</tr>
+	<tr>{#use:viaa:
+		<th><label>{display.label}:</label></th>
+		<td>
+			<div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox' data-width='348'></div>
+			<input type="hidden" id="{id}" name="{name}" value="{value}" />}
+			{#use:viaa_text:<input type="hidden" id="{id}" name="{name}" value="{value}" />}
+		</td>
+	</tr>
+	<tr>{#use:dest_loc:
+		<th><label>{display.label}:</label></th>
+		<td><div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox' data-width='348'></div>
+			<input type="hidden" id="{id}" name="{name}" value="{value}" />}
+			{#use:dest_loc_text:<input type="hidden" id="{id}" name="{name}" value="{value}" />}
+		</td>
+	</tr>
+	{#use:route:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td>
+			<input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} placeholder="... - ... - ... - ... - ... - ... - ... - ..." />
+			<span class='gray'>Eg. AMS-SVO-PVG</span>
+		</td>
+	</tr>}
+</table>
+</form>}

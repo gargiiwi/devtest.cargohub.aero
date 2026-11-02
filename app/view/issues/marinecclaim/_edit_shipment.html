@@ -1,0 +1,67 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+{#use:project_no:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+</tr>}
+{#use:nature_of_goods:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+</tr>}
+{#use:purch_no:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+</tr>}
+{#use:shipm_no:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+</tr>}
+{#use:lading_no:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+</tr>}
+<tr>{#use:hawb1:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:hawb2:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:hawb3:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:hawb4:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+</table>
+
+<h4>Carriage information:</h4>
+<table>
+{#use:carry_date:<tr>
+	<th><label>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+</tr>}
+{#use:dep_raw:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+</tr>}
+{#use:dest_raw:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+</tr>}
+</table>
+<hr />
+<table>
+	{#use:shipper_n:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:consig_n:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+</form>}

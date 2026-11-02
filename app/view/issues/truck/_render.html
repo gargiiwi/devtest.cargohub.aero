@@ -1,0 +1,186 @@
+{!Template for rendering the Truck Order as a string (html). This kind of view doesn't use any javascript for displaying the information and could be used to save a HTML file or send as a message/email
+  Contacts have a "mailto:" href in them; Attachments are sent as links back into the system; All other values are simply formatted text}
+{!TODO: A way to reorder these components (user, system, includes, issue data)}
+{!The system might add it's own piece of text in certain situations}
+{#if:_contents_system:<div>{_contents_system}</div>}
+{!Users are able to add their own text}
+{#if:_contents_user:<div>{_contents_user}</div>}
+{!Support including extra templates here, which use the same data as this main template}
+{#if:_includes:{#repeat:_includes:
+	<div>{#include:%:{$}}</div>}}
+
+<div style="max-width: 700px; padding: 5px; border: 1px solid lightgray; font-size: 12px;">
+{#use:issue:
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>{%ist.name} - <b style="color: #999;">{xfields.mrn_no}~uppercase~</b></h4>
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}
+</table>
+
+{#if:%parts.contacts|%override:
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Contact(s) information</h4>
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	{#repeat:contact_links:
+		<tr><th valign="top">{label}:</th><td><div>{contact.name} &lt;<a href="mailto:{contact.email}">{contact.email}</a>&gt;</div>
+		{#if:contact.xdata.company_name:<div><span style="color: #999;">Company name:</span> {contact.xdata.company_name}</div>}
+		{#if:contact.xdata.phone:<div><span style="color: #999;">Phone number:</span> {contact.xdata.phone}</div>}
+		</td></tr>}
+</table>
+}
+
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Transit information:</h4>
+{#use:%ist.xfield_def:
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{movement.n}:</th><td>{^xfields.movement.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{mrn_no.n}:</th><td>{#if:^xfields.mrn_no:{^xfields.mrn_no}~uppercase~ ({^xfields.mrn_type.value:?})
+			<a href="http://ec.europa.eu/taxation_customs/dds2/tra/transit_home.jsp?Lang=en&MRN={^xfields.mrn_no}~uppercase~&Expand=true" target="_blank">[ Tracking ]</a>
+		}{#ifnot:^xfields.mrn_no:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{mrn_date.n}:</th><td>{#if:^xfields.mrn_date:{^xfields.mrn_date}~date("Y-m-d")~}{#ifnot:^xfields.mrn_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{trans_id.n}:</th><td>{^xfields.trans_id:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{truck_date.n}</th><td>{#if:^xfields.truck_date:{^xfields.truck_date}~date("Y-m-d")~}{#ifnot:^xfields.truck_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{feeder.n}:</th><td>{^xfields.feeder.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{consignor.n}:</th><td>{^xfields.consignor:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{consignee.n}:</th><td>{^xfields.consignee:<span style="color: #999;">---</span>}</td></tr>
+	<tr><td colspan='2'><hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" /></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{origin.n}:</th><td>{^xfields.origin.value.IATA:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{destination.n}:</th><td>{^xfields.destination.value.IATA:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{non_airp.n}:</th><td>{^xfields.non_airp:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{ndis.n}:</th><td>{^xfields.ndis.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb1.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb1:<span style="color: #999;">(missing)</span>}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb1_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb1_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>
+		{#if:^xfields.awb2:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb2.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb2}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb2_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb2_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb3:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb3.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb3}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb3_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb3_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb4:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb4.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb4}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb4_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb4_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb5:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb5.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb5}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb5_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb5_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb6:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb6.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb6}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb6_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb6_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb7:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb7.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb7}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb7_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb7_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb8:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb8.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb8}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb8_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb8_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb9:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb9.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb9}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb9_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb9_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb10:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb10.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb10}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb10_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb10_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb11:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb11.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb11}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb11_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb11_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb12:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb12.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb12}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb12_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb12_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb13:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb13.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb13}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb13_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb13_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb14:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb14.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb14}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb14_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb14_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb15:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{awb15.n}:</th><td><span style="display: inline-block; width: 100px;">{^xfields.awb15}</span><span style="color: #999;"> Pieces: </span><span>{^xfields.awb15_p:<span style="color: #999;">---</span>}</span><span style="color: #999;"> Weight: </span><span>{^xfields.awb15_kg:<span style="color: #999;">---</span>}</span> kg</td></tr>}
+	</table>
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Investigation and documentation:</h4>
+	{#ifnot:^xfields.documents:<span style="color: #999;">-----</span>}
+	{#repeat:^xfields.documents:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+	<div style="clear: both;"></div>
+	
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<h5>{docs_cause.n}:</h5>
+	{#if:^xfields.docs_cause:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.docs_cause}~nl2br~</div>}
+	{#ifnot:^xfields.docs_cause:<div style="color: #999; text-indent: 20px;">-----</div>}
+	
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{ndis_reason.n}?</th><td>{^xfields.ndis_reason.value:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	<h5>{docs_remarks.n}:</h5>
+	{#if:^xfields.docs_remarks:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.docs_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.docs_remarks:<div style="color: #999; text-indent: 20px;">-----</div>}
+	
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{docs_req.n}:</th><td>{^xfields.docs_req:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{docs_enough.n}?</th><td>{^xfields.docs_enough.value:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	<div style="clear: both; margin-bottom: 30px;"></div>
+}
+
+{#if:%parts.truck-fork|%override:
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Ground Handler Data:</h4>
+{#use:%ist.xfield_def:<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Planned:</th><td><span style="display: inline-block; width: 120px;">{^xfields.pick_est_time.value:<span style="color: #999;">---</span>}</span> {#if:^xfields.pick_date:{^xfields.pick_date}~date("Y-m-d")~}{#ifnot:^xfields.pick_date:<span style="color: #999;">(unknown)</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Revised:</th><td><span style="display: inline-block; width: 120px;">{^xfields.rev_time:<span style="color: #999;">---</span>}</span> {#if:^xfields.rev_date:{^xfields.rev_date}~date("Y-m-d")~}{#ifnot:^xfields.rev_date:<span style="color: #999;">(unknown)</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Total Weight/Volume:</th><td>
+			<span style="display: inline-block; width: 120px;">{^xfields.pack_weight:<span style="color: #999;">---</span>} kg</span>
+			{^xfields.total_volume:<span style="color: #999;">---</span>} m3
+		</td></tr>
+		<tr><td colspan='2'><hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" /></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Arrival:</th><td><span style="display: inline-block; width: 120px;">{^xfields.arrival:<span style="color: #999;">---</span>}</span> {#if:^xfields.arrival_date:{^xfields.arrival_date}~date("Y-m-d")~}{#ifnot:^xfields.arrival_date:<span style="color: #999;">(unknown)</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{dock.n}:</th><td style="font-size: 1.2em;">{^xfields.dock:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{license.n}:</th><td>{^xfields.license:<span style="color: #999;">---</span>}</td></tr>
+		<tr><td colspan='2'><hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" /></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Loading:</th><td><span style="color: #999;">Start: </span>{^xfields.loading:<span style="display: inline-block; width: 40px; color: #999;">--</span>} &nbsp; <span style="color: #999;"> End: </span>{^xfields.loading_end:<span style="color: #999;">--</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{departure.n}:</th><td>{^xfields.departure:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{mrn_no.n}:</th><td>{#if:^xfields.mrn_no:{^xfields.mrn_no}~uppercase~ ({^xfields.mrn_type.value:?})}{#ifnot:^xfields.mrn_no:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{delays.n}:</th><td>
+			<label><input type='checkbox' disabled="disabled"{#if:^xfields.delays.key: checked="checked"}> {^xfields.delays.value}</label>
+		</td></tr>
+	</table>
+	{#if:^xfields.cnotes:
+	<h5>{cnotes.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.cnotes}~nl2br~</div>}
+	{#ifnot:^xfields.cnotes:<div style="color: #999; text-indent: 20px;">(loader notes not completed)</div>}
+	<br /><br />
+}}
+
+{#if:%parts.truck-customs|%override:
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Customs / Collection:</h4>
+{#use:%ist.xfield_def:
+	<h5>{remarks.n}:</h5>
+	{#if:^xfields.remarks:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div style="color: #999; text-indent: 20px;">-----</div>}
+	<br />
+	<h4 style="background-color: #FFF;">Current procedure</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{procedure.n}:</th><td>{^xfields.procedure.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{mrn_status.n}:</th><td>{^xfields.mrn_status.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{appeal_ref.n}:</th><td>{^xfields.appeal_ref:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+
+	<h4 style="background-color: #FFF;">Collection information</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{mrn_amt.n}:</th><td><span><b>{^xfields.mrn_amt.serialized:<span style='color: #999;'>---</span>}</b></span></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{ref_nond.n}:</th><td><span style="display: inline-block; width: 180px;">{^xfields.ref_nond:<span style="color: #999;">---</span>}</span>
+			<label style="margin-left: 10px; margin-right: 5px;">Date:</label>{#if:^xfields.nc_date:{^xfields.nc_date}~date("Y-m-d")~}{#ifnot:^xfields.nc_date:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{ref_prec.n}:</th><td><span style="display: inline-block; width: 180px;">{^xfields.ref_prec:<span style="color: #999;">---</span>}</span>
+			<label style="margin-left: 10px; margin-right: 5px;">Date:</label>{#if:^xfields.pc_date:{^xfields.pc_date}~date("Y-m-d")~}{#ifnot:^xfields.pc_date:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{coll_ref.n}:</th><td><span style="display: inline-block; width: 180px;">{^xfields.coll_ref:<span style="color: #999;">---</span>}</span>
+			<label style="margin-left: 10px; margin-right: 5px;">Date:</label>{#if:^xfields.coll_date:{^xfields.coll_date}~date("Y-m-d")~}{#ifnot:^xfields.coll_date:<span style="color: #999;">---</span>}
+		</td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<table>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{coll_pre.n}:</th><td><span><b>{^xfields.coll_pre.serialized:<span style='color: #999;'>---</span>}</b></span></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{coll_prov.n}:</th><td><span><b>{^xfields.coll_prov.serialized:<span style='color: #999;'>---</span>}</b></span></td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<table>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{coll_amt.n}:</th><td><span><b>{^xfields.coll_amt.serialized:<span style='color: #999;'>---</span>}</b></span></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{impduties.n}:</th><td><span><b>{^xfields.impduties.serialized:<span style='color: #999;'>---</span>}</b></span></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{vat.n}:</th><td><b>{^xfields.vat.serialized:<span style='color: #999;'>---</span>}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{pen.n}:</th><td><b>{^xfields.pen.serialized:<span style='color: #999;'>---</span>}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{otrcharges.n}:</th><td><b>{^xfields.otrcharges.serialized:<span style='color: #999;'>---</span>}</b></td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<table>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{coll_fin.n}:</th><td>
+			<span style="display: inline-block; width: 180px;"><b>{^xfields.coll_fin.serialized:<span style='color: #999;'>---</span>}</b></span>
+			<label style="margin-left: 10px; margin-right: 5px;">Date:</label>{#if:^xfields.fp_date:{^xfields.fp_date}~date("Y-m-d")~}{#ifnot:^xfields.fp_date:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th>{recharge_amt.n}:</th><td><b>{^xfields.recharge_amt.serialized:<span style='color: #999;'>---</span>}</b></td></tr>
+	</table>
+}}
+{!END container}
+</div>
+}
+
+{!Deprecated... but unfortuantely still used in the frontend submit (until that one is recoded as well)}
+{#if:%parts.attachments|%override:{#if:issue.files:<div style="max-width: 600px; padding: 5px; margin-top: 5px;">
+	<h4 style='margin-top: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 5px; padding: 3px; text-indent: 20px;'>Attached documents (links):</h4>
+	<div id='attachments' style="margin-bottom: 8px;">
+		{#repeat:issue.files:
+		<div style="margin-bottom: 5px; padding: 5px 0px 5px 2px; border-bottom: 1px dotted lightgray;">
+			<a target='_blank' href='http://{%html.domain}/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'>
+			<img style="float: left; margin-right: 10px; border: none;" src='http://{%html.domain}/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span style="color: #999;">({description})</span>}<br />
+			<span style="color: #999;">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span style="color: #999;">Size:</span> {size}~numberformat~ bytes	
+			<div style="clear: both; height: 0px !important;"></div>
+		</div>
+		}
+	</div>
+</div>}}

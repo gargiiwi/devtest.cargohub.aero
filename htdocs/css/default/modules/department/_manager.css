@@ -1,0 +1,32 @@
+form.vertiform {
+}
+	
+	.vertiform input[type='text'] {
+		width: 200px;
+		padding: 4px;
+		margin: 0px;
+		border: 1px solid lightgray;
+		border-radius: 3px;
+	}
+	
+/* Users tab - Displaying user overview */
+div#user-info {
+	padding: 6px;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	margin-bottom: 20px;	
+}
+
+	div#user-info #user-vcard {
+		width: 450px;
+		float: left;
+	}
+	
+	div#user-info #user-account {
+		width: 334px; float: right; overflow: hidden;
+	}
+
+.dep_info_cb .jqx-checkbox {
+	position: relative;
+	top: 6px;
+}

@@ -1,0 +1,82 @@
+# Access Control Lists
+---
+privilege_groups:
+  Publication :   Publication Access 
+  issue_grid:     Records Grid (List and Search)
+  issue_metadata: Record Operations
+  issue_detail:   Record Tabs (Panels, Communication, Files, Notes/Docs, Contacts, Sharing)
+  tasks:          Tasks System and Management
+  org:            Organization Management
+  superuser:      Superuser Abilities
+
+privileges:
+# Publication settings  
+  Publication_Right:            Access the grid to publish Documentation
+ 
+
+# Rights related to Records Grid section (list)
+  issue_add:                      Create new records for the organization
+  issues_view:                    Access the grid and open records
+  issues_view_unassgn:            View unassigned records
+  issues_view_assgn_oth:          View records assigned to others
+  issues_list_customize_columns:  Enable customization of columns
+
+# Rights related to detail section (item)
+  issue_xfields:                  Access to Data Panels | Allow panel editing
+  issue_edit_xfields:             Enables panel editing
+  record_send_data:               Enable building E-mail from record data
+  issue_view_comm:                View Record-related communication | Manage communication
+  issue_manage_comm:              Manage communication
+  issue_view_attachs:             View/Upload/Download record files | Manage existing files
+  issue_edit_attachs:             Manage attachment meta and allow deleting files
+  # The access related to Tasks is below in the "Other" areas
+  issue_view_notes:               Access to the Notes/Docs areas | Manage restricted Notes or Docs
+  issue_edit_notes:               Manage restricted Notes or Docs
+  issue_view_contacts:            View contacts linked to a record | Manage linked contacts
+  issue_edit_contacts:            Allows managing record-linked contacts
+  issue_view_sharing:             Access to list of organizations sharing data
+  issue_view_history:             View Record modification history
+  
+# Privileges related to ability to operate records (both grid and detail)
+  issue_set_group:                Allows changing record group (Category, Airline etc.) - Master org. only
+  issue_self_assign:              Assign records to self | Change assignment (to any user)
+  issue_assign_to:                Can assign the record to others or unassign
+  issue_set_status:               Can change record Status (A) and Priority (B)
+  issue_set_priority:             Can change a record's priority
+  issue_sendby_mail:              Record sending and sharing by E-mail
+#  issue_partner_share:            Share record with a partner | transfer control to a partner
+  issue_transfer:                 Transfer control to another organization
+  issue_access_deps:              Modify department access to record (also ignores dept. restrictions)
+  issue_close:                    "Can close record (hide from view) | Delete records <b>[WARNING!]</b>"
+  issue_delete:                   Allowed to delete records
+  
+# Privileges related to other areas (Tasks, Contacts, Charts, etc.) module
+  tasks_access:                   View all record tasks (including assigned to others)
+  tasks_manager:                  Task manager (Create, Edit and Delete)
+  tasks_access_dep:               Can Edit and Reassign to other members the tasks assigned to own department
+  tasks_access_org:               Can access the complete list of organization tasks (<a href="/manager/tasks:record">Task Manager</a>)
+  org_contacts_view:              Organization-wide contacts - View | Manage
+  org_contacts_manager:           View and manage organization-wide contacts
+  dep_contacts_view:              Department-wide contacts - View | Manage
+  dep_contacts_manager:           View and manage own department's contacts
+
+# Privileges related to the organization and it's management
+  view_online:                    Can see the other online members in the organization
+
+  org_view_stats:                 Views organization statistical information
+  org_deps_view:                  Organization's departments | Manage departments
+  org_deps_manager:               Manage departments and set access
+  org_users_view:                 Organization user list | Manage users
+  org_user_manager:               Manages organization's users, sets access privileges
+  org_partners_view:              View the organization's partners
+  org_groups_view:                View the record groups available for this organization
+  grid_manage_views:              Can edit department-wide or organization-wide views
+  org_templates_manager:          Manage organization's E-mail, Print and Task templates
+#Superuser (Admin) only settings (users cannot configure these even if they have full access to the ACL editor)
+  issues_view_orgowned:           Access all organization records (no department or data-group restriction)
+  org_domains_view:               View web addresses where users can login | Manage the addresses
+  org_domains_manager:            Can manage organization's web addresses
+  org_ipaddr_manager:             Operate organization's IP address filters
+  org_access_manager:             "Access manager: Set Org-wide, Dep or User level access rights <b>[WARNING!]</b>"
+  
+  

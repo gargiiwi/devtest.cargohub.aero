@@ -1,0 +1,248 @@
+:root{
+    --primary_color : #0E76BC;
+    --secondary_color: #fff;
+    --tab_bg: #E5F3FD;
+    --tab_text_color: #848486;
+    --text_color: #585858;
+    --sub_hdng_clr: #000000;
+    --hdng_color: #02609F;
+}
+
+.cargo_claims_how_to_submit{
+    img{
+        max-width: 100%;
+    }
+
+    .cargo_claims{
+        .top_dv{
+            background-color: var(--tab_bg)!important;
+            padding: 12px 15px !important;
+            margin-top: 20px;
+        }
+        .claim_submit_btn, .claim_update_btn, .create_account_btn{     /*howTo_create_ac_changes*/
+            background-color: var(--secondary_color) !important; 
+            border-radius: 4px !important;
+            border: solid 1px var(--secondary_color) !important;
+            margin: 0 5px;
+            color: var(--tab_text_color);
+            width: auto;
+            /* height: 35px; */
+            display: inline-block;
+            text-align: center;
+            line-height: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px;
+        }
+        .active{
+            background-color: var(--primary_color) !important;
+            border-radius: 4px !important;
+            border: solid 1px var(--primary_color) !important;
+            color: var(--secondary_color);
+            width: auto;
+            /* height: 35px; */
+            display: inline-block;
+            text-align: center;
+            line-height: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px;
+        }
+        h1{
+            color: var(--hdng_color);
+            font-size: 30px !important;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .claim_submit_dv{
+            border: solid 1px #cccccc57;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        p,h5{
+            font-size: 14px !important;
+        }
+        .steps ul{
+            margin-bottom: 12px !important;
+
+            li{
+                list-style: lower-latin;
+                font-size: 14px;
+                font-weight: 500;
+                margin-left: 50px;
+                line-height: 25px !important;
+                color: var(--text_color) !important;
+            }
+        }
+
+        .title{
+            h6{
+                margin-bottom: 20px !important;
+                font-size: 16px;
+            }
+        }
+
+        .steps, .subtitle{
+            h5{
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+        .notes{
+            li{
+                list-style: disc !important;
+                margin-left: 50px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 27px !important;
+            }
+        }
+        .sub_list{
+            ul{
+                li{
+                    list-style: disc !important;
+                }
+            }
+        }
+        .image_dv img{
+            margin-bottom: 25px;
+            width: 88% !important;    /*howTo_create_ac_changes */
+            margin-left: 47px;        /*howTo_create_ac_changes */
+        }
+        .collapsible {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .collapsible.active {
+            background-color: #2c80b4;
+        }
+
+        .content {
+            background-color: #f1f1f1;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-radius: 0 0 4px 4px;
+            padding: 0 18px;
+            max-height: 0;
+        }
+        .accordion{
+            width: 100%;
+        }
+        h6{
+            font-size: 16px;
+        }
+        .content{
+            /*overflow-y: hidden !important;*/
+        }
+    }
+    
+}
+
+
+@media screen and (max-width: 768px){
+
+    .cargo_claims {
+        h1{
+            font-size: 20px !important;
+        }
+        .top_dv{
+            text-align: center;
+
+            .claim_update_btn{
+                margin-top: 10px;
+            }
+        }
+        .steps ul{
+            li{
+                margin-left: 35px;
+            }
+        }
+        .steps, .subtitle{
+            h5{
+                font-size: 13px;
+                margin-bottom: 15px;
+            }
+        }
+        .notes{
+            ul{
+                li{
+                    margin-left: 30px !important;
+                }
+
+            }
+        }
+        .accordion{
+            width: 80vw;
+        }
+    }
+
+
+}
+
+.cargo_claims_how_to_submit .accordion input {
+    display: none;
+}
+
+.cargo_claims_how_to_submit .accordion label {
+    display: block;
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.cargo_claims_how_to_submit .accordion .content {
+    max-height: 1800px;
+    background-color: #f1f1f1;
+    transition: max-height 0.3s ease-out;
+    padding: 0 18px;
+}
+.cargo_claims_how_to_submit .accordion .content {
+    max-height: 0;
+    overflow: hidden;
+}
+
+
+.cargo_claims_how_to_submit .accordion input:checked + label + .content {
+    max-height: 1800px; /* Set a max height that fits your content */
+    padding: 10px 18px;
+}
+.cargo_claims_how_to_submit .accordion label {
+    position: relative;
+    padding-right: 40px; /* leave space for the icon */
+    font-weight: 600;
+}
+
+.cargo_claims_how_to_submit .accordion label::after {
+    content: "+";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cargo_claims_how_to_submit .accordion input:checked + label::after {
+    content: "-";
+}
+.cargo_claims_how_to_submit .container-fluid .row > div {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+

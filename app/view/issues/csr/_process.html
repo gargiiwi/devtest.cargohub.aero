@@ -1,0 +1,96 @@
+{@<style type="text/css">
+/* Some styles specific to Cargo Service Recovery */
+
+div.ra_200 {
+	display: inline-block;
+	float: right;
+	width: 200px;
+}
+label.ra_label {
+	display: inline-block;
+	margin-right: 5px;
+	width: 110px;
+	text-align: right;
+}
+label.threecolcbox {
+	display: block;
+	width: 176px;
+	float: left;
+} 
+label.twocolcbox {
+	display: block;
+	width: 250px;
+	float: left;
+}
+.coltable {
+	border: 1px solid lightgray;
+}
+#issue_form table.dual_col_table td {
+	border: 1px solid lightgray;
+	padding: 3px 3px 12px 3px;
+	width: 50%;
+}
+#issue_form table.dual_col_table td label, #issue_form table.radiotable td label {
+	display: block;
+	width: 100%;
+	cursor: pointer;
+}
+#issue_form table.dual_col_table td label:HOVER, #issue_form table.radiotable td label:HOVER {
+	background-color: #F9F3DE;	
+}
+.size70 {
+	display: inline-block;
+	width: 80px;
+}
+.gray-block {
+	display: inline-block;
+	padding: 3px 8px;
+	background-color: lightgray;
+	font-weight: bold;
+}
+.orange-block {
+	display: inline-block;
+	padding: 3px 8px;
+	background-color: orange;
+	font-weight: bold;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="csr-dashboard" data-panel='0' style='height: 525px;' data-editable="1" data-edittpl="dashboard" data-editheight="675">
+	<div><img src='/img/icons16/information.png' alt="{track}" />Dashboard</div>
+	<div class="datatable">
+{#include::panels/dashboard_view.html}
+	</div>
+</div>
+
+<div id="csr-incident" data-panel='1' style='height: 900px;' data-editable="1" data-edittpl="incident" data-editheight="1600">
+	<div><img src='/img/icons16/menus/csr-incident.png' />Incident</div>
+	<div class="datatable">
+{#include::panels/incident_view.html}
+	</div>
+</div>
+
+<div id="csr-analysis" data-panel='1' style='height: 1050px;' data-editable="1" data-edittpl="analysis" data-editheight="1700">
+	<div><img src='/img/icons16/menus/csr-analysis.png' alt="Zoom" />Event Analysis</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" id="analysis-fields">
+{#include::panels/analysis_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+<div id="csr-resolution" data-panel='1' style='height: 920px;' data-editable="1" data-edittpl="resolution" data-editheight="1110">
+	<div><img src='/img/icons16/menus/csr-resolution.png' />Involved Risk &amp; Charges</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/resolution_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+<div id="csr-irregs" data-panel='1' style='height: 250px;' data-editable="1" data-edittpl="irregs" data-editheight="320">
+	<div><img src='/img/icons16/menus/csr-irregs.png' />Irregularities</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/irregs_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>

@@ -1,0 +1,12 @@
+<!--<h2>Welcome, <i>{contact.name}</i> !</h2>-->
+{#if:contact.user_id:<h4 class="login-warn">Please note: You also have a <b>staff member account</b>. It is advisable to use the <a href="/user/overview#overview">staff section</a> of the application.</h4>}
+<div id='contact-account'>
+	<ul style='margin-left: 32px;'>
+		{#repeat:contact_tabs:
+			<li><img src='/img/icons16/{icon}' alt='{title}' /> {title} </li>}
+	</ul>
+	{#repeat:contact_tabs:
+		<div class='spacey' id='{id}'>
+			<div style='text-align: center; padding: 30px;'><img src="/img/extra/loader3.gif" /></div>
+		</div>}
+</div>

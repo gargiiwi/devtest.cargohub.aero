@@ -1,0 +1,44 @@
+/* Blog Entries Manager */
+
+#entry-editor form > div {
+	margin-bottom: 4px;
+}
+
+#entry-editor form > div label {
+	display: inline-block;
+	float: left;
+	line-height: 26px;
+	padding-right: 8px;
+	text-align: right;
+	width: 135px;
+}
+
+#entry-editor form > div .form-control {
+	display: inline-block;
+}
+
+#entry-editor form > div input.form-control {
+	height: 24px;
+	padding-left: 3px;
+	box-sizing: border-box;
+}
+
+#entry-editor form > div .static {
+	color: gray;
+	line-height: 26px;
+	text-shadow: 0 1px 0 lightgray;
+}
+
+#entry-editor form > div.CodeMirror {
+	height: 565px; /* 34-35 lines of code */
+}
+
+/* Grid stuff */
+.tag {
+	display: inline-block;
+	background-color: white;
+	color: black;
+	padding: 1px;
+	margin-right: 6px;
+	box-shadow: 2px 2px 2px gray;
+}

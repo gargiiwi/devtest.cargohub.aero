@@ -1,0 +1,39 @@
+/** System User Login **/
+div.site > div.page > div#login {
+}
+
+	div.site > div.page > div#login small {
+		color: #666666;
+	}
+
+	div.site > div.page > div#login > div.logo {
+		padding: 20px 40px 20px 100px;
+	}
+
+	div.site > div.page > div#login > div.form {
+		width: 256px;
+		padding: 20px 10px;
+	}
+
+	div.site > div.page > div#login > div.form div.field {
+		background-color: white;
+		width: 250px;
+		border: 1px solid #C7C7C7;
+		padding: 2px;
+		margin-bottom: 15px;
+	}
+
+		div.site > div.page > div#login > div.form div.field > input {
+			width: 100%;
+			border: none;
+			resize: none;
+			font-size: 14px;
+			text-indent: 8px;
+			line-height: 19px;
+		}
+
+		div.site > div.page > div#login > div.form #remember {
+			margin-top: 4px;
+			margin-left: -3px;
+			float: left;
+		}

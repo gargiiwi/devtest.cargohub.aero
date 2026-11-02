@@ -1,0 +1,90 @@
+/* Styles for the Cargoclaim Rercordgate */
+#gate-cargoclaim {
+	position: relative;
+}
+
+#gate-cargoclaim button {
+	cursor: pointer;
+	padding: 3px 20px;
+	height: 36px;
+	font-size: 13pt;
+	box-sizing: border-box;
+}
+#gate-cargoclaim .infobox {
+	min-width: 300px;
+	padding: 8px;
+}
+
+	#gate-cargoclaim .infobox.ib-right {
+		position: absolute;
+		width: 400px;
+		border-left: 1px solid rgb(170, 170, 170);
+		right: 0;
+		top: 0;
+		bottom: 0;
+		overflow: hidden;
+	}
+	
+	#gate-cargoclaim .infobox.ib-top {
+		border-bottom: 1px solid rgb(170, 170, 170);
+		margin-bottom: 8px;
+	}
+
+#gate-cargoclaim .opbox {
+	width: 650px;
+	padding: 8px 20px;
+}
+
+	#gate-cargoclaim .opbox input {
+		padding: 3px;
+		height: 36px;
+		font-size: 13pt;
+		border: 1px solid rgb(170, 170, 170);
+		box-sizing: border-box;
+	}
+
+#gate-cargoclaim .outcome-box {
+	width: 650px;
+	padding: 4px 16px;
+	margin: 10px 0;
+	box-sizing: border-box;
+}
+	
+#gate-cargoclaim #step2-area {
+}
+	
+	#gate-cargoclaim #step2-area .cac-login-box {
+		margin-top: 12px;
+	}
+		#gate-cargoclaim #step2-area .cac-login-box img {
+			float: left;
+		}
+		
+		#gate-cargoclaim #step2-area .cac-login-box form {
+			float: left;
+			margin-left: 20px;
+		}
+
+#gate-cargoclaim #use-cookie-contact, #gate-cargoclaim #enter-new-contact {
+	margin-top: 8px;
+}
+
+.mandatory-field-info {
+	background-color: #FFFFA0;
+	padding: 5px 2px;
+	font-size: 0.90em;
+	margin: 10px 0;
+	border: 1px solid orange;
+}
+
+.btn-final {
+	margin: 8px 0;
+	height: 45px;
+	font-weight: bold;
+	box-shadow: 5px 3px 8px lightgray;
+	cursor: pointer;
+}
+
+#outcome-disclaimer {
+	padding: 12px 20px;
+}

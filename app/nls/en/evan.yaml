@@ -1,0 +1,9 @@
+# Messages returned by the Events and Notifications system ( EVAN )
+
+# Messages about the primary functions of an user (login, logout, access denied, session expired, etc.)
+user:
+  autologon:      You have been automatically logged in using information stored in your internet browser
+  sessionexpired: Session has expired, you have been automatically logged out
+  
+error:
+  missingaction:  "Action \"%s\" unavailable in controller: %s"

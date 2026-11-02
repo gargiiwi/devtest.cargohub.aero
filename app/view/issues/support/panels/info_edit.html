@@ -1,0 +1,5 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+{#use:xinfo:
+	<textarea autocorrect="off" spellcheck="false" style="margin-bottom: 6px;" rows="35" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} fullwidth{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}>{value}</textarea>
+}
+</form>}

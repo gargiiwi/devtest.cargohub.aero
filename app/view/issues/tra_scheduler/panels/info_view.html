@@ -1,0 +1,5 @@
+{#use:%ist.xfield_def:
+		{#if:^xfields.ts_extra_info:
+		<div>{^xfields.ts_extra_info}~nl2br~</div>}
+		{#ifnot:^xfields.ts_extra_info:<div class="gray" style="text-indent: 20px;">(use this area as a quick clipboard)</div>}
+}

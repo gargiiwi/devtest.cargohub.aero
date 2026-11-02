@@ -1,0 +1,114 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table id="people-inv">
+	<col width="100" /><col width="30%" /><col width="100" /><col width="30%" />
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_name:<th><label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	{#use:p2_name:<th><label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	</tr>
+
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_comp:<th><label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	{#use:p2_comp:<th><label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	</tr>
+	
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_func:<th><label for='{id}'>Function:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	{#use:p2_func:<th><label for='{id}'>Function:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	</tr>
+
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_phone:<th><label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	{#use:p2_phone:<th><label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	</tr>
+	
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_licence:<th><label for='{id}'>Driver licence:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	{#use:p2_licence:<th><label for='{id}'>Driver licence:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	</tr>
+
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_insured:<th><label for='{id}'>Insured by:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	{#use:p2_insured:<th><label for='{id}'>Insured by:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}' /></td>}
+	</tr>
+</table>
+
+<h4>Witnesses (first, second, third):</h4>
+<table style="border-collapse: collapse;">
+	<col width="33%"><col width="33%"><col width="33%">
+	<tr>
+		<td valign="top" class="inputblock">
+			{#use:w1_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w1_company:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w1_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w1_licence:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+		</td>
+		<td valign="top" class="inputblock">
+			{#use:w2_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w2_company:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w2_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w2_licence:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+		</td>
+	  	<td valign="top" class="inputblock">
+			{#use:w3_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w3_company:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w3_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w3_licence:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+		</td>
+	</tr>
+</table>
+
+<h4>Reporting information</h4>
+
+<h3>Internal report prepared by:</h3>
+<table>
+	{#use:rep_name:<tr>
+		<th><label for='{id}'>Name:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value="{value}" class='long jqx-input jqx-input-{%jqxtheme}' /></td>
+	</tr>}
+	{#use:rep_function:<tr>
+		<th><label for='{id}'>Function:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value="{value}" class='long jqx-input jqx-input-{%jqxtheme}' /></td>
+	</tr>}
+</table>
+
+{#use:remarks:
+	<h4>{display.label}:</h4>
+	<textarea rows="7" id='{id}' name='{name}' class='jqx-input-{%jqxtheme} ' style="resize: none; border-width: 1px; width: 99%;" placeholder="(Please keep this information short)">{value}</textarea>
+}
+</form>}

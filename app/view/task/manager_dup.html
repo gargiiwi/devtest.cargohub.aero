@@ -1,0 +1,96 @@
+{#use:module:<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<span>{name}</span>
+	</div>
+	<button data-op="rediectToGrid" title="Export table as ExcelX"><img src='/img/icons16/table.png' /> Record Grid</button>
+	<button data-op="exportxlsx" title="Export table as ExcelX"><img src='/img/icons16/table_export.png' /> Export XLSX</button>
+	<div class='toolbar-separator'></div>
+	
+	<div id='tasks-editops' style='display: none;'>
+		<button data-op="task-create" title="Define a new task and optionally assign it to a person or a department."><img src='/img/icons16/add.png' />Define new task</button>
+		<div class='toolbar-separator'></div>
+	</div>
+
+	<div id='tasks-row-ops' style='display: none;'>
+		<button style='display: none;' data-op="task-linked" title="Open record"><img src='/img/icons16/link_go.png' /> Open record</button>
+		<button data-op="task-view" title="Open the task and update progress"><img src='/img/icons16/eye.png' />View task</button>
+		<div class='toolbar-separator'></div>
+	</div>
+	<div id='tasks-row-editops' style='display: none;'>
+		<button style='display: none;' data-op="task-linked" title="Open record"><img src='/img/icons16/link_go.png' /> Open record</button>
+		{!<button data-op="task-edit" title="View or Edid the selected task"><img src='/img/icons16/draw_calligraphic.png' />View/Edit</button>}
+		{!<button data-op="task-delete" title="Delete the task"><img src='/img/icons16/delete.png' /> Delete</button>}
+		<div class='toolbar-separator'></div>
+	</div>
+	<button data-op="my-assigned" title="Assigned Tasks" id="my-assigned"><img src='/img/icons16/user.png' /> My Assigned</button>
+	<button data-op="grid-state-reset" title="Reset grid to default"><img src='/img/icons16/recycle.png' />Reset grid</button>
+	<button data-op="grid-options" title="Options for loading Task Manager"><img src='/img/icons16/cog.png' />Options</button>
+</div>
+}
+<div id="tasks-grid"></div>
+
+<br /><div class='info-expander'>
+	<div><img src="/img/icons16/information.png" style='float: left; margin-left: 20px; margin-right: 4px;' alt="Help" /> Click here for more information</div>
+	<div class="spacey">
+		<br />
+		<h3 style="text-indent: 25px;">The <b>Task Manager</b> section allows searching, editing and updating tasks assigned to users or departments.</h3>
+		<p>&nbsp;</p>
+		<p>Please note: All dates are in <a href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO 8601</a> format: Year - Month - Day ( YYYY-MM-DD )</p>
+	</div>
+</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+{!Options modal, allowing to change how the grid operates}
+<script id="template_grid-options" type="text/dryjstpl">{@
+	<form name="grid-options" class="spacey">
+		<div><label class="info-tip" data-tooltip_position="left" data-tooltip="What kind of tasks do you wish to view ?">Tasks class:</label><div id="grid-tasks-class"></div></div>
+		<div><label class="info-tip" data-tooltip_position="left" data-tooltip="Select how the grid is viewed: Either all tasks with limited information,<br />or Speciality tasks ( records ) with more information columns">Linked to:</label><div id="grid-link-type"></div></div>
+	</form>
+}</script>
+
+{!Task Create/Update - For the person assigning and changing tasks (Task Manager)}
+<script id="template_task-editor" type="text/dryjstpl">{@
+	<form name="task-editor" action="/global/task?action={$action}" enctype="application/x-www-form-urlencoded" method="post" class="spacey">
+		{#missing:task.uid:<p class="red center" style="margin: 0 0 10px 0;">Tasks defined here are not connected to any other item and are only visible in this Task Manager</p>}
+		{#exists:task.uid:<div><label>Created by:</label><div class="static">{$task.creator_name} - {$task.dt_format}</div></div>}
+		<div><label for='task-title'>Title &amp; Deadline:</label><input type='text' id='task-title' name='task[title]' class="jqx-input jqx-rc-all {$_itc}" maxlength="120" value="{$task.title}" />
+			<div style="float: right;" id='task-deadline' name='task[deadline]' data-value="{$task.deadline_format}" class='calendar'></div></div>
+		<h5 style="background-color: #dfdfdf; margin-bottom: 0; padding: 2px; text-indent: 38px;">Description:</h5>
+		<textarea rows="7" class="jqx-input jqx-rc-all {$_itc}" id="task-description" name="task[description]" placeholder="(Description should be concise, so the assigned person or people understand the task quickly)">{$task.description}</textarea>
+		<p class="center gray" style="margin-bottom: 0;">Maximum length for task description is 65000 characters. Do not post huge texts here !</p><hr />
+		<div><label>Assignment type:</label>
+ 			<div id="asgtype-radios" style="padding: 5px 0;">
+				<div data-value="self" data-tooltip="Assign task to myself" data-tooltip_position="top">Myself</div>
+				<div data-value="user" data-tooltip="Select exactly one user to be assigned to this task" data-tooltip_position="top">A person</div>
+				<div data-value="dep" data-tooltip="All users from this selected department will be able to process the task" data-tooltip_position="top">Department</div>
+				<div data-disabled="true" data-value="usrgrp" data-tooltip="Disabled because custom user groups do not yet exist" data-tooltip_position="top">User Group</div>
+			</div>
+		</div>
+		<div><label>Department:</label><div id="task-assign-dep"></div></div>
+		<div style="display: none;"><label>Select user:</label><div id='task-assign-user'></div></div>
+		{#exists:task.uid:
+			<hr style="margin-top: 10px;" /><div>
+				<label for='task-status'>Status:</label><div id='task-status' name='task[status]'></div>
+				<div style="line-height: 26px; margin: 0 8px;">Progress</div><div id='task-progress' name='task[progress]' data-value="{$task.progress:0}"></div><div style="line-height: 24px; margin: 0 16px 0 2px">%</div><div><div id='task-progress_slider' data-value='{$task.progress:0}'></div></div>
+			</div>
+			<div><label for='update-comment'>Update reason:</label><input type='text' id='update-comment' name='update_comment' class="jqx-input jqx-rc-all {$_itc}" placeholder="(Please describe the reason for changing this task)" /></div>
+		}
+	</form>
+}</script>
+
+{!This version is for the assigned user - For posting update comment, changing status and progress - but no change to title/description/deadline or reassign to someone else}
+<script id="template-task-update" type="text/dryjstpl">{@
+	<form name="task-editor" action="/global/task?action=update" enctype="application/x-www-form-urlencoded" method="post" class="spacey">
+		<div><label>Created by:</label><div class="static">{$task.creator_name}</div><div class="static right">{$task.dt_format}</div></div>
+		<div><label for='task-title'>Title &amp; Deadline:</label><div class='static'>{$task.title}</div><span class='right' style="line-height: 26px;">{$task.deadline_format:(No deadline set)}</div></div>
+		<h5 style="background-color: #dfdfdf; margin-bottom: 0; padding: 2px; text-indent: 38px;">Description:</h5>
+		<div class="spacey jqx-input jqx-rc-all {$_itc}" style="height: 60px; overflow: auto;">{$task.description}</div>
+		<div><label>Assigned to:</label><div class='static'>{$task.assign_name:(Not yet assigned)}</div></div>
+		<hr style="margin-top: 10px;" /><div>
+			<label for='task-status'>Status:</label><div id='task-status' name='task[status]'></div>
+			<div style="line-height: 26px; margin: 0 8px;">Progress</div><div id='task-progress' name='task[progress]' data-value="{$task.progress:0}"></div><div style="line-height: 24px; margin: 0 16px 0 2px">%</div><div><div id='task-progress_slider' data-value='{$task.progress:0}'></div></div>
+		</div>
+		<h5 style="background-color: #dfdfdf; margin-bottom: 0; padding: 2px; text-indent: 38px;">Update reason:</h5>
+		<textarea rows="3" class="spacey jqx-input jqx-rc-all {$_itc}" style="box-sizing: border-box; width: 100%; height: 64px; resize: none; overflow: auto;" id="update" name="update_comment" placeholder="(Please describe the reason for changing this task)"></textarea>
+	</form>
+}</script>

@@ -1,0 +1,199 @@
+<div id="gate-container"><div id="gate-cargoclaim">
+	<!-- {!Step 1 - Enter AWB number to check if it's present in the system} -->
+	<!-- <div><b>Step 1</b> &mdash;  -->
+	<!-- <b>Submit new claim </b> -->
+	<!-- <b style="margin-left: 515px;">Welcome to the e-Claims service</b></div> -->
+	<!-- <div style="min-height: 105px;"> -->
+	
+		<!-- <div class="infobox {ib_mode}"> -->
+			<!-- <!-- <p>a) To submit a new claim, first check your MAWB number.</p> --> 
+			<!-- <!-- <p>b) To view all your existing claims: <a href="https://www.cargoclaims.aero/contact/access?action=login" style="font-weight: bold; color: black !important;" target="_blank">Click here to Login</a>.</p> --> 
+			<!-- <div class="right-area"> -->
+				<!-- <div class="opzone" style="width: 335px;min-height: 34px;border: 1px solid lightgray;border-radius: 7px;margin-top: 8px;margin-left: 16px;"> -->
+					<!-- <b><a href="/contact/account?hash=issues" style ="font-size: 20px;display: block;margin-top: 20px;font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;color: #2B296C;"> -->
+					<!-- <img alt="Find my claim" src="/cmsup/cms/search.png" style="float: left;margin: 0px 20px 20px 20px;text-decoration: none;border: none;">Login to your account</a></b> -->
+					<!-- <p>View or update existing claims</p> -->
+				<!-- </div> -->
+			<!-- </div> -->
+		<!-- </div> -->
+		<!-- <div class="opbox"> -->
+			<!-- <p>Enter your Master Air Waybill number:</p> -->
+			<!-- <input class="jqx-rc-all" id='awbp' name="mawb_p" type="text" maxlength="3" style='width: 50px; text-align: center;' data-automove_len="3" data-automove_to="awbs"> - -->
+			<!-- <input class="jqx-rc-all" id='awbs' name="mawb_s" type="text" maxlength="8" style=' width: 120px; text-align: center;'> -->
+			<!-- <button id='awb-check'>Check</button> -->
+			<!-- <div class="outcome-box" id="mawb-result"></div> -->
+		<!-- </div> -->
+	<!-- </div> -->
+	{!Step 1 - Enter AWB number to check if it's present in the system}
+	<div style=""><b>Step 1</b> &mdash; Welcome to the e-Claims service</div>
+	<div style="min-height: 105px;">
+		<div class="infobox {ib_mode}">
+			<p>a) To submit a new claim, first check your MAWB number.</p>
+			<p>b) To view all your existing claims: <a href="https://www.cargoclaims.aero/contact/access?action=login" style="font-weight: bold; color: black !important;" target="_blank">Click here to Login</a>.</p>
+		</div>
+		<div class="opbox">
+			<p>Enter your Master Air Waybill number:</p>
+			<input class="jqx-rc-all" id='awbp' name="mawb_p" type="text" maxlength="3" style='width: 50px; text-align: center;' data-automove_len="3" data-automove_to="awbs"> -
+			<input class="jqx-rc-all" id='awbs' name="mawb_s" type="text" maxlength="8" style=' width: 120px; text-align: center;'>
+			<button id='awb-check'>Check</button>
+			<div class="outcome-box" id="mawb-result"></div>
+		</div>
+	</div>
+	{!Step 2 - Enter AWB number to check if it's present in the system}
+	<div><b>Step 2</b> &mdash; Search results <span class='fiftycent'>(waiting on step 1)</span></div>
+	<div id="step2-area">
+		{!E-mail search mode - Used to determine if there is an account - This doesn't show up for logged in accounts}
+		<div id="email-search-mode" style="display: none; min-height: 135px;">
+			<div class="infobox {ib_mode}" id="outcome-not-found" style="display: none;">
+				<p>We will try to locate your E-mail address in the database. If found, you must login into your existing account in order to proceed with claim submission.</p>
+				<p>If not found, a form will be shown to enter your contact information and create your new customer account.</p>
+			</div>
+			<div class="infobox {ib_mode}" id="outcome-mawb-located" style="display: none;">
+				<p>We will try to determine if the found claim was submitted under your E-mail address. If found, you must login into your existing account to view and update your claim.</p>
+				<p>If not found, you may proceed to submit another claim with your own E-mail.</p>
+			</div>
+			<div class="opbox">
+				<p>Enter your E-mail address:</p>
+				<input id="email-addr" name="email" type="text" class="jqx-rc-all" style="width: 300px;">
+				<button id="email-search">Search</button>
+			</div>
+			<div id="email-result" class="outcome-box"></div>
+		</div>
+		{!Customer Account access mode - Contains username/Password, as well as password recovery form
+		While this is similar to the one in the login page itself, this one is handled 100% through ajax}
+		<div id="cac-access-mode" style="display: none; min-height: 250px;">
+			<div class="infobox {ib_mode}">
+				{!				<p>An account was created automatically with your first claim. Enter your E-mail and the assigned password.</p>
+				<p>If you don't know your password, it can be requested via E-mail by using the button below:</p>
+				<p class='center'><button id='send-cac-password'>Send password</button></p>
+				<hr />}
+				<p>Not what you intended ? Go back to E-mail search:</p>
+				<p class='center'><button class='enter-new-contact'>Another E-mail</button></p>
+			</div>
+			<div id="cac-info-box" class="outcome-box"></div>
+			<div class="opbox cac-login-box">
+				<!-- <img src="/img/extra/contact.png" alt="Customer" /> -->
+				<!-- <p class='center'><button id='send-cac-password'>Request your password</button></p> -->
+				<form action="/contact/access?action=authenticate" method="post">
+					<h2>Your E-mail</h2>
+					<input name="email" type="text" class="jqx-rc-all" style="width: 300px;" />
+					<h2 style="margin-top: 10px;">Password</h2>
+					<input name="password" type="password" maxlength="10" class="jqx-rc-all" style="width: 300px;" />
+					<button id="cac-login">Log-in</button>
+				</form>
+				<!-- <p class='center'><button id='send-cac-password'>Request your password</button></p> -->
+				<!-- <div style="color: gray; border: 1px solid #c7c7c7; padding: 12px 20px; margin-top: 40px; text-align: center; background-color: white;"> -->
+				<!-- </div> -->
+				
+				
+				<div class="clear"></div>
+			</div>
+			<!-- <a href="#" style="padding-left: 27;" id='send-cac-password'>Forgot your password?</a> -->
+			<p style="margin-left: 85px;"><a href="#" style="border-color:aliceblue;background:none;color:#6262e1;cursor: pointer;" id='send-cac-password'>Forgot your password?</a></p>
+			<div id="cac-login-result" class="outcome-box" style="margin-left: 155px; width: 520px !important;"></div>
+		</div>
+		{!The contact view and edit modes}
+		<div id="contact-mode-edit" style="display: none;">
+			<div class="infobox {ib_mode}">
+				<p>The contact information that you enter here is being sent to the carrier as part of every claim file. It is necessary for the carrier to be able to respond.</p>
+				<p>Your <b>Name</b>, <b>E-mail address</b> and the <b>Company name</b> are mandatory. All other fields are optional.</p>
+				<p class='fiftycent'>Note: If claiming as an individual, enter your name again in the Comapny name field</p>
+				<div class="info-edit-new-contact">
+					<hr />
+					<p>For new contacts, Cargohub is creating an account automatically based on the E-mail address, which you can use to check all existing claims, communicate with the carrier and also manage personal information.</p>
+					<p>After submitting your first claim, you will receive a password to be used alongside your E-mail address for logging in.</p>
+					{!Not implemented:<p>While logged in you also have the possibility to remove your account which removes the contact information entered here. However, be aware that any E-mails that you already sent to the carrier will contain your contact information as it was at the moment of sending.</p>}
+					<hr />
+					<p>Not what you intended ? Go back to E-mail search:</p>
+					<p class='center'><button class='enter-new-contact'>Another E-mail</button></p>
+				</div>
+			</div>
+			<div class="opbox">
+				<h2>Welcome to <b>CargoClaims</b>. Please complete your contact information below:</h2><hr />
+				<div class="contact-vcard"></div>
+				<div class="clear center" style="margin-bottom: 10px;">
+					<div class='mandatory-field-info'>Fields with yellow background are mandatory and must be filled in.</div>
+					<button id='save-contact'>Save and Continue</button>
+				</div>
+			</div>
+		</div>
+		<div id="contact-mode-select" style="display: none;">
+			<div class="infobox {ib_mode}">
+				<p>The shown e-mail addresses have been used before on your computer.
+					To delete them, clear your browser cookies</p>
+				<p class="center">If not in the list, you can enter a new E-mail address:<br /><br />
+					<button class='enter-new-contact'>Enter E-mail</button>
+				</p>
+			</div>
+			<div class="opbox">
+				<div id="cookie-contacts-select"></div>
+				<p class="center">
+					<button id="use-cookie-contact" style='display: none; width: 250px;'>Select existing contact</button>
+				</p>
+			</div>
+			<div id="list-select-result" class="outcome-box"></div>
+		</div>
+		<div id="contact-mode-readonly" style="display: none;">
+			<div class="infobox {ib_mode}">
+				<p>Not the correct E-mail ?</p>
+				<p class='center'><button class='enter-new-contact' style="width: 200px;">Another E-mail</button></p>
+				<hr />
+				<div id="contact-edit-restricted" style="display: none;">
+					<p>This contact information is already stored in our system.<br />If you wish to change contact details, you must log-in:</p>
+					<p class='center'><button id='to-cac-access' style="width: 200px;">Customer Login</button></p>
+					{!<p>If E-mail address is incorrect please contact: <a href='mailto:support@cargohub.nl'>support@cargohub.nl</a> for assistance</p>}
+				</div>
+				<div id="contact-edit-allowed" style="display: none;">
+					<p>You are allowed to edit this contact.<br />Click on the button below to do so:</p>
+					<p class='center'><button id='edit-existing-contact' style="width: 200px;">Edit contact</button></p>
+				</div>
+			</div>
+			<div class="opbox contact-vcard"></div>
+		</div>
+		<div id="contact-mode-loggedin" style="display: none;">
+			<div class="infobox {ib_mode}">
+				<p>Displaying your contact information.</p>
+			</div>
+			{!			<div class="infobox {ib_mode}">
+			<p>Displaying your contact information. To change contact details, click on the button below:</p>
+			<p class='center'><button id='to-contact-edit' style="width: 200px;">Edit contact</button></p>
+		</div>}
+			<div class="opbox contact-vcard"></div>
+			<div id="loggedin-info" class="outcome-box" style="display: none;"></div>
+		</div>
+	</div>
+	<div><b>Step 3</b> &mdash; Outcome <span class='fiftycent'>(waiting on steps 1 and 2)</span></div>
+	<div id="step3-area">
+		<div id="outcome-disclaimer" style="display: none;">
+			<p>This software is managed by CargoHub B.V. and is using E-mail technology to forward the information submitted in this form to the intended recipient. Although we are updating our contacts in accordance with the latest information available, we strongly recommend to verify if the recipient information is correct before sending your claim.<p>
+			<p>CargoHub B.V. shall not accept any liability in case your data doesn't reach the recipient, for any reason, technical or caused by human error. If you did not receive a copy of the submitted claim by email you can contact <b>support@cargohub.nl</b></p>
+			<div id="accept-disclaimer" class="jqx-rc-all"><span style="color: red;">I have read and accepted the <a href="/cms?path=terms-of-use" target="_blank">terms of use</a></span></div>
+			<hr />
+			<div class="center"><button id="to-infinity-and-beyond" class="btn-final">&raquo; Proceed to submit form &raquo;</button></div>
+			<div class="center fiftycent" id="tos">(you must accept the <b>Terms of use</b> before proceeding)</div>
+		</div>
+		<div id="outcome-user" style="display: none; min-height: 90px;">
+			<div class="infobox {ib_mode}">
+				<p>Not what you intended ? Go back to E-mail search:</p>
+				<p class='center'><button class='enter-new-contact'>Another E-mail</button></p>
+			</div>
+			<div class="opbox">
+				<p>Redirecting to account entrance in <span class="seconds-counter"></span> seconds...</p>
+				<p class='fiftycent'><a href='/access?action=entrance'>Click here</a> if you do not wish to wait</p>
+			</div>
+		</div>
+		{!Todo - these are too similar, there shouln't be so many version}
+		<div class="opbox" id="outcome-claim-view" style="display: none; min-height: 70px;">
+			<p>Redirecting to your claim in <span class="seconds-counter"></span> seconds...</p>
+			<p class='fiftycent'><a>Click here</a> if you do not wish to wait</p>
+		</div>
+		<div class="opbox" id="outcome-cac-grid" style="display: none; min-height: 70px;">
+			<p>Redirecting to your customer account in <span class="seconds-counter"></span> seconds...</p>
+			<p class='fiftycent'><a>Click here</a> if you do not wish to wait</p>
+		</div>
+		<div class="opbox" id="outcome-user-grid" style="display: none; min-height: 70px;">
+			<p>Redirecting to your claims overview in <span class="seconds-counter"></span> seconds...</p>
+			<p class='fiftycent'><a>Click here</a> if you do not wish to wait</p>
+		</div>
+	</div>
+</div></div>

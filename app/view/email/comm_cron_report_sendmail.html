@@ -1,0 +1,27 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{subject}</title>
+</head>
+<body>
+	<div style="background-color: white; margin: 6px 0px; font-family: Verdana,Arial,sans-serif; font-size: 12px;">
+{contents}
+	</div>
+        {#if:cloud_files:
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin: 10px 0 5px 0; padding: 3px; text-indent: 20px;'>Cloud-stored attachments:</h4>
+	<div id='attachments' style="margin-bottom: 8px;">{!TODO: Support downloading all cloud_files via a "package" link - Which would build and send a ZIP archive}
+		{#repeat:cloud_files:
+		<div style="margin-bottom: 5px; padding: 5px 0px 5px 2px; border-bottom: 1px dotted lightgray;">
+			<a target='_blank' href='http://{%domain}/dlch/{chash}'>
+				<img style="float: left; margin-right: 10px; border: none;" src='http://{%domain}/img/mime/{mimetype}.png' alt="{mimetype}">
+			{name}</a>{#if:description: <span style="color: #999;">({description})</span>}<br />
+			<span style="color: #999;">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span style="color: #999;">Size:</span> {size}~numberformat~ bytes	
+			<div style="clear: both; height: 0px !important;"></div>
+		</div>
+		}
+	</div>}
+</html>

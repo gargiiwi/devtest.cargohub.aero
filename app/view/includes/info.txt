@@ -1,0 +1,7 @@
+This folder contains includes used by multiple other templates (to avoid duplicating HTML)
+
+evan_jstpl.html - DRY JavaScript Templates used by EVents And Notifications system
+issue_submit_jstpl.html - DRY JavaScript Templates used by the issue submit module ( both public and staff side )
+vcard.html - Template for the Contacts JS Plugin, as contact display is used in many locations 
+
+le_overlay.css - Some little styles added to EVERY page that is being loaded, used by the "Loader" system which hides stuff happening on the page until everything is prepared

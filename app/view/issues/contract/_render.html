@@ -1,0 +1,69 @@
+{!Template for rendering the Truck Order as a string (html). This kind of view doesn't use any javascript for displaying the information and could be used to save a HTML file or send as a message/email
+  Contacts have a "mailto:" href in them; Attachments are sent as links back into the system; All other values are simply formatted text}
+{!TODO: A way to reorder these components (user, system, includes, issue data)}
+{!The system might add it's own piece of text in certain situations}
+{#if:_contents_system:<div class="system_contents">{_contents_system}</div>}
+{!Users are able to add their own text}
+{#if:_contents_user:<div class="user_contents">{_contents_user}</div>}
+{!User signature can be added after the issue data}
+{#if:_user_signature:<br /><hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" /><div class="user_signature">{_user_signature}</div><br /><br />}
+{!Support including extra templates here, which use the same data as this main template}
+{#if:_includes:{#repeat:_includes:
+	<div class="included_contents">{#include:%:{$}}</div>}}
+{#use:issue:
+
+<div style="max-width: 700px; padding: 5px; border: 1px solid lightgray; font-size: 12px;">
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Processing overview:</h4>
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}
+</table>
+
+{#if:%parts.contacts|%override:<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Contact(s) information</h4>
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	{#repeat:contact_links:
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{label}:</th>
+			<td data-con_id='{contact.id}'><div>{contact.name} &lt;<a href="mailto:{contact.email}">{contact.email}</a>&gt;</div>
+			{#if:contact.xdata.company_name:<div><span style="color: #999;">Company name:</span> {contact.xdata.company_name}</div>}
+			{#if:contact.xdata.phone:<div><span style="color: #999;">Phone number:</span> {contact.xdata.phone}</div>}
+			</td>
+		</tr>}
+</table>
+}
+
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Document Information:</h4>
+{#use:%ist.xfield_def:
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Category:</th><td>{^group.name}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{doctype.n}:</th><td>{^xfields.doctype.value:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{name.n}:</th><td>{^xfields.name}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inex.n}:</th><td>{^xfields.inex.value:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{lang.n}:</th><td>{^xfields.lang.value:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{vers.n}:</th><td>{^xfields.vers:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{start.n}:</th><td>{#if:^xfields.start:{^xfields.start}~date("Y-m-d")~}{#ifnot:^xfields.start:<span style="color: #999;">---</span>}</tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{expire.n}:</th><td>{#if:^xfields.expire:{^xfields.expire}~date("Y-m-d")~}{#ifnot:^xfields.expire:<span style="color: #999;">---</span>}</tr>
+</table>
+<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{dept.n}:</th><td>{^xfields.dept:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{owner.n}:</th><td>{^xfields.owner:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{otr_comp.n}:</th><td>{^xfields.otr_comp:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Subjected to audit:</th><td>{^xfields.audit.value:<span style="color: #999;">---</span>}</td></tr>
+</table>
+
+{#if:^xfields.comments:
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>{comments.n}:</h4><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.comments}~nl2br~</div>}
+}
+
+{#if:%parts.attachments|%override:{#if:files:<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Attached documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='http://{%html.domain}/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='http://{%html.domain}/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a> ({size}~numberformat~ bytes)<br />
+	<span>{description}</span><div class='clear'></div></div>}
+</div>}
+}
+
+</div>
+
+}

@@ -1,0 +1,6 @@
+div.toolbar span#selected_ist {
+	display: inline-block;
+	height: 25px;
+	line-height: 25px; 
+	margin: 6px 12px 6px 0;
+}

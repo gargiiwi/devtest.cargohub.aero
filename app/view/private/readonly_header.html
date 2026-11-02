@@ -1,0 +1,61 @@
+{!{#if:html.logo&session.user.preferences.graphics.header:{!TODO: Support custom HTML headers, that can be more than just a logo}
+<div class='header-bar' id='site-logo'>
+    <a href="{html.logo_link:/}" title="{html.title}" style='display: block; margin: 0px; padding: 0px;'>
+        <img style='display: block; border-radius: 0px 0px 5px 5px;' src="/img/hdrs/{html.logo}" alt="{html.title}" /> 
+    </a>
+</div>}}
+{!User Menu-Bar - A black-styled jqxMenu widget used to display site title, location, logged in user, a few global configuration submenus and finally the Login/Logout commmand}
+{#if:header.umb:<div class='header-bar' id='user-menu-bar' style="background-color: rgb(40, 102, 194) !important;">
+    <ul style="height: 30px;">
+        <li><a href="/"><img  class="header-icon" src="/img/icons/dashbord.png" alt=""></a></li><!--IWI publication new design 14042026 -->
+        {#if:header.zone:
+        <li ignoretheme='true' class="delimiter-item-itsblack jqx-item jqx-item-black jqx-menu-item-top jqx-menu-item-top-black jqx-rc-all jqx-rc-all-black"></li>
+        <li><a href="javascript:document.location.reload()"><img  class="header-icon" src="/img/icons/publication.png" alt=""></a></li>} <!--IWI publication new design 14042026 -->
+        {#if:session.umb_dds:
+        <li ignoretheme='true' class="delimiter-item-itsblack jqx-item jqx-item-black jqx-menu-item-top jqx-menu-item-top-black jqx-rc-all jqx-rc-all-black"></li>}
+
+        <nav style='float: right; display: inline-block;'>{!Align these controls to the right of the user-bar - Not HTML standard but apparently it works}
+            <!--			<li><a href="/user/overview#account">{session.department.name}:</a></li>-->
+            <li>{session.user.name}:</li>			
+            <li><img class="inline-icon16 right" style="margin-left: 6px;" src="/img/icons16/exit.png" alt="[Exit]" /> <a href="/?action=logout">Logout</a></li>
+        </nav>
+    </ul>
+</div>}
+{!EVAN - EVents And Notifications bar - Shows relevant information that just happened - Is controlled by the Applications.js module} 
+
+<!--IWI publication new design 14042026 start-->
+<div class="header-bar" id="operation-bar">
+    <div class="rafelx">
+        <div class="raaddcargo">
+            <ul>
+                <li>
+                    <a href="/"><img style="max-height: 40px;" src="{session.curr_org_logo}" alt="logo"> </a>                  
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--IWI publication new design 14042026 end-->
+<div class="header-bar jqx-rc-all" id="evan" style="display: none;">{!Notification blocks are prepended here}</div>
+{#raw:includes/evan_jstpl.html}
+
+{!Operations Bar - Contains Main Menu, Active Data Type and other information}
+
+{!<div style="color: red; padding: 6px; border: 1px solid red; margin: 5px 0; text-align: center;">
+    <p>Dear customers, <b>A major update (version 2.9) will be deployed this evening</b> with significant changes to the software.<br />
+        The update will begin at <b>19:00 UTC</b> (UK time). Please complete your work and logout before that hour, as the system will be turned off for upgrade and maintenance.<br /><br />
+        <a target="_blank" href="http://www.cargohub.nl/blog/1562">You can read about the coming features here.</a><br />
+        Thank you for understanding ! CargoHub Tech Team</p>
+</div>}
+
+{!Module Bar - Contains the icon for current loaded module, the general module name on the right side and specific information on the left (like object on which the module applies)}
+{#ifnot:track_id:
+{#use:module:<div id="module-info">
+    
+    {#if:orgLogo:<img class="orgLogo" style=" height: 60px;" src="/img/logos/{orgLogo}" />}
+<!--    {#if:description:<h2 id="module-description">{description}</h2>}
+    {#if:icon:<img id="module-icon" alt="{icon_alt:title}" src="/img/icons16/{icon}">}
+    {#if:title:<h2 id="module-title">{title}{#if:title_para:<span>({title_para})</span>}</h2>}{#ifnot:title:&nbsp;}-->
+</div>}
+}
+

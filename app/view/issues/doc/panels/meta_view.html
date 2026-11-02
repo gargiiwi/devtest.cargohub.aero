@@ -1,0 +1,34 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr style='color: blue;'><th>{doctype.n}:</th><td>{^xfields.doctype.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{lang.n}:</th><td>{^xfields.lang.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Name or Title:</th><td>{^xfields.name:<span class="gray">---</span>}</td></tr>
+	  <tr><th>{aeo_chapter.n}:</th><td>{^xfields.aeo_chapter.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{vers.n}:</th><td>{^xfields.vers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{inex.n}:</th><td>{#ifnot:^xfields.inex:<span class='gray'>---</span>}{#repeat:^xfields.inex:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{start.n}:</th>
+			<td>{#if:^xfields.start:{^xfields.start}~date("Y-m-d")~}{#ifnot:^xfields.start:<span class='gray'>---</span>}
+			<label class="ra_label">Expire Date:</label> {#if:^xfields.expire:{^xfields.expire}~date("Y-m-d")~}{#ifnot:^xfields.expire:<span class='gray'>---</span>}
+			</td>
+		</tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{code_loc.n}:</th><td>{^xfields.code_loc:<span class="gray">---</span>}</td></tr>
+		<tr><th>{code_iso2.n}:</th><td>{^xfields.code_iso2.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{dept.n}:</th><td>{^xfields.dept:<span class="gray">---</span>}</td></tr>
+		<tr><th>{owner.n}:</th><td>{^xfields.owner:<span class="gray">---</span>}</td></tr>
+		<tr><th>{otr_comp.n}:</th><td>{^xfields.otr_comp:<span class="gray">---</span>}</td></tr>
+		<tr><th>{review.n}:</th>
+			<td>
+				{#if:^xfields.review:{^xfields.review}~date("Y-m-d")~}{#ifnot:^xfields.review:<span class='gray'>---</span>}
+				<label class="ra_label">{revwnext.n}:</label> {#if:^xfields.revwnext:{^xfields.revwnext}~date("Y-m-d")~}{#ifnot:^xfields.revwnext:<span class='gray'>---</span>}
+			</td>
+		</tr>
+		<tr><th>{publish.n}:</th><td>{#ifnot:^xfields.publish:<span class='gray'>---</span>}{#repeat:^xfields.publish:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>Subjected to audit:</th><td>{^xfields.audit.value:<span class="gray">---</span>}</td></tr>
+	</table>
+	
+	{#if:^xfields.comments:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 250px; overflow: auto;">{^xfields.comments}~nl2br~</div>}
+	{#ifnot:^xfields.comments:<div class="gray" style="text-indent: 20px;">---</div>}
+}

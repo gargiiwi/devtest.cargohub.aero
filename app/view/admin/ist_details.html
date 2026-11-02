@@ -1,0 +1,47 @@
+{#use:ist:<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/ist/{key}.png" /><span>{name}</span>
+	</div>		
+	<button data-op="back" title="Back to list"><img alt="Back to list" src="/img/icons16/arrow_undo.png"> Back to list</button>	
+	<button data-op="edit" title="Edit this type"><img alt="Back to list" src="/img/icons16/brick_edit.png"> Edit</button>
+</div>
+
+<br />
+<h4>Global values</h4>
+<table style="width: 100%; border: none; border-spacing: 0;">
+	<tr><th width="50%">Statuses</th><th width="50%">Priorities</th></tr>
+	{!List of values}
+	<tr><td valign="top">
+	{#repeat:statuses_ex:{$}<br />}	
+	</td><td valign="top">
+	{#repeat:priorities_ex:{$}<br />}
+	</td></tr>
+	{!Initial value for the two columns}
+	<tr><td colspan="2"><h4>Initial values:</h4></td></tr>
+	<tr><td><i>{init_sp.status}</i></td><td><i>{init_sp.priority}</i></td></tr>
+</table>
+<br />
+<h4>XFields (Custom fields)</h4>
+<table class="ist_xfields">
+	<tr><th>ID</th><th>Name</th><th>Key</th><th>Type</th><th>Options (o)</th><th>Choice Data (cd)</th></tr>
+	{#repeat:xfield_def:<tr>
+		<td>{id}.</td>
+		<td>{n}</td>
+		<td>{*}</td>
+		<td>{t}</td>
+		<td>{!Options}
+			{#if:o.req:<b>Required</b><br />}
+			{#if:o.colw:Column width: {o.colw}px<br />}
+			{#if:o.colr=1:Currency field<br />}
+			{#if:o.colr=2:Yes/No field<br />}
+			{#if:o.colr=3:Aligned center<br />}
+			{#if:o.colr=4:Aligned right<br />}
+			{#if:o.colr=5:Time relative to now<br />}
+			{#if:o.colr=6:Short date format<br />}
+		</td>
+		<td>{!Choice data}
+			<ul>{#repeat:cd_ex:<li>{$}</li>}</ul>
+		</td>
+	</tr>}
+</table>
+}

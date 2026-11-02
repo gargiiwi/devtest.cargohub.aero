@@ -1,0 +1,884 @@
+{@<style type="text/css">
+@import url("/orgs/bruair/fontAwesome.css");
+@font-face {
+	font-family: Intro;
+	font-weight: normal;
+	src: url("/orgs/bruair/intro_cond_regular.eot");
+	/* IE9 Compat Modes */
+	src: url("/orgs/bruair/intro_cond_regular.eot?#iefix") format("embedded-opentype"), url("/orgs/bruair/intro_cond_regular.woff2") format("woff2"), url("/orgs/bruair/intro_cond_regular.woff") format("woff"), url("/orgs/bruair/intro_cond_regular.ttf") format("truetype"); }
+@font-face {
+	font-family: Intro;
+	font-weight: 300;
+	src: url("/orgs/bruair/intro_cond_light.eot");
+	/* IE9 Compat Modes */
+	src: url("/orgs/bruair/intro_cond_light.eot?#iefix") format("embedded-opentype"), url("/orgs/bruair/intro_cond_light.woff2") format("woff2"), url("/orgs/bruair/intro_cond_light.woff") format("woff"), url("/orgs/bruair/intro_cond_light.ttf") format("truetype"); }
+@font-face {
+	font-family: Intro;
+	font-weight: bold;
+	src: url("/orgs/bruair/intro_cond_semibold.eot");
+	/* IE9 Compat Modes */
+	src: url("/orgs/bruair/intro_cond_semibold.eot?#iefix") format("embedded-opentype"), url("/orgs/bruair/intro_cond_semibold.woff2") format("woff2"), url("/orgs/bruair/intro_cond_semibold.woff") format("woff"), url("/orgs/bruair/intro_cond_semibold.ttf") format("truetype"); }
+
+#sn-bruair {
+	color: #424348;
+	font-family: Tahoma,Arial,Helvetica,sans-serif;
+	font-size: 13px;
+	line-height: 1.2;
+}
+#sn-bruair ul, ol {
+	margin: 0.75em 0 0.75em 32px;
+	padding: 0;
+}
+#sn-bruair .menu, .ffp_menu {
+	list-style: outside none none;
+	margin: 0;
+}	
+
+#sn-bruair .top_menu {
+	background-color: #002e6a;
+	clear: both;
+}
+	.top_menu a:hover {
+		text-decoration: none;
+	}
+
+	.top_menu > ul {
+		height: 40px;
+		margin: 25px auto 0;
+		max-width: 1130px;
+		position: relative;
+		text-align: center;
+		list-style: outside none none;
+		padding: 0;
+	}
+	.top_menu .cols {
+		overflow: hidden;
+	}
+	
+	.top_menu > ul > li {
+		display: inline-block;
+		font-size: 14px;
+		list-style-type: none;
+		padding: 0;
+		text-align: left;
+	}
+		.top_menu > ul > li > a {
+			color: #fff;
+			display: block;
+			font-family: "Intro",Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			font-weight: 500;
+			height: auto;
+			padding: 11px 24px 10px;
+			text-decoration: none;
+			text-transform: uppercase;
+			width: auto;
+		}		
+		
+		.top_menu > ul > li.first {
+			height: auto;
+			width: auto;
+		}
+			.top_menu > ul > li.first a {
+				padding-left: 20px;
+			}
+			
+		.top_menu i.fa {
+			font-size: 18px;
+			margin-right: 5px;
+			vertical-align: text-bottom;
+		}
+	#sn-bruair .dialog {
+		background: #f7f9fb url("/orgs/bruair/sprite3.png") no-repeat scroll -10px -10px;
+		max-width: 100%;
+		width: 958px;
+	}
+		.top_menu .dialog {
+			background: #fff none repeat scroll 0 0;
+			border: 1px solid #002e6a;
+			left: 90px;
+		}
+	#sn-bruair .dialog p {
+		margin: 10px 40px 25px;
+	}
+	#sn-bruair .cols .col {
+		float: left;
+	}
+	#sn-bruair .cols3 .col {
+		width: 33.3%;
+	}
+	#sn-bruair .cols4 .col {
+		width: 25%;
+	}
+
+	.top_menu > ul > li > div {
+		display: none;
+		font-size: 13px;
+		left: 0;
+		margin-top: 0;
+		padding-bottom: 20px;
+		position: absolute;
+		z-index: 101;
+	}	
+	.top_menu > ul > li:hover > div {
+		display: block;
+		opacity: 1;
+		visibility: visible;
+	}
+	
+	.top_menu ul li h2 {
+		font-family: "Intro",Arial,Helvetica,sans-serif;
+		font-size: 28px;
+		margin: 30px 40px;
+	}
+	#sn-bruair .dialog h1, .dialog h2, .dialog h3 {
+		color: #002e6a;
+	}
+	#sn-bruair .dialog h2 {
+		background: rgba(0, 0, 0, 0) url("/orgs/bruair/dialog_sep.png") repeat-x scroll left bottom;
+		font: 300 2em "Intro",Arial,Helvetica,sans-serif,Arial,Helvetica,sans-serif;
+		font-size: 20px;
+		font-weight: normal;
+		margin: 15px 40px 20px;
+		padding: 0 0 15px;
+	}
+	#sn-bruair .dialog h3 {
+		font: 500 1.75em "Intro",Arial,Helvetica,sans-serif,Arial,Helvetica,sans-serif;
+	}
+	
+	/* PLANBOOK */
+	.top_menu #plan_book {
+		padding-bottom: 29px;
+	}
+	.top_menu ul li .dialog.planBook ul {
+		margin: 0 0 0 40px;
+		overflow: hidden;
+	}
+	.top_menu ul li .dialog.planBook ul li {
+		background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+		float: left;
+		list-style-type: none;
+		margin: 0 20px 4px 0;
+		padding-bottom: 6px;
+		width: 280px;
+	}
+	.top_menu ul li .dialog.planBook ul li:hover {
+		opacity: 0.85;
+	}
+	.top_menu ul li .dialog.planBook ul li a {
+		background: #002e6a none repeat scroll 0 0;
+		border-radius: 3px;
+		color: #fff;
+		display: block;
+		padding: 10px 24px;
+		text-align: center;
+	}
+	.top_menu ul li .dialog.planBook ul li.active a {
+		background: #00b9bf none repeat scroll 0 0;
+	}
+	/* ManasgeBooking */
+	.top_menu ul li .manageBooking .cols {
+		padding: 0 40px 20px;
+	}
+	.manageBooking li {
+		background: rgba(0, 0, 0, 0) url("/orgs/bruair/arrow_7faad4.png") no-repeat scroll 0 4px;
+		list-style-type: none;
+		margin: 0 0 5px;
+		padding: 0 0 0 20px;
+	}
+	.top_menu ul li .manageBooking .cols .left {
+		float: left;
+		width: 45%;
+	}
+	.top_menu ul li .manageBooking .cols .right {
+		float: right;
+		width: 55%;
+	}
+	.top_menu ul li .manageBooking .cols .login-box-form {
+		border: 1px solid #dee5ec;
+		padding: 30px 30px 15px;
+	}
+		.top_menu ul li .manageBooking .cols .login-box-form div {
+			margin-bottom: 15px;
+			overflow: hidden;
+		}
+		.top_menu ul li .manageBooking .cols .login-box-form .mandatory {
+			color: #7d858f;
+			display: block;
+			font-size: 11px;
+			margin: 28px 0 -26px;
+		}
+		.top_menu ul li .manageBooking .cols .login-box-form label {
+			color: #002d69;
+			display: block;
+			float: left;
+			font-size: 14px;
+			margin: 8px 14px 0 0;
+			width: 128px;
+		}
+		.top_menu ul li .manageBooking .cols .login-box-form input[type="text"] {
+			float: right;
+			padding: 8px 10px;
+			width: 189px;
+		}
+	.top_menu ul li .manageBooking .cols .login-box-form .button_go {
+		background: #00b9bf none repeat scroll 0 0;
+		border: medium none;
+		border-radius: 3px;
+		color: #fff;
+		cursor: pointer;
+		float: right;
+		font-family: "Intro",Arial,Helvetica,sans-serif;
+		font-size: 14px;
+		font-weight: 500;
+		height: auto;
+		padding: 10px 30px;
+		text-align: left;
+	}
+
+	.top_menu ul li .manageBooking .cols p {
+		line-height: 20px;
+		margin-left: 0;
+		margin-top: 0;
+	}
+	.top_menu ul li .dialog.manageBooking .cols h2 {
+		background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+		font-size: 22px;
+		margin: 10px 0 5px;
+		padding: 0;
+	}
+	/* Travel Info */
+	.top_menu ul li .dialog.travel_info h3 {
+		margin: 20px 40px;
+	}
+	.top_menu ul li .dialog.travel_info .infos {
+		border: 1px solid #ecebeb;
+		float: none;
+		margin: 10px 40px 30px;
+		overflow: hidden;
+		padding: 25px;
+		width: auto;
+	}
+	.travel_info .infos ul li.first, .travel_info .infos ul li.last, .travel_info .infos ul li {
+		height: 20px;
+		margin-bottom: 6px;
+		width: 200px;
+	}
+	.travel_info ul li.first, .travel_info ul li.last, .travel_info ul li {
+		background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+		float: none;
+		width: auto;
+	}	
+	.top_menu ul li .dialog.travel_info .infos .menu li {
+		margin-bottom: 10px;
+	}
+	.top_menu .travel_info a, .travel_info ul li.first a .travel_info ul li.last a, .travel_info ul li a {
+		color: #424348;
+		cursor: pointer;
+		display: inline-block;
+		font-weight: normal;
+		height: auto;
+		line-height: 17px;
+		padding: 0;
+		text-decoration: none;
+		vertical-align: middle;
+		width: auto;
+	}
+	.top_menu .travel_info a, .travel_info ul li.first a .travel_info ul li.last a, .travel_info ul li a {
+		color: #424348;
+		cursor: pointer;
+		display: inline-block;
+		font-weight: normal;
+		height: auto;
+		line-height: 17px;
+		padding: 0;
+		text-decoration: none;
+		vertical-align: middle;
+		width: auto;
+	}
+	.travel_info .infos ul li a {
+		color: #002e6a;
+		line-height: 17px;
+		text-decoration: none;
+	}
+	.top_menu ul li .dialog.travel_info .infos .menu a {
+		font-size: 14px;
+		font-weight: 300;
+		line-height: 22px !important;
+		position: relative;
+		z-index: 10;
+	}
+	.top_menu ul li .dialog.travel_info a {
+		background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+		position: relative;
+		z-index: 10;
+	}
+	/* Body */
+	#sn-bruair ul.breadcrumb {
+		margin: 38px 0;
+	}
+	#sn-bruair ul.breadcrumb li {
+		display: inline;
+	}
+		#sn-bruair ul.breadcrumb li a {
+			color: #94accb;
+			font-size: 11px;
+			text-decoration: none;
+		}
+		#sn-bruair ul.breadcrumb li.current {
+			font-weight: bold;
+		}
+		#sn-bruair ul.breadcrumb li .sep {
+			background: rgba(0, 0, 0, 0) url("/orgs/bruair/sep.png") no-repeat scroll 0 0;
+			display: inline-block;
+			height: 5px;
+			margin: 0 5px;
+			overflow: hidden;
+			vertical-align: middle;
+			width: 5px;
+		}
+		
+	#bruair-left {
+		float: left;
+		width: 350px;
+	}
+		#bruair-left .content .box {
+			clear: both;
+			margin-bottom: 15px;
+		}
+		#sn-bruair ul.tags, #sn-bruair ul.arrow1, #sn-bruair ul.arrow3, #sn-bruair ul.valid_big, #sn-bruair ul.pipe, #sn-bruair ul.pipe_blue {
+			list-style: outside none none;
+			margin: 0;
+		}		
+		
+		#bruair-left .acc_menu ul.menu li {
+			background: #ecebeb none repeat scroll 0 0;
+			border-bottom: 1px solid #fff;
+		}
+		#bruair-left .acc_menu ul.menu li > a {
+			border-radius: 0;
+			border-top: 0 none;
+			display: block;
+			font-family: "Intro",Arial,Helvetica,sans-serif;
+			font-size: 15px;
+			font-weight: normal;
+			height: 38px;
+			letter-spacing: 0.04em;
+			line-height: 38px;
+			padding: 0 0 0 9px;
+			text-decoration: none;
+		}
+			#bruair-left .acc_menu ul li.current > a {
+				background: #002e6a none repeat scroll 0 0;
+				color: #fff;
+			}
+			
+		#bruair-left .acc_menu ul li.current ul {
+			background: #fff none repeat scroll 0 0;
+			padding: 8px 0;
+		}
+		#bruair-left .acc_menu ul.menu li {
+			background: #ecebeb none repeat scroll 0 0;
+			border-bottom: 1px solid #fff;
+		}
+		#bruair-left ul.arrow3 li {
+			background-color: white;
+			padding: 0 0 5px 10px;
+		}
+		#bruair-left .acc_menu ul li.current {
+			border: 1px solid #ecebeb;
+		}		
+		#bruair-left .acc_menu ul li.current li {
+			background-color: #fff;
+			float: none;
+			padding: 0;
+			width: auto;
+		}
+			#bruair-left .acc_menu ul li.current li a::before {
+				content: "\e604";
+				font-family: "fontAwesome";
+				margin-right: 7px;
+			}
+				#bruair-left .acc_menu ul li.current li a {
+					background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+					border: medium none;
+					color: #002e6a;
+					height: auto;
+					width: auto;
+				}
+
+	#bruair-right {
+		width: 720px;
+		float: right;
+		margin-right: 20px;
+	}
+	
+		#bruair-right div.xlink {
+			margin: 0 auto 20px auto;
+			border: 1px solid lightgray;
+			border-radius: 7px;
+			height: 80px;
+			width: 340px;
+			float: left;
+		}
+		
+			#bruair-right div.xlink a {
+				font: 500 2.5em "Intro",Arial,Helvetica,sans-serif,Arial,Helvetica,sans-serif;				
+				font-size: 22px;
+				display: block;
+				margin-top: 14px;
+			}
+			
+			#bruair-right div.xlink img {
+				float: left;
+				margin: 10px 15px 20px 15px;
+				text-decoration: none;
+				border: none;
+			}
+
+		#bruair-right h1.title {
+			font-size: 29px;
+			font-weight: 500;
+			letter-spacing: -1px;
+			margin: 0 0 16px;
+		}			
+
+		#bruair-right h2 {
+			font: 300 2em "Intro",Arial,Helvetica,sans-serif,Arial,Helvetica,sans-serif;
+		}
+		
+#sn-bruair .inner::after {
+	clear: both;
+	content: "";
+	display: table;
+}
+#sn-bruair .bru-footer > .inner {
+	margin: 0 auto;
+	width: 960px;
+}
+#sn-bruair .inner {
+	margin: 0 auto;
+	max-width: 960px;
+}
+#sn-bruair .bru-footer .cols {
+	border-top: 1px solid #989898;
+	margin: 0 -4%;
+	padding: 0 4%;
+}
+#sn-bruair .bru-footer .col {
+	margin-top: 20px;
+}
+#sn-bruair .bru-footer h3 {
+	font-size: 1em;
+	color: #203266;
+	font: 500 24px "Intro",Arial,Helvetica,sans-serif;
+	margin-top: 10px;
+}
+#sn-bruair .bru-footer ul {
+	color: #999;
+	list-style: outside none none;
+	margin: 0;
+	padding: 0;
+}
+#sn-bruair ul.arrow1 li {
+	background: rgba(0, 0, 0, 0) url("/orgs/bruair/list_arrow3.png") no-repeat scroll 0 5px;
+	line-height: 1.2em;
+	margin-top: 10px;
+	padding-left: 10px !important;
+}
+#sn-bruair .bru-footer ul > li {
+	margin: 10px 0;
+}
+#sn-bruair .bru-footer a {
+	color: #999;
+	text-decoration: none;
+}
+#sn-bruair .bru-footer .social_touch {
+	border-left: 1px solid #203266;
+	box-sizing: border-box;
+}
+#sn-bruair .bru-footer .social_touch .socialNetworks {
+	list-style: outside none none;
+	margin: 15px auto;
+	padding: 0;
+	width: 140px;
+}
+#sn-bruair .bru-footer .social_touch h3 {
+	text-align: center;
+}
+#sn-bruair .bru-footer .social_touch .socialNetworks > li {
+	box-sizing: border-box;
+	float: left;
+	font-size: 25px;
+	height: 68px;
+	margin: 0;
+	padding-top: 15px;
+	text-align: center;
+	width: 25%;
+}
+#sn-bruair .bru-footer .logos {
+	float: right;
+	margin: 10px 0;
+}
+
+</style>}
+
+
+<div id="sn-bruair">
+
+<div class="top_menu">
+	<ul class="menu">
+		<li class="first">
+			<a title="Plan &amp; Book" href="" id="goto_plan_book">
+				<span>Plan &amp; Book <i class="fa fa-arrow-down"></i></span>
+			</a>
+			<div class="dialog planBook" id="plan_book">
+				<h2>Plan &amp; Book</h2>
+				<ul>
+					<li class="active">
+						<a id="Header_hypBookFlight" target="_blank" href="http://www.brusselsairlines.com/en-be/flight-bookings/Default.aspx">
+							<span class="flight"><i class="fa fa-airplane-up"></i>Book a flight</span>
+						</a>
+					</li>
+					<li>
+						<a id="Header_hypBookCar" target="_blank" href="http://www.brusselsairlines.com/en-be/car-rental/default.aspx">
+							<span class="car"><i class="fa fa-car"></i>Book a car</span>
+						</a>
+					</li>
+					<li class="last">
+						<a id="Header_hypBookHotel" target="_blank" href="http://www.brusselsairlines.com/en-be/hotel-bookings/Default.aspx">
+							<span class="hotel"><i class="fa fa-hotel"></i>Book  a hotel</span>
+						</a>
+					</li>
+					
+				</ul>
+				<ul>
+					<li>
+						<a id="Header_hypPromotions" target="_blank" href="http://www.brusselsairlines.com/en-be/promotions/Default.aspx">
+							<span class="deparr"><i class="fa fa-clock"></i>Best deals</span>
+						</a>
+					</li>
+					<li>
+						<a id="Header_hypDestinations" target="_blank" href="http://www.brusselsairlines.com/en-be/destinations/Default.aspx">
+							<span class="destination"><i class="fa fa-earth"></i>Our destinations</span>
+						</a>
+					</li>
+					<li class="last">
+						<a id="Header_hypTimeTable" target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/timetable/Default.aspx">
+							<span class="time"><i class="fa fa-timetable"></i>Timetables</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+	<li>
+		<a href="#" title="Manage My Booking" id="goto_manage_booking"><span>Manage My Booking <i class="fa fa-arrow-down"></i></span></a>		  
+			<div class="dialog manageBooking" id="manage_booking">				   
+				<h2>Manage My Booking</h2>
+				<div class="cols">
+					<div class="left">
+						<h2>Please log in on the right side to:</h2>
+						<ul>
+							<li>View your booking</li>
+							<li>Purchase extra baggage</li>
+							<li>Bid for an upgrade</li>
+							<li>Plan your trip (accommodation, car rental,<br>parking, rail transport)</li>
+						</ul>
+						<p>For cancellation &amp; refund requests, use <a target="_blank" href="http://www.brusselsairlines.com/en-be/contact-us/cancel-refund/default.aspx">this form</a>.</p>
+						<p>For invoice requests, use <a target="_blank" href="http://www.brusselsairlines.com/en-be/contact-us/invoice-request/Default.aspx">this form</a></p>
+						<p>For special assistance or in case you experience an issue retrieving your booking, please contact our <a href="http://www.brusselsairlines.com/en-be/contact-us/Default.aspx" target="_blank">Service Centre</a></p>
+					</div>
+					<div class="right">
+						<div id="Header_UpdatePanel1">
+							<div id="Header_valsummanageMyBooking"></div> 
+							<div class="login-box-form">
+								<div>
+									<label>Last name *</label>
+									<input type="text" autocomplete="off" id="Header_txtLastName" name="ctl00$Header$txtLastName">
+									
+								</div>
+								<div>
+									<label>Booking reference *</label>
+									<input type="text" autocomplete="off" id="Header_txtPnr" name="ctl00$Header$txtPnr">
+									
+								</div>
+								<span class="mandatory">*Mandatory fields <br>Your last name needs to be entered <br> exactly as it appears in the reservation.</span>
+								<div>
+									
+									<button validationgroup="manageMyBooking" class="button_go" id="Header_btnLogin" onclick="if (typeof(Page_ClientValidate) == 'function') Page_ClientValidate('manageMyBooking'); __doPostBack('ctl00$Header$btnLogin','')"><span>Log in</span></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>					   
+			</div>						
+			<!-- end new -->
+		</li>
+		<li>
+			<a title="Practical Info" href="#" id="goto_practical_info"><span>Practical Info <i class="fa fa-arrow-down"></i></span></a>
+			<div class="dialog travel_info" id="practical_info">
+				<h2>Practical info</h2>
+					<h3>Where and when we fly</h3>
+					<div class="infos cols cols3">
+						<ul class="col menu">
+							<li>
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/verify-flight-status/default.aspx" class="Arrivals and Departure" id="Header_TravelInfoFlyout_hypArrivalDeparture">
+								<i class="fa fa-clock"></i>
+								Arrivals and departures</a>
+							</li>
+						</ul>
+						<ul class="col menu">
+							<li>
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/timetable/Default.aspx" class="Timetable" id="Header_TravelInfoFlyout_hypTimeTable">
+								<i class="fa fa-timetable"></i>
+								Timetable</a>
+							</li>
+						</ul>
+						<ul class="col menu">
+							<li>
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/destinations/Default.aspx" class="Our destinations" id="Header_TravelInfoFlyout_hypDestinations">
+								<i class="fa fa-earth"></i>   
+								Our destinations</a>
+							</li>
+						</ul>
+					</div>
+					<h3>Travel info</h3>
+					<div class="infos cols cols4">
+						<ul class="col menu">
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_0_liCat_0">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Luggage" class="Luggage" id="Header_TravelInfoFlyout_rptCategories_ctl00_0_linkCategory_0"><i class="fa fa-baggage"></i>Baggage</a>
+							</li>
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_0_liCat_1">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Toandattheairport" class="Toandattheairport" id="Header_TravelInfoFlyout_rptCategories_ctl00_0_linkCategory_1"><i class="fa fa-airplane"></i>To and at the airport</a>
+							</li>
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_0_liCat_2">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Check-ininfo" class="Check-ininfo" id="Header_TravelInfoFlyout_rptCategories_ctl00_0_linkCategory_2"><i class="fa fa-checkin"></i>Check-in info</a>
+							</li>
+						</ul>
+						<ul class="col menu">
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_1_liCat_0">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Specialassistance" class="Specialassistance" id="Header_TravelInfoFlyout_rptCategories_ctl00_1_linkCategory_0"><i class="fa fa-assistance"></i>Special assistance</a>
+							</li>
+						
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_1_liCat_1">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Children" class="Children" id="Header_TravelInfoFlyout_rptCategories_ctl00_1_linkCategory_1"><i class="fa fa-children"></i>Children &amp; Families</a>
+							</li>
+						
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_1_liCat_2">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Pets" class="Pets" id="Header_TravelInfoFlyout_rptCategories_ctl00_1_linkCategory_2"><i class="fa fa-pets"></i>Pets</a>
+							</li>
+						</ul>
+							
+						<ul class="col menu">
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_2_liCat_0">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Onboardservice" class="Onboardservice" id="Header_TravelInfoFlyout_rptCategories_ctl00_2_linkCategory_0"><i class="fa fa-onboard-service"></i>Onboard service</a>
+							</li>
+						
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_2_liCat_1">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Meals" class="Meals" id="Header_TravelInfoFlyout_rptCategories_ctl00_2_linkCategory_1"><i class="fa fa-meal"></i>Meals</a>
+							</li>
+						
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_2_liCat_2">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Aboutmybooking" class="Aboutmybooking" id="Header_TravelInfoFlyout_rptCategories_ctl00_2_linkCategory_2"><i class="fa fa-booking"></i>About my booking</a>
+							</li>
+						</ul>
+						<ul class="col menu">
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_3_liCat_0">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=CustomerService" class="CustomerService" id="Header_TravelInfoFlyout_rptCategories_ctl00_3_linkCategory_0"><i class="fa fa-info-filled"></i>Customer Service</a>
+							</li>
+						
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_3_liCat_1">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Mobileservices" class="Mobileservices" id="Header_TravelInfoFlyout_rptCategories_ctl00_3_linkCategory_1"><i class="fa fa-mobile"></i>Mobile services</a>
+							</li>
+						
+							<li id="Header_TravelInfoFlyout_rptCategories_ctl00_3_liCat_2">
+								<a target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/default.aspx?cat=Travelpreparations" class="Travelpreparations" id="Header_TravelInfoFlyout_rptCategories_ctl00_3_linkCategory_2"><i class="fa fa-binoculars"></i>Travel preparations</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>   
+			<li>
+				<a target="_blank" href="https://checkin.brusselsairlines.com" title="Online Check-in" id="Header_hypCheckin"><span>Online Check-in</span></a>
+			</li>
+			<li class="last">
+				<a target="_blank" href="http://www.brusselsairlines.com/en-be/loop/about-loop.aspx" title="LOOP" id="Header_hypLoop"><span>LOOP</span></a>
+			</li>
+		</ul>
+</div>
+
+<ul class="breadcrumb menu"><li><a target="_blank" href="http://www.brusselsairlines.com/en-be/Default.aspx?home">Home</a><span class="sep">&gt;&nbsp;</span></li><li><a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/default.aspx">Professional website</a><span class="sep">&gt;&nbsp;</span></li><li><a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/default.aspx">Info and services</a><span class="sep">&gt;&nbsp;</span></li><li class="current"><a>Cargo Claims</a></li></ul>
+
+<div id="bruair-left">
+
+<div class="acc_menu box">
+<ul class="menu">
+<li>
+<a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/corporates/default.aspx">Corporates</a></li>
+<li>
+<a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/travel-agencies/default.aspx">Travel agencies</a></li>
+<li>
+<a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/conferences/default.aspx">Conferences</a></li>
+<li>
+<a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/charter-a-flight/default.aspx">Charter a flight</a></li>
+<li class="current">
+<a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/default.aspx">Cargo</a><ul class="arrow3">
+<li><a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/brussels-airlines-cargo.aspx">Brussels Airlines Cargo</a></li>
+<li><a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/our-network.aspx">Our Network</a></li>
+<li><a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/products-and-services.aspx">Product and Services</a></li>
+<li><a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/partners.aspx">Partners</a></li>
+<li><a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/track-and-trace.aspx">Track and trace</a></li>
+<li><a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/contact.aspx">Contact us</a></li>
+</ul>
+</li>
+<li>
+<a target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/Maintenance/default.aspx">Maintenance</a></li>
+<li>
+</li>
+</ul>
+<div class="spacer"></div>
+</div>
+
+</div>
+
+<div id="bruair-right">
+
+	<div class="xlink" style="margin-right: 26px;">
+		<b><a href="/issue?action=select"><img src="/img/icons/ist/cargoclaim_general.png" alt="Money">Submit Cargo Claim</a></b>
+		<p style="margin-top: 4px;">Fill in the claim form and submit to us</p>
+	</div>
+
+	<div class="xlink">
+		<b><a href="/contact/account?hash=issues"><img src="/img/icons/magnifier.png" alt="Lupa">Search submitted claims</a></b>
+		<p style="margin-top: 4px;">List and view existing claims <b>(requires login)</b></p>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="main noBg">
+	
+	<div class="presentation box">
+		<h1 class="title">Cargo</h1>
+	</div>
+						
+	<div class="big_box">
+	<img alt="cargo logo" style="float: right; width: 200px; height: 55px;" title="cargo logo" src="/orgs/bruair/ba-cargo290-35423.jpg">
+	<p>Brussels Airlines Cargo is the airfreight department of Brussels Airlines. Using Brussels Airport as a hub, Brussels Airlines Cargo offers you the best cargo services throughout Europe and Africa.</p>
+	<h2>About Brussels Airlines Cargo</h2>
+	<p>Brussels Airlines Cargo is the airfreight division of Brussels Airlines.
+	<br>
+	<a title="Brussels Airlines Cargo" target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/brussels-airlines-cargo.aspx">Learn more about Brussels Airlines Cargo</a></p>
+	<h2>Our GSSA's</h2>
+	<p>Brussels Airlines Cargo is working with General Sales and Services Agents to commercialize the belly space of the Brussels Airlines scheduled flights. Our GSSA partner in Europe, the United States and Asia for all cargo activities is Air Logistics Group.
+	<br>
+	<a title="Our GSSA" target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/our-network.aspx">Discover the GSSA's</a></p>
+	<h2>Products and Services</h2>
+	<p>Brussels Airlines Cargo transports any cargo commodity that may be accepted for transport on passenger aircraft and within the limitations of the holds of these aircraft, except for valuable shipments (Gold, diamonds…).
+	<br>
+	<a title="Products and services" target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/products-and-services.aspx">More information about our products and services</a></p>
+	<h2>Interline partners</h2>
+	<p>Brussels Airlines Cargo can offer you cargo destinations on the five continents thanks to dedicated interline agreements with partner airlines.
+	<br>
+	<a title="Partners" target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/partners.aspx">Discover the partner airlines</a></p>
+	<h2>Track and trace</h2>
+	<p>You can track your shipment by filling in your AWB number.
+	<br>
+	Go to the <a title="Track and trace" target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/track-and-trace.aspx">tracking tool</a></p>
+	<h2>Contact Brussels Airlines Cargo</h2>
+	<p>Questions about Brussels Airlines Cargo? Don’t hesitate to contact us.
+	<br>
+	Send your question or remark to <a title="Cargo contact form" target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/contact.aspx">Brussels Airlines Cargo</a></p>
+	<h2><br></h2>
+	</div>
+	
+	</div>	
+</div>
+
+<div class="clear"></div>
+<div class="bru-footer inner">
+<div class="cols cols4">
+
+	<div class="col">
+		<h3>About us</h3>
+		<ul class="arrow1">
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/corporate/default.aspx">Our company</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/default.aspx">Business solutions</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/b2b/info-and-services/cargo/default.aspx">Cargo</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/misc/our-affiliation-program.aspx">Affiliate marketing</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/misc/advertise-with-us.aspx">Advertise with us</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/corporate/jobs/default.aspx">Jobs</a></li>
+			
+		</ul>
+			<div></div>
+	</div>
+
+	<div class="col">
+		<h3>Press</h3>
+		<ul class="arrow1">
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/corporate/press-room/default.aspx">Press room</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/corporate/social-media/default.aspx">Brussels Airlines on social media</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/on-board/onboard-service/default.aspx">Our inflight magazine</a></li>
+			
+		</ul>
+			<div></div>
+	</div>
+
+	<div class="col">
+		<h3>Contact us</h3>
+		<ul class="arrow1">
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/contact-us/Default.aspx">Contact us</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/contact-us/faqs.aspx">FAQs</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/practical-information/travel-info/before-the-flight/luggage-info/default.aspx">Info about baggage</a></li>
+			
+				<li><a class="tooltips" target="_blank" href="http://www.brusselsairlines.com/en-be/my-profile/landing-page.aspx">Subscribe to our newsletter</a></li>
+			
+		</ul>
+			<div></div>
+	</div>
+
+		<div class="col social_touch">
+			<h3>Social media</h3>
+			<ul class="socialNetworks">
+	
+				<li class="top left"><a target="_blank" href="https://www.pinterest.com/flyingbrussels/" class="link-pinterest" title="Pinterest"><i class="fa fa-pinterest-p"></i></a>
+				</li>
+	
+				<li class="top"><a target="_blank" href="http://www.linkedin.com/company/brussels-airlines" class="link-linkedin" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+				</li>
+	
+				<li class="left"><a href="https://www.facebook.com/brusselsairlines" target="_blank" class="link-facebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+				</li>
+	
+				<li><a href="https://twitter.com/FlyingBrussels" target="_blank" class="link-twitter" title="Twitter"><i class="fa fa-twitter"></i></a>
+				</li>
+	
+			</ul>
+	</div>
+
+	</div>
+
+	<div class="logos">
+			<a href="http://www.staralliance.com" target="_blank">
+				<img alt="" src="//static.brusselsairlines.com/_img/bg_a-star-alliance-member.png">
+			</a>
+			 
+			<a href="http://www.brusselsairport.be/en/" title="Brussels Airport" target="_blank">
+				<img src="//static.brusselsairlines.com/_img/bru_airport.png" title="Brussels Airport" alt="Brussels Airport">
+			</a>
+			
+		</div>
+	</div>
+
+</div>

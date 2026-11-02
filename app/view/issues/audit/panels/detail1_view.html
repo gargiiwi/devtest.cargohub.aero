@@ -1,0 +1,116 @@
+{#use:%ist.xfield_def:
+	{!======== 1 (always visible) ========}
+		<table style="margin: 0;">
+			<tr>
+				<td class='audit-nrhead-view'>1</td>
+				<th><b>{^xfields.audit1_type.value}</b></th>
+				<td><span style="float:right; width: 180px;">SOP ref.: {#if:^xfields.sop_1:<a href="/record/process:{^xfields.sop_1}#panels" target="_blank">{^xfields.sop_1}</a>}{#ifnot:^xfields.sop_1:<span class='gray'>---</span>}</span></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<th>Deadline date:</th>
+				<td>
+					{#if:^xfields.ddln_1:{^xfields.ddln_1}~date("Y-m-d")~}{#ifnot:^xfields.ddln_1:<span class='gray'>---</span>}
+					<span style="float:right; width: 180px;">Closing date: {#if:^xfields.closed_1:{^xfields.closed_1}~date("Y-m-d")~}{#ifnot:^xfields.closed_1:<span class='gray'>---</span>}</span>
+				</td>
+			</tr>
+		</table>
+		<h4>{^xfields.audit1_title:<span class='gray'>(Missing title)</span>}</h4>
+		{#if:^xfields.cause1:
+		<h5>Cause/Comments:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.cause1}~nl2br~</div>}
+		{#ifnot:^xfields.cause1:<div class="gray"><br />(No cause/comments specified)</div>}
+		{#if:^xfields.capa1:
+		<h5>CaPa:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa1}~nl2br~</div>}
+		{#ifnot:^xfields.capa1:<div class="gray"><br />(No corrective/preventive actions yet)</div>}
+		<table style="margin-bottom: 30px;">
+			<tr><th>Responsible person:</th><td>{^xfields.respo1:<span class="gray">---</span>}</td></tr>
+		</table>
+
+	{!======== 2 ========}
+	{#if:^xfields.audit2_type.key:
+		<hr />
+		<table style="margin: 0;">
+			<tr>
+				<td class='audit-nrhead-view'>2</td>
+				<th><b>{^xfields.audit2_type.value}</b></th>
+				<td><span style="float:right; width: 180px;">SOP ref.: {#if:^xfields.sop_2:<a href="/record/process:{^xfields.sop_2}#panels" target="_blank">{^xfields.sop_2}</a>}{#ifnot:^xfields.sop_2:<span class='gray'>---</span>}</span></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<th>Deadline date:</th>
+				<td>
+					{#if:^xfields.ddln_2:{^xfields.ddln_2}~date("Y-m-d")~}{#ifnot:^xfields.ddln_2:<span class='gray'>---</span>}
+					<span style="float:right; width: 180px;">Closing date: {#if:^xfields.closed_2:{^xfields.closed_2}~date("Y-m-d")~}{#ifnot:^xfields.closed_2:<span class='gray'>---</span>}</span>
+				</td>
+			</tr>
+		</table>
+		<h4>{^xfields.audit2_title:<span class='gray'>(Missing title)</span>}</h4>
+		{#if:^xfields.cause2:
+		<h5>Cause/Comments:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.cause2}~nl2br~</div>}
+		{#ifnot:^xfields.cause2:<div class="gray"><br />(No cause/comments specified)</div>}
+		{#if:^xfields.capa2:
+		<h5>CaPa:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa2}~nl2br~</div>}
+		{#ifnot:^xfields.capa2:<div class="gray"><br />(No corrective/preventive actions yet)</div>}
+		<table style="margin-bottom: 30px;">
+			<tr><th>Responsible person:</th><td>{^xfields.respo2:<span class="gray">---</span>}</td></tr>
+		</table>
+	}
+	{!======== 3 ========}
+	{#if:^xfields.audit3_type.key:
+		<hr />
+		<table style="margin: 0;">
+			<tr>
+				<td class='audit-nrhead-view'>3</td>
+				<th><b>{^xfields.audit3_type.value}</b></th>
+				<td><span style="float:right; width: 180px;">SOP ref.: {#if:^xfields.sop_3:<a href="/record/process:{^xfields.sop_3}#panels" target="_blank">{^xfields.sop_3}</a>}{#ifnot:^xfields.sop_3:<span class='gray'>---</span>}</span></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<th>Deadline date:</th>
+				<td>
+					{#if:^xfields.ddln_3:{^xfields.ddln_3}~date("Y-m-d")~}{#ifnot:^xfields.ddln_3:<span class='gray'>---</span>}
+					<span style="float:right; width: 180px;">Closing date: {#if:^xfields.closed_3:{^xfields.closed_3}~date("Y-m-d")~}{#ifnot:^xfields.closed_3:<span class='gray'>---</span>}</span>
+				</td>
+			</tr>
+		</table>
+		<h4>{^xfields.audit3_title:<span class='gray'>(Missing title)</span>}</h4>
+		{#if:^xfields.cause3:
+		<h5>Cause/Comments:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.cause3}~nl2br~</div>}
+		{#ifnot:^xfields.cause3:<div class="gray"><br />(No cause/comments specified)</div>}
+		{#if:^xfields.capa3:
+		<h5>CaPa:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa3}~nl2br~</div>}
+		{#ifnot:^xfields.capa3:<div class="gray"><br />(No corrective/preventive actions yet)</div>}
+		<table style="margin-bottom: 30px;">
+			<tr><th>Responsible person:</th><td>{^xfields.respo3:<span class="gray">---</span>}</td></tr>
+		</table>
+	}
+	{!======== 4 ========}
+	{#if:^xfields.audit4_type.key:
+		<hr />
+		<table style="margin: 0;">
+			<tr>
+				<td class='audit-nrhead-view'>4</td>
+				<th><b>{^xfields.audit4_type.value}</b></th>
+				<td><span style="float:right; width: 180px;">SOP ref.: {#if:^xfields.sop_4:<a href="/record/process:{^xfields.sop_4}#panels" target="_blank">{^xfields.sop_4}</a>}{#ifnot:^xfields.sop_4:<span class='gray'>---</span>}</span></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<th>Deadline date:</th>
+				<td>
+					{#if:^xfields.ddln_4:{^xfields.ddln_4}~date("Y-m-d")~}{#ifnot:^xfields.ddln_4:<span class='gray'>---</span>}
+					<span style="float:right; width: 180px;">Closing date: {#if:^xfields.closed_4:{^xfields.closed_4}~date("Y-m-d")~}{#ifnot:^xfields.closed_4:<span class='gray'>---</span>}</span>
+				</td>
+			</tr>
+		</table>
+		<h4>{^xfields.audit4_title:<span class='gray'>(Missing title)</span>}</h4>
+		{#if:^xfields.cause4:
+		<h5>Cause/Comments:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.cause4}~nl2br~</div>}
+		{#ifnot:^xfields.cause4:<div class="gray"><br />(No cause/comments specified)</div>}
+		{#if:^xfields.capa4:
+		<h5>CaPa:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa4}~nl2br~</div>}
+		{#ifnot:^xfields.capa4:<div class="gray"><br />(No corrective/preventive actions yet)</div>}
+		<table>
+			<tr><th>Responsible person:</th><td>{^xfields.respo4:<span class="gray">---</span>}</td></tr>
+		</table>
+	}
+}

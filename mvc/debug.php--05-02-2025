@@ -1,0 +1,458 @@
+<?php
+/**
+ * MVC Debug System - Allows retrieving debug information from the system using various methods
+ *
+ * @author Wavetrex Infinity <wavetrex@gmail.com>
+ * @package CargoConnect
+ * @subpackage MVC_Framework
+ * @version 2020.01
+ */
+class MVC_Debug
+{
+	const
+		LEVEL_DISABLED			= 0,	// all debugging functions disabled, and on critical errors a predefined page is sent instead of any debugging information
+		LEVEL_CRITICAL			= 1,	// only critical errors (that stop the script) are displayed
+		LEVEL_WARNING			= 2,	// warnings (possible problem causes) are also displayed
+		LEVEL_ALL				= 3		// Everything, including notices and data dumps (sent using MVC_Core::dump($data, $label) )
+	;
+
+	public $level = 0;
+
+	/**
+	 * The debug mode:
+	 * -- "console" - using FirePHP
+	 * -- "php" - using php's normal error output (in page)
+	 * TODO: -- "file" - no data is sent to the browser, debug output is instead logged into a file
+	 * @var string
+	 */
+	public $mode;
+
+	/**
+	 * The object that handles the actual debugging
+	 *
+	 * @var MVC_Debug_base
+	 */
+	public $driver;
+
+	/**
+	 * Constructor, initializes the debugging system
+	 *
+	 * @param string $level
+	 * @param string $mode
+	 * @param array $settings Parameters for a plugin-based mode
+	 */
+	public function __construct($level = "DISABLED", $mode = "php", $settings = array())
+	{
+		// the problem handlers
+		set_error_handler(array($this, 'handler_Errors'));
+		set_exception_handler(array($this, 'handler_Exceptions'));
+		register_shutdown_function(array(__CLASS__, 'handler_Shutdown'));
+
+		// If the debug mode is "php" and this run is from an ajax request, disables debugging ( to prevent corruption of a json response )
+		if($mode=='php')
+			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+				$level = 'DISABLED';
+
+		$cname = "MVC_Debug::LEVEL_{$level}";
+		if(defined($cname)) {
+			$this-> level = constant($cname);
+			$this-> mode = $mode;
+
+			// when we have a level > 0, load the appropriate plugin that handles debugging in a certain way
+			if($this-> level > 0) {
+				$debugger_class = "MVC_Debug_". $mode;
+				$this-> driver = new $debugger_class($this-> level, $settings);
+			}
+		}
+	}
+
+	/**
+	 * Records the last "dump", so it can be retrieved by a higher-level function
+	 * @var array
+	 */
+	protected $last_dump = null;
+
+	/**
+	 * General data output function, passed onto the driver
+	 * @param mixed $data
+	 * @param string $label
+	 * @param array $meta When this dump() method is not called directly (instead, the non-oop version is used, meta() is the passed location)
+	 * @param string $type
+	 * @param bool $show_source In certain debug plugins, it shows the PHP code at the debug point
+	 */
+	public function dump($data, $label = null, $meta = null, $type = 'plain', $show_source = false)
+	{
+		// only sends dumps if the debug level is ALL (and a drivers has been loaded)
+		if($this-> driver instanceof MVC_Debug_base && $this-> level >= 3) {
+
+			// Identify location from where dump was called (file, line, class and function)
+			if(!is_array($meta)) {
+				$trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS); $dump_found = false;
+				foreach($trace as $entry) {
+					if($entry['class']=='MVC_Debug'&&$entry['function']=='dump') { // found the call point of dump()
+						// File and Line are from the entry itself
+						$meta = array(
+							'File'=> $entry['file'],
+							'Line'=> $entry['line']
+						);
+						$dump_found = true;
+						continue;
+					}
+					if($dump_found) {
+						// Class and Function are from the next entry
+						if(isset($entry['class']))
+							$meta['Class'] = $entry['class'];
+						if(isset($entry['function']))
+							$meta['Function'] = $entry['function'];
+						break;
+					}
+				}
+			}
+
+			$output_el = array(
+				'type'=> $type,
+				'data'=> $data,
+				'label'=> $label,
+				'meta'=> $meta
+			);
+			if($show_source)
+				$output_el['show_source'] = true;
+
+			$this-> last_dump = $output_el;
+			// send the data to the driver
+			$this-> driver-> output($output_el);
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the last dumped information
+	 * @return array
+	 */
+	public function get_Last_Dump()
+	{
+		return $this-> last_dump;
+	}
+
+	/**
+	 * Function pass-through to debug driver
+	 *
+	 * @param string $fname
+	 * @param array $args
+	 * @return mixed return from the debug driver
+	 */
+	public function __call($fname, $args)
+	{
+		// TODO: A way to check if the function actually exists
+		return call_user_func_array(array($this-> driver, $fname), $args);
+	}
+
+	/**
+	 * Error types, as text
+	 * @var array
+	 */
+	public static $e_types = array(
+		// caught warnings, notices and recoverable errors
+		E_WARNING=> "E_WARNING",
+		E_USER_WARNING=> "E_USER_WARNING",
+		E_STRICT=> "E_STRICT",
+		E_NOTICE=> "E_NOTICE",
+		E_USER_NOTICE=> "E_USER_NOTICE",
+		// These two are only available in PHP 5.3 and up
+//		E_DEPRECATED=> "E_DEPRECATED",
+//		E_USER_DEPRECATED=> "E_USER_DEPRECATED",
+		E_USER_ERROR=> "E_USER_ERROR",
+		E_RECOVERABLE_ERROR=> "E_RECOVERABLE_ERROR",
+		// not caught, fatal errors
+		E_ERROR=> "E_ERROR",
+		E_PARSE=> "E_PARSE",
+		E_CORE_ERROR=> "E_CORE_ERROR",
+		E_COMPILE_ERROR=> "E_COMPILE_ERROR"
+	);
+
+	/**
+	 * Error handler. Handles recording of Warnings, Notices, Errors and also transforms Errors into Exceptions, so they can be caught
+	 *
+	 * @param $errno Error number (predefined constants)
+	 * @param $errstr Error string
+	 * @param $errfile Where in the code it has occured
+	 * @param $errline At which line
+	 */
+	public function handler_Errors($errno, $errstr, $errfile, $errline)
+	{
+		// not registering any error if level = 0
+		if($this-> level==0)
+			return true;
+
+		// prepare the data to be dumped
+		$output_el = array(
+			'data'=> $errstr,
+			'label'=> self::$e_types[$errno],
+			'meta'=> array(
+				'File'=> $errfile,
+				'Line'=> $errline
+			),
+			'show_source'=> true
+		);
+
+		switch($errno) {
+			case E_WARNING:
+			case E_USER_WARNING:
+			case E_STRICT:
+ 				$output_el['type'] = 'warning'; break;
+			case E_NOTICE:
+			case E_USER_NOTICE:
+			// These two are only available in PHP 5.3 and up
+			case E_DEPRECATED:
+			case E_USER_DEPRECATED:
+				$output_el['type'] = 'notice'; break;
+			case E_USER_ERROR:
+				$crash = true;
+			case E_RECOVERABLE_ERROR:
+				$output_el['type'] = 'error'; break;
+			default: // some other new error code in a future version of PHP ?
+				$output_el['type'] = 'plain';
+				$crash = true; // allow the standard PHP error handler
+		}
+
+		$this-> driver-> output($output_el);
+		if(isset($crash))
+			return false;
+	}
+
+	public static $error_output = "Exception Encountered. Check Console.";
+
+	/**
+	 * Uncaught exception handler that displays a nice output when the system crashes.
+	 *
+	 * @param Exception $e
+	 */
+	static public function handler_Exceptions($e)
+	{
+		// not registering the exception if level = 0
+		if(MVC_Core::$debug-> level==0)
+			self::graceful_Crash();
+
+		// prepare the data to be dumped
+		$output_el = array(
+			'type'=> 'exception',
+			'data'=> $e,
+			'label'=> '', // No label on exceptions
+			'meta'=> array(
+				'File'=> $e-> getFile(),
+				'Line'=> $e-> getLine(),
+				'Code'=> $e-> getCode()
+			),
+			'show_source'=> true
+		);
+
+		MVC_Core::$debug-> output($output_el);
+		if(MVC_Core::$debug-> level > 0) {
+			if(MVC_Core::$debug-> mode=='php')
+				self::final_Crash("Uncaught exception '".get_class($e)."' with message '".$e-> getMessage()."'");
+			elseif(MVC_Core::$debug-> mode=='console') {
+				echo self::$error_output;
+			} else
+				echo "Unhandled Error in the debug plugin.";
+		}
+	}
+
+	/**
+	 * Shutdown handler. Will always be called when script ends (this might allow catching critcal errors which cannot be handled by handler_Exceptions),
+	 *   as well as showing the "crash" screen if enabled in configuration
+	 * @todo handler_Shutdown needs improvments
+	 */
+	public static function handler_Shutdown()
+	{
+		if (is_array($error = error_get_last())) {
+			// not registering the final error if level = 0
+			if(MVC_Core::$debug-> level==0)
+				self::graceful_Crash();
+
+			switch($error['type']) {
+				// these error types are not captured by the handler defined with set_error_handler(), but can be captured by the shutdown_function!
+				case E_ERROR:
+				case E_PARSE:
+				case E_CORE_ERROR:
+				case E_COMPILE_ERROR:
+					$output_el = array(
+						'type'=> 'error',
+						'data'=> $error['message'],
+						'label'=> self::$e_types[$error['type']],
+						'meta'=> array(
+							'File'=> $error['file'],
+							'Line'=> $error['line']
+						),
+						'show_source'=> true
+					);
+					MVC_Core::$debug-> output($output_el);
+					break;
+			}
+			// Crash !
+ 			if(MVC_Core::$debug-> level > 0) {
+ 				if(MVC_Core::$debug-> mode=='php')
+ 					self::final_Crash(self::$e_types[$error['type']].": ".$error['message']);
+ 				elseif(MVC_Core::$debug-> mode=='console')
+	 				echo self::$error_output;
+ 				else
+ 					echo "Unhandled Error in the debug plugin.";
+ 			}
+		}
+	}
+
+	/**
+	 * Temporary function that shows an error message on crashes when debugging is disabled
+	 */
+	private static function graceful_Crash()
+	{
+		header("Document-type: text/plain");
+		if($_SERVER['REQUEST_URI'] != '/issue?action=importmrndatasubmit') {
+			echo "Sorry, unhandled error. Please contact the administrator.";
+		}
+		die;
+	}
+
+	/**
+	 * Shows a fancy crash screen
+	 * -- Not used at the moment, as the PHP debugger is out of comission due to lack of GeSHi library.
+	 * @param string $title
+	 */
+	private static function final_Crash($title)
+	{
+		// TODO: Move all this HTML and CSS out of here !
+		?>
+		<!DOCTYPE HTML>
+		<html>
+		<head>
+		<title><?php echo $title; ?></title>
+		<style type="text/css">
+			html, body {
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+
+			body {
+				font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+				font-size: 12px;
+				color: #4A5571;
+				background-color: #ebf5fa;
+			}
+			/** Some unobtrusive debugging features **/
+			#debug {
+				background-color: white;
+			}
+			#debug pre {
+				margin: 0px;
+				padding: 0px;
+			}
+			#debug table {
+				width: 100%;
+				border: 1px solid gray;
+				font-size: 11px;
+				border-spacing: 2px;
+			}
+			#debug table tr:nth-child(odd) {
+				background-color:#ddd;
+			}
+			#debug table tr:nth-child(even) {
+				background-color:#fff;
+			}
+			#debug table th {
+				background-color: gray;
+				color: white;
+			}
+			/* GeSHi Styles for PHP */
+			.php .de1, .php .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+			.php  {font-family:monospace;}
+			.php .imp {font-weight: bold; color: red;}
+			.php li, .php .li1 {font-weight: normal; vertical-align:top;}
+			.php .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+			.php .li2 {font-weight: bold; vertical-align:top;}
+			.php .kw1 {color: #b1b100;}
+			.php .kw2 {color: #000000; font-weight: bold;}
+			.php .kw3 {color: #990000;}
+			.php .kw4 {color: #009900; font-weight: bold;}
+			.php .co1 {color: #666666; font-style: italic;}
+			.php .co2 {color: #666666; font-style: italic;}
+			.php .co3 {color: #0000cc; font-style: italic;}
+			.php .co4 {color: #009933; font-style: italic;}
+			.php .coMULTI {color: #666666; font-style: italic;}
+			.php .es0 {color: #000099; font-weight: bold;}
+			.php .es1 {color: #000099; font-weight: bold;}
+			.php .es2 {color: #660099; font-weight: bold;}
+			.php .es3 {color: #660099; font-weight: bold;}
+			.php .es4 {color: #006699; font-weight: bold;}
+			.php .es5 {color: #006699; font-weight: bold; font-style: italic;}
+			.php .es6 {color: #009933; font-weight: bold;}
+			.php .es_h {color: #000099; font-weight: bold;}
+			.php .br0 {color: #009900;}
+			.php .sy0 {color: #339933;}
+			.php .sy1 {color: #000000; font-weight: bold;}
+			.php .st0 {color: #0000ff;}
+			.php .st_h {color: #0000ff;}
+			.php .nu0 {color: #cc66cc;}
+			.php .nu8 {color: #208080;}
+			.php .nu12 {color: #208080;}
+			.php .nu19 {color:#800080;}
+			.php .me1 {color: #004000;}
+			.php .me2 {color: #004000;}
+			.php .re0 {color: #000088;}
+			.php .ln-xtra, .php li.ln-xtra, .php div.ln-xtra {background-color: #ffc;}
+			.php span.xtra { display:block; }
+		</style>
+		</head>
+		<body>
+		<h2><?php echo $title; ?></h2>
+		<div id="debug">
+		<?php
+			echo MVC_Core::$debug-> render_Buffer();
+		?>
+		</div>
+		</body>
+		</html>
+		<?php
+	}
+}
+
+
+// A little fix to php pre 5.3.6? - Note that it's completely ignored in 5.2
+if(!defined("DEBUG_BACKTRACE_IGNORE_ARGS"))
+	define("DEBUG_BACKTRACE_IGNORE_ARGS", true);
+
+if(!function_exists("dd")) {
+	/**
+	 * Debug Dump, forwards to MVC_Core::$debug-> dump, integrated in the framework, follows the "debug" attribute - displays nothing if debug is disabled
+	 *
+	 * @param mixed $data
+	 * @param string $label
+	 * @param bool $show_source True means the dump will also show the piece of code where the dump was called
+	*/
+	function dd($data = null, $label=null, $show_source = false)
+	{
+		// identify source of dump
+		$trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+		foreach($trace as $entry) {
+			if($entry['function'] == 'dd') {
+				$meta = array(
+					'Line'=> $entry['line'],
+					'File'=> $entry['file'],
+				);
+				break;
+			}
+		}
+		MVC_Core::$debug-> dump($data, $label, $meta, 'plain', $show_source);
+	}
+}
+
+/**
+ * Required methods for a debug handler object
+ *
+ * @author Wavetrex (wavetrex@gmail.com)
+ * @package CargoClaims
+ * @version 1.0.dev
+ */
+interface MVC_Debug_base
+{
+	public function output($output_element, $time = null);
+}

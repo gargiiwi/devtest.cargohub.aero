@@ -1,0 +1,141 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+
+
+ {#use:training_remarks:<tr>
+		<th><label>Remarks:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>} 
+<!--<table style="width: 99%;">{!This special field is visually associated with other fields}
+	<tr><td><input type='hidden' name='{trns.name}' value='' />&nbsp;</th><td style="width: 85px;">&nbsp;</td>
+		<td style="text-align: center; width: 110px;">From</td><td style="text-align: center; width: 110px;">To</td></tr>
+	<tr><td><label>{#use:trns.options.0:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[Intro]</td>
+		<td>{#use:tr_intro_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_intro_to: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.1:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[SAW]</td>
+		<td>{#use:tr_saw_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_saw_to: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.2:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[CAW]</td>
+		<td>{#use:tr_caw_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_caw_to: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.3:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[DGAW]</td>
+		<td>{#use:tr_dgaw_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_dgaw_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.4:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[ENVAW]</td>
+		<td>{#use:tr_envaw_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_envaw_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.5:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[PILAW]</td>
+		<td>{#use:tr_pilaw_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_pilaw_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.6:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[SAFAW]</td>
+		<td>{#use:tr_safaw_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_safaw_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+<tr><td colspan="4"><hr /></td></tr>
+	<tr><td><label>{#use:trns.options.7:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[EAC]</td>
+		<td>{#use:tr_eac_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_eac_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.8:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[CAC]</td>
+		<td>{#use:tr_cac_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_cac_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.9:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[Sec Spv]</td>
+		<td>{#use:tr_secspv_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_secspv_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	
+	<tr><td><label>{#use:trns.options.10:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[BAL]</td>
+		<td>{#use:tr_bal_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_bal_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	
+	<tr><td><label>{#use:trns.options.23:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[CITO]</td>
+		<td>{#use:tr_cito_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_cito_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.11:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[DG ADR]</td>
+		<td>{#use:tr_dgadr_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_dgadr_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.12:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[DG IATA]</td>
+		<td>{#use:tr_dgiata_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_dgiata_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.13:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[PGS&nbsp;15:2016]</td>
+		<td>{#use:tr_pgs15_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_pgs15_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.14:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[RA IATA]</td>
+		<td>{#use:tr_raiata_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_raiata_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.15:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[PIL-AR IATA]</td>
+		<td>{#use:tr_piliar_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_piliar_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.16:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[PIL-C IATA]</td>
+		<td>{#use:tr_pilic_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_pilic_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.17:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[JCC]</td>
+		<td>{#use:tr_jcc_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_jcc_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.18:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[CC]</td>
+		<td>{#use:tr_cc_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_cc_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.19:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[FLO]</td>
+		<td>{#use:tr_flo_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_flo_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.20:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[XRay]</td>
+		<td>{#use:tr_xray_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_xray_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.21:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[BHV]</td>
+		<td>{#use:tr_bhv_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_bhv_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	<tr><td><label>{#use:trns.options.22:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[VOG]</td>
+		<td>{#use:tr_vog_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_vog_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+	
+	<tr><td><label>{#use:trns.options.24:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+		<td class='mini'>[VGB]</td>
+		<td>{#use:tr_vgb_from: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:tr_vgb_to:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+	</tr>
+</table>-->
+</form>}

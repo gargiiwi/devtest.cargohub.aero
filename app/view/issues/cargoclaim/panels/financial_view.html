@@ -1,0 +1,122 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th class="info-tip" data-tooltip="If Automatic Calculation is on, Maximum liability is determined from Mishandled Weight and Convention.<br />Also, Global and Local currency fields are calculated at the Exchange Date.">
+			Auto. calculation <img class="inline-icon" src="/img/icons16/question.png" alt="?" /></th>
+		<td>
+			{#if:^xfields.money_auto.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.money_auto.key: checked="checked"}> {^xfields.money_auto.value}</label>}
+			{#ifnot:^xfields.money_auto.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<hr />
+	<div><table style="width: 99%;">
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{calc_weight.n}</td>
+			<td style="text-align: center; width: 33%;">{convention.n}</td>
+			<td style="text-align: center; width: 33%;">{xchg_date.n}</td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align: center;">{^xfields.calc_weight:-} <span class='gray'>(kg)</span></td>
+			<td style="text-align: center;">{^xfields.convention.value:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{#if:^xfields.xchg_date:{^xfields.xchg_date}~date("Y-m-d")~}{#ifnot:^xfields.xchg_date:<span class='gray'>---</span>}</td>
+		</tr>
+	</table></div>
+	<hr />
+	<table>
+		<tr style='line-height: 18px;'>
+			<th style="width: 28%;">Calculation</th>
+			<td style="width: 24%; text-align: right;">XDR to USD</td>
+			<td style="width: 24%; text-align: right;">USD to {^xfields.claim_local.iso}</td>
+			<td style="width: 24%; text-align: right;">{^xfields.claim_amt.iso} to USD</td>
+		</tr>
+		<tr style='line-height: 18px;'>
+			<th>Exchange Rate:</th>
+			<td style='text-align: right;'>{^xfields.xerate_xdrusd:<span class="gray">(not retrieved)</span>}</td>
+			<td style='text-align: right;'>{^xfields.xerate_local:<span class="gray">(not retrieved)</span>}</td>
+			<td style='text-align: right;'>{^xfields.xerate_usd:<span class="gray">(not retrieved)</span>}</td>
+		</tr>
+	</table>
+	
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/money.png'); background-repeat: no-repeat; background-position: 4px;">Financial details
+	<a target="_blank" href="https://www.imf.org/external/np/fin/data/rms_sdrv.aspx" style="padding-left: 304px;">IMF Rate</a>
+	</h4>
+	<table style="width: 100%;">
+		<tr>
+			<th style="width: 28%;">&nbsp;</th>
+			<td style="width: 24%; text-align: right;">Global currency</td>
+			<td style="width: 24%; text-align: right;">Local currency</td>
+			<td style="width: 24%; text-align: right;">Claimant currency</td>
+		</tr>
+		<tr><td colspan="4"><hr /></td></tr>
+		<tr style='line-height: 18px;'>
+			<th>{claim_amt.n}:</th>
+			<td style='text-align: right;'>{^xfields.claim_usd.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.claim_local.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.claim_amt.serialized:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr style='line-height: 18px;'>
+			<th>{maxliab_amt.n}:</th>
+			<td style='text-align: right;'>{^xfields.maxliab_usd.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.maxliab_local.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.maxliab_amt.serialized:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr><td colspan="4">
+	<h5 style="background-image: url('/img/icons16/umbrella.png'); background-repeat: no-repeat; background-position: 4px; text-indent: 24px; line-height: 16px;">Insurance and provision</h5>		
+		</td></tr>
+		<tr style='line-height: 18px;'>
+			<th>{insured_amt.n}:</th>
+			<td style='text-align: right;'>{^xfields.insured_usd.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.insured_local.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.insured_amt.serialized:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr style='line-height: 18px;'>
+			<th>{provision_amt.n}:</th>
+			<td style='text-align: right;'>{^xfields.provision_usd.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.provision_local.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.provision_amt.serialized:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr style='line-height: 18px;'>
+			<th>{ins_ref_no.n}:</th>
+			<td colspan="3">{^xfields.ins_ref_no:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr style='line-height: 18px;'>
+			<th>{provi_date.n}:</th>
+			<td colspan="3">{#if:^xfields.provi_date:{^xfields.provi_date}~date("Y-m-d")~}{#ifnot:^xfields.provi_date:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr><td colspan="4">
+	<h5 style="background-image: url('/img/icons16/handshake.png'); background-repeat: no-repeat; background-position: 4px; text-indent: 24px; line-height: 16px;">Settlement (payment)</h5>		
+		</td></tr>
+		<tr style='line-height: 18px;'>
+			<th>{suggested_amt.n}:</th>
+			<td style='text-align: right;'>{^xfields.suggested_usd.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.suggested_local.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.suggested_amt.serialized:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr style='line-height: 18px;'>
+			<th>{paid_amt.n}:</th>
+			<td style='text-align: right;'>{^xfields.paid_usd.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.paid_local.serialized:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>{^xfields.paid_amt.serialized:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr><td colspan="4"><hr /></td></tr>
+		<tr style='line-height: 18px;'>
+			<th>{settle_date.n}:</th>
+			<td>{#if:^xfields.settle_date:{^xfields.settle_date}~date("Y-m-d")~}{#ifnot:^xfields.settle_date:<span class='gray'>---</span>}</td>
+			<td style='text-align: right;'>USD to {^xfields.paid_local.iso}</td>
+			<td style='text-align: right;'>USD to {^xfields.paid_amt.iso}</td>
+		</tr>
+		<tr style='line-height: 18px;'>
+			<th>Exchange rate:</th>
+			<td>&nbsp;</td>
+			<td style='text-align: right;'>{^xfields.xerate_paidlocal:<span class="gray">(not retrieved)</span>}</td>
+			<td style='text-align: right;'>{^xfields.xerate_paidusd:<span class="gray">(not retrieved)</span>}</td>
+		</tr>
+		<tr style='line-height: 18px;'>
+			<th>{settle_basis.n}:</th>
+			<td colspan="3">{^xfields.settle_basis.value:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr>
+			<th>{pcur.n}:</th>
+			<td><b>{^xfields.pcur.iso:<span class='gray'>---</span>}</b></td>
+		</tr>
+	</table>
+}

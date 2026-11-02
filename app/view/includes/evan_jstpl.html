@@ -1,0 +1,13 @@
+<script id="evan-hider" type="text/dryjstpl">
+	<div class="evan-hider"><span style="display: none;"></span><button type="button"></button></div>
+</script>
+
+<script id="evan-standard-notification" type="text/dryjstpl">
+	<div class="evan-standard evan-{$type} jqx-rc-all">
+		<div class="{#exists:detail:evan-title-row}{#missing:detail:evan-title-only}">
+			{#exists:time:<span class="evan-time">[{$time}]</span>}
+			<span class="evan-title">{$title}</span>
+		</div>
+		{#exists:detail:<div class="evan-detail-row">{$detail}</div>}
+	</div>
+</script>

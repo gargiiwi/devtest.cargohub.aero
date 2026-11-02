@@ -1,0 +1,111 @@
+{#use:iss:<h2>Document: <b>{xfields.name}</b></h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+<h4>Contacts:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>
+
+{#use:%ist.xfield_def:
+	<h4>Document information:</h4>
+	<table class="infotable">
+		<tr><th>Department:</th><td>{^group.name}</td></tr>
+		<tr><th>{title.n}:</th><td>{^xfields.title}</td></tr>
+		<tr><th>{ref.n}:</th><td>{^xfields.ref:<span class="gray">---</span>}</td></tr>
+		<tr><th>Start date:</th>
+			<td>{#if:^xfields.start:{^xfields.start}~date("Y-m-d")~}{#ifnot:^xfields.start:<span class='gray'>---</span>}
+			<label class="ra_label">End date:</label> {#if:^xfields.end:{^xfields.end}~date("Y-m-d")~}{#ifnot:^xfields.end:<span class='gray'>---</span>}
+			</td>
+		</tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{owner.n}:</th><td>{^xfields.owner:<span class="gray">---</span>}</td></tr>
+	</table>
+	
+	{#if:^xfields.xinfo:
+		<h4>{xinfo.n}:</h4><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.xinfo}~nl2br~</div>}
+	
+	{#if:^xfields.comments:
+		<h4>{comments.n}:</h4><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.comments}~nl2br~</div>}
+}
+
+</div>
+{!Right column}
+<div class='column2'>
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+</table>
+
+{#if:files:<h4>Attached document(s):</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a> {#if:description:<span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>
+<h4>Attach more computer files:</h4>
+}
+{#ifnot:files:
+<h4>There are no files uploaded at the moment</h4>}
+
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Document' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="field-delete-button" type="text/dryjstpl">
+	<button title="Cancel this upload" />
+</script>
+
+{#raw:includes/issue_update_confirm.html}

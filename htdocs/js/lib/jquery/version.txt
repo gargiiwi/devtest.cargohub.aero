@@ -1,0 +1,9 @@
+jQuery JavaScript Library v1.11.3
+
+Google CDN:
+	https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js
+	https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js
+
+jquery CDN:
+	http://code.jquery.com/jquery-1.11.3.min.js
+	http://code.jquery.com/jquery-1.11.3.js

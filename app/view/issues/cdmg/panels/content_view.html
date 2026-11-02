@@ -1,0 +1,43 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{com_type.n}:</th><td>{^xfields.com_type.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{com_note.n}:</th><td>{^xfields.com_note:<span class="gray">---</span>}</td></tr>
+		<tr><th>{nature.n}:</th><td>{^xfields.nature:<span class='gray'>---</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>Content Total:</th><td>{#if:^xfields.pieces:<b>{^xfields.pieces}</b> Pieces ; <b>{^xfields.weight}</b> Kg}{#ifnot:^xfields.pieces:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Actual pieces received:</th><td>{#if:^xfields.preceive:<b>{^xfields.preceive}</b> Pieces ; <b>{^xfields.preceive_weight}</b> Kg}{#ifnot:^xfields.preceive:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Pieces total loss:</th><td>{#if:^xfields.ptloss:<b>{^xfields.ptloss}</b> Pieces ; <b>{^xfields.ptloss_weight}</b> Kg}{#ifnot:^xfields.ptloss:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Pieces damaged:</th><td>{#if:^xfields.pdamage:<b>{^xfields.pdamage}</b> Pieces ; <b>{^xfields.pdamage_weight}</b> Kg}{#ifnot:^xfields.pdamage:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Pieces pilferaged:</th><td>{#if:^xfields.ppilf:<b>{^xfields.ppilf}</b> Pieces ; <b>{^xfields.ppilf_weight}</b> Kg}{#ifnot:^xfields.ppilf:<span class='gray'>---</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>			
+		<tr><th>{hawb1.n}:</th><td>{#if:^xfields.hawb1:{^xfields.hawb1}}{#ifnot:^xfields.hawb1:<span class='gray'>(missing)</span>}</td></tr>
+		{#if:^xfields.hawb2:<tr><th>{hawb2.n}:</th><td>{^xfields.hawb2}</td></tr>}
+		{#if:^xfields.hawb3:<tr><th>{hawb3.n}:</th><td>{^xfields.hawb3}</td></tr>}
+		{#if:^xfields.hawb4:<tr><th>{hawb4.n}:</th><td>{^xfields.hawb4}</td></tr>}
+		{#if:^xfields.hawb5:<tr><th>{hawb5.n}:</th><td>{^xfields.hawb5}</td></tr>}
+		{#if:^xfields.hawb6:<tr><th>{hawb6.n}:</th><td>{^xfields.hawb6}</td></tr>}
+		{#if:^xfields.hawb7:<tr><th>{hawb6.n}:</th><td>{^xfields.hawb7}</td></tr>}
+		{#if:^xfields.hawb8:<tr><th>{hawb6.n}:</th><td>{^xfields.hawb8}</td></tr>}
+		{#if:^xfields.hawb9:<tr><th>{hawb6.n}:</th><td>{^xfields.hawb9}</td></tr>}
+	</table>
+	<h4>Packing, discovery and recouperage:</h4>
+	<table>
+		<tr><th>{pack.n}:</th><td>{#ifnot:^xfields.pack:<span class='gray'>---</span>}{#repeat:^xfields.pack:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>Other:</th><td>{^xfields.pack_info}</td></tr>
+		<tr><th>{uld.n}:</th><td>{^xfields.uld:<span class='gray'>---</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>	
+		<tr><th>{damage.n}:</th><td>{#ifnot:^xfields.damage:<span class='gray'>---</span>}{#repeat:^xfields.damage:<span class="itembox idamage">{value}</span>}</td></tr>
+		{#if:^xfields.damage_info:<tr><th>Other:</th><td>{^xfields.damage_info}</td></tr>}
+		<tr><th>{condition.n}:</th><td>{#ifnot:^xfields.condition:<span class='gray'>---</span>}{#repeat:^xfields.condition:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.condition_info:<tr><th>Other:</th><td>{^xfields.condition_info}</td></tr>}
+		<tr><th>{discover.n}:</th><td>{#ifnot:^xfields.discover:<span class='gray'>---</span>}{#repeat:^xfields.discover:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.discover_info:<tr><th>Other:</th><td>{^xfields.discover_info}</td></tr>}
+		<tr><th>{recup.n}:</th><td>{#ifnot:^xfields.recup:<span class='gray'>---</span>}{#repeat:^xfields.recup:<span class="itembox irecov">{value}</span>}</td></tr>
+		{#if:^xfields.recup_info:<tr><th>Other:</th><td>{^xfields.recup_info}</td></tr>}
+	</table>
+ 
+	<h5 style="margin-left: 20px;">{cdr.n}:</h5>
+	{#if:^xfields.cdr:
+	<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.cdr}~nl2br~</div>}
+	{#ifnot:^xfields.cdr:<div class="gray" style="text-indent: 20px;">-----</div>}
+}

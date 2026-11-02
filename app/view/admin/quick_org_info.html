@@ -1,0 +1,12 @@
+<h4>{name}</h4>
+<label>Type: </label><span>{orgtype.name}</span><br />
+<label>Manager: </label><span>{manager.name}</span><br />
+<label>Manager Email: </label><span>{manager.email}</span>
+<hr />
+{#if:departments:
+<table style="width: 100%;">
+	<tr style="background-color: #F0F0F0;"><th>Department</th><th>Chief</th><th>Members</th></tr>
+{#repeat:departments:
+	<tr><td>{name}</td><td>{chief.name}</td><td style="width: 80px;">{count_members}</td></tr>}		
+</table>}
+{#ifnot:departments:<div class="gray center">Currently there are no departments</div>}

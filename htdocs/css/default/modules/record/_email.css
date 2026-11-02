@@ -1,0 +1,479 @@
+/** Compose E-mail - Uses "Compose" component; Version 2019.02.08 **/
+
+#modal_transfer-preset label.ctrl-title {
+	display: inline-block;
+	margin-bottom: 2px;
+	text-indent: 4px;
+}
+
+#message-from {
+	margin-bottom: 4px;
+}
+
+	#message-from b {
+		display: inline-block;
+		width: 63px;
+		text-align: right;
+	}
+	
+#message-attach_info {
+	float: right;
+	width: 320px;
+	text-align: right;
+	cursor: pointer;
+	margin-bottom: 8px;
+}
+
+	.email-options > div {
+		display: inline-block;
+		margin: 10px 16px 10px 0 !important;
+	}
+	
+	.email-options > div > img {
+		margin: 0 5px !important;
+	}
+	
+#modal_email-attachments .modal_content {
+	position: relative;
+}
+	
+	#modal_email-attachments .attach-zone {
+		position: absolute;
+		left: 10px;
+		top: 10px;
+		width: 770px;
+		height: 384px;
+	}
+	
+	#modal_email-attachments #attach-navbar {
+		float: right;
+		width: 212px;
+		margin: 10px 10px 20px 10px;
+		padding: 10px;
+		border: 1px solid lightgray;
+		box-sizing: content-box;
+	}
+	
+		#modal_email-attachments #attach-navbar button {
+			margin-top: 10px;
+			text-align: left;
+			padding-left: 8px;
+		}
+		
+			#modal_email-attachments #attach-navbar button:first-child {
+				margin-top: 0;
+			}	
+	
+	#email-dropzone-helper {
+		padding: 6px 24px 0px 24px;
+		background-color: #F8F8FA;
+		font-style: italic;
+		font-size: 14px;
+		text-align: center;
+	}
+	
+	#modal_email-attachments .delete-attachment-button,
+	#modal_email-attachments .importfile-button,
+	#modal_email-attachments .importdoc-button,
+	#modal_email-attachments .viewdoc-button {
+		cursor: pointer;
+	}
+	
+/** Note: These are not managed by the compose component, but by the attachments related code which is outside **/
+#email-compose-atts {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-top-width: 0;
+	padding: 12px 0 4px 12px;
+	max-height: 82px;
+	overflow: auto;
+}
+
+	#email-compose-atts > span {
+		display: inline-block;
+		width: 332px;
+		height: 16px;
+		line-height: 16px;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		background-color: white;
+		padding: 6px 8px;
+		margin: 0 6px 10px 0;
+		box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.15);
+	}
+	
+		#email-compose-atts > span span {
+			display: inline-block;
+			max-width: 290px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	
+		#email-compose-atts > span img.right {
+			cursor: pointer;
+		}
+                
+/*IWI Record Details Page Redesign 10092026 start*/
+#tab_email .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 42px;
+    padding: 6px 8px;
+    margin: 0 0 14px 0;
+    background: #ffffff;
+    border: 1px solid #e2e7ef;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(16,24,40,.05);
+    box-sizing: border-box;
+}
+
+#tab_email .toolbar-accessory {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#tab_email .toolbar-accessory:first-child {
+    margin-right: 4px;
+}
+
+#tab_email .toolbar button {
+    height: 32px;
+    padding: 0 11px;
+    border: 1px solid #d9e0e8 !important;
+    border-radius: 5px !important;
+    background: #ffffff !important;
+    color: #344054 !important;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: none !important;
+    cursor: pointer;
+}
+
+#tab_email .toolbar button:hover {
+    background: #f2f6fb !important;
+    border-color: #b9c8da !important;
+}
+
+#tab_email .toolbar button[data-op="send"] {
+    background: #2866c2 !important;
+    border-color: #2866c2 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+#tab_email .toolbar button[data-op="send"]:hover {
+    background: #2059ad !important;
+}
+
+#tab_email .toolbar button img {
+    vertical-align: middle;
+    margin-right: 3px;
+}
+
+#tab_email .toolbar-separator {
+    width: 1px;
+    height: 24px;
+    margin: 0 5px;
+    background: #e2e7ef;
+}
+
+#tab_email .toolbar button.right {
+    margin-left: auto;
+}
+#message-from {
+    margin: 0 0 12px 2px;
+    padding: 0;
+    font-size: 12px;
+    line-height: 20px;
+    color: #667085;
+}
+
+#message-from b {
+    margin-right: 5px;
+    color: #344054;
+    font-weight: 600;
+}
+#message-controls {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e2e7ef;
+    border-radius: 7px;
+    box-shadow: 0 1px 3px rgba(16,24,40,.04);
+    box-sizing: border-box;
+}
+
+#message-recipients {
+    margin: 0 !important;
+}
+
+#message-recipients > div {
+    display: flex;
+    align-items: center;
+    min-height: 38px;
+    margin-bottom: 7px;
+    padding: 3px 8px;
+    background: #f9fafb;
+    border: 1px solid #e1e6ed;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#message-recipients label {
+    display: flex;
+    align-items: center;
+    flex: 0 0 70px;
+    margin: 0;
+    color: #475467;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#message-recipients label img {
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+#message-recipients .con-sortable {
+    flex: 1;
+    min-height: 28px;
+    width: auto !important;
+    border: 0;
+    background: transparent;
+}
+
+#rec-to {
+    position: relative;
+    padding-right: 58px !important;
+}
+
+#recipients-cc,
+#recipients-bcc {
+    position: absolute;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+}
+
+#recipients-cc {
+    right: 31px;
+}
+
+#recipients-bcc {
+    right: 5px;
+}
+
+#rec-cc,
+#rec-bcc {
+    min-height: 38px;
+}
+
+#message-subject {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin: 10px 0 12px !important;
+    padding: 0 10px;
+    background: #ffffff;
+    border: 1px solid #d9e0e8;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#message-subject #template-toggle {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+#message-subject input {
+    flex: 1;
+    width: auto !important;
+    height: 36px;
+    padding: 0 4px;
+    border: 0 !important;
+    outline: 0;
+    background: transparent;
+    color: #344054;
+    font-size: 13px;
+    box-shadow: none !important;
+}
+#tab_email > .toolbar[style*="margin-top"] {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 42px;
+    margin-top: 14px !important;
+    padding: 6px 8px;
+    background: #ffffff;
+    border: 1px solid #e2e7ef;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(16,24,40,.05);
+    box-sizing: border-box;
+}
+
+#tab_email > .toolbar[style*="margin-top"] > button[data-op="send"] {
+    height: 32px;
+    padding: 0 12px;
+    border: 1px solid #2866c2 !important;
+    border-radius: 5px !important;
+    background: #2866c2 !important;
+    color: #ffffff !important;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: none !important;
+}
+
+#tab_email > .toolbar[style*="margin-top"] > button[data-op="send"]:hover {
+    background: #2059ad !important;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .toolbar-separator {
+    width: 1px;
+    height: 24px;
+    margin: 0 6px;
+    background: #e2e7ef;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .email-options {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .jqx-checkbox {
+    display: flex !important;
+    align-items: center;
+    min-height: 28px;
+    margin: 0 !important;
+    color: #475467;
+    font-size: 11px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .jqx-checkbox-default {
+    flex: 0 0 auto;
+    margin-right: 5px;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .inline-icon16 {
+    flex: 0 0 auto;
+    margin-right: 4px;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .jqx-checkbox:hover {
+    color: #2866c2;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .jqx-checkbox-check-checked {
+    background-position: center;
+}
+
+#tab_email .toolbar > button img {
+    display: none;
+}
+
+#tab_email .toolbar > button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#tab_email .toolbar > button[data-op="send"]:before {
+    content: "\f1d8";
+    font-family: FontAwesome;
+    font-size: 13px;
+}
+
+#tab_email .toolbar > button[data-op="transfer"]:before {
+    content: "\f1d8";
+    font-family: FontAwesome;
+    font-size: 13px;
+    color: #7c3aed;
+}
+
+#tab_email .toolbar > button[data-op="attach"]:before {
+    content: "\f0c6";
+    font-family: FontAwesome;
+    font-size: 13px;
+    color: #d97706;
+}
+
+#tab_email .toolbar > button[data-op="contacts"]:before {
+    content: "\f2bd";
+    font-family: FontAwesome;
+    font-size: 13px;
+    color: #2563eb;
+}
+
+#tab_email .toolbar > button[data-op="ccself"]:before {
+    content: "\f0e0";
+    font-family: FontAwesome;
+    font-size: 13px;
+    color: #0891b2;
+}
+
+#tab_email .toolbar > button[data-op="reset"]:before {
+    content: "\f1f8";
+    font-family: FontAwesome;
+    font-size: 13px;
+    color: #dc2626;
+}
+
+#tab_email .toolbar > button[data-op="send"]:before {
+    color: #ffffff;
+}
+#tab_email > .toolbar[style*="margin-top"] .email-options img {
+    display: none;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .email-options .jqx-checkbox {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 5px;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .email-options .jqx-checkbox:before {
+    font-family: FontAwesome;
+    font-size: 13px;
+    line-height: 1;
+}
+
+#tab_email > .toolbar[style*="margin-top"] #opt-cloud:before {
+    content: "\f0c2";
+    color: #2563eb;
+}
+
+#tab_email > .toolbar[style*="margin-top"] #opt-signature:before {
+    content: "\f02d";
+    color: #7c3aed;
+}
+
+#tab_email > .toolbar[style*="margin-top"] #opt-selfcopy:before {
+    content: "\f0e0";
+    color: #0891b2;
+}
+
+#tab_email > .toolbar[style*="margin-top"] #opt-contacts:before {
+    content: "\f2bd";
+    color: #2563eb;
+}
+
+#tab_email > .toolbar[style*="margin-top"] #opt-share:before {
+    content: "\f1e0";
+    color: #16a34a;
+}
+
+#tab_email > .toolbar[style*="margin-top"] .jqx-checkbox:hover:before {
+    filter: brightness(.85);
+}
+/*IWI Record Details Page Redesign 10092026 end*/
+                
+                
+                
+                

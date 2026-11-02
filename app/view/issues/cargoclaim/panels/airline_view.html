@@ -1,0 +1,200 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th style="text-align: right;">{ref_no.n}:</th><td>{^xfields.ref_no:<span class='gray'>---</span>}</td></tr></tr>
+		<tr><th style="text-align: right;">{hdlstat.n}:</th><td>{^xfields.hdlstat.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th style="text-align: right;">{hdlexstat.n}:</th><td>{^xfields.hdlexstat.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th style="text-align: right;">{validation.n}</th><td>
+			{#if:^xfields.validation.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.validation.key: checked="checked"}> {^xfields.validation.value}</label>}
+			{#ifnot:^xfields.validation.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<table style="width: 99%; margin-top: 0;">
+		<!--<tr style="height: 20px;">-->
+			<!--<td colspan="2" style="width: 66%;"><span style="display: block; width: 82%; margin: 0 auto;">{ref_no.n}</span></td>-->
+			<!--<td style="text-align: center; width: 33%;">{hardcopy.n}</td>-->
+		<!--</tr>-->
+		<!--<tr style="height: 30px;">-->
+			<!--<td colspan="2"><span style="display: block; width: 82%; margin: 0 auto;">{^xfields.ref_no:<span class="gray">---</span>}</span></td>-->
+			<!--<td style="text-align: center;">
+				{#if:^xfields.hardcopy.value!=-1:<label><input type="checkbox" disabled="disabled" if:="" xfields.hardcopy.key:="" checked="checked"> {^xfields.hardcopy.value}</label>}
+				{#ifnot:^xfields.hardcopy.value:<span class="gray">---</span>}
+			</td>-->
+		<!--</tr>-->
+	<!--<tr><td colspan="3" style="height: 10px;"><hr></td></tr>-->
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{crdate.n}</td>
+			<td style="text-align: center; width: 33%;">{prelimi_claim.n}</td>			
+			<td style="text-align: center; width: 33%;">{form_clm.n}</td>
+			
+			<!--<td style="text-align: center; width: 33%;">{acdate.n}</td>-->
+			<!--<td style="text-align: center; width: 33%;">{intime.n}</td>-->
+		</tr>
+	
+		<tr style="height: 30px;">
+			<td style="text-align: center;">{#if:^xfields.crdate:{^xfields.crdate}~date("Y-m-d")~}{#ifnot:^xfields.crdate:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{#if:^xfields.prelimi_claim:{^xfields.prelimi_claim}~date("Y-m-d")~}{#ifnot:^xfields.prelimi_claim:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{#if:^xfields.form_clm:{^xfields.form_clm}~date("Y-m-d")~}{#ifnot:^xfields.form_clm:<span class="gray">---</span>}</td>
+			<!--<td style="text-align: center;">{#if:^xfields.acdate:{^xfields.acdate}~date("Y-m-d")~}{#ifnot:^xfields.acdate:<span class="gray">---</span>}</td>-->
+			<!--<td style="text-align: center;">
+				{#if:^xfields.intime.value!=-1:<label><input type="checkbox" disabled="disabled" if:="" xfields.intime.key:="" checked="checked"> {^xfields.intime.value}</label>}
+				{#ifnot:^xfields.intime.value:<span class="gray">---</span>}			
+			</td>-->
+		</tr>
+	<tr><td colspan="3" style="height: 10px;"><hr></td></tr>
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{intime.n}</td>
+			<td style="text-align: center; width: 33%;">{hardcopy.n}</td>
+			<td style="text-align: center; width: 33%;">{acdate.n}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center;">
+				{#if:^xfields.intime.value!=-1:<label><input type="checkbox" disabled="disabled" if:="" xfields.intime.key:="" checked="checked"> {^xfields.intime.value}</label>}
+				{#ifnot:^xfields.intime.value:<span class="gray">---</span>}			
+			</td>
+			<!--<td style="text-align: center;">
+				{^xfields.cass:<span class="gray">---</span>}
+			</td>-->
+			<td style="text-align: center;">
+				{#if:^xfields.hardcopy.value!=-1:<label><input type="checkbox" disabled="disabled" if:="" xfields.hardcopy.key:="" checked="checked"> {^xfields.hardcopy.value}</label>}
+				{#ifnot:^xfields.hardcopy.value:<span class="gray">---</span>}
+			</td>
+			<!--<td style="text-align: center;">
+				{#if:^xfields.subrog.value!=-1:<label><input type="checkbox" disabled="disabled" if:="" xfields.subrog.key:="" checked="checked"> {^xfields.subrog.value}</label>}
+				{#ifnot:^xfields.subrog.value:<span class="gray">---</span>}
+			</td>-->
+			<td style="text-align: center;">{#if:^xfields.acdate:{^xfields.acdate}~date("Y-m-d")~}{#ifnot:^xfields.acdate:<span class="gray">---</span>}</td>
+		</tr>
+	<tr><td colspan="3" style="height: 10px;"><hr></td></tr>
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{subm_type.n}</td>
+			<td style="text-align: center; width: 33%;">{cass.n}</td>
+			<td style="text-align: center; width: 33%;">{subrog.n}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center;">{#use:^xfields.subm_type:
+				{#if:value:<span if:value="Shipper|value=Consignee:" class="green">{value}</span>}
+				{#ifnot:value:<span class="gray">---</span>}
+			}</td>
+			<td style="text-align: center;">
+				{^xfields.cass:<span class="gray">---</span>}
+			</td>
+			<td style="text-align: center;">
+				{#if:^xfields.subrog.value!=-1:<label><input type="checkbox" disabled="disabled" if:="" xfields.subrog.key:="" checked="checked"> {^xfields.subrog.value}</label>}
+				{#ifnot:^xfields.subrog.value:<span class="gray">---</span>}
+			</td>
+		</tr>
+	</table>
+
+	<!--<h4 style="margin-top: 8px; background-image: url('/img/icons16/barcode_2d.png'); background-repeat: no-repeat; background-position: 4px;">Special handling codes and extra details</h4>
+	{#ifnot:^xfields.como_type:<span class='gray'>-----</span>}{#repeat:^xfields.como_type:<span class="itembox">{value}</span>}
+	<table style="width: 99%;">
+		<tr style="height: 20px;">
+			<td colspan="2" style="text-align: center; width: 67%;">{code_srv.n}</td>
+			<td style="text-align: center; width: 33%;">{code_billing.n}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td colspan="2" style="text-align: center;">{#ifnot:^xfields.code_srv:<span class='gray'>-----</span>}{#repeat:^xfields.code_srv:<span class="itembox">{value}</span>}</td>
+			<td style="text-align: center;">{^xfields.code_billing.value:<span class="gray">---</span>}</td>
+		</tr>
+	<tr><td colspan="3" style="height: 10px;"></td></tr>
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{cust_weight.n}</td>
+			<td style="text-align: center; width: 33%;">{g_weight.n}</td>
+			<td style="text-align: center; width: 33%;">{c_weight.n}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center;">{^xfields.cust_weight:-} (kg)</td>
+			<td style="text-align: center;">{^xfields.g_weight:-} (kg)</td>
+			<td style="text-align: center;">{^xfields.c_weight:-} (kg)</td>
+		</tr>
+	</table>-->
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/barcode_2d.png'); background-repeat: no-repeat; background-position: 4px;">Special handling codes and extra details</h4>
+	<!--{#ifnot:^xfields.como_type:<span class='gray'>-----</span>}{#repeat:^xfields.como_type:<span class="itembox">{value}</span>}-->
+	<table style="width: 99%;">
+			
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{como_type.n}</td>
+			<td style="text-align: center; width: 33%;">{code_srv.n}</td>
+			<td style="text-align: center; width: 33%;">{code_billing.n}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center; width: 33%;">{#ifnot:^xfields.como_type:<span class='gray'>-----</span>}{#repeat:^xfields.como_type:<span class="itembox">{value}</span>}</td>
+			<td style="text-align: center;">{#ifnot:^xfields.code_srv:<span class='gray'>-----</span>}{#repeat:^xfields.code_srv:<span class="itembox">{value}</span>}</td>
+			<td style="text-align: center;">{^xfields.code_billing.value:<span class="gray">---</span>}</td>
+		</tr>
+	<tr><td colspan="3" style="height: 10px;"></td></tr>
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{cust_weight.n}</td>
+			<td style="text-align: center; width: 33%;">{g_weight.n}</td>
+			<td style="text-align: center; width: 33%;">{c_weight.n}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center;">{^xfields.cust_weight:-} (kg)</td>
+			<td style="text-align: center;">{^xfields.g_weight:-} (kg)</td>
+			<td style="text-align: center;">{^xfields.c_weight:-} (kg)</td>
+		</tr>
+	</table>
+	
+	{#if:^xfields.code_service:<p>Old service code (deprecated): {^xfields.code_service}</p>}
+
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/magnifier.png'); background-repeat: no-repeat; background-position: 4px;">Investigation</h4>
+	<table>
+		<tr><th>{move.n}:</th><td>
+			{#if:^xfields.move.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.move.key: checked="checked"}> {^xfields.move.value}</label>}
+			{#ifnot:^xfields.move.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{station.n}:</th><td>{#use:^xfields.station:
+			{#if:value:<span class="thick info-tip" data-tooltip="{value.name}<br /><span class='darkblue'>{value.country}</span>">{value.IATA}</span>}
+			{#ifnot:value:<span class='gray'>---</span>}
+		}</td></tr>
+		<tr><th>{station2.n}:</th><td>{#use:^xfields.station2:
+			{#if:value:<span class="thick info-tip" data-tooltip="{value.name}<br /><span class='darkblue'>{value.country}</span>">{value.IATA}</span>}
+			{#ifnot:value:<span class='gray'>---</span>}
+		}</td></tr>
+	</table>
+	<h5 style="margin-left: 20px;">{handling_rem.n}:</h5>
+	{#if:^xfields.handling_rem:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.handling_rem}~nl2br~</div>}
+	{#ifnot:^xfields.handling_rem:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<table>
+		<tr><th>{cause.n}:</th><td>{^xfields.cause:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{irreg_code.n}:</th><td>{^xfields.irreg_code.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{irreg_sev.n}:</th><td>{#if:^xfields.irreg_sev.value:{^xfields.irreg_sev.value} <span class="gray">(auto set)</span>}{#ifnot:^xfields.irreg_sev.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Conclusion:</th><td>{^xfields.inc_class.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{liable.n}:</th><td>{#use:^xfields.liable:<input type='checkbox' disabled="disabled"{#if:value=Yes (Contractual liability): checked="checked"}> {value}}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{caused_by.n}:</th><td>{^xfields.caused_by.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{caused_other.n}:</th><td>{^xfields.caused_other:<span class='gray'>---</span>}</td></tr>
+	</table>
+	
+	<h4 style="margin-top: 2px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Dossier closing: <span class='gray'>(either rejected or paid)</span></h4>
+	<table style="width: 99%; margin-top: 0;">
+		<tr style="height: 20px;">
+			<td class='green' style="text-align: center; width: 33%;">{sla_30.n}</td>
+			<td class='orange' style="text-align: center; width: 33%;">{sla_60.n}</td>
+			<td class='red' style="text-align: center; width: 33%;">{sla_90.n}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center;">{#if:^xfields.sla_30:{^xfields.sla_30}~date("Y-m-d")~}{#ifnot:^xfields.sla_30:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{#if:^xfields.sla_60:{^xfields.sla_60}~date("Y-m-d")~}{#ifnot:^xfields.sla_60:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{#if:^xfields.sla_90:{^xfields.sla_90}~date("Y-m-d")~}{#ifnot:^xfields.sla_90:<span class="gray">---</span>}</td>
+		</tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{doss_close_date.n}:</th><td>{#if:^xfields.doss_close_date:{^xfields.doss_close_date}~date("Y-m-d")~}{#ifnot:^xfields.doss_close_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{doss_length.n}:</th><td>{^xfields.doss_length:<span class="gray">(???)</span>}</td></tr>
+		<tr><th>{sla_extend.n}:</th><td>{^xfields.sla_extend.value:<span class="gray">- none -</span>}</td></tr>
+		<tr><th>SLA level achieved:</th><td>
+			{#if:^xfields.sla_level.value:<label>{^xfields.sla_level.value}</label>}
+			{#ifnot:^xfields.sla_level.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{srv_res.n}:</th><td><b>{^xfields.srv_res.value:<span class='gray'>---</span>}</b></td></tr>
+	</table>
+	<h5 style="margin-left: 20px;">{srv_txt.n}:</h5>
+	{#if:^xfields.srv_txt:
+	<div style="padding: 4px; border: 1px solid lightgray; margin-bottom: 10px;">{^xfields.srv_txt}~nl2br~</div>}
+	{#ifnot:^xfields.srv_txt:<div class="gray" style="margin-top: 8px; text-indent: 20px; margin-bottom: 20px;">-----</div>}
+}

@@ -1,0 +1,68 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:documents:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td>{#repeat:options:<label><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label><br />}</td>
+	</tr>}
+	<tr><td colspan="2"><hr /></td></tr>
+	{#use:awb1:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="float: left;" />}
+			{#use:awb1_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}		
+		</td>
+	</tr>
+	{#use:awb2:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="float: left;" />}
+			{#use:awb2_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}		
+		</td>
+	</tr>
+	{#use:awb3:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="float: left;" />}
+			{#use:awb3_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}		
+		</td>
+	</tr>
+	{#use:awb4:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="float: left;" />}
+			{#use:awb4_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}		
+		</td>
+	</tr>
+	{#use:awb5:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb5_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny' />}		
+		</td>
+	</tr>
+	{#use:awb6:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb6_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny' />}		
+		</td>
+	</tr>
+	{#use:awb7:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb7_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny' />}		
+		</td>
+	</tr>
+	{#use:awb8:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb8_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny' />}		
+		</td>
+	</tr>
+	{#use:awb9:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb9_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny' />}		
+		</td>
+	</tr>
+	<tr><td colspan="2"><hr /></td></tr>
+</table>
+{#use:cnotes:
+	<h4>{display.label}:</h4>
+	<textarea rows="5" id='{id}' name='{name}' class='jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; width: 511px; margin-bottom: 8px;" placeholder="(Please keep this information short)">{value}</textarea>
+}
+</form>}

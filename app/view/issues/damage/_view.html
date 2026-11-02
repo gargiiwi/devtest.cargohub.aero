@@ -1,0 +1,187 @@
+{#use:iss:<h2><b>{xfields.class.value}</b> Cargo Damage Report for: <b>{xfields.mawb.p}-{xfields.mawb.s}</b></h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+
+<div class='column2'>
+
+<h4>Contacts:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>
+
+<h4>Incident Details:</h4>
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class='gray'>(not completed)</span>}</td></tr>
+		<tr><th>{class.n}:</th><td>{^xfields.class.value}</td></tr>
+		<tr><th>Incident Date &amp; Time:</th><td>
+				{#if:^xfields.idate:{^xfields.idate}~date("Y-m-d")~ &middot; {^xfields.itime:<span class="gray">(not specified)</span>}}
+				{#ifnot:^xfields.idate:<span class='gray'>(missing)</span>}
+		</td></tr>
+		<tr><th>{loc.n}:</th><td>{^xfields.loc:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{process.n}:</th><td>{^xfields.process.value:<span class="gray">(not specified)</span>}</td></tr>
+	</table>
+	
+	<h4>Shipment information:</h4>
+	<table>
+		<tr><th>{com_type.n}:</th><td>{^xfields.com_type.value:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{com_note.n}:</th><td>{^xfields.com_note:<span class="gray">(unknown/not applicable)</span>}</td></tr>
+		<tr><th>{mawb.n}:</th><td><b><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>
+	</table>
+	
+	<hr />
+	<div>
+		<table style="width: 99%;">
+			<tr>
+				<td style="width: 33%; text-align: center;">{airp_dep.n}</td>
+				<td style="width: 33%; text-align: center;">{airp_dest.n}</td>
+				<td style="width: 33%; text-align: center;">{non_airp.n}</td>
+			</tr>
+			<tr>
+				{#if:^xfields.airp_dep.value:<th class="info-tip" style="text-align: center;" data-tooltip="{^xfields.airp_dep.value.name}<br /><span class='darkblue'>{^xfields.airp_dep.value.country}</span>">{^xfields.airp_dep.value.IATA}</th>}
+					{#ifnot:^xfields.airp_dep.value:<td class="gray center">(not specified)</td>}
+				{#if:^xfields.airp_dest.value:<th class="info-tip" style="text-align: center;" data-tooltip="{^xfields.airp_dest.value.name}<br /><span class='darkblue'>{^xfields.airp_dest.value.country}</span>">{^xfields.airp_dest.value.IATA}</th>}
+					{#ifnot:^xfields.airp_dest.value:<td class="gray center">(not specified)</td>}
+				<td style="text-align: center;">{^xfields.non_airp:<span class="gray">(not specified)</span>}</td>
+			</tr>
+		</table>
+	</div>
+	<hr />
+	<table>
+		<tr><th>{ftnr.n}:</th><td>{^xfields.ftnr:<span class='gray'>(not specified)</span>}
+		<div class="ra_250">
+			<label class="ra_label">Date:</label>
+			{#if:^xfields.ftdate:{^xfields.ftdate}~date("Y-m-d")~}{#ifnot:^xfields.ftdate:<span class='gray'>(not specified)</span>}
+		</div></td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{shipper.n}:</th><td>{^xfields.shipper:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{consignee.n}:</th><td>{^xfields.consignee:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{agent.n}:</th><td>{^xfields.agent:<span class='gray'>(not specified)</span>}</td></tr>
+	</table>
+
+	<h4>Content details:</h4>
+	<table>
+		<tr><th>{nature.n}:</th><td>{^xfields.nature:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>MAWB Total:</th><td>{#if:^xfields.mawb_pieces:<b>{^xfields.mawb_pieces}</b> Pieces ; <b>{^xfields.mawb_weight}</b> Kg}{#ifnot:^xfields.mawb_pieces:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>Actual pieces received:</th><td>{#if:^xfields.preceive:<b>{^xfields.preceive}</b> Pieces ; <b>{^xfields.preceive_weight}</b> Kg}{#ifnot:^xfields.preceive:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>Pieces total loss:</th><td>{#if:^xfields.ptloss:<b>{^xfields.ptloss}</b> Pieces ; <b>{^xfields.ptloss_weight}</b> Kg}{#ifnot:^xfields.ptloss:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>Pieces damaged:</th><td>{#if:^xfields.pdamage:<b>{^xfields.pdamage}</b> Pieces ; <b>{^xfields.pdamage_weight}</b> Kg}{#ifnot:^xfields.pdamage:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>Pieces pilferaged:</th><td>{#if:^xfields.ppilf:<b>{^xfields.ppilf}</b> Pieces ; <b>{^xfields.ppilf_weight}</b> Kg}{#ifnot:^xfields.ppilf:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><td colspan='2'><hr /></td></tr>			
+		<tr><th>{hawb1.n}:</th><td>{#if:^xfields.hawb1:{^xfields.hawb1}}{#ifnot:^xfields.hawb1:<span class='gray'>(missing)</span>}</td></tr>
+		{#if:^xfields.hawb2:<tr><th>{hawb2.n}:</th><td>{^xfields.hawb2}</td></tr>}
+		{#if:^xfields.hawb3:<tr><th>{hawb3.n}:</th><td>{^xfields.hawb3}</td></tr>}
+		{#if:^xfields.hawb4:<tr><th>{hawb4.n}:</th><td>{^xfields.hawb4}</td></tr>}
+	</table>
+	<h4>Packing, discovery and recouperage:</h4>
+	<table>
+		<tr><th>{pack.n}:</th><td>{#repeat:^xfields.pack:[{value}] }</td></tr>
+		<tr><th>Other:</th><td>{^xfields.pack_info:}</td></tr>
+		<tr><th>{uld.n}:</th><td>{^xfields.uld:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><td colspan='2'><hr /></td></tr>	
+		<tr><th>{damage.n}:</th><td>{#repeat:^xfields.damage:[{value}] }</td></tr>
+		<tr><th>Other:</th><td>{^xfields.damage_info:}</td></tr>
+		<tr><th>{condition.n}:</th><td>{#repeat:^xfields.condition:[{value}] }</td></tr>
+		<tr><th>Other:</th><td>{^xfields.condition_info:}</td></tr>
+		<tr><th>{discover.n}:</th><td>{#repeat:^xfields.discover:[{value}] }</td></tr>
+		<tr><th>Other:</th><td>{^xfields.discover_info:}</td></tr>
+		<tr><th>{recup.n}:</th><td>{#repeat:^xfields.recup:[{value}] }</td></tr>
+		<tr><th>Other:</th><td>{^xfields.recup_info:}</td></tr>
+		{#use:%form.cdr:<tr><td colspan="2" style='padding-left: 0;'><h4>{display.label}:</h4><textarea  style='width: 100%; resize: none;' rows="4" id='{id}' name='{name}'{#if:display.error: class='field_error' data-tooltip='{display.error}'}>{value}</textarea></td></tr>}	
+	</table>
+}
+</div>
+
+<div class='column2'>
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th>Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+</table>
+
+{#if:files:<h4>Attached pictures and documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+
+<h4>Attach documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+<h4 style='margin-top: 20px;'>Communication area:</h4>
+<div id='convos-box' style="margin-bottom: 8px;">
+	{#ifnot:conversations:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+	{#if:conversations:
+	<div class="gray" style="font-size: 0.9em; border-bottom: 1px solid #D3D3D3; padding-bottom: 6px;">To view the conversation, send another message or make a reply, click on the subject line.</div>
+	<table class="infotable">	
+	{#repeat:conversations:
+		<tr><th>Subject:</th><td><a href="/?action=external_comm&amp;key={key}">{description:(Conversation has no subject)}</a></td></tr>
+		<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+		<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+	}
+	</table>
+	}
+</div>
+
+</div>
+
+{!End columns}
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Cargo Damage' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+	
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="field-delete-button" type="text/dryjstpl">
+	<button title="Cancel this upload" />
+</script>
+
+{#raw:includes/issue_view_jstpl.html}
+{#if:update_by_mail:{#raw:includes/issue2message.html}}

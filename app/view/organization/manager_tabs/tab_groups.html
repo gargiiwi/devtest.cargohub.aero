@@ -1,0 +1,48 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory' id="groups_icon">
+		<img src="/img/icons/folders.png" /><span>Record Groups</span>
+	</div>
+	{!TODO: Restrict the toolbar to admin-use only?}
+	<button data-op="group-link" title="Connect groups"><img src='/img/icons16/link_add.png' /> Connect new</button>
+	<button data-op="group-count" title="(Re)Count all records from all groups,
+or the selected groups if some are selected."><img src='/img/icons16/number_42.png' />Count records</button>
+	<div id='groups-selection-ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="groups-edit" title="Edit flags and comment for selected groups"><img src='/img/icons16/pencil.png' />Edit link</button>
+		<button data-op="groups-unlink" title="Disconnect selected groups"><img src='/img/icons16/link_break.png' /> Disconnect</button>
+		<div class='toolbar-separator'></div>
+		<button data-op="secu-search" title="Search who has access to this group (single)"><img src='/img/icons16/user_policeman.png' />Security search</button>
+{!gap}
+		<button data-op="groups-unselect" title="Unselects all rows" class='right'><img src='/img/icons16/table.png' /> Clear selection</button>
+	</div>
+</div>
+<div id="groups-grid"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="window-groups_link" type="text/dryjstpl">{@
+	<form method="post" action="?action=attach_groups" style="margin: 8px;">
+		<div><label>Group set:</label><div id='grp-type' name='grp[type]'></div></div>
+		<div><label>Select groups:</label><div id='grp-select' name='grp[selection]'></div></div>
+		<div><label>&nbsp;</label>
+			<div id='grp-select-commands'>
+				<input type="button" value="Select all" data-cmd="check_all" /> &nbsp;
+				<input type="button" value="Clear selection" data-cmd="clear_all" />
+				<input type="button" value="Invert selection" data-cmd="check_invert" />
+			</div>
+		</div>
+		<div><label>Link comment:</label><input type='text' id="grp-comment" name='grp[comment]' style='width: 322px;' /></div>
+	</form>
+	<p style='padding: 5px; margin: 12px; border: 1px solid lightgray; background-color: yellow; text-align: center;'>Please use <b>Select all</b> function thoughfully.<br />Only connect the groups which the organization really needs!</p>
+}</script>
+
+<script id="window-groups_edit" type="text/dryjstpl">{@
+	<form method="post" action="?action=update_g2o" style="margin: 8px;">
+		<div><label>Can create:</label><div id='grp-f_create' name='grp[f_create]'></div></div>
+		<div><label>Can receive:</label><div id='grp-f_receive' name='grp[f_receive]'></div></div>
+		<div><label>Link comment:</label><input type='text' id="grp-comment" name='grp[comment]' style='width: 322px;' value="{$comment}" /></div>
+	</form>
+}</script>
+
+<script id="window-secu_search" type="text/dryjstpl">{@
+	<div id='secu_search_container' class='spacey' style='height: 450px; overflow: auto;'><div style='text-align: center; line-height: 440px;'>Loading results, please wait...</div></div>
+}</script>

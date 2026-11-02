@@ -1,0 +1,108 @@
+div.site > div.page #user-manager {
+
+}
+
+	#user-manager .jqx-tabs-titleContentWrapper > img {
+		float: left;
+		margin-right: 6px;
+		border: none;
+	}
+	
+/* form.vertiform */
+
+	form.vertiform input[type='text'], form.vertiform input[type='password'] {
+		width: 250px;
+		padding: 4px;
+		margin: 0px;
+		border: 1px solid lightgray;
+		border-radius: 3px;
+	}
+	
+	form.vertiform textarea {
+		padding: 4px;
+		margin: 0px;
+		border: 1px solid lightgray;
+		border-radius: 3px;
+		resize: none;
+	}
+
+/** Account Edit Tab **/
+#tab_configure #user-account {
+	float: left;
+	width: 660px;
+}
+
+#tab_configure #user-statistics, #tab_configure #user-department {
+	float: right;
+	width: 440px;
+}
+
+	#tab_configure #user-statistics table.infotable tr {
+		height: 27px;
+		line-height: 27px;
+	}
+	
+		#tab_configure #user-statistics table.infotable tr th {
+			width: 140px;
+			text-align: right;
+			margin-right: 12px;
+		} 
+
+/** Contact Edit Tab **/
+#tab_vcard #contact-left-side {
+	float: left;
+	width: 650px;
+}
+
+#tab_vcard #contact-right-side {
+	float: right;
+	width: 450px;
+}
+
+
+div.modal_content form > div {
+	height: 26px;
+	margin-bottom: 4px;
+}
+
+	div.modal_content form > div > * {
+		float: left;
+	}
+
+	div.modal_content form > div > label {
+		display: block;
+		line-height: 25px;
+		width: 120px;
+		text-align: right;
+		padding-right: 8px;
+	}
+
+	div.modal_content form > div > input {
+		padding: 1px 0px;
+		height: 25px;
+	}
+	/** Other content, not editable **/	
+	div.modal_content form > div > div.static {
+		line-height: 25px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}	
+	
+	div.modal_content form > div > span {
+		display: block;
+		height: 25px;
+		line-height: 25px;
+		font-size: 85%;
+		margin-left: 6px;
+		color: gray;
+	}
+	
+/* Some little tweaks */
+li.row_dep_info div.jqx-checkbox {
+	padding-top: 6px;
+}
+
+li.row_dep_info div.jqx-checkbox span:nth-child(2) {
+	margin-left: 4px;
+	font-weight: bold;
+}

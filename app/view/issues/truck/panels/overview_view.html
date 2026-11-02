@@ -1,0 +1,123 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{station.n}:</th><td>{^xfields.station.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{movement.n}:</th><td>{^xfields.movement.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{flight_no.n}:</th><td>
+			<div style="display: inline-block; width: 160px;">{^xfields.flight_no:<span class='gray'>---</span>}</div>
+			<span class='gray'>Date:</span> {#if:^xfields.flight_date:{^xfields.flight_date}~date("Y-m-d")~}{#ifnot:^xfields.flight_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{trans_name.n}:</th><td>
+			<div style="display: inline-block; width: 160px;">{^xfields.trans_name:<span class='gray'>---</span>}</div>
+			<span class='gray'>{trans_id.n}:</span>{^xfields.trans_id:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{consignor.n}:</th><td style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="{^xfields.consignor}">{^xfields.consignor:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{consignee.n}:</th><td style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="{^xfields.consignee}">{^xfields.consignee:<span class='gray'>---</span>}</td></tr>
+	</table>
+
+	<hr />
+	<div><table style="width: 99%;">
+		<tr>
+			<td style="width: 33%; text-align: center;">{origin.n}</td>
+			<td style="width: 33%; text-align: center;">{destination.n}</td>
+			<td style="width: 33%; text-align: center;">{non_airp.n}</td>
+		</tr>
+		<tr>
+			{#if:^xfields.origin.value:<th class="info-tip center" data-tooltip="{^xfields.origin.value.name}<br /><span class='darkblue'>{^xfields.origin.value.country}</span>">{^xfields.origin.value.IATA}</th>}
+				{#ifnot:^xfields.origin.value:<td class="gray center">---</td>}
+			{#if:^xfields.destination.value:<th class="info-tip center" data-tooltip="{^xfields.destination.value.name}<br /><span class='darkblue'>{^xfields.destination.value.country}</span>">{^xfields.destination.value.IATA}</th>}
+				{#ifnot:^xfields.destination.value:<td class="gray center">---</td>}
+			<td style="text-align: center;">{^xfields.non_airp:<span class="gray">---</span>}</td>
+		</tr>
+	</table></div>
+	
+	<h4 style="margin-top: 12px; background-image: url('/img/icons16/europe.png'); background-repeat: no-repeat; background-position: 4px;">Transit info (Europa)</h4>
+	<table>
+		<tr><th>{mrn_no.n}</th><td>
+			<div style="display: inline-block; width: 160px;">{#if:^xfields.mrn_no:{^xfields.mrn_no}~uppercase~</div>
+			<a href="http://ec.europa.eu/taxation_customs/dds2/tra/transit_home.jsp?Lang=en&MRN={^xfields.mrn_no}~uppercase~&Expand=true" target="_blank">[ Tracking ]</a>
+		}{#ifnot:^xfields.mrn_no:<span class="gray">---</span>}
+		<tr><th>{issued_loc.n}:</th><td>
+			<div style="display: inline-block; width: 160px;">{#if:^xfields.issued_loc:<a href="https://www.tariffnumber.com/offices/{^xfields.issued_loc}~uppercase~" target="_blank">{^xfields.issued_loc}~uppercase~</a>}{#ifnot:^xfields.issued_loc:<span class="gray">---</span>}</div>
+			<span class='gray'>Date:</span> {#if:^xfields.mrn_date:{^xfields.mrn_date}~date("Y-m-d")~}{#ifnot:^xfields.mrn_date:<span class='gray'>---</span>}
+		</td></tr>
+		
+		<tr><th>{ncts_recv.n}:</th><td>{#repeat:^xfields.ncts_recv:<span class='itembox'>{value}</span>}</td></tr>
+		<tr><th>{reference.n}:</th><td>{^xfields.reference:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{orig_country.n}:</th><td>{^xfields.orig_country:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{dest_country.n}:</th><td>{^xfields.dest_country:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{load_loc.n}:</th><td>{#if:^xfields.load_loc:<a href="https://www.tariffnumber.com/offices/{^xfields.load_loc}~uppercase~" target="_blank">{^xfields.load_loc}~uppercase~</a>}{#ifnot:^xfields.load_loc:<span class="gray">---</span>}
+		<tr><th>{dest_loc.n}:</th><td>{#if:^xfields.dest_loc:<a href="https://www.tariffnumber.com/offices/{^xfields.dest_loc}~uppercase~" target="_blank">{^xfields.dest_loc}~uppercase~</a>}{#ifnot:^xfields.dest_loc:<span class="gray">---</span>}
+		<tr><th>{declar_loc.n}:</th><td>{#if:^xfields.declar_loc:<a href="https://www.tariffnumber.com/offices/{^xfields.declar_loc}~uppercase~" target="_blank">{^xfields.declar_loc}~uppercase~</a>}{#ifnot:^xfields.declar_loc:<span class="gray">---</span>}
+		<tr><th>{declar_date.n}:</th><td>{#if:^xfields.declar_date:{^xfields.declar_date}~date("Y-m-d")~}{#ifnot:^xfields.declar_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{customs_office.n}:</th><td style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="{^xfields.customs_office}">{^xfields.customs_office:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{insp_date.n}:</th><td>{#if:^xfields.insp_date:{^xfields.insp_date}}{#ifnot:^xfields.insp_date:<span class='gray'>---</span>}</td></tr>
+		
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{arri_date.n}:</th><td>{#if:^xfields.arri_date:{^xfields.arri_date}}{#ifnot:^xfields.arri_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{present_loc.n}:</th><td>{#if:^xfields.present_loc:<a href="https://www.tariffnumber.com/offices/{^xfields.present_loc}~uppercase~" target="_blank">{^xfields.present_loc}~uppercase~</a>}{#ifnot:^xfields.present_loc:<span class="gray">---</span>}
+		<tr><th>{disch_date.n}:</th><td>{#if:^xfields.disch_date:{^xfields.disch_date}}{#ifnot:^xfields.disch_date:<span class='gray'>---</span>}</td></tr>
+		
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{cancel_date.n}:</th><td>{#if:^xfields.cancel_date:{^xfields.cancel_date}}{#ifnot:^xfields.cancel_date:<span class='gray'>---</span>}</td></tr>
+{!		<tr><th>{cancel_loc.n}:</th><td>{^xfields.cancel_loc:<span class='gray'>---</span>}</td></tr>}
+		<tr><th>{cancel_reason.n}:</th><td>{^xfields.cancel_reason:<span class='gray'>---</span>}</td></tr>
+	</table>
+	
+	<h4 style="margin-top: 12px; background-image: url('/img/icons16/menus/ulddr-overview.png'); background-repeat: no-repeat; background-position: 4px;">Shipment contents</h4>	
+	<table>
+		<tr><th>Items:</th><td>{^xfields.intact_units:<span class="gray">---</span>}</td></tr>
+		<tr><th>Pieces:</th><td>{^xfields.loose_pieces:<span class="gray">---</span>}</td></tr>
+		<tr><th>Total weight:</th><td>{^xfields.pack_weight:<span class="gray">---</span>} kg</td></tr>
+		<tr><th>{ndis.n}:</th><td>{^xfields.ndis.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{awb1.n}:</th><td><span class="awb">{^xfields.awb1:<span class='gray'>(missing)</span>}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb1_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb1_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+		<tr><th>{awb1_goods.n}:</th><td>{^xfields.awb1_goods:<span class='gray'>---</span>}</td></tr>
+		{#if:^xfields.awb2:<tr><th>{awb2.n}:</th><td><span class="awb">{^xfields.awb2}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb2_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb2_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb2_goods.n}:</th><td>{^xfields.awb2_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb3:<tr><th>{awb3.n}:</th><td><span class="awb">{^xfields.awb3}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb3_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb3_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb3_goods.n}:</th><td>{^xfields.awb3_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb4:<tr><th>{awb4.n}:</th><td><span class="awb">{^xfields.awb4}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb4_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb4_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb4_goods.n}:</th><td>{^xfields.awb4_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb5:<tr><th>{awb5.n}:</th><td><span class="awb">{^xfields.awb5}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb5_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb5_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb5_goods.n}:</th><td>{^xfields.awb5_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb6:<tr><th>{awb6.n}:</th><td><span class="awb">{^xfields.awb6}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb6_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb6_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb6_goods.n}:</th><td>{^xfields.awb6_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb7:<tr><th>{awb7.n}:</th><td><span class="awb">{^xfields.awb7}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb7_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb7_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb7_goods.n}:</th><td>{^xfields.awb7_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb8:<tr><th>{awb8.n}:</th><td><span class="awb">{^xfields.awb8}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb8_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb8_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb8_goods.n}:</th><td>{^xfields.awb8_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb9:<tr><th>{awb9.n}:</th><td><span class="awb">{^xfields.awb9}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb9_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb9_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb9_goods.n}:</th><td>{^xfields.awb9_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb10:<tr><th>{awb10.n}:</th><td><span class="awb">{^xfields.awb10}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb10_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb10_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb10_goods.n}:</th><td>{^xfields.awb10_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb11:<tr><th>{awb11.n}:</th><td><span class="awb">{^xfields.awb11}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb11_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb11_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb11_goods.n}:</th><td>{^xfields.awb11_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb12:<tr><th>{awb12.n}:</th><td><span class="awb">{^xfields.awb12}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb12_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb12_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb12_goods.n}:</th><td>{^xfields.awb12_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb13:<tr><th>{awb13.n}:</th><td><span class="awb">{^xfields.awb13}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb13_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb13_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb13_goods.n}:</th><td>{^xfields.awb13_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb14:<tr><th>{awb14.n}:</th><td><span class="awb">{^xfields.awb14}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb14_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb14_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb14_goods.n}:</th><td>{^xfields.awb14_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb15:<tr><th>{awb15.n}:</th><td><span class="awb">{^xfields.awb15}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb15_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb15_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb15_goods.n}:</th><td>{^xfields.awb15_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+	<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>{packing.n}:</th><td>{#ifnot:^xfields.packing:<span class="gray">---</span>}{#repeat:^xfields.packing:<span class='itembox'>{value}</span>}</td></tr>
+		<tr><th>{trucktype.n}:</th><td>{^xfields.trucktype.value:<span class="gray">---</span>}</td></tr>
+	</table>
+}

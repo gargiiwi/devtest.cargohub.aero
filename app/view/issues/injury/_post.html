@@ -1,0 +1,949 @@
+<!-- {@<style type="text/css">
+div#file-submit-area input {
+	width: 500px;
+}
+label.documents {
+	display: block;
+	width: 250px;
+	float: left;
+}
+label.twocolcbox {
+	display: block;
+	width: 250px;
+	float: left;
+}
+.inputblock {
+	border: 1px solid lightgray;
+	padding: 8px;
+}
+	.inputblock:HOVER {
+		background-color: #f6f8fA;
+	}
+
+	.inputblock div {
+		margin: 0 4px 6px 2px;
+	} 
+	.inputblock label {
+		display: block;
+		margin-bottom: 2px;
+		font-size: 90%;
+		color: gray;
+	}
+	.inputblock input {
+		position: relative;
+		width: 100%;
+		height: 20px;
+		line-height: 20px;
+		background-color: white;
+	}
+label.fourcolcbox {
+	display: block;
+	width: 130px;
+	float: left;
+} 
+label.threecolcbox {
+	display: block;
+	width: 180px;
+	float: left;
+}
+ul.spaced-ul li {
+	margin-bottom: 8px;
+}
+</style>} -->
+{@<style type="text/css">
+	/* Some styles specific to claims */
+	div#file-submit-area input {
+		width: 500px;
+	}
+	label.documents {
+		display: block;
+		width: 250px;
+		float: left;
+		line-height: 24px;
+	}
+	.steps{
+	margin:10px 0px;
+	background:whitesmoke;
+	padding:55px 0px;
+	}
+	.steps .step-btn{
+	width:45px;
+	height:45px;
+	background:#31353a !important;
+	margin-bottom:60px;
+	display:flex;
+	justify-content:center;
+	color:white;
+	border-radius:30px;
+	align-items:center;
+	}
+	
+	#issue_form{
+	display:flex;
+	justify-content:center;
+	}
+	.btn-text{
+	color:black;
+	margin-left: 20px;
+	}
+	.btn-text span{
+		display: block;
+		margin-bottom: 5px;
+		color: black;
+	}
+	.steps-container{
+	margin:0px 50px;
+	/* display:flex;
+	justify-content:space-between; */
+	}
+	.step-position1{
+	position:relative;
+	display: flex;
+	}
+	.line1{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background:#7d7a7a !important;
+	}
+	.step-position2{
+	position:relative;
+	display: flex;
+	}
+	.line2{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background:#7d7a7a !important;
+	}
+	.step-position3{
+	position:relative;
+	display: flex;
+	}
+	.line3{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #7d7a7a !important;
+	}
+	.step-position4{
+	position:relative;
+	display: flex;
+	}
+	/* .step-position4 .step-btn{
+		margin-bottom: 0;
+	} */
+	.step-position5{
+	position:relative;
+	display: flex;
+	}
+	.step-position5 .step-btn{
+		margin-bottom: 0;
+	}
+	.line4{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background:#7d7a7a !important;
+	}
+	/* .line5{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	} */
+	.nav-btn{
+	margin:0px 0px 0px 250px;
+	padding:10px 50px;
+	background:#000080;
+	color:#ffff;
+	border:none;
+	}
+	#next-btn{
+		width: 60px;
+		background: #2866c2;
+		color: #ffff;
+		padding: 10px 15px;
+		text-align: center;
+		border: none;
+		margin-left: 0;
+		text-transform: capitalize;
+		font-size: 14px;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.prv-next-btns{
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+	
+	div.site > div.page{
+		display: flex;
+	   width:99%;
+	}
+	.steps{
+		width: 30%;
+		margin: 0;
+		border-radius: 10px 0 0 10px;
+	}
+	div.site > div.page div.zone{
+		width: 70%;
+		margin-bottom: 0;
+		background: white;
+		border-radius: 0 10px 10px 0;
+		padding: 30px 0;
+		 
+		overflow: auto;
+	} 
+	#issue_form .required{
+		background: white;
+	}
+	#issue_form div.clabel, #issue_form div.column2 th{
+		text-align: left;
+	}
+	#issue_form td > input[type='text'], #issue_form td > select{
+		height: 33px !important;
+		background: #fff;
+		border-radius: 4px;
+		padding: 5px 10px;
+		margin-bottom: 5px;
+	}
+	.raprv{
+		background: #e1e1e1 !important;
+		color: #000 !important;
+	}
+	.steps .steps-container .step-btn.active{
+		background-color: #2866C2 !important;
+	}
+	.steps .steps-container .completed .step-btn{
+		background-color: green !important;
+		position: relative;
+	}
+	.steps .steps-container .completed .step-btn > img{
+		display: none;
+	}
+	.steps .steps-container .notCompleted {
+		opacity: 0.5;
+	}
+	.steps .steps-container .notCompleted.active {
+		opacity: 1;
+	}
+	.steps .steps-container .completed .step-btn::after{
+	content: "";
+	background-image: url(/img/icons/tick.png);
+	background-repeat: no-repeat;
+	width: 19px;
+	height: 13px;
+	position: absolute;
+	left: 14px;
+	top: 16px;
+	}
+	.steps .steps-container .completed .line1, .steps .steps-container .completed .line2, .steps .steps-container .completed .line3, .steps .steps-container .completed .line4,.steps .steps-container .completed .line5{
+		background: #19a956;
+	}
+
+
+	.form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section h5 {
+            margin-bottom: 10px;
+        }
+
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-section .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-section .input-group input[type="text"] {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .toggle-section {
+            cursor: pointer;
+            color: blue;
+            margin-bottom: 10px;
+        }
+	
+        #toggle-checkbox {
+            display: none;
+        }
+
+        #toggle-checkbox:checked + #contributing-factors {
+            display: block;
+        }
+
+        #contributing-factors {
+            display: none;
+        }
+
+
+		.inputblock {
+            margin-top: 10px;
+        }
+        .inputblock label {
+            display: inline-block;
+            width: 100px;
+        }
+        .inputblock input {
+            margin-left: 25px;
+            background-color: white;
+        }
+        .witness-section {
+            display: none;
+        }
+        .add-btn {
+            display: none;
+            margin-top: -36px;
+            padding: 10px 10px;
+            background-color: #2866c2;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+        .add-btn:hover {
+            background-color: #2866c2;
+        }
+		#prv-next-btns2 {
+            margin-top: 265px; 
+        }
+		#prv-next-btns3 {
+            margin-top: 84px; 
+        }
+		#prv-next-btns4 {
+            margin-top: 147px; 
+        }
+	
+	</style>}
+
+
+<div class="steps">
+	<div class="steps-container">
+	<div class="step-position1">
+		<div class="step-btn" id="btn1" data-step="1"><img src="/img/icons/mail_white.png" alt=""></div>
+		<div class="btn-text"> <span>Step 1</span> location overview </div>
+		<div class="line1"></div>
+	</div>
+	
+	<div class="step-position2">
+		<div class="step-btn" id="btn2" data-step="2"><img src="/img/icons/pie-chart_white.png" alt=""></div>
+		<div class="btn-text"><span>Step 2</span>  Witnesses involved </div>
+		<div class="line2"></div>
+	</div>
+
+	<div class="step-position3">
+		<div class="step-btn" id="btn3" data-step="3"><img src="/img/icons/usern_white.png" alt=""></div>
+		<div class="btn-text"><span>Step 3</span> Injury specifics </div>
+		<div class="line4"></div>
+	</div>
+	<div class="step-position4">
+		<div class="step-btn" id="btn4" data-step="4"><img src="/img/icons/reportn_white.png" alt=""></div>
+		<div class="btn-text"><span>Step 4</span> upload documents & Submit </div>
+		<div class="line5"></div>
+	</div>
+	</div>
+
+</div>
+
+
+<div id='issue_submit' class='zone jqx-rc-all'><form action="?action=form" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">{#use:form:
+{!Left column}
+<div class='column2'>
+
+<div id="content1" class="content">	
+<!-- <h4 style="background-image: url('/img/icons16/ist/injury.png'); background-repeat: no-repeat; background-position: 4px;">Responsability and location overview:</h4> -->
+<table>
+	{#use:respo:<tr{#if:display.req: class='required'}>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			{#use:options.0:<label style='display: block; width: 120px; float: left; margin-top: -3px;' class='info-tip' data-tooltip="The damage was caused under the responsibility of our company"><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}>{display}</label>}
+			{#use:options.1:<label style='display: block; width: 120px; float: left; margin-top: -3px;' class='info-tip' data-tooltip="The damage was NOT caused under the responsibility of our company"><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}>{display}</label>}
+			{#use:options.2:<label style='display: block; width: 120px; float: left; margin-top: -3px;' class='info-tip' data-tooltip="The responsibility has not been identified yet"><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}>{display}</label>}
+		</td>
+	</tr>}
+{!	{#use:title:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}}
+	<tr{#if:date.display.req: class='required'}>
+		<th><label>Event Date &amp; Time:{#if:date.display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			{#use:date:<div id='{id}' style="float: left;height: 29px;" name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}
+			{#use:time:<input style="float: left; margin-left: 8px;" type="text" id='{id}' name='{name}' data-value='{value}' class='whitebg theclock jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+	{#if:%CFG.issue_submit.groups:{#use:group:<tr{#if:display.req: class='required'}>
+		<th><label>Category:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><div id='{id}_combo'></div><input type='hidden' id='{id}' name='{name}' value='{value}' /></td>
+	</tr>}}
+	{#use:area:<tr{#if:display.req: class='required'}>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; line-height: 24px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:area_supr:<tr{#if:display.req: class='required'}>
+		<th><label class="info-tip info-click" data-tooltip="Name of the Person responsible for the area where the damage occurred" for='{id}'><img alt="?" src="/img/icons16/question.png" style='vertical-align: middle;'>
+		{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:place:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>Exact location:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:place_id:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' maxlength="5" class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:station:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' maxlength="3" class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+
+{#use:descr:
+	<h5>What happened:</h5>
+	<textarea rows="10" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="(Please keep this information short)">{value}</textarea>
+}
+
+<div style="margin-top: 26px;">
+	<label class="toggle-section" for="toggle-checkbox">
+	<h4 style="color: #000;margin-left: -28px;font-size: 11px;">	Contributing factors:  <span style="color: blue;">Click to show/hide</span> </h4>
+	</label>
+	<input type="checkbox" id="toggle-checkbox">
+	<div id="contributing-factors">
+		<div class="form-section">
+			<h5>Behaviour:</h5>
+			<label><input name="cf_behav_speeding" type="checkbox" value="1"> Speeding</label>
+			<label><input name="cf_behav_miscommunication" type="checkbox" value="1"> Mis-communication</label>
+			<label><input name="cf_behav_judgement_error" type="checkbox" value="1"> Judgement error</label>
+			<label><input name="cf_behav_distraction" type="checkbox" value="1"> Distraction</label>
+			<label><input name="cf_behav_lack_experience" type="checkbox" value="1"> Lack of experience</label>
+			<label><input name="cf_behav_lack_discipline" type="checkbox" value="1"> Lack of discipline</label>
+			<label><input name="cf_behav_incompetency" type="checkbox" value="1"> Incompetency</label>
+			<label><input name="cf_behav_vandalism" type="checkbox" value="1"> Vandalism (intent)</label>
+			<div class="input-group">
+				<label>Other (specify):</label>
+				<input type="text" name="cf_behav_other" />
+			</div>
+		</div>
+
+		<div class="form-section">
+			<h5>Rules (not followed):</h5>
+			<label><input name="cf_rules_standard" type="checkbox" value="1"> Standard procedure</label>
+			<label><input name="cf_rules_safety" type="checkbox" value="1"> Safety procedure</label>
+			<label><input name="cf_rules_traffic" type="checkbox" value="1"> Traffic regulations</label>
+			<label><input name="cf_rules_authority" type="checkbox" value="1"> Authority</label>
+			<div class="input-group">
+				<label>Other (specify):</label>
+				<input type="text" name="cf_rules_other" />
+			</div>
+		</div>
+
+		<div class="form-section">
+			<h5>Equipment:</h5>
+			<label><input name="cf_eq_poor_maintenance" type="checkbox" value="1"> Poor maintenance</label>
+			<label><input name="cf_eq_incorrect_use" type="checkbox" value="1"> Incorrect use</label>
+			<label><input name="cf_eq_defective" type="checkbox" value="1"> Defective eq.</label>
+			<label><input name="cf_eq_unsafe" type="checkbox" value="1"> Unsafe eq.</label>
+			<label><input name="cf_eq_too_few" type="checkbox" value="1"> Too few eq's.</label>
+			<label><input name="cf_eq_missing" type="checkbox" value="1"> Missing eq.</label>
+			<label><input name="cf_eq_weather" type="checkbox" value="1"> Weather</label>
+			<div class="input-group">
+				<label>Other (specify):</label>
+				<input type="text" name="cf_eq_other" />
+			</div>
+		</div>
+
+		<div class="form-section">
+			<h5>Organisation:</h5>
+			<label><input name="cf_org_inadequate" type="checkbox" value="1"> Inadequate procedures</label>
+			<label><input name="cf_org_insufficient_preparation" type="checkbox" value="1"> Insufficient preparation</label>
+			<label><input name="cf_org_lack_supervision" type="checkbox" value="1"> Lack of supervision</label>
+			<label><input name="cf_org_not_enough_personnel" type="checkbox" value="1"> Not enough personnel</label>
+			<label><input name="cf_org_limited_training" type="checkbox" value="1"> Limited training</label>
+			<div class="input-group">
+				<label>Other (specify):</label>
+				<input type="text" name="cf_org_other" />
+			</div>
+		</div>
+	</div>
+</div>
+		<div class="prv-next-btns">
+			<div class=""></div>
+			<div class="step-btn" id="next-btn"onclick="cargoClaimStep(2)">next</div>
+		</div>
+		<div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+</div>
+
+<div id="content2" class="content"> 
+<!-- <h4 style="margin-top: 20px; background-image: url('/img/icons16/users.png'); background-repeat: no-repeat; background-position: 4px;">People involved:</h4> -->
+<!-- <table>
+	<col width="120" /><col width="30%" /><col width="120" /><col width="30%" />
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_name:<th><label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	{#use:p2_name:<th><label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	</tr>
+
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_comp:<th><label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	{#use:p2_comp:<th><label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	</tr>
+	
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_func:<th><label for='{id}'>Function:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	{#use:p2_func:<th><label for='{id}'>Function:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	</tr>
+
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_phone:<th><label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	{#use:p2_phone:<th><label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	</tr>
+	
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_licence:<th><label for='{id}'>Drivers licence:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	{#use:p2_licence:<th><label for='{id}'>Drivers licence:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	</tr>
+
+	<tr{#if:display.req: class='required'}>
+	{#use:p1_insured:<th><label for='{id}'>Insured by:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	{#use:p2_insured:<th><label for='{id}'>Insured by:{#if:display.req: <span>&nbsp;</span>}</label></th><td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>}
+	</tr>
+</table> -->
+
+<!-- <h4 style="margin-top: 20px; background-image: url('/img/icons16/eye.png'); background-repeat: no-repeat; background-position: 4px; cursor: pointer;" onClick='$("#hideable-witns").toggle();'>Witnesses: <span class='blue right'>Click to show/hide</span></h4>
+<table id="hideable-witns" style="display: none;">
+	<tr>
+		<td width="33%" class="center green" style="font-size: 1.5em;">1st</td>
+		<td width="33%" class="center green" style="font-size: 1.3em;">2nd</td>
+		<td width="33%" class="center green" style="font-size: 1.2em;">3rd</td>
+	</tr>
+	<tr>
+		<td valign="top" class="inputblock">
+			{#use:w1_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w1_company:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w1_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w1_licence:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+		</td>
+		<td valign="top" class="inputblock">
+			{#use:w2_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w2_company:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w2_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w2_licence:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+		</td>
+		<td valign="top" class="inputblock">
+			{#use:w3_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w3_company:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w3_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+			{#use:w3_licence:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			</div>}
+		</td>
+	</tr>
+</table> -->
+<div style="margin-top: 20px;">
+	<h4 style="margin-left: -8px; display: inline; background-image: url('/img/icons16/eye.png'); background-repeat: no-repeat; background-position: 4px; padding-left: 24px;font-size: 15px;">
+		Witnesses Involved:
+	</h4>
+	<label style="display: inline-block; margin-left: 10px;">
+		<input type="radio" name="showWitnesses" value="yes" onclick='document.getElementById("witness-1").style.display="block"; document.getElementById("add-button-1").style.display="block"; document.getElementById("witness-2").style.display="none"; document.getElementById("witness-3").style.display="none"; document.getElementById("add-button-2").style.display="none";'> Yes
+	</label>
+	<label style="display: inline-block; margin-left: 10px;">
+		<input type="radio" name="showWitnesses" value="no" onclick='document.getElementById("witness-1").style.display="none"; document.getElementById("witness-2").style.display="none"; document.getElementById("witness-3").style.display="none"; document.getElementById("add-button-1").style.display="none"; document.getElementById("add-button-2").style.display="none";'> No
+	</label>
+</div>
+
+<div id="witness-1" class="witness-section">
+	<div style="height: 9px;"></div>
+	<div style="font-size: 1.5em;">1st</div>
+	<div style="height: 9px;"></div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w1_name">Name:</label>
+			<input type="text" id="w1_name" name="w1_name" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w1_company">Company:</label>
+			<input type="text" id="w1_company" name="w1_company" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w1_phone">Telephone:</label>
+			<input type="text" id="w1_phone" name="w1_phone" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w1_licence">ID:</label>
+			<input type="text" id="w1_licence" name="w1_licence" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w2_insured">Insured by:</label>
+			<input type="text" id="w2_insured" name="w2_insured" class="jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}" {#if:display.error: data-tooltip='{display.error}'}/>
+		</div>
+	</div>
+	<span id="add-button-1" class="add-btn" onclick='document.getElementById("witness-2").style.display="block"; document.getElementById("add-button-2").style.display="block"; document.getElementById("add-button-1").style.display="none";'>Add More Witnesses</span>
+</div>
+
+<div id="witness-2" class="witness-section">
+	<div style="height: 9px;"></div>
+	<div style="font-size: 1.5em;">2nd</div>
+	<div style="height: 9px;"></div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w2_name">Name:</label>
+			<input type="text" id="w2_name" name="w2_name" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w2_company">Company:</label>
+			<input type="text" id="w2_company" name="w2_company" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w2_phone">Telephone:</label>
+			<input type="text" id="w2_phone" name="w2_phone" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w2_licence">ID:</label>
+			<input type="text" id="w2_licence" name="w2_licence" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w2_insured">Insured by:</label>
+			<input type="text" id="w2_insured" name="w2_insured" class="jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}" {#if:display.error: data-tooltip='{display.error}'} />
+		</div>
+	</div>
+	<span id="add-button-2" class="add-btn" onclick='document.getElementById("witness-3").style.display="block"; this.style.display="none";'>Add More Witnesses</span>
+</div>
+
+<div id="witness-3" class="witness-section">
+	<div style="height: 9px;"></div>
+	<div style="font-size: 1.5em;">3rd</div>
+	<div style="height: 9px;"></div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w3_name">Name:</label>
+			<input type="text" id="w3_name" name="w3_name" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w3_company">Company:</label>
+			<input type="text" id="w3_company" name="w3_company" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w3_phone">Telephone:</label>
+			<input type="text" id="w3_phone" name="w3_phone" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w3_licence">ID:</label>
+			<input type="text" id="w3_licence" name="w3_licence" class="jqx-input jqx-input-{%jqxtheme}" />
+		</div>
+	</div>
+	<div class="inputblock">
+		<div class="required">
+			<label for="w2_insured">Insured by:</label>
+			<input type="text" id="w2_insured" name="w2_insured" class="jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}" {#if:display.error: data-tooltip='{display.error}'}/>
+		</div>
+	</div>
+</div>
+
+<!-- <h4 style="margin-top: 30px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px; cursor: pointer;" onClick='$("#hideable-factors").toggle();'>Contributing factors: <span class='right blue'>Click to show/hide</span></h4>
+<table id="hideable-factors" style="display: none;">
+	<tr><td>
+		{#use:cf_behav:
+			<h5>{display.label}:{#if:display.req: <span>&nbsp;</span>}</h5>
+			<div>
+				{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+			</div>
+		}
+		{#use:cf_behav_oth:<input style='float: right; margin-right: 48px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+	</td></tr>
+	<tr><td>
+		{#use:cf_rules:
+			<h5>{display.label}:{#if:display.req: <span>&nbsp;</span>}</h5>
+			<div>
+				{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+			</div>
+		}
+		{#use:cf_rules_oth:<input style='float: right; margin-right: 48px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+	</td></tr>
+	<tr><td>
+		{#use:cf_eq:
+			<h5>{display.label}:{#if:display.req: <span>&nbsp;</span>}</h5>
+			<div>
+				{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+			</div>
+		}
+		{#use:cf_eq_oth:<input style='float: right; margin-right: 48px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+	</td></tr>
+	<tr><td>
+		{#use:cf_org:
+			<h5>{display.label}:{#if:display.req: <span>&nbsp;</span>}</h5>
+			<div>
+				{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+			</div>
+		}
+		{#use:cf_org_oth:<input style='float: right; margin-right: 48px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+	</td></tr>
+</table> -->
+
+
+
+<!-- <div class='required' style='text-align: center; margin-top: 10px;'><span style='padding: 7px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> (You must fill the data marked with this color in order to submit)</span></div>	 -->
+{#use:remarks:
+	<h4 style="margin-top: 88px;margin-left: -29px;">{display.label}:{#if:display.req: <span>&nbsp;</span>}</h4>
+	<textarea rows="3" id='{id}' name='{name}' style="height: 136px;width: 534px;" class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 542px; margin-bottom: 16px;" placeholder="(Please keep this information short)">{value}</textarea>
+}   	
+
+<table style="margin-top: 20px;">
+	{#use:rep_name:<tr{#if:display.req: class='required'}>
+		<h3 style='width: 250px;'><h4 style="margin-left: -24px;margin-top: 38px;margin-left: -29px;">Internal report prepared by:</h4>
+		<td>
+			<label for='{id}' style="display: block;">Name:{#if:display.req: <span>&nbsp;</span>}</label></td>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+		</td>
+	</tr>}
+	{#use:rep_function:<tr{#if:display.req: class='required'}>
+		<td><label for='{id}'>Function:{#if:display.req: <span>&nbsp;</span>}</label></td>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	<tr><td colspan="3" class="center gray">(Please specify when using shared account or someone else prepared the report)</td></tr>
+</table>
+
+
+
+		<div class="prv-next-btns" id="prv-next-btns2">
+			<div class="step-btn raprv" id="next-btn"onclick="cargoClaimPreviousStep(2)">Previous</div>
+			<div class="step-btn" id="next-btn"onclick="cargoClaimStep(3)">Next</div>
+		</div>
+		<div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+</div> 
+
+
+{!Right column}
+<div id="content3" class="content">
+ <div class='column2'>
+	<!-- <h4 style="background-image: url('/img/icons16/user_gray.png'); background-repeat: no-repeat; background-position: 4px;">Injury specifics:</h4> -->
+	<table>
+		{#use:inj_type:<tr{#if:display.req: class='required'}>
+			<th><label class="info-tip info-click" data-tooltip="Injury details is shown only when a type of injury is selected">
+				<img src="/img/icons16/question.png" alt="Info" style='vertical-align: middle;' />
+				{display.label}?{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>
+				<input style="float: right; margin-right: 35px;" type="button" value="Instructions" data-action="open-window" data-window="870,700,Injury types" data-template='injury-instructions' />		
+				<select class="jqx-input jqx-input-{%jqxtheme} medium" id='{id}' name='{name}'>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+				</select>
+			</td>
+		</tr>}
+		{#use:acc_person:<tr{#if:display.req: class='required'}>
+			<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:acc_persrole:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		{#use:acc_duringwork:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		{#use:injury:<tr{#if:display.req: class='required'}>
+			<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:acc_hosp_visit:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		{#use:acc_hospital:<tr{#if:display.req: class='required'}>
+			<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:acc_polyclinic:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+	{!	{#use:acc_workinsp:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}}
+	<!-- <tr><td colspan="2"><hr /></td></tr>
+		{#use:acc_sick:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		<tr>
+			<th><label>Length of leave:</label>
+			<td>
+				<span class="inline left" style="line-height: 24px; margin: 0 8px 0 0;">Start</span>{#use:acc_sickstart:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar inline left'></div>}
+				<span class="inline left" style="line-height: 24px; margin: 0 8px 0 8px;">End</span>{#use:acc_sickend:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar inline left'></div>}
+			</td>
+		</tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		{#use:acc_inj_perm:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>} -->
+	</table>
+
+	<div class="prv-next-btns" id="prv-next-btns3">
+		<div class="step-btn raprv" id="next-btn"onclick="cargoClaimPreviousStep(3)">Previous</div>
+		<div class="step-btn" id="next-btn"onclick="cargoClaimStep(4)">Next</div>
+		</div>
+   <div class='required d-none' style='text-align: center; margin-top: 0;'>
+			<span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span>
+	</div>
+ </div>
+</div>	
+
+<div id="content4" class="content">
+	<!-- <div class='required' style='text-align: center; margin-top: 10px;'><span style='padding: 7px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> (You must fill the data marked with this color in order to submit)</span></div>	 -->
+
+
+{!Right column}
+	<div class='column2'>
+		<!-- <h4 style="background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">Upload pictures, documents and other computer files:
+			<img src="/img/icons16/question.png" alt="?" class="right info-tip" style="margin-right: 4px;"
+				data-tooltip_position="left" data-tooltip="Multiple files can be uploaded at once.<br />Select them all in the upload box,<br />or drag &amp; drop several files at once" />
+		</h4> -->
+	  {#if:%attachments:<br /><h4>Attached pictures and documents:</h4>{!Fallback mode, showing files on IE8}
+		<div id='attachments' style="margin-bottom: 8px; display: none;">
+		{#repeat:%attachments:
+			<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{type}.png' alt="{type}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+			<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+			<div class='clear'></div></div>
+		}
+		</div>}
+		<div id="uploads-dropzone" class="dropzone">{!The fancy DropZone}
+			<div class="fallback">
+				<div style='margin: 0 0 0 26px;'>
+					<h3>Choose documents from your computer</h3>
+					<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+				</div>
+				<div id="file-submit-area">
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+				</div>
+				<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+				<p class="gray" style="font-size: 0.9em;">Please use a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a> in order to view the upload feedback and allow simultaneous multiple files selections. The very outdated <b>Internet Explorer</b> does not support many of the advanced features that this application provides.</p>
+			</div>
+		</div>
+		<div id="uploads-helper" style="display: none;">
+			Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+		</div>
+
+		<!-- <table style="margin-top: 20px;">
+			{#use:rep_name:<tr{#if:display.req: class='required'}>
+				<td style='width: 250px;'><h3>Internal report prepared by:</h3></td>
+				<th><label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}
+			{#use:rep_function:<tr{#if:display.req: class='required'}>
+				<td>&nbsp;</td>
+				<th><label for='{id}'>Function:{#if:display.req: <span>&nbsp;</span>}</label></th>
+				<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+			</tr>}
+			<tr><td colspan="3" class="center gray">(Please specify when using shared account or someone else prepared the report)</td></tr>
+		</table> -->
+		
+		
+		<div id="issue-contacts" style="display: none;"></div>
+		<div class="prv-next-btns" id="prv-next-btns4">
+			<div class="step-btn raprv" id="next-btn"onclick="cargoClaimPreviousStep(4)">Previous</div>
+			<div class="submit" > {#include::includes/submit_proceed_box1.html} </div>
+			</div>
+			<div class='required d-none' style='text-align: center; margin-top: 0;'>
+				<span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span>
+			</div>
+</div>
+</div>		
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+}
+</form></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_submit_jstpl.html}
+{#raw:includes/issue2message.html}
+
+<script id="injury-instructions" type="text/dryjstpl">
+	<div style='height: 635px; overflow: auto;' class='spacey'>{#include::static/geninc_injury_types.html}</div>
+</script>

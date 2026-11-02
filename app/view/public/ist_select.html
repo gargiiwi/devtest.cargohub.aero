@@ -1,0 +1,22 @@
+<div class="page">
+	<div style='width: 550px; float: left; padding-left: 10px;'>
+		<h4 style='text-indent: 80px;'>Please select the type of form you want to submit:</h4>
+		{#repeat:ist_list:
+		<div class='issuetype' id='ist_{key}'>
+			<a class='selector' href='#{key}'><img src="/img/icons/ist/{key}.png" alt="{name}"> {name}</a>
+			<div style='display: none;'>
+				<a class='go_submit' href='/issue?action=form&amp;key={key}'><img src='/img/extra/gogreen.png' alt='Go!' title='Go!' /> Submit {name}</a>
+				{#include::static/ist_descr/{key}.html}
+			</div>
+		</div>
+		}
+	</div>
+	<div style='width: 550px; float: right; margin-left: 16px;'>
+		<div id="ist_description">
+			<h3>Please choose the form you want to submit from the left side.</h3>
+			<p>More information about the chosen type appears if your mouse is above a row.<br />Tablet and smartphone users (touch) will need to tap the issue type for a similar effect.</p>
+		</div>
+		<hr />
+	</div>
+	<div class='clear'></div>
+</div>

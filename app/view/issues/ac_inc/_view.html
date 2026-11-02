@@ -1,0 +1,260 @@
+{! Some styles specific to Aircraft Incident }{@<style>
+.twocolvalue {
+	display: inline-block;
+	width: 49%;
+}
+.threecolvalue {
+	display: inline-block;
+	width: 32%;
+}
+div.ra_250 {
+	display: inline-block;
+	float: right;
+	width: 250px;
+}
+label.ra_label {
+	display: inline-block;
+	margin-right: 5px;
+	width: 100px;
+	text-align: right;
+}
+.iss_document {
+	padding: 1px 4px;
+	margin: 0px 5px 2px 0px;
+	color: green;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+}
+</style>}
+{#use:iss:<h2>Aircraft Incident {#if:xfields.station:in <b>{xfields.station.value.name}</b>} on date <b>{xfields.inc_date}~date("Y-m-d")~</b></h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+{#use:%ist.xfield_def:
+	<h4>Incident details:</h4>
+		<table class="infotable">
+		  	<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">(not specified)</span>}</td></tr>
+			<tr><th>Incident Date &amp; Time:</th><td>
+				{#if:^xfields.inc_date:{^xfields.inc_date}~date("Y-m-d")~ &middot; {^xfields.inc_time:<span class="gray">(not specified)</span>}}
+				{#ifnot:^xfields.inc_date:<span class='gray'>(missing)</span>}
+			</td></tr>
+			<tr><th>{flt_num.n}:</th><td>{^xfields.flt_num:<span class='gray'>(not specified)</span>}
+			<div class="ra_250">
+				<label class="ra_label">Flight Date:</label>
+				{#if:^xfields.flt_date:{^xfields.flt_date}~date("Y-m-d")~}{#ifnot:^xfields.flt_date:<span class='gray'>(not specified)</span>}
+			</div></td></tr>
+{!			<tr><th>{station.n}:</th>
+			{#if:^xfields.station.value:
+				<td class="info-tip" data-tooltip="Country: <span class='darkblue'>{^xfields.station.value.country}</span>"><b>{^xfields.station.value.IATA}</b>: {^xfields.station.value.name}</td>}
+			{#ifnot:^xfields.station.value:
+				<td class="red">(Please complete station !)</td>}
+			</tr>}
+		  
+		  	<tr><td colspan="2"><br /></td></tr>
+		  	<tr><th>Flight Route:</th><td>{^xfields.flt_route:<span class="gray">(not specified)</span>}</td></tr>
+		  	<tr><th>Carrier:</th><td style='font-weight: bold;'>{^group.name}</td></tr>
+		  	<tr><th>{flt_regno.n}:</th><td>{^xfields.flt_regno:<span class="gray">(not provided)</span>}</td></tr>				
+			<tr><th>{flt_actype.n}:</th><td>{^xfields.flt_actype:<span class="gray">(not provided)</span>}</td></tr>
+		  	<tr><td colspan="2"><hr /></td></tr>	
+			<tr><th>Exact location:</th><td>{^xfields.inc_location:<span class="gray">(not specified)</span>}</td></tr>
+		  	<tr><th>{phase_ops.n}:</th><td>{^xfields.phase_ops:<span class="gray">(not specified)</span>}</td></tr>
+			
+		  	<tr><th>{flt_delayed.n}</th>
+			<td>
+				{#if:^xfields.flt_delayed.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.flt_delayed.key: checked="checked"}> {^xfields.flt_delayed.value}</label>}
+				{#ifnot:^xfields.flt_delayed.value:<span class='gray'>(not set / unknown)</span>}
+			</td></tr>
+			<tr><th>Flight delay:</th><td>{^xfields.flt_delayamt:<span class="gray">(not specified)</span>}</td></tr>
+		  	<tr><th>{sched_gt.n}:</th><td>{^xfields.sched_gt:<span class="gray">(not specified)</span>}</td></tr>
+		  	<tr><th>{flt_cncld.n}</th>
+			<td>
+				{#if:^xfields.flt_cncld.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.flt_cncld.key: checked="checked"}> {^xfields.flt_cncld.value}</label>}
+				{#ifnot:^xfields.flt_cncld.value:<span class='gray'>(not set / unknown)</span>}
+			</td></tr>
+		</table>
+}
+
+{#use:%ist.xfield_def:
+  			<h4>Damage information:</h4>
+			<table class="infotable">
+		  	<tr><th>{gsa_inv.n}:</th><td>{^xfields.gsa_inv.value:<span class="gray">(not specified)</span>}</td></tr>
+		  	{!<tr><th>{dmg_by.n}:</th><td>{^xfields.dmg_by.value:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{dmg_by_otr.n}:</th><td>{^xfields.dmg_by_otr:<span class="gray">(nothing here)</span>}</td></tr>}			
+			
+		  	<tr><th>{dmg_area.n}:</th><td>{#repeat:^xfields.dmg_area:<span class="twocolvalue">[{value}]</span> }</td></tr>
+			<tr><th>Other location:</th><td>{^xfields.dmg_area_info:<span class="gray">(nothing here)</span>}</td></tr>			
+		</table>
+		{#if:^xfields.dmg_details:
+		<h5>{dmg_details.n}:</h5>
+		<div style="border: 1px solid lightgray; padding: 4px; margin-bottom: 4px;">{^xfields.dmg_details}~nl2br~</div>}
+		{#ifnot:^xfields.dmg_details:<div class="gray" style="text-indent: 20px;">(no details provided)</div>}
+  		
+  		{#if:^xfields.dmg_narrative:
+		<h4>{dmg_narrative.n}:</h4>
+		<div style="border: 1px solid lightgray; padding: 4px; margin-bottom: 4px;">{^xfields.dmg_narrative}~nl2br~</div>}
+		{#ifnot:^xfields.dmg_narrative:<div class="gray" style="text-indent: 20px;">(no narrative provided)</div>}
+		
+		<h4 style="margin-top: 8px;">Actions taken at station:</h4>
+		<table class="infotable">
+			<tr><th style="width: 30%;">{act_engineer.n}</th>
+			<td>
+				{#if:^xfields.act_engineer.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_engineer.key: checked="checked"}> {^xfields.act_engineer.value}</label>}
+				{#ifnot:^xfields.act_engineer.value:<span class='gray'>(not set / unknown)</span>}
+			</td>
+			<td>Name: {^xfields.act_engineer_name:<span class="gray">(not specified)</span>}</td>
+		  	</tr>
+		  	<tr><th>Airline rep. informed?</th>
+			<td>
+				{#if:^xfields.act_airlinerep.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_airlinerep.key: checked="checked"}> {^xfields.act_airlinerep.value}</label>}
+				{#ifnot:^xfields.act_airlinerep.value:<span class='gray'>(not set / unknown)</span>}
+			</td>
+		  	<td>Name: {^xfields.act_airlinerep_name:<span class="gray">(not specified)</span>}</td>
+		  	</tr>
+			<tr><th>{act_unloadstop.n}</th>
+			<td>
+				{#if:^xfields.act_unloadstop.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_unloadstop.key: checked="checked"}> {^xfields.act_unloadstop.value}</label>}
+				{#ifnot:^xfields.act_unloadstop.value:<span class='gray'>(not set / unknown)</span>}
+			</td></tr>
+			<tr><th>{act_eqrem.n}</th>
+			<td>
+				{#if:^xfields.act_eqrem.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_eqrem.key: checked="checked"}> {^xfields.act_eqrem.value}</label>}
+				{#ifnot:^xfields.act_eqrem.value:<span class='gray'>(not set / unknown)</span>}
+			</td></tr>
+			<tr><th>{act_eqinv.n}</th>
+			<td>
+				{#if:^xfields.act_eqinv.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_eqinv.key: checked="checked"}> {^xfields.act_eqinv.value}</label>}
+				{#ifnot:^xfields.act_eqinv.value:<span class='gray'>(not set / unknown)</span>}
+			</td></tr>
+			<tr><td colspan="2"><hr /></td></tr>
+			<tr><th>{airp_notify.n}</th>
+			<td>
+				{#if:^xfields.airp_notify.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.airp_notify.key: checked="checked"}> {^xfields.airp_notify.value}</label>}
+				{#ifnot:^xfields.airp_notify.value:<span class='gray'>(not set / unknown)</span>}
+			</td></tr>
+			<tr><th>{airp_report.n}</th>
+			<td>
+				{#if:^xfields.airp_report.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.airp_report.key: checked="checked"}> {^xfields.airp_report.value}</label>}
+				{#ifnot:^xfields.airp_report.value:<span class='gray'>(not set / unknown)</span>}
+			</td></tr>
+		</table>		
+}
+
+</div>
+{!Right column}
+<div class='column2'>
+
+{#use:%ist.xfield_def:
+	<h4>Notifications and Reporting</h4>		
+	<table class="infotable">
+		<tr><th>{gh_notify.n}:</th><td>{#repeat:^xfields.gh_notify:<span class="twocolvalue">[{value}]</span> }</td></tr>
+	</table>
+	
+	<h5>Incident/Accident reported by:</h5>
+	<table class="infotable">
+		<tr><th>Name:</th><td>{^xfields.rep_name:<span class="gray">(not specified)</span>}</td></tr>
+		<tr><th>Function:</th><td>{^xfields.rep_func:<span class="gray">(not specified)</span>}</td></tr>
+		{!<tr><th>Telephone:</th><td>{^xfields.rep_phone:<span class="gray">(not specified)</span>}</td></tr>}
+		<tr><th>{documents.n}:</th><td>{#repeat:^xfields.documents:<span class='iss_document' id='iss_doc_{key}'>{value}</span>}</td></tr>
+	</table>		
+
+  	<h4>Witnesses (first, second, third):</h4>
+	<table class="infotable" style="width: 100%; margin: 0;"><tr>		
+		<td valign="top" style="width: 33.33%; padding: 0; font-size: 80%;">
+			<table>
+				<tr><th style="width: 70px;">Name:</th><td>{^xfields.w1_name:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Organization:</th><td>{^xfields.w1_org:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Telephone:</th><td>{^xfields.w1_phone:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Identification:</th><td>{^xfields.w1_id:<span class="gray">(not specified)</span>}</td></tr>
+			</table>
+		</td>
+		<td valign="top" style="width: 33.33%; padding: 0; font-size: 80%;">
+			<table>
+				<tr><th style="width: 70px;">Name:</th><td>{^xfields.w2_name:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Organization:</th><td>{^xfields.w2_org:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Telephone:</th><td>{^xfields.w2_phone:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Identification:</th><td>{^xfields.w2_id:<span class="gray">(not specified)</span>}</td></tr>
+			</table>
+		</td>
+		  <td valign="top" style="width: 33.33%; padding: 0; font-size: 80%;">
+			<table>
+				<tr><th style="width: 70px;">Name:</th><td>{^xfields.w3_name:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Organization:</th><td>{^xfields.w3_org:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Telephone:</th><td>{^xfields.w3_phone:<span class="gray">(not specified)</span>}</td></tr>
+				<tr><th style="width: 70px;">Identification:</th><td>{^xfields.w3_id:<span class="gray">(not specified)</span>}</td></tr>
+			</table>
+		</td>
+	</tr></table>
+}
+
+{#if:files:<h4>Attached pictures and documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+
+<h4>Add more documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+<h4 style='margin-top: 20px;'>Communication area:</h4>
+<div id='convos-box' style="margin-bottom: 8px;">
+	{#ifnot:conversations:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+	{#if:conversations:
+	<div class="gray" style="font-size: 0.9em; border-bottom: 1px solid #D3D3D3; padding-bottom: 6px;">To view the conversation, send another message or make a reply, click on the subject line.</div>
+	<table class="infotable">	
+	{#repeat:conversations:
+		<tr><th>Subject:</th><td><a href="/?action=external_comm&amp;key={key}">{description:(Conversation has no subject)}</a></td></tr>
+		<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+		<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+	}
+	</table>
+	}
+</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the update button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Truck Order' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_view_jstpl.html}
+{#if:update_by_mail:{#raw:includes/issue2message.html}}

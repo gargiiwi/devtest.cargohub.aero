@@ -1,0 +1,155 @@
+<div class="toolbar jqx-widget jqx-rc-all">
+	<div class="toolbar-accessory">
+		<img src="/img/icons/messages.png" alt="Communication Center" /><span>Communication Center</span>
+	</div>
+
+	<div class="opbar" id="cc_ops-tab_list" style="display: none;">
+		<button data-op="tab-compose" title="Compose message"><img src="/img/icons16/draw_calligraphic.png" alt="Compose message" /> Compose message</button>
+		<button data-op="con-refresh" title="Refresh grid"><img src="/img/icons16/arrow_refresh.png" alt="Refresh" /> Refresh</button>
+		{!Toolbar buttons that are shown when only one single standard conversation is clicked in the grid}
+		<div id="cc_ops-standard_single_select" style="display: none;">
+			<div class="toolbar-separator"></div>
+			<button data-op="comm-read" title="Read"><img src="/img/icons16/email_open.png" alt="Read" /> Read</button>
+			<button data-op="comm-reply" title="Reply"><img src="/img/icons16/mail_reply_sender.png" alt="Reply" /> Reply</button>
+			<button data-op="comm-forward" title="Forward"><img src="/img/icons16/mail_forward.png" alt="Forward" /> Forward</button>
+		</div>
+		{!Toolbar buttons shown when one or multiple standard conversations are selected in the grid}
+		<div id="cc_ops-standard_any_select" style="display: none;">
+			<div class="toolbar-separator"></div>
+			<button data-op="comm-labels" title="Set labels"><img src="/img/icons16/tag_orange.png" alt="Set labels" /> Set labels...</button>
+			<button data-op="comm-trash" title="Send to trash"><img src="/img/icons16/trash.png" alt="Send to trash" /> Send to trash</button>
+		</div>
+		{!Buttons that are shown for single conversation in the "Trash" label}
+		<div id="cc_ops-trashed_single_select" style="display: none;">
+			<div class="toolbar-separator"></div>
+			<button data-op="comm-read" title="Read"><img src="/img/icons16/email_open.png" alt="Read" /> Read</button>
+			<button data-op="trash-restore" title="Restore"><img src="/img/icons16/stock_undelete.png" alt="Restore" /> Restore</button>
+		</div>
+		{!Buttons that are shown for single or multiple conversations in the "Trash" label}
+		<div id="cc_ops-trashed_any_select" style="display: none;">
+			<div class="toolbar-separator"></div>
+			<button data-op="comm-labels" title="Set labels"><img src="/img/icons16/tag_orange.png" alt="Set labels" /> Set labels...</button>
+			<button data-op="trash-delete" title="Destroy"><img src="/img/icons16/fire.png" alt="Destroy" /> Destroy</button>
+		</div>
+		{!Single button that is always shown when selecting the "Trash" label}
+		<div id="cc_ops-trash_empty" style="display: none;">
+			<div class="toolbar-separator"></div>
+			<button data-op="trash-empty" title="Empty trash"><img src="/img/icons16/trash_empty.png" alt="Empty trash" /> Empty trash</button>
+		</div>
+	</div>
+
+	<div class="opbar" id="cc_ops-tab_conversation" style="display: none;">
+		{!This is a special button which can be repurposed from the JS}
+		<button data-op="cnv-back" title="Back" id="cnv-back-button"><img src="/img/icons16/arrow_undo.png" alt="Back" /> Back</button>
+		<button data-op="cnv-close" title="Close"><img src="/img/icons16/cross.png" alt="Close" /> Close</button>
+		<div id="cc_ops-conversation_actions" style="display: none;">
+			<div class="toolbar-separator"></div>
+			<button data-op="cnv-reply" title="Reply"><img src="/img/icons16/mail_reply_sender.png" alt="Reply to the last sender" /> Reply</button>
+			<button data-op="cnv-forward" title="Forward"><img src="/img/icons16/mail_forward.png" alt="Forward conversation to a new contact" /> Forward</button>
+			<div class="toolbar-separator"></div>
+			<button data-op="cnv-labels" title="Set labels"><img src="/img/icons16/tag_orange.png" alt="Set labels" /> Set labels...</button>
+			<button data-op="cnv-trash" title="Send to trash"><img src="/img/icons16/trash.png" alt="Send this conversation to trash" /> To trash</button>
+			<div class="toolbar-separator"></div>
+			<button data-op="cnv-options" title="Options and settings"><img src="/img/icons16/check_box.png" alt="Options" /> Options</button>
+			{!This one is temporary, it should be disabled when submitting to live}
+{!			<button data-op="cnv-external" title="Show external view"><img src="/img/icons16/world.png" alt="External view" /> External view</button>}
+		</div>
+	</div>
+
+	<div class="opbar" id="cc_ops-tab_compose" style="display: none;">
+		<button data-op="compose-back" title="Back" id="compose-back-button"><img src="/img/icons16/arrow_undo.png" alt="Back" /> Back</button>
+		<div class="toolbar-separator"></div>
+		<button data-op="compose-send" title="Send"><img src="/img/icons16/email_send.png" alt="Send" /> Send</button>
+		<div class="toolbar-separator"></div>
+		<button data-op="compose-options" title="Options and settings"><img src="/img/icons16/check_box.png" alt="Options" /> Options</button>
+	</div>
+
+	<div class="opbar" id="cc_ops-tab_contacts" style="display: none;">
+		<button data-op="vcard-add" title="Create new contact"><img src="/img/icons16/vcard_add.png" alt="New contact" /> New contact</button>
+		<button data-op="ctx-refresh" title="Refresh contacts"><img src="/img/icons16/arrow_refresh.png" alt="Refresh" /> Refresh</button>
+		{!Toolbar buttons that are shown when only one single basic contact is clicked in the grid}
+		<div id="cc_ops-basiccon_single_select" style="display: none;">
+			<div class="toolbar-separator"></div>
+			<button data-op="ctx-details" title="Details"><img src="/img/icons16/vcard.png" alt="Details" /> Details</button>
+		</div>
+		{!Toolbar buttons shown when one or multiple standard conversations are selected in the grid}
+		<div id="cc_ops-basiccon_any_select" style="display: none;">
+			<div class="toolbar-separator"></div>
+			<button data-op="ctx-labels" title="Set contacts labels"><img src="/img/icons16/tag_orange.png" alt="Set labels" /> Set labels...</button>
+			<button data-op="ctx-delete" title="Delete one or more contact(s)"><img src="/img/icons16/delete.png" alt="Delete" /> Delete</button>
+		</div>
+	</div>
+
+	<div class="opbar" id="cc_ops-tab_vcard" style="display: none;">
+		<button data-op="tab-contacts" title="Back to contacts"><img src="/img/icons16/arrow_undo.png" alt="Back to contacts" /> Back to contacts</button>
+		<button data-op="vcard-close" title="Close"><img src="/img/icons16/cross.png" alt="Close" /> Close</button>
+		<div id="cc_ops-vcard_actions" style="display: none;">
+			<button data-op="vcard-save" id="contact-save-button" title="Save"><img src="/img/icons16/save.png" alt="Save" /> Save</button>
+			<div id="cc_ops-vcard_edit_actions" style="display: none;">
+				<div class="toolbar-separator"></div>
+				<button data-op="vcard-labels" title="Set labels for contact"><img src="/img/icons16/tag_orange.png" alt="Set labels" /> Set labels...</button>
+				<button data-op="vcard-delete" title="Remove this contact from the database"><img src="/img/icons16/vcard_delete.png" alt="Delete" /> Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+{!{#if:myorg:
+	<h2 style='float: right; color: lightgray;'>Administrating organization contacts</h2>
+	<h2>{myorg.name} <span style='color: gray;'>({myorg.orgtype.name})</span></h2>}}
+<div id="comm-center">
+	<ul style="margin-left: 32px;">
+		{#repeat:mc_tabs:
+			<li><img src="/img/icons16/{icon}" alt="{title}" /> {title}</li>}
+	</ul>
+	{#repeat:mc_tabs:
+		<div id="{id}"{#if:spacey: class="spacey"} style="border: none;">
+			<div style="text-align: center; padding: 30px;"><img src="/img/extra/loader3.gif" alt="Loading..." /></div>
+		</div>}	
+</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template-contact-result" type="text/dryjstpl">{@
+	<table class="infotable contact-result-row">
+	<tr>
+		<th><img id="contact-picture" src="/global/contact?action=get_picture&amp;ireq=1&amp;id={$contact_id}" style="width: 48px" /></th>
+		<td valign="top">
+			<div class='contact-name'><span>{$name}</span></div>
+			<div class='contact-email'><span>{$email}</span></div>
+		</td>
+	</tr>
+	{#exists:xdata.company:<tr>
+		<th><label>Company</label></th>
+		<td>{$xdata.company}</td>
+	</tr>}
+	{#exists:xdata.address:<tr>
+		<th><label>Address</label></th>
+		<td>{$xdata.address}</td>
+	</tr>}
+	</table>
+	<hr style="margin: 0;" />
+}</script>
+
+<script id="contact-actions" type="text/dryjstpl">
+<div id="contact-actions-menu"><ul style='width: 200px;'>
+	<li data-op="details"><img src='/img/icons16/user_gray.png' alt="Contact details" /> Contact details</li>
+	<li data-op="compose"><img src='/img/icons16/draw_calligraphic.png' alt="Write a message" /> Write a message</li>
+	<li data-op="find_convos"><img src='/img/icons16/magnifier.png' alt="Find conversations" /> Find conversations</li>
+	<li ty{!}pe='separator'></li>
+	<li data-op="edit"><img src='/img/icons16/vcard_edit.png' alt="Edit contact" /> Edit contact</li>
+	<li data-op="fav"><img src='/img/icons16/add.png' alt="Add to favourites" /> Add to favourites</li>
+</ul></div>
+</script>
+
+<script id="template-msg-options" type="text/dryjstpl">{@
+	{#exists:css_options:
+		<h3>Contacts search scope:</h3>
+		<hr />
+		<div id="contact-search-scope">
+			{#exists:active_issue:<div data-css="isslink"><span>Current issue contacts</span></div>}{!Note: The contacts linked to the open issue}
+			<div data-css="recent"><span>Recently used</span></div>
+			<div data-css="personal"><span>Personal address book</span></div>
+			<div data-css="department"><span>Department contacts</span></div>
+			<div data-css="organization"><span>Organization wide</span></div>
+			<div data-css="global"><span>Yellow pages</span></div>{!Public contacts, everyone can see these}
+		</div>}
+}</script>

@@ -1,0 +1,5 @@
+{#use:%ist.xfield_def:
+		{#if:^xfields.training_remarks:
+		<div>{^xfields.training_remarks}~nl2br~</div>}
+		{#ifnot:^xfields.training_remarks:<div class="gray" style="text-indent: 20px;">(use this area as a quick clipboard)</div>}
+}

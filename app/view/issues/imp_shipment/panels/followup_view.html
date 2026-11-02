@@ -1,0 +1,23 @@
+{#use:%ist.xfield_def:
+<table>
+  <tr><th>{haulier.n}:</th><td>{^xfields.haulier}</td></tr>
+  <tr><th>{instructions.n}:</th><td>{^xfields.instructions}</td></tr>
+  <tr><th>{reference_nr.n}:</th><td>{^xfields.reference_nr}</td></tr>
+  <tr><th>{slottime.n}:</th><td>{#if:^xfields.slottime:{^xfields.slottime}~date("Y-m-d")~}{#ifnot:^xfields.slottime:<span class='gray'>(missing)</span>}</td></tr>
+  <tr><th>{booked_del.n}:</th><td><b>{^xfields.booked_del.value}</b></td></tr> 
+   <tr><th>{delivered.n}:</th><td><b>{^xfields.delivered.value}</b></td></tr> 
+   <tr><th>{pod_received.n}:</th><td><b>{^xfields.pod_received.value}</b></td></tr> 
+  
+  
+</table>
+
+<h5 style="margin-left: 20px;">{remarks.n}:</h5>
+	{#if:^xfields.remarks:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; height: 70px;max-height: 100px; overflow: auto;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+}
+
+
+
+

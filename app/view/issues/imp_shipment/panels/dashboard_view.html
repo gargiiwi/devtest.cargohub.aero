@@ -1,0 +1,20 @@
+{#use:%ist.xfield_def:
+	{!Various types of data output customizations that are specific to this issue type, directly in the template}
+	<table>
+		<tr><th>{mawb.n}:</th><td><b style='font-size: 16px;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>			
+	    <tr><th>{org_loc.n}:</th><td>{^xfields.org_loc.value.IATA}</td></tr>
+		<tr><th>{job_nr.n}:</th><td>{^xfields.job_nr}</td></tr>
+		<tr><th>{hawb.n}:</th><td>{^xfields.hawb}</td></tr>
+		<tr><th>{Consignee.n}:</th><td>{^xfields.Consignee}</td></tr>
+		<tr><th>{reference.n}:</th><td>{^xfields.reference}</td></tr>
+        <tr><th>{pieces.n}:</th><td>{^xfields.pieces}</td></tr>
+	    <tr><th>{g_weight.n}:</th><td>{^xfields.g_weight}</td></tr>
+		<tr><th>{charg_weight.n}:</th><td>{^xfields.charg_weight}</td></tr>
+
+		
+	</table>
+
+		
+	
+
+}

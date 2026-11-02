@@ -1,0 +1,60 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:title:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+  	<tr>
+		<th><label for='{mawb_p.id}'>{mawb_p.display.label}:</label></th>
+		<td>
+			<input type='text' id='{mawb_p.id}' name='{mawb_p.name}' value='{mawb_p.value}' maxlength="3" style='width: 30px;' class="jqx-input jqx-input-{%jqxtheme}" /> - 
+			<input type='text' id='{mawb_s.id}' name='{mawb_s.name}' value='{mawb_s.value}' maxlength="8" style='width: 70px;' class="jqx-input jqx-input-{%jqxtheme}" />
+		</td>
+	</tr>
+	{#use:station:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+<hr />
+<table>
+	<tr>
+		<th><label>Date &amp; Time:</label></th>
+		<td>
+			{#use:ev_date:<div id='{id}' style="float: left;" name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			{#use:ev_time:<input style="float: left; margin-left: 8px;" type="text" id='{id}' name='{name}' data-value='{value}' class='theclock jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+	{#use:type:<tr>
+		<th><label class="info-tip" data-tooltip="Preliminary claims do not usually have a Claim amount set">{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:indication:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:indication_curr:<select id='{id}' name='{name}' style='width: 80px;'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{!{#use:claimants:<tr>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:
+		<label style='display: block; width: 120px; float: left; margin-top: 2px; margin-bottom: 3px;'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}}
+	{#use:company:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:reference:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+{#use:details:
+	<h4 style="text-indent: 24px; margin-top: 12px;">{display.label}</h4>
+	<textarea autocorrect="off" spellcheck="false" style="margin-bottom: 6px;" rows="9" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} fullwidth{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}>{value}</textarea>
+}
+</form>}

@@ -1,0 +1,55 @@
+form.vertiform input[type='text'], form.vertiform input[type='password'] {
+	width: 248px;
+	height: 23px;
+	border: 1px solid lightgray;
+	border-radius: 3px;
+}
+
+form.vertiform li.xfline {
+	height: 27px;
+}
+
+form.vertiform li.xfline > label > div:first-child {
+	float: right;
+	margin-top: 6px;
+}
+
+form.vertiform li.xfline > div > * {
+	float: left;
+	margin-left: 2px;
+	margin-right: 4px;
+}
+
+form.vertiform li.xfline > div > span {
+	line-height: 27px;
+}
+
+form.vertiform li.xfline > div > input[type="text"] {
+	width: 199px;
+}
+
+/** Specific to this zone **/
+
+div.modal_content div#options > div {
+	height: 26px;
+}
+
+	div.modal_content div#options > div > * {
+		float: left;
+	}
+
+	div.modal_content div#options > div > label {
+		display: block;
+		line-height: 25px;
+		width: 150px;
+	}
+
+		div.modal_content div#options > div > label div.jqx-checkbox-default {
+			margin-top: 5px;
+		}
+
+	div.modal_content div#options > div > input {
+		padding: 1px 0px;
+		height: 21px;
+		width: 150px;
+	}

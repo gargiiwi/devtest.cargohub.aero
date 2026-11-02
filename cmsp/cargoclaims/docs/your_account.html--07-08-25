@@ -1,0 +1,115 @@
+<!--IWI how to page design start-->
+
+<div class="cargo_claims_how_to_submit">
+    <section class="cargo_claims mt-5">
+        <div class="container-fluid">
+            <div class="row" style="display: flex;justify-content: center;">
+                <div class="col-12 col-md-7 col-lg-7">
+                    <div class="top_dv">
+                        <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/howto_submit_claim" class="claim_submit_btn ">How to submit a claim</a>
+                        <a href="javascript:void(0)" class="claim_update_btn active">View and update your claims</a>
+                    </div>
+                    <div class="claim_submit_dv">
+                        <div class="title">
+                            <h1 style="color: black;">HOW TO SECTION FOR CLAIMANTS</h1>
+                        </div>
+                        <div class="claim_submit_dv_wrap">
+                            <div class="accordion">
+                                <input type="radio" name="accordion" id="panel1" checked>
+                                <label for="panel1">  Step 1 - Account creation and login :</label>
+                                <div class="content">
+                                    <div class="title">
+                                        <h6 class="mb-0">➤ What to Do:</h6>
+                                    </div>
+                                    <div class="steps">
+                                        <p>After creating a Cargo Claims form for the first time you will receive an email with your free account. To view your existing claim you may login <a href="https://cargoclaims.aero/contact/access?action=login">here</a> </p>
+                                        <img src="/img/extra_domain_image/image_login.jpg" alt="">
+                                        <p>Forgot Password, click <a href="https://cargoclaims.aero/contact/access?action=recover_password">here</a></p>
+                                    </div>
+                                </div>
+
+                                <input type="radio" name="accordion" id="panel2">
+                                <label for="panel2">Step 2 – Account features:</label>
+                                <div class="content">
+                                    <div class="steps">
+                                        <p>The “Submitted data” tab is an overview of your claims. Here you can:</p>
+                                        <ul>
+                                            <li>View the status of your claims</li>
+                                            <li>Unsent claims</li>
+                                            <li>Update a claim -</li>
+                                            <li>Submit a new claim</li>
+                                            <li>Update your contact information</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <input type="radio" name="accordion" id="panel3">
+                                <label for="panel3">Step 3 -  Claims overview and status :</label>
+                                <div class="content">
+                                    <div class="accordion-body">
+                                        <div class="title">
+                                            <p>Open a record by clicking on the tracking ID link</p>
+                                        </div>
+                                        <div class="steps">
+                                            <img src="/img/extra_domain_image/claim_status.png" alt="">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <input type="radio" name="accordion" id="panel4">
+                                <label for="panel4">Step 4 – Unsent claim:</label>
+                                <div class="content">
+                                    <div class="title">
+                                        <p>If you haven’t sent the claim after submitting the form, a “no E-mail sent” notification will show up in your overview. Open the claim to proceed with the sending process.</p>
+                                        <p>In order to sent the claim to the carrier, click on the link in the red box above. You will be redirected to the submission form.  Follow the “Update claim” procedure to send the claim.</p>
+                                    </div>
+                                </div>
+
+                                <input type="radio" name="accordion" id="panel5">
+                                <label for="panel5">Step 5 – Update and sent a claim :</label>
+                                <div class="content">
+                                    <div class="title text-center">
+                                        <p>Open a claim and add files and financial information in the data panels. When finished, press the green “Update information” button below, to send the claim.</p>
+                                        <img src="/img/extra_domain_image/updt_sent_claim.png" alt="">
+                                        <hr/>
+                                        <img src="/img/extra_domain_image/updt_sent_claim_2.png" alt="">
+                                    </div>
+                                </div>
+
+                                <input type="radio" name="accordion" id="panel6">
+                                <label for="panel6"> Step 6 – Update to a Formal claim :</label>
+                                <div class="content">
+                                    <div class="title">
+                                        <p>Open a claim and fill in any financial information and enter the Final claim amount in the yellow box. Checkmark the documents you are sending.
+                                            *Press the “Guidelines..” button for more information about submitting documents. Click on the “Drag & Drop” box to upload files.
+                                            When finished, press the green “Update information” button, to send the claim.</p>
+                                        <div class="imgs text-center">
+                                            <img src="/img/extra_domain_image/formal_claim.png" alt="">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <input type="radio" name="accordion" id="panel7">
+                                <label for="panel7">Step 7 – Contact details :</label>
+                                <div class="content">
+                                    <div class="title">
+                                        <h5>Here you can update your contact information..</h5>
+                                        <p>To add an area of information, click on the “Select” feature, and the line will appear below in your overview.
+                                            The “Save” button on top, appears after you have made any changes.
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!--IWI how to page design end-->

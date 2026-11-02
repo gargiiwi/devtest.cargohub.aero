@@ -1,0 +1,80 @@
+/* Styles for the CargoHub ITS - jqxEditor iframe - Resets some of the mess that the editor does, plus adds application specific styling */
+
+/** Global **/
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: white;
+	color: black;
+}
+
+/** Some unobtrusive debugging features **/
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+
+p {
+	margin: 1.12em 0;
+}
+
+a {
+	text-decoration: none;
+}
+	a:hover {
+		text-decoration: underline;
+	}
+
+h1, h2, h3 {
+	padding: 0px;
+	margin: 0 0 4px 0px;
+	font-family: Tahoma;
+}
+
+h1 {
+    color: #2B296C;
+    font-family: Calibri;
+    font-size: 20px;
+    font-weight: bold;	
+}
+
+h2 {
+    color: #2B296C;
+    font-family: Calibri;
+    font-size: 18px;
+	font-weight: normal;	
+}
+
+h3 {
+	color: #74804E;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+/* Little header for various tables and so on */
+h4 {
+    background-color: #dfdfdf;
+	color: black;
+    border-bottom: 1px solid #A0B0C0;
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 0;
+    padding: 3px;
+    text-indent: 20px;
+}
+
+hr {
+	background-color: lightgray;
+	border: none;
+	height: 1px;
+	margin: 5px 0px 9px 0px;
+}
+
+.red { color: red; }
+.blue { color: blue; }
+.darkblue { color: darkblue; }
+.gray { color: #999; }
+
+/** UI Common elements **/
+div.spacey {
+	padding: 6px;
+}

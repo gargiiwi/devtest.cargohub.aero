@@ -1,0 +1,156 @@
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/css/default/components/jquery.dataTables.min.css"
+    />
+<style>
+  .table.dataTable  {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+</style>
+
+
+
+    <button  title="Publication Access" style="float: right;" class="raumd jqx-rc-all jqx-rc-all-classic jqx-button jqx-button-classic jqx-widget jqx-widget-classic jqx-fill-state-normal jqx-fill-state-normal-classic">
+            <a href="{last_url}#users">
+            <img src="/img/icons16/users.png"> Users Module
+            </a>
+        </button>
+<input type="hidden" id="currOrg" value="{curr_org_id}" />
+<div id='org-control-panel'>
+    <ul>
+        <li><img src='/img/icons16/company-building-icon.png' alt='Active' /> Publication Active</li><!-- comment -->
+        <li><img src='/img/icons16/company-building-icon.png' alt='Not Active' /> Publication Inactive</li>
+        <!--<li><img src='/img/icons16/company-building-icon.png' alt="Access to publish other's documents" /> Access to publish other's documents</li>-->
+
+    </ul>
+
+    <div class='spacey' id="active" >
+
+        <table id="tab_publication_access_active">
+            <thead>
+                <tr>
+                    <!--<th>&nbsp; </th>-->
+                    <th>Name </th>
+                    <th>Email</th>
+                    <th>Departments</th>
+                    <!--<th></th>-->
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {#repeat:users_active: <tr>
+                    <!--<td><input type="checkbox" data-user-id="{id}"/></td>-->
+                    <td>{name}{status}</td>
+                    <td>{user}</td>
+                    <td>{dep_name}</td>
+<!--                    <td>
+                        {#if:login_as='Yes':
+                        <button class="btn loginAsBtn" data-user-id="{id}"  data-user-name="{name}" >Login as</button>
+                        }
+                    </td>-->
+                    <td>
+                         <button id="edit_btn" class="btn raallow"  data-user-id="{id}" >Edit</button>
+                        {#if:is_publish_all_linked_department='Yes':
+                        <button id="disallow_btn" class="btn radisallow"  data-user-id="{id}" >Click to Disallow</button>
+                        }
+                        
+                        
+                         
+                    </td>
+                </tr>}
+
+            </tbody>
+        </table>
+
+
+    </div>
+    
+    <div class='spacey' id="notActive" >
+
+        <table id="tab_publication_access_not_active">
+            <thead>
+                <tr>
+                    <!--<th>&nbsp; </th>-->
+                    <th>Name </th>
+                    <th>Email</th>
+                    <!--<th>Status</th>-->
+                    <!--<th></th>-->
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {#repeat:users_not_active: <tr>
+                    <!--<td><input type="checkbox" data-user-id="{id}"/></td>-->
+                    <td>{name}{status}</td>
+                    <td>{user}</td>
+                    <!--<td>{is_publish_all_linked_department}</td>-->
+<!--                    <td>
+                     {#if:login_as='Yes':
+                        <button class="btn loginAsBtn" data-user-id="{id}"  data-user-name="{name}" >Login as</button>
+                        }
+                    </td>-->
+                    <td>
+                        {#if:is_publish_all_linked_department='No':
+                        <button id="allow_btn" class="btn raallow" data-user-id="{id}">Click to Allow</button>
+                        }
+                        
+                    </td>
+                </tr>}
+
+            </tbody>
+        </table>
+
+
+    </div>
+    
+<!--    <div class='spacey' id="givePermissionToOther" >
+
+        <table id="tab_publication_givePermissionToOther">
+            <thead>
+                <tr>
+                    <th>Name </th>
+                    <th>Access Granted </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                 {#repeat:users_not_active: 
+                <tr>
+                    <td>{user}</td>
+                    <td><div class=" highlight-text displayThis" data-id="425201"> (3) </div> </td>
+                    <td>
+                        
+                        <button id="allow_btn" class="btn raallow" data-user-id="{id}">Click to Allow</button>
+                        
+                        
+                    </td>
+                </tr>
+}
+            </tbody>
+        </table>
+
+
+    </div>-->
+
+
+</div>
+
+
+
+<script
+    type="text/javascript"
+    charset="utf8"
+src="/js/components/jquery.dataTables.min.js"></script>
+<script type="text/javascript" >
+    
+    
+
+    $("#tab_publication_access_active").dataTable();
+    $("#tab_publication_access_not_active").dataTable();
+</script>
+
+
+
+

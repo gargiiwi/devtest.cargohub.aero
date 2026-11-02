@@ -1,0 +1,973 @@
+{!Note to the monkeys editing this file (and any other actually):
+
+1) !!! KEEP THE TAGS PROPERLY ALIGNED !!!!
+2) Use TABS for a tab, not 3 spaces, 4 spaces, 5 spaces or whatever the fuck your parkinson finger is managing to hit
+3) You open a tag - YOU CLOSE IT.
+4) HTML tags use FORWARD slashes. <br /> and not <br \>
+5) Stop being so messy !
+
+Thank you.
+
+}
+
+{@<style type="text/css">
+div.left-area {
+	width: 620px;
+	margin: 40px auto 0 auto;
+}
+
+div.right-area {
+	float: right;
+	width: 440px;
+}
+
+div.opzone {
+	width: 400px;
+	min-height: 80px;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	background-color: white;
+	box-shadow: 2px 2px 4px lightgray;
+}
+	div.opzone a {
+		font-size: 20px;
+		display: block;
+		margin-top: 14px;
+		font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+		color: #2B296C;
+	}
+	
+	div.opzone img {
+		float: left;
+		margin: 0px 20px 20px 20px;
+		text-decoration: none;
+		border: none;
+	}
+	
+div.contentblock {
+	width: 600px;
+	border-radius: 7px;
+}
+
+	div.contentblock a {
+		border: none;
+		color: #166EB7;
+	}
+	
+div#tabs-cargoclaim div.jqx-tabs-content {
+	padding: 8px;
+}
+
+td.worldwide {
+	background: url(/img/icons16/world.png) no-repeat center center;
+}
+
+table#airlines-per-station {
+	width: 100%;
+	border-collapse: collapse;	
+}
+
+table#airlines-per-station tr:HOVER {
+	background-color: #F0F0F8;
+}
+
+table#airlines-per-station th {
+	text-align: left;
+	color: white;
+}
+table#airlines-per-station td {
+	height: 20px;
+	line-height: 20px;
+}
+
+table#airlines-per-station a, table#airlines-per-station a:VISITED {
+	color: #166EB7;
+}
+table#timeperiods td {
+	padding: 5px;
+	border-spacing: 3px;
+}
+
+div.slide-body {
+	width: 1130px;
+	height: 110px;
+}
+
+#customers .pages .page {
+	border-color: gray !important;
+}
+
+div.custlogo {
+	display: inline-block;
+	width: 24%;
+	height: 75px;
+	text-align:center;
+	margin-bottom: 25px;
+	white-space: nowrap;
+	text-align: center;
+}
+
+	div.custlogo img {
+		max-width: 100%; max-height: 75px;
+		vertical-align: middle;
+	}
+
+
+div#searchbox {
+	margin-left: 35px;
+}
+.graytitle {
+	font-size: 23px;
+	text-align: center;
+	margin: 100px 0 30px 0;
+	color: #5b5a5a;
+}
+div#tabs-cargoclaim {
+	margin: 30px 0;
+}
+.videos { text-align: center;}
+.videos .box { width: 40%; display: inline-block; margin: 20px; }
+.videos .box img { max-width: 100%;}
+.tracker { margin-top: 40px;}
+.tracker span { margin: 4px 30px; font-size: 20px;
+	display: block;
+	font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+	color: #2B296C; font-weight: bold;}
+.tracker form { margin: 10px 30px;}
+.tracker img { margin: 26px !important;}
+.tracker p { margin: 0; font-size: 11px; }
+
+.cclp-ad {
+	font-family: "Open Sans",sans-serif;
+}
+
+.cclp-headline {
+	color: #1877BF;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+.box_one {
+	background: #fff none repeat scroll 0 0;
+	border: 1px solid #ccc;
+	margin-bottom: 25px;
+	padding: 20px;
+	position: relative;
+}
+	.box_one .box_tl {
+		left: 0;
+		position: absolute;
+		top: 0;
+		height: 25px;
+	}
+	
+	.box_one .box_br {
+		bottom: 0;
+		position: absolute;
+		right: 0;
+		height: 25px;
+	}
+	.box_one .adv-center {
+		font-family: "Open Sans",sans-serif;
+		font-size: 22px;
+		color: #333333;
+		line-height: 25px;
+		position: relative;
+		top: 50%;
+		margin-top: -40px;
+	}
+	
+	div#login {
+		margin: 30px auto;
+		width: 550px;
+	}
+	div.site > div.page > div#login small {
+		color: #666666;
+	}
+	div#login > div.logo {
+		margin-left: 40px;
+		margin-right: 30px;
+		padding: 12px;
+		width: 128px;
+	}
+	div#login > div.form {
+		padding: 12px;
+	}
+	div#login > div.form div.field {
+		background-color: white;
+		border: 1px solid #c7c7c7;
+		margin-bottom: 15px;
+		padding: 2px;
+		width: 250px;
+	}
+	div#login > div.form div.field > input {
+		border: medium none;
+		font-size: 14px;
+		line-height: 19px;
+		resize: none;
+		text-indent: 8px;
+		width: 100%;
+	}
+	div#login > div.form #remember {
+		float: left;
+		margin-left: -3px;
+		margin-top: 4px;
+	}
+		.xlink-1 {
+		border: 1px solid lightgray;
+		border-radius: 7px;
+		height: 44px;
+		width: 48%;
+	}
+	.xlink-1 img {
+			float: left;
+			margin: 0px 12px 0 20px;
+			text-decoration: none;
+			border: none;
+			width: 30px;
+		}
+		.xlink-1 a {
+			font-size: 17px;
+			font-weight: bold;
+			display: block;
+			margin-top: 4px;
+			font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+			color: #166EB7;
+		}
+		.xlink-1 p {
+			margin: 8px;
+		}	
+.header {
+	padding-bottom: 0 !important;
+}
+	
+</style>}
+<img src="/cmsup/worldwide/cchdr2021.jpg" alt="cc2k21" />
+<div>
+{#plugin:jqxtabs}
+	<div id="tabs-cargoclaim" style="margin-top: 0 !important;">
+		<ul>
+			<li style="margin-left: 20px;"><img src='/img/icons16/world.png' />Airline index</li>
+	        <li><img src='/img/icons16/world.png' />GSSA index</li>
+			<li>Guidelines</li>
+			<!-- <li>About us</li> -->
+  			<li><a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/howto_submit_claim">How to</a></li>
+	        <li><a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/about_us">About us</a></li>
+			<li>Legal notice</li>
+			<li><a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/about_us">About us</a></li>
+	
+		</ul>
+{!Tab Worldwide}
+		<div>
+	<!--<ul style="padding-left: 5px;margin-left:5px;">
+	  The Cargo Claims platform enables you to manage and submit your cargo claims to any airline from <b>ONE</b> single platform. An account is automatically generated upon submitting your first claim. 
+</ul>
+<hr>
+<h4 style="margin-left: 2px;margin-top: 16px;">Submit a claim to {html.title} in easy steps:</h4>
+	<ol style="padding-left: 16px; margin-left:30px;">
+		<li>Complete the cargo claim form and submit (no login required)</li>
+		<li>Enter email address of the airline or select available contacts</li>
+		<li>Click on the send email button. A copy of the claim will be sent to your email address</li>
+	</ol>-->
+	<br>
+		<div class="left-area">
+				<div id="searchbox">
+				<div class="center" style="margin-bottom: 20px;">
+						<h1 style="background-color: #214e78; color: white; display: block; width: 490px; padding: 5px; border-radius: 18px;">SEARCH AIRLINE AND SUBMIT A CLAIM</h1>
+					</div>
+					{#plugin:airfind}
+				</div>
+
+				<!-- <div style="margin-left: 60px; margin-top: 30px;"> -->
+					<!-- <p>Find existing claims<a href="https://www.cargoclaims.aero/contact/access?action=login"><b> [login]</b></a> 		|  FAQ<a href="https://www.cargoclaims.aero/cms?path=/help/faq"><b> [click here]</b></a> -->
+				<!-- </div> -->
+				
+				<table style="width: 87%;border-spacing: 0;margin-top: 40px;padding-left: 36px;padding-right: 3px;">
+					<tr>
+						<td class="xlink-1">
+							<img alt="Lupa" src="/img/icons/magnifier.png"><a href="/contact/account?hash=issues">View existing claims</a>
+						</td>
+						<td style="width: 20px;">&nbsp;</td>
+						<td class="xlink-1">
+							<img alt="Demo area" src="/img/icons/question.png"><a href="https://www.cargohub.nl/liability-calculators" target="_blank">Compensation limits</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		  
+	
+
+
+
+	<!--<p style="font-style: italic; margin-top: 0;"><b>Important notice:</b><br />
+	<span style="font-size: 110%;">Please use browsers <a href="https://www.google.com/chrome/index.html"><b>Google Chrome</b></a> or <a href="https://www.mozilla.org/en-US/firefox/new/"><b>Mozilla Firefox</b></a> with this software.</span><br /><br />
+	<span style="font-size: 85%;">Some older Internet Explorer versions have known issues and you might not be able to complete the process!</span></p>
+	<hr />-->
+	
+	<!--CargoClaims.aero offers an easy way for filing a cargo claim.-->
+	<br>
+	<hr/>
+	<br/><br/>
+<div style="float: left;margin-left: 30px;width: 1005px">
+
+		  
+		 
+	<!--CargoClaims.aero offers an easy way for filing a cargo claim.-->
+	
+	
+		<ul style="padding-left: 5px;margin-left:5px;">
+	  	The IATA cargo innovation awarded <b>Cargo Claims and Loss Prevention (CCLP)</b> platform enables you to manage and submit your cargo claims to any airline from <b>ONE</b> single platform.  
+		</ul>
+
+	
+		<div>
+		<h4 style="margin-left: 2px;margin-top: 16px;">Submit a claim to an airline in easy steps:</h4>
+		<!--<ol style="padding-left: 16px; margin-left:30px;">
+		<li>Search your airline and complete the cargo claim form (no login required)</li>
+		<li>Enter email address of the airline or select available contacts</li>
+		<li>Click on the send email button. A copy of the claim will be sent to your email address</li>
+	  	<li>An account is automatically generated upon submitting your first claim</li>
+
+		</ol>-->
+		<br/>
+		<center>
+		<!--<td style="width: 80%;"><b></b><br /><br /><iframe src="https://player.vimeo.com/video/80020463?color=ffffff" width="800" height="367" frameborder="0" allowfullscreen=""></iframe></td>-->
+		<!--<a href="http://www.cargohub.nl/wp-content/uploads/2015/06/CargoClaims-Flyer.pdf"><img style="width: 260px;" src="/cmsup/solution/cargoclaimsbrochurefront.png" alt="CargoClaims Brochure"></a>-->
+  		</center>		
+		<img src="img/hdrs/cargoclaim-pre.jpg" style="display: block;margin-left: auto;margin-right: auto;width: 60%">
+		</div>
+
+		<div style="display: grid;grid-template-columns: 1fr 1fr;grid-gap: 20px;width: 50%;">
+		<div style="margin: 10px;">	
+		<h4 style="width: 465px;margin-left: 2px; margin-top: 16px;"><a href="https://www.cargohub.nl/blog/claim-management-for-forwarders-made-simple" target="_blank">Benefits for forwarders and shippers</a></h4>
+		<ul style="padding-left: 25px;margin-left:30px;">
+			<li>Benefit an industry standardized claims proces</li>
+			<li>Submit a claim to any airline in just 3 easy steps</li>
+			<li>Manage all your claims from a single account</li>
+			<li>Read more about benefits for claimants <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_claimants" target="_blank" style="font-weight: bold;">click here</a></li>
+		</ul>
+		<br/>
+		<a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_claimants" target="_blank"><img src="https://cargohub.aero/vich/7d582f0e2009456af0a40cd42555d3b47b1b1da9" style="display: block;margin-left: auto;margin-right: auto;width: 70%; padding-right: 39px;"></a>
+
+		</div>
+		<div style="margin: 10px;">
+		<h4 style="width: 465px; margin-top: 16px;margin-left: 21px;"><a href="https://www.cargohub.nl/worldwide-cargo-claims-platform" target="_blank" style="margin-right: 17px;">Benefits for airlines and gs(s)a</a></h4>
+		<ul style="padding-left: 2px;margin-left:62px;">
+			<li>Manage all claims electronically</li>
+			<li>Increase the speed of service recovery</li>
+			<li>Increase the customer experience</li>
+			<li>Read more about benefits for airlines <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_airlines" target="_blank" style="font-weight: bold;">click here</a></li>
+		</ul>
+		<br/>
+		<a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_airlines" target="_blank"><img src="https://cargohub.aero/vich/25905435891ea2a6b70d0422017bcb127043f2a0" style="display: block;margin-left: auto;margin-right: auto;width: 70%;padding-right: 26px;"></a>
+		</div>
+		</div>
+		</div>
+	
+	
+
+
+	
+			
+<!--{!			<div class="right-area">
+				<div class="opzone" style='margin-top: 44px;'>
+					<b><a href="/contact/account?hash=issues"><img alt="Find my claim" src="/cmsup/worldwide/search.png">Account login (claimants)</a></b>
+					<p>View or update your claims</p>
+				</div>
+				<div class="tracker opzone">
+				<img alt="Track your code" src="/cmsup/worldwide/air-cargo.png">
+				<span>Shipment delayed or lost?</span>
+				<p>AWB format: AAA-01234567</p>
+				<form action="http://connect.track-trace.com/for/cargoclaims" method="post" target="_blank">
+					<input type="hidden" name="shipper" value="aircargo">
+					<input type="text" name="number" class="jqx-rc-all" style="border: 1px solid lightgray; height: 20px; line-height: 20px;">{! class="jqx-rc-all jqx-input"}
+					<input type="submit" value="Track"class="jqx-rc-all" style="border: 1px solid lightgray; height: 24px; width: 70px;">{! class="jqx-rc-all jqx-input"}
+				</form></div>
+			</div>
+			<div class="clear"></div>
+			<div>&nbsp;</div>
+}-->
+		</div>
+{!GSSA Index}
+	
+	<div>
+	<br/>
+	<br/>
+		<!--<p>Index overview of GSSA's whom have joined the Cargo Claims platform to optimize claims handling efficiency and to increase their customers experience </p>-->
+		<!--<p>Airlines for route origin or destination <b>Amsterdam</b> station to which you can submit using <b>CARGO Claims</b> service</p>-->
+		<!--<p><img style="float: left; margin-right: 6px;" src="/img/icons16/world.png" /> - This symbol represents that the airline has an unique claim submit portal for all <a href="/cms?path=worldwide">worldwide locations</a> (not just Amsterdam).</p>-->
+		<table id="airlines-per-station">
+			<tr style="background-color: gray; text-align: left; height: 24px;">
+				<th style="width: 50px;"></th>
+				<th>GSSA Claim Portal</th>
+				<th style="width: 50px;"></th>
+				<th style="width: 50px;"></th>
+				<th style="width: 25%;">Company website</th>
+				<th style="width: 25%;">Ground Handler</th>
+			</tr>
+			<tr><td>&nbsp;</td><td><a href="test"</a></td>	<td></td>	<td></td>	<td><a href="" target="_blank"></a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="https://gsawexco.cargoclaims.aero/">gsawexco.cargoclaims.aero</a></td>	<td></td>	<td></td>	<td><a href="http://gsawexco.com" target="_blank">GSA Wexco</a></td><td>&nbsp;</td></tr>
+		  <tr><td class="worldwide">&nbsp;</td><td><a href="https://kales.cargoclaims.aero/">kales.cargoclaims.aero</a></td>	<td></td>	<td></td>	<td><a href="http://kales.com" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+<tr><td class="worldwide">&nbsp;</td><td><a href="https://avplus.cargoclaims.aero/">avplus.cargoclaims.aero</a></td>	<td></td>	<td></td>	<td><a href="https://aviationplus.aero/" target="_blank">Aviation Plus</a></td><td>&nbsp;</td></tr>
+			<!--<tr><td class="worldwide">&nbsp;</td><td><a href="http://a3.cargoclaims.aero/issue?action=form&amp;mawbp=390">Aegean Airlines</a></td>			<td>A3</td>	<td>390</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ei.cargoclaims.aero/issue?action=form&amp;mawbp=053">Aer Lingus</a></td>					<td>EI</td>	<td>053</td>	<td><a href="http://www.euroskycargo.com/" target="_blank">Eurosky Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://su.cargoclaims.aero/issue?action=form&amp;mawbp=555">Aeroflot-Russian Airlines</a></td>	<td>SU</td>	<td>555</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://am.cargoclaims.aero/issue?action=form&amp;mawbp=139">Aeromexico</a></td>					<td>AM</td>	<td>139</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://5l.cargoclaims.aero/issue?action=form&amp;mawbp=275">AeroSur</a></td>					<td>5L</td>	<td>275</td>	<td><a href="http://www.activeair.nl/contact.htm" target="_blank">Active Airline Representatives</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=27&amp;mawbp=124">Air Algerie</a></td>	<td>AH</td>	<td>124</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://g9.cargoclaims.aero/issue?action=form&amp;mawbp=514">Air Arabia</a></td>					<td>G9</td>	<td>514</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=44&amp;mawbp=907">Air Armenia</a></td>	<td>QN</td>	<td>907</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=11&amp;mawbp=465">Air Astana</a></td>		<td>KC</td>	<td>465</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://uu.cargoclaims.aero/issue?action=form&amp;mawbp=760">Air Austral</a></td>				<td>UU</td>	<td>760</td>	<td><a href="http://www.globalgsagroup.com/netherlands/" target="_blank">Global</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://bt.cargoclaims.aero/issue?action=form&amp;mawbp=657">Air Balitc</a></td>					<td>BT</td>	<td>657</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ab.cargoclaims.aero/issue?action=form&amp;mawbp=745">Air Berlin</a></td>					<td>AB</td>	<td>745</td>	<td><a href="http://www.activeair.nl/contact.htm" target="_blank">Active Airline Representatives</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ru.cargoclaims.aero/issue?action=form&amp;mawbp=580">Air Bridge Cargo</a></td>			<td>RU</td>	<td>580</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ac.cargoclaims.aero/issue?action=form&amp;mawbp=014">Air Canada</a></td>					<td>AC</td>	<td>014</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ca.cargoclaims.aero/issue?action=form&amp;mawbp=999">Air China</a></td>					<td>CA</td>	<td>999</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ux.cargoclaims.aero/issue?action=form&amp;mawbp=996">Air Europa</a></td>					<td>UX</td>	<td>996</td>	<td><a href="http://www.activeair.nl/contact.htm" target="_blank">Active Airline Representatives</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://af.cargoclaims.aero/issue?action=form&amp;mawbp=057">Air France</a></td>					<td>AF</td>	<td>057</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ia.cargoclaims.aero/issue?action=form&amp;mawbp=098">Air India</a></td>					<td>AI</td>	<td>098</td>	<td><a href="http://www.flyus.aero/locations/netherlands" target="_blank">FlyUs</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://km.cargoclaims.aero/issue?action=form&amp;mawbp=643">Air Malta</a></td>					<td>KM</td>	<td>643</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://mk.cargoclaims.aero/issue?action=form&amp;mawbp=239">Air Mauritius (Cargo)</a></td>		<td>MK</td>	<td>239</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=13&amp;mawbp=572">Air Moldova</a></td>	<td>9U</td>	<td>572</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=16&amp;mawbp=086">Air New Zealand</a></td><td>NZ</td>	<td>086</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ju.cargoclaims.aero/issue?action=form&amp;mawbp=115">Air Serbia (JAT Airways)</a></td>	<td>JU</td>	<td>115</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+            <tr><td class="worldwide">&nbsp;</td><td><a href="http://ts.cargoclaims.aero/issue?action=form&amp;mawbp=649">Air Transat</a></td><td>TS</td>	<td>649</td>	<td><a href="http://www.flyus.aero/locations/netherlands" target="_blank">FlyUs</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://az.cargoclaims.aero/issue?action=form&amp;mawbp=055">Alitalia</a></td>					<td>AZ</td>	<td>055</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://nh.cargoclaims.aero/issue?action=form&amp;mawbp=205">All Nippon Airways</a></td><td>NH</td>	<td>205</td>	<td><a href="http://www.flyus.aero/locations/netherlands" target="_blank">FlyUs</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://4w.cargoclaims.aero/issue?action=form&amp;mawbp=574">Allied Air</a></td>					<td>4W</td>	<td>574</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://aa.cargoclaims.aero/issue?action=form&amp;mawbp=001">American Airways</a></td>			<td>AA</td>	<td>001</td>	<td><a href="http://www.flyus.aero/locations/netherlands" target="_blank">FlyUs</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://or.cargoclaims.aero/issue?action=form&amp;mawbp=266">Arkefly</a></td>					<td>OR</td>	<td>266</td>	<td><a href="http://www.activeair.nl/contact.htm" target="_blank">Active Airline Representatives</a></td><td>&nbsp;</td></tr>
+            <tr><td class="worldwide">&nbsp;</td><td><a href="http://iz.cargoclaims.aero/issue?action=form&amp;mawbp=238">Arkia-Israeli Airlines</a></td>					<td>IZ</td>	<td>238</td>	<td></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://oz.cargoclaims.aero/issue?action=form&amp;mawbp=988">Asiana Airlines</a></td>			<td>OZ</td>	<td>988</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://rc.cargoclaims.aero/issue?action=form&amp;mawbp=767">Atlantic Airways</a></td>			<td>RC</td>	<td>767</td>	<td><a href="http://www.euroskycargo.com/" target="_blank">Eurosky Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://5y.cargoclaims.aero/issue?action=form&amp;mawbp=369">Atlas Air</a></td>					<td>5Y</td>	<td>369</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://os.cargoclaims.aero/issue?action=form&amp;mawbp=257">Austrian Airlines</a></td>			<td>OS</td>	<td>257</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://z3.cargoclaims.aero/issue?action=form&amp;mawbp=757">AV Cargo Airlines</a></td>			<td>Z3</td>	<td>757</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://av.cargoclaims.aero/issue?action=form&amp;mawbp=134">Avianca (Cargo)</a></td>			<td>AV</td>	<td>134</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=17&amp;mawbp=628">Belavia</a></td>		<td>B2</td>	<td>628</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ba.cargoclaims.aero/issue?action=form&amp;mawbp=125">Britsh Airways</a></td>				<td>BA</td>	<td>125</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://sn.cargoclaims.aero/issue?action=form&amp;mawbp=082">Brussels Airlines</a></td>			<td>SN</td>	<td>082</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://fb.cargoclaims.aero/issue?action=form&amp;mawbp=623">Bulgaria Air</a></td>				<td>FB</td>	<td>623</td>	<td><a href="http://www.globalgsagroup.com/netherlands/" target="_blank">Global</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://5c.cargoclaims.aero/issue?action=form&amp;mawbp=700">CAL Cargo Airlines</a></td>			<td>5C</td>	<td>700</td>	<td><a href="http://www.euroskycargo.com/" target="_blank">Eurosky Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://qc.cargoclaims.aero/issue?action=form&amp;mawbp=040">Camair-Co</a></td>					<td>QC</td>	<td>040</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://cv.cargoclaims.aero/issue?action=form&amp;mawbp=172">Cargolux Airlines</a></td>			<td>CV</td>	<td>172</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=18&amp;mawbp=106">Caribbean Airlines</a></td>	<td>BW</td>	<td>106</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://cx.cargoclaims.aero/issue?action=form&amp;mawbp=160">Cathay Pacific Airways</a></td>		<td>CX</td>	<td>160</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://we.cargoclaims.aero/issue?action=form&amp;mawbp=307">Centurion Air Cargo</a></td>		<td>WE</td>	<td>307</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ci.cargoclaims.aero/issue?action=form&amp;mawbp=297">China Airlines</a></td>				<td>CI</td>	<td>297</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ck.cargoclaims.aero/issue?action=form&amp;mawbp=112">China Cargo Airlines</a></td>		<td>CK</td><td>112</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://cz.cargoclaims.aero/issue?action=form&amp;mawbp=784">China Southern</a></td>				<td>CZ</td>	<td>784</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://cm.cargoclaims.aero/issue?action=form&amp;mawbp=230">Copa Airlines</a></td>				<td>CM</td>	<td>230</td>	<td><a href="http://www.euroskycargo.com/" target="_blank">Eurosky Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ss.cargoclaims.aero/issue?action=form&amp;mawbp=923">Corsair</a></td>					<td>SS</td>	<td>923</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://7c.cargoclaims.aero/issue?action=form&amp;mawbp=575">Coyne</a></td>						<td>7C</td>	<td>575</td>	<td><a href="http://www.activeair.nl/contact.htm" target="_blank">Active Airline Representatives</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ou.cargoclaims.aero/issue?action=form&amp;mawbp=831">Croatia Airlines</a></td>			<td>OU</td>	<td>831</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://cy.cargoclaims.aero/issue?action=form&amp;mawbp=048">Cyprus Airways</a></td>				<td>CY</td>	<td>048</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ok.cargoclaims.aero/issue?action=form&amp;mawbp=064">Czech Airlines</a></td>				<td>OK</td>	<td>064</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://dl.cargoclaims.aero/issue?action=form&amp;mawbp=006">Delta Air Lines</a></td>			<td>DL</td>	<td>006</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://qy.cargoclaims.aero/issue?action=form&amp;mawbp=615">DHL Aviation (EAT Leipzig)</a></td>	<td>QY</td>	<td>615</td>	<td><a href="http://www.iasspl.nl/content.php?id=16" target="_blank">IAS</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ms.cargoclaims.aero/issue?action=form&amp;mawbp=077">Egyptair Cargo</a></td>				<td>MS</td>	<td>077</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ly.cargoclaims.aero/issue?action=form&amp;mawbp=114">EL AL Israel Airlines</a></td>		<td>LY</td>	<td>114</td>	<td><a href="http://www.globalgsagroup.com/netherlands/" target="_blank">Global</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ek.cargoclaims.aero/issue?action=form&amp;mawbp=176">Emirates SkyCargo</a></td>			<td>EK</td>	<td>176</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=20&amp;mawbp=071">Ethiopian Airlines</a></td>	<td>ET</td>	<td>071</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://etihad.cargoclaims.aero/issue?action=form&amp;mawbp=607">Etihad</a></td>					<td>EY</td>	<td>607</td>	<td><a href="http://www.flyus.aero/locations/netherlands" target="_blank">FlyUs</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://br.cargoclaims.aero/issue?action=form&amp;mawbp=695">EVA Air</a></td>					<td>BR</td>	<td>695</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ecs.cargoclaims.aero/issue?action=form&amp;group=50&amp;mawbp=105">Finnair</a></td>			<td>AY</td>	<td>105</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://be.cargoclaims.aero/issue?action=form&amp;mawbp=267">Flybe</a></td>						<td>BE</td>	<td>267</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://fz.cargoclaims.aero/issue?action=form&amp;mawbp=141">Fly Dubai</a></td>						<td>FZ</td>	<td>141</td>	<td></td><td>&nbsp;</td></tr>
+		    <tr><td></td><td><a href="http://ga.cargoclaims.aero/issue?action=form&amp;mawbp=126">Garuda Indonesia</a></td>			<td>GA</td>	<td>126</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://a9.cargoclaims.aero/issue?action=form&amp;mawbp=606">Georgian Airways</a></td>			<td>A9</td>	<td>606</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://hu.cargoclaims.aero/issue?action=form&amp;mawbp=880">Hainan Airlines</a></td>			<td>HU</td>	<td>880</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ib.cargoclaims.aero/issue?action=form&amp;mawbp=075">Iberia</a></td>						<td>IB</td>	<td>075</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://fi.cargoclaims.aero/issue?action=form&amp;mawbp=108">Icelandair Cargo</a></td>			<td>FI</td>	<td>108</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=7&amp;mawbp=096">Iran Air</a></td>		<td>IR</td> <td>096</td>	<td><a href="http://www.kales.com/nl-en" target="_blank">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://9w.cargoclaims.aero/issue?action=form&amp;mawbp=589">JET Airways</a></td>				<td>5W</td>	<td>589</td>	<td><a href="http://www.globalgsagroup.com/netherlands/" target="_blank">Global</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://k4.cargoclaims.aero/issue?action=form&amp;mawbp=272">Kalitta Air</a></td>				<td>K4</td>	<td>272</td>	<td><a href="http://www.iasspl.nl/content.php?id=16" target="_blank">IAS</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://kq.cargoclaims.aero/issue?action=form&amp;mawbp=706">Kenya Airways</a></td>				<td>KQ</td>	<td>706</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://kl.cargoclaims.aero/issue?action=form&amp;mawbp=074">KLM Cargo</a></td>					<td>KL</td>	<td>074</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ke.cargoclaims.aero/issue?action=form&amp;mawbp=180">Korean Air Cargo</a></td>			<td>KE</td>	<td>108</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://lan.cargoclaims.aero/issue?action=form&amp;mawbp=145">LAN Cargo</a></td>					<td>UC</td>	<td>145</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://6w.cargoclaims.aero/issue?action=form&amp;mawbp=920">Libo Air Cargo</a></td>				<td>6W</td>	<td>920</td>	<td><a href="http://www.atc-aviation.com/offices.html" target="_blank">ATC</a></td><td>&nbsp;</td></tr>	
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://lo.cargoclaims.aero/issue?action=form&amp;mawbp=080">LOT Polish Airlines</a></td>		<td>LO</td>	<td>080</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://lh.cargoclaims.aero/issue?action=form&amp;mawbp=220">Lufthansa</a></td>					<td>LH</td>	<td>220</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://mp.cargoclaims.aero/issue?action=form&amp;mawbp=129">Martinair Cargo</a></td>			<td>MP</td>	<td>129</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://maskargo.cargoclaims.aero/issue?action=form&amp;mawbp=232">Maskargo</a></td>				<td>MH</td>	<td>232</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://me.cargoclaims.aero/issue?action=form&amp;mawbp=076">Middle East Airlines</a></td>		<td>ME</td>	<td>076</td>	<td><a href="http://www.flyalm.nl/offices/" target="_blank">ALM</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://mb.cargoclaims.aero/issue?action=form&amp;mawbp=716">MNG Airlines</a></td>						<td>MB</td>	<td>716</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+		    <tr><td></td><td><a href="http://kz.cargoclaims.aero/issue?action=form&amp;mawbp=933">NCA</a></td>						<td>KZ</td>	<td>933</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://no.cargoclaims.aero/issue?action=form&amp;mawbp=519">Niger Air Cargo</a></td>			<td>NO</td>	<td>519</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://oa.cargoclaims.aero/issue?action=form&amp;mawbp=050">Olympic Airways</a></td>			<td>OA</td>	<td>048</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=10&amp;mawbp=910">Oman Air</a></td>		<td>WY</td>	<td>910</td>	<td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=10&amp;mawbp=910">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://pk.cargoclaims.aero/issue?action=form&amp;mawbp=214">Pakistan International Airlines</a></td> <td>PK</td> <td>214</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://h9.cargoclaims.aero/issue?action=form&amp;mawbp=624">Pegasus</a></td>					<td>PC</td>	<td>624</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://pr.cargoclaims.aero/issue?action=form&amp;mawbp=079">Phillipine Airlines</a></td>		<td>PR</td>	<td>079</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://3x.cargoclaims.aero/issue?action=form&amp;mawbp=435">Premier Trans Aire</a></td>						<td>3X</td>	<td>435</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+		    <tr><td></td><td><a href="http://qf.cargoclaims.aero/issue?action=form&amp;mawbp=081">Qantas Airlines</a></td>			<td>QF</td>	<td>081</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://qr.cargoclaims.aero/issue?action=form&amp;mawbp=157">Qatar Airways</a></td>			    <td>QR</td>	<td>157</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://fv.cargoclaims.aero/issue?action=form&amp;mawbp=195">Rossiya Russian Airlines</a></td>	<td>FV</td><td>195</td><td><a href="http://www.flyalm.nl/offices/" target="_blank">ALM</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://at.cargoclaims.aero/issue?action=form&amp;mawbp=147">Royal Air Maroc</a></td>			<td>AT</td>	<td>147</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://bi.cargoclaims.aero/issue?action=form&amp;mawbp=672">Royal Brunei Airlines</a></td>		<td>BI</td><td>672</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://rj.cargoclaims.aero/issue?action=form&amp;mawbp=512">Royal Jordanian</a></td>			<td>RJ</td>	<td>512</td>	<td><a href="http://www.globalgsagroup.com/netherlands/" target="_blank">Global</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://wb.cargoclaims.aero/issue?action=form&amp;mawbp=459">RwandAir</a></td>					<td>WB</td>	<td>459</td>	<td><a href="http://www.euroskycargo.com/" target="_blank">Eurosky Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://sk.cargoclaims.aero/issue?action=form&amp;mawbp=117">SAS</a></td>						<td>SK</td>	<td>117</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://saudia.cargoclaims.aero/issue?action=form&amp;mawbp=065">Saudia Cargo</a></td>			<td>SV</td>	<td>065</td>	<td>Palm Cargo</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://dn.cargoclaims.aero/issue?action=form&amp;mawbp=440">Senegal Airlines</a></td>			<td>DN</td>	<td>440</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;mawbp=463">Silk Way Airlines</a></td>		<td>ZP</td><td>501</td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=21&amp;mawbp=463">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://sq.cargoclaims.aero/issue?action=form&amp;mawbp=618">Singapore Airlines</a></td>			<td>SQ</td>	<td>618</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://wi.cargoclaims.aero/issue?action=form&amp;mawbp=576">Sky lease cargo</a></td>			<td>WI</td>	<td>576</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://4s.cargoclaims.aero/issue?action=form&amp;mawbp=644">Solar Cargo</a></td>				<td>4S</td>	<td>644</td>	<td><a href="http://www.flyalm.nl/offices/" target="_blank">ALM</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://sa.cargoclaims.aero/issue?action=form&amp;mawbp=083">South African Airways</a></td>		<td>SA</td><td>083</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://py.cargoclaims.aero/issue?action=form&amp;mawbp=192">Surinam Airways</a></td>			<td>PY</td>	<td>192</td>	<td><a href="http://www.flyalm.nl/offices/" target="_blank">ALM</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://lx.cargoclaims.aero/issue?action=form&amp;mawbp=724">Swiss WorldCargo</a></td>			<td>LX</td>	<td>724</td>	<td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://tp.cargoclaims.aero/issue?action=form&amp;mawbp=047">TAP Air Portugal</a></td>			<td>TP</td>	<td>047</td>	<td><a href="http://www.iasspl.nl/content.php?id=16" target="_blank">IAS</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://tarom.cargoclaims.aero/issue?action=form&amp;mawbp=281">TAROM</a></td>					<td>RO</td>	<td>281</td>	<td>ATC</td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=8&amp;mawbp=217">Thai Airways</a></td>	<td>TG</td>	<td>217</td>	<td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=8&amp;mawbp=217">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=23&amp;mawbp=756">TNT Airways</a></td>	<td>3V</td>	<td>756</td>	<td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=23&amp;mawbp=756">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://un.cargoclaims.aero/issue?action=form&amp;mawbp=670">Transaero Airlines</a></td>			<td>UN</td>	<td>670</td>	<td><a href="http://www.flyalm.nl/offices/" target="_blank">ALM</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://tk.cargoclaims.aero/issue?action=form&amp;mawbp=235">Turkish Airlines</a></td>			<td>TK</td>	<td>235</td>	<td><a href="http://www.globalgsagroup.com/netherlands/" target="_blank">Global</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://ps.cargoclaims.aero/issue?action=form&amp;mawbp=566">Ukraine International Airlines</a></td>	<td>PS</td>	<td>566</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://ps.cargoclaims.aero/issue?action=form&amp;mawbp=016">United Airlines Cargo</a></td>		<td>UA</td>	<td>016</td>	<td><a href="http://www.iasspl.nl/content.php?id=16" target="_blank">IAS</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://u6.cargoclaims.aero/issue?action=form&amp;mawbp=262">Ural Airlines</a></td>				<td>U6</td>	<td>262</td>	<td><a href="http://www.euroskycargo.com/" target="_blank">Eurosky Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://us.cargoclaims.aero/issue?action=form&amp;mawbp=037">US Airways</a></td>					<td>US</td>	<td>037</td>	<td><a href="http://ecsgroup.aero/ecs_filiale/netherland-gac/" target="_blank">Globe Air Cargo</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://vn.cargoclaims.aero/issue?action=form&amp;mawbp=738">Vietnam Airlines</a></td>			<td>VN</td>	<td>738</td>	<td><a href="http://www.iasspl.nl/content.php?id=16" target="_blank">IAS</a></td><td>&nbsp;</td></tr>
+			<tr><td class="worldwide">&nbsp;</td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=24&amp;mawbp=932">Virgin Atlantic Cargo</a> </td><td>VS</td><td>932</td>	<td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;group=24&amp;mawbp=932">Kales Airline Services</a></td><td>&nbsp;</td></tr>
+			<tr><td></td><td><a href="http://kales.cargoclaims.aero/issue?action=form&amp;mawbp=473">XL Airways</a></td>				<td>SE</td>	<td>472</td>	<td><a href="http://www.zygene.nl/office.php" target="_blank">Zygene</a></td><td>&nbsp;</td></tr>-->
+	  </table>
+
+	<br>
+	<hr/>
+	<br>
+
+
+	<br><br>
+	<div style="float: left;margin-left: 30px;width: 1005px">
+	<ul style="padding-left: 5px;margin-left:5px;">
+	<p>The Cargo Claims and Loss Prevention platform streamlines the claims handling process within the air cargo industry.
+	Our solution increases the customer experience and contributes to the competitiveness of the air cargo product by offering stakeholders a more transparent cargo claims process and an increased speed of service recovery.</p>	  
+	The IATA cargo innovation awarded <b>Cargo Claims and Loss Prevention (CCLP)</b> platform enables you to manage and submit your cargo claims to any airline from <b>ONE</b> single platform. 
+	</ul>	
+	<div>
+	<h4 style="margin-left: 2px;margin-top: 16px;">Submit a claim to a GSSA in easy steps:</h4>
+	<ol style="padding-left: 16px; margin-left:30px;">
+		<li>Search your airline and complete the cargo claim form (no login required)</li>
+		<li>Enter email address of the airline or select available contacts</li>
+		<li>Click on the send email button. A copy of the claim will be sent to your email address</li>
+		<li>An account is automatically generated upon submitting your first claim</li>
+
+	</ol>
+	<br>
+	<center>
+	<!--<td style="width: 80%;"><b></b><br /><br /><iframe src="https://player.vimeo.com/video/80020463?color=ffffff" width="800" height="367" frameborder="0" allowfullscreen=""></iframe></td>-->
+	<!--<a href="http://www.cargohub.nl/wp-content/uploads/2015/06/CargoClaims-Flyer.pdf"><img style="width: 260px;" src="/cmsup/solution/cargoclaimsbrochurefront.png" alt="CargoClaims Brochure"></a>-->
+  	</center>		
+	<img src="img/hdrs/cargoclaim-pre.jpg" style="display: block;margin-left: auto;margin-right: auto;width: 70%">
+	</div>
+
+<div style="display: grid;grid-template-columns: 1fr 1fr;grid-gap: 20px;width: 50%;">
+	<div style="margin: 10px;">	
+		<h4 style="width: 465px;margin-left: 2px; margin-top: 16px;"><a href="https://www.cargohub.nl/blog/claim-management-for-forwarders-made-simple" target="_blank">Benefits for forwarders and shippers</a></h4>
+		<ul style="padding-left: 25px;margin-left:30px;">
+			<li>Benefit an industry standardized claims proces</li>
+			<li>Submit a claim to any airline in just 3 easy steps</li>
+			<li>Manage all your claims from a single account</li>
+			<li>Read more about benefits for claimants <a href="https://www.cargohub.nl/blog/claim-management-for-forwarders-made-simple" target="_blank" style="font-weight: bold;">click here</a></li>
+		</ul>
+	</div>
+	<div style="margin: 10px;">
+		<h4 style="width: 465px;margin-left:2px; margin-top: 16px;"><a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_airlines" target="_blank">Benefits for airlines and gs(s)a</a></h4>
+		<ul style="padding-left: 25px;margin-left:30px;">
+			<li>Manage all claims electronically</li>
+			<li>Increase the speed of service recovery</li>
+			<li>Increase the customer experience</li>
+			<li>Read more about benefits for airlines <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_airlines" target="_blank" style="font-weight: bold;">click here</a></li>
+		</ul>
+	</div>
+</div>
+	</div>
+
+		<div>
+
+
+
+<center>
+<!--<td style="width: 80%;"><b></b><br /><br /><iframe src="https://player.vimeo.com/video/80020463?color=ffffff" width="800" height="367" frameborder="0" allowfullscreen=""></iframe></td>-->
+<!--<a href="http://www.cargohub.nl/wp-content/uploads/2015/06/CargoClaims-Flyer.pdf"><img style="width: 260px;" src="/cmsup/solution/cargoclaimsbrochurefront.png" alt="CargoClaims Brochure"></a>-->
+  </center>	
+
+
+	</div>
+
+<br><br><br><br>
+<!-- last -->
+	<div style="display: grid;grid-template-columns: 1fr 1fr;grid-gap: 20px;width: 50%;">
+	<div style="margin: 10px;">
+	</div>
+	</div>
+	</div>
+
+	
+			
+		<!--<div>
+			<div id="login" class="jqx-rc-all">
+				<div class="logo left">
+					<img src="{html.base}/img/extra/contact.png" alt="Customer Account" />
+				</div>
+				<div class="form left">
+					<form action="/contact/access?action=authenticate&autoforward=1" method="post">
+						<h3>Your E-mail</h3>
+						<div class="jqx-rc-all field"><input type="text" name="email" {#if:autofill_email: value="{autofill_email}"}/></div>
+						<h3>Password</h3>
+						<div class="jqx-rc-all field"><input type="password" name="password" {#if:autofill_password: value="{autofill_password}"}/></div>
+						<input type="submit" value="Proceed" class="right" />
+						<div class="clear"></div>
+					</form>
+				</div>
+				<div class="clear"></div>
+				<hr />
+				<p style="text-align: right; margin-right: 50px;">Do you need your password ?<br /><br /><a class="jqx-rc-all" href="/contact/access?action=recover_password" style="font-weight: bold; display: inline-block; padding: 3px 8px; border: 1px solid gray; color: black; text-decoration: none;">click here</a> to obtain it !</p>
+			</div>
+		</div>-->
+		{!Guidelines}
+<div>
+<div style="padding: 10px 30px !important;">
+		<p><b><a href="https://cargoclaims.aero/cms?path=/templates/preliminairy_claim" target="_blank" style="font-weight: bold;">PRELIMINARY CLAIM</a></b><br><br>
+			In order to reserve the claimants rights to claim up to two years, a preliminary claim notice must be filed within the below outlined time limits.</p>
+  			Please note that:
+			<li>the calculation of the time limit will be based on the date of receipt of your request</li>
+			  <li>the claims handlings process will start once a formal claim has been filed</li>
+<li>Example of preliminary claim notice <a href="https://cargoclaims.aero/cms?path=/templates/preliminairy_claim" target="_blank" style="font-weight: bold;">click here</a></li>
+
+	
+				<br>
+			<b><p>TIME LIMITS</b><br/>		
+			In the case of damage or delay, the person entitled to delivery must complain to the airline within specific time lines. If no complaint is made within the times indicated below, then no action can be brought against the airline.</p>
+			<table id="claim-types" style="color: black;padding-left: 22px;width: 97%;">
+				<tr class="jqx-widget-header jqx-widget-header-glacier jqx-fill-state-pressed jqx-fill-state-pressed-glacier jqx-expander-header-expanded jqx-expander-header-expanded-glacier jqx-expander-header jqx-expander-header-glacier"style = 'border-color: #006aae;color: #fff;background-color: #006aae;'>
+					<th width="5%" style="text-align: center; color: #fff;">No.</th>
+					<th width="15%" style="color: #fff;">Claim Type</th>
+					<th width="40%" style="color: #fff;">Description</th>
+					<th width="40%" style="color: #fff;">Time Limit</th>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">1</td>
+					<td style="text-align: left;">Destruction.</td>
+					<td style="text-align: left;">Complete loss of whole consignment..</td>
+					<td style="text-align: left;"><span class='impno'>120</span> days from the AWB issuing date.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">2</td>
+					<td style="text-align: left;">Damage.</td>
+					<td style="text-align: left;">To consignment whole or in part.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">3</td>
+					<td>Partial loss.</td>
+					<td style="text-align: left;">Some of the consignment is missing or damaged.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">4</td>
+					<td>Delay.</td>
+					<td style="text-align: left;">To complete consignment or part of it</td>
+					<td style="text-align: left;"><span class='impno'>21</span> days from the placing date.</td>
+				</tr>
+			</table>
+  			<br/>
+			<hr/>
+
+
+
+	<br/>
+			<p><b>FORMAL CLAIM</b><br/>
+				Please include the following information when submitting the e-Claim in order prevent any delay in handling your claim. The more information you provide, the more quickly your claim can be handled or settled.</p>
+				<table class='dochelp'><br/><br/>
+				<tr><th valign="">1. PRELIMINARY CLAIM</th>
+				<td>Preliminary notice of claim in written if a preliminary claim was not submitted through our e-Claims portal</td></tr>
+				<tr><th valign="top">2. MASTER AIR WAYBILL</th>
+				<td>Copy of the  contract of carriage  ( Master Airwaybill ) and eight digit number assigned to the shipment.</td></tr>
+				<tr><th valign="top">3. CLAIMED AMOUNT</th>
+				<td>List the damaged or shorted merchandise by item and quantity and provide the amount you would like to be compensated for.<br />
+				Tell exactly whatopt was damaged and how you came to your claimed amount.<br />
+				List how many pounds/ kilograms or what number carton was damaged.</td></tr>
+				<tr><th valign="top">4. FREIGHT CHARGES</th>
+				<td>In most cases, the freight charges must be paid before a claim is finalized.</td></tr>
+				<tr><th valign="top">5. INSPECTION REPORT</th>
+				<td>If damage was noted at destination, the agent should have been requested to prepare this report.<br />
+				If an inspection was not done, just state that non was done.<br />
+				An inspection completed by an independent surveyor may also be included.</td></tr>
+				<tr><th valign="top">6. INVOICE</th>
+				<td>Provide the original vendor’s invoice for the damaged merchandise in question.<br />
+				This will indicate the value of the goods claimed.</td></tr>
+				<tr><th valign="top">7. PACKING LIST</th>
+				<td>This would list the quantity and weight of the items in each box.<br />
+				For personal effects shipments, the value of each item should also be listed.</td></tr>
+				<tr><th valign="top">8. REPAIR BILL</th>
+				<td>If the damaged goods are repairable, provide the receipt for repair.</td></tr>
+				<tr><th valign="top">9. SALVAGE VALUE</th>
+				<td> It is the shipper / consignee’s responsibility to minimize the loss by salvaging goods.<br />
+				Explain what was done with the damaged shipment; for example, was it thrown away, repaired, or sold for discount price.</td></tr>
+				</table>
+				<p><span style="font-size: small;">Remember that you must retain all damaged material until the claim is completely resolved. In some cases, the carrier will notify you that they intend to pick up the damaged material. If you are not able to provide the material for the carrier, then the claim is denied.</span></p>
+				<hr />
+				<h2>FREIGHT FORWARDERS AND INSURANCE COMPANIES</h2>
+				<p>In addition to the above please include:</p>
+				<table class='dochelp'>
+				<tr><th valign="top">10. HOUSE AIRWAYBILL</th>
+				<td>Delivery record copy</td></tr>
+				<tr><th valign="top">11. SETTLEMENT DRAFT</th>
+				<td>Proof of payment to ultimate consignee</td></tr>
+				<tr><th valign="top">12. SUBROGATION</th>
+				<td>Statement from payee authorizing you to act on behalf of shipper or consignee</td></tr>
+				</table>
+
+
+</div>
+					</div>
+
+{!Tab How to}
+		<div>
+			<div style="margin-left: 20px;">
+				<p><b>{html.title}</b> offers you an easy way for electronically lodging cargo claims.<br />
+				Your cargo claim can be submitted to the carrier involved in the contract of carriage.</p>
+				<p>The <i>CARGO Claims</i> software will provide you all the tools to manage your cargo claim. You will receive confirmation of your claim immediately after its submission. Claim departments of the selected Carrier will be notified and instructed to process your cargo claim with priority.</p>
+				<p>We offer you <b>24/7 tracking information</b> on your cargo claims.</p>
+				<hr />
+			</div>
+		
+			<h3 style="margin-top: 8px; margin-left: 16px; color: #ed7d31;" id="how_to_submit">How to submit a Cargo Claim</h3>
+			<ul>
+				<li>Complete the details of your claim in the submittance form</li>
+				<li>Attach the necessary documents</li>
+				<li>You will receive our confirmation immediately</li>
+				<li>Your claim will be processed by Claim departments of the selected airlines with priority</li>
+			</ul>
+			
+			<h3 style="margin-top: 8px; margin-left: 16px; color: #ed7d31;" id="how_eclaims_benefit">How E-claims service will benefit our customers</h3>
+			<ul>
+				<li>Submit your claim in just a few easy steps</li>
+				<li>Immediate confirmation of receipt per email</li>
+				<li>Providing our customer 24/7 online registration</li> 
+				<li>Increases the speed of processing your cargo claim </li> 
+				<li>Online tracking of claims processing 24/7</li>
+			 	<li>Providing overview of all your cargo claims</li>
+				<li>All communication and documentation stored with your account</li>
+			</ul>
+		</div>
+{!Tab Period}
+		<div>
+			<div style="margin-left: 20px;">
+				<p>Receipt by the person entitled to delivery of the cargo without complaint shall be prima facie evidence that the cargo has been delivered in good condition and in accordance with the contract of carriage.<br />
+				In the case of loss of, damage or delay to cargo a complaint must be made to the Carrier by the person entitled to delivery.</p> 
+				<p>Based upon the time limits as set forth in the Warsaw Convention as amended at the Hague 1955 and the Montreal Convention 1999, a preliminary claim must be filed shortly after receipt of your shipment.<br />
+				The time limits reffered to above are:</p>
+		
+				<h2 style="color: #ed7d31;">Time periods for filing a claim:</h2>
+				<p>A cargo claim is a written complaint demanding financial compensation for damage, loss or delay of cargo whilst under a contract of carriage.</p>
+			</div>
+	
+			<table id="timeperiods" style="width: 100%; border-collapse: collapse; border-spacing: 1px; border: 1px solid lightgray;">
+				<tr>
+					<th style="text-align: left; text-indent: 20px; width: 20%;">Damage</th>
+					<td style="text-align: left; width: 40%;">To consignment whole or in part</td>
+					<td style="text-align: left; width: 40%;"><span class='thick'>&nbsp;&nbsp;14</span> days from receiving consignment</td>
+				</tr>
+				<tr>
+					<th style="text-align: left; text-indent: 20px;">Loss</th>
+					<td style="text-align: left;">Loss of whole consignment</td>
+					<td style="text-align: left;"><span class='thick'>120</span> days from the AWB issuing date</td>
+				</tr>
+				<tr>
+					<th style="text-align: left; text-indent: 20px;">Partial Loss</th>
+					<td style="text-align: left;">Loss of part of the consignment</td>
+					<td style="text-align: left;"><span class='thick'>&nbsp;&nbsp;14</span> days from receiving consignment</td>
+				</tr>
+				<tr>
+					<th style="text-align: left; text-indent: 20px;">Delay</th>
+					<td style="text-align: left;">To complete consignment or part of it</td>
+					<td style="text-align: left;"><span class='thick'>&nbsp;&nbsp;21</span> days from the placing date</td>
+				</tr>
+				<tr>
+					<th style="text-align: left; text-indent: 20px;">Pilferage</th>
+					<td style="text-align: left;">To consignment whole or in part</td>
+					<td style="text-align: left;"><span class='thick'>&nbsp;&nbsp;14</span> days from receiving consignment</td>
+				</tr>
+			</table>
+	
+			<table style="width: 90%; margin-top: 20px; margin-left: 20px;">
+				<tr><td style="width: 50%; vertical-align: top;">
+					<h2 style="color: #ed7d31;">Applicable laws:</h2>
+					<ul>
+						<li><a href='/cms?path=/cargoclaims/montreal-convention' target='_blank'>Montreal Convention 1999</a></li>
+						<li><a href='/cms?path=/cargoclaims/the-hague-protocol-1955' target='_blank'>The Hague Protocol 1955</a></li>
+						<li><a href='/cms?path=/cargoclaims/warsaw-convention' target='_blank'>Warsaw Convention 1929</a></li>
+					</ul>
+				</td><td style="width: 50%; vertical-align: top;">
+					<h2 style="color: #ed7d31;">Relevant articles:</h2>
+					<ul>
+						<li><a href='/cms?path=/cargoclaims/airtransport_nl' target='_blank'>Luchtvervoer [NL]</a></li>
+					</ul>
+				</td></tr>
+			</table>
+			
+		</div>
+{!Tab Terms}
+		<div>
+			<div style="margin-left: 20px;">
+				<br/>	<br/>
+			  <b><p>LEGAL NOTICE</p></b>
+<p>www.cargoclaims.aero is an internet-based data forwarding and management service. We do not directly represent the airlines or other carriers, and we're not the ones handling your claims. Please contact your airline or GSA directly in case you do not receive a reply after submitting your claim with this service.</p>
+<p>Our software is using E-mail technology to forward the information submitted to this application to the intended recipient. Although we are updating our contacts in accordance with the latest information available,
+				we shall not accept any liability in case your data doesn't reach the recipient, for any reason, technical or caused by human error.</p>
+				<p>If you did not receive a copy of your data by e-mail after submitting a claim, or notice that the automatically provided addresses are incorrect,<br />please contact <a href="mailto:support@cargohub.nl">support@cargohub.nl</a>.</p>
+			</div>
+		</div>
+{!About us}
+		<div>
+			<div style="margin-left: 20px;">
+				<a class="jqx-rc-all" style="float: right; margin: 25px; border: 1px solid gray; padding: 8px; background-color: white; box-shadow: 2px 2px 4px lightgray;" href="http://www.cargohub.nl/wp-content/uploads/2015/12/Cargo-Claims-CCLP-3.0.mp4?_=1" target="_blank">
+					<img src="/cmsup/worldwide/worldwideimg.jpg" alt="Worldwide Image" />
+				</a>
+			
+				<img src="/cmsup/worldwide/iata.png" alt="Air Cargo Innovation Award 2015 Finalist" style="margin-top: 15px;" />
+				<p style="text-align: justify; margin-top: 24px;">CargoClaims streamlines the claims handling process within the air cargo industry. By connecting all cargo supply chain parties on a centralized platform, connected stakeholders are offered efficiency, transparency and an increased speed of service recovery.</p>
+				<p> The IATA cargo innovation awarded platfrom increases the customer experience and contributes to the competitiveness of the air cargo product.  </p>
+<p>CARGO Claims is an internet-based data forwarding and management service. We do not directly represent the airlines or other carriers, and we're not the ones handling your claims.
+
+Please contact your airline or GSA directly in case you do not receive a reply after submitting your claim with this service.</p>
+				
+				<hr />
+				<div>&nbsp;</div>
+				<h1 style="color: #ed7d31; font-size: 16px;">WHY</h1>
+				<p>The Air Cargo Industry is lacking from an transparent and standardized claims handling process.<br />
+				Massive flow of emails, many different airline procedures and individual airline claims portals is negatively affecting the customer experience and the competitiveness of the air cargo product.</p> 
+				<h1 style="color: #ed7d31; font-size: 16px;">HOW</h1>
+				<p>The Air Cargo Industry needs a standardized and optimized claim handling process between the shipper and airline. Communication should become transparent and efficiency must benefit all stakeholders involved.</p>
+				<h1 style="color: #ed7d31; font-size: 16px;">WHAT</h1>
+				<p>Cargo Claims delivers an industry multi stakeholder platform enabling shippers to submit claims to ANY airline within ONE platform. Airlines are offered a complete suite of integrated tools to manage their claims process with optimized efficiency.</p>
+				<p>&nbsp;</p>
+				<h2 style="color: #ed7d31; font-size: 16px;"><b>JOIN</b> us, <b>SUPPORT</b> us and contribute to the <b>ULTIMATE</b> customer experience in claims handling</h2>
+			</div>
+			<div class="videos">
+				<div class="graytitle">CARGO CLAIMS AND LOSS PREVENTION</div>
+				<div class="box">
+					<div class="textwidget">
+						<h3 style="color:#605fc1;">CargoHub at IATA 12th CCLP  Conference - Raoul Paul - </h3> 
+						<a href="https://www.youtube.com/watch?v=zsjSkHMco6U" target="_blank"><img src="/cmsup/worldwide/youtube1.jpg" alt="CargoHub at IATA 12th CCLP  Conference - Raoul Paul"/></a>
+					</div>
+				</div>
+				<div class="box">
+					<div class="textwidget">
+						<h3 style="color:#605fc1;">Brussels Airlines at 12th CCLP Conference -  Daphne van Landuyt - </h3>
+						<a href="https://www.youtube.com/watch?v=gzd4cb_eaHA" target="_blank"><img src="/cmsup/worldwide/youtube2.jpg" alt="Brussels Airlines at 12th CCLP Conference -  Daphne van Landuyt"/></a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{!	<div class="spacey">
+			<div class="contentblock" style="margin-left: 20px;">
+				<div class="cclp-ad">
+					<div class="cclp-headline center">
+						Our attendance to IATA Cargo Claims Loss Prevention conference is sponsored by:
+					</div>
+					<div class="center" style="width: 270px; float: left; margin-left: 30px; margin-top: 10px;">
+						<img src="/cmsup/worldwide/cc.png" alt="" width="135px" /><br /><br />
+						<span style="color: #ed7d31; font-size: 16px;">Increasing the customer experience</span><br /><br />
+						<img src="/cmsup/worldwide/blue-like.png" alt="Like" />
+					</div>
+					<div class="box_one" style="width: 180px; height: 180px; float: right;">
+						<div class="box_tl"><img src="/cmsup/worldwide/side.png" alt="" width="20" height="25"></div>
+						<div class="box_br"><img src="/cmsup/worldwide/side2.png" alt="" width="21" height="25"></div>
+						<div class="center adv-center" style="">Available<br />for<br />Advertising</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+}
+	<div class="graytitle">SOME OF OUR <b>VALUED CUSTOMERS</b></div>
+	<hr />
+	{#plugin:slider}
+	<div class="responsive-slider" id="customers">
+		<div class="slides" data-group="slides">
+			<ul>
+				<li style="position: relative;">
+					<div class="slide-body" data-group="slide">
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/amerijet.png" alt="Amerijet" title="Amerijet International Airlines" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/atlas-logo.png" alt="Atlas" title="Atlas Air" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/abc.png" alt="ABC" title="AirBridgeCargo" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/saudia-cargo.png" alt="Saudia" title="Saudia Cargo" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="slide-body" data-group="slide">
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/polar-air-logo-1.png" alt="Polar" title="Polar Air Logo" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/brussels.png" alt="Brussels" title="Brussels Airlines Cargo" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/kales.png" alt="Kales" title="Kales Airline Services" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/hdr-knnl2.png" alt="KN" title="KN Fresh Chain" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="slide-body" data-group="slide">
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/aramex.png" alt="Aramex" title="Aramex" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/fast-forward-freight.png" alt="FFF" title="Fast Forward Freight" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/crane.png" alt="Crane Worldwide" title="Crane Worldwide Logistics" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/hellmann.svg" alt="Hellmann" title="Hellmann Worldwide Logistics" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="slide-body" data-group="slide">
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/iaa.png" alt="IAA" title="International Airfreight Assoiciates" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/ip-handlers.png" alt="IP Handlers" title="IP Handlers" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/kwe.png" alt="Kintetsu" title="Kintetsu World Express" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/galink-name.png" alt="GAL" title="Global Aviation Link" />
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<a class="slider-control left" href="#" data-jump="prev"><img src="/cmsup/worldwide/bullet_arrow_left.png" width="32" alt="" /></a>
+		<a class="slider-control right" href="#" data-jump="next"><img src="/cmsup/worldwide/bullet_arrow_right.png" width="32" alt="" /></a>
+		<div class="pages">
+			<a class="page active" href="#" data-jump-to="1">1</a>
+			<a class="page" href="#" data-jump-to="2">2</a>
+			<a class="page" href="#" data-jump-to="3">3</a>
+			<a class="page" href="#" data-jump-to="4">4</a>
+		</div>
+	</div>
+</div>

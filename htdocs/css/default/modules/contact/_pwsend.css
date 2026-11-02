@@ -1,0 +1,33 @@
+/** Contact Password Recover **/
+div.site > div.page > div#pwsend {
+}
+
+	div.site > div.page > div#pwsend small {
+		color: #666666;
+	}
+
+	div.site > div.page > div#pwsend > div.logo {
+		padding: 20px 40px 20px 330px;
+	}
+
+	div.site > div.page > div#pwsend > div.form {
+		width: 256px;
+		padding: 20px 10px;
+	}
+
+	div.site > div.page > div#pwsend > div.form div.field {
+		background-color: white;
+		width: 250px;
+		border: 1px solid #C7C7C7;
+		padding: 2px;
+		margin-bottom: 15px;
+	}
+
+		div.site > div.page > div#pwsend > div.form div.field > input {
+			width: 100%;
+			border: none;
+			resize: none;
+			font-size: 14px;
+			text-indent: 8px;
+			line-height: 19px;
+		}

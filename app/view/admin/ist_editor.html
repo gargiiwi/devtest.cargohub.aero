@@ -1,0 +1,88 @@
+{#use:CFG.admin_ist_edit:<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/{#if:key:ist/{key}.png}{#ifnot:key:ncc1701.png}" /><span>{#if:key:Edit {name}}{#ifnot:key:Create new Record Type}</span>
+	</div>		
+	<button data-op="back" title="Back to list"><img alt="Back to list" src="/img/icons16/arrow_undo.png"> Back to list</button>	
+	<button data-op="save" title="Save"><img alt="Back to list" src="/img/icons16/save.png"> Save</button>
+	<button data-op="discard" title="Discard"><img alt="Discard changes" src="/img/icons16/cancel.png"> Discard</button>
+</div>
+
+<form class='vertiform' name="ist_form" action="?action=save" method="post">
+<ul>
+	<li><label>Record Type: </label><input id="ist_name" name="ist[name]" type="text" value="{name}" /></li>
+	<li><label>Short Plural: </label><input id="ist_short_plural" name="ist[short_plural]" type="text" value="{short_plural}" /></li>
+	<li><label>Short description: </label><input id="ist_description" name="ist[description]" type="text" value="{description}" style="width: 650px;" /></li>
+	<li><label>Folder Key: </label><input id="ist_key" name="ist[key]" type="text" value="{key}" /><span class="gray" style="margin-left: 12px; display: inline-block;">The Key must not have spaces or any other characters except letters and numbers !</span></li>
+	<li><h4 style="text-indent: 155px;">Status and Priority settings</h4></li>
+	<li style="height: 225px;">
+		<label>Statuses list:</label><div style="float: left;" id='ist_statuses' name="ist[statuses]"></div>
+		<label>Priorities list:</label><div style="float: left;" id='ist_priorities' name="ist[priorities]"></div>
+	</li>
+	<li>
+		<label>Incoming init status:</label><div style="float: left;" id='ist_settings_irs' name="ist[settings][init][recv][stat]"></div>
+		<label>Incoming init priority:</label><div style="float: left;" id='ist_settings_irp' name="ist[settings][init][recv][prio]"></div>
+	</li>
+	<li>
+		<label>Self create status:</label><div style="float: left;" id='ist_settings_iss' name="ist[settings][init][self][stat]"></div>
+		<label>Self create priority:</label><div style="float: left;" id='ist_settings_isp' name="ist[settings][init][self][prio]"></div>
+	</li>
+	<li><h4 style="text-indent: 155px;">Groups configuration</h4></li>	
+	<li>
+		<label>Group set:</label><div style="float: left;" id='ist_settings_group' name="ist[settings][group_type]"></div>
+		<label>Group filter:</label><div id='ist_group_ids' name="ist[group_ids]"></div>
+	</li>
+</ul>
+
+<h2 style="text-indent: 155px;">Custom fields definitions:</h2>
+<div id="xfd-sections">
+</div>
+<div style="margin-top: 12px;"> 
+	<h2 id="xfd-newfields-header" style="text-indent: 155px; display: none;">New fields added:</h2>
+	<ul>	
+		<li id="xfd-newfields">
+			<label>&nbsp;</label><input class='command' id='new_xfield' type="button" value="Add another custom field">
+			<span style="margin-left: 12px;">With selected:</span> <input class='command' id='del_xfields' type="button" value="Delete">
+		</li>
+	</ul>
+</div>
+</form>}
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template_xfield_row" type="text/dryjstpl">
+	<li class='xfline' data-idx="{$idx}" data-options="" data-choices="">
+		<input id="ist_xf_{$idx}_id" name="ist[xf][{$idx}][id]" type="hidden" value="{$id}" />
+		<input id="ist_xf_{$idx}_fk" name="ist[xf][{$idx}][fk]" type="hidden" value="{$fk}" />
+		<input id="ist_xf_{$idx}_s" name="ist[xf][{$idx}][s]" type="hidden" value="{$s}" />
+		<label id="ist_xf_{$idx}">&nbsp;</label>
+		<div>
+			<span>Name:</span> <input id='ist_xf_{$idx}_n' name="ist[xf][{$idx}][n]" type='text' value='{$n}' />
+			<span style="margin-left: 8px;">Type:</span> <div id='ist_xf_{$idx}_t' name="ist[xf][{$idx}][t]"></div>
+			<input id='ist_xf_{$idx}_o' type="button" value="Options" />
+			<input id='ist_xf_{$idx}_cd' type="button" value="Choices" />
+			{#exists:fk:<span style="margin-left: 12px;">Field Key: <b>{$fk}</b></span>}
+		</div>
+	</li>
+</script>}
+
+{@<script id="template_options_content" type="text/dryjstpl">
+	<div id="options">
+		<div><label id='ist_xf_o_req'>Field is required</label></div>
+		<div><label id='ist_xf_o_def'>Default value</label><input type='text' id="ist_xf_o_def_value" class="{$_itc}" value="{$def}" /></div>
+		<div><label id='ist_xf_o_hide'>Hide the field</label></div>
+		<div><label id='ist_xf_o_len'>Max data length</label><div class='num' id="ist_xf_o_len_value"></div></div>
+		<div><label id='ist_xf_o_num'>Single Choices are numeric (optimize storage)</label></div>
+		<div><label id='ist_xf_o_flag'>Multiple Choices are flags (get all with 1/0)</label></div>
+		<hr />	
+		<div><label id='ist_xf_o_colw'>Column width</label><input type='text' id="ist_xf_o_colw_value" class="{$_itc}" value="{$colw}" style="width: 75px;" /></div>
+		<div><label id='ist_xf_o_colr'>Column render</label><div id="ist_xf_o_colr_value"></div></div>
+		<hr />
+		<div style='font-size: 11px; color: red;'>When changing field key, templates must also be changed!</div>
+		<div><label id='ist_xf_s'>Section</label><input type='text' id="ist_xf_s_value" class="{$_itc}" value="{$s}" /></div>
+		<div><label id='ist_xf_fk'>Field key</label><input type='text' id="ist_xf_fk_value" class="{$_itc}" value="{$fk}" /></div>
+	</div>
+</script>}
+
+{@<script id="template_choices_content" type="text/dryjstpl">
+	<h3>Type all choices for this field, one per line:</h3>
+	<textarea id="ist_xf_cd" rows="1" style="width: 302px; height: 272px; resize: none;">{$cd}</textarea>
+</script>}

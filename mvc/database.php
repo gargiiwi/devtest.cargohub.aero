@@ -1,0 +1,451 @@
+<?php
+
+/**
+ * MVC Database Access system, provides functionality for the Models to read and write their data.
+ *
+ * @author Wavetrex Infinity <wavetrex@gmail.com>
+ * @package CargoConnect
+ * @subpackage Framework
+ * @version 2020.02.04
+ */
+class MVC_Database extends mysqli
+{
+    /**
+     * True if connection is persistent
+     * @var bool
+     */
+    private $persistent = false;
+
+    /**
+     * True if connection was successful
+     * @var bool
+     */
+    private $connected = false;
+
+    /**
+     * Connection debugging mode:
+     * - 0 = no debugging at all (production mode)
+     * - 1 = record all queries
+     * - 2 = record queries and mysql's error reports (when there is a problem)
+     * - 3 = record queries, errors or statistics for successful queries (affected rows, result size, etc)
+     * @var int
+     */
+    private $debug = 0;
+
+    /**
+     * Just a query counter...
+     * @var int
+     */
+    protected $query_count = 0;
+
+    /**
+     * The list of tables used in the system (short-key => name)
+     * @var array
+     */
+    public $tab = [];
+	public $split_by_prefixes=array();
+    /**
+     * Extended constructor, allows sending config data directly from app config (object/simplexml)
+     * @param array $CFG
+     * @throws Exception
+     */
+    public function __construct(array $CFG)
+    {
+
+
+        $this->persistent = isset($CFG['persistent']) ? (bool)$CFG['persistent'] : false;
+        $this->debug = isset($CFG['debug']) ? (int)$CFG['debug'] : 0;
+
+        // exec("/etc/init/httpdconfig status", $output, $return);
+        $return = 0;
+        if ($return == 0) {
+            // Error resolved
+        } else {
+            $this->persistent = false;
+            $this->close();
+        }
+
+        @parent::__construct(($this->persistent ? 'p:' : '') . $CFG['host'], $CFG['user'], $CFG['pass'], $CFG['name'], isset($CFG['port']) ? (int)$CFG['port'] : ini_get("mysqli.default_port"));
+
+        // Check if connection failed
+        if ($this->connect_errno) {
+            if ($this->debug >= 2)
+                throw new Exception($this->connect_error, $this->connect_errno);
+        } else {
+            if ($this->debug >= 3)
+                $this->debug_Trace($CFG['host'], "Connect", "notice");
+
+            $this->set_charset("utf8");
+            $this->connected = true;
+        }
+
+        // Setup the Table references (if they exist)
+        if (isset($CFG['tables']))
+            $this->tab = $CFG['tables'];
+    }
+
+    /**
+     * Little helper to return a real table name for QueryFactory
+     *
+     * @param string $table_key
+     * @param bool $aliased
+     * @param string|null $custom_alias
+     * @return array|string
+     * @throws Exception
+     */
+    public function table(string $table_key, bool $aliased = true, ?string $custom_alias = null)
+    {
+        if (!isset($this->tab[$table_key]))
+            throw new Exception("Invalid table key: " . $table_key);
+
+        if ($aliased)
+            return [$this->tab[$table_key], !is_null($custom_alias) ? $custom_alias : $table_key];
+        else
+            return $this->tab[$table_key];
+    }
+
+    /**
+     * Destructor, cleans up and closes database connection if non-persistent
+     */
+    public function __destruct()
+    {
+        if (!$this->persistent && $this->connected) {
+            $this->close();
+            if ($this->debug >= 3)
+                $this->debug_Trace($this->query_count . ' queries', "Disconnect", "notice");
+        }
+    }
+
+    /**
+     * Returns if the connection was successful or not
+     * @return bool
+     */
+    public function is_Connected(): bool
+    {
+        return $this->connected;
+    }
+
+    /**
+     * Used to send the Query that is being run or prepared to the debug system
+     *
+     * @param string $message
+     * @param string $operation What kind of operation asked for this debug_Trace call
+     * @param string $type
+     */
+    private function debug_Trace(string $message, string $operation, string $type = 'plain'): void
+    {
+        if ($this->debug >= 1) {
+            // Trace where the call to this query was initiated
+            $trace = debug_backtrace();
+            // Identify the next trace element which has File/Line and is not "database.php"
+            foreach ($trace as $trace_row) {
+                if (isset($trace_row['file']) && substr($trace_row['file'], -12) != "database.php") {
+                    // Source indicates the file where the query was created (usually a MODEL)
+                    $source = [
+                        'Line' => $trace_row['line'],
+                        'File' => $trace_row['file']
+                    ];
+
+                    MVC_Core::$debug->output([
+                        'type' => $type,
+                        'label' => __CLASS__ . '->' . $operation,
+                        'data' => $message,
+                        'meta' => $source
+                    ], null, true); // Send buffered for PHP output (other debug drivers ignore this setting)
+                    break;
+                }
+            }
+        }
+    }
+    public function query($query, $result_mode = MYSQLI_STORE_RESULT)
+    {
+        
+        if (!$this->connected) {
+            throw new Exception("Attempting to run a query when the database is not connected");
+        }
+        $query = (string) $query;   
+        $this->debug_Trace($query, ($simulate ? "SIM " : '') . 'Query'); 
+        if ($simulate) {
+            return true;
+        }       
+        $this->query_count++;
+        $outcome = $this->real_query($query);
+        if ($outcome) {
+            $trimmedQuery = ltrim($query);  
+            // echo $trimmedQuery;
+            if (stripos($trimmedQuery, 'select') === 0 || stripos($trimmedQuery, 'describe') === 0) {
+                $mysqli_result = $this->store_result();
+                $result = new MVC_Database_Result($mysqli_result);
+                // $result = new MVC_Database_Result($this);
+                if ($this->debug >= 3) {
+                    MVC_Core::$debug->output([
+                        'type' => "plain",
+                        'label' => __CLASS__ . '->ResultStats',
+                        'data' => [
+                            'rows' => $result->num_rows,
+                            'fields' => $result->field_count,
+                        ],
+                    ], null, true);
+                }      
+                    
+                return $result;  
+                echo "180";
+            }
+            $response_info = $this->get_Response(true);    
+            if ($this->debug >= 3) {
+                MVC_Core::$debug->output([
+                    'type' => "plain",
+                    'label' => __CLASS__ . '->ResponseInfo',
+                    'data' => $response_info,
+                ], null, true);
+            }    
+            return $outcome;
+        }
+        throw new Exception($this->error, $this->errno);
+    }
+
+    // private function query(string $query, bool $simulate = false)
+    // {
+    //     // Check if the database is connected before proceeding
+    //     if (!$this->connected) {
+    //         // Attempting to run a query on a failed connection
+    //         throw new Exception("Attempting to run a query when the database is not connected");
+    //     }
+    //     // Ensure the query is a string
+    //     $query = (string)$query;
+    //     // Debug: trace the query if needed
+    //     $this->debug_Trace($query, ($simulate ? "SIM " : '') . 'Query');
+    //     // Simulate the query execution without actually running it
+    //     if ($simulate) {
+    //         return true; // Return true as a simulated successful query
+    //     }
+    //     // Increment query count for analytics or tracking
+    //     $this->query_count++;
+    //     // Execute the query
+    //     $outcome = $this->real_query($query);
+    //     if ($outcome) {
+    //         // If it's a SELECT or DESCRIBE query, return a result object
+    //         if (stripos(ltrim($query), 'select') === 0 || stripos(ltrim($query), 'describe') === 0) {
+    //             // Assuming MVC_Database_Result handles the result set correctly
+    //             $result = new MVC_Database_Result($this);
+    //             // If debug level is greater than or equal to 3, output stats for the result
+    //             if ($this->debug >= 3) {
+    //                 $result_stats = [
+    //                     'rows' => $result->num_rows,
+    //                     'fields' => $result->field_count
+    //                 ];
+    //                 MVC_Core::$debug->output([
+    //                     'type' => "plain",
+    //                     'label' => __CLASS__ . '->ResultStats',
+    //                     'data' => $result_stats,
+    //                 ], null, true); // Send buffered for PHP output
+    //             }
+    //             return $result;
+    //         } else {
+    //             // For non-SELECT/DESCRIBE queries, return the outcome directly
+    //             $response_info = $this->get_Response(true);
+    //             // If debug level is greater than or equal to 3, output response information
+    //             if ($this->debug >= 3) {
+    //                 MVC_Core::$debug->output([
+    //                     'type' => "plain",
+    //                     'label' => __CLASS__ . '->ResponseInfo',
+    //                     'data' => $response_info,
+    //                 ], null, true); // Send buffered for PHP output
+    //             }
+
+    //             return $outcome; // Return true/false depending on success or failure of the query
+    //         }
+    //     } else {
+    //         // If the query failed, throw an exception with error details
+    //         throw new Exception($this->error, $this->errno);
+    //     }
+    // }
+
+
+    /**
+     * Runs an SQL query and returns the result object
+     *
+     * @param string|object $query
+     * @param bool $simulate If true, the query isn't actually executed (just displayed in debug)
+     * @return mysqli_result|bool
+     * @throws Exception
+     */
+
+    /**
+     * Breaks down the information contained in mysqli->info into an associative array
+     *
+     * @param bool $add_insert_id
+     * @return array
+     */
+    public function get_Response(bool $add_insert_id = false): array
+    {
+        $r_arr = [];
+        if (!empty($this->info)) {
+            $response = explode('  ', $this->info);
+            foreach ($response as $r) {
+                [$key, $val] = explode(':', $r);
+                $r_arr[str_replace(' ', '_', strtolower($key))] = trim($val);
+            }
+        }
+        if ($add_insert_id)
+            $r_arr['last_insert_id'] = $this->insert_id;
+        $r_arr['affected_rows'] = $this->affected_rows;
+        return $r_arr;
+    }
+}
+
+
+/**
+ * MVC Database Access Result object - Uses some advanced SPL techniques to provide easy access to the result data (on running SELECTS)
+ *
+ * @author Wavetrex (wavetrex@gmail.com)
+ * @package CargoClaims
+ * @version 1.0.dev
+ */
+class MVC_Database_Result implements Iterator, Countable
+{
+    private mysqli_result $result;
+    protected ?array $cr_row = null;
+//    protected int|string $cr_key = 0;
+    protected int|string|null $cr_key = 0;
+    protected bool $row_loaded = false;
+    protected ?int $row_count = null;
+    public function __construct(mysqli_result $result)
+    {
+        if (!$result instanceof mysqli_result) {
+            throw new InvalidArgumentException("Expected mysqli_result object.");
+        }
+        $this->result = $result;
+        
+        
+    }
+
+    public function current() 
+    {
+    
+        if ($this->cr_key < 0)
+            return null; // Already closed!
+        if (!$this->row_loaded) {
+            $this->cr_row = $this->fetch_assoc();
+            if ($this->cr_row === null) {
+                // No more rows available
+                $this->row_loaded = false;
+            } else {
+                $this->row_loaded = true;
+            }
+        }
+          
+        return $this->cr_row;
+    }
+
+    public function next(): void
+    {
+        if ($this->cr_key < 0)
+            return; // Already closed!
+        $this->cr_key++;
+        $this->row_loaded = false; // Ready for loading next
+    }
+
+    public function key(): int|string
+    {
+        return $this->cr_key;
+    }
+
+    public function valid(): bool
+    {
+        if ($this->cr_key < 0)
+            return false; // Already closed
+
+        if (!$this->row_loaded) { // Attempt to load current row if none currently loaded
+            $this->current();
+        }
+
+        // If no row was loaded, the result is exhausted
+        return $this->row_loaded;
+    }
+
+    public function rewind(): void
+    {
+        if ($this->cr_key < 0)
+            return;
+        $this->result->data_seek(0);
+        $this->cr_key = 0;
+        $this->row_loaded = false;
+    }
+
+    public function count(): int
+    {
+        if (is_null($this->row_count)) {
+            $this->row_count = $this->result->num_rows;
+        }
+        return $this->row_count;
+    }
+    
+    
+    /**
+	 * If an array, it checks the fields against a set of prefixes and splits the array into multiple sub-arrays, where
+	 * key = prefix
+	 * value = array containing fields with the prefix removed
+	 *
+	 * @var array
+	 */
+	public $split_by_prefixes=array();
+
+	/**
+	 * If non-null, array-retrieving operations will set the keys to the value of this field
+	 *
+	 * @var string
+	 */
+	public $index_field;
+
+	/**
+	 * Splits a result row into multiple arrays and removes prefixes from the field names
+	 *
+	 * @param array $row Result row
+	 * @return array The same row split into sub-arrays
+	 */
+	protected function split_Row($row)
+	{
+		if(count($this->split_by_prefixes)==0 || !is_array($row))
+			return $row;
+		$containers=array();
+		foreach($row as $key=>&$value) {
+			// search container keys
+			foreach($this->split_by_prefixes as $container_key=>$prefix) {
+				$prefix_len=strlen($prefix);
+				if(substr($key,0,$prefix_len)==$prefix) {
+					if(is_numeric($container_key))
+						$container_key=$prefix;
+					$containers[$container_key][substr($key,$prefix_len)]=$value;
+					unset($row[$key]);
+				}
+			}
+		}
+		return array_merge($row,$containers);
+	}
+
+
+
+
+    
+    public function fetch_assoc()
+	{
+		$row = $this->result->fetch_assoc();
+		if(!is_null($this-> index_field))
+			$this-> cr_key = $row[$this-> index_field];
+		return $this-> split_Row($row);
+	}
+
+    public function __get(string $name)
+    {
+        if (property_exists($this->result, $name)) {
+            return $this->result->$name;
+        }
+
+        throw new Exception("Property {$name} does not exist on result.");
+    }
+    public function getResult(): mysqli_result
+    {
+        return $this->result;
+    }
+}

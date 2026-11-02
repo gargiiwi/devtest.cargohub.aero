@@ -1,0 +1,244 @@
+<!--IWI how to page design start-->
+
+<div class="cargo_claims_how_to_submit">
+    <section class="cargo_claims mt-5">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-7 col-lg-7">
+                    <div class="top_dv">
+                        <a href="javascript:void(0)" class="claim_submit_btn active">How to submit a claim</a>
+                        <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/your_account" class="claim_update_btn">View and update your claims</a>
+                    </div>
+                    <div class="claim_submit_dv">
+                        <div class="title">
+                            <h1>HOW TO SUBMIT A CLAIM</h1>
+                        </div>
+                        <div class="claim_submit_dv_wrap">
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Step 1 - Enter Email Address :
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="title">
+                                                <h6 class="mb-0">➤ What to Do:</h6>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>1. Enter a valid email address in the "Submitted by" field.</h5>
+                                                <ul>
+                                                    <li>This email will be used to send your claim confirmation and login credentials.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>2. Select your role in the claim:</h5>
+                                                <ul>
+                                                    <li>Shipper</li>
+                                                    <li>Consignee</li>
+                                                    <li>Forwarder</li>
+                                                    <li>Insurance agent</li>
+                                                    <li>Other</li>
+                                                </ul>
+                                            </div>
+                                            <div class="subtitle">
+                                                <h5>Choose the option that best represents your position related to the shipment.</h5>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>3. Fill in the following fields:</h5>
+                                                <ul>
+                                                    <li>Shipper Name: Enter the full name of the shipper.</li>
+                                                    <li>Consignee Name: Enter the full name of the consignee</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>4. Click the Next button to proceed to the next step.</h5>
+                                                <div class="image_dv text-center">
+                                                    <img src="/img/extra_domain_image/HOW_TO_SECTION_FOR_CLAIMANTS1.png" class="img-fluid mb-4 mt-3">
+                                                    <img src="/img/extra_domain_image/HOW_TO_SECTION_FOR_CLAIMANTS.png" class="img-fluid mb-2">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Step 2 – Shipment Information:
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="title">
+                                                <p>In this step, you will provide key shipment details related to the cargo for which you're submitting a claim.</p>
+                                                <h6 class="mb-0">➤ What to Do:</h6>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>1. Master Air Waybill (MAWB) Number</h5>
+                                                <ul>
+                                                    <li>Enter the 3-digit prefix (usually represents the airline) and the 8-digit MAWB number</li>
+                                                    <li>This identifies the shipment and is essential for tracking and processing.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>2. AWB Issue Date</h5>
+                                                <ul>
+                                                    <li> Select or type the date the MAWB was issued</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>3. Airline</h5>
+                                                <ul>
+                                                    <li>Start typing the airline name and select it from the drop-down list.</li>
+                                                    <li>This links your claim to the correct carrier.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>4. Origin Airport</h5>
+                                                <ul>
+                                                    <li>Enter the airport where the shipment originated (e.g., JFK for New York, LHR for London Heathrow).</li>
+                                                    <li>Use the dropdown for quick selection.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>5. Destination Airport</h5>
+                                                <ul>
+                                                    <li>Enter the airport where the shipment was supposed to be delivered.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>6. Nature of Goods</h5>
+                                                <ul>
+                                                    <li>Briefly describe the contents of the shipment (e.g., electronics, garments, pharmaceuticals).</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>7. 1st House AWB (if applicable)</h5>
+                                                <ul>
+                                                    <li>Enter the House Air Waybill if the shipment includes consolidated goods.</li>
+                                                    <li>You can add up to 9 house AWBs using the "Add House AWB" button for multiple shipments under the same MAWB</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>8. Click the Next button to proceed to the next step.</h5>
+                                                <div class="image_dv text-center">
+                                                    <img src="/img/extra_domain_image/HOW-TO-SECTION-FOR-CLAIMANTS2.png" alt="" class="img-fluid">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Step 3 - Claim Related Data:
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="title">
+                                                <h6 class="mb-0">➤ What to Do:</h6>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>1. Claim Type</h5>
+                                                <ul>
+                                                    <li><span>Preliminary :</span>Select this if you are submitting an initial or early-stage claim without complete documentation.</li>
+                                                    <li><span>Formal :</span>Select this if you have all the required documentation and are submitting a complete, final claim.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>2. Claim Aspects</h5>
+                                                <p>You must fill in the relevant claim aspect(s) by specifying the number of pieces and weight (Kg) for each applicable loss/damage category.</p>
+                                                <ul>
+                                                    <li>Damage :
+                                                        <ul class="sub_list">
+                                                            <li>Pieces: Number of damaged items (e.g., 20)</li>
+                                                            <li>Kg: Total weight of damaged goods (e.g., 500)</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>Total Loss :
+                                                        <ul class="sub_list">
+                                                            <li>Pieces: Number of completely lost items</li>
+                                                            <li>Kg: Total weight of items considered a total loss.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>Delay :
+                                                        <ul class="sub_list">
+                                                            <li>Pieces: Number of delayed items.</li>
+                                                            <li>Kg: Weight of delayed items.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>Partial Loss :
+                                                        <ul class="sub_list">
+                                                            <li>Pieces: Number of partially lost items.</li>
+                                                            <li>Kg: Weight of items partially lost.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>Pilferage :
+                                                        <ul class="sub_list">
+                                                            <li>Pieces: Number of items pilfered (stolen or missing due to unauthorized access).</li>
+                                                            <li>Kg: Weight of pilfered goods.</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <div class="image_dv text-center">
+                                                    <img src="/img/extra_domain_image/image_1.png" alt="" class="img-fluid">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFour">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Step 4 – Provided Documents and submit:
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="title">
+                                                <h6 class="mb-0">➤ What to Do:</h6>
+                                                <p>This step allows the user to upload all supporting documents necessary to validate and process the shipment claim. It includes a checklist of commonly required documents and a drag-anddrop file upload interface.</p>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>1. Guidelines for Submitting Documents</h5>
+                                                <ul>
+                                                    <li>Users must select the applicable document types they are submitting.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="steps">
+                                                <h5>2. File Upload Methods:</h5>
+                                                <ul>
+                                                    <li><span>Drag & Drop Zone :</span> Users can drag files directly into the dashed box area.</li>
+                                                    <li><span>Browse Files Button :</span> Clicking this opens a file explorer for manual selection of files.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="notes">
+                                                <h6><b>Notes:</b></h6>
+                                                <ul>
+                                                    <li>Multiple files can be uploaded.</li>
+                                                    <li>Accepted formats typically include PDF, JPG, PNG, DOC, XLS, etc.</li>
+                                                    <li>File names should be clear and relevant to the document type.</li>
+                                                </ul>
+                                                <div class="image_dv text-center">
+                                                    <img src="/img/extra_domain_image/HOW_TO_SECTION_FOR_CLAIMANTS2.png" alt="" class="img-fluid">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!--IWI how to page design end-->

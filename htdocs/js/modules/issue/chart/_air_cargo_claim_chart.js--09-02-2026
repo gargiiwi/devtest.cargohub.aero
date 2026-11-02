@@ -1,0 +1,1516 @@
+$(document).ready(function () {
+
+
+
+    // ===== MAIN TAB SWITCH ===
+    $('.main-tabs .tab').on('click', function () {
+        const target = $(this).data('target');
+        $('.main-tabs .tab').removeClass('active');
+        $('.tab-content').removeClass('active');
+
+        $(this).addClass('active');
+        $('#' + target).addClass('active');
+    });
+    // ===== SUB TAB SWITCH =====
+    // ===== SUB TAB SWITCH =====
+    $('.sub-tabs .sub-tab').on('click', function () {
+
+        const $parent = $(this).closest('.tab-content');
+        const target = $(this).data('target');
+
+        // UI switching
+        $parent.find('.sub-tabs .sub-tab').removeClass('active');
+        $parent.find('.sub-tab-content').removeClass('active');
+        $(this).addClass('active');
+        $('#' + target).addClass('active');
+
+        // Prevent re-loading if already loaded
+        if (subTabLoaded[target])
+            return;
+
+        const period = $parent.find('.chart-period-select').first().val();
+        const {startDate, endDate} = getDateRange(period);
+
+        switch (target) {
+            case "cargo-overview":
+                updateOverview(startDate, endDate);
+                break;
+
+            case "formal-claim":
+                updateFormalClaim(startDate, endDate);
+                break;
+
+            case "claim-aspects":
+                updateClaimAspects(period);
+                break;
+
+            case "root-cause":
+                updateRootCause(startDate, endDate);
+                break;
+
+            case "financials":
+                updateFinancials(startDate, endDate);
+                break;
+        }
+
+        subTabLoaded[target] = true;
+    });
+
+    // ===== DROPDOWNS =========
+    const currentYear = new Date().getFullYear();
+    const years = ["Last Month", "Last 3 Months", "Last 6 Months", "Last 12 Months"];
+    for (let i = 0; i < 5; i++)
+        years.push((currentYear - i).toString());
+
+    $('.chart-period-select').each(function () {
+        const $select = $(this);
+        $select.html(years.map(y => `<option value="${y}">${y}</option>`).join(''));
+        $select.val(currentYear.toString());
+        updateYearLabel($select);
+        $select.on('change', function () {
+            const selected = $(this).val();
+            updateYearLabel($(this), selected);
+
+
+            const {startDate, endDate} = getDateRange(selected);
+            console.log("Start:", startDate);
+            console.log("End:", endDate);
+
+            const $section = $(this).closest('.sub-tab-content');
+            const sectionId = $section.length ? $section.attr('id') : null;
+
+            switch (sectionId) {
+                case "cargo-overview":
+                    updateOverview(startDate, endDate);
+                    break;
+                case "formal-claim":
+                    updateFormalClaim(startDate, endDate);
+                    break;
+                case "claim-aspects":
+                    updateClaimAspects(startDate, endDate);
+                    break;
+                case "root-cause":
+                    updateRootCause(startDate, endDate);
+                    break;
+                case "financials":
+                    updateFinancials(startDate, endDate);
+                    break;
+            }
+        });
+    });
+
+    function updateYearLabel($select, value) {
+        const selected = value || $select.val();
+        const $label = $select.closest('.chart-card-header').find('.chart-year-label');
+        var ranges = ["Last Month", "Last 3 Months", "Last 6 Months", "Last 12 Months"];
+        if ($label.length) {
+            $label.text(ranges.includes(selected) ? selected : `Year ${selected}`);
+        }
+    }
+
+    const subTabLoaded = {
+        "cargo-overview": false,
+        "formal-claim": false,
+        "claim-aspects": false,
+        "root-cause": false,
+        "financials": false
+    };
+
+
+// ===== CHART INSTANCES ===
+    const chartInstances = {};
+    // ===== COLORS ============ 
+    // Corporate professional palette
+    const colors = [
+        '#1F3A93', // Deep Blue (primary)
+        '#3E6DB7', // Medium Blue
+        '#0B8457', // Dark Green
+        '#56A78C', // Soft Green
+        '#B07C4A', // Warm Amber/Bronze
+        '#C14F4F', // Muted Red
+        '#6C757D', // Neutral Gray
+        '#8A6BBE', // Muted Purple
+        '#3B6B8F', // Steel Blue
+        '#4C9CA0'  // Soft Teal
+    ];
+    function getRandomColor() {
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    const noDataPlugin = {
+        id: 'noDataPlugin',
+        beforeDraw: function (chart) {
+            const hasData = chart.data.datasets.some(ds => ds.data && ds.data.length && ds.data.some(v => v > 0));
+            if (!hasData) {
+                const ctx = chart.ctx;
+                const width = chart.width;
+                const height = chart.height;
+
+                ctx.save();
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.font = '16px sans-serif';
+                ctx.fillStyle = '#6b7280';
+                ctx.fillText('No data found', width / 2, height / 2);
+                ctx.restore();
+            }
+        }
+    };
+
+
+
+    // ===== CHART HELPERS =====
+    const modernOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+
+        interaction: {
+            mode: 'index',
+            intersect: false
+        },
+
+        plugins: {
+            legend: {display: false},
+            tooltip: {
+                enabled: true,
+                mode: 'index',
+                intersect: false
+            }
+        },
+
+        scales: {
+            y: {
+                ticks: {
+                    callback: function (val) {
+                        return val.toLocaleString();
+                    }
+                },
+                grid: {color: '#e5e7eb'}
+            },
+            x: {
+                grid: {color: '#f3f4f6'}
+            }
+        }
+    };
+
+
+
+    // ===== INITIAL LOAD (ONLY OVERVIEW) =====
+    const defaultPeriod = $('.chart-period-select').first().val();
+    const {startDate, endDate} = getDateRange(defaultPeriod);
+
+    updateOverview(startDate, endDate);
+    subTabLoaded["cargo-overview"] = true;
+
+    function formatDate(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+
+
+
+
+    function getDateRange(selected) {
+        const today = new Date();
+        let startDate, endDate;
+
+        switch (selected) {
+            case "Last Month":
+                startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                endDate = new Date(today.getFullYear(), today.getMonth(), 0);
+                break;
+
+            case "Last 3 Months":
+                startDate = new Date(today.getFullYear(), today.getMonth() - 3, 1);
+                endDate = today;
+                break;
+
+            case "Last 6 Months":
+                startDate = new Date(today.getFullYear(), today.getMonth() - 6, 1);
+                endDate = today;
+                break;
+
+            case "Last 12 Months":
+                startDate = new Date(today.getFullYear(), today.getMonth() - 12, 1);
+                endDate = today;
+                break;
+
+            default:
+                // Year selected (e.g. "2026")
+                const year = parseInt(selected, 10);
+                startDate = new Date(year, 0, 1);   // Jan 1
+                endDate = new Date(year, 11, 31); // Dec 31
+                break;
+        }
+
+        return {
+            startDate: formatDate(startDate),
+            endDate: formatDate(endDate)
+        };
+    }
+
+
+    function createChart(id, type, labels, dataSets, onComplete, plugins = []) {
+        // dataSets: array of objects like { label: 'Damage', data: [...], color: '#1E3A8A' }
+
+        const canvas = document.getElementById(id);
+        if (!canvas)
+            return null;
+
+        const ctx = canvas.getContext('2d');
+
+        if (chartInstances[id]) {
+            chartInstances[id].destroy();
+        }
+
+        chartInstances[id] = new Chart(ctx, {
+            type,
+            data: {
+                labels,
+                datasets: dataSets.map(ds => ({
+                        label: ds.label,
+                        data: ds.data,
+                        backgroundColor: type === 'line' ? 'transparent' : ds.color,
+                        borderColor: ds.color,
+                        borderRadius: type === 'bar' ? 8 : 0,
+                        tension: type === 'line' ? 0.4 : 0,
+                        fill: false
+                    }))
+            },
+            options: {
+                ...modernOptions,
+                animation: {
+                    onComplete: () => {
+                        if (typeof onComplete === 'function')
+                            onComplete();
+                    }
+                }
+            },
+            plugins: plugins
+        });
+
+        return chartInstances[id];
+    }
+
+    // ===== OVERVIEW ========== 
+    function updateOverview(startDate, endDate) {
+        console.log('updateOverview');
+
+        // Show loaders
+        ['preliminaryClaimChart', 'formalClaimChart', 'Top_5_Claim_By_Origin',
+            'Top_5_Claim_By_Destination', 'totalFormalAmountChart', 'totalAmountFormalClaimed']
+                .forEach(function (id) {
+                    showCardLoader(id);
+                });
+
+
+        $.post("/user/overview?action=Load_AirCargoClaimChartOverview", {
+            startDate: startDate,
+            endDate: endDate
+        }, function (x) {
+
+            console.log(x);
+
+            $('#kpiPreliminary').html(x.preliminary_total_count);
+            $('#kpiFormal').html(x.formal_total_count);
+
+            /* ================= PRELIMINARY ================= */
+
+            var preData = x.preClaim || [];
+
+//            var preHasData = false;
+//            for (var i = 0; i < preData.length; i++) {
+//                if (parseInt(preData[i].active, 10) > 0 || parseInt(preData[i].closed, 10) > 0) {
+//                    preHasData = true;
+//                    break;
+//                }
+//            }
+//
+//            if (!preHasData) {
+//                hideCardLoader('preliminaryClaimChart');
+//            } else {
+                var chartPreliminaryData = buildPreliminaryChart(preData);
+
+                createChart(
+                        'preliminaryClaimChart',
+                        'line',
+                        chartPreliminaryData.labels,
+                        chartPreliminaryData.datasets,
+                        function () {
+                            hideCardLoader('preliminaryClaimChart');
+                        },
+                        [noDataPlugin]
+                        );
+//            }
+
+            /* ================= FORMAL ================= */
+
+            var formalData = x.formalClaim || [];
+
+//            var formalHasData = false;
+//            for (var j = 0; j < formalData.length; j++) {
+//                if (parseInt(formalData[j].active, 10) > 0 || parseInt(formalData[j].closed, 10) > 0) {
+//                    formalHasData = true;
+//                    break;
+//                }
+//            }
+//
+//            if (!formalHasData) {
+//                hideCardLoader('formalClaimChart');
+//            } else {
+                var chartFormalData = buildFormalChart(formalData);
+
+                createChart(
+                        'formalClaimChart',
+                        'line',
+                        chartFormalData.labels,
+                        chartFormalData.datasets,
+                        function () {
+                            hideCardLoader('formalClaimChart');
+                        }
+                );
+//            }
+
+
+
+
+
+            // Origin table
+            var originData = x.formal_top_5_Origin || [];
+
+//            if (!originData.length) {
+//                $('#Top_5_Claim_By_Origin').html(
+//                        `<tr><td colspan="6" style="text-align:center;color:#6b7280;">No data found</td></tr>`
+//                        );
+//                hideCardLoader('Top_5_Claim_By_Origin');
+//            } else {
+                $('#Top_5_Claim_By_Origin').html(
+                        originData.map(function (d) {
+                            return `<tr>
+                <td>${d.origin ? d.origin : '-'}</td>
+                <td>${parseInt(d.damage, 10) || 0}</td>
+                <td>${parseInt(d.total_loss, 10) || 0}</td>
+                <td>${parseInt(d.delay, 10) || 0}</td>
+                <td>${parseInt(d.partial_loss, 10) || 0}</td>
+                <td>${parseInt(d.pilferage, 10) || 0}</td>
+            </tr>`;
+                        }).join('')
+                        );
+                hideCardLoader('Top_5_Claim_By_Origin');
+//            }
+
+
+            var destData = x.formal_top_5_Destination || [];
+
+//            if (!destData.length) {
+//                $('#Top_5_Claim_By_Destination').html(
+//                        `<tr><td colspan="6" style="text-align:center;color:#6b7280;">No data found</td></tr>`
+//                        );
+//                hideCardLoader('Top_5_Claim_By_Destination');
+//            } else {
+                $('#Top_5_Claim_By_Destination').html(
+                        destData.map(function (d) {
+                            return `<tr>
+                <td>${d.destination ? d.destination : '-'}</td>
+                <td>${parseInt(d.damage, 10) || 0}</td>
+                <td>${parseInt(d.total_loss, 10) || 0}</td>
+                <td>${parseInt(d.delay, 10) || 0}</td>
+                <td>${parseInt(d.partial_loss, 10) || 0}</td>
+                <td>${parseInt(d.pilferage, 10) || 0}</td>
+            </tr>`;
+                        }).join('')
+                        );
+                hideCardLoader('Top_5_Claim_By_Destination');
+//            }
+
+
+//            if (!x.totalAmountFormalClaimed || Object.keys(x.totalAmountFormalClaimed).length === 0) {
+//                hideCardLoader('totalFormalAmountChart');
+//            } else {
+
+
+
+/*
+
+                var monthOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+
+                var months = [];
+                var totals = [];
+                var totalAmountFormalClaimed = 0;
+
+                for (var i = 0; i < monthOrder.length; i++) {
+                    var m = monthOrder[i];
+                    if (x.totalAmountFormalClaimed[m]) {
+
+                        var d = x.totalAmountFormalClaimed[m];
+                        var amount = Number(d.amount || 0);
+
+                        months.push(m);
+                        totals.push(amount);
+                        totalAmountFormalClaimed += amount;
+                    }
+                }
+                console.log('totalAmountFormalClaimed', totalAmountFormalClaimed);
+
+                $('#kpiFormalAmount').html(
+                        totalAmountFormalClaimed.toLocaleString()
+                        );
+
+                var totalFormalData = [
+                    {
+                        label: 'Total Formal Amount',
+                        data: totals,
+                        color: '#1E3A8A'
+                    }
+                ];
+
+                createChart(
+                        'totalFormalAmountChart',
+                        'bar',
+                        months,
+                        totalFormalData,
+                        function () {
+                            hideCardLoader('totalFormalAmountChart');
+                        }
+                );
+        
+        */
+        renderTotalFormalAmountDoughnut(x.totalAmountFormalClaimed);
+        
+//            }
+
+
+//            if (!x.ultimateAmountProvision || Object.keys(x.ultimateAmountProvision).length === 0) {
+//                hideCardLoader('totalAmountFormalClaimed');
+//            } else {
+
+//                var monthOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+//                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+//
+//
+//                var months = [];
+//                var totals = [];
+//                var ultimateAmountProvision = 0;
+//
+//                for (var i = 0; i < monthOrder.length; i++) {
+//                    var m = monthOrder[i];
+//
+//                    if (x.ultimateAmountProvision[m]) {
+//
+//                        var d = x.ultimateAmountProvision[m];
+//                        var amount = Number(d.provision_amount || 0);
+//
+//                        months.push(m);
+//                        totals.push(amount);
+//                        ultimateAmountProvision += amount;
+//                    }
+//                }
+//
+//                console.log('ultimateAmountProvision', ultimateAmountProvision);
+//
+//                $('#kpiFormalProvisionAmount').html(
+//                        ultimateAmountProvision.toLocaleString()
+//                        );
+//
+//                var totalFormalData = [
+//                    {
+//                        label: 'Ultimate Amount Provision',
+//                        data: totals,
+//                        color: '#10B981'
+//                    }
+//                ];
+//
+//                createChart(
+//                        'totalAmountFormalClaimed',
+//                        'bar',
+//                        months,
+//                        totalFormalData,
+//                        function () {
+//                            hideCardLoader('totalAmountFormalClaimed');
+//                        }
+//                );
+//                
+                
+                
+                renderUltimateProvisionLineChart(x.ultimateAmountProvision);
+                
+                
+//            }
+
+
+
+
+        }).fail(function () {
+            [
+                'preliminaryClaimChart',
+                'formalClaimChart',
+                'Top_5_Claim_By_Origin',
+                'Top_5_Claim_By_Destination',
+                'totalFormalAmountChart',
+                'totalAmountFormalClaimed'
+            ].forEach(function (id) {
+                hideCardLoader(id);
+            });
+
+            cargohub.its.http_fail();
+        });
+
+
+    }
+
+
+// Global chart instance
+let totalFormalAmountChartInstance = null;
+let totalFormalAmountOriginalData = [];
+
+function renderTotalFormalAmountDoughnut(data) {
+    showCardLoader('totalFormalAmountChart');
+
+    const monthOrder = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    const months = [];
+    const totals = [];
+    const colorsUsed = [];
+    let totalAmount = 0;
+
+    const backgroundColors = [
+        '#93C5FD', '#BFDBFE', '#A7F3D0', '#6EE7B7',
+        '#FDE68A', '#FECACA', '#FBCFE8', '#FCD34D',
+        '#C7D2FE', '#E0E7FF', '#D9F99D', '#FEF3C7'
+    ];
+
+    const monthColumnMap = {
+        Jan: 0, Feb: 0, Mar: 0, 
+        Apr: 1,May: 1, Jun: 1,
+        Jul: 2, Aug: 2,Sep: 2, 
+        Oct: 3, Nov: 3, Dec: 3
+    };
+
+    // Build data (skip zero values)
+    for (let i = 0; i < monthOrder.length; i++) {
+        const m = monthOrder[i];
+        if (data[m] && parseFloat(data[m].amount || 0) > 0) {
+            const amount = parseFloat(data[m].amount);
+            months.push(m);
+            totals.push(Number(amount.toFixed(2)));
+            colorsUsed.push(backgroundColors[i]);
+            totalAmount += amount;
+        }
+    }
+
+    $('#kpiFormalAmount').html(
+        '$'+totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    );
+    $('#tFACTotal').html(
+        '$'+totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    );
+
+
+    const ctx = document.getElementById('totalFormalAmountChart').getContext('2d');
+
+    if (totalFormalAmountChartInstance) {
+        totalFormalAmountChartInstance.destroy();
+    }
+
+    totalFormalAmountChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+                label: '',
+                data: totals,
+                borderColor: '#3B82F6',
+                backgroundColor: 'rgba(59,130,246,0.15)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 6,
+                pointBackgroundColor: colorsUsed
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                datalabels: { display: false }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: v => v.toLocaleString()
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+    /* -----------------------------
+       VALUES GRID (Month on top, amount below)
+       Jan–Apr | May–Aug | Sep–Dec
+    ------------------------------ */
+
+    const legendContainer = document.getElementById('totalFormalAmountChartLegend');
+    legendContainer.innerHTML = '';
+    legendContainer.style.display = 'grid';
+    legendContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
+    legendContainer.style.gap = '12px';
+    legendContainer.style.marginTop = '15px';
+
+    const columns = [0, 1, 2,3].map(() => {
+        const col = document.createElement('div');
+        col.style.display = 'flex';
+        col.style.flexDirection = 'column';
+        col.style.gap = '12px';
+        legendContainer.appendChild(col);
+        return col;
+    });
+
+    months.forEach((month, i) => {
+        const colIndex = monthColumnMap[month];
+        if (colIndex === undefined) return;
+
+        const item = document.createElement('div');
+        item.style.display = 'flex';
+        item.style.alignItems = 'flex-start';
+        item.style.gap = '8px';
+
+        const colorBox = document.createElement('span');
+        colorBox.style.width = '12px';
+        colorBox.style.height = '12px';
+        colorBox.style.backgroundColor = colorsUsed[i];
+        colorBox.style.borderRadius = '3px';
+        colorBox.style.marginTop = '4px';
+
+        const textWrapper = document.createElement('div');
+
+        const monthText = document.createElement('div');
+        monthText.textContent = month;
+        monthText.style.fontWeight = '600';
+        monthText.style.fontSize = '0.875rem';
+        monthText.style.color = '#374151';
+
+        const valueText = document.createElement('div');
+        valueText.textContent = totals[i].toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        valueText.style.fontSize = '0.8rem';
+        valueText.style.color = '#6B7280';
+
+        textWrapper.appendChild(monthText);
+        textWrapper.appendChild(valueText);
+
+        item.appendChild(colorBox);
+        item.appendChild(textWrapper);
+
+        columns[colIndex].appendChild(item);
+    });
+
+    hideCardLoader('totalFormalAmountChart');
+}
+
+
+
+let ultimateProvisionChartInstance = null;
+
+function renderUltimateProvisionLineChart(data) {
+    showCardLoader('totalAmountFormalClaimed');
+
+    const monthOrder = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    const months = [];
+    const totals = [];
+    const pointColors = [];
+    let totalProvision = 0;
+
+    const colors = [
+        '#93C5FD', '#BFDBFE', '#A7F3D0', '#6EE7B7',
+        '#FDE68A', '#FECACA', '#FBCFE8', '#FCD34D',
+        '#C7D2FE', '#E0E7FF', '#D9F99D', '#FEF3C7'
+    ];
+
+    const monthColumnMap = {
+        Jan: 0, Feb: 0, Mar: 0, 
+        Apr: 1,May: 1, Jun: 1,
+        Jul: 2, Aug: 2,Sep: 2, 
+        Oct: 3, Nov: 3, Dec: 3
+    };
+
+    // Build data (skip zero / missing months)
+    for (let i = 0; i < monthOrder.length; i++) {
+        const m = monthOrder[i];
+        if (data[m] && parseFloat(data[m].provision_amount || 0) > 0) {
+            const amount = parseFloat(data[m].provision_amount);
+            months.push(m);
+            totals.push(Number(amount.toFixed(2)));
+            pointColors.push(colors[i]);
+            totalProvision += amount;
+        }
+    }
+
+    $('#kpiFormalProvisionAmount').html(
+        '$'+totalProvision.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    );
+    $('#tAFCTotal').html(
+        '$'+totalProvision.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    );
+
+    const ctx = document.getElementById('totalAmountFormalClaimed').getContext('2d');
+
+    if (ultimateProvisionChartInstance) {
+        ultimateProvisionChartInstance.destroy();
+    }
+
+    ultimateProvisionChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Ultimate Amount Provision',
+                data: totals,
+                borderColor: '#10B981',
+                backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 6,
+                pointBackgroundColor: pointColors,
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                datalabels: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => `${ctx.label}: ${ctx.raw.toFixed(2)}`
+                    }
+                }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: (value) => value.toFixed(2)
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+    /* -----------------------------
+       VALUES GRID
+       Jan–Apr | May–Aug | Sep–Dec
+    ------------------------------ */
+
+    const valuesContainer = document.getElementById('totalAmountFormalClaimedValues');
+    valuesContainer.innerHTML = '';
+    valuesContainer.style.display = 'grid';
+    valuesContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
+    valuesContainer.style.gap = '12px';
+    valuesContainer.style.marginTop = '15px';
+
+    const columns = [0, 1, 2,3].map(() => {
+        const col = document.createElement('div');
+        col.style.display = 'flex';
+        col.style.flexDirection = 'column';
+        col.style.gap = '10px';
+        valuesContainer.appendChild(col);
+        return col;
+    });
+
+    months.forEach((month, i) => {
+        const colIndex = monthColumnMap[month];
+        if (colIndex === undefined) return;
+
+        const item = document.createElement('div');
+        item.style.display = 'flex';
+        item.style.alignItems = 'flex-start';
+        item.style.gap = '8px';
+
+        const colorBox = document.createElement('span');
+        colorBox.style.width = '12px';
+        colorBox.style.height = '12px';
+        colorBox.style.backgroundColor = pointColors[i];
+        colorBox.style.borderRadius = '3px';
+        colorBox.style.marginTop = '4px';
+
+        const textWrapper = document.createElement('div');
+
+        const monthText = document.createElement('div');
+        monthText.textContent = month;
+        monthText.style.fontWeight = '600';
+        monthText.style.fontSize = '0.875rem';
+        monthText.style.color = '#374151';
+
+        const valueText = document.createElement('div');
+        valueText.textContent = totals[i].toLocaleString();
+        valueText.style.fontSize = '0.8rem';
+        valueText.style.color = '#6B7280';
+
+        textWrapper.appendChild(monthText);
+        textWrapper.appendChild(valueText);
+
+        item.appendChild(colorBox);
+        item.appendChild(textWrapper);
+
+        columns[colIndex].appendChild(item);
+    });
+
+    hideCardLoader('totalAmountFormalClaimed');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    function buildPreliminaryChart(apiData) {
+
+        // local month order (NOT constant)
+        var monthsOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        // remove empty months
+        var filtered = apiData.filter(function (row) {
+            return (parseInt(row.active, 10) > 0 || parseInt(row.closed, 10) > 0);
+        });
+
+        // sort by month order
+        filtered.sort(function (a, b) {
+            return monthsOrder.indexOf(a.month) - monthsOrder.indexOf(b.month);
+        });
+
+        // build chart arrays
+        var labels = [];
+        var activeData = [];
+        var closedData = [];
+
+        filtered.forEach(function (row) {
+            labels.push(row.month);
+            activeData.push(parseInt(row.active, 10));
+            closedData.push(parseInt(row.closed, 10));
+        });
+
+        return {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Active',
+                    data: activeData,
+                    color: '#0B8457'
+                },
+                {
+                    label: 'Closed',
+                    data: closedData,
+                    color: '#C14F4F'
+                }
+            ]
+        };
+    }
+    function buildFormalChart(apiData) {
+
+        var monthsOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        // sort months correctly
+        apiData.sort(function (a, b) {
+            return monthsOrder.indexOf(a.month) - monthsOrder.indexOf(b.month);
+        });
+
+        var labels = [];
+        var activeData = [];
+        var closedData = [];
+
+        for (var i = 0; i < apiData.length; i++) {
+            labels.push(apiData[i].month);
+            activeData.push(parseInt(apiData[i].active, 10));
+            closedData.push(parseInt(apiData[i].closed, 10));
+        }
+
+        return {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Active',
+                    data: activeData,
+                    color: '#2563EB'
+                },
+                {
+                    label: 'Closed',
+                    data: closedData,
+                    color: '#DC2626'
+                }
+            ]
+        };
+    }
+
+
+
+
+
+    // =========================
+    // ===== FORMAL CLAIM ====== 
+    // =========================
+    function updateFormalClaim(startDate, endDate) {
+        console.log('updateFormalClaim');
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+
+        // ----- Main Charts -----
+        createChart('formalClaimsTotalChart', 'bar', months, [20, 25, 18, 30, 22, 20], colors.primary);
+        createChart('formalClaimActivityChart', 'line', months, [5, 8, 6, 10, 7, 5], colors.secondary);
+
+
+
+        // ----- Formal Claim Table -----
+        const demoData = [
+            {month: 'Jan', claims: 10, settled: 8, amount: 5000},
+            {month: 'Feb', claims: 12, settled: 10, amount: 7000},
+            {month: 'Mar', claims: 8, settled: 6, amount: 4000},
+            {month: 'Apr', claims: 15, settled: 12, amount: 9000},
+            {month: 'May', claims: 9, settled: 7, amount: 6500},
+            {month: 'Jun', claims: 7, settled: 5, amount: 3000}
+        ];
+        $('#formalClaimTable').html(demoData.map(d => `<tr>
+      <td>${d.month}</td><td>${d.claims}</td><td>${d.settled}</td><td>${d.amount.toLocaleString()}</td>
+    </tr>`).join(''));
+
+        // ----- Special Handling Codes (Monthly) Chart -----
+        const shcData = {
+            'FRD': [5, 6, 4, 7, 5, 6],
+            'DGR': [3, 2, 3, 4, 2, 3],
+            'BRS': [1, 2, 1, 1, 2, 1],
+            'OTH': [2, 3, 2, 3, 2, 3]
+        };
+        createCheckboxTrend('shcMonthlyChart', 'shcMonthlyChecks', shcData);
+
+        // ----- Open Formal Claim Records Table -----
+        const openRecords = [
+            {id: 101, origin: 'DXB', destination: 'LHR', claim: 'Delay', amount: 2000},
+            {id: 102, origin: 'JFK', destination: 'FRA', claim: 'Damage', amount: 1500},
+            {id: 103, origin: 'SIN', destination: 'DXB', claim: 'Total Loss', amount: 3000}
+        ];
+        $('#openFormalClaimTable').html(openRecords.map(d => `<tr>
+      <td>${d.id}</td><td>${d.origin}</td><td>${d.destination}</td><td>${d.claim}</td><td>${d.amount.toLocaleString()}</td>
+    </tr>`).join(''));
+
+        // ----- Closed Formal Claim Records Table -----
+        const closedRecords = [
+            {id: 201, origin: 'LHR', destination: 'DXB', claim: 'Delay', amount: 2500},
+            {id: 202, origin: 'FRA', destination: 'JFK', claim: 'Damage', amount: 1800},
+            {id: 203, origin: 'DXB', destination: 'SIN', claim: 'Pilferage', amount: 1200}
+        ];
+        $('#closedFormalClaimTable').html(closedRecords.map(d => `<tr>
+      <td>${d.id}</td><td>${d.origin}</td><td>${d.destination}</td><td>${d.claim}</td><td>${d.amount.toLocaleString()}</td>
+    </tr>`).join(''));
+
+        // ----- Loss Details (Monthly) Table -----
+        const lossDetailsData = [
+            {month: 'Jan', Damage: 500, TotalLoss: 1000, Delay: 200, 'Partial Loss': 50, Pilferage: 30},
+            {month: 'Feb', Damage: 600, TotalLoss: 1200, Delay: 250, 'Partial Loss': 70, Pilferage: 20},
+            {month: 'Mar', Damage: 450, TotalLoss: 900, Delay: 180, 'Partial Loss': 60, Pilferage: 25},
+            {month: 'Apr', Damage: 700, TotalLoss: 1400, Delay: 300, 'Partial Loss': 80, Pilferage: 40},
+            {month: 'May', Damage: 550, TotalLoss: 1100, Delay: 220, 'Partial Loss': 55, Pilferage: 35},
+            {month: 'Jun', Damage: 650, TotalLoss: 1300, Delay: 270, 'Partial Loss': 65, Pilferage: 45}
+        ];
+        $('#lossDetailsTable').html(lossDetailsData.map(d => `<tr>
+      <td>${d.month}</td>
+      <td>${d.Damage.toLocaleString()}</td>
+      <td>${d.TotalLoss.toLocaleString()}</td>
+      <td>${d.Delay.toLocaleString()}</td>
+      <td>${d['Partial Loss'].toLocaleString()}</td>
+      <td>${d.Pilferage.toLocaleString()}</td>
+    </tr>`).join(''));
+    }
+
+    // =========================
+    // ===== CLAIM ASPECTS =====
+    // =========================
+
+
+
+
+
+
+
+
+    const claimAspectCharts = {};
+
+    function createCheckboxTrend(chartId, checkboxContainerId, dataObject) {
+        const ctxEl = $('#' + chartId)[0];
+        if (!ctxEl)
+            return null;
+        const ctx = ctxEl.getContext('2d');
+        const datasets = Object.keys(dataObject).map(key => ({
+                label: key,
+                data: dataObject[key],
+                borderColor: colors.primary,
+                backgroundColor: 'transparent',
+                fill: false,
+                tension: 0.4
+            }));
+        const chart = new Chart(ctx, {type: 'line', data: {labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], datasets}, options: {responsive: true, maintainAspectRatio: false, plugins: {legend: {display: false}, tooltip: {enabled: false}}}});
+
+        const $container = $('#' + checkboxContainerId);
+        $container.empty();
+        const $btn = $('<button class="select-all-btn">Select All</button>');
+        $container.append($btn);
+
+        datasets.forEach((ds, i) => {
+            const $label = $(`<label><input type="checkbox" checked /> ${ds.label}</label>`);
+            $label.find('input').on('change', function () {
+                chart.data.datasets[i].hidden = !this.checked;
+                chart.update();
+            });
+            $container.append($label);
+        });
+
+        $btn.on('click', function () {
+            $container.find('input[type="checkbox"]').prop('checked', true);
+            chart.data.datasets.forEach(ds => ds.hidden = false);
+            chart.update();
+        });
+        return chart;
+    }
+
+
+
+    function updateClaimAspects(startDate, endDate) {
+        console.log('updateClaimAspects');
+
+        const period = $('.chart-period-select').first().val();
+        const data = {
+            Damage: [14, 16, 12, 15, 13, 10],
+            Delay: [10, 12, 9, 14, 11, 8],
+            TotalLoss: [8, 9, 7, 10, 8, 6],
+            Pilferage: [4, 5, 3, 6, 4, 2]
+        };
+        const getClaimAspectOriginData = {
+            DXB: [5, 6, 4, 7, 5, 6],
+            LHR: [3, 2, 3, 4, 2, 3],
+            JFK: [4, 5, 3, 6, 4, 5],
+            FRA: [2, 3, 4, 3, 2, 3],
+            SIN: [1, 2, 2, 1, 2, 1]
+        };
+        const getClaimAspectDestinationData = {
+            DXB: [5, 6, 4, 7, 5, 6],
+            LHR: [3, 2, 3, 4, 2, 3],
+            JFK: [4, 5, 3, 6, 4, 5],
+            FRA: [2, 3, 4, 3, 2, 3],
+            SIN: [1, 2, 2, 1, 2, 1]
+        };
+        const getClaimAspectTrendData = {
+            Damage: [14, 16, 12, 15, 13, 10],
+            Delay: [10, 12, 9, 14, 11, 8],
+            TotalLoss: [8, 9, 7, 10, 8, 6],
+            Pilferage: [4, 5, 3, 6, 4, 2]
+        };
+
+        // ===== KPI UPDATE =====
+        $('#kpiDamage').text(data.Damage.reduce((a, b) => a + b, 0));
+        $('#kpiDelay').text(data.Delay.reduce((a, b) => a + b, 0));
+        $('#kpiTotalLoss').text(data.TotalLoss.reduce((a, b) => a + b, 0));
+        $('#kpiPilferage').text(data.Pilferage.reduce((a, b) => a + b, 0));
+
+        // ===== TREND CHART (NO CHECKBOXES) =====
+        if (claimAspectCharts.trend) {
+            claimAspectCharts.trend.destroy();
+        }
+
+
+        claimAspectCharts.trend = createCheckboxTrend(
+                'claimAspectTrendChart',
+                'claimAspectTrendChecks',
+                getClaimAspectTrendData
+                );
+
+        // ===== ORIGIN CHART (WITH CHECKBOXES) =====
+        if (claimAspectCharts.origin) {
+            claimAspectCharts.origin.destroy();
+        }
+        claimAspectCharts.origin = createCheckboxTrend(
+                'claimAspectOriginChart',
+                'claimAspectOriginChecks',
+                getClaimAspectOriginData
+                );
+
+        // ===== DESTINATION CHART (WITH CHECKBOXES) =====
+        if (claimAspectCharts.destination) {
+            claimAspectCharts.destination.destroy();
+        }
+        claimAspectCharts.destination = createCheckboxTrend(
+                'claimAspectDestinationChart',
+                'claimAspectDestinationChecks',
+                getClaimAspectDestinationData
+                );
+    }
+
+
+
+
+    // =========================
+    // ===== ROOT CAUSE ========
+    // =========================
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+
+    const rootCauseCharts = {};
+    function createTrendChartWithCheckbox( { chartId, checkboxId, dataObject }) {
+        const ctxEl = document.getElementById(chartId);
+        if (!ctxEl)
+            return;
+
+        // Destroy existing chart
+        if (rootCauseCharts[chartId]) {
+            rootCauseCharts[chartId].destroy();
+        }
+
+        const datasets = Object.keys(dataObject).map(key => ({
+                label: key,
+                data: dataObject[key],
+                borderColor: colors.grey,
+                backgroundColor: 'transparent',
+                fill: false,
+                tension: 0.35
+            }));
+
+        rootCauseCharts[chartId] = new Chart(ctxEl.getContext('2d'), {
+            type: 'line',
+            data: {labels: months, datasets},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {legend: {display: false}}
+            }
+        });
+
+        const $container = $('#' + checkboxId);
+        $container.empty();
+
+        const $btn = $('<button class="select-all-btn">Select All</button>');
+        $container.append($btn);
+
+        datasets.forEach((ds, i) => {
+            const $label = $(`<label><input type="checkbox" checked> ${ds.label}</label>`);
+            $label.find('input').on('change', function () {
+                rootCauseCharts[chartId].data.datasets[i].hidden = !this.checked;
+                rootCauseCharts[chartId].update();
+            });
+            $container.append($label);
+        });
+
+        $btn.on('click', function () {
+            $container.find('input').prop('checked', true);
+            rootCauseCharts[chartId].data.datasets.forEach(d => d.hidden = false);
+            rootCauseCharts[chartId].update();
+        });
+    }
+
+
+    function updateRootCause(startDate, endDate) {
+        console.log('updateRootCause');
+        const irregularityByOrigin = {'MSC': [12, 14, 13, 15, 14, 13], 'DAM': [20, 22, 21, 24, 23, 22], 'SSP': [8, 9, 10, 9, 10, 9], 'HDL': [15, 16, 17, 18, 17, 16], 'CUS': [5, 6, 6, 7, 6, 6]};
+        const irregularityByDestination = {'MSC': [10, 11, 12, 13, 12, 11], 'DAM': [18, 19, 20, 21, 20, 19], 'SSP': [7, 8, 8, 9, 8, 8], 'HDL': [13, 14, 15, 16, 15, 14], 'CUS': [4, 5, 5, 6, 5, 5]};
+        const conclusionByOrigin = {'Settled': [30, 32, 34, 36, 35, 33], 'Rejected': [10, 11, 12, 12, 11, 10], 'Pending': [15, 16, 18, 17, 18, 17]};
+        const conclusionByDestination = {'Settled': [28, 30, 31, 33, 32, 30], 'Rejected': [12, 13, 13, 14, 13, 12], 'Pending': [14, 15, 16, 16, 17, 16]};
+
+        createTrendChartWithCheckbox({chartId: 'irrOriginChart', checkboxId: 'irrOriginChecks', dataObject: irregularityByOrigin});
+        createTrendChartWithCheckbox({chartId: 'irrDestChart', checkboxId: 'irrDestChecks', dataObject: irregularityByDestination});
+        createTrendChartWithCheckbox({chartId: 'conOriginChart', checkboxId: 'conOriginChecks', dataObject: conclusionByOrigin});
+        createTrendChartWithCheckbox({chartId: 'conDestChart', checkboxId: 'conDestChecks', dataObject: conclusionByDestination});
+    }
+
+
+
+    // =========================
+    // ===== FINANCIALS ========
+    // =========================
+    function updateFinancials(startDate, endDate) {
+        console.log('updateFinancials');
+        const originData = [
+            {origin: 'DXB', claim: 5000, paid: 4500},
+            {origin: 'LHR', claim: 4000, paid: 3900},
+            {origin: 'JFK', claim: 3000, paid: 2800},
+            {origin: 'FRA', claim: 2000, paid: 2000},
+            {origin: 'SIN', claim: 3500, paid: 3400}
+        ];
+        const destData = [
+            {destination: 'DXB', claim: 4800, paid: 4500},
+            {destination: 'LHR', claim: 4200, paid: 4000},
+            {destination: 'JFK', claim: 3100, paid: 3000},
+            {destination: 'FRA', claim: 2500, paid: 2400},
+            {destination: 'SIN', claim: 3600, paid: 3500}
+        ];
+
+        $('#originFinancialTable').html(originData.map(d => `<tr><td>${d.origin}</td><td>${d.claim.toLocaleString()}</td><td>${d.paid.toLocaleString()}</td></tr>`).join(''));
+        $('#destinationFinancialTable').html(destData.map(d => `<tr><td>${d.destination}</td><td>${d.claim.toLocaleString()}</td><td>${d.paid.toLocaleString()}</td></tr>`).join(''));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // =========================
+// ===== KPI TAB start ===========
+
+
+    // ==== Demo KPI Values ====
+    const formalPer1000Data = [12, 15, 10, 18, 14, 11];
+    const totalPer1000Data = [50, 60, 45, 70, 55, 65];
+    const claimedAmountPer1000Data = [5000, 7000, 4000, 9000, 6500, 3000];
+    const claimedAmountBuckets = {'>5000': 8, '>10000': 5, '>25000': 2, '>50000': 1};
+
+    // Update KPI cards
+    $('#kpiFormalPer1000').text(formalPer1000Data.reduce((a, b) => a + b, 0));
+    $('#kpiTotalVsFormal').text(totalPer1000Data.reduce((a, b) => a + b, 0));
+    $('#kpiAmountPer1000').text(claimedAmountPer1000Data.reduce((a, b) => a + b, 0).toLocaleString());
+    $('#kpiRecordsBucket').text(Object.values(claimedAmountBuckets).reduce((a, b) => a + b, 0));
+
+
+
+    // ==== Charts ====
+    createChart('formalPer1000Chart', 'line', months, formalPer1000Data, colors.primary);
+    createChart('totalVsFormalChart', 'line', months, totalPer1000Data, colors.secondary); // Single line for simplicity
+    createChart('amountPer1000Chart', 'line', months, claimedAmountPer1000Data, colors.green);
+    createChart('recordsPerBucketChart', 'bar', Object.keys(claimedAmountBuckets), Object.values(claimedAmountBuckets), colors.red, true);
+
+
+// =========================
+// ===== KPI TAB end ===========
+
+
+//    const currentYear = new Date().getFullYear();
+
+// Last 10 years
+//    const years = Array.from({length: 10}, (_, i) => currentYear - i);
+
+// Months list
+//    const months = [
+//        'January', 'February', 'March', 'April', 'May', 'June',
+//        'July', 'August', 'September', 'October', 'November', 'December'
+//    ];
+
+// Build dropdown HTML
+    function yearOptions(selected) {
+        return years.map(y =>
+                `<option value="${y}" ${y === selected ? 'selected' : ''}>${y}</option>`
+        ).join('');
+    }
+
+    function monthOptions(selected) {
+        return months.map(m =>
+                `<option value="${m}" ${m === selected ? 'selected' : ''}>${m}</option>`
+        ).join('');
+    }
+
+    let issuedAWBs = [
+        {year: 2014, month: 'September', issued: 4},
+        {year: 2012, month: 'August', issued: 10},
+        {year: 2013, month: 'March', issued: 8}
+    ];
+
+    function renderTable(filter = '') {
+        const filtered = issuedAWBs.filter(r =>
+            r.year.toString().includes(filter) ||
+                    r.month.toLowerCase().includes(filter) ||
+                    r.issued.toString().includes(filter)
+        );
+
+        $('#issuedAWBsTable').html(
+                filtered.map((row, index) => `
+        <tr data-index="${index}">
+          <td>${row.year}</td>
+          <td>${row.month}</td>
+          <td>${row.issued}</td>
+          <td>
+            <button class="action-btn edit-btn">Edit</button>
+          </td>
+        </tr>
+      `).join('') ||
+                `<tr><td colspan="4" style="text-align:center;color:#64748b;">No records found</td></tr>`
+                );
+    }
+
+    renderTable();
+
+    // Search
+    $('#issuedSearch').on('keyup', function () {
+        renderTable($(this).val().toLowerCase());
+    });
+
+    // Add
+    $('#addIssuedAWB').on('click', function () {
+        $('#issuedAWBsTable').prepend(`
+    <tr class="editing">
+      <td>
+        <select class="table-input year-input">
+          <option value="">Year</option>
+          ${yearOptions()}
+        </select>
+      </td>
+      <td>
+        <select class="table-input month-input">
+          <option value="">Month</option>
+          ${monthOptions()}
+        </select>
+      </td>
+      <td>
+        <input class="table-input issued-input" type="number" min="0">
+      </td>
+      <td>
+        <button class="action-btn save-btn">Save</button>
+        <button class="action-btn cancel-btn">Cancel</button>
+      </td>
+    </tr>
+  `);
+    });
+
+
+    // Edit
+    $(document).on('click', '.edit-btn', function () {
+        const index = $(this).closest('tr').data('index');
+        const d = issuedAWBs[index];
+
+        $(this).closest('tr').html(`
+    <td>
+      <select class="table-input year-input">
+        ${yearOptions(d.year)}
+      </select>
+    </td>
+    <td>
+      <select class="table-input month-input">
+        ${monthOptions(d.month)}
+      </select>
+    </td>
+    <td>
+      <input class="table-input issued-input" type="number" value="${d.issued}" min="0">
+    </td>
+    <td>
+      <button class="action-btn save-btn">Save</button>
+      <button class="action-btn cancel-btn">Cancel</button>
+    </td>
+  `).data('index', index);
+    });
+
+
+    // Save
+    $(document).on('click', '.save-btn', function () {
+        const $row = $(this).closest('tr');
+
+        const year = parseInt($row.find('.year-input').val());
+        const month = $row.find('.month-input').val();
+        const issued = parseInt($row.find('.issued-input').val());
+
+        if (!year || !month || isNaN(issued)) {
+            alert('Please fill all fields');
+            return;
+        }
+
+        const index = $row.data('index');
+        if (index !== undefined) {
+            issuedAWBs[index] = {year, month, issued};
+        } else {
+            issuedAWBs.unshift({year, month, issued});
+        }
+
+        renderTable($('#issuedSearch').val().toLowerCase());
+    });
+
+
+    // Cancel
+    $(document).on('click', '.cancel-btn', function () {
+        renderTable($('#issuedSearch').val().toLowerCase());
+    });
+
+});
+
+$(document).ready(function () {
+    /* =========================
+     AGENT REPORT – FULL JS
+     ========================= */
+
+    let claimsLineChart;
+
+    /* YEAR DROPDOWN */
+    const year = new Date().getFullYear();
+    for (let i = 0; i < 10; i++)
+        $('#agentYear').append(`<option>${year - i}</option>`);
+
+    /* LINE CHART */
+    const ctx = $('#claimsLineChart');
+    claimsLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+                {label: 'Total', data: [20, 22, 25, 30, 28, 32], borderColor: '#2563EB', tension: .4},
+                {label: 'Preliminary', data: [12, 14, 15, 18, 16, 19], borderColor: '#10B981', tension: .4},
+                {label: 'Formal', data: [8, 8, 10, 12, 12, 13], borderColor: '#F59E0B', tension: .4}
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {legend: {display: false}}
+        }
+    });
+
+    /* CHECKBOX TOGGLE */
+    $('.checkbox-filter input').on('change', function () {
+        const map = {total: 0, pre: 1, formal: 2};
+        const i = map[$(this).data('line')];
+        claimsLineChart.data.datasets[i].hidden = !this.checked;
+        claimsLineChart.update();
+    });
+
+    $('.select-all-btn').on('click', function () {
+        $('.checkbox-filter input').prop('checked', true);
+        claimsLineChart.data.datasets.forEach(d => d.hidden = false);
+        claimsLineChart.update();
+    });
+
+    /* TABLE FILL */
+    function fillTable(id, data) {
+        const $t = $('#' + id);
+        $.each(data, function (k, v) {
+            $t.append(`<tr><td>${k}</td><td>${v}</td></tr>`);
+        });
+    }
+
+    fillTable('preOriginTable', {AMS: 20, ACC: 15});
+    fillTable('preDestTable', {BRU: 22, AMS: 18});
+    fillTable('formalOriginTable', {AMS: 10, ACC: 9});
+    fillTable('formalDestTable', {BRU: 11, AMS: 8});
+
+});
+
+function showCardLoader(canvasId) {
+    $('#' + canvasId).closest('.chart-card').find('.chart-loader').removeClass('hidden');
+}
+
+function hideCardLoader(canvasId) {
+    $('#' + canvasId).closest('.chart-card').find('.chart-loader').addClass('hidden');
+}

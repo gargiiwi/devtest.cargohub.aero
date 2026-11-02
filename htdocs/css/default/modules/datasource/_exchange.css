@@ -1,0 +1,6 @@
+/** Currency Exchange Rates **/
+
+/* Minor fixes for jqX */
+.jqx-grid-cell a {
+	color: inherit !important;
+}

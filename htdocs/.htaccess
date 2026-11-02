@@ -1,0 +1,29 @@
+RewriteEngine On
+<IfModule mod_expires.c>
+<FilesMatch "\.(ico|jpg|jpeg|png|gif|swf)$">
+Header set Cache-Control "max-age=259200, public"
+</FilesMatch>
+<FilesMatch "\.(xml|txt|css|js|pdf|html|htm)$">
+Header set Cache-Control "max-age=86400, proxy-revalidate"
+</FilesMatch>
+</IfModule>
+
+php_flag magic_quotes_gpc Off
+php_value magic_quotes_gpc Off
+
+php_value session.gc_maxlifetime 57600
+php_value session.cookie_lifetime 57600
+
+ 
+Header unset Upgrade
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule \.(html|js|css|png|jpg|jpeg|gif|ico|swf)$ - [R=404,L,NS]
+RewriteRule ^skynet/([a-z][_a-z0-9]{0,30})?$ /skynet.php?_ctrl=$1 [NC,QSA]
+RewriteRule ^dlch/([a-f0-9]{40})$ /index.php?_zone=public&_module=files&action=download_attachment&ch=$1 [NC]
+RewriteRule ^vich/([a-f0-9]{40})$ /index.php?_zone=public&_module=files&action=view_attachment&ch=$1 [NC]
+RewriteRule ^([a-z0-9_]+)/([a-z0-9_]+)(.*)$ /index.php?_zone=$1&_module=$2&_urlx=$3 [NC,QSA]
+RewriteRule ^([a-z0-9_]+)(.*)$ /index.php?_zone=public&_module=$1&_urlx=$2 [NC,QSA,L]

@@ -1,0 +1,12 @@
+{!This message is sent to the same address where an issue was transferred to, indicating that the issue was updated by an external party (possibly the submitter itself).}
+{#store:subject:{html.title} - The {ist.name} was updated by {updater.name} ({updater.email})}
+<h2>To the attn. of: {contact.name},</h2>
+<p>The {ist.name} with TrackID <b>{issue.track}</b> has been updated by {updater.name} ({updater.email}){#if:updater.xdata.company_name, from organization {updater.xdata.company_name}}</p>
+<hr />
+<p>The following fields might have been updated:</p>
+<p>{#repeat:changed:
+	<span style="margin-right: 12px;">{n}</span>}
+</p>
+<p>Please check the complete {ist.name} content by [ <a href="https://{html.domain}/issue?action=view&track={issue.track}&key={issue.access_key}">clicking here</a> ]</p>
+<hr />
+<h4>Thank you for using {settings.system_name} !</h4>

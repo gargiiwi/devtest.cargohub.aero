@@ -1,0 +1,76 @@
+{@<style type="text/css">
+/* Some styles specific to Audits */
+div.ra_250 {
+	display: inline-block;
+	float: right;
+	width: 250px;
+}
+label.ra_label {
+	display: inline-block;
+	margin-right: 5px;
+	width: 100px;
+	text-align: right;
+}
+.audit-head {
+	background-color: #ddd; padding: 4px 0 !important;
+	border: 1px solid gray;
+}
+.audit-nrhead {
+	font-weight: bold;
+	display: block;
+	float: left;
+	width: 25px;
+	height: 50px;
+	line-height: 50px;
+	color: green;
+	font-size: 200%;
+	text-align: center;	
+}
+.audit-nrhead-view {
+	font-weight: bold;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	color: green;
+	font-size: 200%;
+	text-align: center;	
+}
+
+.audit-track {
+	float: left;
+	color: #166eb7;
+	width: 105px;
+	text-align: center;
+	background-color: white;
+}
+.boxblock {
+	display: block; width: 117px; float: left;
+}
+.itembox {
+	padding: 1px 8px;
+	margin: 0px 6px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+
+<div id="audit-overview" data-panel='0' style='height:800px;' data-editable="1" data-edittpl="meta" data-editheight="800">
+	<div><img src='/img/icons16/ist/audit.png' alt="{track}" />Audit information</div>
+	<div class="datatable">
+{#include::panels/meta_view.html}
+	</div>
+</div>
+
+<div id="audit-evaluation" data-panel='1' style='height:800px;' data-editable="1" data-edittpl="evaluation" data-editheight="800">
+	<div><img src='/img/icons16/menus/audit-evaluation.png' />Evaluation</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/evaluation_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to findings panel is restricted.</div></div></div>}
+</div>
+
+  

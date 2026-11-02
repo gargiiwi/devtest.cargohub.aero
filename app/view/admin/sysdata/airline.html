@@ -1,0 +1,22 @@
+<br /><div class='info-expander' data-expanded='true'>
+	<div>Operational information...</div>
+	<div class='spacey'>
+		<p>An <b>Airline</b> data entry represents the name of an airline, used by the <a class='green thick' href="https://www.cargoclaims.aero/cms?path=worldwide">Airline Search System</a></p>
+		<p>These entries may or may not be used as <a class='green thick' href="/admin/groups?type=airline">Data Groups</a>, but in order to create a Data Group, an Airline record in this database must exist first</p>
+		<hr />
+		<p><b>Redirect URL</b> is not set here, but in the Data Groups, and depends on the organization which receives master access to this Airline data entry<br />
+		<b>Status</b> also can't be edited here, but is just an indication if this name has been used or not, or if it's ready for the search system<br /><br />
+		Database <b>ID</b> is assigned automatically when creating an Airline name, and cannot be changed.</p> 
+	</div>
+</div>
+
+<script id="template_edit_airline" type="text/dryjstpl">
+	<form method="post" action="?action=Save_Entry&amp;type={config.type}">{@
+		{#exists:id:<input type='hidden' name="id" value="{$uid}" />}
+		<div><label for='entry_name'>Airline name:</label><input id='{!}entry_name' type="text" name="data[name]" class='jqx-input jqx-rc-all {$_itc}' value='{$name}' style='width: 320px;'></div>
+		<div><label for='entry_name'>AWB prefix (2):</label><input maxlength="3" id='{!}entry_AWB_prefix' type="text" name="data[AWB_prefix]" class='jqx-input jqx-rc-all {$_itc}' value='{$AWB_prefix}' style='width: 50px;'> <span class='gray'>eg: <b>074</b></span></div>
+		<div><label for='entry_name'>IATA Code (2):</label><input maxlength="2" id='{!}entry_IATA' type="text" name="data[IATA]" class='jqx-input jqx-rc-all {$_itc}' value='{$IATA}' style='width: 40px;'> <span class='gray'>eg: <b>KL</b></span></div>
+		<div><label for='entry_name'>ICAO Code (3):</label><input maxlength="3" id='{!}entry_ICAO' type="text" name="data[ICAO]" class='jqx-input jqx-rc-all {$_itc}' value='{$ICAO}' style='width: 50px;'> <span class='gray'>eg: <b>KLM</b></span></div>
+		<div><label for='entry_name'>Country:</label><input id='{!}entry_country' type="text" name="data[country]" class='jqx-input jqx-rc-all {$_itc}' value='{$country}' style='width: 320px;'></div>
+	}</form>
+</script>

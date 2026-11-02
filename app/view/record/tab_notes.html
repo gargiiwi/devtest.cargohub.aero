@@ -1,0 +1,34 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/note.png" alt="[note]" class="info-tip" data-tooltip="Text-only notes connected to this record.<br />Use notes when text size is too large for normal data fields" /><span>Notes</span>
+	</div>
+	
+	<div id='notes-editops' style='display: none;'>
+		<button data-op="note-create" class="info-tip" data-tooltip="Write a new note attached to this record"><img src='/img/icons16/add.png' /> Write note</button>
+	</div>
+	<div id='notes-row-ops' style='display: none;'>
+		<button data-op="note-view" class="info-tip" data-tooltip="View content of selected note"><img src='/img/icons16/eye.png' />View note</button>
+	</div>
+	<div id='notes-row-editops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="note-edit" class="info-tip" data-tooltip="View and edit content of selected note,<br />configure visibility and editing access"><img src='/img/icons16/draw_calligraphic.png' />View/Edit note</button>
+		<button data-op="note-delete" style="float: right;" class="info-tip" data-tooltip_position="left" data-tooltip="Remove selected note from the database.<br /><span class='red'><b>Warning:</b> This action is not reversible!</span>"><img src='/img/icons16/trash_empty.png' />Delete</button>
+	</div>
+</div>
+<div class="jqx-datatable" id="_record-notes"></div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template-note-editor" type="text/dryjstpl">{@
+	<form name="note-editor" action="/global/note?action={$action}" enctype="application/x-www-form-urlencoded" method="post" class="spacey">
+		<div><label for="note-title">Title:</label><input type="text" id="note-title" name="note[title]" class="jqx-input jqx-rc-all {$_itc}" maxlength="100" value="{$note.title}" /></div>
+		{#exists:note:
+			{#exists:note.org_name:<div><label>Organization:</label><div class="static">{$note.org_name}</div></div>}
+			<div><label>Last update:</label><div class="static">{$note.dt_formatted} - {$note.editor_name}</div></div>
+		}
+		<div><label for="note-visibility">Visibility:</label><div id="note-visibility" name="note[visibility]">{!Visibility selector}</div></div>
+		<div><label for="note-edit_access">Editing access:</label><div id="note-edit_access" name="note[edit_access]">{!Editing rights selector}</div></div>
+		<textarea rows="10" class="jqx-input jqx-rc-all {$_itc}" id="note-text" name="note[text]">{$note.text}</textarea>
+		<p class="center gray" style="margin-bottom: 0;">Maximum length for a note is 65000 characters. Do not post huge texts here !</p>
+		<input type="text" name="bogus-field-to-prevent-browser-implicit-submission" style="display: none;" />
+	</form>
+}</script>

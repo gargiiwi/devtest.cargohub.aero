@@ -1,0 +1,22 @@
+{!This message is sent as the result of submitting an issue under a new e-mail address not yet recorded in the system, which creates a Contact Account for that e-mail. A password is assigned and a link to both the contact account overview AND the submitted issue is sent.}
+{#store:subject:Your Cargohub Connect account has been created: {email}}
+
+<h2>Dear {contact.name},</h2>
+
+<p>Your account has been automatically created.<br />
+To view and manage your submitted data, please use the following credentials:</p> 
+<ul>
+	<li><span class="gray">Your e-mail address:</span> {email}</li>
+	<li><span class="gray">The logon password:</span> {password}</li>
+	<li>You can [ <a href="https://{html.domain}/contact/access?action=login&amp;email={email}&amp;password={password}&amp;autologin=1">click here</a> ] to access your account directly.</li>
+</ul>
+
+<hr />
+<ul>
+	<li>View your submitted {issue.type.name}: [ <a href="https://{html.domain}/issue?action=view&amp;track={issue.track}&amp;key={issue.access_key}">{issue.track}</a> ]</li>
+	<li>To update this {issue.type.name} and any others you might have submitted: [ <a href="https://{html.domain}/contact/access?action=login&amp;email={email}&amp;password={password}&amp;autologin=1">click here</a> ]</li>
+</ul>
+
+<hr />
+<p>The message <i>contains confidential information</i>, addressed only to <b>{contact.name}</b>. If this message arrived to your e-mail address by accident and you did not submit an {issue.type.name}, please delete this message immediately and contact <a href="mailto:{settings.support_email}">{settings.support_email}</a> to investigate the erroneous mailing. Please read our <a href="https://www.cargoclaims.aero/cms?path=terms-of-use">terms of use</a> and <a href="https://www.cargoclaims.aero/cms?path=terms-of-use">privacy policy</a> before continuing using our services.</p>
+<h4>Thank you for using {settings.system_name} !</h4>

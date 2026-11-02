@@ -1,0 +1,105 @@
+{#if:contact:
+	<div class='toolbar jqx-widget jqx-rc-all'>
+		<div class='toolbar-accessory'>
+			<img src="/img/icons/vcard.png" /><span>Your contact information</span>
+		</div>
+		<button data-op="vcard-save" id="contact-save-button" title="Save"><img src="/img/icons16/save.png" alt="Save" /> Save</button>
+		<div class='toolbar-accessory gray'>
+			<span>(Enabled when after changes are validated)</span>
+		</div>
+	</div>
+	<div id="contact-left-side">
+		{#include:contact:includes/vcard.html}
+	</div>
+	<div id="contact-right-side">
+		<div class="right-side-block jqx-rc-all" style="border: 1px solid lightgray; padding-bottom: 6px;">
+			<h4>E-mail sending settings</h4>
+			<form class="spacey" id="smtp_settings" action="/global/contact?action=Sending_Settings" method="post">
+				<div id="smtp_enable">
+					<label><input type="radio" name="send_mtd" value="local"{#if:smtp.method=local: checked="checked"}> CargoHub <span class='gray'>(Send as Cargohub software)</span></label>
+					<img src="/img/icons16/information.png" style="vertical-align: middle;"
+						class="info-tip right" data-tooltip_position="left" data-tooltip="Messages will be sent from <b>no-reply@cargoclaims.aero</b><br />and your real address is in the subject<br /><br /><span class='blue'>This always works but you might not receive replies.</span>" /><br />
+					<label><input type="radio" name="send_mtd" value="spf"{#if:smtp.method=spf: checked="checked"}> SPF <span class='gray'>(Send with your address - <b>SPF REQUIRED</b>)</span></label>
+					<img src="/img/icons16/exclamation.png" style="vertical-align: middle;"
+						class="info-tip right" data-tooltip_position="left" data-tooltip="Messages are sent by CargoHub using your own address - <b>{contact.email}</b><br /><br /><span class='red'>ONLY select this option if <b>SPF</b> has been configured by your IT department!</span><br />Without SPF, your e-mails will be rejected/end up as spam" /><br />
+					<label><input type="radio" name="send_mtd" value="smtp"{#if:smtp.tested: checked="checked"}> SMTP <span class='gray'>(Send using your real account via <b>SMTP</b>)</span></label>
+					<img src="/img/icons16/question.png" style="vertical-align: middle;"
+						class="info-tip right" data-tooltip_position="left" data-tooltip="Use SMTP to send from your actual E-mail account - <b>{contact.email}</b><br /><br />Please consult your IT department if you're unsure about the settings!" />
+				</div>
+				<hr />
+				<table style="width: 100%; margin: 0; border: 0;" class="infotable">
+				<col style="width: 155px;" /><col />
+				<tbody id="smtp_active"{#ifnot:smtp.tested: style="display: none;"}>
+					<tr><th>Presets:</th><td>
+						<select style="width: 90%; box-sizing: border-box;" id="auto_provider">
+							<option value="" class="gray">Select provider...</option>
+							<option value="gmail">G-Mail (Google)</option>
+							<option value="outlook">Outlook365 (Microsoft)</option>
+							<option value="yahoo">Yahoo! Mail</option>
+							<option value="__empty" class="red">Clear settings !</option>
+						</select> <img src="/img/icons16/error.png" style="vertical-align: middle;"
+							class="info-tip" data-tooltip_position="left" data-tooltip="Selecting an option<br />overrides current settings !" />
+					</td></tr>
+					<tr><th>E-mail server:</th><td>
+						<input style="width: 90%; box-sizing: border-box;" type="text" name="smtp[host]" value="{smtp.host}" /> <img src="/img/icons16/information.png" style="vertical-align: middle;"
+							class="info-tip" data-tooltip_position="left" data-tooltip="The software guesses the server address based on your E-mail address.<br />Change if necessary" />
+					</td></tr>
+					<tr><th>Secure channel:</th><td id="smtp_encryption">
+						<label><input type="radio" name="smtp[smtp_encryption]" value="tls"{#if:smtp.smtp_encryption=tls: checked="checked"}> Yes, <b>TLS</b> <span class='gray'>(modern server)</span></label><br />
+						<label><input type="radio" name="smtp[smtp_encryption]" value="ssl"{#if:smtp.smtp_encryption=ssl: checked="checked"}> Yes, <b>SSL</b> <span class='gray'>(older server)</span></label><br />
+						<label><input type="radio" name="smtp[smtp_encryption]" value="none"{#if:smtp.smtp_encryption=none: checked="checked"}> No <span class='gray'>(very old server)</span></label>
+					</td></tr>
+					<tr><th>Connection port:</th><td>
+						<input id="smtp_port" style="width: 40px; box-sizing: border-box; text-align: right;" type="text" name="smtp[port]" value="{smtp.port}" /> <img src="/img/icons16/information.png" style="vertical-align: middle;"
+							class="info-tip" data-tooltip="Don't change unless you really know what you're doing !" />
+					</td></tr>
+					<tr><td colspan="2"><hr /></td></tr>
+					<tr><th>Username:</th><td>
+						<input style="width: 90%; box-sizing: border-box;" type="text" name="smtp[username]" value="{smtp.username}" /> <img src="/img/icons16/information.png" style="vertical-align: middle;"
+							class="info-tip" data-tooltip_position="left" data-tooltip="In most cases this is your E-mail address<br />Change only if necessary" />
+					</td></tr>
+					<tr><th>Password:</th><td> 
+						<input style="width: 90%; box-sizing: border-box;" type="password" name="smtp[password]" /> <img src="/img/icons16/information.png" style="vertical-align: middle;"
+							class="info-tip" data-tooltip_position="left" data-tooltip="The E-mail password is encrypted using your Account password</br />If you are changing your account password, you need to reenter E-mail credentials<br />and test your connection again, before being able to use it." />
+					</td></tr>
+					<tr><th>Authentication model:</th><td>
+						<select style="width: 90%; box-sizing: border-box;" name="smtp[smtp_auth]">
+							<option value="login"{#if:smtp.smtp_auth=login: selected="selected"}>"Login" <span class='gray'>- Common</span></option>
+							<option value="cram-md5"{#if:smtp.smtp_auth=cram-md5: selected="selected"}>"Cram-MD5" <span class='gray'>- Old servers</span></option>
+							<option value="plain"{#if:smtp.smtp_auth=plain: selected="selected"}>"Plain" <span class='gray'>- Old servers</span></option>
+							<option value="anon"{#if:smtp.smtp_auth=anon: selected="selected"}>None <span class='gray'>- A password is not needed</span></option>
+						</select> <img src="/img/icons16/information.png" style="vertical-align: middle;"
+							class="info-tip" data-tooltip_position="left" data-tooltip="Don't change unless you really know what you're doing !" />
+					</td></tr>
+					<tr><td colspan="2">
+						
+						<div style="text-align: center; padding: 12px;">
+							<div id="smtp_is_active" style="color: green; margin-bottom: 8px; font-weight: bold;{#ifnot:smtp.tested: display: none;}">SMTP is (already) tested and Activated</div>
+							<input type="button" value="TEST and Save" />
+						</div>
+						<hr />
+						<p><b>Please note:</b><br />Some servers (like Google) might require special settings to allow SMTP access to your account. Please contact your IT department or Cargohub Support for consultancy</p>
+					</td></tr>
+				</tbody>
+				<tbody id="smtp_off" style="display: none;">
+					<tr><td colspan="2">
+						<hr />
+						<div style="text-align: center; padding: 12px;"><input type="button" value="Update settings" /></div>
+						{!<p style="font-size: 80%;">If SMTP is turned off, you will need to <i>TEST and Save</i> again to reactivate !</p>}
+					</td></tr>
+				</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+	<div class="clear"></div>
+}{#ifnot:contact:
+	<div style="margin: 24px;">
+		<h2 class="center">Error while attempting to load contact information</h2>
+		<hr />
+		<p class="center" style="padding: 8px;">
+			Something is wrong in your account configuration.<br />
+			Please contact [ <b>support@cargohub.nl</b> ] and report this error !<br /><br />
+		</p>
+	</div>
+}

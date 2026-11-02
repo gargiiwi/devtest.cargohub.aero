@@ -1,0 +1,74 @@
+<style type="text/css">
+	{#raw:issues/{rt.key}/embedded_styles.css}
+</style>
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/comments.png" alt="[MSG]" class="info-tip" data-tooltip="Shows previously sent chains of e-mails (conversations)<br />To read a conversation, you can double-click on it" />
+	</div>
+	<button data-op="comm-compose" title="Compose message"><img src="/img/icons16/draw_calligraphic.png" alt="Write" /> Compose E-mail</button>
+	<button data-op="comm-refresh" title="Refresh the table"><img src="/img/icons16/arrow_refresh.png" alt="Refresh" /> Refresh</button>
+	<div id='comm-row-ops' style="display: none;">
+		<div class='toolbar-separator'></div>
+		<button data-op="convo-read" title="Read"><img src="/img/icons16/email_open.png" alt="[Open]" /> Read</button>
+{!		<button data-op="convo-reply" title="Reply"><img src="/img/icons16/mail_reply_sender.png" alt="[Re]" /> Reply</button>
+		<button data-op="convo-forward" title="Forward"><img src="/img/icons16/mail_forward.png" alt="[Fw]" /> Forward</button>
+		<div class='toolbar-separator'></div>}
+		<button data-op="convo-config" class="info-tip" data-tooltip="Configure description and visibility for the conversation"><img src="/img/icons16/wrench.png" alt="Configure" />Configure</button>
+		<button data-op="convo-trash" class="info-tip right" data-tooltip="Send to trash"><img src="/img/icons16/trash_empty.png" alt="[Trash]" /> Delete</button>
+	</div>
+	{#if:user_is_admin:<div id="comm-show_trashed" style="line-height: 18px; float: right; margin: 10px;">Show <b>Trashed</b></div>}
+</div>
+<div id="comm-list_area">
+	<div style="padding-left: 2px;"><img src="/img/icons16/table.png" alt="[List]" class="inline-icon"> Conversations</div>
+	<div class="jqx-datatable" id="_record-convos" style="border-width: 1px;"></div>
+</div>
+
+<div id="comm-convo_area" style="display: none; margin-top: 6px;">
+	<div style="padding-left: 2px;"><img src="/img/icons16/email_open.png" alt="[Convo]" class="inline-icon"><span id="comm-convo_title"></span></div>
+	<div id="comm-convo_body"></div>
+</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template-conversation-details" type="text/dryjstpl">{@
+	<table>
+		{#exists:starter_id:
+			<tr><th>Date / Time:</th><td>{$starter_dt}</td></tr>
+			<tr><th>Started by:</th><td><span class='contact-item' data-con_id='{$starter_from_id}' data-email='{$starter_from_email}'>{$starter_from_name}</span></td></tr>
+			{#exists:recipient_id:<tr><th>To:</th><td><span class='contact-item' data-con_id='{$recipient_id}' data-email='{$recipient_email}'>{$recipient_name}</span></td></tr>}
+		}
+		{#missing:starter_id:
+			<tr><th>Important:</th><td>(The message that started this conversation no longer exists)</td></tr>}
+		<tr><th>Visibility:</th><td>{$visi_text}</td></tr>
+	</table>
+	<h4>Contacts involved in this conversation</h4>
+	<ul class='convo-contacts'>{#loop:contacts:_idx:_con:
+		<li class='contact-item' data-con_id='{$_con.id}'>
+		<button title="View details for {$_con.name}" data-op="view-contact" class="cmd16 user16"></button>	
+		{$_con.name} &lt;{$_con.email}&gt;</li>
+	}</ul>
+}</script>
+
+{!Menu for an opened message inside a conversation}
+<script id="menu-message_actions" type="text/dryjstpl">{@
+<div><ul style='width: 170px;'>
+	<li data-op="sender_details"><img src='/img/icons16/vcard.png' alt="Sender details" /> Sender details</li>
+	<li data-op="send_email"><img src='/img/icons16/email_send.png' alt="(Re)Send E-mail" /> (Re)Send E-mail</li>
+	<li data-op="print_message"><img src='/img/icons16/printer_old.png' alt="Print Message" /> Print Message</li>
+</ul></div>
+}{!
+	<li type='separator'></li>
+	<li data-op="reply"><img src='/img/icons16/mail_reply_sender.png' alt="Reply to message" /> Reply to message</li>
+	<li data-op="copy_to_new"><img src='/img/icons16/mail_forward.png' alt="Forward message" /> Forward message</li>
+	<li data-op="trash"><img src='/img/icons16/email_delete.png' alt="Trash message" /> Trash message</li>
+}</script>
+
+<script id="template-convo-config" type="text/dryjstpl">{@
+	<form name="convo-config" action="?action=convo_config" enctype="application/x-www-form-urlencoded" method="post" class="spacey">
+		{#exists:convo.org_name:<div><label>Organization:</label><div class="static">{$convo.org_name}</div></div>}
+		{#missing:convo.org_name:<div style="height: 12px;">&nbsp;</div>}
+		<div><label for="convo-description">Subject:</label><input type="text" id="convo-description" name="convo[description]" class="jqx-input jqx-rc-all {$_itc}" style="width: 428px;" maxlength="200" value="{$convo.description}" /></div>
+		<p class="gray" style="margin: 6px 0 6px 128px;">Please keep the subject short so it fits in the grid</p>
+		<div><label>Visibility:</label><div id="convo-visibility" name="convo[visibility]">{!Visibility selector}</div></div>
+		<div style="display: none;"><label>Shared by:</label><div id="convo-access_orgs" name="convo[access_orgs]">{!List of orgs for Shared mode}</div></div>
+	</form>
+}</script>

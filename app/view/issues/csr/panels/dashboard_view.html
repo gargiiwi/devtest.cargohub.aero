@@ -1,0 +1,59 @@
+{#use:%ist.xfield_def:
+	<div class="center spacey thick" style="background-color: #eec;">
+		{^xfields.title:<span class="gray">--- no title ---</span>}
+	</div>
+	<table style="margin-top: 8px;">
+		<tr><th>{mawb.n}:</th><td>
+			<span style='font-size: 15px; font-weight: bold;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</span>
+			{#if:^xfields.cust_status.value:<div class="ra_200">
+				<label class="ra_label gray">{cust_status.n}:</label><b>{^xfields.cust_status.value}</b>
+			</div>}
+		</td></tr>
+		<tr><th>{process.n}:</th><td>
+			{#if:^xfields.process.value:<span class="itembox thick">{^xfields.process.value}</span>}
+			{#ifnot:^xfields.process.value:<span class="gray">---</span>}
+		</td></tr>
+		<tr><th>Flight number:</th><td>{^xfields.flight_number:<span class='gray'>---</span>}
+			<div class="ra_200">
+				<label class="ra_label gray">{flight_date.n}:</label>{#if:^xfields.flight_date:{^xfields.flight_date}~date("Y-m-d")~}{#ifnot:^xfields.flight_date:<span class='gray'>---</span>}
+			</div>
+		</td></tr>
+		<tr><th>{orig.n}:</th><td>{#use:^xfields.orig:
+			{#if:value:<span class="thick info-tip" data-tooltip="{value.name}<br /><span class='darkblue'>{value.country}</span>">{value.IATA}</span>}
+			{#ifnot:value:<span class='gray'>---</span>}
+		}</td></tr>
+		<tr><th>{dest.n}:</th><td>{#use:^xfields.dest:
+			{#if:value:<span class="thick info-tip" data-tooltip="{value.name}<br /><span class='darkblue'>{value.country}</span>">{value.IATA}</span>}
+			{#ifnot:value:<span class='gray'>---</span>}
+		}</td></tr>
+		<tr><th>{route.n}:</th><td>{^xfields.route:<span class="gray">---</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{nature.n}:</th><td>{^xfields.nature:<span class="gray">---</span>}</td></tr>
+		<tr><th>{com_type.n}:</th><td>{^xfields.com_type.value:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>&nbsp;</th><td><h3>Pieces and weight:</h3></td></tr>
+		<tr><th>Total on airwaybill:</th><td>
+			{#if:^xfields.pcs_awb:<span class='size70'><b>{^xfields.pcs_awb}</b> pc{#if:^xfields.pcs_awb>1:s}</span>
+			<b>{^xfields.wei_awb:<span class='gray'>--</span>}</b> Kg}{#ifnot:^xfields.pcs_awb:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr><th>Manifested:</th><td>
+			{#if:^xfields.pcs_mani:<span class='size70'><b>{^xfields.pcs_mani}</b> pc{#if:^xfields.pcs_mani>1:s}</span>
+			<b>{^xfields.wei_mani:<span class='gray'>--</span>}</b> Kg}{#ifnot:^xfields.pcs_mani:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr><th>Received:</th><td>
+			{#if:^xfields.pcs_rcvd:<span class='size70'><b>{^xfields.pcs_rcvd}</b> pc{#if:^xfields.pcs_rcvd>1:s}</span>
+			<b>{^xfields.wei_rcvd:<span class='gray'>--</span>}</b> Kg}{#ifnot:^xfields.pcs_rcvd:<span class='gray'>---</span>}</td>
+		</tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>&nbsp;</th><td><h3>External parties:</h3></td></tr>
+		<tr><th>{agent.n}:</th><td>{^xfields.agent:<span class="gray">---</span>}</td></tr>
+		<tr><th>{feeder.n}:</th><td>{^xfields.feeder:<span class="gray">---</span>}</td></tr>
+		<tr><th>{inc_cons.n}:</th><td>{^xfields.inc_cons:<span class="gray">---</span>}</td></tr>
+	</table>
+}

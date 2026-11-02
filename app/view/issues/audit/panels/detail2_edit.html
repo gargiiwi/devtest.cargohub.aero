@@ -1,0 +1,138 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+{!======== 5 ========}
+	<table>
+		<tr>
+			<td class='audit-head'>
+				<span class='audit-nrhead'>1</span>
+				{#use:audit5_type:<select class='left' id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}' style="height: 24px;">
+					{#repeat:options:<option value='{value}' {#if:active: selected='selected'}>{display}</option>}
+				</select>}
+				<div class="right" style="margin-right: 13px;">
+					<span class="left inline-text24">SOP ref.</span>{#use:sop_5:<input style="height: 24px;" maxlength="12" type='text' id='{id}' name='{name}' value='{value}' class='audit-track jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				</div>
+				{#use:audit5_title: <input style="width: 93%; margin: 4px 0;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				<span class="left inline-text24" style="margin-left: 24px;">Deadline date:</span>{#use:ddln_5:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='left calendar'></div>}
+				<div class="right" style="margin-right: 13px;">
+					<span class="left inline-text24">Closing date:</span>{#use:closed_5:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='left calendar'></div>}
+				</div>
+			</td>
+		</tr>
+	</table>
+	{#use:cause5:
+		<h5>Cause/Comments:</h5>
+		<textarea rows="3" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>		
+	}
+	{#use:capa5:
+		<h5>CaPa:</h5>
+		<textarea rows="3" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>		
+	}
+	<table>
+		{#use:respo5:<tr>
+			<th><label>Responsible person:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+	</table>
+
+{!======== 6 ========}
+	<table style="margin-top: 20px;">
+		<tr>
+			<td class='audit-head'>
+				<span class='audit-nrhead'>6</span>
+				{#use:audit6_type:<select class='left' id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}' style="height: 24px;">
+					{#repeat:options:<option value='{value}' {#if:active: selected='selected'}>{display}</option>}
+				</select>} 
+				<div class="right" style="margin-right: 13px;">
+					<span class="left inline-text24">SOP ref.</span>{#use:sop_6:<input style="height: 24px;" maxlength="12" type='text' id='{id}' name='{name}' value='{value}' class='audit-track jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				</div>
+				{#use:audit6_title: <input style="width: 93%; margin: 4px 0;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				<span class="left inline-text24" style="margin-left: 24px;">Deadline date:</span>{#use:ddln_6:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='left calendar'></div>}
+				<div class="right" style="margin-right: 13px;">
+					<span class="left inline-text24">Closing date:</span>{#use:closed_6:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='left calendar'></div>}
+				</div>
+			</td>
+		</tr>
+	</table>
+	{#use:cause6:
+		<h5>Cause/Comments:</h5>
+		<textarea rows="3" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>		
+	}
+	{#use:capa6:
+		<h5>CaPa:</h5>
+		<textarea rows="3" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>		
+	}
+	<table>
+		{#use:respo6:<tr>
+			<th><label>Responsible person:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+	</table>
+
+{!======== 7 ========}
+	<table style="margin-top: 20px;">
+		<tr>
+			<td class='audit-head'>
+				<span class='audit-nrhead'>7</span>
+				{#use:audit7_type:<select class='left' id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}' style="height: 24px;">
+					{#repeat:options:<option value='{value}' {#if:active: selected='selected'}>{display}</option>}
+				</select>} 
+				<div class="right" style="margin-right: 13px;">
+					<span class="left inline-text24">SOP ref.</span>{#use:sop_7:<input style="height: 24px;" maxlength="12" type='text' id='{id}' name='{name}' value='{value}' class='audit-track jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				</div>
+				{#use:audit7_title: <input style="width: 93%; margin: 4px 0;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				<span class="left inline-text24" style="margin-left: 24px;">Deadline date:</span>{#use:ddln_7:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='left calendar'></div>}
+				<div class="right" style="margin-right: 13px;">
+					<span class="left inline-text24">Closing date:</span>{#use:closed_7:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='left calendar'></div>}
+				</div>
+			</td>
+		</tr>
+	</table>
+	{#use:cause7:
+		<h5>Cause/Comments:</h5>
+		<textarea rows="3" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>		
+	}
+	{#use:capa7:
+		<h5>CaPa:</h5>
+		<textarea rows="3" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>		
+	}
+	<table>
+		{#use:respo7:<tr>
+			<th><label>Responsible person:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+	</table>
+
+{!======== 8 ========}
+	<table style="margin-top: 20px;">
+		<tr>
+			<td class='audit-head'>
+				<span class='audit-nrhead'>8</span>
+				{#use:audit8_type:<select class='left' id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}' style="height: 24px;">
+					{#repeat:options:<option value='{value}' {#if:active: selected='selected'}>{display}</option>}
+				</select>} 
+				<div class="right" style="margin-right: 13px;">
+					<span class="left inline-text24">SOP ref.</span>{#use:sop_8:<input style="height: 24px;" maxlength="12" type='text' id='{id}' name='{name}' value='{value}' class='audit-track jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				</div>
+				{#use:audit8_title: <input style="width: 93%; margin: 4px 0;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				<span class="left inline-text24" style="margin-left: 24px;">Deadline date:</span>{#use:ddln_8:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='left calendar'></div>}
+				<div class="right" style="margin-right: 13px;">
+					<span class="left inline-text24">Closing date:</span>{#use:closed_8:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='left calendar'></div>}
+				</div>
+			</td>
+		</tr>
+	</table>
+	{#use:cause8:
+		<h5>Cause/Comments:</h5>
+		<textarea rows="3" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>		
+	}
+	{#use:capa8:
+		<h5>CaPa:</h5>
+		<textarea rows="3" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%;" placeholder="">{value}</textarea>		
+	}
+	<table>
+		{#use:respo8:<tr>
+			<th><label>Responsible person:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+	</table>
+
+</form>}

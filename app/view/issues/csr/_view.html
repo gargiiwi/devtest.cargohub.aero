@@ -1,0 +1,200 @@
+{! Some styles specific CSR }{@<style>
+div.ra_250 {
+	display: inline-block;
+	float: right;
+	width: 250px;
+}
+label.ra_label {
+	display: inline-block;
+	margin-right: 5px;
+	width: 100px;
+	text-align: right;
+}
+</style>}
+{#use:iss:<h2><b>{xfields.pstage.value}</b> Tracing File <b>{xfields.mawb.p}-{xfields.mawb.s}</b> from <b>{submitter.xdata.company_name:{submitter.name}}</b></h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+<h4>Contact information:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>
+
+<h4>Shipment information:</h4>
+{#use:%ist.xfield_def:
+	<table class="infotable">
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">(not completed)</span>}</td></tr>		
+		<tr><th>{mawb.n}:</th><td>
+			<div style="float: right;">{#if:^xfields.cust_status.value:<label>{cust_status.n}</label>: <b>{^xfields.cust_status.value}</b>}</div>
+			<span style='font-size: 16px; font-weight: bold;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</span>
+		</td></tr>
+		<tr><th>Carrier:</th><td style='font-weight: bold; line-height: 30px;'>
+				{#if:%org_is_owner:{#if:%acls.privileges.issue_partner_share|%acls.unrestricted:<button title="Share with partner" class="op-button right" data-op="popup-menu" data-menu="partners-share"><img src="/img/icons16/share.png" alt="Share"></button>}}	
+			{^group.name}</td></tr>
+		<tr><th>{route.n}:</th><td>{^xfields.route:<span class="gray">---</span>}</td></tr>
+		<tr><th>Flight number:</th><td>{^xfields.flight_number:<span class='gray'>---</span>}
+			<div class="ra_250">
+				<label class="ra_label">Date:</label>
+				{#if:^xfields.flight_date:{^xfields.flight_date}~date("Y-m-d")~}{#ifnot:^xfields.flight_date:<span class='gray'>---</span>}
+		</div></td></tr>
+	</table>
+}
+
+<h4>Transport information:</h4>
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{process.n}:</th><td>{^xfields.process.value:<span class="gray">---</span>}</td></tr>
+		{!<tr><th>{transprt.n}:</th><td>{^xfields.transprt.value}</td></tr>}
+		<tr><th>Total airwaybill pieces:</th><td>{#if:^xfields.pcs_awb:<b>{^xfields.pcs_awb}; {^xfields.wei_awb}</b> Kg}{#ifnot:^xfields.pcs_awb:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Piece(s) manifested:</th><td>{#if:^xfields.pcs_mani:<b>{^xfields.pcs_mani}; {^xfields.wei_mani}</b> Kg}{#ifnot:^xfields.pcs_mani:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Piece(s) received:</th><td>{#if:^xfields.pcs_rcvd:<b>{^xfields.pcs_rcvd}; {^xfields.wei_rcvd}</b> Kg}{#ifnot:^xfields.pcs_rcvd:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{nature.n}:</th><td>{^xfields.nature:<span class="gray">---</span>}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{agent.n}:</th><td>{^xfields.agent:<span class="gray">---</span>}</td></tr>
+		<tr><th>{feeder.n}:</th><td>{^xfields.feeder:<span class="gray">---</span>}</td></tr>
+		<tr><th>{inc_cons.n}:</th><td>{^xfields.inc_cons:<span class="gray">---</span>}</td></tr>
+	</table>
+}
+
+<h4>Incident information:</h4>
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{inc_date.n}:</th><td>{#if:^xfields.inc_date:{^xfields.inc_date}~date("Y-m-d")~}{#ifnot:^xfields.inc_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Involved Pieces:</th><td>{#if:^xfields.invo_pcs:<b>{^xfields.invo_pcs}</b>; <b>{^xfields.invo_weight}</b> Kg}{#ifnot:^xfields.invo_pcs:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{last_loc.n}:</th><td>{^xfields.last_loc:<span class="gray">---</span>}</td></tr>
+		<tr><th>{phys_check.n}:</th><td>
+			{#if:^xfields.phys_check.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.phys_check.key: checked="checked"}> {^xfields.phys_check.value}</label>}
+			{#ifnot:^xfields.phys_check.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{trc_aspct.n}:</th><td>
+			{#ifnot:^xfields.trc_aspct:<span class="gray">---</span>}
+			{#repeat:^xfields.trc_aspct:<span class="itembox">{value}</span>}
+		</td></tr>
+		<tr><th>{add_aspct.n}:</th><td>
+			{#ifnot:^xfields.add_aspct:<span class="gray">---</span>}
+			{#repeat:^xfields.add_aspct:<span class="itembox">{value}</span>}
+		</td></tr>
+	</table>
+	<hr />
+
+	<table>
+		<tr><th>{tracer.n}:</th><td>{^xfields.tracer.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{trc_status.n}:</th><td>{^xfields.trc_status.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{trc_date.n}:</th><td>{#if:^xfields.trc_date:{^xfields.trc_date}~date("Y-m-d")~}{#ifnot:^xfields.trc_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{outcome.n}:</th><td>{^xfields.outcome:<span class="gray">---</span>}</td></tr>
+ 	</table>
+{!	{#if:^xfields.remrks:
+	<h5>{remrks.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.remrks}~nl2br~</div>}
+	{#ifnot:^xfields.remrks:<div class="gray"><br />(no remarks noted)</div>}}
+
+	<hr />
+
+	<table>
+		<tr><th>{documents.n}:</th><td>
+			{#ifnot:^xfields.documents:<span class="gray">---</span>}
+			{#repeat:^xfields.documents:<span class="itembox">{value}</span>}
+		</td></tr>
+		<tr><th>{docrmk.n}:</th><td>{^xfields.docrmk:<span class="gray">---</span>}</td></tr>
+	</table>
+	<hr />
+
+	<h4>Customs reporting</h4>
+	<table>
+		<tr><th>{rep_cust.n}:</th><td>{^xfields.rep_cust.value:<span class="gray">---</span>}</td><td style="width: 250px">Date: {#if:^xfields.rep_date:{^xfields.rep_date}~date("Y-m-d")~}{#ifnot:^xfields.rep_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{act_cust.n}:</th><td>{^xfields.act_cust.value:<span class="gray">---</span>}</td><td style="width: 250px">Date: {#if:^xfields.act_date:{^xfields.act_date}~date("Y-m-d")~}{#ifnot:^xfields.act_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{ref_cust.n}:</th><td>{^xfields.ref_cust:<span class="gray">---</span>}</td></tr>
+	</table>
+}
+
+</div>
+{!Right column}
+<div class='column2'>
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th>Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}	
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+</table>
+
+{#if:files:<h4>Attached pictures and documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+
+<h4>Add more documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+<h4 style='margin-top: 20px;'>Communication area:</h4>
+<div id='convos-box' style="margin-bottom: 8px;">
+	{#ifnot:conversations:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+	{#if:conversations:
+	<div class="gray" style="font-size: 0.9em; border-bottom: 1px solid #D3D3D3; padding-bottom: 6px;">To view the conversation, send another message or make a reply, click on the subject line.</div>
+	<table class="infotable">	
+	{#repeat:conversations:
+		<tr><th>Subject:</th><td><a href="/?action=external_comm&amp;key={key}">{description:(Conversation has no subject)}</a></td></tr>
+		<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+		<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+	}
+	</table>
+	}
+</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the update button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Cargo Claim' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_view_jstpl.html}
+{#if:update_by_mail:{#raw:includes/issue2message.html}}

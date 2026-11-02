@@ -1,0 +1,66 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:title:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:dl_soft:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><span class="right gray">(Would be nice if finished before)</span><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:dl_hard:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><span class="right gray">(Must be completed until this date)</span><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:ticket_link:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			<span class='gray'>(XXX-XXX-XXXX)</span>
+		</td>
+	</tr>}
+</table>
+{#use:descr:
+	<h4 style="text-indent: 24px; margin-top: 12px;">Item description</h4>
+	<textarea rows="15" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; overflow: auto; width: 99%; border-width: 1px; margin-bottom: 16px; background-color: white;" placeholder="(If possible, please keep this information short)">{value}</textarea>
+}
+<h4 style="margin-top: 12px;">Details</h4>
+<table>
+	{#use:rt:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long'>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}</select></td>
+	</tr>}
+	{#use:customer:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:init:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long'>
+			<option value='' class='gray'>(why this item exists)</option>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}</select></td>
+	</tr>}
+	{#use:app_ver:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+<h4 style="margin-top: 12px;">Estimations</h4>
+<table>
+	{#use:e_diff:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long'>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}</select></td>
+	</tr>}
+	<tr>
+		<th><label for='{id}'>Est. Hours:</label></th>
+		<td>
+			Min: {#use:e_hr_min:<input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			Max: {#use:e_hr_max:<input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+</table>
+</form>}

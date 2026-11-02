@@ -1,0 +1,62 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{gsa_inv.n}:</th><td>{^xfields.gsa_inv.value:<span class="gray">---</span>}</td></tr>
+{!		<tr><th>{dmg_by.n}:</th><td>{^xfields.dmg_by.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{dmg_by_otr.n}:</th><td>{^xfields.dmg_by_otr:<span class="gray">---</span>}</td></tr>		}
+		<tr><th>{dmg_area.n}:</th><td>{#repeat:^xfields.dmg_area:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>Other location:</th><td>{^xfields.dmg_area_info:<span class="gray">---</span>}</td></tr>
+	</table>
+	{#if:^xfields.dmg_details:
+	<h5>{dmg_details.n}:</h5>
+	<div style="border: 1px solid lightgray; padding: 4px; margin-bottom: 4px;">{^xfields.dmg_details}~nl2br~</div>}
+	{#ifnot:^xfields.dmg_details:<div class="gray" style="text-indent: 20px; margin-top: 8px;">-----</div>}
+		
+	{#if:^xfields.dmg_narrative:
+	<h5>{dmg_narrative.n}:</h5>
+	<div style="border: 1px solid lightgray; padding: 4px; margin-bottom: 4px;">{^xfields.dmg_narrative}~nl2br~</div>}
+	{#ifnot:^xfields.dmg_narrative:<div class="gray" style="text-indent: 20px; margin-top: 8px;">-----</div>}
+	
+	<h4 style="margin-top: 8px;">Actions taken at station:</h4>
+	<table>
+		<tr><th style="width: 30%;">{act_engineer.n}</th>
+		<td>
+			{#if:^xfields.act_engineer.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_engineer.key: checked="checked"}> {^xfields.act_engineer.value}</label>}
+			{#ifnot:^xfields.act_engineer.value:<span class='gray'>---</span>}
+		</td>
+		<td>Name: {^xfields.act_engineer_name:<span class="gray">---</span>}</td>
+		</tr>
+		<tr><th>Airline rep. informed?</th>
+		<td>
+			{#if:^xfields.act_airlinerep.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_airlinerep.key: checked="checked"}> {^xfields.act_airlinerep.value}</label>}
+			{#ifnot:^xfields.act_airlinerep.value:<span class='gray'>---</span>}
+		</td>
+		<td>Name: {^xfields.act_airlinerep_name:<span class="gray">---</span>}</td>
+		</tr>
+		<tr><th>{act_unloadstop.n}</th>
+		<td>
+			{#if:^xfields.act_unloadstop.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_unloadstop.key: checked="checked"}> {^xfields.act_unloadstop.value}</label>}
+			{#ifnot:^xfields.act_unloadstop.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{act_eqrem.n}</th>
+		<td>
+			{#if:^xfields.act_eqrem.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_eqrem.key: checked="checked"}> {^xfields.act_eqrem.value}</label>}
+			{#ifnot:^xfields.act_eqrem.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{act_eqinv.n}</th>
+		<td>
+			{#if:^xfields.act_eqinv.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_eqinv.key: checked="checked"}> {^xfields.act_eqinv.value}</label>}
+			{#ifnot:^xfields.act_eqinv.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{airp_notify.n}</th>
+		<td>
+			{#if:^xfields.airp_notify.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.airp_notify.key: checked="checked"}> {^xfields.airp_notify.value}</label>}
+			{#ifnot:^xfields.airp_notify.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{airp_report.n}</th>
+		<td>
+			{#if:^xfields.airp_report.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.airp_report.key: checked="checked"}> {^xfields.airp_report.value}</label>}
+			{#ifnot:^xfields.airp_report.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>		
+}

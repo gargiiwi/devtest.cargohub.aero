@@ -1,0 +1,843 @@
+/* Styles for the CargoHub Connect application */
+/*@import url("http://cdn.cargohub.nl/webfonts/DINPro.css");*/
+
+/** Global **/
+html, body {
+	/*width: 98%;*/
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: black;
+	background: none rgb(240,240,240) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: hidden;
+        background: none rgb(240,240,240) no-repeat center center fixed !important;
+}
+
+/** Some unobtrusive debugging features **/
+#debug { 
+	background-color: white;
+	color: black; 
+}
+#debug pre {
+	margin: 0px;
+	padding: 0px;
+}
+div#debug > table {
+	width: 100%;
+	border: 1px solid gray;
+	border-spacing: 2px;
+}
+div#debug > table > tbody > tr:nth-child(odd) {
+	background-color:#eee;
+}
+div#debug > table > tbody > tr:nth-child(even) {
+	background-color:#fff;
+}
+div#debug > table th {
+	background-color: gray;
+	color: white;
+}
+
+.left { float: left !important; }
+.leftchildren > * { float: left !important; }
+.right { float: right !important; }
+.rightchildren > * { float: left !important; }
+.only-numbers { text-align: right; padding-right: 3px !important; }
+.center { text-align: center !important; margin-left: auto; margin-right: auto; }
+.clear { clear: both; }
+
+.info-tip {
+	cursor: help;
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: #166EB7;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: MidnightBlue; 
+}
+
+h1, h2, h3 {
+	padding: 0px;
+	margin: 0 0 4px 0px;
+	font-family: Tahoma;
+}
+
+h1 {
+	color: #2B296C;
+	font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+	font-size: 20px;
+	font-weight: bold;	
+}
+
+h2 {
+	color: #2B296C;
+	font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+	font-size: 18px;
+	font-weight: normal;	
+}
+
+h3 {
+	color: #74804E;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+/* Little header for various tables and so on */
+h4 {
+	background-color: #dfdfdf;
+	color: black;
+	border-bottom: 1px solid #A0B0C0;
+	display: block;
+	margin-bottom: 6px;
+	margin-top: 0;
+	padding: 3px;
+	text-indent: 20px;
+}
+
+/* Small separator type header */
+h5 {
+	margin-top: 10px;
+	margin-bottom: 6px;
+}
+
+hr {
+	background-color: lightgray;
+	border: none;
+	height: 1px;
+	margin: 5px 0px 9px 0px;
+}
+
+/* Some styles for text and inline elements */
+.whitebg { background-color: white !important; }
+.orange { color: orange !important; }
+.red { color: red !important; }
+.green { color: green !important; }
+.blue { color: blue !important; }
+.darkblue { color: darkblue !important; }
+.gray { color: #999 ; } /* remove !important*/	
+.fiftycent {
+	filter: alpha(opacity=50); /* For IE8 and earlier */	
+	opacity: 0.5;
+}
+.thick {
+	font-weight: bold !important;
+}
+.fixedtextarea {
+	resize: none !important;
+	overflow: auto !important;
+}
+
+.info-click {
+	cursor: pointer;
+}
+
+.inline-icon {
+	display: inline-block;
+	vertical-align: text-bottom;
+	width: 16px;
+	height: 16px;
+	top: 4px;
+}
+
+.icon-info {		background-image: url("/img/icons16/information.png");}
+.icon-attention {	background-image: url("/img/icons16/error.png");}
+.icon-warning {		background-image: url("/img/icons16/exclamation.png");}
+
+div.loading-pleasewait {
+	width: 100%;
+	height: 100%;
+	margin: 0; padding: 0;
+	background: transparent url("/img/extra/loader3.gif") no-repeat center;
+}
+
+.autocenter {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+	.autocenter > * {
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+	}
+
+/* The operational area of the site, vertically top, horizontally centered */
+div.site {
+	width: 1200px; /*IWI new design 17072026*/
+	margin: 0px auto;
+	background-color: #fff;
+	border-radius: 0px 0px 5px 5px;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+	div.site > div.header {
+		padding: 0px 5px 7px 5px;
+	}
+
+	div.site > div.page {
+		padding: 0px 5px 10px 5px;
+		margin-bottom: 10px;
+	}
+
+		/** General classes for stuff inside the page **/
+		div.site > div.page div.zone {
+			padding: 7px;
+			border: 1px solid #C7C7C7;
+			margin-bottom: 12px;
+		}
+
+
+/* Footer (Contains copyright information, and can be disabled for certain domains) */
+div.footer {
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px;
+}
+
+	div.footer > span {
+		font-size: 10px;
+		margin-bottom: 5px;
+		margin-top: 10px;
+		display: block;
+		color: #8faebd;
+	}
+
+	div.footer > a {
+		display: block;
+		width: 284px;
+		border: 3px solid white;
+		background: #fff;
+		border-radius: 5px;
+		margin: 0 auto;
+		box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	div.footer > a > img {
+		display: block;
+		border-radius: 5px;
+		border: 0px;
+	}
+	
+div.footer #footer-linkbar {
+	width: 1130px;
+	margin: 0 auto 10px auto;
+	text-align: left;
+	color: #404040;
+}
+
+	div.footer #footer-linkbar a {
+		text-decoration: none;
+		color: #404040;
+	}
+	div.footer #footer-linkbar a:HOVER {
+		text-decoration: underline;
+		color: #166eb7;
+	}
+
+/** UI Common elements **/
+.spacey {
+	padding: 6px !important;
+}
+
+/** Standard Modal Window (components.modal) - Move out of here, place in modal.css after all modules stop using cargohub.its.open_Modal...  **/
+div.modal_window div.modal_content {
+	overflow: hidden;
+}
+
+div.modal_window div.modal_buttons {
+	position: absolute;
+	left: 8px;
+	right: 8px;
+	bottom: 8px;
+	border-top: 1px solid lightgray;
+	padding-top: 8px;
+	text-align: right;
+}
+
+	div.modal_window div.modal_buttons button {
+		padding-left: 18px;
+		padding-right: 18px;
+		margin-left: 8px;
+	}
+
+/** Uniform information table **/
+table.infotable {
+	border: none;
+	border-collapse: separate;
+	caption-side: left;
+	empty-cells: show;
+	table-layout: fixed;
+}
+	table.infotable th {
+		border-right: 1px solid lightgray;
+		font-weight: normal;
+		text-align: left;
+		padding-right: 6px;
+	}
+	table.infotable td {
+		padding-left: 8px;
+	}
+	
+/** Multi-column uniform data table **/
+table.datatable {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 1px;
+	margin-bottom: 12px;
+}
+	table.datatable tr {
+		height: 19px;
+		line-height: 19px;
+	}
+
+	/* Icon in first column of datatable */
+	table.datatable td:nth-of-type(1) img {
+		position: relative;
+		top: 3px;
+		left: 2px;
+	}
+
+	table.datatable tr:nth-child(even) {
+		background-color: #FFFFFF;
+	}
+	
+	table.datatable tr:nth-child(odd) {
+		background-color: #F8F8F8;
+	}
+	
+/* Datatable header */
+table.datatable tr.tab-header {
+}
+
+	table.datatable tr.tab-header > th {
+		border-bottom: 1px solid gray;
+		text-indent: 8px; background-color: lightgray; color: #6F6F6F;
+		text-shadow: 1px 1px white;
+	}
+
+	table.datatable td {
+		border-right: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		padding: 2px;
+	}	
+	
+/** Command area with a graphical (icon) button and some other content on the right side **/
+div.command {
+	height: 40px;
+	font-size: 110%;
+	line-height: 40px;
+	white-space: nowrap;
+	margin-bottom: 8px;
+}
+
+div.vcmds > div {
+	width: 66px;
+	float: left;
+	text-align: center;
+}
+
+	.command button, .vcmds button {
+		border: 1px solid;
+		border-color: white gray gray white;
+		background: #EFEFE8 no-repeat 3px 3px;
+		width: 38px;
+		height: 38px;
+		cursor: pointer;
+		border-radius: 5px;
+		box-shadow: 1px 1px 2px lightgray;
+	}
+	
+	.command button {
+		float: left;
+		margin-right: 10px;
+	}
+	.vcmds button {
+	}
+	
+	.command button:HOVER, .vcmds button:HOVER {
+		background-color: #E4E4D8;
+		box-shadow: 1px 1px 2px gray;
+	}
+	
+	.command button:ACTIVE, .vcmds button:ACTIVE {
+		background-position: 4px 4px;
+		border-color: gray white white gray;
+		box-shadow: 1px 1px 1px gray inset;
+	}
+	
+/** Toolbar-like area with text-mode buttons, styled by jqWidgets **/
+div.toolbar {
+	border: 1px solid lightgray;
+	height: 40px;
+	padding-left: 12px;
+	margin-bottom: 10px;
+}
+	div.toolbar button.jqx-widget, div.toolbar div.jqx-widget {
+		margin: 7px 20px 5px 0;
+		float: left;
+	}
+	
+	div.toolbar button.jqx-widget {
+		padding: 4px 6px;
+	}
+
+	div.toolbar div.toolbar-separator {
+		float: left;
+		width: 1px;
+		height: 28px;
+		background-color: lightgray;
+		margin: 6px 12px 6px 0;
+	}
+	
+	div.toolbar div.toolbar-accessory {
+		float: left;
+		display: inline-block;
+		height: 36px;
+		margin: 2px 12px 2px 0;
+		line-height: 36px; 
+	}
+	
+		div.toolbar div.toolbar-accessory img {
+			float: left;
+			margin: 2px 12px 2px 0;
+		}
+
+		div.toolbar div.toolbar-accessory span {
+			float: left;
+		}
+		
+	div.toolbar button img {
+		float: left;
+		margin: 0 6px 0 0;
+	}
+		div.toolbar button.icnonly img {
+			margin: 0 4px !important;
+		}
+
+/** Some standardized forms **/
+form.vertiform {
+}
+	.vertiform ul {
+		margin: 0px;
+		padding: 0px;
+	}
+	.vertiform ul > li {
+		list-style: none;
+		margin: 0px 0px 6px;
+		display: block;
+		clear: left;
+		height: 26px;
+	}
+	
+	.vertiform ul > li label {
+		display: block;
+		width: 140px;
+		text-align: right;
+		margin-right: 12px;
+		float: left;
+		height: 26px;
+		line-height: 26px;
+	}
+	
+	/** Other content, not editable **/	
+	.vertiform .static {
+		line-height: 26px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}
+	
+/** Contact overview window (used in several places) **/
+div#contact-modal {
+	height: 360px;
+	overflow: auto;
+}
+
+	table.contact-table tr {
+		height: 24px;
+	} 
+	
+		table.contact-table tr.contact-group {
+			background-color: #ddd;
+			color: #000000;
+			margin-top: 0;
+			padding: 2px;
+			text-indent: 8px;
+			font-weight: bold;
+		}
+		
+			table.contact-table tr.contact-group > td {
+				border-bottom: 1px solid #9ab;
+			}
+		
+		table.contact-table tr.contact-group img {
+			float: left;
+			margin-left: 20px;
+		}
+		
+		table.contact-table tr.contact-group-end {
+			display: none;
+		}
+
+	table.contact-table th {
+		color: gray;
+		width: 140px;
+		text-align: right;
+ 	}
+
+	 	table.contact-table th label {
+	 		line-height: 26px;
+	 	}
+	 	
+	table.contact-table td {
+	}
+
+		table.contact-table td span {
+			display: block;
+			padding: 4px;
+			min-height: 18px;
+		}
+		
+		table.contact-table td span.jqx-input {
+			border-color: #C7C7C7;
+		}
+
+/** Random clickable image buttons **/
+button.cmd16 {
+	width: 20px; height: 20px;
+	float: left; margin-right: 6px;
+	border: 1px solid;
+	border-color: white gray gray white;
+	background: #EFEFE8 no-repeat 1px 1px;
+	cursor: pointer;
+	border-radius: 4px;
+	box-shadow: 1px 1px 2px lightgray;
+}
+
+button.cmd16:HOVER {
+	background-color: #E4E4D8;
+	box-shadow: 1px 1px 2px gray;
+}
+
+button.cmd16:ACTIVE {
+	background-position: 2px 2px;
+	border-color: gray white white gray;
+	box-shadow: 1px 1px 1px gray inset;
+}
+
+button.information16 { background-image: url("/img/icons16/information.png"); }
+button.user16 { background-image: url("/img/icons16/user_gray.png"); }
+button.contact16 { background-image: url("/img/icons16/vcard.png"); }
+button.map16 { background-image: url("/img/icons16/map.png"); }
+
+/** Visibility / Access icons **/
+
+.access16 {
+	float: left;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+}
+	.access16.visi-private, .access16.edit-user { background-image: url("/img/icons16/user_gray.png"); }
+	.access16.visi-dep, .access16.edit-dep { background-image: url("/img/icons16/plugin.png"); }
+	.access16.visi-org, .access16.edit-org { background-image: url("/img/icons16/company-building-icon.png"); }
+	.access16.visi-shared, .access16.edit-shared { background-image: url("/img/icons16/share.png"); }
+	.access16.visi-public { background-image: url("/img/icons16/eye.png"); }
+	.access16.visi-hidden { background-image: url("/img/icons16/delete.png"); }
+	.access16.state-web { background-image: url("/img/icons16/web_layout.png"); }
+	.access16.state-on { background-image: url("/img/icons16/check_box.png"); }
+	.access16.state-off {}
+	.access16.state-secure { background-image: url("/img/icons16/lock.png"); }
+
+/** Data presentation styles **/
+.itembox {
+	line-height: 16px;
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	background-color: rgb(255, 255, 255);
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6);
+	cursor: default;
+}
+	.itembox:hover {
+		background-color: rgb(240, 240, 120);
+		box-shadow: 2px 2px 4px rgba(100, 100, 100, 0.7);
+		color: black;
+	}
+
+/** UI Modifications **/
+.jqx-menu-item, .jqx-menu-item-top {
+	white-space: nowrap;
+}
+
+/* Icons in various jqx bar elements */
+.jqx-menu-item > img,
+.jqx-menu-item-top > img,
+.jqx-tabs-titleContentWrapper > img,
+.jqx-expander-header-content > img,
+.jqx-window-header div > img {
+	float: left;
+	width: 16px;
+	margin-right: 5px;
+	margin-top: 1px;
+	border: none;
+}
+
+.inline {
+	display: inline-block;
+}
+
+/* TODO: Review these two, they might not be used anymore after the update */
+.inline > img, img.inline-icon16 {
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+}
+
+.jqx-expander-header-content > img,
+.jqx-window-header div > img {
+	margin-left: 3px;
+}
+
+/* Disable selecting text from grids, as it interferes with clicking inside the grid */
+.jqx-grid, .unselectable {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	-ms-user-select: none;
+	-webkit-touch-callout: none;
+	user-select: none;
+}
+
+/* Fix for Mozilla padding of buttons */
+button::-moz-focus-inner, input[type="reset"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner, input[type="submit"]::-moz-focus-inner { padding: 0; border: 0; }
+
+/* Fix for Tooltip showing behind windows */
+.jqx-tooltip {
+	z-index: 999999 !important;
+}
+
+.jqx-editor-container {
+	width: auto !important;
+}
+
+#multi-steps-bar {
+	background-color: #90cc60;
+	color: White;
+	border: none;
+	text-align: center;
+	font-weight: normal;
+	box-shadow: 1px 4px 2px LightGray;
+	margin-bottom: 8px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 1.25em;
+}
+	#multi-steps-bar .step-off {
+		color: black;
+	}
+	
+	#multi-steps-bar .step-on {
+		font-weight: bold;
+		color: white;
+		background-color: ForestGreen;		
+	}
+
+	#multi-steps-bar .two-steps-bar > div {
+		width: 50%;
+		float: left;
+		height: 32px;
+	}
+        
+        
+        
+                
+        
+        
+
+table.contact-table tr.change-password-form label{
+    line-height: 1px;
+}
+#modal_contact-window{
+    height: 570px !important;
+}
+.modal_content{
+        /*height: 490px !important;*/
+        height: 100% !important;
+}
+
+.error_blank{
+    border: 1px solid red !important;
+}
+
+.error_msg_passwrod_change p{
+    color: red !important;
+    font-size: 12px;
+    line-height: 0px;
+    padding-left: 22%;
+}
+.change_password_block{
+    display:none;
+}
+
+
+
+
+
+
+
+
+
+
+/*+++++++++++++++++++++++++ For grid and list view START +++++++++++++++++++++*/
+
+
+/*.section_grid_view .jqx-window-header{
+	background-color: #1A72E6;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#1A72E6),to(#1A72E6));
+	    border-color: #1971e5;
+}*/
+.section_grid_view .jqx-window-header > div{
+	/*color: #fff;*/
+	font-weight: 600;
+}
+.section_grid_view .jqx-window-content{
+	    /*background: #F6FAFF;*/
+}
+.section_grid_view .datatable h4{
+	/*background-color: #C6DFFF !important;*/
+	border-bottom:none !important;
+	padding: 6px;
+}   
+.section_grid_view .datatable h5{
+	font-size: 13px;
+}
+.section_grid_view .jqx-window-content > div{
+	border: none;
+}
+
+
+
+/*.section_list_view .jqx-window-header{
+	background-color: #1A72E6;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#1A72E6),to(#1A72E6));
+	    border-color: #1971e5;
+}*/
+.section_list_view .jqx-window-header > div{
+	/*color: #fff;*/
+	font-weight: 600;
+}
+.section_list_view .jqx-window-content{
+	    /*background: #F6FAFF;*/
+}
+
+/*
+.section_list_view #claim-dashboard .jqx-window-content table{ 
+	width: 50% !important;
+}
+*/
+
+.section_list_view #claim-dashboard .jqx-window-content table:first-of-type{
+	float: left;
+	width: 50%;
+/*
+	height: 126px;
+	border-right: 1px solid #ccc;
+    margin-right: 50px;
+*/
+}
+.section_list_view #claim-dashboard div.datatable > table:nth-of-type(2){ 
+	width: 50% !important;
+}
+.section_list_view #claim-dashboard .jqx-window-content .claim-aspects{
+	width: 100% !important;
+}
+.section_list_view #claim-dashboard .jqx-window-content hr{
+	display: none;
+}
+
+.section_list_view .datatable h4{
+	/*background-color: #C6DFFF !important;*/
+	border-bottom:none !important;
+	padding: 6px;
+}   
+.section_list_view .datatable h5{
+	font-size: 13px;
+}
+.section_list_view .jqx-window-content > div{
+	border: none;
+}
+
+.section_list_view .jqx-docking-panel{
+	    height: auto !important;
+    min-width: 99.5% !important;
+    float: none !important;
+    width: 99.5% !important;
+	margin-left: 0 !important;
+}
+
+.section_list_view .jqx-docking-panel .jqx-window-classic {
+	width: auto !important;
+	    height: auto !important;
+	margin-bottom: 15px !important;
+}
+
+.section_list_view .jqx-rc-all .jqx-resize{
+	    width: auto !important;
+	    height: auto !important;
+}
+.section_list_view .jqx-rc-all .jqx-window-header{
+	width: auto !important;
+}
+
+.section_list_view .jqx-rc-all .jqx-window-content{
+		width: auto !important;
+	    height: auto !important;
+	
+}
+
+
+
+
+/*.section_list_view div#claim-dashboard , .section_list_view div#claim-followup ,.section_list_view div#claim-forwarder ,.section_list_view div#claim-fwfollowup, .section_list_view div#claim-airline ,.section_list_view  div#claim-financial{
+    width: auto !important;
+    height: auto !important;
+}*/
+ 
+
+.section_list_view .financial_data_section tbody{
+    display: flex;
+    flex-wrap: wrap;
+}
+.section_list_view .financial_data_section tbody tr{
+width: 50%;
+} 
+
+
+.section_list_view .jqx-widget-content{
+   width: auto !important;
+height: auto !important;
+}
+
+
+
+
+
+/*+++++++++++++++++++++++++ For grid and list view END +++++++++++++++++++++*/

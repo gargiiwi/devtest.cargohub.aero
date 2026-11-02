@@ -1,0 +1,69 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{procur.n}:</th><td>
+			{#ifnot:^xfields.procur:<span class='gray'>---</span>}{#repeat:^xfields.procur:<span class="itembox">{value}</span>}
+		</td></tr>
+		<tr><th>Procurement dates:</th><td>
+			<table style="width: 99%;">
+				<tr>
+					<td style="width: 33%; text-align: center;">Notified</td>
+					<td style="width: 33%; text-align: center;">Started</td>
+					<td style="width: 33%; text-align: center;">Completed</td>
+				</tr>
+				<tr>
+					<td class="center">{#if:^xfields.proc_ntf_date:<span class='thick red'>{^xfields.proc_ntf_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.proc_ntf_date:<span class='gray'>---</span>}</td>
+					<td class="center">{#if:^xfields.proc_start_date:<span class='thick blue'>{^xfields.proc_start_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.proc_start_date:<span class='gray'>---</span>}</td>
+					<td class="center">{#if:^xfields.proc_end_date:<span class='thick green'>{^xfields.proc_end_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.proc_end_date:<span class='gray'>---</span>}</td>
+				</tr>
+			</table>
+		</td></tr>
+		<tr><th>{recharge.n}:</th><td>
+			{#if:^xfields.recharge.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.recharge.key: checked="checked"}> {^xfields.recharge.value}</label>}
+			{#ifnot:^xfields.recharge.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{recharge_to.n}:</th><td>{^xfields.recharge_to:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{inv_yn.n}:</th><td>
+			{#if:^xfields.inv_yn.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.recharge.key: checked="checked"}> {^xfields.inv_yn.value}</label>}
+			{#ifnot:^xfields.inv_yn.value:<span class='gray'>---</span>}
+			<span class="right inline" style="width: 220px;"><label>Invoice #:</label> {^xfields.inv_no:<span class='gray'>(not set)</span>}</span>
+		</td></tr>
+		<tr><th>{recharge_amt.n}:</th><td>
+			<b>{^xfields.recharge_amt.serialized:<span class='gray'>---</span>}</b>
+		</td></tr>			
+		<tr><th>{receive_amt.n}:</th><td>
+			<b>{^xfields.receive_amt.serialized:<span class='gray'>---</span>}</b>
+		</td></tr>			
+		<tr><th>{sgha.n}:</th><td>
+			{#if:^xfields.sgha.value!=-1:{^xfields.sgha.value}}
+			{#ifnot:^xfields.sgha.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{inv_done.n}</th>
+		<td>
+			{#if:^xfields.inv_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.inv_done.key: checked="checked"}> {^xfields.inv_done.value}</label>}
+			{#ifnot:^xfields.inv_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{inv_link.n}:</th><td>
+			{#if:^xfields.inv_link:<a href="/record/process:{^xfields.inv_link}#panels" target="_blank">{^xfields.inv_link}</a>}
+			{#ifnot:^xfields.inv_link:<span class='gray'>(no link)</span>}
+		</td></tr>
+		<tr><th>{cdr_link.n}:</th><td>
+			{#if:^xfields.cdr_link:<a href="/record/process:{^xfields.cdr_link}#panels" target="_blank">{^xfields.cdr_link}</a>}
+			{#ifnot:^xfields.cdr_link:<span class='gray'>(no link)</span>}
+		</td></tr>
+	</table>		
+	<h5 style="margin-left: 20px;">{findings.n}:</h5>
+	{#if:^xfields.findings:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.findings}~nl2br~</div>}
+	{#ifnot:^xfields.findings:<div class="gray" style="text-indent: 20px;">-----</div>}
+	<h5 style="margin-left: 20px;">{actions_taken.n}:</h5>
+	{#if:^xfields.actions_taken:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.actions_taken}~nl2br~</div>}
+	{#ifnot:^xfields.actions_taken:<div class="gray" style="text-indent: 20px; margin-top: 8px;">-----</div>}
+	<h5 style="margin-left: 20px;">{outcome.n}:</h5>
+	{#if:^xfields.outcome:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.outcome}~nl2br~</div>}
+	{#ifnot:^xfields.outcome:<div class="gray" style="text-indent: 20px; margin-top: 8px;">-----</div>}
+}

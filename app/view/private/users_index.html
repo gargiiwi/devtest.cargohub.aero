@@ -1,0 +1,68 @@
+<h2>Users management</h2>
+<div id="userman_overview">
+	<div>
+		{#if:acls.privileges.users_manager|acls.unrestricted:<div class='command'><button id='userman_add' data-cmd='adduser' title='Add a user account'></button>Add an user account</div>}
+		{#if:acls.unrestricted:<div id="userman_quicklist_org" style='margin: 1px;'></div>}
+		<div style="border: none;" id="userman_quicklist"></div>
+	</div>
+	<div id="userman_op">
+		<div class='spacey clear'>
+			<h3>User manager</h3>
+			<hr />
+			<p>
+			{#if:acls.unrestricted:As administrator, you need to choose an organization first, then the list of users from that organization will be displayed}
+			{#ifnot:acls.unrestricted:Select an user from the left side to see their information.}
+			</p>
+			{#if:acls.privileges.users_manager|acls.unrestricted:
+			<p>Also, since you are allowed to manage users in your organization, you can use the "Add an user account" button to create a new user.</p>}
+		</div>
+	</div>
+</div>
+
+<div class='clear'></div>
+{!Templates used by javascript to generate on-the-fly content. These are not visible initially even if they are part of the DOM}
+<div style="display: none;">{@
+<div id="template_loading">
+	<div style='text-align: center; margin-top: 52px; padding-top: 8px; border-top: 1px solid lightgray;'>
+		<h3>Please wait, loading information for {$user} ...</h3>
+	</div>
+}</div>
+<div id="template_selectuser">
+	<div style='text-align: center; margin-top: 52px; padding-top: 8px; border-top: 1px solid lightgray;'>
+		<h3>Select an user from the list</h3>
+	</div>
+</div>
+<div id="template_adduser">
+	<div class="spacey">
+	<h3>Add an account</h3>
+	<hr />
+	<form class='vertiform' name='adduser' action="?action=add_user" method="post">
+		<ul>
+		<li><label for="usr_user">Username:</label><input id="usr_user" name="usr[user]" type="text" value="" /></li>
+		<li><label for="usr_password">Password:</label><input id="usr_password" name="usr[password]" type="password" value="" /></li>
+		<li><label for="usr_passwordr">Repeat password:</label><input id="usr_passwordr" name="usr[passwordr]" type="password" value="" /></li>
+		<li><label for="usr_name">Person's name:</label><input id="usr_name" name="usr[name]" type="text" value="" /></li>
+		<li><label for="usr_email">Email Address:</label><input id="usr_email" name="usr[email]" type="text" value="" /></li>
+		{#if:%CFG.users_main.features.choose_org:<li><label>Organization:</label><div id='user_org' name="usr[org_id]"></div></li>}
+		<li><label>&nbsp;</label><input type="submit" value="Add user" /></li>
+		</ul>
+	</form>
+	</div>
+</div>
+<div id="template_edituser">
+	<div class='command' style='width: 50%; float: left;'><button id='userman_cancel' data-cmd='editcancel' title='Discard changes'></button>Discard changes</div>
+	{#if:acls.privileges.users_manager|acls.unrestricted:<div class='command' style='width: 50%; float: left;'><button id='userman_delete' data-cmd='deleteuser' title='Remove user'></button>Remove user</div>}
+	<div class='clear'>
+		{#include::private/users/edit.html}
+	</div>
+</div>
+<div id="template_viewuser">
+	{#if:acls.privileges.users_manager|acls.unrestricted:
+	<div class='command' style='width: 50%; float: left;'><button id='userman_edit' data-cmd='edituser' title='Modify user'></button>Modify user</div>
+	<div class='command' style='width: 50%; float: left;'><button id='userman_loginas' data-cmd='loginasuser' title='Login as user'></button>Login as user</div>
+	}
+	<div class='spacey clear'>	
+		{#raw:private/users/details.html}
+	</div>
+</div>
+}</div>

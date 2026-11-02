@@ -1,0 +1,164 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<h4 style="background-image: url('/img/icons16/balance_unbalance.png'); background-repeat: no-repeat; background-position: 4px;">Risk assessment</h4>
+	<table>
+		{#use:risk_class:<tr>
+			<th><label>{display.label}:</label></th>
+			<td><select class="dropselect multi-select" data-name='{name}' data-width="175" data-dwidth="175" data-dheight="248" data-dalign="left" data-filterable="1" id='{id}'>
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select></td>
+		</tr>}
+		{#use:capa_area:<tr>
+			<th><label>{display.label}:</label></th>
+			<td><select class="dropselect multi-select" id='{id}' data-name='{name}' data-width="175" data-dwidth="390" data-dheight="180" data-filterable="1">
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select></td>
+		</tr>}
+	<!--	{#use:capa_ard:<tr>
+			<th><label>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen' /></td>
+		</tr>}
+		{#use:lic_link:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input maxlength="12" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+				<span class='gray'>(XXX-XXX-XXXX)</span>
+			</td>
+		</tr>} -->
+	</table>
+	
+	<h5>How severe is the outcome of the event that occured?</h5>
+	{#use:severity:<div>
+		<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;"><tr>
+			{#repeat:options:<td style="width: 20%;"><label><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}><br />{display}</label></td> }
+		</tr></table>
+	</div>}
+	
+	<h5 style="margin-top: 20px;">What is the chance that the same event could happen again?</h5>
+	{#use:probability:<div>
+		<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;"><tr>
+			{#repeat:options:<td style="width: 20%;"><label><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}><br />{display}</label></td> }
+		</tr></table>
+	</div>}
+	
+	<div style="text-align: center;">
+		<input style="margin: 8px;" type="button" class="info-window" value="Risk calculation matrix" data-window="620,450,Risk calculation" data-template='risk-calc' />
+	</div>
+	
+	<h4 style="background-image: url('/img/icons16/question2.png'); background-repeat: no-repeat; background-position: 4px;">
+		<label style="width: 138px; display: inline-block; text-indent: 5px;">Investigation:</label>
+		{#use:inv_done.options.0:<label class="three_cel" style="font-weight: normal;"><input name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}{!
+		}{#use:inv_done.options.1:<label class="three_cel" style="font-weight: normal;"><input name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}{!
+		}{#use:inv_done.options.2:<label class="three_cel" style="font-weight: normal;"><input name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}
+		<input type='hidden' name='{inv_done.name}' value='' />
+	</h4>
+	<table>
+		<tr>
+			<th><label>Status and dates:</label></th>
+			<td>
+				<div class='left three_cel'>
+					{#use:inv_done.options.3:<label class='red'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> Deadline set</label>}
+					{#use:inv_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+				</div>
+				<div class='left three_cel'>
+					{#use:inv_done.options.4:<label class='blue'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> Started</label>}
+					{#use:inv_start_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+				</div>
+				<div class='left three_cel'>
+					{#use:inv_done.options.5:<label class='green'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> Completed</label>}
+					{#use:inv_end_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+				</div>
+			</td>
+		</tr>
+		{#use:inv_pers:<tr>
+			<th><label>Person in charge:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} long' /></td>
+		</tr>}
+	</table>
+	{#use:inv_descr:
+		<h5 class="left" style="display: inline-block; width: 158px;">{display.label}:</h5>
+		<span class="right" style="margin-right: 6px; margin-top: 6px;"><img class="inline-icon16" src="/img/icons16/question.png" style="margin-right: 5px;" /><a class="thick" href='http://cargohub.nl/root-cause-analysis/5whys/' target="_blank">Method | 5 whys</a></span>
+		{!<input style="margin: 0;" type="button" class="left info-window" value="Method | 5 whys" data-window="950,600,Root Cause Analysis - 5 Whys" data-template='five-whys' />}
+		<textarea rows="5" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;height: 150px;" placeholder="">{value}</textarea>
+	}
+
+
+	{#use:inv_remarks:
+		<h5>{display.label}:</h5>
+		<textarea rows="5" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 1px;height: 150px;" placeholder="">{value}</textarea>
+	}
+ <h4 style="margin-top: 15px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Responsibility</h4>
+ 	<table>
+		<!-- 18122024 capa code comment out by iwi | start-->
+
+		<!-- 18122024 capa code comment out by iwi | end-->
+		{#use:respo:<tr>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'} /> {display}</label>}</td>
+		</tr>}
+	  
+	  		<tr>
+			<th>{inv_deps_list.display.label}:</th>
+			<td>
+				{#use:inv_deps_list:<select class="dropselect multi-select left" data-name='{name}' data-width="180" data-dwidth="180" data-dheight="364" data-dalign="left" id='{id}'>
+					{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>}
+				{#use:inv_deps:<input style='width: 172px; margin-left: 7px; height: 27px; box-sizing: border-box;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all small left whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} placeholder="(others?)" />}
+			</td>
+		</tr>
+	  
+	  {#use:inv_emps:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	  
+		<tr>
+			<th><label>{involved.display.label}:</label></th>
+			<td>
+				{#use:involved:<select class="dropselect multi-select left" data-name='{name}' data-width="180" data-dwidth="180" data-dheight="251" data-dalign="left" data-filterable="1" id='{id}'>
+					{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>}
+				{#use:involved_oth:<input style='width: 175px; margin-left: 7px; height: 27px; box-sizing: border-box;' type='text' id='{id}' name='{name}' value='{value}' class='left whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} placeholder="(other?)" />}
+			</td>
+		</tr>
+	</table>
+	
+   <!--	<h4 style="margin-top: 15px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Contributing factors</h4>-->
+  <p style="margin-top: 15px; border-bottom: 2px solid #ccc; padding-bottom: 5px; display: inline-block; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: left center; padding-left: 24px;">Contributing factors</p>
+	<table>
+		<tr>
+			<th><label>{cf_behav.display.label}:</label></th>
+			<td>
+				{#use:cf_behav:<select class="dropselect multi-select left" data-name='{name}' data-width="175" data-dwidth="180" data-dheight="295" data-dalign="left" data-filterable="1" id='{id}'>
+					{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>}
+				{#use:cf_behav_oth:<input style='width: 175px; margin-left: 7px; height: 27px; box-sizing: border-box;' type='text' id='{id}' name='{name}' value='{value}' class='left whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} placeholder="(other?)" />}
+			</td>
+		</tr>
+		<tr>
+			<th><label>{cf_rules.display.label}:</label></th>
+			<td>
+				{#use:cf_rules:<select class="dropselect multi-select left" data-name='{name}' data-width="175" data-dwidth="180" data-dheight="175" data-dalign="left" data-filterable="1" id='{id}'>
+					{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>}
+				{#use:cf_rules_oth:<input style='width: 175px; margin-left: 7px; height: 27px; box-sizing: border-box;' type='text' id='{id}' name='{name}' value='{value}' class='left whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} placeholder="(other?)" />}
+			</td>
+		</tr>
+		<tr>
+			<th><label>{cf_eq.display.label}:</label></th>
+			<td>
+				{#use:cf_eq:<select class="dropselect multi-select left" data-name='{name}' data-width="175" data-dwidth="180" data-dheight="223" data-dalign="left" data-filterable="1" id='{id}'>
+					{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>}
+				{#use:cf_eq_oth:<input style='width: 175px; margin-left: 7px; height: 27px; box-sizing: border-box;' type='text' id='{id}' name='{name}' value='{value}' class='left whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} placeholder="(other?)" />}
+			</td>
+		</tr>
+		<tr>
+			<th><label>{cf_org.display.label}:</label></th>
+			<td>
+				{#use:cf_org:<select class="dropselect multi-select left" data-name='{name}' data-width="175" data-dwidth="200" data-dheight="175" data-dalign="left" data-filterable="1" id='{id}'>
+					{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>}
+				{#use:cf_org_oth:<input style='width: 175px; margin-left: 7px; height: 27px; box-sizing: border-box;' type='text' id='{id}' name='{name}' value='{value}' class='left whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} placeholder="(other?)" />}
+			</td>
+		</tr>
+	</table>
+</form>}

@@ -1,0 +1,61 @@
+{#use:%ist.xfield_def:
+	<table>
+		<!-- <tr><th>Status:</th>
+		<td>
+			{#if:^xfields.fwu_done.value!=-1:<label{#if:^xfields.fwu_done.key==3: class='red'}{#if:^xfields.fwu_done.key==1: class='green'}{#if:^xfields.fwu_done.key==2: class='blue'}><input type='checkbox' disabled="disabled"{#if:^xfields.fwu_done.key==1: checked="checked"}> {^xfields.fwu_done.value}</label>}
+			{#ifnot:^xfields.fwu_done.value:<span class='gray'>---</span>}
+		</td></tr> -->
+		<tr><th>{fwu_date.n}:</th><td>
+			{#if:^xfields.fwu_date:{^xfields.fwu_date}~date("Y-m-d")~}{#ifnot:^xfields.fwu_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{fwu_start_date.n}:</th><td>
+			{#if:^xfields.fwu_start_date:{^xfields.fwu_start_date}~date("Y-m-d")~}{#ifnot:^xfields.fwu_start_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{fwu_end_date.n}:</th><td>
+			{#if:^xfields.fwu_end_date:{^xfields.fwu_end_date}~date("Y-m-d")~}{#ifnot:^xfields.fwu_end_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>Person in charge:</th><td>{^xfields.fwu_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{complain_resolved_by.n}:</th><td>{^xfields.complain_resolved_by.value:<span class="gray">---</span>}</td></tr>
+	</table>
+
+	
+	<h5>{findings.n}</h5>
+	{#if:^xfields.findings:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; height:164px; overflow: auto;">{^xfields.findings}~nl2br~</div>}
+	{#ifnot:^xfields.findings:<div class="gray" style="text-indent: 20px;">-----</div>}
+    
+	<br>
+	<h4>Responsibility?</h4>
+	<table>
+		<tr><th>Responsibility:</th><td>
+			{#if:^xfields.irreg_fnd.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.irreg_fnd.key: checked="checked"}> {^xfields.irreg_fnd.value}</label>}
+			{#ifnot:^xfields.irreg_fnd.value:<span class="gray">---</span>}
+		</td></tr>
+		<tr><th>Third party:</th><td>
+			{#ifnot:^xfields.irreg_types:<span class="gray">---</span>}
+			{#repeat:^xfields.irreg_types:<span class="itembox">{value}</span>}
+		</td></tr>
+		<tr><th>{is_capa.n}:</th><td>{^xfields.is_capa.value:<span class="gray">---</span>}</td></tr>
+	</table>
+    <br>
+	<h5>{remarks.n}</h5>
+	{#if:^xfields.remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; height:164px; overflow: auto;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<!-- <h4 style="margin-top: 8px;">Approval for release of information <span class='gray'>(only applies if irregularities found)</span></h4>
+	<table>
+		<tr><th>{approv_pers.n}:</th><td>{^xfields.approv_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{approv_date.n}:</th><td>
+			{#if:^xfields.approv_date:{^xfields.approv_date}~date("Y-m-d")~}{#ifnot:^xfields.approv_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{qua_inv.n}:</th><td>
+			{#if:^xfields.qua_inv.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.qua_inv.key: checked="checked"}> {^xfields.qua_inv.value}</label>}
+			{#ifnot:^xfields.qua_inv.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>Quality record link:</th><td>
+			{#if:^xfields.qua_link:<a href="/record/process:{^xfields.qua_link}#panels" target="_blank">{^xfields.qua_link}</a>}
+			{#ifnot:^xfields.qua_link:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<hr /> -->
+	
+}

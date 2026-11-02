@@ -1,0 +1,31 @@
+{@<style type="text/css">
+label.dualcolcbx {
+	display: block;
+	width: 240px;
+	float: left;
+}
+.itembox {
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="dev-dashboard" data-panel='0' style='height: 780px;' data-editable="1" data-edittpl="dashboard" data-editheight="780">
+	<div><img src='/img/icons16/menus/dev-dashboard.png' />Dashboard</div>
+	<div class="datatable">
+{#include::panels/dashboard_view.html}
+	</div>
+</div>
+
+<div id="dev-progress" data-panel='0' style='height: 780px;' data-editable="1" data-edittpl="progress" data-editheight="780">
+	<div><img src='/img/icons16/menus/dev-progress.png' />Progress</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/progress_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>

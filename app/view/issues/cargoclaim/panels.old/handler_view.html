@@ -1,0 +1,50 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{gh_title.n}:</th><td>{^xfields.gh_title:<span class="gray">(not completed)</span>}</td></tr>
+		<tr><th>{gh_formal_claim.n}:</th><td><b>{^xfields.gh_formal_curr.value}~cut(4)~{^xfields.gh_formal_claim}~numberformat(2)~</b></td></tr>				
+		<tr><th>{gh_acdate.n}:</th><td>{#if:^xfields.gh_acdate:{^xfields.gh_acdate}~date("Y-m-d")~}{#ifnot:^xfields.gh_acdate:<span class='gray'>(not specified)</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{gh_expected.n}:</th><td><b>{^xfields.gh_expected_curr.value}~cut(4)~{^xfields.gh_expected}~numberformat(2)~</b></td></tr>
+		<tr><th>{gh_insured.n}:</th><td><b>{^xfields.gh_insured_curr.value}~cut(4)~{^xfields.gh_insured}~numberformat(2)~</b></td></tr>
+		<tr><th>{gh_provision.n}:</th><td><b>{^xfields.gh_provision_curr.value}~cut(4)~{^xfields.gh_provision}~numberformat(2)~</b></td></tr>				
+		<tr><th>{gh_proposal.n}:</th><td><b>{^xfields.gh_proposal_curr.value}~cut(4)~{^xfields.gh_proposal}~numberformat(2)~</b></td></tr>				
+		<tr><th>{gh_final_costs.n}:</th><td><b>{^xfields.gh_final_curr.value}~cut(4)~{^xfields.gh_final_costs}~numberformat(2)~</b></td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{gh_caused_by.n}:</th><td>{^xfields.gh_caused_by.value:<span class='gray'>(not set / unknown)</span>}</td></tr>
+		<tr><th>{gh_cause.n}:</th><td>{^xfields.gh_cause:<span class='gray'>(not set / unknown)</span>}</td></tr>
+		<tr><th>{gh_liable.n}:</th><td>
+			{#if:^xfields.gh_liable.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.gh_liable.key: checked="checked"}> {^xfields.gh_liable.value}</label>}
+			{#ifnot:^xfields.gh_liable.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{gh_involved.n}:</th><td>
+			<label><input type='checkbox' disabled="disabled"{#if:^xfields.gh_involved.key: checked="checked"}> {^xfields.gh_involved.value}</label>
+		</td></tr>
+		<tr><th>{gh_root_cause.n}:</th><td>
+			{#if:^xfields.gh_root_cause.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.gh_root_cause.key: checked="checked"}> {^xfields.gh_root_cause.value}</label>}
+			{#ifnot:^xfields.gh_root_cause.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{gh_event.n}:</th><td>
+			{#if:^xfields.gh_event.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.gh_event.key: checked="checked"}> {^xfields.gh_event.value}</label>}
+			{#ifnot:^xfields.gh_event.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{sgha.n}:</th><td>
+			<label><input type='checkbox' disabled="disabled"{#if:^xfields.sgha.key: checked="checked"}> {^xfields.sgha.value}</label>
+		</td></tr>
+		<tr><th>{deps_inc.n}:</th><td>{#repeat:^xfields.deps_inc:<span>{value}</span> }</td></tr>
+	</table>
+	<hr />
+	{#if:^xfields.gh_findings:
+	<h5>{gh_findings.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.gh_findings}~nl2br~</div>}
+	{#ifnot:^xfields.gh_findings:<div class="gray" style="text-indent: 20px;">(no findings at this time)</div>}
+	{#if:^xfields.gh_actions_taken:
+	<h5>{gh_actions_taken.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.gh_actions_taken}~nl2br~</div>}
+	{#ifnot:^xfields.gh_actions_taken:<div class="gray" style="text-indent: 20px; margin-top: 8px;">(no actions taken yet)</div>}
+	{#if:^xfields.gh_outcome:
+	<h5>{gh_outcome.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.gh_outcome}~nl2br~</div>}
+	{#ifnot:^xfields.gh_outcome:<div class="gray" style="text-indent: 20px; margin-top: 8px;">(no outcome at this time)</div>}
+	<br />
+}

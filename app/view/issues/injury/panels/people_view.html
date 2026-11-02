@@ -1,0 +1,53 @@
+{#use:%ist.xfield_def:
+	<table id="people-inv"><tr>
+		<col width="100" /><col width="30%" /><col width="100" /><col width="30%" />
+		<tr><th>Name:</th><td>{^xfields.p1_name:<span class="gray">---</span>}</td>
+			<th>Name:</th><td>{^xfields.p2_name:<span class="gray">---</span>}</td></tr>
+		<tr><th>Company:</th><td>{^xfields.p1_comp:<span class="gray">---</span>}</td>
+			<th>Company:</th><td>{^xfields.p2_comp:<span class="gray">---</span>}</td></tr>
+		<tr><th>Function:</th><td>{^xfields.p1_func:<span class="gray">---</span>}</td>
+			<th>Function:</th><td>{^xfields.p2_func:<span class="gray">---</span>}</td></tr>
+		<tr><th>Telephone:</th><td>{^xfields.p1_phone:<span class="gray">---</span>}</td>
+			<th>Telephone:</th><td>{^xfields.p2_phone:<span class="gray">---</span>}</td></tr>
+		<tr><th>Driver licence:</th><td>{^xfields.p1_licence:<span class="gray">---</span>}</td>
+			<th>Driver licence:</th><td>{^xfields.p2_licence:<span class="gray">---</span>}</td></tr>
+		<tr><th>Insured by:</th><td>{^xfields.p1_insured:<span class="gray">---</span>}</td>
+			<th>Insured by:</th><td>{^xfields.p2_insured:<span class="gray">---</span>}</td></tr>
+	</table>
+	<table id="witnesses">
+		<col width="33%" /><col width="33%" /><col width="33%" />
+		<tr>		
+			<td valign="top">
+				<h3>First witness:</h3>
+				<div><label>Name:</label><p>{^xfields.w1_name:<span class="gray">---</span>}</p></div>
+				<div><label>Company:</label><p>{^xfields.w1_company:<span class="gray">---</span>}</p></div>
+				<div><label>Telephone:</label><p>{^xfields.w1_phone:<span class="gray">---</span>}</p></div>
+				<div><label>ID:</label><p>{^xfields.w1_licence:<span class="gray">---</span>}</p></div>
+			</td>
+			<td valign="top">
+				<h3>Second witness:</h3>
+				<div><label>Name:</label><p>{^xfields.w2_name:<span class="gray">---</span>}</p></div>
+				<div><label>Company:</label><p>{^xfields.w2_company:<span class="gray">---</span>}</p></div>
+				<div><label>Telephone:</label><p>{^xfields.w2_phone:<span class="gray">---</span>}</p></div>
+				<div><label>ID:</label><p>{^xfields.w2_licence:<span class="gray">---</span>}</p></div>
+			</td>
+			<td valign="top">
+				<h3>Third witness:</h3>
+				<div><label>Name:</label><p>{^xfields.w3_name:<span class="gray">---</span>}</p></div>
+				<div><label>Company:</label><p>{^xfields.w3_company:<span class="gray">---</span>}</p></div>
+				<div><label>Telephone:</label><p>{^xfields.w3_phone:<span class="gray">---</span>}</p></div>
+				<div><label>ID:</label><p>{^xfields.w3_licence:<span class="gray">---</span>}</p></div>
+			</td>
+		</tr>
+	</table>  
+ 
+	<h4 style='margin-top: 8px;'>Reporting information</h4>
+	<h3>Internal report prepared by:</h3>
+	<table>
+		<tr><th>Name:</th><td>{^xfields.rep_name:<span class="gray">---</span>}</td></tr>
+		<tr><th>Function:</th><td>{^xfields.rep_function:<span class="gray">---</span>}</td></tr>
+	</table>
+	<h5>{remarks.n}:</h5>
+	{#if:^xfields.remarks:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">(no remarks at this time)</div>}
+}

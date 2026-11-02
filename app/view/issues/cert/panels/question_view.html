@@ -1,0 +1,24 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{section.n}:</th><td>
+			{^xfields.section:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>Chapter:</th><td>
+			<div style="width: 100px;" class='right'>Imp.ID: {^xfields.q_id:<span class='gray'>---</span>}</div>
+			{^xfields.chp_no:<span class='gray'>---</span>} {^xfields.chapter:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{title.n}:</th><td>
+			{^xfields.title:<span class='gray'>---</span>}
+		</td></tr>
+		{#if:^xfields.rev:<tr><th>{rev.n}:</th><td>{^xfields.rev}</td></tr>}
+	</table>
+	<h5>{question.n}</h5>
+	{#if:^xfields.question:<div style="border: 1px solid lightgray; padding: 4px; background-color: white;">{^xfields.question}~nl2br~</div>}
+	{#ifnot:^xfields.question:<div class="gray" style="text-indent: 20px;">-----</div>}
+	<h5>{expla.n}</h5>
+	{#if:^xfields.expla:<div style="border: 1px solid lightgray; padding: 4px; background-color: white;">{^xfields.expla}~nl2br~</div>}
+	{#ifnot:^xfields.expla:<div class="gray" style="text-indent: 20px;">-----</div>}
+	<table>
+		<tr><th>{reference.n}:</th><td>{^xfields.reference:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

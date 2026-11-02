@@ -1,0 +1,38 @@
+<!DOCTYPE html>{!This special version of the public template is designed to be used in a frameset or iframe on another site.
+It's missing the background, header and footer, and also loses the margin shadows; For now it still has the black navigation bar, but further code will allow customizing that}
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>{html.title}{#if:header.zone: | {header.zone}}</title>
+	<link rel="shortcut icon" type="image/x-icon" href="/favico/default.ico">
+	<style>
+{#raw:loading_overlay.css}
+	</style>
+	<link href="/css/{html.css_theme}/cargo_its_embedded.css?v=2.6" type="text/css" rel="stylesheet" />
+	<link href="/css/{html.css_theme}/cargo_its_extra.css?v=2.6" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<div id="loading_overlay"></div>
+	<div id="spinner_overlay" class="jqx-rc-all" style="display: none;">
+		<div id="spinner_line0">Processing</div>
+		<div id="spinner_line1">Please wait ...</div>
+	</div>
+	<div tabindex="-1"><div class="site">
+		<div class="header">
+{#include::public/header.html}
+		</div>
+		<div class="page">
+			<input type="hidden" id="ran_auth">
+{#include::{site_section}}
+		</div>
+	</div></div>
+{#include::public/footer.html}	
+	<script>
+	var
+	preloader = JSON.parse('{DONREY.preloader}~json~'), // DonReY JS Config (will be removed)
+	cargohub = JSON.parse('{DONREY.cargohub}~json~'), // CargoHub main container
+	CFG=JSON.parse('{CFG}~json~'); // Loaded Modules config
+{#raw:preloader.js}
+	</script>
+</body>
+</html>

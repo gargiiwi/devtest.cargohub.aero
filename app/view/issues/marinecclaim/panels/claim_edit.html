@@ -1,0 +1,99 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+{#use:pstage:<tr{#if:display.req: class='required'}>
+	<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+	<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+</tr>}
+<tr>{#use:acdate:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+}</tr>
+<tr>{#use:claim_type:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td>{#repeat:options:<label><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label><br />}</td>
+}</tr>
+
+
+<tr>{#use:claim_amount:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input style='width: 120px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} />}
+	{#use:claim_curr:<select id='{id}' name='{name}' style='width: 70px'>
+		{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+		}
+	</select>}		
+	</td>
+</tr>
+<tr>
+	<th><label for='{id}'>Damage:</label></th>
+	<td>
+		{#use:dmg_pieces: <input style='width: 50px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} /> Pieces}
+		{#use:dmg_weight: <input style='width: 80px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} /> Kg}
+	</td>
+</tr>
+<tr>
+	<th><label for='{id}'>Loss:</label></th>
+	<td>
+		{#use:loss_pieces: <input style='width: 50px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} /> Pieces}
+		{#use:loss_weight: <input style='width: 80px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} /> Kg}<br />
+	</td>
+</tr>
+<tr>
+	<th><label for='{id}'>Delay:</label></th>
+	<td>
+		{#use:delay_pieces: <input style='width: 50px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} /> Pieces}
+		{#use:delay_weight: <input style='width: 80px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} /> Kg}<br />
+	</td>
+</tr>
+{#use:insurance:<tr{#if:display.req: class='required'}>
+	<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+	<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+</tr>}
+{#use:freight_value:<tr{#if:display.req: class='required'}>
+	<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+	<td><input style='width: 120px;' maxlength="12" type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} style='height: auto;' />}
+		{#use:freight_curr:<select id='{id}' name='{name}' style='width: 70px' class='jqx-input jqx-input-{%jqxtheme}'>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+		</select>}
+	</td>
+</tr>
+{#use:dmg_repair:<tr{#if:display.req: class='required'}>
+	<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+	<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+</tr>}
+{#use:repair_value:<tr{#if:display.req: class='required'}>
+	<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+	<td><input style='width: 120px;' maxlength="12" type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} style='height: auto;' />}
+		{#use:repair_curr:<select id='{id}' name='{name}' style='width: 70px' class='jqx-input jqx-input-{%jqxtheme}'>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+		</select>}
+	</td>
+</tr>
+{#use:salvage_value:<tr{#if:display.req: class='required'}>
+	<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+	<td><input style='width: 120px;' maxlength="12" type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} style='height: auto;' />}
+		{#use:salvage_curr:<select id='{id}' name='{name}' style='width: 70px' class='jqx-input jqx-input-{%jqxtheme}'>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+		</select>}
+	</td>
+</tr>
+<tr>{#use:documents:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td>{#repeat:options:<label><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label><br />}</td>
+}</tr>
+<tr>{#use:invoice:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input style='width: 120px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} />}
+	{#use:invoice_curr:<select id='{id}' name='{name}' style='width: 70px'>
+		{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+		}
+	</select>}		
+	</td>
+</tr>
+</table>
+{#use:what_happened:<div style="padding: 6px;"><label for='{id}'>{display.label}:</label>
+	<textarea style='width: 99%;' rows="7" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}>{value}</textarea>
+</div>}
+</form>}

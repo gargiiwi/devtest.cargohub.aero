@@ -1,0 +1,16 @@
+<div class="page">
+	{!The primary commands for the frontend - Submit and Find issue}
+	<div id="issue_links">
+		<div class='opzone'>
+		  <b><a href='{links.submit}'><img src='/img/icons/ist/cargoclaim_general.png' alt="{strings.submit}" /> Submit Claim to {html.title}</a></b>
+			<p>{strings.submit_ex}</p>
+		</div>
+		<div class='opzone'>
+			<b><a href='/contact/account{#if:session.user|session.contact_account:#issues}{#ifnot:session.user|session.contact_account:?hash=issues}'><img src='/img/icons/magnifier.png' alt="{strings.view}" /> {strings.view}</a></b>
+			<p>{strings.view_ex}</p>
+		</div>
+		<div class='clear'></div>
+		<p style="margin-left: 100px; margin-top: 5px;">Looking for another airline ? <a href="https://www.cargoclaims.aero/cms?path=worldwide"><b>Click here</b> to use our Airline Search</a>
+	</div>
+	{#include::static/present/{page:eclaims}.html}
+</div>

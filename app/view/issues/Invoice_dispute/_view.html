@@ -1,0 +1,362 @@
+{! Some styles specific to claims }{@<style>
+	table.claim-aspects td {
+		width: 20%;
+		text-align: center;
+		color: lightgray;
+		padding: 3px !important;
+	}
+	
+		table.claim-aspects td.ca-active {
+			color: black;
+		}
+	
+		table.claim-aspects td#ca-Damage {
+			background-color: red;
+			color: white;
+		}
+		table.claim-aspects td#ca-cl {
+			background-color: black;
+			color: lightgray;
+		}
+		table.claim-aspects td#ca-Delay {
+			background-color: blue;
+			color: white;
+		}
+		table.claim-aspects td#ca-pl {
+			background-color: brown;
+			color: lightgray;
+		}
+		table.claim-aspects td#ca-Pilferage {
+			background-color: orange;
+			color: white;
+		}
+	.itembox {
+		line-height: 16px;
+		padding: 1px 8px;
+		margin: 0px 7px 5px 0px;
+		border: 1px solid lightgray;
+		white-space: nowrap;
+		float: left;
+		box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+	}
+	.rigidlabels label {
+		display: inline-block;	
+	}
+	#issue_form div.column2 .medium {
+		width: 135px;
+	}
+	#issue_form .only-numbers {
+		padding-right: 3px !important;
+		text-align: right;
+	}
+	div.twocolcbox label {
+		display: block;
+		width: 260px;
+		float: left;
+	}
+	a.mbtn {
+		display: inline-block;
+		padding: 4px 6px;
+		background-repeat: no-repeat;
+		background-position: 4px;
+		text-indent: 20px;
+		border: 1px solid lightgray;
+		background-color: #eee;
+		color: black;
+		text-decoration: none;
+		margin-right: 10px;
+	}
+		a.mbtn:hover {
+			background-color: yellow;
+			color: blue;
+		}
+	</style>}
+	{#use:iss:
+	{#ifnot:master_org_id:<div id="submit-fail">
+	<div class='submit-fail-warning'>WARNING - This {^ist.name} has not been sent!</div>
+	<a class='submit-fail-link' href="/issue?action=form&amp;key={^ist.key}&amp;load={track}">[Please click this link to finalize the submission]</a>
+	</div>}
+	
+	<h2><b>{xfields.pstage.value}</b> {^ist.name} <b>{xfields.mawb.p}-{xfields.mawb.s}</b> from <b>{submitter.xdata.company_name:{submitter.name}}</b></h2>
+	<div class='zone jqx-rc-all zone_header' style='margin: 12px 0;'>
+	Jump to:
+	<a href='#bzero' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/company-building-icon.png');">Handling | Messages</a>
+	<a href='#bone' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/menus/claim-shipment.png');">Shipment | Aspects</a>
+	<a href='#btwo' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/coins.png');">Financial | Formal</a>
+	<a href='#bthree' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/upload.png');">Documents | Upload</a>
+	<a href='#bfour' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/question.png');">Survey question</a>
+	</div>
+	
+	<div id='issue_view' class='zone jqx-rc-all'>
+	<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+	
+	{!BLOCK ZERO - Meta and Comm}{!Left column}
+	<div class="sec_information_and_communication">
+	<h4 id='bzero' style="background-image: url('/img/icons16/company-building-icon.png'); background-repeat: no-repeat; background-position: 4px;">Handling information and communication</h4>
+	<div class='column2'>
+		<table class="infotable">
+			{#repeat:%contacts:
+				<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+			}
+		</table>
+		<hr />
+		<table class="infotable">
+			<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+			{#if:edtime:<tr><th>Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}	
+			<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+			<tr><th>Handled by:</th><td>{organization.name:<span class='red'>(NOT YET SUBMITTED)</span>}</td></tr>
+			{#if:status_key:<tr><th>Handling status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>}			
+		{!	{#if:priority_key:<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>}}
+		</table>
+		
+	</div>
+	<div class='column2'>
+	
+		<div id='convos-box' style="margin-bottom: 8px;">
+			{#ifnot:conversations:
+				<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>
+			}
+			{#if:conversations:
+			<div class="gray" style="font-size: 0.9em;color: red !important;font-weight: bold;text-align:center;">View Communication, click on the blue subject line.</div>
+				{#repeat:conversations:
+				<div class='jqx-rc-all' style='margin-top: 8px; border: 1px solid gray; background-color: #fefefe;'>
+				<a href="/?action=external_comm&amp;key={key}" style="display: block; padding: 5px 0; background-color: #4444ff; color: white; text-align: center;"><img style="float: left; margin-left: 5px;" src='/img/icons16/statuses/email_old.png' alt="email" />{description:(Conversation has no subject)}</a>
+				<table class="infotable">		
+					<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+					<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+				</table>
+				</div>
+				}
+			}
+		</div>
+	
+	{!End of right column}</div>
+	<div class='clear'></div>
+	</div>
+	{!END BLOCK ZERO}
+	
+	
+	{!BLOCK ONE - Submitted stuff}{!Left column}
+	<div class="sec_information_claim_aspects">
+	<h4 id='bone' style="background-image: url('/img/icons16/menus/claim-shipment.png'); background-repeat: no-repeat; background-position: 4px;">Shipment information | Claim aspects</h4>
+	<div class='column2' style='padding:0px;'>
+	{#use:%ist.xfield_def:
+		<table>
+			<tr><th>{mawb.n}:</th><td><b style='font-size: 16px;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>		
+			<tr><th>Carrier:</th><td>{^group.name}</td></tr>
+		</table>
+		<hr />
+		<table>
+			<tr><th>{awb_date.n}:</th><td>{#if:^xfields.awb_date:{^xfields.awb_date}~date("Y-m-d")~}{#ifnot:^xfields.awb_date:<span class='gray'>---</span>}</td></tr>
+			<tr><th>{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span class='gray'>---</span>}</td></tr>
+			 </table>
+		<div>
+			<hr />
+			<table style="width: 99%;">
+				<tr>
+					<td style="width: 33%; text-align: center;">{orig_location.n}</td>
+					<td style="width: 33%; text-align: center;">{dest_location.n}</td>
+				</tr>
+				<tr>
+					{#if:^xfields.orig_location.value:<td class="info-tip thick center" data-tooltip="{^xfields.orig_loc.value.name}<br /><span class='darkblue'>{^xfields.orig_loc.value.country}</span>">{^xfields.orig_location.value.IATA}</td>}
+						{#ifnot:^xfields.orig_location.value:<td class="gray center">---</td>}
+					{#if:^xfields.dest_location.value:<td class="info-tip thick center" data-tooltip="{^xfields.dest_loc.value.name}<br /><span class='darkblue'>{^xfields.dest_loc.value.country}</span>">{^xfields.dest_location.value.IATA}</td>}
+						{#ifnot:^xfields.dest_location.value:<td class="gray center">---</td>}
+				</tr>
+			</table>
+		</div>
+	<table>
+			<tr><th>{pieces.n}:</th><td>{#if:^xfields.pieces:{^xfields.pieces}} {#ifnot:^xfields.pieces:<span class='gray'>---</span>}</td></tr>
+		 
+		 	<tr><th>{g_weight.n}:</th><td>{#if:^xfields.g_weight:{^xfields.g_weight}} {#ifnot:^xfields.g_weight:<span class='gray'>---</span>}</td></tr>
+		 
+		 	<tr><th>{cwt.n}:</th><td>{#if:^xfields.cwt:{^xfields.cwt}} {#ifnot:^xfields.cwt:<span class='gray'>---</span>}</td></tr>
+		 	<tr><th>{inv_num.n}:</th><td>{#if:^xfields.inv_num:{^xfields.inv_num}} {#ifnot:^xfields.inv_num:<span class='gray'>---</span>}</td></tr>
+		 
+		  
+		  </table>
+
+		 
+	}
+	
+	</div>
+	
+	{!End of right column}</div>
+	<div class='clear'></div>
+	 
+	{!END BLOCK ONE}
+	
+	{!BLOCK TWO - Updating}{!Left column}
+	<div class="sec_update_financial_information">
+	<h4 id='btwo' style="background-image: url('/img/icons16/coins.png'); background-repeat: no-repeat; background-position: 4px;">Update financial information
+	{#if:%iss.xfields.pstage.key="prel":| <span style='color: red;'>Upgrade your claim to formal</span>}
+	</h4>
+	<div class='column2'>
+		{#use:%form:<table class="infotable">
+		<tr><th>&nbsp;</th>
+			<td class='gray'><span style='width: 150px; display: inline-block;'>Amounts</span><span class='gray'>Currency</span></td>
+		</tr>
+		{#use:frei_am:<tr>
+			<th><label for='{id}'>{display.label}</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style='height: auto;' />}
+				{#use:frei_am_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>
+			<th><label for='{id}'>{oth_charge.display.label}</label></th>
+			<td>{#use:oth_charge:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:oth_charge_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>
+			<th><label for='{id}'>{ttl_awb.display.label}</label></th>
+			<td>{#use:ttl_awb:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:ttl_awb_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr></tr>
+			<th><label for='{id}'>{vat_awb.display.label}</label></th>
+			<td>{#use:vat_awb:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:vat_awb_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr></tr>
+			<th><label for='{id}'>{rate_app.display.label}</label></th>
+			<td>{#use:rate_app:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:rate_app_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		 
+		
+		</table>}
+	</div>
+
+	<div class='clear'></div>
+	</div>
+	<div class="sec_documents_you_are_attaching"> 
+	<h4 style="margin-top: 20px; background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">Specify which documents you are attaching to this claim:</h4>
+	<div class='column2'>
+		{#use:%form.documents:
+		<div class='twocolcbox'>
+			{#repeat:options:<label><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label>}
+			<input type='hidden' name='{name}' value='' />
+		</div>}
+	</div>
+	<div class='column2'>
+ 		{#if:files:<div id='attachments'>
+		{#repeat:files:
+			<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+			<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d (H:i)")~<br /><span class="gray">Size:</span> {size}~numberformat~ bytes
+			<div class='clear'></div></div>
+		}
+		</div>}
+		{#ifnot:files:
+		<h3>Currently, there are no documents attached</h3>
+		<script id="guidelines" type="text/dryjstpl">
+		<div style='height: 510px; overflow: auto;'>{#include::static/claim_documents.html}</div>
+		</script>
+		}
+	</div>
+	<div class='clear'></div>
+	</div>
+	<div class="sec_upload_more documents">
+	<h4 id='bthree' style="margin-top: 20px; background-image: url('/img/icons16/upload.png'); background-repeat: no-repeat; background-position: 4px;">Need to upload more documents?</h4>
+	<div id="uploads-dropzone" class="dropzone">
+		<div class="fallback">
+			<div style='margin: 0 0 0 26px;'>
+				<h3>Choose documents from your computer</h3>
+				<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+			</div>
+			<div id="file-submit-area">
+				<span><input type="file" name="uploads[]" /></span>
+				<span><input type="file" name="uploads[]" /></span>
+				<span><input type="file" name="uploads[]" /></span>
+				<span><input type="file" name="uploads[]" /></span>
+				<span><input type="file" name="uploads[]" /></span>
+			</div>
+			<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+			<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+			Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+		</div>
+	</div>
+	<div id="uploads-helper" class='center' style="display: none;">
+		Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+	</div>
+	
+	{!END BLOCK TWO}
+	<div class='center' style="margin: 30px auto;"><input type='button' value='Update information / Submit documents' data-action="form-submit" style="height: 40px; padding: 0 20px; font-weight: bold;" /></div>
+	
+	<div style="height: 40px;">&nbsp;</div>
+	</div><!-- comment -->
+	
+	<div class="sec_customer_survey">
+	
+	<h4 id='bfour' style="margin-top: 40px; background-image: url('/img/icons16/question.png'); background-repeat: no-repeat; background-position: 4px;">Customer survey:</h4>
+	<div style="width: 600px; margin: 0 auto;">
+	<p style="text-align: center;">Help us to increase your customer experience by completing the survey below</p>
+	{#use:%form.srv_res:<table style="width: 99%;">
+		<tr>
+			<td style="text-align: center; width: 33%;"><label for='{id}_{options.2.value}'><img src="/img/icons/emotion_grin.png" alt=":D" /></label></td>
+			<td style="text-align: center; width: 33%;"><label for='{id}_{options.1.value}'><img src="/img/icons/emotion_what.png" alt=":|" /></label></td>
+			<td style="text-align: center; width: 33%;"><label for='{id}_{options.0.value}'><img src="/img/icons/emotion_unhappy.png" alt=":(" /></label></td>
+		</tr>
+		<tr>
+			<td style="text-align: center; width: 33%;"><label for='{id}_{options.2.value}' class="green">{options.2.display}</label></td>
+			<td style="text-align: center; width: 33%;"><label for='{id}_{options.1.value}' class="gray">{options.1.display}</label></td>
+			<td style="text-align: center; width: 33%;"><label for='{id}_{options.0.value}' class="red">{options.0.display}</label></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input id='{id}_{options.2.value}' name='{name}' type='radio' value='{options.2.value}'{#if:active: checked='options.2.checked'}></td>
+			<td style="text-align: center;"><input id='{id}_{options.1.value}' name='{name}' type='radio' value='{options.1.value}'{#if:active: checked='options.1.checked'}></td>
+			<td style="text-align: center;"><input id='{id}_{options.0.value}' name='{name}' type='radio' value='{options.0.value}'{#if:active: checked='options.0.checked'}></td>
+		</tr>
+	</table>}
+	
+	<p style="text-align: center;">Comments:</p>
+	{#use:%form.srv_txt:
+		<textarea style="width: 100%; resize: vertical;" autocorrect="off" spellcheck="false" rows="6" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}'>{value}</textarea>
+	}
+	</div>
+	
+	<div class='center' style="margin: 8px auto;">
+		<input type='button' value='Submit survey response' data-action="form-submit" />
+	</div>
+	
+	</div>
+	
+	}
+	
+	 
+	
+	<div class='zone jqx-rc-all zone_footer' style='margin: 12px 0;padding:20px;'>
+	Jump to:
+	<a href='#bzero' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/company-building-icon.png');">Handling | Messages</a>
+	<a href='#bone' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/menus/claim-shipment.png');">Shipment | Aspects</a>
+	<a href='#btwo' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/coins.png');">Financial | Formal</a>
+	<a href='#bthree' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/upload.png');">Documents | Upload</a>
+	<a href='#bfour' class="mbtn jqx-rc-all" style="background-image: url('/img/icons16/question.png');">Survey question</a>
+	</div>
+	</form></div>
+	{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+	{#raw:includes/issue_view_jstpl.html}
+	{#if:update_by_mail:{#raw:includes/issue2message.html}}

@@ -1,0 +1,123 @@
+{@<style type="text/css">
+/* Some styles specific to Audits */
+div.ra_250 {
+	display: inline-block;
+	float: right;
+	width: 250px;
+}
+label.ra_label {
+	display: inline-block;
+	margin-right: 5px;
+	width: 100px;
+	text-align: right;
+}
+</style>}
+
+{#use:iss:<h2>{xfields.pstage.value} Cargo Claim {xfields.mawb.p}-{xfields.mawb.s} from {%contacts.submitter.company_name}</h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+<h4>Document information:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{name.n}:</th><td>{^xfields.name}</td></tr>
+	<tr><th>{inex.n}:</th><td>{^xfields.inex.value:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{scope.n}:</th><td>{^xfields.scope.value:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{dept.n}:</th><td>{^xfields.dept:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{requested.n}:</th><td>{^xfields.requested:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>Date:</th><td>Start: {#if:^xfields.date_start:{^xfields.date_start}~date("Y-m-d")~}{#ifnot:^xfields.date_start:<span class='gray'>(not specified)</span>}
+		<div class="ra_250">
+			<label class="ra_label">End:</label>
+			{#if:^xfields.date_end:{^xfields.date_end}~date("Y-m-d")~}{#ifnot:^xfields.date_end:<span class='gray'>(not specified)</span>}
+		</div></td></tr>
+	<tr><th>{result.n}:</th><td>{#repeat:^xfields.result:{value} }</td></tr>
+	<tr><th>{score.n}:</th><td>{^xfields.score:<span class="gray">(not specified)</span>} {^xfields.score2.value:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+	<tr><th>{auditer_name.n}:</th><td>{^xfields.auditer_name:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{auditer_depart.n}:</th><td>{^xfields.auditer_depart:<span class="gray">(not specified)</span>}</td></tr>
+</table>
+
+{#if:^xfields.comments:
+<h4>{comments.n}:</h4><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.comments}~nl2br~</div>}
+}
+
+</div>
+{!Right column}
+<div class='column2'>
+
+<h4>Contact information:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>  
+  
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+</table>
+
+{#if:files:<h4>Attached document(s):</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a> {#if:description:<span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+{#ifnot:files:
+<h4>Currently, there are no documents attached to this Cargo Claim !</h4>}
+
+<h4>Add more documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Audit' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="field-delete-button" type="text/dryjstpl">
+	<button title="Cancel this upload" />
+</script>
+
+{#raw:includes/issue_update_confirm.html}

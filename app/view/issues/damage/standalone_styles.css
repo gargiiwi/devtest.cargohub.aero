@@ -1,0 +1,59 @@
+/** Styles used by standalone HTML containing Cargo Incident data */
+body, table {
+    color: #000000;
+    font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+h4 {
+    background-color: #DFDFDF;
+    border-bottom: 1px solid #A0B0C0;
+    color: #000000;
+    display: block;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+    padding: 0.2em;
+    text-indent: 1.5em;
+}
+table {
+    margin-bottom: 0.5em;
+}
+th {
+    font-weight: normal;
+    padding-right: 1em;
+    text-align: right;
+    width: 200px;
+}
+*.left { float: left; }
+*.right { float: right; }
+*.center { text-align: center; margin-left: auto; margin-right: auto; }
+*.clear { clear: both; }
+*.red { color: red; }
+*.blue { color: blue; }
+*.darkblue { color: darkblue; }
+*.gray { color: #999; }
+
+a, a:visited {
+    text-decoration: none;
+}
+*.iss_document {
+	padding: 1px 4px;
+	margin-right: 5px;
+	color: green;
+	border: 1px solid lightgray;		
+}
+
+div#attachments {
+	overflow: auto;
+}
+
+	div#attachments div.file-download {
+		margin-bottom: 6px;
+		padding: 4px 0px 6px 2px;
+		border-bottom: 1px dotted lightgray;
+	}
+	
+	div#attachments div.file-download img {
+		float: left;
+		margin-right: 10px;
+		border: none;
+	}

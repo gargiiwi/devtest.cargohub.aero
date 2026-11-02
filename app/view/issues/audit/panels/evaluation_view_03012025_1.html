@@ -1,0 +1,47 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{evaluated.n}:</th><td>{^xfields.evaluated.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{evaluated_by.n}:</th><td>{^xfields.evaluated_by:<span class="gray">---</span>}</td></tr>
+		<tr><th>{evaluation_date.n}:</th><td>{^xfields.evaluation_date:<span class="gray">---</span>}</td></tr>
+	</table>
+	<h5>{remarks.n}:</h5>
+	{#if:^xfields.remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 120px; overflow: auto;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+<h4 style="margin-top: 15px; background-image: url('/img/icons16/numbers123.png'); background-repeat: no-repeat; background-position: 4px;">Results</h4>	
+	<table>
+		<tr><th>&nbsp;</th><td>
+			<span class='itembox' style="width: 93px;{#ifnot:^xfields.result.0.active: color: lightgray; box-shadow: none;}">{^xfields.result.0.value}</span>
+			<span class='itembox' style="width: 93px;{#ifnot:^xfields.result.1.active: color: lightgray; box-shadow: none;}">{^xfields.result.1.value}</span>
+			<span class='itembox' style="width: 93px;{#ifnot:^xfields.result.2.active: color: lightgray; box-shadow: none;}">{^xfields.result.2.value}</span>
+		</td></tr>
+		
+		<tr><th>Environment:</th><td><span class="boxblock center">{^xfields.en_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.en_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.en_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Equipment:</th><td><span class="boxblock center">{^xfields.eq_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.eq_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.eq_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Infrastructure:</th><td><span class="boxblock center">{^xfields.in_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.in_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.in_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr>
+			<th>IT:</th>
+			<td>
+				<span class="boxblock center">
+					{^xfields.it_fi:<span class='gray'>--</span>}
+				</span>
+				<span class="boxblock center">
+					{^xfields.it_ob:<span class='gray'>--</span>}
+				</span>
+				<span class="boxblock center">
+					{^xfields.it_im:<span class='gray'>--</span>}
+				</span>
+			</td>
+		</tr>
+		<tr><th>Operations:</th><td><span class="boxblock center">{^xfields.op_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.op_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.op_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Personnel:</th><td><span class="boxblock center">{^xfields.pe_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.pe_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.pe_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Quality:</th><td><span class="boxblock center">{^xfields.qu_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.qu_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.qu_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Safety:</th><td><span class="boxblock center">{^xfields.sf_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.sf_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.sf_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Security:</th><td><span class="boxblock center">{^xfields.se_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.se_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.se_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Supplier:</th><td><span class="boxblock center">{^xfields.su_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.su_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.su_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Training:</th><td><span class="boxblock center">{^xfields.tr_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.tr_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.tr_im:<span class='gray'>--</span>}</span></td></tr>
+		<tr><th>Transportation:</th><td><span class="boxblock center">{^xfields.ts_fi:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.ts_ob:<span class='gray'>--</span>}</span><span class="boxblock center">{^xfields.ts_im:<span class='gray'>--</span>}</span></td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+	</table>
+
+
+}

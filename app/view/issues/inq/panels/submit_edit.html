@@ -1,0 +1,146 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+		{#use:subj:<tr>
+			<th><label for='{id}'>Inquiry title:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+        
+		{#use:customer_name:<tr class="">
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+
+		{#use:subm_type:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' style="width:358px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} long'>
+				<option value=''>(not specified)</option>
+				{#repeat:options:<option value="{value}"{#if:active: selected='selected'}>{display}</option>
+				}</select></td>
+		</tr>}
+		
+	</table>
+	<hr />
+	<table>
+		
+		{#use:cargo_related_event:<tr>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'>
+				<input name='{^name}' class="cargo_related_event" type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>} 
+       
+		<tr>
+			<th><label class="info-tip" data-tooltip="You can Copy/Paste MAWB in prefix box, it will auto-fill the complete number" for='{mawb_p.id}'><img src="/img/icons16/question.png" style="vertical-align: middle;" /> {mawb_p.display.label}:{#if:mawb_p.display.req: <span>&nbsp;</span>}</label></th>
+			<td>
+				<input class="left jqx-rc-all jqx-input jqx-input-{%jqxtheme} only-numbers auto-move" data-automove_len="3" data-automove_to="{mawb_s.id}"
+					type='text' id='{mawb_p.id}' name='{mawb_p.name}' value='{mawb_p.value}' maxlength="3" style='width: 35px;'{#if:mawb_p.display.error: class='field_error' data-tooltip='{mawb_p.display.error}'} />
+				<span class="left">&nbsp;-&nbsp;</span>
+				<input class="left jqx-rc-all jqx-input whitebg jqx-input-{%jqxtheme} only-numbers" type='text' id='{mawb_s.id}' name='{mawb_s.name}' value='{mawb_s.value}' maxlength="8" style='width: 80px;'{#if:mawb_s.display.error: class='field_error' data-tooltip='{mawb_s.display.error}'} />
+				<!-- {#use:fdate:<span class="left" style="height: 25px; line-height: 25px; margin: 0 5px 0 25px;">{display.label}:</span><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'>} -->
+			</td>
+		</tr>
+
+		{#use:com_type:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select class="dropselect multi-select" data-name='{name}' data-width="180" data-dwidth="274" data-dheight="274" data-dalign="left" data-filterable="1" id='{id}'>
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select></td>
+		</tr>}
+		
+		<tr>{#use:fno:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium whitebg jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}  /></td>
+		}</tr>
+
+		<tr>
+			<th><label>Flight Date:</label></th>
+			<td>
+				<div class='left three_cel' style="text-align: left;padding-left: 1px;">
+					<!-- {#use:fwu_done.options.0:<label><input name='{^inv_done.name}' type='radio' value='{value}'{#if:active: checked='checked'}> Assigned:</label>} -->
+					{#use:fdate:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+				</div>
+			</td>
+		</tr>
+
+	</table>
+	<hr />
+	{#use:details:
+		<h5>{display.label}:</h5>
+		<textarea autocorrect="off" spellcheck="false" rows="10" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 1px;" placeholder="">{value}</textarea>
+	}
+	
+		
+
+		<!-- 20112024 Customer Inquiry section work start-->
+		<!-- {#use:company_name:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>} -->
+
+		
+
+		
+		
+
+
+	
+	<h4 style="background-image: url('/img/icons16/receipt_invoice.png'); background-repeat: no-repeat; background-position: 4px;">Invoice details</h4>
+	<table>
+		<!-- {#use:inv_company:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>} -->
+		{#use:inv_rel:<tr>
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'>
+				<input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		{#use:routing:<tr class="cargo_related_event_if_yes">
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'>
+				<input name='{^name}' class="" type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+
+		{#use:shipment_type:<tr class="cargo_related_event_if_yes">
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} long'>
+				<option value=''>(not specified)</option>
+				{#repeat:options:<option value="{value}"{#if:active: selected='selected'}>{display}</option>
+				}</select></td>
+		</tr>}
+
+		{#use:commodity:<tr class="cargo_related_event_if_yes">
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		<!-- {#use:is_capa:<tr class="">
+			<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'>
+				<input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>} -->
+
+
+		
+
+		{#use:inv_dispute:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='left jqx-rc-all jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:inv_dispute_curr:<select id='{id}' name='{name}' style='float: left; margin-left: 5px; width: 80px; font-family: monospace; height: 22px;' class='currency_select_secondary whitebg jqx-rc-all jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>
+			<th><label for='{id}'>{inv_no.display.label}:</label></th>
+			<td>
+				{#use:inv_no:<input type='text' id='{id}' name='{name}' value='{value}' class='left jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:inv_date:<span class="left" style="height: 25px; line-height: 25px; margin: 0 5px 0 25px;">Date:</span><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'>}				
+			</td>
+		</tr>
+	</table>
+	
+
+
+
+</form>}

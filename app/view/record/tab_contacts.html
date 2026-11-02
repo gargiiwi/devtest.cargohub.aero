@@ -1,0 +1,53 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/vcard.png" alt="[vcard]" class="info-tip" data-tooltip="These are the contacts involved with this record:<br />Submitter, Sharees, E-mail recipients and assigned users" /><span>Contacts</span>
+	</div>
+	<div id='contacts-editops' style='display: none;'>{!This should open the address book and allow selecting a contact to be connected to the record}
+		<button data-op="contact-link" class="info-tip" data-tooltip="Link an existing contact from your address book into this record."><img src='/img/icons16/link.png' />
+		From address book</button>
+		<button data-op="contact-add" class="info-tip" data-tooltip="Create a contact only for this record."><img src='/img/icons16/add.png' />
+		New contact</button>
+	</div>
+	<div id='contacts-row-ops' style='display: none;'>
+		<button data-op="contact-view" class="info-tip" data-tooltip="View contact"><img src='/img/icons16/vcard.png' />View</button>
+		<button data-op="contact-save" title="Save contact in address book"><img src='/img/icons16/book_addresses.png' />To address book</button>
+	</div>
+	<div id='contacts-row-editops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="contact-edit" class="info-tip" data-tooltip="Edit contact details"><img src='/img/icons16/vcard_edit.png' />Edit</button>
+		<button data-op="contact-save" title="Save contact in address book"><img src='/img/icons16/book_addresses.png' />To address book</button>
+{!		<button data-op="contact-config" class="info-tip" data-tooltip="Configure label and visibility of this contact"><img src="/img/icons16/wrench.png" alt="Configure" />Configure</button>}
+		<span class="contacts-superops" style='display: none;'><!--IWI Record Details Page Redesign 10092026-->
+			<button data-op="contact-setsubmitter" class="info-tip" data-tooltip="Set this contact to be the <b>Submitter</b> for this record.<br />After the change, this contact can attempt to login to access the record from the web portal" style='display: none;'><img src='/img/icons16/submit_support_request.png ' />Set as submitter</button>
+		</span><!--IWI Record Details Page Redesign 10092026-->
+		<button data-op="contact-unlink" class="right info-tip" data-tooltip_position="left" data-tooltip="Detach the contact from this record.<br />In some cases the contact can be relinked"><img src='/img/icons16/link_break.png' /> Detach</button>
+	</div>
+</div>
+<div class="jqx-datatable" id="_record-contacts"></div>
+
+{@<script id="tpl-contact_editor" type="text/dryjstpl">
+<div id="contact-label"><label for="contact-label-input">Contact label:</label><input type="text" id="contact-label-input" maxlength="30" style="background-color: #eee;" value="{$label}" /></div>
+<hr />
+<div id="contact-modal"></div>
+<div id="contact-editing-helper">
+	<div style="background-color: #FFFFA0; padding: 5px 2px; font-size: 0.90em; text-align: center; margin-top: 9px; border: 1px solid orange;"><b>Name, E-mail</b> and any other fields with yellow background are mandatory and must be filled in.</div>
+	<div class="gray" style="font-size: 0.87em; text-align: center; margin-top: 5px;">Click on any of the line to edit. <b>[ Ok ]</b> button will save the contact. Closing the window will discard any changes</div>
+</div>
+</script>}
+
+{@<script id="tpl-contacts_position" type="text/dryjstpl">
+<div class="spacey">
+	<p>The contact &lt;<b>{$row.email}</b>&gt; will be copied to the address book.<br />
+	Select where it will be placed <span class="gray">(only the valid options are enabled)</span>:</p> 
+	<div id="contacts-level">
+		<button data-mode="user" style="width: 165px; padding: 10px 3px;"><div><img src="/img/icons16/commlabel/ctx_user.png" alt="user" class="inline-icon"> User level</div></button>
+		<button data-mode="dep" style="width: 165px; padding: 10px 3px;"><div><img src="/img/icons16/commlabel/ctx_dep.png" alt="dep" class="inline-icon"> Department level</div></button>
+		<button data-mode="org" style="width: 165px; padding: 10px 3px;"><div><img src="/img/icons16/commlabel/ctx_org.png" alt="org" class="inline-icon"> Organization level</div></button>
+	</div>
+	<br />
+	<p>Address book Label <span class="gray">(if available, optional)</span>:</p>
+	<div id="contacts-label-select"></div>
+	<p>This function does not check if the contact is already in the address book!<br />
+	If you use it multiple times on the same contact, duplicates will be created</p>
+</div>
+</script>}

@@ -1,0 +1,283 @@
+{@<style type="text/css">
+
+h3 {
+	color: #002b55;
+}
+
+div.header {
+	padding-bottom: 0 !important;
+}
+	div.header > div.header-bar {
+		margin-bottom: 0 !important;
+	}
+
+.content-container {
+}
+
+.content-body {
+	vertical-align: top;
+	width: 95%;
+	margin: 0 auto;
+}
+
+.content-text {
+	color: #404040;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 13px;
+}
+
+table#claim-types {
+	width: 100%; border-collapse: collapse; border-spacing: 1px;
+}
+
+	table#claim-types th, table#claim-types td {
+		padding: 5px;
+	}
+
+.impno {
+	display: inline-block;
+	width: 30px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 2px;
+}
+
+#ready-ship-box {
+	height: 36px;
+	margin: 13px 0 0 10px;
+	width: 214px;
+}
+
+
+.content-list {
+	
+}
+	.content-list label {
+		display: inline-block;
+		width: 150px;
+	}
+	.content-list li {
+		line-height: 18px;
+	}
+	
+.xlink {
+	display: inline-block;
+	margin: 0 auto 15px auto;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	height: 100px;
+	width: 360px;
+	float: left;
+}
+	.xlink:hover {
+		background-color: #eee;
+		text-decoration: none;
+	}
+	
+		.xlink:hover h1 {
+			color: black;
+		}
+
+	.xlink img {
+		float: left;
+		margin: 10px 15px 20px 15px;
+		text-decoration: none;
+		border: none;
+	}
+
+	.xlink h1 {
+		font-weight: bold;
+		font-size: 18px;
+		display: block;
+		margin-top: 20px;
+		color: #2D6CB1;
+	}
+	
+	.xlink p {
+		color: gray;
+	}
+	
+	div#login {
+		margin: 30px auto;
+		width: 550px;
+	}
+	div.site > div.page > div#login small {
+		color: #666666;
+	}
+	div#login > div.logo {
+		margin-left: 40px;
+		margin-right: 30px;
+		padding: 12px;
+		width: 128px;
+	}
+	div#login > div.form {
+		padding: 12px;
+	}
+	div#login > div.form div.field {
+		background-color: white;
+		border: 1px solid #c7c7c7;
+		margin-bottom: 15px;
+		padding: 2px;
+		width: 250px;
+	}
+	div#login > div.form div.field > input {
+		border: medium none;
+		font-size: 14px;
+		line-height: 19px;
+		resize: none;
+		text-indent: 8px;
+		width: 100%;
+	}
+	div#login > div.form #remember {
+		float: left;
+		margin-left: -3px;
+		margin-top: 4px;
+	}
+
+</style>}
+<div class="content-container">
+	<div class="content-body">
+		<div class="content-text" style="text-align: justify;">
+			<div style="height: 30px;">&nbsp;</div>
+			<h3>Welcome to the Kuehne+Nagel FreshChain Cargo e-Claims portal</h3>
+			<p>Our Cargo e-Claims system will provide you with efficient filing of both preliminary and formal claims as well as the ability to upload related documentation.</p>
+			<p>In just a few key-strokes preliminary claims that have been entered previously can also be converted to a formal priced claim and additional required documentation added to the file.</p>
+		</div>
+		<div class="clear" style="margin-top: 30px;"></div>
+
+	{#plugin:jqxtabs}
+	<div id="tabs-claiminfo">
+		<ul>
+			<li style="margin-left: 20px;"><img src='/img/icons16/email_go.png' />Submit Cargo Claim</li>
+			<li><img src='/img/icons16/key.png' />Find existing claims <span style="color: #56b8e9;">(your account)</span></li>
+			<li><img src='/img/icons16/question2.png' />Claim Guidelines</li>
+		</ul>
+		<div class='content-text'>
+			<div class="spacey">
+				<p>An account will be automatically setup after submitting your first claim.<br />Your password will be sent by e-mail. Login into your account to find and update claims you have submitted.</p>
+			</div>
+		
+			<div style="margin: 1.5em auto; width: 744px;">
+				<a href="/issue?action=form" id="submit" class="xlink">
+					<h1 style="color: #56b8e9;"><img src="/img/icons/email_go.png" alt="Cash">Preliminary notice of claim</h1>
+					<p style="margin-top: 4px;">Please check time limits below.<br />Claims may be rejected if not sent in time</p>
+				</a>
+				<div style="width: 20px; float: left;">&nbsp;</div>
+	
+				<a href="/cms?path=/intro/forwarder/knnl-formal" id="submit" class="xlink">
+					<h1 style="color: #002b55;"><img src="/img/icons/coins.png" alt="Cash">Formal claim</h1>
+					<p style="margin-top: 4px;">All your documents ready ?<br />You can also update existing preliminary here</p>
+				</a>
+				<div class="clear"></div>
+			</div>
+			
+			<table id="claim-types" style="color: black;">
+				<tr bgcolor="#a0a0a0" style="color: #ffffff;">
+					<th width="5%" style="text-align: center; color: #fff;">No.</th>
+					<th width="15%" style="color: #fff;">Claim Type</th>
+					<th width="40%" style="color: #fff;">Description</th>
+					<th width="40%" style="color: #fff;">Time Limit</th>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">1</td>
+					<td style="text-align: left;">Loss.</td>
+					<td style="text-align: left;">Loss of whole consignment.</td>
+					<td style="text-align: left;"><span class='impno'>120</span> days from the AWB issuing date.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">2</td>
+					<td style="text-align: left;">Damage.</td>
+					<td style="text-align: left;">To consignment whole or in part.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">3</td>
+					<td>Partial Loss.</td>
+					<td style="text-align: left;">Loss of part of the consignment.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">4</td>
+					<td>Delay.</td>
+					<td style="text-align: left;">To complete consignment or part of it</td>
+					<td style="text-align: left;"><span class='impno'>21</span> days from the placing date.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">5</td>
+					<td>Pilferage.</td>
+					<td style="text-align: left;">To consignment whole or in part</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+			</table>
+			<hr />
+			<div class="spacey">
+				<p>A cargo claim is a written complaint demanding financial compensation from Kuehne+Nagel FreshChain Netherlands for loss of, damage or delay to cargo whilst in care and control pursuant to a contract of carriage.</p>
+				<p>In the case of damage or delay, the person entitled to delivery must complain to Kuehne+Nagel FreshChain within the time lines stated below. If no complaint is made within the times indicated below, then no action can be brought against Kuehne+Nagel FreshChain.</p>
+			</div>
+		</div>
+		<div class='content-text'>
+			<div id="login" class="jqx-rc-all">
+				<div class="logo left">
+					<img src="{html.base}/img/extra/contact.png" alt="Contact Account" />
+				</div>
+				<div class="form left">
+					<form action="/contact/access?action=authenticate&autoforward=1" method="post">
+						<h3>Your E-mail</h3>
+						<div class="jqx-rc-all field"><input type="text" name="email" {#if:autofill_email: value="{autofill_email}"}/></div>
+						<h3>Password</h3>
+						<div class="jqx-rc-all field"><input type="password" name="password" {#if:autofill_password: value="{autofill_password}"}/></div>
+						<input type="submit" value="Proceed" class="right" />
+						<div class="clear"></div>
+					</form>
+				</div>
+				<div class="clear"></div>
+				<hr />
+				<p style="text-align: right; margin-right: 50px;">Do you need your password ?<br /><br /><a class="jqx-rc-all" href="/contact/access?action=recover_password" style="font-weight: bold; display: inline-block; padding: 3px 8px; border: 1px solid gray; color: black; text-decoration: none;">click here</a> to obtain it !</p>
+			</div>
+		</div>
+		<div class='content-text'>
+			<div style="padding: 20px 50px !important;">
+
+<h3>Dear Customer,</h3>
+<p style="text-align: justify;">To guide you smoothly into the future of Claims, we have the rules and guidelines for you to understand your position in this matter and which steps to take.</p>
+<p style="text-align: justify;"><i>Kuehne+Nagel</i> is the Forwarder, which means that <i>Kuehne+Nagel</i> arranges your transport, but does not ship it ourselves. When damages occur during transport, this is usually whilst in the care of the <b>Airline</b>, not whilst in the care of <i>Kuehne+Nagel</i>.</p>
+<p style="text-align: justify;"><b style="text-decoration: underline;">This means that Kuehne+Nagel is not liable for damages that occured in transport</b>.
+Kuehne+Nagel works on the basis of the Dutch Expedition terms (FENEX). According to the FENEX terms the Forwarder is only liable for own mistakes, not for the mistakes of the carriers.</p>
+<p style="text-align: justify;">To be of service to our customers we are willing to help you try to claim these damages with the carriers. If you have the right to claim with the Airline please make sure to read the following:</p>
+<p style="text-align: justify;">Chargeable stakeholders must prove damages occurred whilst in the care of the <b>Airline</b>, an email stating this fact is not enough.
+This means that damages must be made know on the Airway bill upon receiving shipment.</p>
+<p style="text-align: justify;"><b>Notice of the damages</b> - This documents is crucial for your claim evidence file.<br />
+Also, you must notify <i>Kuehne+Nagel</i> of these damages as soon as possible but always <b>within 14 days</b> so <i>Kuehne+Nagel</i> can file a <b>Preliminary Claim</b> for you with the Carrier.
+Without this notice the Carrier will reject your claim!</p>
+<p style="text-align: justify;">The claimant, the party that is entitled to the goods, must prove the extent of the damages. This means you need to file the following:</p>
+<ul>
+	<li><label style="font-weight: bold;">Commercial Invoice</label></li>
+	<li><label style="font-weight: bold;">The Invoice of the produce sold (salvage invoice)</label></li>
+	<li><label style="font-weight: bold;">Invoices of repairs</label></li>
+	<li><label style="font-weight: bold; display: inline-block; width: 15em;">Pictures</label><span>(showing AWB, Strickers or other Proof)</span></li>
+	<li><label style="font-weight: bold; display: inline-block; width: 15em;">Survey Report</label><span>This document is mandatory for damages above 1000 EUR/USD</span></li>
+	<li><label style="font-weight: bold; display: inline-block; width: 15em;">Invoice of the Survey report</label><span>(you can add these charges to your claim amount)</span></li>
+	<li><label style="font-weight: bold; display: inline-block; width: 15em;">Packing list</label><span>(must prove the weight of the damaged or missing goods)</span></li>
+	<li><label style="font-weight: bold;">Claim letter</label></li>
+</ul>
+<p style="text-align: justify;">Accompany these documents you must file a Claim Letter contains an explaining of what happened and how much you are claiming on your company's letterhead, date, sign and stamp this document.</p>
+<p style="text-align: justify;">The liability of the Carriers is usually restricted and sometimes even excluded according to international transport treaties and standard standard terms and conditions.<br />
+The liability of an <b>Airline</b> is often conform the Montreal conditions restricted to <b>19 SDR per Kg</b> (&euro;0.83 ct at the time of writing) of damaged or missing produce.</p>
+<p style="text-align: justify;"><span style="text-decoration: underline;">The carrier is not liable for damages in the following cases:</span>
+<ul>
+<li>delay due to force majeure (war, an act of government)</li>
+<li>faulty packaging</li>
+<li>nature of the goods</li>
+<li>the fault of the claimant</li>
+</ul>
+</p>
+<p style="text-align: justify;">We would advise you to close a transport insurance for your shipments. If you choose an insurance for your shipments, our Nacora office will assist you in this process. Your damages will be covered on basis of Invoice value and claim processes shortened.</p>
+<p>For any questions please contact: <b>Ms. Oriana Krisdinna</b> &lt;<a href="mailto:oriana.krisdinna@kuehne-nagel.com">oriana.krisdinna@kuehne-nagel.com</a>&gt;</p>
+<p style="text-align: justify;">If you have checked the liability and have all your documents, please send them to the attention of Ms. Oriana Krisdinna.</p> 
+<p style="text-align: justify;">Confirmation of your email will be sent and claim process initiated.</p>
+
+			</div>
+		</div>
+	</div>
+	<div style="height: 30px;">&nbsp;</div>
+</div>

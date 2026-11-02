@@ -1,0 +1,56 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">---</span>}</td></tr>
+		<tr><th>Incident Date &amp; Time:</th><td>
+			{#if:^xfields.idate:{^xfields.idate}~date("Y-m-d")~ &middot; {^xfields.itime:<span class="gray">---</span>}}
+			{#ifnot:^xfields.idate:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{mawb.n}:</th><td><b><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>
+		<tr><th>{process.n}:</th><td>{^xfields.process.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{ftnr.n}:</th><td>{^xfields.ftnr:<span class='gray'>---</span>}
+		<div class="ra_250">
+			<label class="ra_label">Date:</label>
+			{#if:^xfields.ftdate:{^xfields.ftdate}~date("Y-m-d")~}{#ifnot:^xfields.ftdate:<span class='gray'>---</span>}
+		</div></td></tr>
+	</table>
+	<div>
+		<hr />
+		<table style="width: 99%;">
+			<tr>
+				<td style="width: 33%; text-align: center;">{airp_dep.n}</td>
+				<td style="width: 33%; text-align: center;">{airp_dest.n}</td>
+				<td style="width: 33%; text-align: center;">{non_airp.n}</td>
+			</tr>
+			<tr>
+				{#if:^xfields.airp_dep.value:<th class="info-tip center" data-tooltip="{^xfields.airp_dep.value.name}<br /><span class='darkblue'>{^xfields.airp_dep.value.country}</span>">{^xfields.airp_dep.value.IATA}</th>}
+					{#ifnot:^xfields.airp_dep.value:<td class="gray center">---</td>}
+				{#if:^xfields.airp_dest.value:<th class="info-tip center" data-tooltip="{^xfields.airp_dest.value.name}<br /><span class='darkblue'>{^xfields.airp_dest.value.country}</span>">{^xfields.airp_dest.value.IATA}</th>}
+					{#ifnot:^xfields.airp_dest.value:<td class="gray center">---</td>}
+				<td style="text-align: center;">{^xfields.non_airp:<span class="gray">---</span>}</td>
+			</tr>
+		</table>
+	</div>
+	<table>
+		<tr><th>{nature.n}:</th><td>{^xfields.nature:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{com_type.n}:</th><td>{^xfields.com_type.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{com_note.n}:</th><td>{^xfields.com_note:<span class="gray">---</span>}</td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>MAWB Total:</th><td>{#if:^xfields.mawb_pieces:<b>{^xfields.mawb_pieces}</b> Pieces ; <b>{^xfields.mawb_weight}</b> Kg}{#ifnot:^xfields.mawb_pieces:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Actual received:</th><td>{#if:^xfields.preceive:<b>{^xfields.preceive}</b> Pieces ; <b>{^xfields.preceive_weight}</b> Kg}{#ifnot:^xfields.preceive:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{shipper.n}:</th><td>{^xfields.shipper:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{consignee.n}:</th><td>{^xfields.consignee:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{agent.n}:</th><td>{^xfields.agent:<span class='gray'>---</span>}</td></tr>
+	</table>
+
+	<h4>Documents which should be attached:</h4>
+	<table>
+		<tr><th>{photo_appendix.n}:</th><td>
+			{#if:^xfields.photo_appendix.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.photo_appendix.key: checked="checked"}> {^xfields.photo_appendix.value}</label>}
+			{#ifnot:^xfields.photo_appendix.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{copyawb.n}:</th><td>
+			{#if:^xfields.copyawb.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.copyawb.key: checked="checked"}> {^xfields.copyawb.value}</label>}
+			{#ifnot:^xfields.copyawb.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+}

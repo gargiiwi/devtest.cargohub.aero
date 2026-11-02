@@ -1,0 +1,2 @@
+fancyBox - jQuery Plugin (v2.1.7)
+	http://fancyapps.com/fancybox

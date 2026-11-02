@@ -1,0 +1,12 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/clock_history_frame.png" alt="[time]" class="info-tip" data-tooltip="Record activity history" /><span>History</span>
+	</div>
+	<button data-op="history-refresh" class="info-tip" data-tooltip="Refresh history"><img alt="Off" src="/img/icons16/arrow_refresh.png"> Refresh</button>
+{!	<div id='history-row-ops' style='display: none;'>{!Note: These are only valid for admins}
+		<button data-op="history-remove" class="info-tip right" data-tooltip="Removes entry from the history table"><img src='/img/icons16/delete.png' alt="[x]" /> Delete</button>
+	</div>}
+</div>
+{!First area is some record metadata, arranged in a table}
+{#include::includes/record_metadata.html}
+<div class="jqx-datatable" id="_record-history"></div>

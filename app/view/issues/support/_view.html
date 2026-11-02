@@ -1,0 +1,131 @@
+{#use:iss:<h2>Support ticket</h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+<h4>Contact information:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>
+
+<h4>Support ticket information:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>Category:</th><td>{^group.name}</td></tr>
+	<tr><th>{title.n}:</th><td>{^xfields.title}</td></tr>
+	<tr><th>{descr.n}:</th><td>{^xfields.descr}~nl2br~</td></tr>
+	<tr><th>{section.n}:</th><td>{^xfields.section.value}</td></tr>
+	<tr><th>{loc_det.n}:</th><td>{^xfields.loc_det}</td></tr>
+</table>}
+
+<h4>Computing environment:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{browser.n}:</th><td>{#repeat:^xfields.browser:&lt;{value}&gt; }</td></tr>
+	<tr><th>{opsys.n}:</th><td>{#repeat:^xfields.opsys:&lt;{value}&gt; }</td></tr>
+</table>}
+
+<h4>Support department interaction:</h4>
+{#use:%ist.xfield_def:<table>
+	<tr><th>{phone_supp.n}:</th><td>
+		{#if:^xfields.phone_supp.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.phone_supp.key: checked="checked"}> {^xfields.phone_supp.value}</label>}
+		{#ifnot:^xfields.phone_supp.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+	<tr><th>{reproduce.n}:</th><td>{^xfields.reproduce}~nl2br~</td></tr>
+	<tr><th>{repeat.n}:</th><td>
+		{#if:^xfields.repeat.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.repeat.key: checked="checked"}> {^xfields.repeat.value}</label>}
+		{#ifnot:^xfields.repeat.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+	<tr><th>{work.n}:</th><td>{^xfields.work.value}</td></tr>
+</table>}
+
+<h4>Communication area:</h4>
+<div id='convos-box' style="margin-bottom: 8px;">
+	{#ifnot:conversations:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+	{#if:conversations:
+	<div class="gray" style="font-size: 0.9em; border-bottom: 1px solid #D3D3D3; padding-bottom: 6px;">To view the conversation, send another message or make a reply, click on the subject line.</div>
+	<table class="infotable">	
+	{#repeat:conversations:
+		<tr><th>Subject:</th><td><a href="/?action=external_comm&amp;key={key}">{description}</a></td></tr>
+		<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+		<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+	}
+	</table>
+	}
+</div>
+
+</div>
+{!Right column}
+<div class='column2'>
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+</table>
+
+{#if:files:<h4>Attached pictures and documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a> {#if:description:<span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+{#ifnot:files:
+<h4>Currently, there are no documents attached to this Ticket !</h4>}
+
+<h4>Add more documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Cargo Claim' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="field-delete-button" type="text/dryjstpl">
+	<button title="Cancel this upload" />
+</script>
+
+{#raw:includes/issue_update_confirm.html}

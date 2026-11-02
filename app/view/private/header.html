@@ -1,0 +1,228 @@
+
+{!{#if:html.logo&session.user.preferences.graphics.header:{!TODO: Support custom HTML headers, that can be more than just a logo}
+<!-- <style>
+    .theme-main{
+        position: relative;
+    }
+    .theme-ul{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+</style> -->
+<div class='header-bar' id='site-logo'>
+    <a href="{html.logo_link:/}" title="{html.title}" style='display: block; margin: 0px; padding: 0px;'>
+        <img style='display: block; border-radius: 0px 0px 5px 5px;' src="/img/hdrs/{html.logo}" alt="{html.title}" />
+    </a>
+</div>}}
+{!User Menu-Bar - A black-styled jqxMenu widget used to display site title, location, logged in user, a few global configuration submenus and finally the Login/Logout commmand}
+
+
+
+<!--IWI new design 17072026 start-->
+<div id='user-menu-bar' style="display: none"></div>
+<header id="cargo-header" class="cargo-header">
+
+    <!-- Left -->
+    <div class="cargo-left">
+
+        <button id="cargo-menu-btn" class="cargo-icon-btn" title="Menu">
+            <img src="/img/icons/hamburger.png" alt="">
+        </button>
+        <div id="cargo-menu-popup" class="cargo-popup">
+
+    {#repeat:header.mainmenu:
+
+    <a href="{route}" {#if:target:target="{target}"}>
+
+        <img src="/img/icons/{icon}">
+
+        {name}
+
+    </a>
+
+    {#if:name='Records Grid':
+    <a href="/user/publication/get_publications">
+
+        <img src="/img/icons/support.png">
+
+        Publication
+
+    </a>}
+
+    }
+
+</div>
+
+        <a href="/" class="cargo-logo">
+            <!--<img src="{session.curr_org_logo}" alt="Logo">-->
+            <img src="/img/cargihub_logo_11_8.png" alt="Logo">
+        </a>
+        <span class="menu_separetor" ></span>
+
+        <div class="cargo-title">
+            <a  href="/issue/list" title="Click to view {_cache.current_rt.short_plural}"  >
+                {_cache.current_rt.name}
+            </a>
+
+
+        </div>
+
+        {#if:_cache.current_rt.name!='Cargo Damage':<a href="/issue?action=form" title="Click to submit {_cache.current_rt.name}">}
+            {#if:_cache.current_rt.name=='Cargo Damage':<a href="https://cclp.aero/#/save-report?isFrom=CREATE_REPORT" title="Click to submit {_cache.current_rt.name}">}
+                <img src="/img/icons/more.png" > 
+            </a> 
+            <!--<span class="menu_separetor" ></span>-->
+    </div>
+
+    <!-- Center -->
+    <div class="cargo-center">
+        <form action="/search/global" method="get" target="_blank">
+            <div class="cargo-search ">
+                <!--<img src="/img/icons/search.png" alt="">-->
+                <input
+                    type="text"
+                    name="search"
+                    autocomplete="off"
+                    placeholder="Global Search">
+            </div>
+        </form>
+    </div>
+    <!--<span class="menu_separetor" ></span>-->    
+    <!-- Right -->
+    <div class="cargo-right">
+        <a href="/user/publication/get_publications"
+           class="cargo-action"
+           title="Publication">
+            <img src="/img/icons/publication1.png">
+        </a>
+        <a href="/issue/capa"
+           class="cargo-action"
+           title="CAPA">
+            <img src="/img/icons/capaheader1.png">
+            <span class="cargo-badge">
+                {session.capaCount}
+            </span>
+        </a>
+        <a href="/manager/tasks:record?list=self"
+           class="cargo-action"
+           title="Tasks">
+            <img src="/img/icons/task1.png">
+            <span class="cargo-badge">
+                {session.taskCount}
+            </span>
+        </a>
+        <a href="/user/overview#notify"
+           class="cargo-action"
+           title="Notifications">
+            <img src="/img/icons/notification1.png">
+            <span class="cargo-badge">
+                {session.notificationCount}
+            </span>
+        </a>
+        <a href="/user/overview#updates"
+           class="cargo-action"
+           title="Support">
+            <img src="/img/icons/supports1.png">
+        </a>
+        {#use:session.user:
+        <span class="menu_separetor" ></span>
+        <div class="cargo-user">
+
+            <input type="hidden" id="chkAuthOnOff" value="{oath_key}" >
+            <span class="actauth " id="actauthIcon"></span>
+            <input
+                type="hidden"
+                id="cargo-oath"
+                value="{oath_key}">
+            <!--            <span
+                            class="actauth"
+                            id="cargo-auth-icon">
+                        </span>-->
+            <button
+                id="cargo-user-btn"
+                class="cargo-user-btn">
+                {name}
+                <span class="cargo-arrow">
+                    <i class="fa fa-chevron-down"></i>
+                </span>                              
+            </button>                       
+            {#use:session.user:
+            <div id="cargo-user-popup" class="cargo-popup">
+                <a href="/user/overview#account">
+                    <img src="/img/icons16/user_gray.png">
+                    My Account
+                </a>
+                <a href="/user/overview#vcard">
+                    <img src="/img/icons16/vcard.png">
+                    My Contact Info
+                </a>
+                <a href="/user/overview#notify">
+                    <img src="/img/icons16/bell.png">
+                    Notifications
+                </a>
+                <a href="/user/settings#preferences">
+                    <img src="/img/icons16/cog.png">
+                    Preferences
+                </a>
+                <a href="/user/overview#acls">
+                    <img src="/img/icons16/lock.png">
+                    My Current Access
+                </a>
+                <a href="/manager/organization#overview">
+                    <img src="/img/icons16/company-building-icon.png">
+                    My Organization
+                </a>
+                <a href="/user/overview#updates">
+                    <img src="/img/icons16/support.png">
+                    Software Support
+                </a>
+            </div>
+            }
+        </div>
+        }
+        <!--<span class="menu_separetor" ></span>-->
+        <a href="/?action=logout"
+           class="cargo-logout">
+            <img src="/img/icons16/exit.png">
+            Logout
+        </a>
+    </div>
+</header>
+
+<!--IWI new design 17072026 end-->
+
+
+{#raw:includes/evan_jstpl.html}
+
+<!--IWI Record Details Page Redesign 10092026  start-->
+<div id="record-module-info" class="record-module-header">
+    {#if:record_info:
+    <div class="record-module-record-info">
+        <span class="record-info-label">Operating:</span>
+        <span class="record-info-value">{record_info}</span>
+    </div>
+}
+    {#use:module:
+    <!--{#if:description:<div class="record-module-description">{description}</div>}-->
+    
+    {#if:show_title:
+        {#if:title:<h2 id="module-title"  class="record-module-title">{title}</h2>}
+        {#ifnot:title:&nbsp;}
+    }
+    }
+    
+        
+</div>
+
+
+<div style="color: red; padding: 6px; border: 1px solid red; margin: 5px 0; text-align: center;">
+    Dear customers, <br>
+     <strong>A major upgrade to the CargoHub system is planned, and some sections of the website may be temporarily unavailable for up to 24 hours.</strong><br>
+The upgrade and maintenance work may affect certain features and services during this period. Please complete any urgent tasks in advance and plan your work accordingly.<br>
+<br>
+We apologize for any inconvenience and thank you for your patience and understanding!<br>
+<strong>CargoHub Tech Team</strong>
+</div>
+
+<!--IWI Record Details Page Redesign 10092026 end-->

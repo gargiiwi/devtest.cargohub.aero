@@ -1,0 +1,18 @@
+<br /><div class='info-expander' data-expanded='true'>
+	<div>Operational information...</div>
+	<div class='spacey'>
+		<p>An <b>Airport</b> data entry represents the name of an airport, used in searchable Airport fields in various forms.</p>
+		<hr />
+		<p>Database <b>ID</b> is assigned automatically when creating an Airline name, and cannot be changed.</p> 
+	</div>
+</div>
+
+<script id="template_edit_airport" type="text/dryjstpl">
+	<form method="post" action="?action=Save_Entry&amp;type={config.type}">{@
+		{#exists:id:<input type='hidden' name="id" value="{$uid}" />}
+		<div><label for='entry_name'>Airport name:</label><input id='{!}entry_name' type="text" name="data[name]" class='jqx-input jqx-rc-all {$_itc}' value='{$name}' style='width: 320px;'></div>
+		<div><label for='entry_name'>IATA Code (3):</label><input maxlength="3" id='{!}entry_IATA' type="text" name="data[IATA]" class='jqx-input jqx-rc-all {$_itc}' value='{$IATA}' style='width: 40px;'> <span class='gray'>eg: <b>AMS</b></span></div>
+		<div><label for='entry_name'>ICAO Code (4):</label><input maxlength="4" id='{!}entry_ICAO' type="text" name="data[ICAO]" class='jqx-input jqx-rc-all {$_itc}' value='{$ICAO}' style='width: 50px;'> <span class='gray'>eg: <b>EHAM</b></span></div>
+		<div><label for='entry_name'>Country:</label><input id='{!}entry_country' type="text" name="data[country]" class='jqx-input jqx-rc-all {$_itc}' value='{$country}' style='width: 320px;'></div>
+	}</form>
+</script>

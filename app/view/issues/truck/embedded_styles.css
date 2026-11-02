@@ -1,0 +1,52 @@
+/** Styles used by in-application HTML containing Transit Irreg data - Usually used inside in-application messages */ 
+div.msg-content table {
+    margin-bottom: 8px;
+    width: 100%;
+}
+div.msg-content th {
+	font-weight: normal;
+	padding-right: 6px;
+	text-align: right;
+	width: 180px;
+}
+div.msg-content .iss_document {
+	padding: 1px 4px;
+	margin-right: 5px;
+	color: green;
+	border: 1px solid lightgray;		
+}
+div.msg-content div#attachments div.file-download {
+	border-bottom: 1px dotted #D3D3D3;
+	margin-bottom: 6px;
+	padding: 4px 0 6px 2px;
+}
+.iss_document {
+	padding: 2px 8px;
+	margin: 0px 7px 5px 0px;
+	color: #006400;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+#xcontainer {
+	width: 700px;
+	margin: 8px auto;
+	padding: 5px;
+	border: 1px solid lightgray;
+}
+span.awb {
+	width: 120px; 
+	display: inline-block;
+}
+span.awbp {
+	margin-right: 15px; 
+	width: 35px; 
+	display: inline-block; 
+	text-align: right;
+}
+span.awbkg {
+	width: 45px; 
+	display: inline-block; 
+	text-align: right;
+}

@@ -1,0 +1,648 @@
+/* Styles for the CargoHub ITS application */
+/*@import url("http://cdn.cargohub.nl/webfonts/DINPro.css");*/
+
+/** Global **/
+html, body {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: black;
+	background: none !important;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: hidden;
+}
+
+/** Some unobtrusive debugging features **/
+#debug {
+	background-color: white;
+	color: black;
+}
+#debug pre {
+	margin: 0px;
+	padding: 0px;
+}
+div#debug > table {
+	width: 100%;
+	border: 1px solid gray;
+	border-spacing: 2px;
+}
+div#debug > table > tbody > tr:nth-child(odd) {
+	background-color:#eee;
+}
+div#debug > table > tbody > tr:nth-child(even) {
+	background-color:#fff;
+}
+div#debug > table th {
+	background-color: gray;
+	color: white;
+}
+
+.left { float: left; }
+.right { float: right; }
+.only-numbers { text-align: right; padding-right: 3px !important; }
+.center { text-align: center; margin-left: auto; margin-right: auto; }
+.clear { clear: both; }
+
+a, a:visited {
+	text-decoration: none;
+	color: #166EB7;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: MidnightBlue; 
+}
+
+h1, h2, h3 {
+	padding: 0px;
+	margin: 0 0 4px 0px;
+	font-family: Tahoma;
+}
+
+h1 {
+	color: #2B296C;
+	font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+	font-size: 20px;
+	font-weight: bold;	
+}
+
+h2 {
+	color: #2B296C;
+	font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+	font-size: 18px;
+	font-weight: normal;	
+}
+
+h3 {
+	color: #74804E;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+/* Little header for various tables and so on */
+h4 {
+	background-color: #dfdfdf;
+	color: black;
+	border-bottom: 1px solid #A0B0C0;
+	display: block;
+	margin-bottom: 6px;
+	margin-top: 0;
+	padding: 3px;
+	text-indent: 20px;
+}
+
+/* Small separator type header */
+h5 {
+	margin-top: 10px;
+	margin-bottom: 6px;
+}
+
+hr {
+	background-color: lightgray;
+	border: none;
+	height: 1px;
+	margin: 5px 0px 9px 0px;
+}
+
+/* Some styles for text and inline elements */
+.whitebg { background-color: white !important; }
+.red { color: red !important; }
+.green { color: green !important; }
+.blue { color: blue !important; }
+.darkblue { color: darkblue !important; }
+.gray { color: #999 !important; }
+.fiftycent {
+	filter: alpha(opacity=50); /* For IE8 and earlier */	
+	opacity: 0.5;
+}
+.thick {
+	font-weight: bold !important;
+}
+.fixedtextarea {
+	resize: none !important;
+	overflow: auto !important;
+}
+
+.info-click {
+	cursor: pointer;
+}
+
+.inline-icon {
+	display: inline-block;
+	vertical-align: text-bottom;
+	width: 16px;
+	height: 16px;
+	top: 4px;
+}
+
+.icon-info {		background-image: url("/img/icons16/information.png");}
+.icon-attention {	background-image: url("/img/icons16/error.png");}
+.icon-warning {		background-image: url("/img/icons16/exclamation.png");}
+
+div.loading-pleasewait {
+	width: 100%;
+	height: 100%;
+	margin: 0; padding: 0;
+	background: transparent url("/img/extra/loader3.gif") no-repeat center;
+}
+
+.autocenter {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.autocenter > * {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+/* The operational area of the site, vertically top, horizontally centered */
+div.site {
+	width: 1140px;
+	margin: 0px auto;
+	background-color: #fff;
+	border-radius: 0px 0px 5px 5px;
+}
+
+	div.site > div.header {
+		padding: 0px 5px 7px 5px;
+	}
+
+	div.site > div.page {
+		padding: 0px 5px 10px 5px;
+		margin-bottom: 10px;
+	}
+
+		/** General classes for stuff inside the page **/
+		div.site > div.page div.zone {
+			padding: 7px;
+			border: 1px solid #C7C7C7;
+			margin-bottom: 12px;
+		}
+
+
+/* Footer (Contains copyright information, and can be disabled for certain domains) */
+div.footer {
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px;
+}
+
+	div.footer > span {
+		font-size: 10px;
+		margin-bottom: 5px;
+		margin-top: 10px;
+		display: block;
+		color: #8faebd;
+	}
+
+	div.footer > a {
+		display: block;
+		width: 284px;
+		border: 3px solid white;
+		background: #fff;
+		border-radius: 5px;
+		margin: 0 auto;
+		box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	div.footer > a > img {
+		display: block;
+		border-radius: 5px;
+		border: 0px;
+	}
+	
+div.footer #footer-linkbar {
+	width: 1130px;
+	margin: 0 auto 10px auto;
+	text-align: left;
+	color: #404040;
+}
+
+	div.footer #footer-linkbar a {
+		text-decoration: none;
+		color: #404040;
+	}
+	div.footer #footer-linkbar a:HOVER {
+		text-decoration: underline;
+		color: #166eb7;
+	}
+
+/** UI Common elements **/
+div.spacey {
+	padding: 6px;
+}
+
+/** Standard Modal Window (components.modal) - Move out of here, place in modal.css after all modules stop using cargohub.its.open_Modal...  **/
+div.modal_window div.modal_content {
+	overflow: hidden;
+}
+
+div.modal_window div.modal_buttons {
+	position: absolute;
+	left: 8px;
+	right: 8px;
+	bottom: 8px;
+	border-top: 1px solid lightgray;
+	padding-top: 8px;
+	text-align: right;
+}
+
+	div.modal_window div.modal_buttons button {
+		padding-left: 18px;
+		padding-right: 18px;
+		margin-left: 8px;
+	}
+
+/** Uniform information table **/
+table.infotable {
+	border: none;
+	border-collapse: separate;
+	caption-side: left;
+	empty-cells: show;
+	table-layout: fixed;
+}
+	table.infotable th {
+		border-right: 1px solid lightgray;
+		font-weight: normal;
+		text-align: left;
+		padding-right: 6px;
+	}
+	table.infotable td {
+		padding-left: 8px;
+	}
+	
+/** Multi-column uniform data table **/
+table.datatable {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 1px;
+	margin-bottom: 12px;
+}
+	table.datatable tr {
+		height: 19px;
+		line-height: 19px;
+	}
+
+	/* Icon in first column of datatable */
+	table.datatable td:nth-of-type(1) img {
+		position: relative;
+		top: 3px;
+		left: 2px;
+	}
+
+	table.datatable tr:nth-child(even) {
+		background-color: #FFFFFF;
+	}
+	
+	table.datatable tr:nth-child(odd) {
+		background-color: #F8F8F8;
+	}
+	
+/* Datatable header */
+table.datatable tr.tab-header {
+}
+
+	table.datatable tr.tab-header > th {
+		border-bottom: 1px solid gray;
+		text-indent: 8px; background-color: lightgray; color: #6F6F6F;
+		text-shadow: 1px 1px white;
+	}
+
+	table.datatable td {
+		border-right: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		padding: 2px;
+	}	
+	
+/** Command area with a graphical (icon) button and some other content on the right side **/
+div.command {
+	height: 40px;
+    font-size: 110%;
+    line-height: 40px;
+    white-space: nowrap;
+	margin-bottom: 8px;
+}
+
+div.vcmds > div {
+	width: 58px;
+	float: left;
+	text-align: center;
+}
+
+	div.command button, div.vcmds button {
+		border: 1px solid;
+		border-color: white gray gray white;
+		background: #EFEFE8 no-repeat 3px 3px;
+		width: 38px;
+		height: 38px;
+		cursor: pointer;
+		border-radius: 5px;
+		box-shadow: 1px 1px 2px lightgray;
+	}
+	
+	div.command button {
+		float: left;
+		margin-right: 10px;
+	}
+	div.vcmds button {
+	}
+	
+	div.command button:HOVER, div.vcmds button:HOVER {
+		background-color: #E4E4D8;
+		box-shadow: 1px 1px 2px gray;
+	}
+	
+	div.command button:ACTIVE, div.vcmds button:ACTIVE {
+		background-position: 4px 4px;
+		border-color: gray white white gray;
+		box-shadow: 1px 1px 1px gray inset;
+	}
+	
+/** Toolbar-like area with text-mode buttons, styled by jqWidgets **/
+div.toolbar {
+	border: 1px solid lightgray;
+	height: 40px;
+	padding-left: 12px;
+	margin-bottom: 10px;
+}
+	div.toolbar button.jqx-widget, div.toolbar div.jqx-widget {
+		margin: 6px 12px 6px 0px;
+		float: left;
+	}
+
+	div.toolbar div.toolbar-separator {
+		float: left;
+		width: 1px;
+		height: 28px;
+		background-color: lightgray;
+		margin: 6px 12px 6px 0px;
+	}
+	
+	div.toolbar div.toolbar-accessory {
+		float: left;
+		display: inline-block;
+		height: 36px;
+		margin: 2px 12px 2px 0px;
+		line-height: 36px; 
+	}
+	
+		div.toolbar div.toolbar-accessory img {
+			float: left;
+			margin: 2px 12px 2px 0px;
+		}
+
+		div.toolbar div.toolbar-accessory span {
+			float: left;
+		}
+		
+	div.toolbar button img {
+		float: left;
+		margin-right: 6px;
+	}
+
+/** Some standardized forms **/
+form.vertiform {
+}
+	.vertiform ul {
+		margin: 0px;
+		padding: 0px;
+	}
+	.vertiform ul > li {
+		list-style: none;
+		margin: 0px 0px 6px;
+		display: block;
+		clear: left;
+		height: 26px;
+	}
+	
+	.vertiform ul > li label {
+		display: block;
+		width: 140px;
+		text-align: right;
+		margin-right: 12px;
+		float: left;
+		height: 26px;
+		line-height: 26px;
+	}
+	
+	/** Other content, not editable **/	
+	.vertiform .static {
+		line-height: 26px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}
+	
+/** Contact overview window (used in several places) **/
+div#contact-modal {
+	height: 360px;
+	overflow: auto;
+}
+
+	table.contact-table tr {
+		height: 24px;
+	} 
+	
+		table.contact-table tr.contact-group {
+		    background-color: #E8E8E8;
+		    border-bottom: 1px solid #A0B0C0;
+		    color: #000000;
+		    margin-top: 0;
+		    padding: 2px;
+			text-indent: 8px;
+			font-weight: bold;
+		}
+		
+		table.contact-table tr.contact-group img {
+			float: left;
+			margin-left: 20px;
+		}
+		
+		table.contact-table tr.contact-group-end {
+			display: none;
+		}
+
+	table.contact-table th {
+		color: gray;
+		width: 140px;
+		text-align: right;
+ 	}
+
+	 	table.contact-table th label {
+	 		line-height: 26px;
+	 	}
+	 	
+	table.contact-table td {
+	}
+
+	 	table.contact-table td span {
+	 		display: block;
+	 		padding: 4px;
+	 		min-height: 18px;
+	 	}
+	 	
+	 	table.contact-table td span.jqx-input {
+			border-color: #C7C7C7;
+	 	}
+
+/** Random clickable image buttons **/
+button.cmd16 {
+	position: absolute;
+	border: 1px solid;
+	border-color: white gray gray white;
+	background: #EFEFE8 no-repeat 1px 1px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	border-radius: 4px;
+	box-shadow: 1px 1px 2px lightgray;
+}
+
+button.cmd16:HOVER {
+	background-color: #E4E4D8;
+	box-shadow: 1px 1px 2px gray;
+}
+
+button.cmd16:ACTIVE {
+	background-position: 2px 2px;
+	border-color: gray white white gray;
+	box-shadow: 1px 1px 1px gray inset;
+}
+
+button.information16 { background-image: url("/img/icons16/information.png"); }
+button.user16 { background-image: url("/img/icons16/user_gray.png"); }
+
+/** Visibility / Access icons **/
+
+.access16 {
+	float: left;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+}
+	.access16.visi-private, .access16.edit-user { background-image: url("/img/icons16/user_gray.png"); }
+	.access16.visi-dep, .access16.edit-dep { background-image: url("/img/icons16/plugin.png"); }
+	.access16.visi-org, .access16.edit-org { background-image: url("/img/icons16/company-building-icon.png"); }
+	.access16.visi-shared, .access16.edit-shared { background-image: url("/img/icons16/share.png"); }
+	.access16.visi-public { background-image: url("/img/icons16/eye.png"); }
+
+/** Data presentation styles **/
+.itembox {
+	line-height: 16px;
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	background-color: rgb(255, 255, 255);
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6);
+	cursor: default;
+}
+	.itembox:hover {
+		background-color: rgb(240, 240, 120);
+		box-shadow: 2px 2px 4px rgba(100, 100, 100, 0.7);
+		color: black;
+	}
+
+/** UI Modifications **/
+.jqx-menu-item, .jqx-menu-item-top {
+	white-space: nowrap;
+}
+
+/* Icons in various jqx bar elements */
+.jqx-menu-item > img,
+.jqx-menu-item-top > img,
+.jqx-tabs-titleContentWrapper > img,
+.jqx-expander-header-content > img,
+.jqx-window-header div > img {
+	float: left;
+	width: 16px;
+	margin-right: 5px;
+	margin-top: 1px;
+	border: none;
+}
+
+img.inline-icon16 {
+	float: left;
+	width: 16px;
+	margin-right: 5px;
+	margin-top: 1px;	
+}
+
+.jqx-expander-header-content > img,
+.jqx-window-header div > img {
+	margin-left: 3px;
+}
+
+/* Disable selecting text from grids, as it interferes with clicking inside the grid */
+.jqx-grid, .unselectable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+/* Fix for Tooltip showing behind windows */
+.jqx-tooltip {
+	z-index: 999999 !important;
+}
+
+.jqx-editor-container {
+	width: auto !important;
+}
+
+.quick-org-info {
+	width: 100%;
+	float: none;
+}
+
+	.quick-org-info label {
+		display: inline-block;
+		width: 120px;
+	}
+	
+	.quick-org-info ul {
+		margin: none;
+	}
+	
+#multi-steps-bar {
+	background-color: #90cc60;
+	color: White;
+	border: none;
+	text-align: center;
+	font-weight: normal;
+	box-shadow: 1px 4px 2px LightGray;
+	margin-bottom: 8px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 1.25em;
+}
+	#multi-steps-bar .step-off {
+		color: black;
+	}
+	
+	#multi-steps-bar .step-on {
+		font-weight: bold;
+		color: white;
+		background-color: ForestGreen;		
+	}
+
+	#multi-steps-bar .two-steps-bar > div {
+		width: 50%;
+		float: left;
+		height: 32px;
+	}

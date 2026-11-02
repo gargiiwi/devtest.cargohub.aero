@@ -1,0 +1,35 @@
+{!This template is used for the user account login page}
+<div id="login" class="access_login_page" style='position: relative; margin-left: auto; margin-right: auto; width: 100%; padding: 30px 0;'>
+	{!	<h1>System User Login</h1>
+	<hr style='margin-bottom: 50px;' />}
+
+	<div class="rec-updates form left">
+		<h3 style="text-align: left;font-weight: 600;margin-left: 15px;"> Recent updates</h3>
+		<div id="rec-upt">
+		</div>
+	</div>
+	<div class="form left main_logger" style="margin-left: 250px;">
+		<form action="?action=login" method="post">
+			<h3>Username</h3>
+			<div class='jqx-rc-all field'><input type='text' name="username" value="{username}" /></div>
+			<h3>Password</h3>
+			<div class='jqx-rc-all field'><input type='password' name="password" /></div>
+			<div class='cb' id="remember">Remember me <small>(30 days)</small></div>
+			<input type="submit" value="Login" class="right" />
+			<div class="clear"></div>
+		</form>
+
+		<div class="jqx-rc-all" style="color: gray; border: 1px solid #c7c7c7; padding: 12px 20px; margin-top: 40px; text-align: center; background-color: white;">
+			<a href="/access?action=reset_password">Forgot your password?</a><br /><br />
+			<a href="mailto:support@cargohub.nl?subject=Forgot%20my%20username">Forgot username?</a><br /><br />
+			<a href="mailto:support@cargohub.nl">General support (E-mail)</a>
+		</div>
+	</div>
+
+	<div class="logo left" style="padding: 75px 40px 20px 100px;">
+		{!<img src="/img/extra/hny2k7.png" alt="Happy New Year!" />}
+		<img src="/img/extra/login.png" alt="Log in" style="width: 100px;"/>
+	</div>
+
+	<div class="clear"></div>
+</div>

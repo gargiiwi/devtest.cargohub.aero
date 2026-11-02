@@ -1,0 +1,41 @@
+<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<button data-op="create" title='Create issue type'><img src='/img/icons16/add.png' alt="Add" /> Create New</button>
+	<button data-op="grid-state-reset" title="Reset grid to default"><img src='/img/icons16/recycle.png' />Reset grid</button>
+	<div id='rt_edit_ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="details" title="Details"><img src='/img/icons16/eye.png' /> Details</button>
+		<button data-op="edit" title="Record Blueprint Editor"><img src='/img/icons16/blueprint.png' /> Edit</button>
+		<button data-op="count" title="Recount elements"><img src='/img/icons16/number_42.png' /> Recount</button>
+{!		<div class='toolbar-separator'></div>
+		<button data-op="edit-old" title="Old editor"><img src='/img/icons16/brick_edit.png' /> Old editor</button>}
+		<button class="right" id="button-archive" data-op="archive" title="Archive selected" data-confirm="true" data-confirm_msg="archive selected record type ?"><img src='/img/icons16/bin.png' /> Archive</button>
+	</div>
+	<div class='toolbar-accessory'>
+		<span id='selected-item'></span>
+	</div>
+</div>
+<div id="rt-grid"></div>
+
+<br /><div class='info-expander'>
+	<div>Operational information (click to open/close)</div>
+	<div class='spacey'>
+		<h3>Record Types Overview</h3>
+		<p>The columns display the following information:</p>
+		<ul>
+			<li><b>Scope:</b> Usage class for this record type (everyone, only an organization, admin build/test mode)</li>
+			<li><b>Name:</b> Singular name used in the application.</li>
+			<li><b>Recs:</b> How many records of this type are stored in the database (total, including hidden, closed).</li>
+			<li><b>Folder Key:</b> Shows the base directory name for the template files</li>
+			<li><b>Plural form:</b> Name used when multiple issues are mentioned (Plural)</li>
+			<li><b>Description:</b> What is this record type about</li>
+		</ul>
+		<hr />
+		<p>When selecting a row, buttons will appear that allow to view and edit details about that record type</p>
+		<p>Note: The "Archive" button doesn't remove information, it simply changes the scope to &quot;arhive&quote;, making the Record Type invisible for normal users<br />
+		Archived records get moved to the end of the grid, but can still be searched and changed. This can be used to hide a RT temporarely for maintenance</p>
+		<p>To create a new record type, certain information needs to be entered before the necessary file structure is created and editing is allowed</p> 
+		<p>Each issue type must have an unique folder key (the system will refuse creation if the same name has already been used).</p>
+	</div>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}

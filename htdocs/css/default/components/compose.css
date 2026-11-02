@@ -1,0 +1,123 @@
+/** E-mail Compose **/
+
+#message-sender {
+	border: 1px solid rgba(0, 0, 0, 0.2); /* Similar to .mce-panel */
+	border-bottom-width: 0;
+}
+
+#message-recipients {
+	background-color: #F8F8F8;
+	border: 1px solid rgba(0, 0, 0, 0.2); /* Similar to .mce-panel */
+}
+
+	img#recipients-cc, img#recipients-bcc {
+		width: 24px;
+		margin-right: 5px;
+		cursor: pointer;
+		float: right;
+	}
+	img#template-toggle {
+		width: 24px;
+		margin-right: 8px;
+		cursor: pointer;
+		float: left;
+	}
+
+	#message-recipients > div {
+		min-height: 22px;
+		padding: 4px 0;
+		position: relative;
+	}
+	
+		#message-recipients > div > label {
+			float: left;
+			width: 52px;
+			font-weight: bold;
+			margin: 0 8px 0 4px;
+			text-align: right;
+			line-height: 22px;
+		}
+		
+			#message-recipients > div > label img {
+				float: left;
+				margin: 3px 0;
+			}
+			
+	#message-recipients > div > div.con-sortable {
+		display: inline-block;
+		width: 1030px;
+		min-height: 22px;
+	}
+	
+		div.con-sortable.con-empty {
+			border-bottom: 1px dotted gray;
+		}
+	
+		div.con-sortable > input {
+			width: 1px;
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			height: 20px;
+			line-height: 20px;
+			padding: 0 5px;
+		}
+
+		div.con-sortable span.ui-state-default {
+			display: inline-block;
+			height: 20px;
+			line-height: 20px;
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			padding: 0 20px 0 6px;
+			margin-right: 7px;
+			background: white url("/img/icons16/bullet_delete.png") no-repeat right 2px center;
+			cursor: pointer;
+			margin-bottom: 4px;
+		}
+			/** A trick, all contacts contain an invisible semicolon ; at the end, hidden from screen but which allows copy/pasting multiple contacts into other mail clients **/
+			div.con-sortable span > i {
+				color: white;
+				font-size: 1%;
+			}
+		
+			div.con-sortable span:HOVER {
+				border-color: blue;
+			}
+			
+		div.con-sortable span.ui-sortable-placeholder {
+			width: 7px;
+			display: inline-block;
+			background-color: transparent !important;
+			border: 0px transparent;
+			border-left: 2px solid gray;
+			height: 11px !important;
+		}
+		
+		div.con-sortable span.ui-sortable-helper {
+			opacity: 0.75;
+			border-color: black;
+			background-color: yellow;
+		}
+
+#message-subject {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-top-width: 0;
+	background-color: white;
+	padding: 6px 5px;
+}
+
+	#message-subject > input {
+		width: 1060px;
+		padding: 0;
+		height: 24px;
+		line-height: 24px;
+		font-size: 16px;
+		border: none;
+	}
+
+/** TODO: New contact boxes **/
+
+.contact-error {
+	color: #d14836 !important;
+	border: 2px dotted #d14836 !important;
+	height: 18px !important;
+	line-height: 18px !important;
+}

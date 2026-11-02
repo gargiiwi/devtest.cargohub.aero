@@ -1,0 +1,19 @@
+<div class="spacey">{#if:contact:
+	<div id="contact-left-side">
+		{#include:contact:includes/vcard.html}
+	</div>
+	<div id="contact-right-side">
+		<div class="right-side-block">
+			<h3>[Space reserved]</h3>
+			<p>Extra contact information - Work in progress.</p>
+		</div>
+	</div>
+	<div class="clear"></div>
+}{#ifnot:contact:
+	<div style="margin: 24px;">
+		<h2 class="center">Invalid contact ID specified or contact not found. Cannot load any content !</h2>
+		<hr />
+		<p class="center" style="padding: 8px;">Please press the [Close] button to reset this tab or the [Back] button to go to your previous location.<br /><br />
+		<img src="/img/extra/nothinghere.jpg" alt="Move along, there's nothing to see here." /></p>
+	</div>
+}</div>

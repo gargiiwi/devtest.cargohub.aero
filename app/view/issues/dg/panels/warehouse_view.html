@@ -1,0 +1,14 @@
+{#use:%ist.xfield_def:
+<table>
+	<tr><th>Location:</th><td>{^xfields.wh_loc:<span class="gray">---</span>}</td></tr>
+	<tr><th>Area:</th><td>{^xfields.wh_area:<span class="gray">---</span>}</td></tr>
+	<tr><th>Entry Date &amp; Time:</th><td>
+		{#if:^xfields.in_date:{^xfields.in_date}~date("Y-m-d")~ &middot; {^xfields.in_time:<span class="gray">---</span>}}
+		{#ifnot:^xfields.in_date:<span class='gray'>---</span>}
+	</td></tr>
+	<tr><th>Exit Date &amp; Time:</th><td>
+		{#if:^xfields.out_date:{^xfields.out_date}~date("Y-m-d")~ &middot; {^xfields.out_time:<span class="gray">---</span>}}
+		{#ifnot:^xfields.out_date:<span class='gray'>---</span>}
+	</td></tr>
+</table>
+}

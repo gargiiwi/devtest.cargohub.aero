@@ -1,0 +1,20 @@
+{!This version is Read-only, doesn't contain edit functions)}
+<table class="infotable contact-table" style="width: 100%; text-align: left; background-color: white;">
+	<tr>{!Header - Picture, Name and Primary E-mail}
+		<th><img id="contact-picture" src="/global/contact?action=get_picture&amp;ireq=1{#if:id:&amp;id={id}}" /></th>
+		<td>
+			<h1 id='contact-name'><span>{name}</span></h1>
+			<h2 id='contact-email'><span>{email}</span></h2>
+		</td>
+	</tr>
+	{#repeat:xdata:{!Contact information, with groups}
+		<tr class="contact-group" id="contact-group-{*}">{#use:meta:<td colspan="2"><img src="{img}" alt="{title}" /> {title}</td>}</tr>
+		{#repeat:fields:{Contact fields}
+			<tr id="contact-field-{key}">
+				<th><button type="button" title="Remove field" style="display: none;"></button><label>{label}</label></th>
+				<td>{#ifnot:info:<span class="gray" data-empty="true">(not set)</span>}{#if:info:<span>{info}</span>}</td>
+			</tr>
+		}
+		{#if:^_edit:<tr class="contact-group-end" id="contact-group-end-{*}"><td colspan="2"></td></tr>}
+	}
+</table>

@@ -1,0 +1,124 @@
+<div class="spacey">
+{#if:convo:
+	{#if:contact:<h2>Welcome, <i>{contact.name}</i> !</h2>
+	{#if:contact.user_id:<h4 class="login-warn">Please note: You also have a <b>staff member account</b>. It is advisable to use the <a href="/user/overview#dashboard">staff section</a> of the application.</h4>}
+	{#if:reply_active:<p style='padding-left: 20px;'>You are a member of this conversation, and you are allowed to add a reply.<br />Please on the reply box to send a message.</p>}
+	<hr />}
+	{#if:link:<div class="linked-element jqx-rc-all">
+		<h4>This conversation with {%convo.count_msgs} message(s) is linked to the following {link.type.name}:</h4>	
+		{#include:link:public/external_comm/linked_{link_class}.html}
+	</div>}
+	{#use:convo:
+	<div style='padding: 12px; margin: 8px 0px; text-align: center; background-color: #E0E8FF;'>
+		<h2>Displaying the communication that occured between {start_msg_time}~date("d M Y")~ and {last_msg_time}~date("d M Y")~:</h2>
+	</div>	
+	<h1>{description}</h1>
+	<div id="convo-left-side">
+		{#if:%reply_active:
+		<div id="convo-quickreply">
+			<div id="quickreply-help">You can <span id="text_cmd_reply">Reply</span> by clicking in this box:</div>
+			
+			<div id="quickreply-frame" class="jqx-rc-all">
+				<div id="reply-recipient" tabindex="0" style="display: none;">
+					<img alt="Reply to message" src="/img/icons16/mail_reply_sender.png"> <b>To:</b> <span class='gray'>(click here to search recipient)</span>
+				</div>
+				<div id="reply-subject" style="display: none;">
+					<input type="text" placeholder="(message subject)" class="gray" tabindex="1" />
+				</div>
+				<div id="reply-content" style="height: 100px;" tabindex="2">
+				</div>
+			</div>
+			<div id="quickreply-commands" class="toolbar jqx-rc-all" style="display: none; background-color: #F4F4F8;">
+				<button id="reply-send" class="info-tip" data-tooltip="Sends the reply to the selected recipient"><img src="/img/icons16/email_send.png" alt="Send message" /> Send message</button>
+				<button id="reply-set-subject" class="info-tip" data-tooltip="Shows the subject line. Normally not needed when replying,<br />but it allows a message specific subject to be typed."><img src="/img/icons16/information.png" alt="Set subject" /> Set subject</button>
+				{!<button id="reply-canned" class="info-tip" data-tooltip="Fills the subject and content automatically using a template"><img src="/img/icons16/jar_empty.png" alt="Use a canned reply" /> Use a canned reply</button>}			
+				<div class="toolbar-separator"></div>
+				<button id="reply-discard" class="info-tip" data-tooltip="Discards anything that has been typed and closes the reply box"><img src="/img/icons16/cross.png" alt="Discard all content" /> Discard all content</button>
+			</div>
+		</div>}
+		{#ifnot:%reply_active:
+			<div style='padding: 6px; border: 1px solid lightgray;'>
+				<h4>Please note:</h4>
+				<p>To reply to this conversation, you have to login first with your Contact Account. [ <a href="/contact/access?action=login&amp;return=convo&amp;key={access_key}">Click here</a> ] to reach the login form.</p>
+				<p>If you login as one of the participants of this conversation (shown on the right side), you will be able to reply.</p>
+			</div>
+		}
+		{#repeat:messages:
+			<div class="convo-msg" data-msg_id="{id}" data-from_id="{from_id}" data-dt="{dt}">
+				<div class="convo-msg-closed">
+					<img class='icon' src="/img/icons/email.png" alt="Closed message" />	
+					<span class='contact-item from-name' data-con_id="{from_id}">{from.name}</span>
+					{#if:content_length:<span style="margin-left: 8px;">{content}~striptags;cut(67,"...")~</span>}
+					{#ifnot:content_length:<span class="gray">(Message is empty)</span>}
+					<span class="right">{dt}~date("d M Y")~ {#if:age:({age})}</span>
+				</div>
+				<div class="convo-msg-open" style="display: none;">
+					<div class="msg-header">
+						<img class='icon' src="/img/icons/email_open.png" alt="Open message" />
+						<span class='contact-item from-name' data-con_id="{from_id}">{from.name}</span>
+{!						{#if:to_id:<span class="gray">to <span class="contact-item to-name" data-con_id="{to_id}">{to.name}</span></span>}}
+						<div class="right">
+							<span class="message-date">{dt}~date("d M Y")~ {#if:age:({age})}</span>
+							{#if:%reply_active:<div class="msg-buttons unselectable">
+							<button style="height: 18px; width: 130px; line-height: 18px;margin-right:5px;"><img role="button" src="/img/icons16/quote_2.png" style="float: left; padding-left: 5px;"> Quote message</button>
+							<button style="height: 18px; width: 115px; line-height: 18px;margin-right:5px;"><img role="button" src="/img/icons16/email_to_friend.png" style="float: left; padding-left: 5px;"> Resend Claim</button>
+							<button style="height: 18px; width: 25px;line-height: 18px;"><img role="button" src="/img/icons16/exclamation.png" style="float: left; padding-left: 5px;"></button>
+						</div>}
+						</div>
+					</div>
+					<div class="msg-recipients">
+						<div>To:{#repeat:recipients.to: <span class='contact-item' data-con_id="{id}">{name}</span>}</div>
+						{#if:recipients.cc:<div>Cc:{#repeat:recipients.cc: <span class='contact-item' data-con_id="{id}">{name}</span>}</div>}
+						{#if:recipients.bcc:<div>Bcc:{#repeat:recipients.bcc: <span class='contact-item' data-con_id="{id}">{name}</span>}</div>}
+					</div>
+					<hr />
+					{!TODO: There should be an optional message title bar here as well !}
+					{#if:content_length:<div class="msg-content">{content}</div>}
+					{#ifnot:content_length:<div class="msg-content gray" data-empty="true">(Message is empty)</div>}
+				</div>
+			</div>
+		}
+		{#ifnot:messages:
+			<div class="convo-empty">
+				Currently no messages remain in the conversation, they were probably deleted.
+			</div>}
+	</div>
+	<div id="convo-right-side">
+		<div class="right-side-block">
+			<h4>Involved contacts:</h4>
+			{#repeat:contacts:
+				<div class="convo-contact jqx-rc-all">
+					<button class='cmd16 user16' data-op="view-contact" data-id="{id}" title='View details for {name}'></button>		
+					<h3 style='margin-left: 26px;' class="contact-item" data-con_id="{id}">{name}</h3>
+					<h5>{email}</h5>
+					<div>Type:
+						{#if:type="isspost":Submitter}
+						{#if:type="user_self":Staff member}
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+	<div class="clear"></div>
+}}{#ifnot:convo:
+	<div style="margin: 24px;">
+		<h2 class="center">Invalid conversation key specified or conversation not found. Cannot load any content !</h2>
+		<hr />
+		<p class="center" style="padding: 8px;"><img src="/img/extra/nothinghere.jpg" alt="Move along, there's nothing to see here." /></p>
+	</div>
+}</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="contact-actions" type="text/dryjstpl">
+<div id="contact-actions-menu"><ul style='width: 200px;'>
+	<li data-op="details"><img src='/img/icons16/user_gray.png' alt="Contact details" /> Contact details</li>
+{!	<li data-op="reply_to"><img src='/img/icons16/draw_calligraphic.png' alt="Reply to" /> Reply to...</li>}
+</ul></div>
+</script>
+
+<script id="message-actions" type="text/dryjstpl">
+<div><ul style='width: 170px;'>
+	<li data-op="quote"><img src='/img/icons16/quote_2.png ' alt="Quote this message" /> Quote this message</li>
+	<li data-op="sender_details"><img src='/img/icons16/vcard.png' alt="Sender details" /> Sender details</li>
+</ul></div>
+</script>

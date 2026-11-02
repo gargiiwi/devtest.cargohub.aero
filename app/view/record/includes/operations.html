@@ -1,0 +1,332 @@
+{!Record operation and information areas}{#root::
+
+
+<div class="processHeadMenuSec">
+
+    <div class="jqx-widget jqx-rc-t rec-operations-{
+             rec.process
+         }" id="rec-operations">
+
+
+        <div class="raopndays">
+
+
+            <div class="rastas">
+
+                <div class="left">
+                    <div class="lft_rec_part">
+                        <div class="staleft">
+                            {#if:track_id:
+                            {#if:icon:<img id="module-icon" alt="{icon_alt:title}" src="/img/icons16/{icon}">}
+                            <h2 id="module-title">{track_id}</h2>
+                            }{#ifnot:track_id:&nbsp;}
+                        </div>
+                        <div class="staright">  {record_status_view} </div> 
+                    </div>
+                    <div class="rec-operations-header rec-operations-header-{
+                             rec.process
+                         }">
+                        <b>{rec.cache.primary:(no title)}~capfirst~</b>
+                    </div>
+
+                </div>
+                <div class="right">
+
+
+                    <div class="ratask">
+                        <div class="taskitem">
+                            <span class="opend">Open Days :</span> 	<p>{record_open_days}</p> </div>
+                        <div class="taskitem"> <span class="opend">Open Tasks :</span> <p>{total_active_tasks}</p>  </div>
+                        <div class="taskitem"> <span class="opend">My Tasks :</span> <p>{my_active_tasks} </p>  </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="opt_sec_part">
+            <div class="operations-section" style="width: 645px;"> 
+                <table id="meta-overview">
+                    <tr><th class="command"><button id='btn-moveto' data-op="open-modal" data-modal="change-group" style="background-image: url(/img/icons/groups/{rt.settings.group_config.type}.png);"
+                                                    class="info-tip" data-tooltip_position="right"  data-tooltip='Move to a different {rt.settings.group_config.name}'></button></th>
+                        <td id="record-group">{rt.settings.group_config.name}:<br /><b>{rec.group.name}</b></td>
+                        <!--IWI status popup menu design issue fix start-->
+                        <!--                    <th class="command"><button id='btn-stat' data-op="popup-menu" data-menu="statuses" style="background-image: url(/img/icons/statuses/{rec.status_key:none}.png);"
+                                                                    class="info-tip" data-tooltip_position="top" data-tooltip="Change record's current Status"></button></th>-->
+                        <th class="command">
+                            <button data-menu="statuses" style="background-image: url(/img/icons/statuses/{rec.status_key:none}.png);" class="info-tip btn-stat-record-details" data-tooltip_position="top" data-tooltip="Change record's current Status"></button>
+                        </th>
+                        <!--IWI status popup menu design issue fix end-->
+                        <td style="width: 140px;">Status:<br />{#if:rec.organization.id:<b id="txt-stat">{rec.status}</b>}{#ifnot:rec.organization.id:<span class="gray">(no org.)</span>}
+                        <div class="meta-overview-popup-menu popup_menu-statuses-div statusGenPop" style="display: none;">
+                    <ul style='width: 150px;'>
+                        {#repeat:rt.statuses_ex:
+                        <li data-op="set-stat-prio" data-fn="status" data-key="{*}" class="jqx-item jqx-item-fresh jqx-menu-item-top jqx-menu-item-top-fresh jqx-rc-all jqx-rc-all-fresh" role="menuitem" ><img src='/img/icons16/statuses/{*}.png' alt="{*}" />{$}</li>
+                        }
+                    </ul>
+                </div></td>
+                        <td style="width: 80px;">&nbsp;{!reserved for status/prio change option}</td>
+                        <th class="command"><button id='btn-assignto'{#if:rec.organization.id: data-op="open-modal" data-modal="assign-user"
+                                                    class="info-tip" data-tooltip_position="right" data-tooltip="Assign record handling to an organization member..."}></button></th>
+                        <td id="assigned-user">{#if:rec.organization.id:
+                            {#if:rec.assigned.id:
+                            Assigned to:<br /><b class="info-tip" data-tooltip="{rec.assigned.email}">{rec.assigned.name} </b>
+                            <!-- 10032025 add remove assign used by sourav start-->
+<!--                            <button class='record_details_unassign_user_btn' data-op="unassign-user" data-uid="{rec.assigned.id}"><img alt="Off" src="/img/icons16/cancel.png"></button>-->
+<button class="record_details_unassign_user_btn"
+            data-op="unassign-user"
+            data-uid="{rec.assigned.id}"
+            title="Unassign user">
+        <i class="fa fa-times"></i>
+    </button>
+                            <!-- 10032025 add remove assign used by sourav end-->
+                            }
+
+                            {#ifnot:rec.assigned.id:
+                            <span class="gray info-tip" data-tooltip_position="right" data-tooltip="Assigning the user changes <b>Status</b> into <i>Processing</i> when status is the default (New).<br />Reassigning to a different user has no effect on status.">Not yet assigned</span>}
+                            }{#ifnot:rec.organization.id:Cannot assign:<br /><span class="gray">No organization</span> 
+
+                            }</td>
+                        <!--IWI status popup menu design issue fix start-->
+                        <!--                <th class="command"><button id='btn-prio' data-op="popup-menu" data-menu="priorities" style="background-image: url(/img/icons/priorities/{rec.priority_key:none}.png);"
+                                                                    class="info-tip" data-tooltip_position="top" data-tooltip="Change Priority"></button></th>-->
+
+                        <th class="command"><button  data-menu="priorities" style="background-image: url(/img/icons/priorities/{rec.priority_key:none}.png);"  class="info-tip btn-prio-record-details" data-tooltip_position="top" data-tooltip="Change Priority"></button>
+                         <div class="meta-overview-popup-menu popup_menu-priorities-div prioritiesGenPop" style="display: none;">
+                    <ul style='width: 150px;'>
+                        {#repeat:rt.priorities_ex:
+                        <li data-op="set-stat-prio" data-fn="priority" data-key="{*}" class="jqx-item jqx-item-fresh jqx-menu-item-top jqx-menu-item-top-fresh jqx-rc-all jqx-rc-all-fresh" role="menuitem" ><img src='/img/icons16/priorities/{*}.png' alt="{*}" />{$}~cut(100,2)~</li>
+                        }
+                    </ul>
+                </div>
+                        </th>         
+                        <!--IWI status popup menu design issue fix end-->                   
+
+                        <td style="width: 140px;">Priority:<br />{#if:rec.organization.id:<b id="txt-prio">{rec.priority}</b>}{#ifnot:rec.organization.id:<span class="gray">(no org.)</span>}</td>
+                        <td style="width: 50px;">&nbsp;</td>
+                    </tr>
+                </table>
+
+
+                <!--IWI status popup menu design issue fix start--> 
+
+<!--                <div class="meta-overview-popup-menu popup_menu-statuses-div statusGenPop" style="display: none;">
+                    <ul style='width: 150px;'>
+                        {#repeat:rt.statuses_ex:
+                        <li data-op="set-stat-prio" data-fn="status" data-key="{*}" class="jqx-item jqx-item-fresh jqx-menu-item-top jqx-menu-item-top-fresh jqx-rc-all jqx-rc-all-fresh" role="menuitem" ><img src='/img/icons16/statuses/{*}.png' alt="{*}" />{$}</li>
+                        }
+                    </ul>
+                </div>-->
+
+
+<!--                <div class="meta-overview-popup-menu popup_menu-priorities-div prioritiesGenPop" style="display: none;">
+                    <ul style='width: 150px;'>
+                        {#repeat:rt.priorities_ex:
+                        <li data-op="set-stat-prio" data-fn="priority" data-key="{*}" class="jqx-item jqx-item-fresh jqx-menu-item-top jqx-menu-item-top-fresh jqx-rc-all jqx-rc-all-fresh" role="menuitem" ><img src='/img/icons16/priorities/{*}.png' alt="{*}" />{$}~cut(100,2)~</li>
+                        }
+                    </ul>
+                </div>-->
+
+
+                <!--IWI status popup menu design issue fix end --> 
+
+
+            </div>
+            <div class="operations-separator"></div>
+            <div class="operations-section vcmds" style="width: 200px;">
+                {#if:acls.privileges.issue_view_attachs|acls.unrestricted:<div><button id='btn-file-add' data-op="create" data-item="file"
+                                                                                       class="info-tip" data-tooltip_position="top" data-tooltip='Upload one or more files.<br />Initial visibility can also be set'></button>File</div>}
+                {#if:acls.privileges.tasks_manager|acls.unrestricted:<div><button id='btn-task-add' data-op="create" data-item="task"
+                                                                                  class="info-tip" data-tooltip_position="top" data-tooltip='Define a new task and optionally assign it to a person or a department.'></button>Task</div>}
+                {#if:acls.privileges.issue_edit_notes|acls.unrestricted:<div><button id='btn-note-add' data-op="create" data-item="note"
+                                                                                     class="info-tip" data-tooltip_position="top" data-tooltip='Write a new note attached to this record'></button>Note</div>}
+                {!		{#if:acls.unrestricted:<div><button id='btn-contact-link' data-op="create" data-item="contact"
+                                                        class="info-tip" data-tooltip_position="top" data-tooltip='Search for and Link a Contact'></button> Link<br />Contact</div>}
+                <div><button id='btn-submit' data-op="link" data-url="/issue?action=form&amp;key={rt.key}"
+                             class="info-tip" data-tooltip_position="top" data-tooltip='Submit new record of same type'></button> New<br />Record</div>}
+            </div>
+            <div class="operations-separator"></div>
+            <div class="operations-section vcmds" style="width: 200px;">
+                <div><button id='btn-webview' data-op="link" data-url="/issue?action=view&amp;track={rec.track}&amp;key={rec.access_key}"
+                             class="info-tip" data-tooltip_position="top" data-tooltip='Opens a &quot;Web page&quot; with data from this {rt.name}<br /><b>The browser address can be copy/pasted and sent to 3rd parties</b><br /><br />Logging into the application is not required to access the webpage!'></button>Web page</div>
+                <div><button id='btn-print' data-op="open-modal" data-modal="print"
+                             class="info-tip" data-tooltip_position="top" data-tooltip='Print this record after choosing one of the templates'></button>Print</div>
+                {!		{#if:acls.privileges.issue_partner_share|acls.unrestricted:<div><button id='btn-share' data-op="command" data-cmd="send-record" data-target="partner" data-method="share" data-parts="true"
+                                                                                            class="info-tip" data-tooltip_position="left" data-tooltip='Directly shares this <b>{rt.name}</b> with another organization using CargoHub Connect.<br />The system will take care of communication.'></button><span>Quick<br />Share</span></div>}
+                <div><button id='btn-email' data-op="command" data-cmd="send-email" class="info-tip" data-tooltip_position="left" data-tooltip='Compose E-mail with no defaults.<br />Nothing will be pre-selected / auto-filled.'></button><span>Compose<br />E-mail</span></div>
+                }
+                <div><button id='btn-transfer' data-op="open-modal" data-modal="transfer"
+                             class="info-tip" data-tooltip_position="left" data-tooltip='Send by mail and share this <b>{rt.name}</b> to an an organization'></button><span class="thick">Share</span></div>
+                {!		{#ifnot:acls.unrestricted|acls.privileges.issue_set_status|acls.privileges.issue_set_priority|acls.privileges.issue_set_group|acls.privileges.issue_partner_share|acls.privileges.issue_transfer|acls.privileges.issue_sendby_mail:
+                <div class='restricted-panel' style='width: 100%;'><div style='vertical-align: inherit;'><img src="/img/icons/stop.png" /><br />No operations available.</div></div>}}
+            </div>
+        </div>
+
+
+
+        <!--IWI Record Details Page Redesign 10092026 end-->
+    </div>
+
+
+
+    <!-- <div id="module-info" style="display: flex; justify-content: space-between;height: auto;    padding-top: 0; margin-bottom: 15px; border-bottom: 1px solid lightgray; border-left: 1px solid lightgray; border-right: 1px solid lightgray;">
+        <div class="raleft">
+    
+           <span style="font-size: 110%;" class="thick inline contact-item info-tip info-click" data-tooltip="Submitted by: {rec_submitter_name.contact.name}<br /><b>{rec_submitter_name.contact.email}</b><hr />Click on name to open full contact information" data-con_id="{rec_submitter_name.contact_id}"><img src="/img/icons16/vcard.png" class="inline-icon" alt="[vcard]" />{rec_submitter_name.org.name}</span>
+            <p>Submitted by:</p>
+            <ul>
+                <li>Name : {rec_submitter_name.contact.name}</li>
+                <li>Email : {rec_submitter_name.contact.email}</li>
+            </ul>
+        </div>
+    
+    
+        <div class="raright">
+            <div class="rastas">
+                <div class="staleft">
+                    {#if:track_id:
+                     <img id="module-icon" alt="cargoclaim" src="/img/icons16/ist/cargoclaim.png">
+                    <h2 id="module-title">{track_id}</h2>
+                    }{#ifnot:track_id:&nbsp;}
+    
+                </div>
+                <div class="staright">
+                    <label> 
+                        {record_status_view}
+                </div>
+            </div>
+    
+            <div class="ratask">
+                <div class="taskitem">
+                    <span class="opend">Open Days :</span> 	<p>{record_open_days}</p> </div>
+                <div class="taskitem"> <span class="opend">Open Tasks :</span> <p>{total_active_tasks}</p>  </div>
+                <div class="taskitem"> <span class="opend">My Tasks :</span> <p>{my_active_tasks} </p>  </div>
+            </div>
+        </div>
+    
+    </div> -->
+
+    <!--IWI status popup menu design issue fix start --> 
+    <!--<script id="popup_menu-priorities" type="text/dryjstpl">
+        <div><ul style='width: 120px;'>{#repeat:rt.priorities_ex:
+        <li data-op="set-stat-prio" data-fn="priority" data-key="{*}"><img src='/img/icons16/priorities/{*}.png' alt="{*}" />{$}~cut(100,2)~</li>}
+        </ul></div>
+    </script>-->
+    <!--IWI status popup menu design issue fix end --> 
+
+    <!--IWI status popup menu design issue fix -> "popup_menu-statuses-div" class add--> 
+    <!--<script id="popup_menu-statuses" type="text/dryjstpl">
+        <div class="popup_menu-statuses-div"><ul style='width: 150px;'>{#repeat:rt.statuses_ex:
+        <li data-op="set-stat-prio" data-fn="status" data-key="{*}"><img src='/img/icons16/statuses/{*}.png' alt="{*}" />{$}</li>}
+        </ul></div>
+    </script>-->
+
+
+    <script id="template-menu_item" type="text/dryjstpl">{@
+    <li data-op="popup-item" data-popup="{$popup}" data-tooltip="{$description}"{#exists:tt_pos: data-tooltip_position="{$tt_pos}"} data-uid="{$uid}">{$title}</li>
+    }</script>
+
+<script id="modal-access_deps" type="text/dryjstpl">{@
+    <form class="spacey" name="departments-access" action="?action=access_deps" method="post">
+    <div><label for="dep-access-all">All departments:</label><div id="dep-access-all"></div></div>
+    <p class="gray" style="margin: 6px 0; text-align: center;">If the option above is <b>ON</b>, the checkbox selector is disabled.</p>
+    <div><label for="dep-access-list">Allowed access:</label><div id="dep-access-list"></div></div>
+    </form>
+    }</script>
+
+<script id="modal-set_group" type="text/dryjstpl">{@
+    <form class="spacey" name="group-search" action="?action=set_group" method="post">
+    <div><label>{$config.name_plural}:</label><div id="group-search"></div></div>
+    </form>
+    }</script>
+
+<script id="modal-user_search" type="text/dryjstpl">
+    <form class="spacey" name="assign-user-to-record" action="?action=assign_user" method="post">
+    <div><label for="user-search-dep-list">Department filter:</label><div id="user-search-dep-list"></div></div>
+    <div><label for="user-search">Search user:</label><div id="user-search"></div></div>
+  
+    <div id="quick-user-information"><div class="autocenter gray"><div>Please select an user first to see more details</div></div></div>
+    </form>
+</script>
+
+<script id="modal-print_setup" type="text/dryjstpl">
+    <form class="spacey" name="group-search" action="/record/print:{rec.track}" target="_blank" method="post">
+    <div><label>Template:</label><div name="template_id" id="print-template_selector"></div></div>
+    <div><label>Data parts:</label><div name="parts" id="print-parts_selector"></div></div>
+    <div style="display: none;"><label>Linked Contacts:</label><div name="contacts" id="print-contacts_selector"></div></div>
+    <input type="hidden" name="rec_id" value="{rec.id}" />
+    <input type="hidden" name="org_id" value="{rec.organization.id}" />
+    </form>
+</script>
+
+{!Other templates that are used in more than one place, for example in the tabs}
+
+{!The transfer window, containing three zones}
+<script id="modal-transfer" type="text/dryjstpl">{@
+    <div id="transfer-rightbar">
+    <div id="transfer-navbar" class="jqx-rc-all">
+    <button data-zone='contents' class="info-tip"><img src="/img/icons16/document_editing.png" alt="Txt" class="inline-icon"> 1. E-mail Contents</button> 
+    <button data-zone='attachments'><img src="/img/icons16/attach.png" alt="Fil" class="inline-icon"> 2. File Attachments</button>
+    <button data-zone='recipients' class="info-tip"><img src="/img/icons16/email_go.png" alt="Rec" class="inline-icon"> 3. Preset Recipients</button>
+    </div>
+    <div id="attach-helpers" class="jqx-rc-all" style="margin-top: 30px; display: none; text-align: center;">
+    <button id="attach-check-all"><img src="/img/icons16/checkbox_yes.png " alt="[*]" class="inline-icon"> Check all</button>
+    <button id="attach-clear-all" style="margin: 0 0 0 8px;"><img src="/img/icons16/checkbox_no.png" alt="[_]" class="inline-icon"> Clear all</button>
+    </div>
+    </div>
+    <div id="transfer-contents" class="transfer-zone" style="overflow: visible;">
+    <div style="margin: 0 0 4px 4px;" class="info-tip thick" data-tooltip_position="top" data-tooltip="The E-mail Builder starts with default <b>Template</b>,but you may choose others (when available)<br /><br />The template may also set the E-mail's <b>Subject</b>">
+    <img src="/img/icons16/template.png" class="inline-icon" />	Select an E-mail Template <span class="gray" style="font-weight: normal";>(the Default template is preselected)</span></div>
+    <div id="transfer-email_template"></div>
+
+    <div style="margin: 36px 0 4px 4px;" class="info-tip thick" data-tooltip_position="top" data-tooltip="Some <b>data sections</b> are preselected, but you may turn any of them On and Off.<br /><br />Include linked <b>Contact information</b> as needed.">
+    <img src="/img/icons16/groups.png" class="inline-icon" /> Select the elements which will be placed into your E-mail's body</div><hr />
+    <div style="width: 40%; float: left;">
+    <div style="margin: 0 0 5px 1px;" id="transfer-include_render">Automatic data sections</div>
+    <div id="transfer-parts_selector"></div>
+    </div>
+    <div style="width: 60%; float: left;">
+    <h3 style="margin: 0 0 4px 4px;"><img src="/img/icons16/vcard.png" class="inline-icon" /> Contacts from the record (listed in the Body)</h3>
+    <div id="transfer-contacts_selector"></div>
+    </div>
+    </div>
+    <div id="transfer-attachments" class="transfer-zone" style="display: none; overflow: auto;">
+    <div style="min-height: 382px;"></div>
+    </div>
+    <div id="transfer-recipients" class="transfer-zone" style="display: none;">
+    <div style="margin: 0 0 4px 4px;" class="info-tip thick" data-tooltip_position="top" data-tooltip="The Builder lists the organizations (and departments) which Cargohub knows for this record type.">
+    <img src="/img/icons16/company-building-icon.png" class="inline-icon" /> Target Organization(s) <span class="gray" style="font-weight: normal";>(selector may be disabled)</span></div>
+    <div id="transfer-org_select"></div>
+
+    <div style="margin: 30px 0 4px 4px;" class="info-tip thick" data-tooltip_position="top" data-tooltip="If Cargohub has a list of departments/stations that can accept this type of data<br />they will be listed here. Not all organizations have departments !">
+    <img src="/img/icons/plugin.png" class="inline-icon" />	
+    <!--Departments/Stations that can accept }{rt.short_plural}-->
+    	Departments/Stations  }
+    {@ <span class="gray" style="font-weight: normal";>(list may be empty)</span>
+    <span style=" color: #c0392bdb;font-weight: normal;float: right; "> *Please verify if addresses are correct</span>
+    </div>
+    <div id="transfer-dep_select"></div>
+
+    <div class="clear info-bar" style="margin-top: 15px;">
+    <img src='/img/icons16/information.png' class="inline-icon">
+    <span style=" font-weight: normal;"> Update contact information requests can be sent to support@cargohub.nl</span>
+    
+    </div>
+    </div>
+    }</script>
+
+{!The details row of the E-mail attachments datatable (used in both Build E-mail and in the E-mail tab itself)}
+<script id="template-attachment-details" type="text/dryjstpl">{@
+    {#exists:_thml:<div style="width: 320px; position: absolute; right: 8px; text-align: right;"><img src="{$_thml}" alt="{$name}" /></div>}
+    <table>
+    <tr><th>Will download as:</th><td>{$name}</td></tr>
+    <tr><th>File type:</th><td>{$doctype}</td></tr>
+    <tr><th>File size:</th><td>{$size} bytes</td></tr>
+    </table>
+    }</script>
+
+</div>
+
+{!End #root}

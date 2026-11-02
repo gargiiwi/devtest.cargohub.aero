@@ -1,0 +1,77 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/attach.png" alt="[file]" class="info-tip" data-tooltip="Lists computer files connected to this record.<br />These files can be used in e-mails" /><span>Files</span>
+	</div>
+	<div id='files-editops' style='display: none;'>
+		<button data-op="upload" class="info-tip" data-tooltip="Upload one or more files.<br />Initial visibility can also be set"><img src='/img/icons16/upload.png' /> Upload</button>
+	</div>
+	<a id="dl-zip" target="_blank" class="info-tip" data-tooltip="Download all files in a ZIP Package"><img src="/img/icons16/file_extension_zip.png" />Download All</a>
+	<div id='files-row-ops' style='display: none;'>
+		<div class='toolbar-separator'></div>	
+		<a id="dl-link" target="_blank" class="info-tip" data-tooltip="Download this file to your computer"><img src="/img/icons16/download.png" />Download</a>	
+		<div id='files-row-editops' style='display: none;'>
+			<button data-op="file-config" class="info-tip" data-tooltip="Rename the attached file and/or<br />configure description, visibility and labels"><img src="/img/icons16/wrench.png" alt="cfg" />Configure</button>
+			<button data-op="file-copy" class="info-tip" data-tooltip="Send the attached file to the clipboard"><img src="/img/icons16/copy.png" alt="copy" />Copy to...</button>
+			<button data-op="file-remove" style="float: right;" title="Delete the file" class="info-tip" data-tooltip_position="left" data-tooltip="Deletes the selected file.<br /><span class='red'><b>Warning:</b> This action is not reversible!</span>"><img src="/img/icons16/trash_empty.png" />Delete</button>
+		</div> 
+	</div>
+	<button data-op="clipboard" class="info-tip" data-tooltip="Show the files-clipboard content"><img src="/img/icons16/clipboard.png" alt="copy" />Clipboard<span id="fclipsize" class='gray'{#ifnot:fclipsize: style="display: none;"}> ({fclipsize:0})</span></button>
+</div>
+<div class="jqx-datatable" id="_record-files"></div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template-file-details" type="text/dryjstpl">{@
+	{#exists:_thml:<div style="width: 320px; position: absolute; right: 8px; text-align: right;"><img src="{$_thml}" alt="{$name}" /></div>}
+	<table style="margin-left: 4px;">
+		<tr><th>Will download as:</th><td>{$name}</td></tr>
+		<tr><th>Visibility:</th><td>{$visi_text}</td></tr>
+		<tr><th>File type:</th><td>{$doctype}</td></tr>
+		<tr><th>File size:</th><td>{$size} bytes</td></tr>
+		<tr><th>Labels:</th><td>{$labels:<span class='gray'>(No labels)</span>}</td></tr>
+		{#exists:user_email:<tr><th>Uploader E-mail:</th><td><a href="mailto:{$user_email}">{$user_email}</a></td></tr>}
+	</table>
+}</script>
+
+<script id="template-file-config" type="text/dryjstpl">{@
+	<form name="file-config" action="/files?action=update" enctype="application/x-www-form-urlencoded" method="post" class="spacey">
+		<a style="float: right; margin: 4px 22px 0 0;" href="/files?action=download_attachment&ch={$file.chash}&qp={$file.qp}" class="info-tip" data-tooltip="Download file: <b>{$file.name}</b> !" data-tooltip_position="left">
+			<img style="border: none;" src="/img/icons/download_cloud.png" alt="Down!" /></a>
+		{#exists:file.org_name:<div><label>Organization:</label><div class="static">{$file.org_name}</div></div>}
+		{#missing:file.org_name:<div style="height: 12px;">&nbsp;</div>}
+		<div><label>Uploaded:</label><div class="static">{$file.mtime_formatted} - {$file.user_name:(from public area)}</div></div>
+		<div><label for="file-description">Description:</label><input type="text" id="file-description" name="file[description]" class="jqx-input jqx-rc-all {$_itc}" style="width: 428px;" maxlength="1000" value="{$file.description}" /></div>
+		<p class="gray" style="margin: 6px 0 6px 128px;">Please keep this description short and to the point</p>
+		<div><label>Visibility:</label><div id="file-visibility" name="file[visibility]">{!Visibility selector}</div></div>
+		<div style="display: none;"><label>Shared by:</label><div id="file-access_orgs" name="file[access_orgs]">{!List of orgs for Shared mode}</div></div>
+		<div><label for="file-labels">Labels:</label><input type="text" id="file-labels" name="file[labels]" class="jqx-input jqx-rc-all {$_itc}" style="width: 428px;" maxlength="100" value="{$file.labels}" /></div>
+		<p class="gray" style="margin: 6px 0 6px 128px;">Labels are separated by commas, like: <b>alpha,beta,gamma</b></p>
+		<hr />
+		<div><label for="file-name">Download as:</label><input type="text" id="file-name" name="file[name]" class="jqx-input jqx-rc-all {$_itc}" style="width: 428px;" maxlength="160" value="{$file.name}" /></div>
+	</form>
+}</script>
+
+<script id="win-upload_files" type="text/dryjstpl">{@
+	<div id="files-dropzone" class="dropzone jqx-rc-all"></div>
+	<div id="files-dropzone-helper" style="visibility: hidden;">
+		Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+	</div>
+	<form name="uploads-fake-form" action="">
+		<div style='margin-top: 6px;'><label>Initial visibility:</label><div id="uploads-visibility">{!Visibility selector}</div></div>
+		<div style="display: none;"><label>Shared by:</label><div id="uploads-access_orgs">{!List of orgs for Shared mode}</div></div>
+	</form>
+}</script>
+
+{!The Clipboard window}
+<script id="win-files_clipboard" type="text/dryjstpl">{@
+	<div id="files-clipboard" style="min-height: 350px;"></div>
+	<div class='gray center'>If you copy one or more files in another browser window,<br />you must close and reopen this Clipboard box for them to appear</div>
+}</script>
+
+{!The details row of the Current attachments table}
+<script id="template-clipfile-details" type="text/dryjstpl">{@
+	<table>
+		<tr><th>Will download as:</th><td>{$name}</td></tr>
+		<tr><th>File type:</th><td>{$doctype}</td></tr>
+		<tr><th>File size:</th><td>{$size} bytes</td></tr>
+	</table>
+}</script>

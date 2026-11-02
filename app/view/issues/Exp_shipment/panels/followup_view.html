@@ -1,0 +1,18 @@
+{#use:%ist.xfield_def:
+  <table>
+    <tr><th>1st-Flight:</th><td>{^xfields.flight1}</td></tr>
+    <tr><th>{etd1.n}:</th><td>{#if:^xfields.etd1:{^xfields.etd1}~date("Y-m-d")~}{#ifnot:^xfields.etd1:<span class='gray'>(missing)</span>}</td></tr>
+    <tr><th>{eta1.n}:</th><td>{#if:^xfields.eta1:{^xfields.eta1}~date("Y-m-d")~}{#ifnot:^xfields.eta1:<span class='gray'>(missing)</span>}</td></tr>
+    <tr><th>{remarks1.n}:</th><td>{^xfields.remarks1}</td></tr>
+      <tr><th>2nd-Flight:</th><td>{^xfields.flight2}</td></tr>
+    <tr><th>{etd2.n}:</th><td>{#if:^xfields.etd2:{^xfields.etd2}~date("Y-m-d")~}{#ifnot:^xfields.etd2:<span class='gray'>(missing)</span>}</td></tr>
+    <tr><th>{eta2.n}:</th><td>{#if:^xfields.eta2:{^xfields.eta2}~date("Y-m-d")~}{#ifnot:^xfields.eta2:<span class='gray'>(missing)</span>}</td></tr>
+    <tr><th>{remarks2.n}:</th><td>{^xfields.remarks2}</td></tr>
+    <tr><th>3rd-Flight:</th><td>{^xfields.flight3}</td></tr>
+    <tr><th>{etd3.n}:</th><td>{#if:^xfields.etd3:{^xfields.etd3}~date("Y-m-d")~}{#ifnot:^xfields.etd3:<span class='gray'>(missing)</span>}</td></tr>
+    <tr><th>{eta3.n}:</th><td>{#if:^xfields.eta3:{^xfields.eta3}~date("Y-m-d")~}{#ifnot:^xfields.eta3:<span class='gray'>(missing)</span>}</td></tr>
+    <tr><th>{remarks3.n}:</th><td>{^xfields.remarks3}</td></tr>
+    <tr><th>{haulier.n}:</th><td>{^xfields.haulier}</td></tr>
+	<tr><th>{loading_place.n}:</th><td>{^xfields.loading_place}</td></tr>
+	
+  </table>}

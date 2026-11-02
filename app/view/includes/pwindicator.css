@@ -1,0 +1,64 @@
+<style type="text/css">
+#pwindicator {
+	width: 200px;
+	display: inline-block;
+	margin-left: 6px;
+}
+
+	#pwindicator .bar {
+		height: 6px;
+	}
+	#pwindicator .label {
+		margin-top: 3px;
+	}
+
+	#pwindicator.pw-empty .bar {
+		background: transparent;
+		width: 0px;
+	}
+	#pwindicator.pw-empty .label {
+		color: lightgray;
+	}
+	
+	#pwindicator.pw-very-weak .bar {
+		background: #a00000;
+		width: 40px;
+	}
+	#pwindicator.pw-very-weak .label {
+		color: #a00000;
+	}
+	
+	#pwindicator.pw-weak .bar {
+		background: #e05000;
+		width: 80px;
+	}
+	#pwindicator.pw-weak .label {
+		color: #ff5000;
+	}
+	
+	#pwindicator.pw-mediocre .bar {
+		background: #f8a000;
+		width: 120px;
+	}
+	#pwindicator.pw-mediocre .label {
+		color: #f8a000;
+	}
+	
+	#pwindicator.pw-strong .bar {
+		background: #90b800;
+		width: 160px;
+	}
+	#pwindicator.pw-strong .label {
+		color: #90b800;
+		font-weight: bold;
+	}
+	
+	#pwindicator.pw-very-strong .bar {
+		background: #00d020;
+		width: 200px;
+	}
+	#pwindicator.pw-very-strong .label {
+		color: #00d020;
+		font-weight: bold;
+	}
+</style>

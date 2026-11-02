@@ -1,0 +1,34 @@
+<!DOCTYPE html>{!Used by the "Document as File" function}
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>{title}</title>
+	{@<style>
+body {
+	background-color: white;
+	color: black;
+	font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+	font-size: 12pt;
+}
+hr {
+	background-color: lightgray;
+	border: none;
+	height: 1pt;
+	margin: 5pt 0pt 9pt 0pt;
+}
+@media screen { 
+}
+@media print {
+#printme {
+display: none;
+}
+}
+	</style>}
+</head>
+<body>
+<div id='printme' style="background-color: lightgray; margin-bottom: 0.5em;">
+	<button style="margin-left: 20pt;" onClick="window.print();">Print !</button>
+</div>
+{text}
+</body>
+</html>

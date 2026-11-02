@@ -1,0 +1,26 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>Planned:</th><td><span style="display: inline-block; width: 120px;">{^xfields.pick_est_time.value:<span class="gray">---</span>}</span> {#if:^xfields.pick_date:{^xfields.pick_date}~date("Y-m-d")~}{#ifnot:^xfields.pick_date:<span class='gray'>(unknown)</span>}</td></tr>
+		<tr><th>Revised:</th><td><span style="display: inline-block; width: 120px;">{^xfields.rev_time:<span class="gray">---</span>}</span> {#if:^xfields.rev_date:{^xfields.rev_date}~date("Y-m-d")~}{#ifnot:^xfields.rev_date:<span class='gray'>(unknown)</span>}</td></tr>
+		<tr><th>Total Weight/Volume:</th><td>
+			<span style="display: inline-block; width: 120px;">{^xfields.pack_weight:<span class="gray">---</span>} kg</span>
+			{^xfields.total_volume:<span class="gray">---</span>} m3
+		</td></tr>
+		<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>Arrival:</th><td><span style="display: inline-block; width: 120px;">{^xfields.arrival:<span class="gray">---</span>}</span> {#if:^xfields.arrival_date:{^xfields.arrival_date}~date("Y-m-d")~}{#ifnot:^xfields.arrival_date:<span class='gray'>(unknown)</span>}</td></tr>
+		<tr><th>{dock.n}:</th><td style="font-size: 1.2em;">{^xfields.dock:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{license.n}:</th><td>{^xfields.license:<span class='gray'>---</span>}</td></tr>
+		<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>Loading:</th><td><span class='gray'>Start: </span>{^xfields.loading:<span class="gray" style="display: inline-block; width: 40px;">--</span>} &nbsp; <span class='gray'> End: </span>{^xfields.loading_end:<span class="gray">--</span>}</td></tr>
+		<tr><th>{departure.n}:</th><td>{^xfields.departure:<span class="gray">---</span>}</td></tr>
+		<tr><th>{mrn_no.n}:</th><td>{#if:^xfields.mrn_no:{^xfields.mrn_no}~uppercase~ ({^xfields.mrn_type.value:?})}{#ifnot:^xfields.mrn_no:<span class="gray">---</span>}
+		<tr><th>{delays.n}:</th><td>
+			<label><input type='checkbox' disabled="disabled"{#if:^xfields.delays.key: checked="checked"}> {^xfields.delays.value}</label>
+		</td></tr>
+	</table>
+
+	<h4>{cnotes.n}:</h4>
+	{#if:^xfields.cnotes:
+	<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.cnotes}~nl2br~</div>}
+	{#ifnot:^xfields.cnotes:<div class="gray" style="text-indent: 20px;">(not completed)</div>}
+}

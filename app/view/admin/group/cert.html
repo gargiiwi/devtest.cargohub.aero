@@ -1,0 +1,15 @@
+<br /><div class='info-expander'>
+	<div>About the <b>License type</b> group (click to open)</div>
+	<div class='spacey'>
+		<p>Category (or type) used for the License monitor.</p>
+	</div>
+</div>
+
+<script id="template_edit_cert" type="text/dryjstpl">{@
+	<form method="post" action="?action=save_group&amp;type=cert{#exists:uid:&amp;id={$uid}}">
+		<div><label for="group_name">License type:</label><input type="text" id="group_name" name="group[name]" class='jqx-input jqx-rc-all {$_itc}' value='{$name}' style='width: 325px;'></div>
+		<div><div class="static" style="text-align: center; width: 100%;">Please keep the type short, it will be used in a dropdown</div></div>
+		{#missing:uid:}
+		{#exists:uid:}
+	</form>	
+}</script>

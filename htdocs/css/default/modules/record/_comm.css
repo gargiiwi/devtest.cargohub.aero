@@ -1,0 +1,276 @@
+/** Communication tab, conversation details **/
+
+#tab_comm td.grid-cell-shared {
+    background-color: #D8C3A5;
+}
+
+#tab_comm td.grid-cell-private {
+    background-color: #ff7f7f;
+}
+
+#tab_comm td.grid-cell-perspective_org {
+    font-style: italic;
+}
+
+#tab_comm div.convo-details {
+}
+
+#tab_comm div.convo-details div.convo-starter {
+    overflow: auto;
+    height: 72px;
+    margin-bottom: 6px;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -o-user-select: text;
+    user-select: text;
+}
+
+#tab_comm div.convo-starter div.msg-header {
+    background-color: #F0F0FF;
+    padding: 0px 1px 6px 1px;
+    border-bottom: 1px solid lightgray;
+}
+
+#tab_comm div.convo-starter div.msg-header div.contact-line {
+    height: 20px;
+    line-height: 20px;
+}
+
+#tab_comm div.convo-starter div.msg-header h3 {
+    margin: 6px 0px 0px 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#tab_comm div.convo-starter div.msg-content {
+    padding: 6px 2px 0px 2px;
+}
+
+#tab_comm div.convo-details ul.convo-contacts {
+    margin: 4px 0px 12px 0px;
+    padding-left: 8px;
+}
+
+#tab_comm div.convo-details ul.convo-contacts li {
+    height: 22px;
+    list-style-type: none;
+    line-height: 22px;
+}
+
+/** Conversation Tab **/
+#tab_comm #convo-left-side {
+    float: left;
+    width: 750px;
+}
+
+#tab_comm div.convo-empty {
+    text-align: center;
+    margin: 40px;
+}
+
+#tab_comm #convo-left-side div.convo-msg-closed {
+    height: 32px;
+    line-height: 32px;
+    padding: 4px;
+    background-color: #EEEEEE;
+    border-top: 1px solid lightgray;
+    font-size: 0.9em;
+}
+
+#tab_comm #convo-left-side div.convo-msg-open {
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+#tab_comm #convo-left-side div.convo-msg-open .msg-header {
+    height: 42px;
+    line-height: 32px;
+    padding: 4px;
+    border-top: 1px solid lightgray;
+    font-size: 0.9em;
+}
+
+#tab_comm div.convo-msg-closed img.icon, div.convo-msg-open .msg-header img.icon {
+    position: absolute;
+}
+
+#tab_comm div.convo-msg-open .msg-header .msg-buttons {
+    float: right;
+    height: 24px;
+    margin-left: 8px;
+}
+
+#tab_comm div.convo-msg-open .msg-header div.msg-buttons img {
+    position: relative;
+    margin: 0px !important;
+}
+
+#tab_comm #convo-left-side div.convo-msg-open .msg-content {
+    margin: 0px 8px 16px 8px;
+    word-wrap: break-word;
+}
+
+#tab_comm #convo-left-side span.from-name {
+    font-weight: bold;
+    margin-left: 40px;
+}
+
+#tab_comm #convo-left-side .msg-recipients {
+    margin-left: 30px;
+}
+
+#tab_comm #convo-left-side .msg-recipients span.contact-item {
+    display: inline-block;
+    padding: 2px 6px;
+    margin: 0px 7px 6px 0px;
+    border: 1px solid lightgray;
+    white-space: nowrap;
+    box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.4) ;
+}
+
+#tab_comm #convo-right-side {
+    float: right;
+    width: 335px;
+}
+
+#tab_comm #convo-right-side div.right-side-block {
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+#tab_comm #convo-right-side div.convo-contact {
+    margin: 3px 3px;
+    padding: 5px;
+    border: 1px solid lightgray;
+}
+
+
+ /*IWI Record Details Page Redesign 10092026 start*/
+ 
+ #tab_comm > .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 42px;
+    padding: 5px 8px;
+    box-sizing: border-box;
+    border: 1px solid #dfe5ec;
+    border-radius: 5px;
+    background: #f7f9fc;
+}
+#tab_comm > .toolbar .toolbar-accessory {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-right: 3px;
+    border-right: 1px solid #dfe5ec;
+}
+#tab_comm > .toolbar .toolbar-accessory img {
+    width: 16px;
+    height: 16px;
+    opacity: .7;
+}
+#tab_comm > .toolbar > button img {
+    width: 14px;
+    height: 14px;
+    opacity: .7;
+}
+#tab_comm > .toolbar > button:hover {
+    border-color: #b9c5d3;
+    background: #f8fafc;
+    color: #2866C2;
+}
+#tab_comm > .toolbar > button[data-op="comm-compose"] {
+    border-color: #2866C2;
+    background: #2866C2;
+    color: #fff;
+}
+
+#tab_comm > .toolbar > button[data-op="comm-compose"] img {
+    opacity: 1;
+    filter: brightness(0) invert(1);
+}
+
+#tab_comm > .toolbar > button[data-op="comm-compose"]:hover {
+    background: #2259aa;
+    border-color: #2259aa;
+}
+#tab_comm > .toolbar > button[data-op="comm-refresh"] {
+    background: #fff;
+}
+#tab_comm > .toolbar #comm-show_trashed {
+    margin: 0 4px 0 auto !important;
+    height: 28px !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #6b7280;
+    font-size: 11px;
+    line-height: 28px;
+}
+
+
+#tab_comm #comm-list_area > .jqx-expander-header {
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 10px;
+    border: 0;
+    border-bottom: 1px solid #dfe5ec;
+    background: #f7f9fc;
+    box-sizing: border-box;
+}
+
+#tab_comm #comm-list_area .jqx-expander-header-content {
+    height: 36px;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    display: flex;
+    align-items: center;
+    color: #344054;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 36px;
+}
+
+#tab_comm #comm-list_area .jqx-expander-header-content .inline-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 7px;
+    opacity: .7;
+}
+
+#tab_comm #comm-list_area .jqx-expander-arrow {
+    width: 28px;
+    height: 28px;
+    margin-top: 4px !important;
+    margin-right: 1px;
+    border-radius: 4px;
+    background: transparent;
+}
+
+#tab_comm #comm-list_area .jqx-expander-arrow:hover {
+    background: #eaf1fa;
+}
+
+#tab_comm #comm-list_area > .jqx-expander-content {
+    border: 0;
+    background: #fff;
+}
+ 
+
+#tab_comm .datatable.convo-details {
+    
+    padding: 12px 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #fbfcfe;
+    color: #465365;
+    font-size: 12px;
+    text-align: left;
+}
+
+  /*IWI Record Details Page Redesign 10092026 end*/

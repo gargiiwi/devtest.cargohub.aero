@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8" />
+	<title>{html.title}{#if:header.zone: | {header.zone}}</title>
+	<link rel="shortcut icon" type="image/x-icon" href="{html.favicon:/favico/default.ico}">
+	<style>
+{#raw:loading_overlay.css}
+	</style>
+        
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv='pragma' content='no-cache'>
+	<link href="/css/{html.css_theme}/cargo_its.css?v=2023.02" type="text/css" rel="stylesheet" />
+	<link href="/css/{html.css_theme}/cargo_its_extra.css?v=2024.01" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/default/components/sweetalert2.min.css"  />
+        <!-- 20062024 created by iwi -->
+		<link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"  /> <!-- IWI Create a button to bulk mail send-->
+        <!-- 20062024 created by iwi -->
+
+		<link rel="stylesheet" href="/js/components/flatdtpickr/flatpickr.min.css"/><!-- 12112024 Audit control report changes start -->
+
+        
+        <script src="/js/components/jquery.min.js?v=2023.02"></script>
+
+        <script src="/js/components/bootstrap.min.js?v=2023.02"></script>
+
+
+        <script src="/js/components/chart.min.js"></script>
+        <script src="/js/components/chartjs-plugin-datalabels@2.0.0.js"></script>
+        <script src="/js/lib/jqwidgets/jqxcalendar.js?v=3.9.0"></script>
+        <script src="/js/lib/jqwidgets/jqxdatetimeinput.js?v=3.9.0"></script>
+        <!-- 17092024 added by iwi -->
+		<script src="/js/components/html2canvas.js" ></script>
+		<script src="/js/components/jspdf.min.js"></script>
+
+		<script src="/js/components/flatdtpickr/flatpickr.js"></script><!-- 12112024 Audit control report changes start -->
+
+
+</head>
+<body>
+    <span id="claim_type_name" style="display: none;">{claim_type_name}</span>
+	<div id="loading_overlay"><div>Loading, please wait! <span id='per_complete'></span>
+		<div id="loading_console">Loading CargoHub Connect ...</div>
+	</div></div>
+	<div id="spinner_overlay" class="jqx-rc-all" style="display: none;">
+		<div id="spinner_line0">Processing</div>
+		<div id="spinner_line1">Please wait ...</div>
+	</div>
+    <div class="simple-spinner-dot-dot-full-page" style="display:none"> <span> <img src="/img/extra/spinner.gif"></span> </div>
+	<div tabindex="-1">
+            <div class="site" style="width:1250px;">
+		<div class="header">
+{#include::private/header.html}
+		</div>
+		<div class="page">
+{#include::{site_section}}
+		</div>
+		<div class='clear'></div>
+	</div></div>
+    <span id="user_on_this_record_page" data-cmd="{user_on_this_record_page}"></span>
+    <span id="user_on_this_record_page_all_name" data-cmd="{user_on_this_record_page_all_name}"></span>
+{#include::private/footer.html}
+	<script>
+	var
+	preloader = JSON.parse('{DONREY.preloader}~json~'), // DonReY JS Config (will be removed)
+	cargohub = JSON.parse('{DONREY.cargohub}~json~'), // CargoHub main container
+	CFG=JSON.parse('{CFG}~json~'); // Loaded Modules config
+{#raw:preloader.js}
+	</script>
+        <script src="/js/components/sweetalert2.min.js" referrerpolicy="no-referrer"></script>
+<!--        <script>
+            
+            var chkUrl=window.location.pathname;
+            var getDynId=chkUrl.split('/').join('');
+                console.log(getDynId);
+            $('#mainPageDiv').attr('id', getDynId);
+       
+        </script>-->
+</body>
+</html>

@@ -1,0 +1,14 @@
+{!This message contains the welcome message for an user, with his username and password.}
+<h2>Hello {name},</h2>
+<p>This message was sent by {html.title} because you've been given an account to use {settings.system_name} software running on address <a href="https://{html.domain}/">https://{html.domain}/</a>.</p>
+<p>It <i>contains confidential information</i>, addressed only to <b>{name}</b>. If this message arrived to your e-mail address by accident and you did not request this information, please delete this message immediately and contact <a href="mailto:{settings.support_email}">{settings.support_email}</a> to investigate the erroneous mailing.</p>
+<hr />
+<p>Your login credentials are:</p> 
+<ul>
+	<li><span class="gray">Your user name:</span> {user}</li>
+	<li><span class="gray">The password:</span> {password}</li>
+</ul>
+<p style="font-weight: bold;">Please do not share this password with anyone!</p>
+<hr />
+<p>In case you forget your password, you can initiate the reset procedure at the address: <a href="https://{html.domain}/access?action=reset_password">https://{html.domain}/?action=reset_password</a>.</p>
+<h4>Thank you for using {settings.system_name} !</h4>

@@ -1,0 +1,2643 @@
+{#if:%CFG.issue_list.preferences.istswitcher:
+<div class="jqx-widget jqx-rc-all" id='issue-types-bar'>
+	{#if:rt_list:<div class='command'><span  class="titlePipe" style="margin-left: 10px;margin-right: 24px;font-size: 13px;">Modules</span>
+	{#repeat:rt_list:
+		<button data-op="sw-ist" data-id="{id}" title="{name}" style="width: 35px"><img src="/img/icons/ist/{key}.png" alt="{name}" /></button>}
+	</div>}
+	<div class="clear"></div>
+</div><br />}
+
+<div id='listing-menubar' style="margin-bottom: 8px;display: flex;align-items: center">
+	<span  class="titlePipe" style="margin-left: 12px;     margin-right: 8px">Actions </span> 
+	<ul> 
+		<!--<li title="Reload the entire Records Grid section (if something is stuck).
+You can also press Enter while focused on any search field to reload only the table"><img src="/img/icons16/arrow_repeat.png" alt="Re" /><a href="javascript:document.location.reload();">Reload</a></li>-->
+
+<li id="listViewBtn" data-op="all-list" data-recordtypeid=""><img src='/img/icons16/bricks.png' alt="List All" />List</li>
+{#if:acls.unrestricted|acls.privileges.issue_add:
+			<li title="Create new record of the same type"><img src="/img/icons16/add.png" alt="Add" />
+			<!--<a href="/issue?action=form">-->
+			{#if:_cache.current_rt.name!='Cargo Damage':<a href="/issue?action=form" >}
+			{#if:_cache.current_rt.name=='Cargo Damage':<a href="https://cclp.aero/#/save-report?isFrom=CREATE_REPORT" >}
+				New Record
+			</a>    
+		</li>}  
+		{#if:menu.recent:<li title="Recenly opened records" ><img src='/img/icons16/clock_history_frame.png' alt="History" />History...
+			<ul style='width: 900px;'> 
+				{#repeat:menu.recent:
+				<li><img src='/img/icons16/ist/{rt_key}.png' alt="{rt_name}" /><a href="/record/process:{*}#panels"><span style="width: 160px; display: inline-block;">{rt_name}</span> <span style="width: 120px; display: inline-block;">{*}</span>{#if:pri: ({pri})}</a></li>}				
+			</ul>
+		</li>}
+		<!--{#if:acls.unrestricted|acls.privileges.issue_add:<li title="Create new record of the same type"><img src="/img/icons16/add.png" alt="Add" /><a href="/issue?action=form">New Record</a></li>}-->
+		{!<li data-op="filters"><img src='/img/icons16/magnifier.png' alt="Glass" />Search and Filters</li> - Disabled until I find an use for this}
+		<!--{#ifnot:%CFG.issue_list.preferences.istswitcher:{#if:rt_list:<li><img src='/img/icons16/images.png' alt="Types" />Module
+			<ul style='width: 220px;'>
+				{#repeat:rt_list:
+					<li data-op="sw-ist" data-id="{id}"><img src='/img/icons16/ist/{key}.png' alt="{name}" />{name}</li>}
+			</ul>
+		</li>}}-->
+
+		{#if:acls.privileges.issues_list_customize_columns|acls.unrestricted:
+		<li><img src='/img/icons16/eye.png' alt="Views" />Views
+			<ul style='width: 250px;'>
+				<li data-op="grid-columns"><img src='/img/icons16/column_double.png' alt="Columns" />Configure columns</li>
+				<li data-op="module-options"><img src='/img/icons16/gear_in.png' alt="Gears" />Grid: Special settings</li>
+				<li ty{!}pe='separator'></li>
+				{#if:menu.views:<li><img src='/img/icons16/table_lightning.png' alt="Load view" />Load view...
+					<ul style='width: 450px;' id="menu-grid-views">
+					{#repeat:menu.views:
+						<li data-op="grid-views" data-action="load" data-confirm="true" data-id="{id}" title="Created on {utime}"><span class='right gray'>{visi_text}</span>{name}</li>}
+					</ul>
+				</li>}
+				<li data-op="grid-views" data-action="save"><img src='/img/icons16/table_save.png' alt="save" />Save view</li>
+				{#if:%CFG.issue_list.views:<li data-op="grid-views" data-action="delete"><img src='/img/icons16/table_delete.png' alt="del" />Delete a view</li>}
+				<li ty{!}pe='separator'></li>
+				<li data-op="grid-views" data-action="reset" data-confirm="true"><img src='/img/icons16/support.png' alt="Help" /> Load default view</li>
+				{#if:acls.unrestricted:
+				<li data-op="grid-set_default" data-confirm="true"><img src='/img/icons16/save.png' alt="def" /><span class="right green">[Admin]</span>Set as org. default</li>}
+			</ul>
+		</li>}
+
+		<li><img src='/img/icons16/hammer.png' alt="[Op]" />Operations
+			<ul style='width: 270px;'>
+				<li data-op="action" data-action="process"><img src='/img/icons16/open_folder.png' alt="[Open]" />Open overview</li>
+				{#if:_cache.current_rt.name==License monitor':<li data-op="action" data-action="bulkdataupdate"><img src='/img/icons16/web_layout.png' alt="Web" /><span class="right gray">[Location & Country]</span>Bulk Update</li>}
+				
+				
+				<li data-op="action" data-action="webview"><img src='/img/icons16/web_layout.png' alt="Web" /><span class="right gray">[with Access Key]</span>Web View</li>
+				<li ty{!}pe='separator'></li>
+{!				<li data-op="action" data-action="tag"><img src='/img/icons16/tag_yellow.png' alt="Tag / Untag" />Tag / Untag</li>}
+				{#if:acls.privileges.issue_set_status|acls.unrestricted:<li><img src='/img/icons16/flag_2.png' alt="[Stat]" />Change status...
+					<ul style='width: 175px;'>
+					{#repeat:menu.statuses:
+						<li data-op="action" data-action="status" data-status="{*}" data-detail="{$}"><img src='/img/icons16/statuses/{*}.png' alt="{$}" />{$}</li>}
+					</ul>
+				</li>}
+				{#if:acls.privileges.issue_set_priority|acls.unrestricted:<li><img src='/img/icons16/vslider.png' alt="[Prio]" />Change priority...
+					<ul style='width: 150px;'>
+					{#repeat:menu.priorities:
+						<li data-op="action" data-action="priority" data-priority="{*}" data-detail="{$}~cut(100,2)~"><img src='/img/icons16/priorities/{*}.png' alt="{$}" />{$}~cut(100,2)~</li>}
+					</ul>
+				</li>}
+				{#if:menu.departments:
+				<li><img src='/img/icons16/plugin_add.png' alt="[Dep]" />Grant access to department...
+					<ul style='width: 250px;'>
+                                            <!--IWI show departments issue count in issue list menu start-->
+<!--					{#repeat:menu.departments:
+						<li data-op="action" data-action="dep_grant" data-dep_id="{id}" data-detail="{name}"><span class='gray right'>[{count_members}]</span>{name}</li>}-->
+                                                {#repeat:menu.departments:
+						<li data-op="action" data-action="dep_grant" data-dep_id="{id}" data-detail="{name}"><span class='gray right'>[{count_issues}]</span>{name}</li>}
+                                                <!--IWI show departments issue count in issue list menu end-->
+					</ul>
+				</li>
+				<li><img src='/img/icons16/plugin_delete.png' alt="[Dep]" />Revoke department access...
+					<ul style='width: 250px;'>
+					{#repeat:menu.departments:
+						<li data-op="action" data-action="dep_revoke" data-dep_id="{id}" data-detail="{name}"><span class='gray right'>[{count_members}]</span>{name}</li>}
+					</ul>
+				</li>
+				}
+				<li ty{!}pe='separator'></li>
+				{#if:acls.privileges.issue_close|acls.unrestricted:<li data-op="action" data-action="hide"><img src='/img/icons16/ghost-2-icon.png' alt="[Hide]" /><span class="right gray">[Hide]</span>Close the records</li>}
+				{#if:acls.privileges.issue_close|acls.unrestricted:<li data-op="action" data-action="unhide"><img src='/img/icons16/eye.png' alt="[Unhide]" /><span class="right gray">[Unhide]</span>Reactivate records</li>}
+				{#if:acls.privileges.issue_delete|acls.unrestricted:<li data-op="action" data-action="delete"><img src='/img/icons16/trash.png' alt="Delete" /><span class="right red thick">Warning!</span>Delete records</li>}
+				{#if:acls.unrestricted:
+					<li ty{!}pe='separator'></li>
+					<li data-op="action" data-action="su_copy2org"><img src='/img/icons16/copy.png' alt="cp" /><span class="right green">[Admin]</span>Copy to organization</li>
+					<li data-op="action" data-action="su_setmaster"><img src='/img/icons16/key.png' alt="key" /><span class="right green">[Admin]</span>Set new master</li>
+                                        <!--IWI assign multi record from grid start-->
+                                        	<!--<li data-op="action" data-action="su_assign_user"><img src='/img/icons16/user_go.png' alt="key" />Assign to User</li>-->
+                                        <!--IWI assign multi record from grid end-->
+                                                
+				}
+				<li ty{!}pe='separator'></li>
+				<li><img src='/img/icons16/mouse_select_left.png' alt="[Mouse]" />Selection mode...
+					<ul style='width: 150px;'>
+						<li data-op="select-clear"><img src='/img/icons16/table.png' alt="Clear selection" />Clear selection</li>
+						<li ty{!}pe='separator'></li>
+						<li data-op="select-mode" data-mode="singlerow"><img src='/img/icons16/table_select_row.png' alt="Single row" />Single row</li>
+						<li data-op="select-mode" data-mode="multiplerows"><img src='/img/icons16/table_select_all.png' alt="Toggle rows" />Toggle rows</li>
+						<li data-op="select-mode" data-mode="multiplerowsextended"><img src='/img/icons16/table_select_big.png' alt="Drag-Select" />Drag-Select</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+		<li><img src='/img/icons16/table_gear.png' alt="Table" />Search system
+			<ul style='width: 200px;'>
+				<li><img src='/img/icons16/table_replace.png' alt="Grouping" />Default grouping...
+					<ul style='width: 160px;'>
+						<li data-op="grid-settings" data-setting="group" data-mode="prio"><img src='/img/icons16/vslider.png' alt="Prio" />By priority</li>
+						<li data-op="grid-settings" data-setting="group" data-mode="stat"><img src='/img/icons16/flag_2.png' alt="Stat" />By status</li>
+						<li data-op="grid-settings" data-setting="group" data-mode="grp"><img src='/img/icons16/groups/{%CFG.issue_list.ist.group_type}.png' alt="Grp" />{%CFG.issue_list.ist.group_name}</li>
+						<li data-op="grid-settings" data-setting="group" data-mode="org"><img src='/img/icons16/company-building-icon.png' alt="Org" />Organization</li>
+						<li ty{!}pe='separator'></li>
+						<li data-op="grid-settings" data-setting="group" data-mode="clear"><img src='/img/icons16/table.png' alt="Clean" />No groups</li>
+						<li data-op="grid-settings" data-setting="group" data-mode="disable"><img src='/img/icons16/cross.png' alt="Disable" />Disable grouping</li>
+					</ul>
+				</li>
+				<li><img src='/img/icons16/sort_columns.png' alt="Sort" />Default sorting...
+					<ul style='width: 180px;'>
+						<li data-op="grid-settings" data-setting="sort" data-mode="utime"><img src='/img/icons16/update.png' alt="Utime" />Last update</li>
+						<li data-op="grid-settings" data-setting="sort" data-mode="ctime"><img src='/img/icons16/add.png' alt="Ctime" />Creation time</li>
+						<li data-op="grid-settings" data-setting="sort" data-mode="commtime"><img src='/img/icons16/conversation.png' alt="Commtime" />Communication time</li>
+						<li data-op="grid-settings" data-setting="sort" data-mode="track"><img src='/img/icons16/hash.png' alt="Track" />Tracking Number</li>
+						<li ty{!}pe='separator'></li>
+						<li data-op="grid-settings" data-setting="sort" data-mode="for"><img src='/img/icons16/sort_ascending.png' alt="For" />Sort normal</li>
+						<li data-op="grid-settings" data-setting="sort" data-mode="rev"><img src='/img/icons16/sort_descending.png' alt="Rev" />Sort reverse</li>
+					</ul>
+				</li>
+{!				<li data-op="grid-paging"><img src='/img/icons16/page_copy.png' alt="Paging" />Default paging...</li>  ... Paging stuff will be done later }
+				<li ty{!}pe='separator'></li>
+				<li data-op="grid-state-reset"><img src='/img/icons16/filter_clear.png' alt="Reset" /> Reset search system</li>
+			</ul>
+		</li>
+
+		<li><img src='/img/icons16/table_export.png' alt="Export" />Export table
+			<ul style='width: 160px;'>
+				{#if:acls.unrestricted:<li data-op="export" data-format="cclp"><img src='/img/icons16/cclp16.png' alt="Export to CCLP service" />CCLP Auto-Upload</li>
+				<li ty{!}pe='separator'></li>}
+				<li data-op="export" data-format="xls"><img src='/img/mime16/application/msexcel.png' alt="Export to Excel" />... to Excel</li>
+				<li data-op="export" data-format="html"><img src='/img/mime16/text/html.png' alt="Export to HTML" />... to HTML</li>
+				<li data-op="export" data-format="csv"><img src='/img/mime16/text/csv.png' alt="Export to Comma Sepparated Values" />... to CSV</li>
+				<li data-op="export" data-format="json"><img src='/img/mime16/text/json.png' alt="Export to JavaScript Object Notation" />... to JSON</li>
+				<li ty{!}pe='separator'></li>
+				<li data-op="action" data-action="exmark-clr"><img src='/img/icons16/draw_eraser.png' alt="[Open]" />Clear export mark</li>
+			</ul>
+		</li>
+		<!-- 20062024 CREATE BY IWI | START -->
+		{#if:_cache.current_rt.name=='Training Record:
+			<li id="training-report-button">
+				<i class="fa fa-file-text-o"  aria-hidden="true"></i>Training Expiry<!--05082024 change by iwi-->
+				<!-- 
+				<ul style='width: 160px;'>
+					<li class="" id="training-report-button" >Next 30 Days Expiry</li>
+				</ul> 
+				-->
+			</li>
+		}
+		{#if:_cache.current_rt.name=='Training Scheduler':
+			<li id="training-report-button">
+				<i class="fa fa-file-text-o" id="training-report-button-text" aria-hidden="true"></i>Training Expiry<!--05082024 change by iwi-->
+				<!-- 
+				<ul style='width: 160px;'>
+					<li class="" id="training-report-button" >Next 30 Days Expiry</li>
+				</ul> 
+				-->
+			</li>
+		}
+		<!-- 20062024 CREATE BY IWI | END -->
+		
+		{#if:_cache.current_rt.name=='MRN Monitor':<li><img src='/img/icons16/import-data.png' alt="Export" /><a href="/issue?action=importmrndata" >MRN Import</a></li>}
+		{#if:$_SESSION['organization']['type_id']=='forwarder':<li><img src='/img/icons16/import-data.png' alt="Export" /><a href="/issue?action=importmrndata" >Test</a></li>}
+		{#if:_cache.current_rt.name=='Air Cargo Claim':
+                <li>
+                    <img src="/img/icons16/statuses/new.png" alt="Export"><a target="_blank" href="/user/overview?action=Export_Record_Statistics_Chart_print&rt_key=cargoclaim&model=records_per_provision" >Provisions</a>
+<!--			<ul style='width: 150px;'>
+				<li ><img src='/img/icons16/table_export.png' alt="Reports" /><a target="_blank" href="/user/overview?action=Export_Record_Statistics_Chart_print&rt_key=cargoclaim&model=records_per_provision" >Active provisions</a></li>
+			</ul>-->
+		</li>
+		 <!--IWI Aircargoclaim chart page update 12012026 start-->
+		<!--<li id="listChartBtn" data-op="chart"><img src='/img/icons16/statuses/new.png' alt="bricks.png" />Chart {_cache.current_rt.name}</li>--> 
+                <!--<li id="listChartBtn" data-op="chart"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /><a href="/issue/list?action=air_cargo_claim_chart">Chart {_cache.current_rt.name}</a></li>-->
+                 <!--IWI Aircargoclaim chart page update 12012026 end-->
+                 <li style="display: none" id="listChartBtn" data-op="chart"></li>
+                 <li>
+                 <img src='/img/icons16/statuses/new.png' alt="bricks.png" /><a target="_blank" href="/issue/list?action=air_cargo_claim_chart" > KPI Dashboard</a>
+                 </li>
+		}
+		{#if:_cache.current_rt.name=='Cargo Damage':
+			<li id="cargoDamageListChartBtn"><img src='/img/icons16/statuses/new.png' alt="bricks.png" />Chart {_cache.current_rt.name}</li>
+		}
+
+		<!-- 05112024 Audit control chart | start  -->
+		{#if:_cache.current_rt.name=='Audit control':
+			<!-- 08012024 Audit control report changes -->
+			<!-- <li id="auditControlListChartBtn"><img src='/img/icons16/statuses/new.png' alt="bricks.png" />Report</li> -->
+			<!-- <li id="caPaReportListChartBtn" data-val="34" style="width:118px;"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /><a href="/issue/capa" class="opentext "></a><p>Action Report</p></li> -->
+			<li id="" style="width:118px;"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /><a href="/issue/capa" class="opentext "></a><p>Action Report</p></li>
+			<li id="auditPlanListBtn"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /> Audit Plan</li>
+		}
+		<!-- 05112024 Audit control chart | end  -->
+                {#if:_cache.current_rt.name=='Asset Control':
+                 <!--IWI separate listing page for all assets�07072026 start-->
+                 <li>
+                 <img src='/img/icons16/statuses/supplier_report.png' alt="bricks.png" /><a target="_blank" href="/issue/list?action=get_all_assets" > Asset Report</a>
+                 </li>
+                  <!--IWI separate listing page for all assets�07072026 end-->
+                 <li>
+                 <img src='/img/icons/ist/contract_orng.png' /><a onclick="module_redirect(55)" href="javascript:void(0)" > Supplier Control</a>
+                 </li>
+		}
+                {#if:_cache.current_rt.name=='Supplier Control':
+                 <li>
+                 <img src='/img/icons16/statuses/supplier_report.png' alt="bricks.png" /><a target="_blank" href="/issue/list?action=get_supplier_contracts" > Supplier Report</a>
+                 </li>
+                  <!--IWI contracts report page based on group location 27082026 start-->
+                 
+                 <li>
+                 <img src='/img/icons16/statuses/contract_analytics.png' alt="bricks.png" /><a target="_blank" href="/issue/list?action=contracts_analytics" > Contract Analytics</a>
+                 </li>
+                  <!--IWI contracts report page based on group location 27082026 end-->
+                 <li>
+                 <img src='/img/icons/ist/asset_control_orng.png'  /><a onclick="module_redirect(56)" href="javascript:void(0)" > Asset Control</a>
+                 </li>
+		}
+		
+		
+		<!-- 07112024 Audit Plan chart | start  -->
+		<!-- {#if:_cache.current_rt.name=='Audit control':
+			<li id="auditPlanListBtn"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /> Audit Plan</li>
+		} -->
+		<!-- 07112024 Audit Plan chart | end  -->
+
+		<!-- 08012024 Audit control report changes -->
+		{#if:_cache.current_rt.name=='Quality Event': 
+			<!-- <li id="caPaReportListChartBtn" data-val="31" style="width:118px;"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /><a href="/issue/capa" class="opentext "></a><p>Action Report</p></li> -->
+			 <li id="" style="width:118px;"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /><a href="/issue/capa" class="opentext "></a><p>Action Report</p></li>
+		}
+		{#if:_cache.current_rt.name=='Customer Inquiry':
+			<!-- <li id="caPaReportListChartBtn" data-val="7" style="width:118px;"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /><a href="/issue/capa" class="opentext "></a><p>Action Report</p></li> -->
+			 <li id="" style="width:118px;"><img src='/img/icons16/statuses/new.png' alt="bricks.png" /><a href="/issue/capa" class="opentext "></a><p>Action Report</p></li>
+		}
+		<!-- 08012024 Audit control report changes -->
+		
+		
+		
+		
+
+		<!--<li><img src='/img/icons16/lightning_go.png' alt="Go" />Links
+			<ul style='width: 220px;'>
+				<li><img src='/img/icons16/magnifier.png' alt="[Q]" /><a href="/search/global">Global Search</a></li>
+				<li ty{!}pe='separator'></li>
+				<li><img src='/img/icons16/cog.png' alt="[cog]" /><a href="/user/settings#preferences.1">Preferences</a></li>
+			</ul>
+		</li>--> 
+	</ul>
+</div>
+
+<!--IWI country & location bulk edit for License monitor start-->
+<div style="display:none">
+
+    <div id="bulkupdate">
+        <div style="padding:15px;">
+            <label>  Select Country </label>
+            <select name="lm_bulk_country" id="lm_bulk_country" required="" style=" width: 100px; ">
+                <option value=""> </option>
+                {cstmCountryHtml}
+            </select>
+        </div>
+        <div  style="padding:15px;"> 
+            <label>  Enter Location </label>
+            <input type="text" name="lm_bulk_location" id="lm_bulk_location" style=" width: 100px; " />
+        </div>
+
+    </div>
+</div>
+
+<!--IWI country & location bulk edit for License monitor end--> 
+
+
+<div id="listViewSec">
+{!Always show the filter bar, no longer an option to hide it. Important because it contains the "Reset search" button}
+<div class="toolbar jqx-widget jqx-rc-all" id='special-filter-bar'>{! style="padding-left: 0;"}
+	<div class='toolbar-accessory'>
+		<span class="titlePipe" style="margin-right: 15px;margin-left:0px;">{!<img alt="Filter" src="/img/icons/filter.png" style="margin: 2px 6px;">}Filters </span>
+	</div>
+	{!TODO: The availability of these buttons should depend on some access privileges}
+	<div class='toolbar-accessory' id="ex-filter-group">{!Exclusive filter group, these have radio buttons behaviour, can't have two of them active at once}
+		<button id="xfilter-showall">ALL</button>
+		<button id="xfilter-active">Active</button>
+		<button id="xfilter-closed">Closed</button>
+		<button id="xfilter-notasks">No tasks</button>
+{!		<button id="xfilter-notshared">Not yet shared</button>
+		{#ifnot:acls.unrestricted:
+			<button id="xfilter-notours">Shared with us</button>}}
+		{#if:acls.unrestricted:
+			<button id="xfilter-noorg">No Org./Hidden</button>}
+	</div>
+	<div class='toolbar-separator'></div>
+	<div class='toolbar-accessory' id="user-filter-group">{!Toggle filter group, any of these filters can be on at the same time}
+		<button id="ufilter-assigned">My assigned</button>
+		<button id="ufilter-unopen">Unopened</button>
+		<button id="ufilter-unexp">Not exported</button>
+	</div>
+	<div class='toolbar-separator'></div>
+	<button data-op="grid-state-reset"><img alt="Reset" src="/img/icons16/filter_clear.png">Reset</button>
+	{#if:acls.unrestricted:
+	{!<button class="toggle-btn" id="xfilter-random" title="Displays the rows in a randomly picked order, any other sorting and paging is ignored">Random order</button>}
+		<div class="right" id="xfilter-selectorg"></div>}
+</div>
+
+<div id="grid-notification-area" class="jqx-rc-all" style="display: none;"></div>
+<!-- 25062024 created by iwi  -->
+<div id="issues-grid" data-rtName="{_cache.current_rt.key}"></div>
+
+
+
+<br /><div class='info-expander'>
+	<div><img src="/img/icons16/information.png" style='float: left; margin-left: 20px; margin-right: 4px;' alt="Help" /> Click here for more information <a style="text-decoration: none; color: black;" href="Javascript://" onClick="$('#allyourbase').show();">!</a></div>
+	<div class='spacey'>
+		<br />
+		<h3 style="text-indent: 25px;">The <b>List and Search</b> section shows available records of one <i>Record Type</i>.</h3>
+		<p>You can use this section to find data and perform certain operations on one or more records.<br />
+		This grid is customizable, it is possible to choose which record fields are being shown, in what order and define your own widths for any column</p>
+		<hr />
+		<h3 style="text-indent: 25px;"><b>Stored Views</b> and layout management</h3>
+		<p>Once the grid has been configured to your liking, the layout can be saved into <b>Views</b> by using the command <i>Save view as...</i> from the <i>Views</i> menu.<br />
+		You will be able to retrieve and reuse the same view anytime.</p>
+		<p>Views store both the columns and the current filters/grouping/sorting, so you can come back anytime to your exact preferred display of information</p>
+		<hr />
+		<h3 style="text-indent: 25px;"><b>Exporting</b> data to Excel, HTML and CSV</h3>
+		<p>The software will attempt to export the exact information you see on the screen in one of the available formats:<br />
+		MS Excel (XLSX), HTML (For direct printing) or CSV (For importing into other software)<br />
+		Please note that it's possible the export will not be perfect, depending on certain columns.</p>
+		<p>Use the Views function to define your export formats, then switch to a view, set your desired page size (only current page is exported) and use the <i>Export table</i> function in the menu</p>
+		
+		<pre style="display: none;" id="allyourbase"><hr />
+	Somebody set up us the bomb.
+	We get signal. What ?!
+	Main screen turn on.
+	It's you !!
+	CATS: How are you gentlemen !!
+	CATS: <b>All your base are belong to us.</b>
+	CATS: You are on the way to destruction.
+	What you say !!
+	CATS: You have no chance to survive make your time.
+	CATS: Ha ha ha ha ...
+		</pre>	
+	</div>
+</div>
+</div>
+
+<!-- 11122023 created by iwi |  start -->
+
+ <!--IWI Cargo claim chart page changes 22052025 start-->
+<div id="chartViewSec">
+    <!-- start -->
+    <div class="claimchart">
+        <div class="simple-spinner-chart">
+            <span></span>
+        </div>
+
+        <div class="ra_maintab">
+            <ul class="nav nav-tabs">
+                
+                 <!--  IWI Aircargoclaim chart page update 12012026 start-->
+                <!--<li class="active claim-chart-div"><a data-toggle="tab" href="#claim">Cargo Claim</a></li>--> 
+                <li class="active claim-chart-div"><a data-toggle="tab" href="#claim">Cargo Claim</a></li> 
+                
+                 <!--  IWI Aircargoclaim chart page update 12012026 end-->
+                <li class="kpi-chart-div"><a data-toggle="tab" href="#kpi">KPI</a></li>
+                <li class="awbs-issued-div"><a data-toggle="tab" href="#awbs">Issued AWbs</a></li>
+                <li class="agent-report-div"><a data-toggle="tab" href="#agent">Agent Report</a></li>
+                <li class="agent-report-div"><a target="_blank" href="/user/overview?action=Export_Record_Statistics_Chart_print&rt_key=cargoclaim&model=records_per_provision" >Provisions</a></li>
+            </ul>
+
+            <div class="tab-content main-tab-content">
+                <div id="claim" class="tab-pane fade in active">
+                    <div class=" nextcontent">
+                        <div class="raleft_panel ">
+                            <div class="claim_search filterSection">
+                                <div class="form-group" >
+                                    <label for="exampleFormControlSelect1">Status:</label>
+                                    <select id="statusDropdown" class="form-control filterStatus" name="filterStatus" style="margin-left: 16px;width: 80px;">
+                                        <option value="all" selected>All</option>
+                                        <option value="active">Active</option>
+                                        <option value="closed">Closed</option>
+                                    </select>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="exampleFormControlSelect1">Year:<span>*</span></label>
+                                    <div>    
+                                        <select class="calendar getYear form-control" style="margin-left: 16px;width: 80px;">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="rayear form-group">
+                                    <label for="filterType">Type:</label>
+                                    <select id="filterType" name="filterType" class="form-control filterType" style="margin-left: 16px;width: 120px;">
+                                        <option value="yearly" selected>Yearly</option>
+                                        <option value="quarterly">Quarterly</option>
+                                        <option value="dates">Select Dates</option>
+                                    </select>
+                                </div>
+
+                               
+                                <div class="start_end_date_div" style="display: none; flex-wrap: nowrap; gap: 20px; align-items: center;">
+                                    <div class="form-group" style="flex: 1; min-width: 190px;">
+                                        <label for="exampleFormControlSelect1" style="min-width: 90px;">Start Date<span style="color: red;">*</span></label>
+                                        <div id="startDate" style="width: 195px;"></div>
+                                    </div>
+                                    <div class="form-group" style="flex: 1; min-width: 180px;">
+                                        <label for="exampleFormControlSelect1"style="min-width: 80px;">End Date<span style="color: red;">*</span></label>
+                                        <div id="endDate" style="width: 195px;"></div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="quarterly_date_div" style="display:none;margin-top: 9px;">
+                                    <div class="form-group ">
+                                        <label class="radio-inline"><input type="radio" class="quarterlyValue" value="Q1" name="quarterlyValue">Q1</label>
+                                        <label class="radio-inline"><input type="radio" class="quarterlyValue" value="Q2" name="quarterlyValue">Q2</label>
+                                        <label class="radio-inline"><input type="radio" class="quarterlyValue" value="Q3" name="quarterlyValue">Q3</label>
+                                        <label class="radio-inline"><input type="radio" class="quarterlyValue" value="Q4" name="quarterlyValue">Q4</label>
+                                    </div>
+                                </div>
+
+ 
+                                <div>
+                                    <button type="button" class="btn rabtnsub filterSubmit">Submit</button>
+                                </div>
+				<!--IWI Air Cargo claim chart page new design start-->
+								
+
+                                <div class="form-group_type" style="display: flex;align-items: center;margin-left: 880px;margin-top: -65px;white-space: nowrap;position: absolute;width:304px;">
+                                    <label for="exampleFormControlAirline">Airline:</label>
+                                    <select id="AirlineDropdown" class="form-control filtertype" name="filtertype" style="margin-left: 16px;width:304px;">
+                                        <option value="all" selected>All</option>
+                                        <option value=""> </option>
+                                        <option value=""> </option>
+                                    </select>
+                                </div>
+                                <!--IWI Air Cargo claim chart page new design end-->
+
+								
+                            </div>
+                        </div>
+                        <div class="raright_panel">
+                            <div class="radflex">
+                                <div>
+                                    <ul class="nav nav-pills claim-chart">
+                                        
+                                        <!--// IWI Aircargoclaim chart page update 12012026 start--> 
+<!--                                        <li class="claim-type active" data-action="claim-type" ><a data-toggle="pill" href="#claim1"> Overview</a></li>
+                                       <li class="formal-claim-type " data-action="formal-claim-type" ><a data-toggle="pill" href="#formalClaimTab"> Formal Claim</a></li> <!-- IWI Air Cargo claim chart page new design //  IWI Air Cargo claim chart page new design -->
+                                       <li class="claim-type "  ><a href="/issue/list?action=air_cargo_claim_chart"> Overview</a></li>
+                                       <li class="claim-type "  ><a href="/issue/list?action=air_cargo_claim_chart"> Financial</a></li>
+                                       <li class="formal-claim-type active" data-action="formal-claim-type" ><a data-toggle="pill" href="#formalClaimTab"> Formal Claim</a></li>
+                                       <!--// IWI Aircargoclaim chart page update 12012026 end--> 
+                                        
+                                        <li class="claim-aspects" data-action="claim-aspects" ><a data-toggle="pill" href="#claim2">Claim aspects</a></li>
+                                        <li class="claim-root" data-action="claim-root"><a data-toggle="pill" href="#claim3">Root-Cause </a></li>
+                                        <!--<li class="claim-financials" data-action="claim-financials"><a data-toggle="pill" href="#claim4">Financials</a></li>//IWI Aircargoclaim chart page update 12012026-->
+                                        <!--<li class="claim-service" data-action="claim-service"><a data-toggle="pill" href="#claim5">Service level</a></li> IWI Air Cargo claim chart page new design -->
+                                        <!--<li class="claim-activity" data-action="claim-activity"><a data-toggle="pill" href="#claim6">Claim activity</a></li> IWI Air Cargo claim chart page new design -->
+                                    </ul>
+                                </div>
+                                <div> <button type="button" class="btn radownload chart-download"> <span class="glyphicon glyphicon-download-alt"></span> Download</button></div>
+                            </div>
+                            <div class="ratab">
+                                <div class="tab-content">
+                                    <div id="claim1" class="tab-pane  canvas_div_pdf">      <!--  IWI Aircargoclaim chart page update 12012026-->
+                                        
+                                                
+                                <div style="background: #f3f3f3; border-radius: 12px; padding: 12px 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-family: 'Segoe UI', 'Roboto', sans-serif; color: #4c4a4a;">
+                                    <!-- Left Side: Year -->
+                                    <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px;">
+                                        <i class="fa fa-line-chart" style="color: #007bff; font-size: 18px;"></i>
+                                        <span class="chart_year"></span>
+                                    </div>
+
+                                    <!-- Right Side: Counts -->
+                                    <div style="display: flex; gap: 30px; font-size: 14px; font-weight: 500;">
+                                        <div style="display: flex; align-items: center; gap: 6px;">
+                                            <i class="fa fa-check-circle" style="color: #007bff; font-size: 16px; line-height: 1;"></i>
+                                            <span style="display: inline-flex; align-items: center; line-height: 1;">
+                                                Preliminary (<span id="total_preliminary_count" style="color: #007bff;"></span>)
+                                            </span>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 6px;">
+                                            <i class="fa fa-check-square" style="color: #fd7e14; font-size: 16px; line-height: 1;"></i>
+                                            <span style="display: inline-flex; align-items: center; line-height: 1;">
+                                                Formal (<span id="total_formal_count" style="color: #fd7e14;"></span>)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                            <h2 class="formal_txt" style="margin-top: 9px;">Top-10 Preliminary Claim</h2> 
+                                                            <!-- Right-side legend -->
+                                                            <div style="display: flex; gap: 20px; align-items: center; font-family: Roboto; font-size: 14px; margin-top: 8px;">
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <div style="width: 14px; height: 14px; background-color: #4274be; margin-right: 6px; border-radius: 2px;"></div>
+                                                                    <span>Origin</span>
+                                                                </div>
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <div style="width: 14px; height: 14px; background-color: #ffbb00; margin-right: 6px; border-radius: 2px;"></div>
+                                                                    <span>Destination</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="rachart" style="margin-top: -8px;"> 
+                                                            <div>
+                                                                <div id="Top_10_Preliminary_Claim_sec">
+                                                                    <canvas id="Top_10_Preliminary_Claim"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-6">
+                                                        <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                            <h2 class="formal_txt" style="margin-top: 9px;">Top-10 Formal Claim</h2> 
+                                                            <!-- Right-side legend -->
+                                                            <div style="display: flex; gap: 20px; align-items: center; font-family: Roboto; font-size: 14px; margin-top: 8px;">
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <div style="width: 14px; height: 14px; background-color: #4274be; margin-right: 6px; border-radius: 2px;"></div>
+                                                                    <span>Origin</span>
+                                                                </div>
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <div style="width: 14px; height: 14px; background-color: #ffbb00; margin-right: 6px; border-radius: 2px;"></div>
+                                                                    <span>Destination</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="rachart" style="margin-top: -8px;"> 
+                                                            <div>
+                                                                <div id="Top_10_Formal_Claim_sec">
+                                                                    <canvas id="Top_10_Formal_Claim"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="row claim_Chart_Table">
+                                                        <div class="col-md-6 ">
+                                                            <h2 class="formal_txt"> Top-10 Claim By Origin </h2>  
+
+                                                            <div class="rachart">
+                                                                <div class="radflex">				
+                                                                    <table >
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Origin</th>
+                                                                                <th>Damage</th>
+                                                                                <th>Total Loss</th>
+                                                                                <th>Delay</th>
+                                                                                <th>Partial Loss</th>
+                                                                                <th>Pilferage</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="Top_10_Claim_By_Origin"></table>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <h2 class="formal_txt"> Top-10 Claim By Destination</h2>  
+                                                            <div class="rachart">
+                                                                <div class="radflex">
+
+                                                                    <table >
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Destination</th>
+                                                                                <th>Damage</th>
+                                                                                <th>Total Loss</th>
+                                                                                <th>Delay</th>
+                                                                                <th>Partial Loss</th>
+                                                                                <th>Pilferage</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="Top_10_Claim_By_Destination"> </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                            <h2 class="formal_txt" style="margin: 0;">Top-10 Claim type</h2>
+
+                                                            <!-- Right-side legend -->
+                                                            <div style="display: flex; gap: 20px; align-items: center; font-family: Roboto; font-size: 14px; margin-top: 8px;">
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <div style="width: 14px; height: 14px; background-color: #4274be; margin-right: 6px; border-radius: 2px;"></div>
+                                                                    <span>Formal</span>
+                                                                </div>
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <div style="width: 14px; height: 14px; background-color: #ffbb00; margin-right: 6px; border-radius: 2px;"></div>
+                                                                    <span>Preliminary</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="rachart" style="margin-left: -12px;"> 
+                                                            <div>
+                                                                <div id="Top_10_Claim_type_sec">
+                                                                    <canvas id="Top_10_Claim_type"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-6">
+                                                        <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                            <h2 class="formal_txt" style="margin-top: 9px;">Open Record</h2> 
+                                                             <!-- Right-side legend -->
+                                                             <div style="display: flex; gap: 20px; align-items: center; font-family: Roboto, sans-serif; font-size: 14px; margin-top: 8px;">
+                                                                 <div style="display: flex; align-items: center;">
+                                                                     <div style="width: 14px; height: 14px; background-color: #4274be; margin-right: 6px; border-radius: 2px;"></div>
+                                                                     <span>Formal</span>
+                                                                 </div>
+                                                                 <div style="display: flex; align-items: center;">
+                                                                     <div style="width: 14px; height: 14px; background-color: #ffbb00; margin-right: 6px; border-radius: 2px;"></div>
+                                                                     <span>Preliminary</span>
+                                                                 </div>
+                                                                 <div style="display: flex; align-items: center;" id="Open_Record_Claim_other_lbl">
+                                                                     <div style="width: 14px; height: 14px; background-color: #999999; margin-right: 6px; border-radius: 2px;"></div>
+                                                                     <span>Other</span>
+                                                                 </div>
+                                                             </div>
+
+
+                                                        </div>
+                                                        <div class="rachart" style="margin-top: -8px;"> 
+                                                            <div>
+                                                                <div id="Open_Record_Claim_sec">
+                                                                    <canvas id="Open_Record_Claim"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+
+
+
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                            <h2 class="formal_txt" style="margin: 0;">Top 10 Service Level</h2>
+
+                                                        </div>
+                                                        <div class="rachart" style="margin-left: -12px;"> 
+                                                            <div>
+                                                                <div id="Top_10_Service_Level_sec">
+                                                                    <canvas id="Top_10_Service_Level"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-6">
+                                                        <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                            <h2 class="formal_txt" style="margin-top: 9px;">Top 10 Claim Activity</h2> 
+                                                        </div>
+                                                        <div class="rachart" style="margin-top: -8px;"> 
+                                                            <div>
+                                                                <div id="Top_10_Claim_Activity_sec">
+                                                                    <canvas id="Top_10_Claim_Activity"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+
+                                                <!--IWI Air Cargo claim chart page new design end-->
+
+                                    </div>
+                                    <!--IWI Air Cargo claim chart page new design start-->
+                                    <div id="formalClaimTab" class="tab-pane fade in active canvas_div_pdf"> <!--  IWI Aircargoclaim chart page update 12012026-->
+                                        <div class="radflex pb-15">
+                                            <div class="radflex_start"></div>
+                                        </div>
+
+                                        <!-- Top Summary -->
+                                        <div style="background: #f3f3f3; border-radius: 12px; padding: 12px 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-family: 'Segoe UI', 'Roboto', sans-serif; color: #4c4a4a;">
+                                            <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px;">
+                                                <i class="fa fa-line-chart" style="color: #007bff; font-size: 18px;"></i>
+                                                <span class="chart_year"></span>
+                                            </div>
+
+                                            <div style="display: flex; gap: 30px; font-size: 14px; font-weight: 500;">
+                                                <div style="display: flex; align-items: center; gap: 6px;">
+                                                    <i class="fa fa-check-square" style="color: #fd7e14; font-size: 16px;"></i>
+                                                    <span>Formal (<span id="formalClaimTab_total_formal_count" style="color: #fd7e14;"></span>)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Row 1 -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                    <h2 class="formal_txt" style="margin-top: 9px;">Top-10 </h2>
+                                                    <!-- Right-side legend -->
+                                                    <div style="display: flex; gap: 20px; align-items: center; font-family: Roboto; font-size: 14px; margin-top: 8px;">
+                                                        <div style="display: flex; align-items: center;">
+                                                            <div style="width: 14px; height: 14px; background-color: #4274be; margin-right: 6px; border-radius: 2px;"></div>
+                                                            <span>Origin</span>
+                                                        </div>
+                                                        <div style="display: flex; align-items: center;">
+                                                            <div style="width: 14px; height: 14px; background-color: #ffbb00; margin-right: 6px; border-radius: 2px;"></div>
+                                                            <span>Destination</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rachart" style="height: 300px; min-height: 300px; position: relative;">
+                                                    <div id="formalClaimTab_Top_10_Formal_Claim_Sec">
+                                                        <canvas id="formalClaimTab_Top_10_Formal_Claim"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                    <h2 class="formal_txt" style="margin-top: 9px;">Formal Claim Activity</h2>
+                                                </div>
+                                                <div class="rachart" style="height: 300px; min-height: 300px; position: relative;">
+                                                    <div id="formalClaimTab_Claim_Activity_Sec">
+                                                        <canvas id="formalClaimTab_Claim_Activity"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Row 2 -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                    <h2 class="formal_txt" style="margin-top: 9px;">Loss Details</h2>
+                                                </div>
+                                                <div class="rachart" style="height: 300px; min-height: 300px; position: relative;">
+                                                    <div id="formalClaimTab_Loss_Details_Sec">
+                                                        <canvas id="formalClaimTab_Loss_Details"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                    <h2 class="formal_txt" style="margin-top: 9px;">Special Handling Codes</h2>
+                                                </div>
+                                                <div class="rachart" style="height: 300px; min-height: 250px; position: relative;">
+                                                    <div id="formalClaimTab_Special_Handling_Codes_Sec">
+                                                        <canvas id="formalClaimTab_Special_Handling_Codes"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Row 3 -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                    <h2 class="formal_txt" style="margin-top: 9px;">Open Formal Claim Record</h2>
+                                                </div>
+                                                <div class="rachart" style="height: 300px; min-height: 300px; position: relative;">
+                                                    <div id="formalClaimTab_Open_Formal_Claim_Record_Sec">
+                                                        <canvas id="formalClaimTab_Open_Formal_Claim_Record"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                    <h2 class="formal_txt" style="margin-top: 9px;">Closed Formal Claim Record</h2>
+                                                </div>
+                                                <div class="rachart" style="height: 300px; min-height: 300px; position: relative;">
+                                                    <div id="formalClaimTab_Closed_Formal_Claim_Record_Sec">
+                                                        <canvas id="formalClaimTab_Closed_Formal_Claim_Record"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--IWI Air Cargo claim chart page new design end-->
+                                    <div id="claim2" class="tab-pane fade canvas_div_pdf">
+                                        <div class="radflex pb-15">
+                                            <div class="radflex_start">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="rachart" style="height: 300px; min-height: 300px; position: relative;">
+                                                    <h2>Top-20 Claim aspects Count</h2>
+                                                    <div id="myChart5P">
+                                                        <canvas id="myChart5"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 ">
+                                                <div class="rachart" style="height: 300px; min-height: 300px; position: relative;">
+                                                    <h2>Top-10 Claim aspects for Origin</h2>
+                                                    <div id="myChart6P">
+                                                        <canvas id="myChart6"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <div class="rachart">
+                                                    <h2>Top-10 Claim aspects for Destination</h2>
+                                                    <div id="myChart7P">
+                                                        <canvas id="myChart7"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="claim3" class="tab-pane fade canvas_div_pdf">
+                                        <div class="radflex pb-15">
+
+                                            <div class="radflex_start">
+                                            </div> 
+
+                                            <div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pr8">
+                                                <div class="rachart">
+                                                    <h2>Top 10 irregularity by origin</h2>
+                                                    <div id="myChart8P">
+                                                        <canvas id="myChart8"></canvas>
+                                                    </div>
+                                                    <div style="margin-top: 15px;">
+                                                        <ul>
+                                                            <li>MSC-Missing Cargo</li>
+                                                            <li>DAM-Damage</li>
+                                                            <li>SSP-Short Shipped</li>
+                                                            <li>HDL-Handling</li>
+                                                            <li>ACC-Acceptance</li>
+                                                            <li>OTH-Other</li>
+                                                            <li>DEV-Temperature deviation for Non-PIL shipments</li>
+                                                            <li>LCL-Load Control</li>
+                                                            <li>WHS-Wrong Storage</li>
+                                                            <li>MSD-Missing Documents</li>
+                                                            <li>OFL-Offload</li>
+                                                            <li>DGR-Dangerous goods</li>
+                                                            <li>BBU-Wrong\/Bad Build-Up</li>
+                                                            <li>MSG-Messaging Cargo Handling Agent</li>
+                                                            <li>MSR-Misrouted</li>
+                                                            <li>CCO-Missing by Out-check</li>
+                                                            <li>DEL-Cancelled, diverted or delayed flight</li>
+                                                            <li>CUS-Customs</li>
+                                                            <li>DOC-Documentation</li>
+                                                            <li>BBU-Wrong/Bad Build-Up</li>
+                                                            <li>PRO-Procedures</li>
+                                                            <li>RFS-Road Feeding Service</li>
+                                                            <li>TRF-Transfer</li>
+                                                            <li>OVC-Over carried</li>
+                                                            <li>RES-Reservation/Booking error</li>
+                                                            <li>DEL-Cancelled</li>
+                                                            <li>RES-Reservation\/Booking error]</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl8">
+                                                <div class="rachart">
+                                                    <h2>Top 10 irregularity by destination</h2>
+                                                    <div id="myChart9P">
+                                                        <canvas id="myChart9"></canvas>
+                                                    </div>
+                                                    <div style="margin-top: 15px;">
+                                                        <ul>
+                                                            <li>MSC-Missing Cargo</li>
+                                                            <li>DAM-Damage</li>
+                                                            <li>SSP-Short Shipped</li>
+                                                            <li>HDL-Handling</li>
+                                                            <li>ACC-Acceptance</li>
+                                                            <li>OTH-Other</li>
+                                                            <li>DEV-Temperature deviation for Non-PIL shipments</li>
+                                                            <li>LCL-Load Control</li>
+                                                            <li>WHS-Wrong Storage</li>
+                                                            <li>MSD-Missing Documents</li>
+                                                            <li>OFL-Offload</li>
+                                                            <li>DGR-Dangerous goods</li>
+                                                            <li>BBU-Wrong\/Bad Build-Up</li>
+                                                            <li>MSG-Messaging Cargo Handling Agent</li>
+                                                            <li>MSR-Misrouted</li>
+                                                            <li>CCO-Missing by Out-check</li>
+                                                            <li>DEL-Cancelled, diverted or delayed flight</li>
+                                                            <li>CUS-Customs</li>
+                                                            <li>DOC-Documentation</li>
+                                                            <li>BBU-Wrong/Bad Build-Up</li>
+                                                            <li>PRO-Procedures</li>
+                                                            <li>RFS-Road Feeding Service</li>
+                                                            <li>TRF-Transfer</li>
+                                                            <li>OVC-Over carried</li>
+                                                            <li>RES-Reservation/Booking error</li>
+                                                            <li>DEL-Cancelled</li>
+                                                            <li>RES-Reservation\/Booking error]</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pr8">
+                                                <div class="rachart">
+                                                    <h2>Top-10 conclusion by origin</h2>
+                                                    <div id="myChart10P">
+                                                        <canvas id="myChart10"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl8">
+                                                <div class="rachart">
+                                                    <h2>Top-10 conclusion by destination</h2>
+                                                    <div id="myChart11P">
+                                                        <canvas id="myChart11"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="claim4" class="tab-pane fade canvas_div_pdf">
+<!--                                        <div class="radflex pb-15">
+                                            <div>
+                                                <div class="rayear_box">
+                                                    <label class="chart_year"></label>
+                                                     Current Year 
+                                                    <div class="radflex_end">
+                                                        <div>
+                                                            <p>Claim</p>
+                                                            <span id="claim_amount"></span>
+                                                        </div>
+                                                        <div>
+                                                            <p>Paid</p>
+                                                            <span id="paid_amount"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                        <div class="radflex pb-15" style="background: #f3eaea; padding: 10px; margin-bottom: 10px; border-radius: 10px;">
+                                            <div class="rayear_box" style="display: flex;justify-content: space-between; color: #4c4a4a; gap: 20px;">
+                                               <label class="chart_year"></label>
+                                                <div class="radflex_end">
+                                                    <div>
+                                                        <p style="font-size: 14px;font-weight: 500; color: #4c4a4a;">
+                                                            Claim   
+                                                            (<span id="claim_amount" style="color: #4c4a4a;"></span>)
+                                                        </p>
+                                                       
+                                                    </div>
+                                                    <div>
+                                                        <p style="font-size: 14px;font-weight: 500; color: #4c4a4a;">
+                                                            Paid  
+                                                            (<span id="paid_amount" style="color: #4c4a4a;"></span>)
+                                                        </p>
+                                                        
+                                                    </div>
+                                                </div> 
+                                                
+                                                
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="rachart">
+                                                    <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                        <h2 style="margin-bottom: 0;">Top 10 Origin Financial</h2>  
+                                                     <!-- Right-side legend -->
+                                                        <div style="display: flex; gap: 20px; align-items: center; font-family: Roboto; font-size: 14px; margin-top: 8px;">
+                                                            <div style="display: flex; align-items: center;">
+                                                                <div style="width: 14px; height: 14px; background-color: #4274be; margin-right: 6px; border-radius: 2px;"></div>
+                                                                <span>Claim Amount</span>
+                                                            </div>
+                                                            <div style="display: flex; align-items: center;">
+                                                                <div style="width: 14px; height: 14px; background-color: #ffbb00; margin-right: 6px; border-radius: 2px;"></div>
+                                                                <span>Paid Amount</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="myChart12P">
+                                                        <canvas id="myChart12"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="rachart">
+                                                    <div style=" align-items: center; margin-bottom: 8px; display: flex ; justify-content: space-between;">
+                                                        <h2 style="margin-bottom: 0;">Top 10 Destination Financial </h2>
+                                                    <div style="display: flex; gap: 20px; align-items: center; font-family: Roboto; font-size: 14px; margin-top: 8px;">
+                                                            <div style="display: flex; align-items: center;">
+                                                                <div style="width: 14px; height: 14px; background-color: #4274be; margin-right: 6px; border-radius: 2px;"></div>
+                                                                <span>Claim Amount</span>
+                                                            </div>
+                                                            <div style="display: flex; align-items: center;">
+                                                                <div style="width: 14px; height: 14px; background-color: #ffbb00; margin-right: 6px; border-radius: 2px;"></div>
+                                                                <span>Paid Amount</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="myChart13P">
+                                                        <canvas id="myChart13"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="claim5" class="tab-pane fade canvas_div_pdf">
+                                        <div class="radflex pb-15">
+                                            <div class="radflex_start">
+                                            </div>
+                                            <div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="rachart">
+                                                    <h2>Top 10 Service Level</h2>
+                                                    <div id="myChart14P">
+                                                        <canvas id="myChart14"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="claim6" class="tab-pane fade canvas_div_pdf">
+                                        <div class="radflex pb-15">
+                                            <div class="radflex_start">
+                                            </div>
+                                            <div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="rachart">
+                                                    <h2>Top 10 Claim Activity</h2>
+                                                    <div id="myChart15P">
+                                                        <canvas id="myChart15"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="kpi" class="tab-pane fade">
+                    <div class="mdflex nextcontent">
+                        <div class="raleft_panel">
+                            <div class="">
+                                <div class="claim_search filterSection">
+                                    <div class="form-group" >
+                                        <label for="exampleFormControlSelect1">Status:</label>
+                                        <select id="statusDropdown" class="form-control filterStatus" name="filterStatus" style="margin-left: 16px;width: 80px;">
+                                            <option value="all" selected>All</option>
+                                            <option value="active">Active</option>
+                                            <option value="closed">Closed</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Year:<span>*</span></label>
+                                        <div>    
+                                            <select class="calendar kpiGetYear form-control" style="margin-left: 16px;width: 80px;">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="rayear">
+                                        <label class="radio-inline" style="top:5px;"><input type="radio" class="kpiFilterType" value="yearly" name="kpiFilterType" checked>Yearly</label>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn rabtnsub kpiFilterSubmit">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="raright_panel">
+                            <div class="radflex">
+                                <div>
+
+                                </div>
+                                <div> <button type="button" class="btn radownload kpi-chart-download"> <span class="glyphicon glyphicon-download-alt"></span> Download</button></div>
+                            </div>
+
+                            <div class="ratab">
+                                <div class="tab-content">
+                                    <div id="claim" class="tab-pane fade in active canvas_div_pdf2">
+                                        <div class="radflex pb-15">
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="rachart">
+                                                    <h2>Formal Claims per 1000 AWBs</h2>
+                                                    <div>
+                                                        <div id="myChart20P">
+                                                            <canvas id="myChart20"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="rachart">
+                                                    <h2>Total number of Claims (Preliminary + Formal) and Formal Claims per 1000 AWBs</h2>
+                                                    <div>
+                                                        <div id="myChart21P">
+                                                            <canvas id="myChart21"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="rachart">
+                                                    <h2>Total claimed amount in USD per 1000 AWBs</h2>
+                                                    <div>
+                                                        <div id="myChart22P">
+                                                            <canvas id="myChart22"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="rachart">
+                                                    <h2>Number of records with claimed amount greater than > 5,000USD; > 10,000USD; 25,000USD and 50,000USD</h2>
+                                                    <div>
+                                                        <div id="myChart23P">
+                                                            <canvas id="myChart23"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="awbs" class="tab-pane fade">
+                    <div class="nextcontent">
+                        <div class="text-left pull-left" style="margin-top: 8px;"> 
+                            <input id="Issued"class="aWbsIssuedInput form-control"  type="text" placeholder="Search..">
+                        </div>
+                        <div class="text-right">
+                            <a href="#" class="addawbs add-awbs-issued" data-toggle="modal" data-target="#addAwbsModal" style="margin-right: 5px;margin-top: 7px;"> 
+                                <span class="glyphicon glyphicon-plus"></span> Add Issued AWbs 
+                            </a>
+                        </div>
+                        <div class="table-responsive">          
+                            <table class="table table-striped table-bordered  aWbsIssuedTable" style="width: 100%;"> 
+                                <thead>
+                                    <tr>
+
+                                        <th style="width: 16%;">Month</th>
+                                        <th style="width: 13%;">Issued AWbs</th>
+                                        <th style="width: 10%;">Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="issuedAWbsHtml">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 17092024 added by iwi agent chart section work-->
+                <div id="agent" class="tab-pane fade">
+                    <div class="mdflex nextcontent">
+                        <div class="raleft_panel">
+                            <div class="">						   
+                                <div class="claim_search filterSection" style="width:100%;">
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1" >Year:<span>*</span></label>
+                                        <div>    
+                                            <select class="calendar reportGetYear form-control" style="margin-left: 16px;">
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="rayear form-group" style="display: flex; align-items: center; gap: 10px;">
+                                        <label for="reportFilterType" style="margin: 0;">Type:</label>
+                                        <select id="reportFilterType" class="reportFilterType form-control" name="reportFilterType" style="width: auto; width: 120px;">
+                                            <option value="yearly" selected>Yearly</option>
+                                            <option value="quarterly">Quarterly</option>
+                                            <option value="dates">Select Dates</option> 
+                                        </select>
+                                    </div>
+                                    <div class="report_start_end_date_div" style="display: none; flex-wrap: nowrap; gap: 20px; align-items: center;">
+                                        <div class="form-group" style="flex: 1; min-width: 190px;">
+                                            <label for="exampleFormControlSelect1" style="min-width: 90px;">Start Date<span style="color: red;">*</span></label>
+                                            <div id="reportStartDate" style="width: 190px;"></div>
+                                        </div>
+                                        <div class="form-group" style="flex: 1; min-width: 180px;">
+                                            <label for="exampleFormControlSelect1"style="min-width: 80px;">End Date<span style="color: red;">*</span></label>
+                                            <div id="reportEndDate" style="width: 190px;"></div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="report_quarterly_date_div" style="display:none;">
+                                        <div class="form-group">
+                                            <!-- 24092024 filter modify Air Cargo Claim chart -->
+                                            <label class="radio-inline"><input type="radio" class="reportQuarterlyValue" value="Q1" name="reportQuarterlyValue" checked>Q1</label>
+                                            <label class="radio-inline"><input type="radio" class="reportQuarterlyValue" value="Q2" name="reportQuarterlyValue">Q2</label>
+                                            <label class="radio-inline"><input type="radio" class="reportQuarterlyValue" value="Q3" name="reportQuarterlyValue">Q3</label>
+                                            <label class="radio-inline"><input type="radio" class="reportQuarterlyValue" value="Q4" name="reportQuarterlyValue">Q4</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="button" data-filterReload="true" class="btn rabtnsub agentReportFilterSubmit" style="margin-left: 49px;">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="raright_panel">
+                            <!-- 07102024 Agent Report filter modify start -->
+                            <div class="radflex agent-report-rs-main">
+
+
+                                <div class="agent-report-rs">
+                                    <div class="agent-report-rs-filter">
+                                        <div class="rs-filter-item">
+                                            <label>Agent </label>
+                                            <select name="agent_name_list" class="form-control" id="agent_name_list">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <div class="rs-filter-item">
+                                            <label>Origin  </label>
+                                            <select name="agent_origin_list" class="form-control" id="agent_origin_list">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="rs-filter-item">
+                                            <label>Status  </label>
+                                            <select name="agent_status_list" class="form-control" id="agent_status_list">
+                                                <option value="">Select</option>
+                                                <option value="active">Active</option>
+                                                <option value="closed">Closed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="agent-report-rs-btn-filter">
+                                        <button id="" class="btn rabtnsub agentReportFilterReset">Reset</button>
+                                        <button id="" data-filterReload="false" class="btn rabtnsub agentReportFilterSubmit">Submit</button>	
+                                    </div>
+                                </div>
+
+
+                                <div class="agent-report-rs-download"> 
+                                    <button type="button" class="btn radownload agent-report-chart-excel-download"> 
+                                        <span class="glyphicon glyphicon-download-alt"></span> Excel</button>
+                                    <button type="button" class="btn radownload agent-report-chart-download"> 
+                                        <span class="glyphicon glyphicon-download-alt"></span> Download</button>
+                                </div>
+                            </div>
+                            <!-- 07102024 Agent Report filter modify end -->
+
+                            <div class="ratab" style="width:1244px;">
+                                <div class="tab-content">
+                                    <div id="claim" class="tab-pane fade in active canvas_div_pdf3">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="rachart">
+                                                    <h2><span id="agent_report_chart_year"> </span></h2>
+                                                    <h2>No of Claims : <span id="no_of_claims"></span></h2>
+                                                    <div>
+                                                        <div id="myChart28P" >
+                                                            <canvas id="myChart28"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="radflex pb-15">
+                                            <div class="rayear_box">
+
+                                                <div class="radflex_end">
+                                                    <div>
+                                                        <p>Preliminary</p>
+                                                        <span id="agent_report_preliminary_count">0</span>
+                                                    </div>
+                                                    <div>
+                                                        <p>Formal</p>
+                                                        <span id="agent_report_formal_count">0</span>
+                                                    </div>
+                                                    <div>
+                                                        <p>Formal Claim Amount</p>
+                                                        <span id="agent_report_formal_claim_amount">0</span>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h2 class="formal_txt">Preliminary Claim type</h2>
+                                                <div class="rachart">
+                                                    <div class="radflex">
+                                                        <div class="rastack">
+                                                            <h2>By Origin</h2>
+                                                            <ul class="agentReportPreliminaryClaimByOrigin">
+                                                            </ul>
+                                                        </div>
+                                                        <div class="rastack">
+                                                            <h2>By Destination</h2>
+                                                            <ul class="agentReportPreliminaryClaimByDestination">
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <h2 class="formal_txt">Formal Claim type</h2>
+                                                <div class="rachart">
+                                                    <div class="radflex">
+                                                        <div class="rastack">
+                                                            <h2>By Origin</h2>
+                                                            <ul class="agentReportFormalClaimOriginValue">
+                                                            </ul>
+                                                        </div>
+                                                        <div class="rastack">
+                                                            <h2>By Destination</h2>
+                                                            <ul class="agentReportFormalClaimDestinationValue">
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- <h4>Welcome</h4> -->
+                </div>
+                <!-- 17092024 added by iwi -->
+
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="addAwbsModal"  role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close addAwbsIssuedModalClose" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title modal_txt">Add Issued AWbs</h2>
+                </div>
+                <div class="modal-body">
+                    <form action="javascript:void(0)" id="awbsAddForm" class="">
+                        <label for="year">Year:</label><br>
+                        <select class="getYearAWbs form-control year"></select>
+
+                        <label for="month">Month:</label><br>
+                        <select  class="getMonthAWbs form-control month"></select>
+
+                        <label for="month">Enter Number Of Issue Awbs:</label>
+                        <input type="number" min="0" class="form-control issue_awbs"  name="issue_awbs" value="">
+                        <button type="button"  class="submit-awbs-issued btn btn-primary">Submit</button>
+
+                        <!-- <input type="button" class="submit-awbs-issued form-control" value="Submit"> -->
+                    </form> 
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" role="dialog" id="editAwbsModal">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close editAwbsIssuedModalClose">&times;</button>
+                    <h2 class="modal-title modal_txt">Edit Issued AWbs</h2>
+                </div>
+                <div class="modal-body">
+                    <form action="javascript:void(0)" id="awbsAddForm" class="">
+                        <label for="year">Year:</label>
+                        <select class="editGetYearAWbs form-control year"></select>
+
+                        <label for="month">Month:</label>
+                        <select  class="editGetMonthAWbs form-control month"></select>
+
+                        <label for="month">Enter Number Of Issue Awbs:</label>
+                        <input type="number" min="0" class="form-control editIssueAwbs"  name="issue_awbs" value="">
+                        <input type="hidden" class="issue_awbs_id" value="0" name="issue_awbs_id">
+                        <button type="button"  class="edit-submit-awbs-issued btn btn-primary">Submit</button>
+                        <!-- <input type="button" class="edit-submit-awbs-issued form-control" value="Submit"> -->
+                    </form> 
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+  <!--IWI Cargo claim chart page changes 22052025 end-->
+ 
+<!-- 11122023 created by iwi |  end -->
+
+
+ <!-- 27022024 created by iwi |  start -->
+ <div id="cargoDamageChartViewSec">
+	<h1>Chart View Section</h1>
+ </div>
+ <!-- 27022024 created by iwi |  end -->
+ 
+ <!-- 15052024 created by iwi |  start -->
+ <div id="trainingReportViewSec">
+	
+	
+	<!-- 27092024 expiry report changes -->
+	<div class="ra_maintab">
+		
+		<ul class="nav nav-tabs trexpiry">
+		   <li class="active expiry_report_div"><a data-toggle="tab" href="#report">Report</a></li>
+		   <li class=" advance_expiry_report_div"><a data-toggle="tab" href="#advance-report">Advance Report</a></li>
+		</ul>
+		<div class="tab-content">
+		   <div id="report" class="tab-pane fade in active">
+
+				<div class="div_filter_section">
+					<div class="filter_report">
+						<div>
+							<div class="raradio">
+								<label class="report_type_days rtd_active"  for="0">Expired  </label>
+							</div>
+							<div class="raradio">
+								<label class="report_type_days "  for="30">30 Days  </label>
+							</div>
+							<div class="raradio">
+								<label class="report_type_days"  for="60">60 Days  </label>
+							</div>
+							<div class="raradio">
+								<label class="report_type_days"  for="90">90 Days  </label>
+							</div>
+							<div class="raradio">
+								<label class="report_type_days"  for="1">All  </label>
+							</div>
+						</div>
+						<div>
+							<div class="raradio rauser_pic">
+								<label for="internal" class="report_user_type rut_active"> 
+									<img src="/img/license_monitor/internal_users.png" title="Internal Users" class="user_pic">
+									Internal Users 
+								</label>
+							</div>
+							<div class="raradio rauser_pic">
+								<label for="external" class="report_user_type">
+									<img src="/img/license_monitor/external_users.png" title="External Users" class="user_pic">
+									External Users 
+								</label>
+							</div>
+							<div class="raradio rauser_pic">
+								<label for="all" class="report_user_type">
+									<img src="/img/license_monitor/external_users.png" title="All Users" class="user_pic">
+									All Users 
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+				<div id="trainingExpiryReportDataHtml">
+					<table class="rastable" id="trainingExpiryReportData">
+						<thead>
+							<tr>
+								<th>Trainee Name</th>
+								<th>Training Name</th>
+								<th>Training Result</th>
+								<th>Training Start </th>
+								<th>Training Expiry</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+		   </div>
+
+		    <div id="advance-report" class="tab-pane fade in ">
+				<div class="mdflex nextcontent">
+				<div class="raleft_panel">
+					<div class="">
+						<div>
+						</div>
+						<div class="claim_search">
+							<div class="report_filter_section">
+								<div class="form-group">
+									<label for="" class=" ">Trainee Name :</label>
+									<select name="person_name_list" class="form-control" id="person_name_list">
+										<option value="">Select</option>
+									</select>
+								</div>
+								<div class=" form-group">
+									<label for="" class=" "> Training :</label>
+									<select name="training_name_list" class="form-control" id="training_name_list">
+										<option value="">Select</option>
+									</select>
+								</div>
+				
+								<div class=" form-group">
+									<label for="" class=" ">Training Result :</label>
+									<select name="training_result_list" class="form-control" id="training_result_list">
+										<option value="">Select</option>
+										<option value="2">Pending</option>
+										<option value="1">Pass</option>
+										<option value="0">Fail</option>
+										<option value="3">No Training</option>
+									</select>
+								</div>
+				
+								<div class=" form-group">
+									<label for="" class=" "> Users Type :</label>
+									<select name="training_user_list" class="form-control" id="training_user_list">
+										<option value="">Select</option>
+										<option value="1">Internal Users</option>
+										<option value="0">External Users</option>
+									</select>
+								</div>
+				
+								<div class="form-group">
+									<label for="" class=""> Expiry From Date :</label>
+									<input type="date" class="form-control" name="training_from_date" id="training_from_date" 
+									min="2000-01-01" max="2040-01-01">
+								</div>
+								<div class="form-group">
+									<label for="" class="">Expiry To Date :</label>
+									<input type="date" class="form-control" name="training_to_date" id="training_to_date" 
+									min="2000-01-01" max="2040-01-01">
+								</div>
+								<div class="rasubmt">
+									<button class="btn rabtnsub" id="advanceFfilterTrainingExpiryReset" > Reset </button>
+									<button class="btn rabtnsub" id="advanceFilterTrainingExpiry" > Submit </button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="raright_panel">
+					<div id="trainingExpiryAdvanceReportDataHtml">
+					<table class="rastable" id="trainingExpiryAdvanceReportData">
+						<thead>
+							<tr>
+								<th>Trainee Name</th>
+								<th>Training Name</th>
+								<th>Training Result</th>
+								<th>Trainee Type</th>
+								<th>Training Start </th>
+								<th>Training Expiry</th>
+							</tr>
+						</thead>
+					</table>
+					</div>
+				</div>
+				</div>
+		 	</div>
+		</div>
+	 </div>
+	<!-- 27092024 expiry report changes -->
+
+
+
+
+
+
+
+	 
+		<!--
+		<div class="trainingReportTitle">
+			<div>
+				<h1 class="training_title">Training Expiry Report</h1>
+			</div>
+			<div>
+				<button style="margin-right: 15px;" class="btn btn-primary" id="trainingExpiryReportByExcel">
+					<img src="/img/excel.png" alt="Export Excel">
+				</button>
+				<button style="float: right;" class="btn btn-primary" id="trainingReportViewSecBtn">
+					<img src="/img/tr_printer.png" alt="Print Report">
+				</button>
+			</div>
+			
+		</div> 
+		
+
+		<div class="div_filter_section">
+			<div class="filter_report">
+				<div>
+					<div class="raradio">
+						<label class="report_type_days rtd_active"  for="0">Expired  </label>
+					</div>
+
+					<div class="raradio">
+						<label class="report_type_days "  for="30">30 Days  </label>
+					</div>
+
+					<div class="raradio">
+						<label class="report_type_days"  for="60">60 Days  </label>
+					</div>
+
+					<div class="raradio">
+						<label class="report_type_days"  for="90">90 Days  </label>
+					</div>
+
+					
+					<div class="raradio">
+						<label class="report_type_days"  for="1">All  </label>
+					</div>
+
+					
+
+				</div>
+				
+				<div>
+					<div class="raradio rauser_pic">
+						<label for="internal" class="report_user_type rut_active"> 
+							<img src="/img/license_monitor/internal_users.png" title="Internal Users" class="user_pic">
+							Internal Users 
+						</label>
+					</div>
+					<div class="raradio rauser_pic">
+						<label for="external" class="report_user_type">
+							<img src="/img/license_monitor/external_users.png" title="External Users" class="user_pic">
+							External Users 
+						</label>
+					</div>
+					<div class="raradio rauser_pic">
+						<label for="all" class="report_user_type">
+							<img src="/img/license_monitor/external_users.png" title="All Users" class="user_pic">
+							All Users 
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		-->
+		<!-- 23092024 Training Expiry Report filter add -->
+		<!-- <div class="sub_filter_section">
+			
+			<div class="report_filter_section">
+				<div class=" ">
+					<label for="" class=" ">Trainee Name :</label>
+					<select name="person_name_list" class="form-control" id="person_name_list">
+						<option value="">Select</option>
+					</select>
+				</div>
+				<div class=" ">
+					<label for="" class=" "> Training :</label>
+					<select name="training_name_list" class="form-control" id="training_name_list">
+						<option value="">Select</option>
+					</select>
+				</div>
+
+				<div class=" ">
+					<label for="" class=" "> Result :</label>
+					<select name="training_result_list" class="form-control" id="training_result_list">
+						<option value="">Select</option>
+						<option value="1">Pass</option>
+						<option value="0">Fail</option>
+					</select>
+				</div>
+
+				<div class=" ">
+					<label for="" class=" "> Result :</label>
+					<select name="training_user_list" class="form-control" id="training_user_list">
+						<option value="">Select</option>
+						<option value="0">All Users</option>
+						<option value="1">Internal Users</option>
+						<option value="2">External Users</option>
+					</select>
+				</div>
+
+				<div class="">
+					<label for="" class=""> Expiry From Date :</label>
+					<input type="date" name="training_from_date" id="training_from_date" min="2000-01-01" max="2040-01-01">
+				</div>
+				<div class="">
+					<label for="" class="">Expiry To Date :</label>
+					<input type="date" name="training_to_date" id="training_to_date" min="2000-01-01" max="2040-01-01">
+				</div>
+				<div class="">
+					<button class="btn rabtnsub" id="filterTrainingExpiry" > Submit </button>
+					<button class="btn rabtnsub" id="filterTrainingExpiryReset" > Reset </button>
+				</div>
+			</div>
+			
+		</div> -->
+		<!-- 23092024 Training Expiry Report filter add -->
+
+<!-- 		
+		<table class="rastable" id="trainingExpiryReportData   ">
+			<thead>
+				<tr style="text-align: justify;">
+					<th class="training_expiry_record_sorting sort-asc" data-sorting="0" data-type="string" >Trainee Name</th>
+					<th class="training_expiry_record_sorting" data-sorting="1" data-type="string"  >Training Name</th>
+					<th class="training_expiry_record_sorting" data-sorting="2" data-type="number" >Training Result</th>
+					<th class="training_expiry_record_sorting" data-sorting="3" data-type="number" >Training Start </th>
+					<th class="training_expiry_record_sorting" data-sorting="4" data-type="number">Training Expiry</th>
+				</tr>
+			</thead>
+			<tbody id="trainingReportViewSecData"></tbody>
+		</table> -->
+ </div>
+
+<!-- 15052024 created by iwi |  end -->
+
+
+<!-- 25102024 Audit control chart | start  -->
+<!-- 08012024 Audit control report changes and delete code | start -->
+<div id="auditControlChartViewSec" style="display:none;">
+	<div class="simple-spinner-chart"><span></span></div><!--06012025 changes  -->
+	<h3 class="text-center" style="font-weight: bold;">Audit Report</h3>
+	<div class="ra_maintab">
+		<ul class="nav nav-tabs trexpiry">
+		   <li class="" id="auditControlReportBtn"><a data-toggle="tab" href="#advance-report">Report</a></li>
+		   <li class="" id="auditControlChartReportBtn"><a data-toggle="tab" href="#report-chart">Chart</a></li> <!-- 05112024 Audit control  -->
+		   
+		</ul>
+		
+		<div class="tab-content">
+		    <div id="audit-advance-report" class="tab-pane" style="display: block;"><!-- fade in -->
+				<div class="mdflex nextcontent">
+				<div class="raleft_panel">
+					<div class="">
+						<div>
+						</div>
+						<div class="claim_search">
+							<div class="report_filter_section">
+								<div class=" form-group">
+									<label for="" class=" "> Status :</label>
+									<select name="audit_control_status" class="form-control" id="audit_control_status">
+										<option value="">Select</option>
+										<option value="active" selected>Active</option><!--05112024 Audit control -->
+										<option value="closed">Closed</option>
+									</select>
+								</div>
+
+								<!--07112024  Audit control new changes-->
+								<div class=" form-group">
+									<label for="" class=" "> CaPa Status :</label>
+									<select name="audit_control_capa_status" class="form-control" id="audit_control_capa_status">
+										<option value="">Select</option>
+										<option value="active" selected>Active</option>
+										<option value="closed">Closed</option>
+									</select>
+								</div>
+								<!--07112024  Audit control new changes-->
+
+								<!-- 04112024 Audit control changes by iwi start   -->
+								<div class="form-group">
+									<label for="" class="">Area :</label>
+									<select name="audit_control_area" class="form-control" id="audit_control_area">
+										<option value="">Select</option>
+										<option value="customs">Customs</option>
+										<option value="environment">Environment</option>
+										<option value="equipment">Equipment</option>
+										<option value="it">IT</option>
+										<option value="infrastructure">Infrastructure</option>
+										<option value="operations">Operations</option>
+										<option value="personnel">Personnel</option>
+										<option value="quality">Quality</option>
+										<option value="safety">Safety</option>
+										<option value="security">Security</option>
+										<option value="supplier">Supplier</option>
+										<option value="training">Training</option>
+										<option value="transportation">Transportation</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="" class="">Risk :</label>
+									<select name="audit_control_risk" class="form-control" id="audit_control_risk">
+										<option value="">Select</option>
+										<option value="CR">Critical </option>
+										<option value="MA">Major </option>
+										<option value="MI">Minor </option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="" class="">Type :</label>
+									<select name="audit_control_type" class="form-control" id="audit_control_type">
+										<option value="">Select</option>
+										<option value="finding">Finding</option>
+										<option value="observation">Observation</option>
+										<option value="opportunity">Improvement Opportunity</option>
+									</select>
+								</div>
+								<!-- 04112024 Audit control changes by iwi end   -->
+								<!-- 12112024 Audit control report changes start -->
+								<div class="form-group">
+									<label for="" class=""> Deadline Date :</label>
+									<input type="text"  class="form-control"  id="audit_control_deadline_date_rang" placeholder="Select Deadline Date Range">
+								</div>
+
+								<div class="form-group">
+									<label for="" class=""> Closing Date :</label>
+									<input type="text"  class="form-control"  id="audit_control_closing_date_rang" placeholder="Select Closing Date Range">
+								</div>
+								<div class="rasubmt">
+									<button class="btn rabtnsub" id="advanceFilterAuditControlReset" > Reset </button>
+									<button class="btn rabtnsub" id="advanceFilterAuditControl" > Submit </button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="raright_panel">
+					<div id="auditControlAdvanceReportDataHtml">
+					<table class="rastable" id="auditControlAdvanceReportData">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th style="width:200px;">Track</th>
+								<th>Title</th>
+								<th>Status</th>
+								<th>Risk</th>
+								<th>Type</th>
+								<th>Result</th>
+								<th>Deadline Date</th>
+								<th>Closing Date</th>
+							</tr>
+						</thead>
+					</table>
+					</div>
+				</div>
+				</div>
+		 	</div>
+			<!-- 05112024 Audit control chart  start -->
+			<div id="audit-report-by-chart" class="tab-pane" style="display: none;"><!-- fade in -->
+				<div class="mdflex nextcontent">
+				<div class="raleft_panel">
+					<div class="">
+						<div>
+						</div>
+						<div class="claim_search">
+							<div class="report_filter_section">
+								<div class="form-group">
+									<label for="exampleFormControlSelect1">Status</label>
+									<div>    
+										<select class="form-control" name="audit_control_chart_status" id="audit_control_chart_status">
+											<option value="">Select</option>
+											<option value="active" selected>Active</option>
+											<option value="closed">Closed</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class=" form-group">
+									<label for="" class=" "> CaPa Status :</label>
+									<select name="audit_control_chart_capa_status" class="form-control" id="audit_control_chart_capa_status">
+										<option value="">Select</option>
+										<option value="active" selected>Active</option>
+										<option value="closed">Closed</option>
+									</select>
+								</div>
+								
+								<div class="rasubmt">
+									<button class="btn rabtnsub" id="filterChartAuditControlReset"> Reset </button>
+									<button class="btn rabtnsub" id="filterChartAuditControlSub"> Submit </button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div class="raright_panel">
+						<span class="pdf_icon" id="auditControlChartDownload"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							<span>Download</span></span>
+						<div class="row audit_control_view_chart_sec" id="">
+							
+							<div class="col-md-12">
+								<div class="total_report_dv" style="position: relative;">
+									<span style="font-size:15px;font-weight: bold;">
+										<span >Total Record </span> : <span id="auditControlChartTotalRecord">2 </span>
+										<!--07112024  Audit control new changes start-->
+									</span>
+										<span class="audit_report_title" style="font-weight: bold;position: absolute;transform: translate(225%, -1px); font-size: 20px;">Audit Report </span>
+								</div>
+								
+							</div>
+							<div class="col-md-4">
+								<div class="raright_panel_report">
+									<h3>Audit Status Report</h3><!--07112024  Audit control new changes start-->
+									<div id="myChart29P" class="chart_graphs" style="height:255px;">
+										<canvas id="myChart29"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="raright_panel_report">
+									<h3>Audit Risk Report</h3><!--07112024  Audit control new changes start-->
+									<div id="myChart30P" class="chart_graphs" style="height:255px;">
+										<canvas id="myChart30"></canvas>
+									</div>
+								</div>
+								
+							</div>
+							<div class="col-md-4">
+								<div class="raright_panel_report">
+									<h3>Audit Type Report</h3><!--07112024  Audit control new changes start-->
+									<div id="myChart31P" class="chart_graphs"style="height:255px;">
+										<canvas id="myChart31"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12" style="margin-top: 30px;text-align: center;">
+								<div class="raright_panel_report">
+									<h3>Audit Area Report</h3><!--07112024  Audit control new changes start-->
+									<div id="myChart32P" class="chart_graphs" >
+										<canvas id="myChart32"></canvas>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+		 	</div>
+			<!-- 05112024 Audit control chart  end -->
+		</div>
+	</div>
+</div>
+<!-- 25102024 Audit control chart | end  -->
+<!-- 08012024 Audit control report changes and delete code | start -->
+
+
+
+<!-- 13112024 audit plan Schedule section work start -->
+<div id="auditPlanViewSec" style="display:none;">
+	
+	<div class="simple-spinner-chart"><span></span></div>
+	<h2 class="text-center" style="font-size: 24px;">Audit Plan</h2>
+	
+	<!-- <form method="post" action="/record/process?action=Load_save_audit_activity_management" id="auditActivityForm"> -->
+	<form method="post" action="#" id="auditPlanFormSec" class="frm_animated" style="display: none; " >
+		<table>
+			<colgroup><col style="width: 50%;" /><col style="width: 50%;" /></colgroup>
+			<tbody>
+				<tr>
+					<td valign="top">
+						<table class="audit_tupe">
+
+							<tr>
+								<td style="padding:10px 5px;">
+									<label for=''>Audit Title :  </label>
+								</td>
+								<td style="padding:6px 0px;">
+									<input type='text' id='audit_plan_title' name='audit_plan_title' 
+									class="form-control " maxlength="240" placeholder="Title" />
+								</td>
+							</tr>
+
+							<tr>
+								<td style="padding:10px 5px;">
+									<label for=''>Audit type :  </label>
+								</td>
+								<td style="padding:6px 0px;">
+									<select name="audit_plan_type" class="form-control" id="audit_plan_type">
+										<option value="">Select</option>
+									</select>
+								</td>
+							</tr>
+
+							
+							
+
+							<tr>
+								<td style="padding:10px 5px;">
+									<label for=''>Area :  </label>
+								</td>
+								<td style="padding:6px 0px;">
+									<select name="audit_plan_area" class="form-control" id="audit_plan_area">
+										<option value="">Select</option>
+										 <option value="customs">Customs</option>
+										<option value="environment">Environment</option>
+										<option value="equipment">Equipment</option>
+										 <option value="it">IT</option>
+										<option value="infrastructure">Infrastructure</option>
+										<option value="operations">Operations</option>
+										<option value="personnel">Personnel</option>
+										<option value="quality">Quality</option>
+										<option value="safety">Safety</option>
+										<option value="security">Security</option>
+										<option value="supplier">Supplier</option>
+										<option value="training">Training</option>
+										<option value="transportation">Transportation</option>
+									 </select>
+								</td>
+							</tr>
+
+							
+
+							<tr>
+								<td style="padding:10px 5px;">
+									<label for=''>Start Date :  </label>
+								</td>
+								<td style="padding:6px 0px;">
+									<input type="date" id='audit_plan_start_date' name='audit_plan_start_date' 
+									class="form-control left jqx-input jqx-rc-all" min="2000-01-01" max="2040-01-01"/>
+								 </td>
+							</tr>
+
+							<tr>
+								<td style="padding:10px 5px;">
+									<label for=''>End Date :  </label>
+								</td>
+								<td style="padding:6px 0px;">
+									<input type="date" id='audit_plan_end_date' name='audit_plan_end_date' 
+									class="form-control left jqx-input jqx-rc-all" min="2000-01-01" max="2040-01-01"/>
+								 </td>
+							</tr>
+							
+							<tr>
+								<td style="padding:10px 5px;">
+									<label for=''>Schedule Type :  </label>
+								</td>
+								<td style="padding:6px 0px;">
+									<select name="audit_plan_schedule_type" class="form-control" id="audit_plan_schedule_type">
+										<option value="">Select</option>
+										<option value="weekly">Weekly</option>
+										<option value="biweekly">Bi-Weekly</option>
+										<option value="monthly">Monthly</option>
+										<option value="quarterly">Quarterly</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:10px 5px;">
+									<label for="">No of Audit:  </label>
+								</td>
+								<td style="padding:6px 0px;">
+									<p style="font-weight: bold;" id="auditPlanNoOfSchedule">0</p>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td class="frm_btn_grp">
+									<!--  15112024 audit plan Schedule changes start -->
+									<button type="button" id="auditPlanSaveFormBtn" class="btn btn-primary"><span>
+										<img src="/img/icons16/save.png" style="margin:-2px 1px 0px 0;"></span>Save
+									</button>
+									<!--  15112024 audit plan Schedule changes end -->
+									<button type="button" id="auditPlanCloseFormBtn" class="btn btn-primary"><span>
+										<img src="/img/icons16/cross.png" style="margin:-2px 1px 0px 0;"></span>Close</button>
+									<button type="button" id="createScheduleAuditBtn" class="btn btn-primary">
+										<!-- <img src="/img/icons16/save.png" style="margin:-2px 1px 0px 0;"> -->
+										<!-- 26112024 audit plan Schedule section changes -->
+										<i class="fa fa-calculator" title="Create Schedule"></i>
+										Schedule 
+									</button>
+								</td>
+							</tr>						
+					   </table>
+					</td>
+					<td valign="top">
+						<div class="mh_srcl">
+							<div id="scheduleAuditDataListingHtml">
+								<table class="rastable" id="scheduleAuditDataListing">
+									<thead>
+										<tr>
+											<th>Track</th>
+											<th>Audit Name</th>
+											<th>Schedule Time</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+
+							<table class="audit_tupe" id="auditTable_1" style="display: none;">
+								<input type="hidden" name="total_audit_referance" id="total_audit_referance" value="0">
+								<input type="hidden" name="delete_audit_referance" id="delete_audit_referance" value="">
+
+								<input type="hidden" name="audit_plan_id" id="audit_plan_id" value="0">
+							</table>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<div class="linecreate">
+		<button type="button" id="auditPlanCreateFormBtn" class="btn btn-primary"> <span>
+			<img src="/img/icons16/add.png" style="margin:0px 0px 0px 0"></span>Create
+		</button>
+	</div>
+	<div id="auditPlanReportDataHtml">
+		<table class="rastable" id="auditPlanReportData">
+			<thead>
+				<tr>
+					<!-- 26112024 audit plan Schedule section changes-->
+					<th>Id</th>
+					<th>Title</th> 
+					<th>Type</th>
+					<th>Area</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Scheduled</th>
+					<th>Period</th> 
+					<th>Count</th>
+					<th>Action</th>
+					<!-- 26112024 audit plan Schedule section changes-->
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<!-- 13112024 audit plan Schedule section work end -->
+
+
+
+
+
+
+
+	<!-- 03122024 CaPa Report Chart section work start -->
+	
+	<div id="caPaReportViewSec" style="display:none;">
+		<!---class name changes audit_report_titles insead of audit_report_title 9-1-25 start--->
+		<div class="audit_report_titles">
+			<div class="div1" style="width:263px"></div>
+			<div class="div2"style="width: calc(100% - 227px);">
+				<h3> CaPa Report </h3> 
+			</div>
+		</div> 
+		<!---class name changes audit_report_titles insead of audit_report_title 9-1-25 start--->
+		<div class="ra_maintab">
+			<div class="simple-spinner-chart"><span></span></div>
+			
+			
+			<div class="tab-content">
+				<div id="caPa-advance-report" class="tab-pane" style="display: block;"><!-- fade in -->
+					<div class="mdflex nextcontent" style="position: relative;">
+						<!-- <span class="serach_icon"><i class="fa fa-search" aria-hidden="true"></i></span> -->
+					<div class="raleft_panel">
+						 
+						<div class="filter-report-lft-panel"><!-- 14012025 capa report filter changes -->
+							<ul class="nav nav-tabs trexpiry">
+								<li class="active caPaReportBtn" id="caPaReportBtn"><a data-toggle="tab" href="#advance-report">Report</a></li>
+								<li class="caPaChartReportBtn" id="caPaChartReportBtn"><a data-toggle="tab" href="#report-chart">Chart</a></li>
+							</ul>
+						</div>
+						<div class="">
+							<div>
+							</div>
+							<div class="claim_search">
+								<!-- 05122024 CaPa changes by iwi start-->
+								<div class="report_filter_section">
+									<div class=" form-group">
+										<label for="" class=""> Report Type :</label>
+										<select name="capa_report_type_value" class="form-control" id="capa_report_type_value">
+											<option value="">All</option>
+											<option value="7" >Customer Inquiry</option>
+											<option value="31">Quality Event</option>
+											<option value="34">Audit control</option>
+										</select>
+									</div>
+
+									<!-- 
+									31122024 capa report changes start
+										<div class=" form-group">
+										<label for="" class=" "> Status :</label>
+										<select name="capa_report_status" class="form-control" id="capa_report_status">
+											<option value="">All</option>
+											<option value="active" selected>Active</option>
+											<option value="closed">Closed</option>
+										</select>
+									</div> -->
+									<!-- 
+									06012025 capa report changes start
+									<div class=" form-group">
+										<label for="" class=" "> CaPa Status :</label>
+										<select name="capa_report_capa_status" class="form-control" id="capa_report_capa_status">
+											<option value="">All</option>
+											<option value="active" selected>Active</option>
+											<option value="closed">Closed</option>
+										</select>
+									</div> -->
+									<div class="form-group">
+										<label for="" class="">Area :</label>
+										<select name="capa_report_area" class="form-control" id="capa_report_area">
+											<option value="">All</option>
+											<option value="customs">Customs</option>
+											<option value="environment">Environment</option>
+											<option value="equipment">Equipment</option>
+											<option value="it">IT</option>
+											<option value="infrastructure">Infrastructure</option>
+											<option value="operations">Operations</option>
+											<option value="personnel">Personnel</option>
+											<option value="quality">Quality</option>
+											<option value="safety">Safety</option>
+											<option value="security">Security</option>
+											<option value="supplier">Supplier</option>
+											<option value="training">Training</option>
+											<option value="transportation">Transportation</option>
+										</select>
+									</div>
+	
+									<div class="form-group">
+										<label for="" class="">Risk :</label>
+										<select name="capa_report_risk" class="form-control" id="capa_report_risk">
+											<option value="">All</option>
+											<option value="CR">Critical </option>
+											<option value="MA">Major </option>
+											<option value="MI">Minor </option>
+										</select>
+									</div>
+	
+									<div class="form-group">
+										<label for="" class="">Type :</label>
+										<select name="capa_report_type" class="form-control" id="capa_report_type">
+											<option value="">All</option>
+											<option value="finding">Finding</option>
+											<option value="observation">Observation</option>
+											<option value="opportunity">Improvement Opportunity</option>
+										</select>
+									</div>
+									<!--31122024 capa report changes start-->
+									
+									<!-- <div class="form-group">
+										<label for="" class=""> Deadline Date :</label>
+										<input type="text"  class="form-control"  id="capa_report_deadline_date_rang" placeholder="Select Deadline Date Range">
+									</div>
+	
+									<div class="form-group">
+										<label for="" class=""> Closing Date :</label>
+										<input type="text"  class="form-control"  id="capa_report_closing_date_rang" placeholder="Select Closing Date Range">
+									</div> -->
+									<!--31122024 capa report changes end-->
+									<div class="rasubmt">
+										<button class="btn rabtnsub" id="advanceFilterCaPaReportReset" > Reset </button>
+										<button class="btn rabtnsub" id="advanceFilterCaPaReport" > Submit </button>
+									</div>
+								</div>
+								<!-- 05122024 CaPa changes by iwi end-->
+							</div>
+						</div>
+					</div>
+					<div class="raright_panel">
+						<!-- 31122024 capa report changes start -->
+						<div class="radio_btn">
+							
+							<!---03-01-25 code comments off start---->
+
+							<!-- <div class="form-check active_btn">
+								<input class="form-check-input selector_item_radio" value="active" type="radio" name="capa_report_status" id="capa_report_status" checked>
+								<label class="form-check-label" for="active">
+									Active
+								</label>
+							</div>
+							<div class="form-check close_btn">
+								<input class="form-check-input selector_item_radio" value="closed" type="radio" name="capa_report_status" id="capa_report_status">
+								<label class="form-check-label" for="close">
+									Close
+								</label>
+							</div> -->
+							
+							<!---03-01-25 comments off end---->
+
+							<!---03-01-25 code add start---->
+							
+							<div class="tabs">
+								<!-- 06012025 changes section -->
+								<button class="capa_report_capa_status tab active active_report" for="active">Active</button>
+								<button class="capa_report_capa_status tab close_btn" for="closed">Closed</button>
+							</div>
+							
+							<!---03-01-25 code add end---->
+						</div>
+						<div id="caPaReportAdvanceReportDataHtml" class="2203_class">
+							<table class="rastable" id="caPaReportAdvanceReportData">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th style="width:200px;">Track</th>
+										<th>Title</th>
+										<th>Area</th><!--06012025 changes  grid changes-->
+										<th>Risk</th>
+										<th>Type</th>
+										<th>Report Type</th> <!--31122024 capa report changes start-->
+										<th>Status</th><!--06012025 changes  grid changes-->
+										<th>Deadline Date</th>
+										<th>Closing Date</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<!-- 31122024 capa report changes end -->
+					</div>
+					</div>
+				 </div>
+				<div id="caPa-report-by-chart" class="tab-pane" style="display: none;"><!-- fade in -->
+					<div class="mdflex nextcontent">
+					<div class="raleft_panel">
+						<div class="filter-report-lft-panel"><!-- 14012025 capa report filter changes -->
+							<ul class="nav nav-tabs trexpiry">
+								<li class="active caPaReportBtn" id="caPaReportBtn"><a data-toggle="tab" href="#advance-report">Report</a></li>
+								<li class=" caPaChartReportBtn" id="caPaChartReportBtn"><a data-toggle="tab" href="#report-chart">Chart</a></li>
+							</ul>
+						</div>
+						<div class="">
+							<div>
+							</div>
+							<div class="claim_search">
+								<div class="report_filter_section">
+									<!-- 05122024 CaPa changes by iwi start-->
+									<div class="form-group">
+										<label for="" class=""> Report Type :</label>
+										<select name="capa_chart_report_type" class="form-control" id="capa_chart_report_type">
+											<option value="">All</option>
+											<option value="7" >Customer Inquiry</option>
+											<option value="31">Quality Event</option>
+											<option value="34">Audit control</option>
+										</select>
+									</div>
+									
+
+									<div class="form-group">
+										<label for="exampleFormControlSelect1">Status</label>
+										<div>    
+											<select class="form-control" name="capa_chart_status" id="capa_chart_status">
+												<option value="">All</option>
+												<option value="active" selected>Active</option>
+												<option value="closed">Closed</option>
+											</select>
+										</div>
+									</div>
+									<div class=" form-group">
+										<label for="" class=" "> CaPa Status :</label>
+										<select name="capa_chart_capa_status" class="form-control" id="capa_chart_capa_status">
+											<option value="">All</option>
+											<option value="active" selected>Active</option>
+											<option value="closed">Closed</option>
+										</select>
+									</div>
+									<!-- 05122024 CaPa changes by iwi end-->
+									<div class="rasubmt">
+										<button class="btn rabtnsub" id="filterChartCaPaReportReset"> Reset </button>
+										<button class="btn rabtnsub" id="filterChartCaPaReportSub"> Submit </button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						<div class="raright_panel">
+							<!---- 08-01-25 caPaReportChartDownload pdf_icon css change start ----->
+							<span class="pdf_icon" id="caPaReportChartDownload" style="top:140px;z-index: 999;"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+								<span>Download</span></span>
+							<!-- <div class="audit_report_title">
+								<h3> Audit Report </h3>
+							</div> -->
+							<!---- 08-01-25 caPaReportChartDownload pdf_icon css change end ----->
+
+							<div class="row caPa_report_view_chart_sec" id="">
+								<!----add audit title here start------->
+								<!-- <span class="audit_report_title">
+									<h3>Audit Report</h3>
+								</span> -->
+								<!----add audit title here end------->
+								<div class="col-md-12">
+									<div class="total_report_dv">
+										<span style="font-size:15px;font-weight: bold;">
+											<span >Total Record </span> : <span id="caPaReportChartTotalRecord">0</span>
+										</span>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="raright_panel_report">
+										<h3>Audit Status Report</h3>
+										<div id="myChart33P" class="chart_graphs" style="height:255px;">
+											<canvas id="myChart33"></canvas>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="raright_panel_report">
+										<h3>Audit Risk Report</h3>
+										<div id="myChart34P" class="chart_graphs" style="height:255px;">
+											<canvas id="myChart34"></canvas>
+										</div>
+									</div>
+									
+								</div>
+								<div class="col-md-4">
+									<div class="raright_panel_report">
+										<h3>Audit Type Report</h3>
+										<div id="myChart35P" class="chart_graphs"style="height:255px;">
+											<canvas id="myChart35"></canvas>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12" style="margin-top: 30px;text-align: center;">
+									<div class="raright_panel_report">
+										<h3>Audit Area Report</h3>
+										<div id="myChart36P" class="chart_graphs" >
+											<canvas id="myChart36"></canvas>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				 </div>
+			</div>
+		</div>
+	</div>
+	<!-- 03122024 CaPa Report Chart section work end -->
+
+
+
+
+ <!-- 06062024 created by iwi | start -->
+ <!-- <div id="externalTrainingReportViewSec">
+	<div class="trainingReportTitle">
+	<h1>External Report Next 30 Days</h1>
+	<button style="float: right;" class="btn btn-primary" id="trainingReportViewSecBtn">
+		<img src="/img/tr_printer.png" alt="Print Report">
+	</button>
+	</div>
+	<div>
+		<input type="text" id="externalTrainingName" placeholder="Search for names..">
+	</div>
+	<span class="simple-spinner-chart"></span>
+	<table class="rastable " id="">
+		<tr style="text-align: justify;">
+		<th>Person Name</th>
+		<th>Training Name</th>
+		<th>Training Expiry</th>
+		</tr>
+		<tbody class="externaltrainingReportViewSecData" id="externalTrainingReportViewSecData">
+		</tbody>
+	</table>
+</div> -->
+
+ <!-- 06062024 created by iwi | end -->
+ 
+
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+{@<script id="win-column-settings" type="text/dryjstpl">
+	<div class="jqx-rc-all jqx-widget jqx-widget-content jqx-grid jqx-reset">
+		<div id="columns-editor-operations" class="command">
+			<button style="margin-top: 28px;" id="columns-editor-moveup" title="Move Up" data-cmd="moveup"></button>
+			<button id="columns-editor-movedown" title="Move Down" data-cmd="movedown"></button>
+				<div>Up/Down</div>
+			<button style="margin-top: 8px;" id="columns-editor-movetop" title="Move as first" data-cmd="movetop"></button>
+			<button id="columns-editor-movebottom" title="Move to end" data-cmd="movebottom"></button><div>First/Last</div>
+			<button style="margin-top: 8px;" id="columns-editor-visibility" title="Visibility" data-cmd="visibility"></button>
+				<div>Toggle</div>
+			<button style="margin-top: 8px;" id="columns-editor-allon" title="Everything visible" data-cmd="allon"></button>
+			<button style="margin-top: 8px;" id="columns-editor-alloff" title="All hidden" data-cmd="alloff"></button>
+				<div>Everything</div>
+		</div>
+		<table><tr id="tab-header">
+			<td id="only-visible">Visible?</td>
+			<td>Name: <input id='search-column-name' type='text' maxlength='10' placeholder="(type to search)" /> <button id='search-column-clear'>Clear</button></td>
+			<td><select id='columns-section-filter'>
+				<option value=''>All sections</option>
+				{#loop:sections::_s:<option>{$_s}</option>}
+			</select></td>
+			<td>Custom width</td>
+		</tr></table>
+		<div id="tab-body">{!Scrolling container}
+			<table id="editor-columns">
+			{#loop:columns:_id:_col:<tr data-fk='{$_col.fk}'>
+				<td><input class="cbvisi" type="checkbox" value="1" /></td>
+				<td class='colname'>{$_col.text}</td>
+				<td class='colsec'>{$_col.s}</td>
+				<td><input class='tbwid' type="text" value="{$_col.w}"></td>
+			</tr>}
+			</table>
+		</div>
+	</div>
+	<div style="padding-left: 20px;">
+		<p>Click on a column name to select it, and the <b>up/down</b> and <b>first/last</b> buttons to move it<br />The visibility buttons show or hide the column in the grid</p>
+		<p><span class='red' style="font-size: 110%;">Remember to save your View using the menu option <b>Views &raquo; Save view</b></span><br />
+		Accepting changes here does not save your view automatically !</p>
+	</div>
+</script>}
+
+{@<script id="win-save_view" type="text/dryjstpl">
+	<div style="padding: 4px 12px;">
+		<table id="grid-view-save">
+			<tr>
+				<td style="width: 180px;"><div id="radio-create-view">Create new</div></td>
+				<td><input id="grid-view-name" type="text" style="width: 522px; height: 27px; line-height: 22px; box-sizing: border-box;" placeholder="(Name the view)" /></td>
+			</tr>
+			<tr>
+				<td style="width: 180px;"><div id="radio-existing-view">Existing view</div></td>
+				<td><div id="grid-view-save-select"></div></td>
+			</tr>
+			<tr>
+				<td style="width: 180px;">Include Special Settings:</td>
+				<td><div id="grid-view-ss" class='left'></div> <span class='gray left' style='margin-left: 8px; line-height: 25px;'>Width / Autorefresh / Tracking #</span></td>
+			</tr>
+			<tr id='grid-view-save-for' style="display: none;">
+				<td style="width: 180px;">Store the view for:</td>
+				<td>
+					<div id="radio2-user">Myself</div>
+					<div id="radio2-dep">Department</div>
+					<div id="radio2-org">Organization</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</script>}
+
+{@<script id="win-special_settings" type="text/dryjstpl">
+	<div style="padding: 4px 12px;">
+		<table class='unselectable' style="width: 100%;">
+			<tr>
+				<td style="width: 133px;" class="info-tip" data-tooltip_position="left" data-tooltip="Current width: {$width} pixels">Screen width</td>
+				<td style="line-height: 25px;"><div class='inline left' style='margin-right: 15px; width: 45px;'>950px </div><div id="ss-width" style='float: left; clear: none;'></div><div class='inline left' style='margin-left: 16px;'> 4070px</div></td>
+			</tr>
+			<tr>
+				<td style="width: 133px;" class="info-tip" data-tooltip_position="left" data-tooltip="Current autorefresh: {$autoref_text}">Autorefresh (sec)</td>
+				<td style="line-height: 25px;"><div class='inline left' style='width: 60px;'>OFF </div><div id="ss-autoref" style='float: left; clear: none;'></div><div class='inline left' style='margin-left: 15px;'> 10min</div></td>
+			</td>
+			<tr>
+				<td style="width: 133px;">Hide Tracking #</td>
+				<td><div id="ss-hidetrack" style='margin-left: 60px;' class='left'></div><span class='inline left' style="line-height: 25px; margin-left: 20px;"><b>Attention</b>: the direct open link won't be available !</span></td>
+			</td>
+		</table>
+		<p>Recommended widths for different monitor types (click on number to set):</p>
+		<ul id="ss-screensizes">
+			<li><label>Older 4:3 monitor (17&quot;, 19&quot;)</label><b>1140</b> pixels</li>
+			<li><label style="font-style: italic;">Common laptop (15&quot;) - Default</label><b>1320</b> pixels</li>
+			<li><label>Older wide-screen monitor (19&quot;, 22&quot;)</label><b>1640</b> pixels</li>
+			<li><label>Modern Full HD wide-screen (24&quot;, 27&quot;)</label><b>1880</b> pixels</li>
+			<li><label>Professional QuadHD panel (27&quot;, 30&quot;)</label><b>2520</b> pixels</li>
+			<li><label>Ultra-High Definition TV</label><b>4050</b> pixels</li>
+		</ul>
+		<p><span class='red' style="font-size: 110%;">Remember to save your View using the menu option <b>Views &raquo; Save view</b></span><br />
+		Accepting changes here does not save your view automatically !</p>
+	</div>
+</script>}
+
+{@<script id="win-org_select" type="text/dryjstpl">
+	<div id="org_select-listbox"></div>
+	<p class='gray center'>Select the organization then press OK</p>
+</script>}
+
+{@<script id="win-xf_select" type="text/dryjstpl">
+	<div id="xf_select-listbox"></div>
+	<p class='gray center'>(Un)Select fields then press OK</p>
+</script>}
+
+{@<script id="win-delete_view" type="text/dryjstpl">
+	<div style="padding: 4px 12px;">
+		<div id="grid-view-delete-select"></div>
+	</div>
+</script>}
+
+{@<script id="notif-grid-preserved" type="text/dryjstpl">
+	<span style="line-height: 18px; color: black;">The search parameters <i>(filters / sorting / groups / page)</i> are currently remembered. &nbsp; Use <b>[Reset]</b> button to clear all search parameters.</span>
+</script>}
+
+{@<script id="notif-grid-autorefresh" type="text/dryjstpl">
+	<span style="line-height: 18px; color: black;">Grid is automatically refreshed every <b>{$autoref_s}</b> seconds. Be aware that data might change unexpectedly !</span>
+</script>}
+
+
+
+
+<!--IWI assign multi record from grid start-->
+{@<script id="modal-user_search" type="text/dryjstpl">
+    <form class="spacey" name="assign-user-to-record" action="?action=assign_user" method="post">
+    <div><label for="user-search-dep-list">Department filter:</label><div id="user-search-dep-list"></div></div>
+    <div><label for="user-search">Search user:</label><div id="user-search"></div></div>
+  
+    <div id="quick-user-information"><div class="autocenter gray"><div>Please select an user first to see more details</div></div></div>
+    </form>
+</script>}
+<!--IWI assign multi record from grid end-->

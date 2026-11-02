@@ -1,0 +1,11 @@
+<div>
+	<div id="org_perspective-select"></div>
+	<button id="record-set_master" class="info-tip" data-cmd="set_master" data-tooltip_width="380" data-tooltip_position="bottom" data-tooltip="Sets a new organization as the Master (owner) of this record. Previous organizations remain connected."><img alt="Key:" src="/img/icons16/key.png"> Set New Master</button>
+</div>
+
+<script id="template-master-org" type="text/dryjstpl">{@
+	<form name="organization-search" action="?action=set_master_org" enctype="application/x-www-form-urlencoded" method="post">
+		<div><label>Search for org:</label><div id="admin-org-search"></div></div>
+		<div id="quick-org-information"><div class="autocenter"><span class="gray">Please select an organization</span></div></div>
+	</form>
+}</script>

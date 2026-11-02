@@ -1,0 +1,38 @@
+{!Some staff-user options which can be added to the issue submit form}
+<h4><span class="gray">2.</span> Staff member options:</h4>
+<table>
+{#if:%CFG.issue_submit.user_flags.priority:{#use:priority:<tr>
+	<td valign="top" style="padding: 5px 24px; width: 300px; text-align: left;">
+		<h2>Priority:</h2>
+		<p>Set intial priority for this {%iname}:</p>
+	</td>
+	<td>
+		<div id='priority_radios' style="padding: 4px;">
+			{#repeat:%ist.priorities_ex:<div id="prio_{*}"><img src='/img/icons16/priorities/{*}.png' alt="{$}" style="margin-left: 6px;" /> {$}~cut(100,2)~</div>}
+			<input id='issue_priority' type='hidden' name='{name}' value='{value}' />
+		</div>
+	</td>
+</tr>}
+<tr><td colspan="2"><hr /></td></tr>}
+<tr><td colspan="2" style="padding: 5px 24px;">
+	<h3 style="margin-top: 10px;">Department access (visibility) options:</h3>
+	<div id="submit-department-options">
+		<div data-value="cdep">Only <span class="green info-tip" data-tooltip="Department name: <b>{%department.name}</b>">my department</span> receives access</div>
+		<div data-value="org">Organization-wide visibility <span class='inline-icon icon-attention info-tip' data-tooltip="Please make sure you really want organization-wide visibility for this issue !"></span></div>
+	</div>
+	<h3 style="margin-top: 10px;">Operation to perform on <b>STEP 2</b>:</h3>
+	<div id="submit-process-options">
+		<div data-value="record">Only record the issue for <span class="green info-tip" data-tooltip="Organization name: <b>{%organization.name}</b>">my organization</span> <span class='inline-icon icon-warning info-tip' data-tooltip="Attention, the data <b>WILL NOT BE SENT</b> when choosing this option !"></span></div>
+		<div data-value="transfer">Submit the issue by e-mail to another organization</div>
+		{!<div data-value="automatic">Automatically transfer the issue to the default handler</div>}
+	</div>
+	{!<hr />
+	<h3>What to show after issue has been processed:</h3>
+	<div id="submit-finalize-options">
+		<div data-value="show">The overview with all recorded information</div>
+		<div data-value="print">A clean, white background version which can be easily printed</div>
+		<div data-value="repeat">This form again with the same data (to add another similar issue)</div>
+		<div data-value="form">The form again with all fields empty</div>
+	</div>}
+</td></tr>
+</table>

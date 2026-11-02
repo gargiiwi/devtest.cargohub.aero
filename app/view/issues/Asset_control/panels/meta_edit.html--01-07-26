@@ -1,0 +1,91 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+	{#use:title:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>
+			<input type='text' id='{id}' name='{name}' value='{value}' 
+			class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'
+			{#if:display.error: data-tooltip='{display.error}'} />	
+		</td>
+	</tr>} 
+	{#use:b_name:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>
+			<input type='text' id='{id}' name='{name}' value='{value}' 
+			class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'
+			{#if:display.error: data-tooltip='{display.error}'} />	
+		</td>
+	</tr>} 
+	  {#use:reference:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>
+			<input type='text' id='{id}' name='{name}' value='{value}' 
+			class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'
+			{#if:display.error: data-tooltip='{display.error}'} />	
+		</td>
+	</tr>} 
+	{#use:m_date:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:s_no:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>
+			<input type='text' id='{id}' name='{name}' value='{value}' 
+			class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'
+			{#if:display.error: data-tooltip='{display.error}'} />	
+		</td>
+	</tr>} 
+	
+	{#use:location:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:address:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+	  	{#use:desc:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:user:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		
+		{#use:date_use:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:end_date:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+	</tr>}
+		
+	{#use:service_expiry:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+	</tr>}
+	
+		<!-- {#use:business_impact:<tr id="business_impact_type" style="display: none;">
+			<th><label>{display.label}: </label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'>
+				<input name='{^name}' class="classroom_type" type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>} -->
+		{#use:business_impact:<tr style="text-align: center;">
+			<th><label>{display.label}: </label></th>
+			<td>	<select class="dropselect" name='{name}' data-width="140" data-dwidth="150" data-dheight="150" data-dalign="right" data-filterable="1" id='{id}'>
+					<option value=''></option>
+					{#repeat:options:<option style="text-align: left;" value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>
+			</td>}
+		</tr>
+		
+	
+ 
+	  
+	  
+		</table>
+		
+</form>}

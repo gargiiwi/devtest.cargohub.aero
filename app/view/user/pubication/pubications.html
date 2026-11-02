@@ -1,0 +1,100 @@
+<div class="readonly_publish_documents_div_section "> 
+
+    <!--<h4 style="text-indent:0px;"> </h4>-->
+    <div class="get_flx">
+        <div >
+            <h4 class="get_pub" style="color:#000000;">Documentation Library</h4>
+        </div>
+        <div class="search-container-sec">
+            <div class="search-container">
+                <div class="dropdown">
+                    <button class="dropdown-button">Search By <i class='fa fa-angle-down'></i></button>
+                    <div class="dropdown-content">
+                        <label><input type="checkbox" name="search_publish_documents_type" checked="" value="by_name"> Name</label>
+                        <label><input type="checkbox" name="search_publish_documents_type" checked="" value="by_desc"> Description </label>
+                    </div>
+                </div>
+                <input type="text" id="search_publish_documents" class="search-box" placeholder="Search...">
+                <input type="hidden" id="search_publish_documents_type" value="department" />
+            </div>
+        </div>
+<!--        <div>
+            <img class="log_pub"  alt="" src="{orgLogo}" style="margin-right: 6px;" >
+        </div>-->
+    </div>
+
+    <div>
+        
+        <!--        <div class="ratbsearch" style="padding: 0 10px;">
+                    <div>
+                        <span><b>Search by : </b></span>
+                        <label class="sacheck">Name
+                            <input type="checkbox" name="search_publish_documents_type" value="by_name" >
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="sacheck">Description
+                            <input type="checkbox"  name="search_publish_documents_type" value="by_desc" >
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="hidden" id="search_publish_documents_type" value="department" />
+                        <input type="text" name="search_publish_documents" placeholder="Document Name" id="search_publish_documents" class="search_publish_documents" style="width: 260px;" />
+                         <button class="rasearch" id="doments_rasearch">Search</button> 
+                    </div>
+        
+                </div>-->
+
+        <div class="ratabs">
+            <div class="simple-spinner">
+                <span></span>
+            </div>
+
+            <div id="tabsall">
+                <ul class="nav nav-tabs" id="user-nav-tabs">
+                    <!-- 28012025 read only user documentation add Announcement-->
+                    <li role="presentation" id="fetch_all_notification" ><button><i class="fa fa-bell" aria-hidden="true"></i> Announcement </button></li>
+                    <!-- <li role="presentation" id="fetch_all_data"><button>Organizations</button></li> -->
+                    <!-- 28012025 read only user documentation add Announcement-->
+                    <li role="presentation" class="active"  id="fetch_department_data"><button>Departments</button></li>
+                </ul>
+                 <!-- <button id="infoBtn" class="btn btn-light" style="position: absolute; right: 10px; top: 5px;"onclick="document.querySelector('#fetch_all_notification button').click();">
+                <i class="fa fa-info-circle"></i>
+                </button> -->
+                <!-- <button id="infoBtn" title="View Announcement Info" onclick="document.querySelector('#fetch_all_notification button').click();"
+  style="
+    position: absolute; right: 12px;top: 8px;background-color: transparent;border: none;color: #555;font-size: 22px; cursor: pointer;transition: color 0.2s ease, transform 0.2s ease;"
+  onmouseover="this.style.color='#007bff'; this.style.transform='scale(1.2)';"
+  onmouseout="this.style.color='#555'; this.style.transform='scale(1)';"
+>
+  <i class="fa fa-info-circle"></i>
+</button> -->
+
+            </div>
+
+            <div id="content">
+                <div id="content1">
+                    <div class="div_wrap">
+                        <div class="myReadSignNotiSec">
+                            <a class="myReadSignNotiLink" href="/user/publication?action=get_all_read_sign_by_read_only_user" target="_blank">({read_sign_count}) Read & Sign <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="rafiltertab">
+                        <label for="search_by_department_list">Department : </label>
+                        <select name="search_by_department_list" id="search_by_department_list">
+                            <option value="" disabled="disabled" selected>Select Department </option>
+                            {assign_departments_list}
+                        </select>
+                    </div>
+                    <div>
+                        <table border="0" cellspacing="0"  id="publish_documents" style="border-spacing:0 5px;">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div> 

@@ -1,0 +1,18 @@
+<div id="contact-overview" class="spacey" style="margin-bottom: 20px;">
+	<div style="width: 675px; float: left; margin-right: 25px;">
+		{#include:contact:includes/vcard.html}
+	</div>
+	<div style="width: 400px; float: left;">
+		<h3>Operations menu</h3>
+		<hr />
+		<div class='command'><button class="info-tip" id='btn_submit' data-op='link' data-link='http://www.cargoclaims.aero/cms?path=worldwide' data-tooltip="Submit new issue"></button> Submit new issue</div>
+		<div class='command'><button class="info-tip" id='btn_find' data-op='link' data-link='/contact/account#issues' data-tooltip="List all submitted issues in a search grid."></button> Find my issues</div>
+		{!<hr />
+		<div class='command'><button class="info-tip" id='btn_comm' data-op='link' data-link='/contact/account#comm' data-tooltip="Display communication between me and other parties."></button> Communication area</div>
+		<div class='command'><button class="info-tip" id='btn_abook' data-op='link' data-link='/contact/account#managed' data-tooltip="Manage another contact beside myself."></button> Manage another contact</div>}
+		<hr />
+		<div class='command'><button class="info-tip" id='btn_vcard' data-op='edit-self' data-tooltip="Edit my personal contact information."></button> Edit my contact data</div>
+		<div class='command'><button class="info-tip" id='btn_logout' data-op='link' data-link='/?action=logout' data-tooltip="Logout from the system."></button> Logout</div>
+	</div>
+	<div class="clear"></div>
+</div>

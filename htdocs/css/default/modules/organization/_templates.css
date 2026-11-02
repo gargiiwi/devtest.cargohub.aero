@@ -1,0 +1,47 @@
+#template-editor form > div {
+	margin-bottom: 4px;
+}
+
+#template-editor form > div label {
+	display: inline-block;
+	float: left;
+	line-height: 26px;
+	padding-right: 8px;
+	text-align: right;
+	width: 135px;
+}
+
+#template-editor form > div .form-control {
+	display: inline-block;
+}
+
+#template-editor form > div input.form-control {
+	height: 24px;
+	padding-left: 3px;
+	box-sizing: border-box;
+}
+
+#template-editor form > div .static {
+	color: gray;
+	line-height: 26px;
+	text-shadow: 0 1px 0 lightgray;
+}
+
+/* Specialty ccontrols */
+#tpl-xdata > * {
+	float: left;
+	display: inline-block;
+}
+
+#template-editor form > div.CodeMirror {
+	height: 565px; /* 34-35 lines of code */
+}
+
+#template-editor div.mce-tinymce i.mce-i-tplfield {
+	background: url(/img/icons16/textfield.png) no-repeat left 3px;
+}
+
+span.deadline_days-link:hover {
+	color: #333333;
+	cursor: pointer;
+}

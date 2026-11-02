@@ -1,0 +1,64 @@
+/** Reports Generation/Manager Page **/
+div.site > div.page > div#reports_overview {
+}
+
+div#reports_overview div.command {
+	height: 52px;
+	line-height: 52px;
+	font-size: 120%;
+	white-space: nowrap;
+	border-bottom: 1px solid lightgray;
+}
+
+div#reports_overview div.command button {
+	margin: 6px 12px;
+}
+
+div#reports_overview div.command button#report_add { background-image: url("/img/icons/report_add.png");	}
+div#reports_overview div.command button#report_edit { background-image: url("/img/icons/report_edit.png"); }
+div#reports_overview div.command button#report_delete { background-image: url("/img/icons/report_delete.png"); }
+
+form.vertiform input[type='text'], form.vertiform input[type='password'] {
+	width: 190px;
+	padding: 4px;
+	margin: 0px;
+	border: 1px solid lightgray;
+	border-radius: 3px;
+}
+
+form.vertiform h4 {
+	margin: 0px;
+}
+
+div#output_report {
+	float: right;
+	width: 260px;
+	border: 1px solid gray;
+}
+	div#output_report h4 {
+		background-color: lightgray;
+		border-bottom: 1px solid gray;
+		margin: 0px 0px 6px;
+		padding: 2px;
+		clear: left;
+		text-indent: 16px;
+	}
+
+	div#output_report ul {
+		margin: 6px 10px;
+		padding: 0px;
+	}
+
+	div#output_report li {
+		list-style: none;
+	}
+	
+	div#output_report input[type="submit"] {
+		width: 250px;
+		margin: 5px;
+	}
+	
+	div#output_report li > div {
+		float: left;
+		margin-bottom: 6px;
+	}

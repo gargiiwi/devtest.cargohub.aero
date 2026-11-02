@@ -1,0 +1,67 @@
+{#use:%ist.xfield_def:
+	<h4 style="background-image: url('/img/icons16/question2.png'); background-repeat: no-repeat; background-position: 4px;">Investigation:
+		{#if:^xfields.inv_done.value:<label{#if:^xfields.inv_done.key==3: class='red'}{#if:^xfields.inv_done.key==1: class='green thick'}{#if:^xfields.inv_done.key==2: class='blue'}>{^xfields.inv_done.value} <input type='checkbox' disabled="disabled"{#if:^xfields.inv_done.key==3: checked="checked"}></label>}
+		{#ifnot:^xfields.inv_done.value:<span class='gray'>---</span>}
+	</h4>
+	<div>
+		<table style="width: 99%;">
+			<tr>
+				<td style="width: 33%; text-align: center;">Deadline</td>
+				<td style="width: 33%; text-align: center;">Started</td>
+				<td style="width: 33%; text-align: center;">Completed</td>
+			</tr>
+			<tr>
+				<td class="center">{#if:^xfields.inv_limit_date:<span class='thick red'>{^xfields.inv_limit_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_limit_date:<span class='gray'>---</span>}</td>
+				<td class="center">{#if:^xfields.inv_start_date:<span class='thick blue'>{^xfields.inv_start_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_start_date:<span class='gray'>---</span>}</td>
+				<td class="center">{#if:^xfields.inv_end_date:<span class='thick green'>{^xfields.inv_end_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_end_date:<span class='gray'>---</span>}</td>
+			</tr>
+		</table>
+	</div>
+
+	<h5 class="left">Findings and investigation remarks</h5>
+	<div class="clear"></div>
+	{#if:^xfields.inv_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.inv_descr}~nl2br~</div>}
+	{#ifnot:^xfields.inv_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/judge-hammer.png'); background-repeat: no-repeat; background-position: 4px;">{respo.n}</h4>
+	{#ifnot:^xfields.respo:<div class='gray center'>---</div>}
+	{#repeat:^xfields.respo:<span class="itembox">{value}</span>}
+	{#if:^xfields.respo_oth:<span class="itembox">{^xfields.respo_oth}</span>}
+	<div class="clear"></div>
+	<h5 style="text-indent: 20px;">Details:</h5>
+	<div>{^xfields.respo_extra:<span class="gray">---</span>}</div>
+	<hr />
+	<table>
+		<col width="50%" /><col width="50%" />
+		<tr>
+			<td style="color: darkblue;">{risk_class.n}:</td>
+			<td style="color: darkred;">{risk_class2.n}:</td>
+		</tr>
+		<tr>
+			<td valign="top">{#ifnot:^xfields.risk_class:<span class='gray'>---</span>}{#repeat:^xfields.risk_class:<span class="itembox green">{value}</span>}</td>
+			<td valign="top">{#ifnot:^xfields.risk_class2:<span class='gray'>---</span>}{#repeat:^xfields.risk_class2:<span class="itembox green">{value}</span>}</td>
+		</tr>
+	</table>
+	
+	<h4 style="margin-top: 12px; background-image: url('/img/icons16/clock_edit.png'); background-repeat: no-repeat; background-position: 4px;">Estimations</h4>
+	<table>
+		<tr><th>{e_diff.n}:</th><td>{#if:^xfields.e_diff.value:{^xfields.e_diff.value}~cut(100,3)~}{#ifnot:^xfields.e_diff.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Est. Hours:</th><td>{#if:^xfields.e_hr_min:{^xfields.e_hr_min} - {^xfields.e_hr_max}}{#ifnot:^xfields.e_hr_min:<span class='gray'>---</span>}</td></tr>
+	</table>
+	
+	<h4 style="margin-top: 12px; background-image: url('/img/icons16/lightning_go.png'); background-repeat: no-repeat; background-position: 4px;">Actions</h4>
+	<table>
+		<tr><th>{capa_types.n}:</th>
+		<td>{#ifnot:^xfields.capa_types:<span class='gray'>N/A</span>}{#repeat:^xfields.capa_types:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{capa_proc.n}:</th><td>{#ifnot:^xfields.capa_proc:<span class='gray'>---</span>}{#repeat:^xfields.capa_proc:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.capa_proc_oth:<tr><th>{capa_proc_oth.n}:</th><td>{^xfields.capa_proc_oth}</td></tr>}
+	</table>
+	
+	<h5>Actions performed</h5>
+	<div class="clear"></div>
+	{#if:^xfields.capa_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.capa_descr}~nl2br~</div>}
+	{#ifnot:^xfields.capa_descr:<div class="gray" style="text-indent: 20px;">-----</div><hr />}
+	<table style="margin-top: 12px;">
+		<tr><th>{resolved_date.n}:</th><td>{#if:^xfields.resolved_date:{^xfields.resolved_date}~date("Y-m-d")~}{#ifnot:^xfields.resolved_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

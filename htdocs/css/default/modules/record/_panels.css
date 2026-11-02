@@ -1,0 +1,3239 @@
+/** Panels Tab **/
+/*  IWI Record Details Page Redesign 10092026 start
+div#submitter-info {
+    display: inline-block;
+    margin: 12px 0 2px 16px;
+}
+div#submitter-info label {
+    color: gray;
+    display: inline-block;
+    width: 110px;
+}
+
+div.multi-commands {
+    display: inline-block;
+}
+
+div.multi-commands button {
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-right: 8px;
+}
+
+div.panel-top-button {
+    text-align: center;
+    padding: 6px;
+    margin-bottom: 6px;
+}
+
+div.datatable {
+    font-size: 90%;
+}
+
+
+div.datatable > table span > img {
+    position: relative;
+    top: 4px;
+}
+
+div.datatable > table, div.datatable > form table {
+    border: none;
+    table-layout: fixed;
+    border-spacing: 1;
+    border-collapse: separate;
+    empty-cells: show;
+    caption-side: left;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+div.datatable > table tr, div.datatable > form tr {
+    line-height: 18px;
+}
+div.datatable > table th, div.datatable > form th {
+    text-align: left;
+    font-weight: normal;
+    width: 150px;
+    border-right: 1px solid lightgray;
+}
+div.datatable > table td, div.datatable > form td {
+    padding-left: 8px;
+}
+
+div.restricted-panel {
+    position: relative;
+    height: 100%;
+    text-align: center;
+}
+
+div.restricted-panel > div {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -25px;
+}
+
+
+
+
+div.jqx-window-header span.panel-cmds {
+    margin-left: 16px;
+}
+div.jqx-window-header span.panel-report {
+    margin-left: 8px;
+    color: darkgreen;
+    font-weight: bold;
+    text-shadow: 2px 2px white;
+}
+
+div.jqx-window-header button {
+    line-height: 14px;
+}
+
+div.jqx-window-header button > img {
+    float: left;
+    margin: -1px 6px 0px 0px;
+}
+
+div.jqx-window-header a {
+    line-height: 14px;
+    padding: 3px 6px 4px 6px;
+}
+div.jqx-window-header a:HOVER, div.jqx-window-header a:VISITED {
+    text-decoration: none;
+    color: inherit;
+}
+
+div.jqx-window-header a > img {
+    position: relative;
+    display: inline-block;
+    margin-right: 4px;
+    top: 3px;
+    border: none;
+}
+
+ IWI Record Details Page Redesign 10092026 end */
+
+/*IWI Quality event record panel section Investigation modification 08122025 start*/
+
+
+.qualityEventActionForm {
+    font-family: inherit;
+    background: #f5f7fb;
+    color: #1f1f1f;
+}
+
+.qualityEventActionForm form {
+    padding: 10px;
+}
+
+.qualityEventActionForm .section-title {
+    font-size: 16px;
+    font-weight: 700;
+
+    background: linear-gradient(90deg, #737373, #3b455696);
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin: 25px 0 15px 0;
+}
+
+.qualityEventActionForm .section0-grid,
+.qualityEventActionForm .section2-grid {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.qualityEventActionForm .section1-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.qualityEventActionForm .section2-grid .col-3-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+.qualityEventActionForm .section2-grid .col-2-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+@media (max-width: 950px) {
+    .qualityEventActionForm .section1-grid,
+    .qualityEventActionForm .section2-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.qualityEventActionForm .left-column,
+.qualityEventActionForm .right-column {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.qualityEventActionForm .form-row {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.qualityEventActionForm .form-row label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+.qualityEventActionForm .section0-grid .form-row .action-options label {
+    display: flex;
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+
+.qualityEventActionForm .form-control,
+.qualityEventActionForm textarea,
+.qualityEventActionForm select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    outline: none;
+    transition: 0.2s;
+}
+
+.qualityEventActionForm .form-control:focus,
+.qualityEventActionForm textarea:focus,
+.qualityEventActionForm select:focus {
+    border-color: #1f4e92;
+    box-shadow: 0 0 0 3px rgba(31,78,146,0.15);
+}
+
+.qualityEventActionForm .section0-grid .form-row {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 0px;
+}
+
+.qualityEventActionForm .section0-grid .form-row > label {
+    margin: 0;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.qualityEventActionForm .action-options {
+    display: flex !important;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.qualityEventActionForm .action-options input[type="checkbox"] {
+    margin-right: 5px;
+    transform: scale(1.1);
+}
+
+.qualityEventActionForm .center-align {
+    display: flex;
+    gap: 10px;
+}
+
+.qualityEventActionForm .center-align input[type="radio"] {
+    display: none;
+}
+
+.qualityEventActionForm .center-align label {
+    padding: 6px 18px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f8fafc;
+    transition: 0.2s;
+}
+
+.qualityEventActionForm #size_1:checked + #size_1_label,
+.qualityEventActionForm #size_2:checked + #size_2_label,
+.qualityEventActionForm #size_3:checked + #size_3_label {
+    background: #1f4e92;
+    color: #fff;
+    border-color: #1f4e92;
+}
+
+.qualityEventActionForm .date-task,
+.qualityEventActionForm .date-status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.qualityEventActionForm .date-task input,
+.qualityEventActionForm .date-status input {
+}
+.qualityEventActionForm .task-check,.qualityEventActionForm .status-options{
+    margin-top: 15px;
+}
+
+.qualityEventActionForm .status-options {
+    display: flex;
+    align-items: center;
+}
+
+.qualityEventActionForm .status-options label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 12px;
+
+    background: #ececec;
+    border: 1px solid #d0d0d0;
+
+    cursor: pointer;
+    transition: 0.25s;
+    font-weight: 600;
+}
+.qualityEventActionForm .status-options label[for="audit_status_active"] {
+    border-radius: 8px 0 0 8px;
+}
+.qualityEventActionForm .status-options label[for="audit_status_close"] {
+    border-radius: 0 10px 10px 0;
+}
+
+.qualityEventActionForm .status-options input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.qualityEventActionForm #audit_status_active:checked + label,
+.qualityEventActionForm label[for="audit_status_active"]:has(input:checked) {
+    background: #209025 !important;
+    color: #fff !important;
+    border-color: #209025 !important;
+}
+
+.qualityEventActionForm #audit_status_close:checked + label,
+.qualityEventActionForm label[for="audit_status_close"]:has(input:checked) {
+    background: #df0f00cc !important;
+    color: #fff !important;
+    border-color: #df0f00cc !important;
+}
+
+.qualityEventActionForm .capaReportAddEditForm input[type="radio"] {
+    visibility: visible;
+}
+.qualityEventActionForm .status-options input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #888;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+}
+
+.qualityEventActionForm .status-options input[type="radio"]:checked::after {
+    content: "\2713";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+}
+
+.qualityEventActionForm #audit_status_active:checked {
+    background-color: #1d8221 !important
+        border-color: #209025 !important;
+}
+
+#audit_status_close:checked {
+    background-color: #df0f00cc !important;
+    border-color: #df0f00cc !important;
+}
+
+.qualityEventActionForm .status-options input[type="radio"]:hover {
+    filter: brightness(0.9);
+}
+
+.qualityEventActionForm .status-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+.qualityEventActionForm textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.qualityEventActionForm select[multiple] {
+    min-height: 100px;
+}
+
+@media (max-width: 600px) {
+
+    .qualityEventActionForm .section0-grid .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .qualityEventActionForm .action-options {
+        flex-wrap: wrap;
+    }
+
+    .qualityEventActionForm .date-task,
+    .qualityEventActionForm .date-status {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
+.qualityEventActionForm #caPa_procedure, .qualityEventActionForm #caPa_oth_procedures {
+    margin: auto;
+}
+
+.qualityEventActionForm #size_1_label:hover {
+    background: rgba(29, 168, 81, 0.18);
+    border-color: #1da851;
+    color: #1da851;
+}
+
+.qualityEventActionForm #size_1:checked + #size_1_label {
+    background: rgba(29, 168, 81, 0.28) !important;
+    border-color: #1da851 !important;
+    color: #1da851 !important;
+}
+
+
+.qualityEventActionForm #size_2_label:hover {
+    background: rgba(255, 152, 0, 0.18);
+    border-color: #ff9800;
+    color: #ff9800;
+}
+
+.qualityEventActionForm #size_2:checked + #size_2_label {
+    background: rgba(255, 152, 0, 0.28) !important;
+    border-color: #ff9800 !important;
+    color: #ff9800 !important;
+}
+
+
+.qualityEventActionForm #size_3_label:hover {
+    background: rgba(233, 27, 0, 0.18);
+    border-color: #e91b00;
+    color: #e91b00;
+}
+
+.qualityEventActionForm #size_3:checked + #size_3_label {
+    background: rgba(233, 27, 0, 0.28) !important;
+    border-color: #e91b00 !important;
+    color: #e91b00 !important;
+}
+
+
+.qualityEventActionForm .center-align label {
+    transition: all 0.2s ease;
+}
+
+.qualityEventActionForm .center-align label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qualityEventActionForm .risk-icon {
+    font-size: 16px;
+}
+
+.qualityEventActionForm .minor-icon {
+    color: #1da851 !important;
+}
+.qualityEventActionForm .major-icon {
+    color: #ff9800 !important;
+}
+.qualityEventActionForm .critical-icon {
+    color: #e91b00 !important;
+}
+
+.qualityEventActionForm #size_1:checked + #size_1_label .risk-icon,
+.qualityEventActionForm #size_2:checked + #size_2_label .risk-icon,
+.qualityEventActionForm #size_3:checked + #size_3_label .risk-icon {
+    transform: scale(1.1);
+    transition: 0.2s ease;
+}
+.qualityEventActionForm .action-type-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.qualityEventActionForm .action-type-buttons label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+
+    background: #f1f5f9;
+    border: 1.5px solid #d7dee5;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.qualityEventActionForm .action-type-buttons input[type="radio"] {
+    width: 14px;
+    height: 14px;
+}
+
+.qualityEventActionForm .action-type-buttons label.investigation i {
+    color: #ff8c00;
+    font-size: 14px;
+}
+
+.qualityEventActionForm .action-type-buttons label.corrective i {
+    color: #e63946;
+    font-size: 14px;
+}
+
+.qualityEventActionForm .action-type-buttons label.preventive i {
+    color: #2a9d8f;
+    font-size: 14px;
+}
+
+.qualityEventActionForm .action-type-buttons label:hover {
+    filter: brightness(0.96);
+}
+
+.qualityEventActionForm .action-type-buttons label.investigation:has(input:checked) {
+    background: #ffe8cc;
+    border-color: #ffc999;
+    color: #b45f00;
+}
+
+.qualityEventActionForm .action-type-buttons label.corrective:has(input:checked) {
+    background: #ffe1e5;
+    border-color: #ffb8c3;
+    color: #a82438;
+}
+
+.qualityEventActionForm .action-type-buttons label.preventive:has(input:checked) {
+    background: #d9f5e6;
+    border-color: #b4e8cf;
+    color: #196e4b;
+}
+.qualityEventActionForm .status-options label{
+    padding: 8px 15px;
+}
+
+
+/*IWI Record Details Page Redesign 10092026 start*/
+
+
+#tab_audit_activity {
+    width: 100%;
+    background: #f7f9fc;
+    color: #26384d;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+#tab_audit_activity *,
+#tab_audit_activity *:before,
+#tab_audit_activity *:after {
+    box-sizing: border-box;
+}
+
+#tab_audit_activity .toolbar {
+    height: 42px !important;
+    min-height: 42px !important;
+    margin: 0 0 12px 0;
+    padding: 0 8px !important;
+    background: #fff !important;
+    border: 1px solid #dfe5ed !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(30,55,90,.06);
+}
+
+#tab_audit_activity .toolbar-accessory {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    color: #26384d;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#tab_audit_activity .toolbar-accessory img {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+
+#tab_audit_activity .toolbar .btn,
+#tab_audit_activity .toolbar button,
+#tab_audit_activity .toolbar a {
+    border-radius: 5px;
+}
+
+#tab_audit_activity #document-editor {
+    width: 100%;
+    margin: 0 0 12px 0 !important;
+}
+
+#tab_audit_activity .qualityEventActionForm {
+    width: 100%;
+    padding: 16px 18px 18px;
+    background: #fff;
+    border: 1px solid #dfe5ed;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(30,55,90,.06);
+}
+
+#tab_audit_activity #auditActivityForm {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+#tab_audit_activity .section-title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 36px;
+    margin: 0 0 14px;
+    padding: 8px 12px;
+    background: #f1f6fc;
+    border: 1px solid #dce7f3;
+    border-left: 3px solid #2866c2;
+    border-radius: 6px;
+    color: #2866c2;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#tab_audit_activity .section-title:not(:first-child) {
+    margin-top: 20px;
+}
+
+#tab_audit_activity .section0-grid,
+#tab_audit_activity .section1-grid,
+#tab_audit_activity .section2-grid {
+    width: 100%;
+}
+
+#tab_audit_activity .section0-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+#tab_audit_activity .section1-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 22px;
+    margin-bottom: 4px;
+}
+
+#tab_audit_activity .section2-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+    gap: 22px;
+}
+
+#tab_audit_activity .section1-grid > div,
+#tab_audit_activity .section2-grid > div {
+    min-width: 0;
+}
+
+#tab_audit_activity .form-row {
+    width: 100%;
+    margin: 0 0 12px;
+}
+
+#tab_audit_activity .form-row:last-child {
+    margin-bottom: 0;
+}
+
+#tab_audit_activity .form-row label {
+    display: block;
+    margin: 0 0 5px;
+    color: #526174;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+}
+
+#tab_audit_activity .form-control,
+#tab_audit_activity input[type="text"],
+#tab_audit_activity input[type="date"],
+#tab_audit_activity input[type="number"],
+#tab_audit_activity select,
+#tab_audit_activity textarea {
+    width: 100%;
+    min-height: 34px;
+    padding: 7px 9px;
+    border: 1px solid #d5dde7;
+    border-radius: 5px;
+    background: #fff;
+    color: #26384d;
+    font-size: 12px;
+    line-height: 18px;
+    outline: none;
+    box-shadow: none;
+    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+#tab_audit_activity input[type="text"],
+#tab_audit_activity input[type="date"],
+#tab_audit_activity input[type="number"],
+#tab_audit_activity select {
+    height: 34px;
+}
+
+#tab_audit_activity textarea {
+    min-height: 92px;
+    resize: vertical;
+    line-height: 19px;
+}
+
+#tab_audit_activity .form-control:hover,
+#tab_audit_activity input[type="text"]:hover,
+#tab_audit_activity input[type="date"]:hover,
+#tab_audit_activity input[type="number"]:hover,
+#tab_audit_activity select:hover,
+#tab_audit_activity textarea:hover {
+    border-color: #bdc9d8;
+}
+
+#tab_audit_activity .form-control:focus,
+#tab_audit_activity input[type="text"]:focus,
+#tab_audit_activity input[type="date"]:focus,
+#tab_audit_activity input[type="number"]:focus,
+#tab_audit_activity select:focus,
+#tab_audit_activity textarea:focus {
+    border-color: #2866c2;
+    box-shadow: 0 0 0 2px rgba(40,102,194,.08);
+}
+
+#tab_audit_activity input[readonly],
+#tab_audit_activity textarea[readonly] {
+    background: #f7f9fc;
+    color: #59697c;
+}
+
+#tab_audit_activity .section0-grid .form-row {
+    margin-bottom: 4px;
+}
+
+#tab_audit_activity .section0-grid input[type="radio"] {
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+}
+
+#tab_audit_activity .section0-grid label:not(.form-row label) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    margin: 0 20px 0 0;
+    color: #43546a;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#tab_audit_activity .jqx-dropdownlist-state-normal {
+    min-height: 34px;
+    border: 1px solid #d5dde7 !important;
+    border-radius: 5px !important;
+    background: #fff !important;
+}
+
+#tab_audit_activity .jqx-dropdownlist-state-normal:hover {
+    border-color: #bdc9d8 !important;
+}
+
+#tab_audit_activity .jqx-dropdownlist-state-focus {
+    border-color: #2866c2 !important;
+    box-shadow: 0 0 0 2px rgba(40,102,194,.08);
+}
+
+#tab_audit_activity .jqx-input {
+    color: #26384d !important;
+    font-size: 12px !important;
+}
+
+#tab_audit_activity .section1-grid .form-row,
+#tab_audit_activity .section2-grid .form-row {
+    min-width: 0;
+}
+
+#tab_audit_activity .section1-grid .form-row > div,
+#tab_audit_activity .section2-grid .form-row > div {
+    min-width: 0;
+}
+
+#tab_audit_activity .section1-grid .form-row:has(input[type="radio"]) {
+    padding: 7px 10px;
+    background: #fafbfd;
+    border: 1px solid #e2e7ee;
+    border-radius: 6px;
+}
+
+#tab_audit_activity .section1-grid input[type="radio"] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+#tab_audit_activity .section1-grid label:has(input[type="radio"]) {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 14px 0 0;
+    color: #526174;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#tab_audit_activity .section1-grid .fa {
+    margin-right: 4px;
+}
+
+#tab_audit_activity .section1-grid .fa-exclamation-circle {
+    color: #7c8795;
+}
+
+#tab_audit_activity .section1-grid .fa-exclamation-triangle {
+    color: #c58a20;
+}
+
+#tab_audit_activity .section1-grid .fa-times-circle {
+    color: #c75454;
+}
+
+#tab_audit_activity .section2-grid textarea {
+    min-height: 100px;
+}
+
+#tab_audit_activity .section2-grid .form-row:last-child textarea {
+    min-height: 88px;
+}
+
+#tab_audit_activity .form-row button,
+#tab_audit_activity .form-row .btn {
+    min-height: 32px;
+    border-radius: 5px;
+}
+
+#tab_audit_activity .form-row input[type="checkbox"] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+#tab_audit_activity #_audit_activity_record {
+    width: 100% !important;
+    margin-top: 12px;
+    border: 1px solid #dfe5ed !important;
+    border-radius: 9px !important;
+    background: #fff !important;
+    overflow: hidden;
+    box-shadow: 0 2px 9px rgba(30,55,90,.06);
+}
+
+#tab_audit_activity #filter_audit_activity_record {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e1e7ef !important;
+}
+
+#tab_audit_activity #content_audit_activity_record {
+    background: #fff !important;
+}
+
+#tab_audit_activity #columntable_audit_activity_record {
+    background: #f1f5f9 !important;
+    border-bottom: 1px solid #dfe5ed !important;
+}
+
+#tab_audit_activity .jqx-grid-column-header {
+    min-height: 34px;
+    background: #f1f5f9 !important;
+    border-color: #dfe5ed !important;
+    color: #43546a !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+}
+
+#tab_audit_activity .jqx-grid-cell {
+    background: #fff !important;
+    border-color: #edf0f4 !important;
+    color: #43546a !important;
+    font-size: 11px !important;
+}
+
+#tab_audit_activity .jqx-grid-cell-alt {
+    background: #fbfcfe !important;
+}
+
+#tab_audit_activity .jqx-grid-cell:hover {
+    background: #f5f9ff !important;
+}
+
+#tab_audit_activity .jqx-grid-cell-selected {
+    background: #eaf2ff !important;
+    color: #26384d !important;
+}
+
+#tab_audit_activity .jqx-grid-content {
+    background: #fff !important;
+}
+
+#tab_audit_activity .jqx-grid-group-cell {
+    background: #f7f9fc !important;
+}
+
+#tab_audit_activity .jqx-grid-cell-filter-row {
+    background: #f8fafc !important;
+    border-color: #e1e7ef !important;
+}
+
+#tab_audit_activity .jqx-grid-cell-filter-row input,
+#tab_audit_activity .jqx-grid-cell-filter-row .jqx-input {
+    height: 27px !important;
+    min-height: 27px !important;
+    padding: 4px 7px !important;
+    border: 1px solid #d7dee8 !important;
+    border-radius: 4px !important;
+    background: #fff !important;
+    font-size: 11px !important;
+}
+
+#tab_audit_activity .jqx-grid-cell-filter-row input:focus,
+#tab_audit_activity .jqx-grid-cell-filter-row .jqx-input:focus {
+    border-color: #2866c2 !important;
+    box-shadow: 0 0 0 2px rgba(40,102,194,.07) !important;
+}
+
+#tab_audit_activity #horizontalScrollBar_audit_activity_record,
+#tab_audit_activity #verticalScrollBar_audit_activity_record {
+    background: #eef2f6 !important;
+    border: 0 !important;
+}
+
+#tab_audit_activity #horizontalScrollBar_audit_activity_record {
+    border-top: 1px solid #e1e7ef !important;
+}
+
+#tab_audit_activity #verticalScrollBar_audit_activity_record {
+    border-left: 1px solid #e1e7ef !important;
+}
+
+#tab_audit_activity #jqxScrollThumbhorizontalScrollBar_audit_activity_record,
+#tab_audit_activity #jqxScrollThumbverticalScrollBar_audit_activity_record {
+    background: #b7c3d2 !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+}
+
+#tab_audit_activity #jqxScrollThumbhorizontalScrollBar_audit_activity_record:hover,
+#tab_audit_activity #jqxScrollThumbverticalScrollBar_audit_activity_record:hover {
+    background: #8fa1b5 !important;
+}
+
+#tab_audit_activity #jqxScrollBtnUphorizontalScrollBar_audit_activity_record,
+#tab_audit_activity #jqxScrollBtnDownhorizontalScrollBar_audit_activity_record,
+#tab_audit_activity #jqxScrollBtnUpverticalScrollBar_audit_activity_record,
+#tab_audit_activity #jqxScrollBtnDownverticalScrollBar_audit_activity_record {
+    background: #eef2f6 !important;
+    border: 0 !important;
+}
+
+#tab_audit_activity .jqx-icon-arrow-left,
+#tab_audit_activity .jqx-icon-arrow-right,
+#tab_audit_activity .jqx-icon-arrow-up,
+#tab_audit_activity .jqx-icon-arrow-down {
+    opacity: .55;
+}
+
+#tab_audit_activity .jqx-scrollbar-thumb-state-normal {
+    background: #b7c3d2 !important;
+    border-radius: 8px !important;
+}
+
+#tab_audit_activity .jqx-scrollbar-thumb-state-hover {
+    background: #8fa1b5 !important;
+    border-radius: 8px !important;
+}
+
+@media (max-width: 900px) {
+    #tab_audit_activity .section1-grid,
+    #tab_audit_activity .section2-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    #tab_audit_activity .qualityEventActionForm {
+        padding: 14px;
+    }
+}
+
+#tab_audit_activity .section0-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    min-height: 62px;
+    margin: 0 0 16px;
+    padding: 10px 14px;
+    background: #fff;
+    border: 1px solid #e1e7ef;
+    border-radius: 7px;
+}
+
+#tab_audit_activity .section0-grid > .form-row {
+    margin: 0;
+}
+
+#tab_audit_activity .section0-grid > .form-row > label:first-child {
+    display: block;
+    margin: 0 0 7px;
+    color: #526174;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#tab_audit_activity .action-options {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+#tab_audit_activity .action-options .act {
+    display: inline-flex;
+    align-items: center;
+    height: 31px;
+    margin: 0;
+    padding: 0 12px;
+    border: 1px solid #d8e0e9;
+    border-radius: 5px;
+    background: #fff;
+    color: #4b5b6d;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#tab_audit_activity .action-options .act:hover {
+    background: #f5f8fc;
+    border-color: #c5d2e1;
+}
+
+#tab_audit_activity .action-options .act input {
+    margin: 0 6px 0 0;
+}
+
+#tab_audit_activity .audit-ctime,
+#tab_audit_activity .audit-person {
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    width: auto;
+    margin-left: 0 !important;
+    white-space: nowrap;
+}
+
+#tab_audit_activity .audit-ctime {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#tab_audit_activity .audit-person {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: 28px !important;
+}
+
+#tab_audit_activity .audit-ctime label,
+#tab_audit_activity .audit-person label {
+    margin: 0;
+    color: #8a96a5;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+#tab_audit_activity .audit-ctime span,
+#tab_audit_activity .audit-person span {
+    color: #43546a;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+@media (max-width: 800px) {
+    #tab_audit_activity .section0-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    #tab_audit_activity .audit-ctime,
+    #tab_audit_activity .audit-person {
+        grid-column: 1;
+        grid-row: auto;
+        justify-content: flex-start;
+        margin-top: 0 !important;
+    }
+}
+
+/*IWI Record Details Page Redesign 10092026 end*/
+
+/*IWI Quality event record panel section Investigation modification 08122025 end*/
+
+
+
+
+
+/*IWI  manage contracts for Supplier control 19052026 start*/
+
+
+#contract_management_module{
+    padding:10px;
+    background:#f7f9fc;
+    border-radius: 5px;
+}
+
+
+#contract_management_module #contract_management_accordion{
+    margin-bottom:10px;
+}
+
+#contract_management_module .contract-accordion-content{
+    display:none;
+}
+
+
+#contract_management_module .contract-toolbar-wrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#ffffff;
+    padding:10px;
+    border:1px solid #dbe2ea;
+    border-radius:10px;
+}
+
+#contract_management_module .contract-toolbar-heading{
+    font-size:16px;
+    font-weight:600;
+    color:#1e293b;
+}
+
+#contract_management_module .contract-toolbar-right{
+    display:flex;
+    gap:10px;
+}
+
+#contract_management_module .contract-btn{
+    border: none;
+    border-radius: 5px;
+    padding: 8px 10px;
+    cursor: pointer;
+    /* font-size: 14px; */
+    /*font-weight: 600;*/
+}
+
+#contract_management_module .jqx-input-group-addon{
+    border: none;
+}
+#contract_management_module .contract-btn-create{
+    background:#2563eb;
+    color:#ffffff;
+}
+
+#contract_management_module .contract-btn-export{
+    background:#16a34a;
+    color:#ffffff;
+}
+
+#contract_management_module .contract-accordion-content{
+    margin-top: 10px;
+}
+#contract_management_module .contract-create-wrapper{
+    background:#ffffff;
+    border:1px solid #dbe2ea;
+    border-top:none;
+    border-radius:12px;
+    padding:20px;
+}
+#contract_management_module .contract-create-grid{
+    display:grid;
+    grid-template-columns:3fr 3fr;
+    gap:20px;
+}
+
+/* #contract_management_module .contract-create-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+} */
+
+#contract_management_module .contract-left-col,
+#contract_management_module .contract-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#contract_management_module .contract-date-row {
+    display: flex;
+    gap: 16px;
+}
+
+#contract_management_module .contract-date-row .contract-form-group {
+    flex: 1;
+}
+
+
+#contract_management_module .contract-form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+#contract_management_module .contract-form-group label{
+    margin-bottom:6px;
+    font-size:13px;
+    font-weight:600;
+    color:black;
+}
+
+#contract_management_module .contract-input-field{
+    height:42px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    padding:0 12px;
+    font-size:14px;
+}
+
+#contract_management_module .contract-input-field:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.10);
+}
+
+
+
+#contract_management_module .contract-create-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    margin-top:20px;
+}
+
+#contract_management_module .contract-action-button{
+    border:none;
+    border-radius:8px;
+    padding:10px 18px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+}
+
+#contract_management_module .contract-cancel-button{
+    background:#e2e8f0;
+    color:#334155;
+}
+
+#contract_management_module .contract-save-button{
+    background:#2563eb;
+    color:#ffffff;
+}
+
+
+#contract_management_module .contract-table-container{
+    background:#ffffff;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    padding:10px;
+    overflow-x:auto;
+    width:100%;
+    overflow-y:hidden;
+}
+
+#contract_management_module .contract-list-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width: 1250px;
+}
+
+#contract_management_module .contract-list-table thead{
+    background:#f8fafc;
+}
+
+#contract_management_module .contract-list-table th{
+    text-align:left;
+    padding:14px;
+    font-size:13px;
+    font-weight:600;
+    color:#334155;
+    border-bottom:1px solid #e2e8f0;
+}
+
+#contract_management_module .contract-list-table td{
+    padding:14px;
+    font-size:14px;
+    color:#475569;
+    border-bottom:1px solid #edf2f7;
+}
+
+#contract_management_module .contract-table-action{
+    border:none;
+    border-radius:6px;
+    padding:6px 12px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:600;
+}
+
+#contract_management_module .contract-edit-btn{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+#contract_management_module .contract-delete-btn{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+#contract_management_module .contract-table-container{
+    overflow:hidden;
+    border-radius:12px;
+}
+
+#contract_management_module .jqx-grid{
+    border:none !important;
+    box-shadow:none !important;
+}
+
+#contract_management_module .jqx-grid-column-header{
+    background:#f8fafc !important;
+    border-color:#e2e8f0 !important;
+}
+#contract_management_module .jqx-grid-column-header span{
+    font-size:13px !important;
+    font-weight:600 !important;
+    color:#334155 !important;
+}
+
+#contract_management_module .jqx-grid-cell{
+    font-size:12px !important;
+    color:#475569 !important;
+    border-color:#edf2f7 !important;
+    background:#ffffff !important;
+}
+#contract_management_module .jqx-grid-cell-hover{
+    background:#f8fafc !important;
+}
+
+#contract_management_module .jqx-grid-toolbar{
+    background:#ffffff !important;
+    border-bottom:1px solid #e2e8f0 !important;
+}
+
+#contract_management_module .jqx-input{
+    border-radius:6px !important;
+}
+#contract_management_module .jqx-dropdownlist-state-normal{
+    border-radius:6px !important;
+}
+
+#contract_management_module .jqx-widget-content{
+    border:none !important;
+}
+
+#contract_management_module .jqx-scrollbar{
+    background:#f8fafc !important;
+}
+#contract_management_module #wrapper_contracts_record{
+    border: 1px solid #dbe2ea !important;
+    border-radius: 12px;
+    width: auto !important;
+}
+#contract_management_module #content_contracts_record{
+    background:#ffffff;
+}
+#contract_management_module #_contracts_record{
+    width: auto !important;
+}
+#contract_management_module #_contracts_record{
+    border-radius:12px;
+    overflow:hidden;
+}
+.contract-field-error{
+    border:1px solid #dc2626 !important;
+    box-shadow:0 0 0 3px rgba(220,38,38,.10) !important;
+}
+
+
+
+.contract-filter-toolbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.contract-filter-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    padding:8px 14px;
+
+    border:1px solid #d1d5db;
+    border-radius:6px;
+
+    background:#fff;
+    color:#374151;
+
+    font-size:13px;
+    font-weight:500;
+
+    cursor:pointer;
+}
+
+.contract-filter-btn:hover{
+    background:#f9fafb;
+}
+
+.contract-filter-btn.active{
+    background:#2563eb;
+    /*border-color:#2563eb;*/
+    color:#fff;
+}
+
+.contract-filter-count{
+    padding:2px 7px;
+
+    border-radius:20px;
+
+    background:#e5e7eb;
+    color:#111827;
+
+    font-size:11px;
+    font-weight:600;
+}
+
+.contract-filter-btn.active .contract-filter-count{
+    background:rgba(255,255,255,.2);
+    color:#fff;
+}
+
+
+
+.contract-bulk-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+
+    padding:12px 15px;
+    margin-bottom:12px;
+
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+}
+
+.contract-bulk-info{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:14px;
+    font-weight:600;
+    color:#374151;
+}
+
+.contract-bulk-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.contract-bulk-select{
+    height:36px;
+    min-width:160px;
+
+    padding:0 10px;
+
+    border:1px solid #d1d5db;
+    border-radius:6px;
+
+    background:#fff;
+    font-size:13px;
+}
+
+.contract-bulk-btn{
+    height:36px;
+
+    padding:0 14px;
+
+    border:none;
+    border-radius:6px;
+
+    background:#f3f4f6;
+    color:#111827;
+
+    font-size:13px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    transition:all .2s ease;
+}
+
+.contract-bulk-btn:hover{
+    background:#e5e7eb;
+}
+
+.active-btn{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.active-btn:hover{
+    background:#bbf7d0;
+}
+
+.closed-btn{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.closed-btn:hover{
+    background:#fecaca;
+}
+.contract-auto-terminate-group{
+    justify-content:flex-end;
+}
+.contract-auto-terminate-group{
+    justify-content:center;
+    margin-top:0;
+    padding-top:0;
+}
+
+.contract-auto-terminate-group label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    margin:0;
+    font-size:14px;
+    font-weight:600;
+    color:#334155;
+}
+
+/* Better remarks textarea */
+#contract_create_remarks{
+    min-height:158px;
+    padding:12px;
+    resize:vertical;
+}
+textarea.contract-input-field{
+    height:auto !important;
+}
+.contract-group-title {
+    display: block;
+    font-weight: 600;
+}
+
+.contract-radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.contract-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+.radioLebel label{
+    height: 42px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 14px;
+    width: 50%;
+    margin-bottom: 0px !important;
+}
+
+/* Auto Renewal Dropdown */
+.contract-form-row {
+    display: flex;
+    gap: 15px;
+}
+
+#contract_period_wrapper {
+    flex: 1;
+}
+
+#auto_renewal_wrapper {
+    flex: 1;
+}
+
+
+.contract-filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.contract-filter-toolbar {
+    display: flex;
+    gap: 8px;
+}
+
+.contract-toolbar-right {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+/*IWI  manage contracts for Supplier control 19052026 end*/
+
+
+
+
+
+/*IWI  link Supplier and contracts for Asset Control 21052026 start*/
+#asset_supplier_module{
+    padding:10px;
+    background:#f7f9fc;
+}
+
+#asset_supplier_module .asset-supplier-toolbar-wrapper{
+    background:#ffffff;
+    padding:14px 16px;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+}
+
+#asset_supplier_module .asset-supplier-toolbar-heading{
+    font-size:16px;
+    font-weight:600;
+    color:#1f2937;
+}
+
+/* FORM */
+
+#asset_supplier_module .asset-supplier-create-wrapper{
+    margin-top:14px;
+    background:#ffffff;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    padding:20px;
+}
+
+#asset_supplier_module .asset-supplier-create-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+#asset_supplier_module .asset-supplier-form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+#asset_supplier_module .asset-supplier-form-group label{
+    margin-bottom:6px;
+    font-size:13px;
+    font-weight:600;
+    color:#334155;
+}
+
+#asset_supplier_module .asset-supplier-input-field,
+#asset_supplier_module .jqx-combobox{
+    height:42px !important;
+    border:1px solid #cbd5e1 !important;
+    border-radius:8px !important;
+    background:#ffffff !important;
+}
+
+#asset_supplier_module .jqx-combobox-input{
+    height:40px !important;
+    padding:0 12px !important;
+}
+
+#asset_supplier_module .asset-supplier-create-actions{
+    margin-top:20px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+#asset_supplier_module .asset-supplier-action-button{
+    border:none;
+    border-radius:8px;
+    padding:10px 18px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+}
+
+#asset_supplier_module .asset-supplier-save-button{
+    background:#2563eb;
+    color:#ffffff;
+}
+
+/* DETAILS TABLE */
+
+#asset_supplier_module .asset-supplier-details-wrapper{
+    margin-top:14px;
+    background:#ffffff;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+#asset_supplier_module .asset-supplier-details-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+#asset_supplier_module .asset-supplier-details-table thead{
+    background:#f8fafc;
+}
+
+#asset_supplier_module .asset-supplier-details-table th{
+    padding:14px;
+    text-align:left;
+    font-size:13px;
+    font-weight:600;
+    color:#334155;
+    border-bottom:1px solid #e2e8f0;
+}
+
+#asset_supplier_module .asset-supplier-details-table td{
+    padding:14px;
+    font-size:14px;
+    color:#475569;
+    border-bottom:1px solid #edf2f7;
+}
+
+#asset_supplier_module .asset-supplier-edit-btn{
+    border:none;
+    background:#dbeafe;
+    color:#1d4ed8;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+}
+
+#asset_supplier_module .asset-supplier-toolbar-heading{   /*design changes 25-05-26*/
+    font-size:13px;
+    font-weight:600;
+    color:black;
+    font-weight: bold;
+    /*font-family: Tahoma, sans-serif;*/
+}
+#asset_supplier_module .asset-supplier-details-table th{     /*design changes 25-05-26*/
+    padding:16px;
+    text-align:left;
+    font-size:13px;
+    font-weight:600;
+    color:black;
+    border-bottom:1px solid #e2e8f0;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+}
+#asset_supplier_module .asset-supplier-details-table td{   /*design changes 25-05-26*/
+    padding:14px;
+    font-size:12px;
+    color:black;
+    border-bottom:1px solid #edf2f7;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+}
+
+
+/*IWI Asset Control -> Link Supplier Add action buttons for inactive/active and delete 09072026 start*/
+
+#asset_supplier_module .asset-supplier-action-btn,
+#asset_supplier_module .asset-supplier-edit-btn,
+#asset_supplier_module .asset-supplier-delete-btn{
+    border:none;
+    border-radius: 10px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    transition:all .2s ease;
+    margin:0 2px;
+    padding: 8px 14px;
+}
+/* Active */
+#asset_supplier_module .asset-supplier-action-btn.active{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+/* Inactive */
+#asset_supplier_module .asset-supplier-action-btn.inactive{
+    background:#f3f4f6;
+    color:#6b7280;
+}
+
+#asset_supplier_module .asset-supplier-action-btn:hover{
+    background:#bbf7d0;
+}
+
+/* Edit */
+#asset_supplier_module .asset-supplier-edit-btn{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+#asset_supplier_module .asset-supplier-edit-btn:hover{
+    background:#bfdbfe;
+}
+
+/* Delete */
+#asset_supplier_module .asset-supplier-delete-btn{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+#asset_supplier_module .asset-supplier-delete-btn:hover{
+    background:#fecaca;
+}
+
+/* Remove click events from icon itself */
+#asset_supplier_module button i{
+    pointer-events:none;
+}
+
+
+/*IWI Asset Control -> Link Supplier Add action buttons for inactive/active and delete 09072026  end*/
+
+/*IWI  link Supplier and contracts for Asset Control 21052026 end*/
+
+
+/*IWI Adding assets from Supplier control contract section 28072026 start*/
+#contract_management_module .contract-assets-wrapper{
+    margin-top:25px;
+    padding-top:20px;
+    border-top:1px solid #e2e8f0;
+}
+
+#contract_management_module .contract-assets-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+#contract_management_module .contract-assets-title{
+    font-size:18px;
+    font-weight:600;
+    color:#1e293b;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+#contract_management_module .contract-assets-title i{
+    color:#2563eb;
+}
+
+#contract_management_module .linked-assets-heading{
+    font-size:14px;
+    font-weight:600;
+    color:#475569;
+    margin-bottom:12px;
+}
+
+
+#contract_management_module .linked-assets-section{
+    margin-bottom:25px;
+}
+
+#contract_management_module .contract-asset-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#ffffff;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    overflow:hidden;
+}
+
+#contract_management_module .contract-asset-table thead{
+    background:#f8fafc;
+}
+
+#contract_management_module .contract-asset-table th{
+    padding:12px 15px;
+    text-align:left;
+    font-size:13px;
+    font-weight:600;
+    color:#475569;
+    border-bottom:1px solid #e2e8f0;
+}
+
+#contract_management_module .contract-asset-table td{
+    padding:12px 15px;
+    font-size:13px;
+    color:#334155;
+    border-bottom:1px solid #edf2f7;
+}
+
+#contract_management_module .contract-asset-table tbody tr:last-child td{
+    border-bottom:none;
+}
+
+#contract_management_module .contract-asset-table tbody tr:hover{
+    background:#f8fbff;
+}
+#contract_management_module .asset-empty{
+    text-align:center;
+    padding:25px;
+    color:#94a3b8;
+    font-size:13px;
+    border:1px dashed #cbd5e1;
+    border-radius:8px;
+    background:#fafcff;
+}
+#contract_management_module .asset-unlink-btn{
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:6px;
+    background:#fee2e2;
+    color:#dc2626;
+    cursor:pointer;
+    transition:all .2s ease;
+}
+
+#contract_management_module .asset-unlink-btn:hover{
+    background:#dc2626;
+    color:#ffffff;
+}
+
+#contract_management_module .new-assets-section{
+    margin-top:25px;
+}
+
+#contract_management_module .asset-row{
+    display:grid;
+    grid-template-columns:3fr 2fr 2fr 2fr 42px;
+    gap:15px;
+    align-items:end;
+    margin-bottom:15px;
+}
+
+#contract_management_module .asset-row .contract-form-group{
+    margin-bottom:0;
+}
+
+#contract_management_module .contract-btn-add-assets{
+    background:#ffffff;
+    color:#334155;
+    border:1px solid #cbd5e1;
+}
+
+#contract_management_module .contract-btn-add-assets:hover{
+    background:#2563eb;
+    border-color:#2563eb;
+    color:#ffffff;
+}
+
+#contract_management_module .asset-remove{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:8px;
+    background:#fee2e2;
+    color:#dc2626;
+    cursor:pointer;
+    transition:all .2s ease;
+}
+
+#contract_management_module .asset-remove:hover{
+    background:#dc2626;
+    color:#ffffff;
+}
+
+@media (max-width:1200px){
+
+    #contract_management_module .asset-row{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    #contract_management_module .asset-remove{
+        width:100%;
+    }
+
+}
+
+@media (max-width:768px){
+
+    #contract_management_module .contract-assets-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    #contract_management_module .asset-row{
+        grid-template-columns:1fr;
+    }
+
+    #contract_management_module .contract-asset-table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+}
+
+.contract-assets-details{
+    width: 50%;
+    margin: 10px 0 10px 40px;
+    background: #ffffff;
+    border: 1px solid #d6d6d6;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+/* Table */
+.contract-assets-grid{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+    font-size:12px;
+}
+
+/* Header */
+.contract-assets-grid thead th{
+    background:#f3f3f3;
+    border-bottom:1px solid #cfcfcf;
+    padding:8px 10px;
+    text-align:left;
+    font-weight:bold;
+    color:#444;
+}
+
+/* Body */
+.contract-assets-grid tbody td{
+    padding:8px 10px;
+    border-top:1px solid #ececec;
+    color:#333;
+}
+
+/* Alternate row */
+.contract-assets-grid tbody tr:nth-child(even){
+    background:#fafafa;
+}
+
+/* Hover */
+.contract-assets-grid tbody tr:hover{
+    background:#eef6ff;
+}
+
+/* Empty */
+.contract-assets-empty{
+    text-align:center;
+    padding:20px !important;
+    color:#888;
+    font-style:italic;
+}
+
+/* Links */
+.contract-assets-grid a{
+    color:#2b78c5;
+    text-decoration:none;
+}
+
+.contract-assets-grid a:hover{
+    text-decoration:underline;
+}
+/* Remove jqWidgets sprite */
+.jqx-grid-group-expand,
+.jqx-grid-group-collapse {
+    background: none !important;
+    background-image: none !important;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Collapsed */
+.jqx-grid-group-expand:after {
+    content: "\f078";
+    font-family: FontAwesome;
+    transform: translate(-50%, -50%);
+}
+
+/* Expanded */
+.jqx-grid-group-collapse:after {
+    content: "\f054";
+    font-family: FontAwesome;
+    transform: translate(-50%, -50%);
+}
+
+
+/*files upload in contract management form_start*/
+
+/* .contract-upload-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 45px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.existing-attachments {
+    width: 192px;
+    min-width: 0;
+    height: 27px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.upload-or {
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 2px;
+    white-space: nowrap;
+}
+
+.modern-file-upload-support {
+    width: 190px;
+    min-width: 145px;
+    height: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.modern-file-upload-support input[type="file"] {
+    display: none;
+}
+
+.upload-btn {
+    width: 193px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 6px;
+    padding: 0 10px;
+
+    cursor: pointer;
+    
+
+    background: #3b82f6;
+    color: #fff;
+
+    border-radius: 6px;
+    border: none;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upload-btn:hover {
+    background: #2563eb;
+    box-shadow: 0 3px 8px rgba(59, 130, 246, 0.30);
+}
+
+
+.upload-btn svg {
+    width: 15px !important;
+    height: 15px !important;
+    min-width: 15px;
+    flex-shrink: 0;
+}
+
+
+.file-info-support {
+    display: none;
+}
+
+
+#download_link {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    word-break: break-word;
+} */
+
+
+/* ================================
+   MODERN FILE UPLOAD SECTION
+================================ */
+
+.contract-upload-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px 0;
+}
+
+/* Existing attachment dropdown */
+.existing-attachments {
+    width: 193px;
+    min-width: 193px;
+    height: 32px;
+    position: relative;
+}
+
+#doc-attach-file {
+    width: 193px !important;
+    height: 32px !important;
+    padding: 0 30px 0 11px;
+    border: 1px solid #d7dee8 !important;
+    border-radius: 7px !important;
+    background: #ffffff;
+    color: black;
+    font-size: 12px;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+#doc-attach-file:hover {
+    border-color: #93b4f8 !important;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.10);
+}
+
+#doc-attach-file:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+
+/* OR separator */
+.upload-or {
+    position: relative;
+    flex: 0 0 auto;
+
+    font-size: 10px;
+    font-weight: 600;
+    color: black;
+
+    margin: 0 1px;
+    padding: 0 2px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/* Upload container */
+.modern-file-upload-support {
+    width: 193px;
+    min-width: 193px;
+    height: 32px;
+
+    position: relative;
+    /* display: flex; */
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+/* Hide original input */
+.modern-file-upload-support input[type="file"] {
+    display: none;
+}
+
+
+/* ================================
+   MODERN BLUE UPLOAD BUTTON
+================================ */
+
+.upload-btn {
+    width: 193px !important;
+    height: 32px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 7px;
+
+    padding: 0 12px;
+
+    cursor: pointer;
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        135deg,
+        #3b82f6 0%,
+        #2563eb 100%
+        );
+
+    color: #ffffff;
+
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 0.1px;
+
+    box-shadow:
+        0 2px 5px rgba(37, 99, 235, 0.18);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+
+/* Hover */
+.upload-btn:hover {
+    background: linear-gradient(
+        135deg,
+        #2563eb 0%,
+        #1d4ed8 100%
+        );
+
+    box-shadow:
+        0 4px 10px rgba(37, 99, 235, 0.28);
+
+    transform: translateY(-1px);
+}
+
+
+/* Click */
+.upload-btn:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 5px rgba(37, 99, 235, 0.20);
+}
+
+
+/* Upload icon */
+.upload-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+
+    min-width: 14px;
+    flex-shrink: 0;
+
+    stroke: #ffffff;
+
+    transition: transform 0.2s ease;
+}
+
+
+/* Icon animation on hover */
+.upload-btn:hover svg {
+    transform: translateY(-1px);
+}
+
+
+/* Upload text */
+.upload-btn span {
+    color: #ffffff !important;
+    white-space: nowrap;
+}
+
+
+/* ================================
+   FILE INFORMATION
+================================ */
+
+.file-info-support {
+    display: none;
+}
+
+
+/* Download area */
+#download_link {
+    min-width: 0;
+    max-width: 100%;
+
+    overflow: hidden;
+    word-break: break-word;
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   OPTIONAL: LABEL
+================================ */
+
+.contract-form-group > label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    color: #374151;
+}
+
+
+/* ================================
+   SUBTLE SEPARATOR UNDER SECTION
+================================ */
+
+.contract-form-group {
+    position: relative;
+    /* padding-bottom: 10px; */
+}
+
+.contract-form-group::after {
+    content: "";
+    position: absolute;
+
+    /* left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 1px; */
+
+    background: linear-gradient(
+        90deg,
+        #e5e7eb,
+        #dbeafe,
+        #e5e7eb
+        );
+}
+/*files upload in contract management form_end*/
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+    .contract-upload-row {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 5px 0;
+    }
+
+    .existing-attachments {
+        width: 150px;
+        max-width: 100%;
+    }
+
+    /* .modern-file-upload {
+        width: 145px;
+    } */
+
+    #download_link {
+        flex-basis: 100%;
+    }
+}
+
+
+/*IWI Adding assets from Supplier control contract section 28072026 end*/
+
+/*files upload in contract management form_start*/
+.existing-attachments {
+    position: relative;
+    width: 193px;
+}
+
+.contract-file-selector {
+    width: 193px;
+    height: 27px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #aaa;
+    border-radius: 6px;
+
+    background: #fff;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7px;
+
+    font-size: 13px;
+}
+
+.selected-file-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.file-arrow {
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.contract-file-dropdown {
+    display: none;
+
+    position: absolute;
+
+    top: 30px;
+    left: 0;
+
+    width: 193px;
+
+    max-height: 200px;
+
+    overflow-y: auto;
+
+    background: #fff;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    z-index: 99999;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.file-option {
+    min-height: 45px;
+
+    padding: 5px 7px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    background: #fff;
+
+    border-bottom: 1px solid #eee;
+}
+
+.file-option:last-child {
+    border-bottom: none;
+}
+
+.file-option:hover {
+    background: #f3f6f9;
+}
+
+.file-option img {
+    width: 40px !important;
+    height: 35px !important;
+
+    object-fit: contain;
+
+    margin-right: 7px;
+
+    flex-shrink: 0;
+}
+
+.file-option-name {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 13px;
+}
+
+/*files upload in contract management form_end*/
+
+
+/*IWI Supplier control changes 31082026 start*/
+
+#contract_management_module #_contracts_record
+tr.contract-terminated-row td {
+    background: #fff7f7 !important;
+    color: #7f1d1d !important;
+    border-bottom-color: #f3d1d1 !important;
+}
+#contract_management_module #_contracts_record
+tr.contract-terminated-row td:first-child {
+    border-left: 4px solid #dc2626 !important;
+}
+#contract_management_module #_contracts_record
+tr.contract-terminated-row td {
+    opacity: 0.90;
+}
+#contract_management_module #_contracts_record
+tr.contract-terminated-row:hover td {
+    background: #fef2f2 !important;
+}
+#contract_management_module #_contracts_record
+tr.contract-terminated-row.jqx-fill-state-hover td {
+    background: #fef2f2 !important;
+}
+
+/*IWI Supplier control changes 31082026 end*/
+
+
+/*IWI Record Details Page Redesign 10092026 start*/
+
+#tab_panels {
+    background: #ffffff;
+    border: 1px solid #dfe5ec;
+    border-top: 0;
+    border-radius: 0 0 6px 6px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 20px;
+    min-height: 300px;
+
+    #submitter-info {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 14px;
+        background: #f7f9fc;
+        border: 1px solid #dfe5ec;
+        border-radius: 5px;
+        box-sizing: border-box;
+        vertical-align: middle;
+    }
+
+    #submitter-info .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px !important;
+        color: #2866c2;
+        font-weight: 600;
+    }
+
+    #submitter-info .inline-icon {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        opacity: .7;
+    }
+
+    .multi-commands.right {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        margin-top: 0 !important;
+        margin-left: 8px;
+        vertical-align: middle;
+    }
+
+    .multi-commands.right button {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        background: #f7f9fc;
+        border: 1px solid #dfe5ec;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .multi-commands.right button:hover {
+        background: #eef3f8;
+        border-color: #c8d4e0;
+    }
+
+    .multi-commands.right button img {
+        width: 16px;
+        height: 16px;
+        opacity: .7;
+    }
+    button#clickToListView{
+        display: flex !important ;
+    }
+    .recordDataPanelsSection {
+        /*background: #f7f9fc;*/
+        /*padding: 8px;*/
+        /*margin-top: 10px;*/
+        border-radius: 5px;
+    }
+
+    #panels-docker {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .jqx-docking-panel {
+        background: transparent;
+        border: 0;
+        margin: 0 !important;
+        min-width: 0 !important;
+    }
+
+    .jqx-docking-window {
+        margin: 0 !important;
+        border: 1px solid #dfe5ec;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(30, 50, 70, .06);
+        overflow: hidden;
+    }
+
+    .jqx-window-header {
+        height: 40px !important;
+        padding: 0 12px;
+        background: #f7f9fc !important;
+        border: 0 !important;
+        border-bottom: 1px solid #dfe5ec !important;
+        border-radius: 0 !important;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+
+    .jqx-window-header > div:first-child {
+        display: flex !important;
+        align-items: center;
+        gap: 7px;
+        margin: 0 !important;
+        font-size: 13px;
+        font-weight: 600;
+        color: #3f4d5d;
+    }
+
+    .jqx-window-header > div:first-child > img {
+        width: 16px;
+        height: 16px;
+        opacity: .7;
+    }
+
+    .jqx-window-close-button-background,
+    .jqx-window-collapse-button-background {
+        margin-top: 0 !important;
+    }
+
+    .jqx-window-content {
+        background: #fff !important;
+        border: 0 !important;
+        padding: 14px 16px;
+        box-sizing: border-box;
+        overflow: auto;
+    }
+
+    .datatable table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .datatable table tr {
+        /*border-bottom: 1px solid #edf1f5;*/
+    }
+
+    .datatable table tr:last-child {
+        border-bottom: 0;
+    }
+
+    .datatable table th {
+        padding: 8px 10px 8px 0;
+        text-align: left !important;
+        font-size: 12px;
+        font-weight: 600;
+        color: #687587;
+        white-space: nowrap;
+        vertical-align: middle;
+        width: 50%;
+    }
+
+    .datatable table td {
+        padding: 8px 0;
+        font-size: 13px;
+        color: #354252;
+        vertical-align: middle;
+        text-align: left !important;
+    }
+
+    .datatable h4,
+    .datatable h5 {
+        margin: 18px 0 8px !important;
+        padding: 10px 12px;
+        background-color: #f7f9fc;
+        background-position: 8px center !important;
+        border-left: 3px solid #2866c2;
+        border-radius: 3px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #3f4d5d;
+    }
+
+    .datatable h5 {
+        padding-left: 10px;
+    }
+
+    .datatable .gray {
+        color: #a0a9b4;
+    }
+
+    .datatable .boxblock {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 93px;
+        height: 28px;
+        margin-right: 5px;
+        background: #f7f9fc;
+        border: 1px solid #e2e7ed;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .datatable .itembox {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 93px !important;
+        height: 28px;
+        margin-right: 5px;
+        background: #eef3f8 !important;
+        border: 1px solid #dfe5ec;
+        border-radius: 4px;
+        box-shadow: none !important;
+        font-size: 11px;
+        color: #687587 !important;
+    }
+
+    .datatable hr {
+        border: 0;
+        border-top: 1px solid #dfe5ec;
+        margin: 10px 0;
+    }
+
+    .panel-cmds button {
+        height: 25px;
+        padding: 0 8px;
+        background: #fff;
+        border: 1px solid #dfe5ec;
+        border-radius: 4px;
+        color: #2866c2;
+        font-size: 11px;
+    }
+
+    .panel-cmds button:hover {
+        background: #eef3f8;
+    }
+
+    .panel-cmds button img {
+        width: 14px;
+        height: 14px;
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+    .jqx-docking-panel {
+        width: 100% !important;
+    }
+    .jqx-docking-panel > div {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+
+
+
+    .recordDataPanelsSection.section_grid_view {
+        /*background: #f7f9fc;*/
+        /*padding: 8px;*/
+    }
+
+    #panels-docker {
+        display: flex;
+        align-items: flex-start;
+        /*gap: 12px;*/
+    }
+
+    #panels-docker > .jqx-docking-panel {
+        float: none !important;
+        margin: 0 !important;
+        min-width: 0 !important;
+        width: calc(50% - 6px) !important;
+        background: transparent !important;
+    }
+
+    #audit-overview,
+    #audit-evaluation {
+        width: 100% !important;
+        margin: 0 !important;
+        background: #fff !important;
+        border: 1px solid #e1e7ef !important;
+        border-radius: 10px !important;
+        box-shadow: 0 2px 10px rgba(30, 55, 90, .07) !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    #audit-overview .jqx-window-header,
+    #audit-evaluation .jqx-window-header {
+        width: auto !important;
+        height: 44px !important;
+        padding: 0 12px !important;
+        background: #fff !important;
+        border: 0 !important;
+        border-bottom: 1px solid #e5eaf1 !important;
+        color: #26364a !important;
+        box-sizing: border-box !important;
+    }
+
+    #audit-overview .jqx-window-header > div:first-child,
+        #audit-evaluation .jqx-window-header > div:first-child {
+        float: none !important;
+        margin: 0 !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 7px !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: #26364a !important;
+    }
+
+    #audit-overview .jqx-window-header > div:first-child > img,
+        #audit-evaluation .jqx-window-header > div:first-child > img {
+        width: 18px;
+        height: 18px;
+    }
+
+    #audit-overview .panel-cmds,
+    #audit-evaluation .panel-cmds {
+        /*display: inline-flex !important;*/
+        align-items: center !important;
+        gap: 5px !important;
+        margin-left: 8px !important;
+    }
+
+    #audit-overview .panel-cmds .op-button,
+    #audit-evaluation .panel-cmds .op-button {
+        height: 28px !important;
+        min-width: 58px !important;
+        padding: 0 9px !important;
+        border: 1px solid #d7e0eb !important;
+        border-radius: 5px !important;
+        background: #fff !important;
+        color: #475569 !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        box-shadow: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+    }
+
+    #audit-overview .panel-cmds .op-button:hover,
+        #audit-evaluation .panel-cmds .op-button:hover {
+        background: #f3f7fc !important;
+        border-color: #2866c2 !important;
+        color: #2866c2 !important;
+    }
+
+    #audit-overview .panel-cmds .op-button img,
+    #audit-evaluation .panel-cmds .op-button img {
+        width: 14px;
+        height: 14px;
+    }
+
+    #audit-overview .jqx-window-close-button-background,
+    #audit-overview .jqx-window-collapse-button-background,
+    #audit-evaluation .jqx-window-close-button-background,
+    #audit-evaluation .jqx-window-collapse-button-background {
+        top: 14px !important;
+        margin: 0 !important;
+    }
+
+    #audit-overview .jqx-window-close-button-background,
+    #audit-evaluation .jqx-window-close-button-background {
+        right: 10px !important;
+    }
+
+    #audit-overview .jqx-window-collapse-button-background,
+    #audit-evaluation .jqx-window-collapse-button-background {
+        right: 30px !important;
+    }
+
+    #audit-overview .jqx-window-content,
+    #audit-evaluation .jqx-window-content {
+        width: auto !important;
+        background: #fff !important;
+        border: 0 !important;
+        box-sizing: border-box !important;
+        padding: 14px 16px !important;
+        overflow: auto !important;
+    }
+
+    #audit-overview .issue_form,
+    #audit-evaluation .issue_form {
+        width: 100%;
+    }
+
+    #audit-overview table,
+    #audit-evaluation table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 4px;
+    }
+
+    #audit-overview th,
+    #audit-evaluation th {
+        width: 25%;
+        padding: 5px 14px 5px 0;
+        /*text-align: right;*/
+        vertical-align: middle;
+        color: #64748b;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    #audit-overview td,
+    #audit-evaluation td {
+        padding: 5px 0;
+        vertical-align: middle;
+        color: #334155;
+        font-size: 13px;
+    }
+
+    #audit-overview .jqx-input,
+    #audit-evaluation .jqx-input,
+    #audit-overview select,
+    #audit-evaluation select {
+        height: 30px !important;
+        min-height: 30px;
+        box-sizing: border-box;
+        border: 1px solid #d7e0eb !important;
+        border-radius: 5px !important;
+        background: #fff !important;
+        color: #334155;
+        font-size: 13px;
+        box-shadow: none !important;
+        outline: none;
+    }
+
+    #audit-overview input.jqx-input:not(.tiny):not(.medium),
+        #audit-evaluation input.jqx-input:not(.tiny):not(.medium) {
+        width: 100% !important;
+    }
+
+    #audit-overview .jqx-input:focus,
+        #audit-evaluation .jqx-input:focus,
+        #audit-overview select:focus,
+        #audit-evaluation select:focus {
+        border-color: #2866c2 !important;
+        box-shadow: 0 0 0 2px rgba(40, 102, 194, .08) !important;
+    }
+
+    #audit-overview .jqx-datetimeinput,
+    #audit-evaluation .jqx-datetimeinput {
+        height: 30px !important;
+        border-radius: 5px !important;
+    }
+
+    #audit-overview .jqx-datetimeinput .jqx-input-content,
+    #audit-evaluation .jqx-datetimeinput .jqx-input-content {
+        height: 28px !important;
+        margin-top: 0 !important;
+        padding-left: 7px !important;
+    }
+
+    #audit-overview h4,
+    #audit-evaluation h4 {
+        margin: 16px 0 8px !important;
+        padding: 8px 10px 8px 30px !important;
+        background-color: #f3f7fc !important;
+        background-position: 8px center !important;
+        background-repeat: no-repeat !important;
+        border-left: 3px solid #2866c2;
+        border-radius: 4px;
+        color: #334155;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 16px;
+    }
+
+    #audit-overview h5,
+    #audit-evaluation h5 {
+        margin: 16px 0 8px;
+        padding: 7px 0;
+        border-bottom: 1px solid #e5eaf1;
+        color: #475569;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    #audit-overview .boxblock,
+    #audit-evaluation .boxblock {
+        display: inline-flex;
+        align-items: center;
+        margin: 0 14px 0 0;
+        color: #475569;
+        font-size: 12px;
+        vertical-align: middle;
+    }
+
+    #audit-overview .boxblock input,
+    #audit-evaluation .boxblock input {
+        margin: 0 5px 0 0;
+    }
+
+    #audit-overview .gray {
+        color: #64748b;
+    }
+
+    #audit-overview .tiny {
+        width: 42px !important;
+        height: 28px !important;
+        text-align: center;
+        padding: 0 4px !important;
+    }
+
+    #audit-overview .small {
+        width: 105px !important;
+    }
+
+    #audit-overview .medium {
+        width: 110px !important;
+    }
+
+    #audit-overview .whitebg {
+        background: #fff !important;
+    }
+
+    #audit-overview tr:has(.tiny) th {
+        color: #475569;
+        font-weight: 500;
+    }
+
+    #audit-overview tr:has(.tiny) td {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    #audit-overview tr:has(.tiny) .boxblock {
+        margin-right: 8px;
+        gap: 3px;
+    }
+
+    #audit-overview tr:has(.tiny) .boxblock input {
+        margin-right: 2px;
+    }
+
+    #audit-overview hr {
+        border: 0;
+        border-top: 1px solid #e5eaf1;
+        margin: 10px 0;
+    }
+
+    #audit-overview textarea,
+    #audit-evaluation textarea {
+        width: 100% !important;
+        min-height: 100px;
+        box-sizing: border-box;
+        padding: 8px 10px;
+        border: 1px solid #d7e0eb !important;
+        border-radius: 5px !important;
+        background: #fff !important;
+        color: #334155;
+        font-size: 13px;
+        line-height: 1.5;
+        box-shadow: none !important;
+    }
+
+    #audit-overview textarea:focus,
+        #audit-evaluation textarea:focus {
+        border-color: #2866c2 !important;
+        box-shadow: 0 0 0 2px rgba(40, 102, 194, .08) !important;
+    }
+
+    #audit-evaluation {
+        height: auto !important;
+    }
+
+    #audit-evaluation .jqx-window-content {
+        min-height: 230px;
+    }
+
+    #audit-evaluation .jqx-window-content table {
+        margin-bottom: 8px;
+    }
+
+    .jqx-window-content,
+    .jqx-window-content {
+        scrollbar-width: thin;
+        scrollbar-color: #b8c4d3 transparent;
+    }
+
+    #audit-overview .jqx-window-content::-webkit-scrollbar,
+    #audit-evaluation .jqx-window-content::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+    }
+
+    #audit-overview .jqx-window-content::-webkit-scrollbar-track,
+    #audit-evaluation .jqx-window-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    #audit-overview .jqx-window-content::-webkit-scrollbar-thumb,
+    #audit-evaluation .jqx-window-content::-webkit-scrollbar-thumb {
+        background: #b8c4d3;
+        border-radius: 10px;
+        border: 2px solid #fff;
+    }
+
+    #audit-overview .jqx-window-content::-webkit-scrollbar-thumb:hover,
+        #audit-evaluation .jqx-window-content::-webkit-scrollbar-thumb:hover {
+        background: #8fa1b5;
+    }
+
+}
+button#clickToListView {
+    display: none !important;
+}
+/*IWI Record Details Page Redesign 10092026 end*/

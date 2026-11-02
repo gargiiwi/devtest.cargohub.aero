@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Agreement of Release and Discharge</title>
+	{! Some styles specific to claims }{@<style type="text/css">
+	.iss_claim_type {
+		padding: 1px 4px;
+		margin-right: 5px;
+		color: black;		
+	}
+	#iss_ct_Delay {
+		border: 1px solid blue;
+	}
+	#iss_ct_Damage {
+		border: 1px solid red;
+	}
+	#iss_ct_Loss {
+		border: 1px solid gray;
+	}
+	.iss_document {
+		padding: 1px 4px;
+		margin-right: 5px;
+		color: green;
+		border: 1px solid lightgray;		
+	}
+	</style>}
+	{@<style type="text/css">
+	#issue_print {
+		border: 1px solid lightgray;
+		border-collapse: separate;
+		border-spacing: 8px;
+	}
+
+	#issue_print table {
+		width: 100%;
+		margin-bottom: 16px;
+	}
+	
+		#issue_print table.infotable th {
+			height: 20px
+		}
+	
+		#issue_print .field_error {
+			background-color: OrangeRed;
+			color: white;
+			border: 1px solid black;
+			padding: 2px;
+		}
+		
+		#issue_print th {
+			width: 140px;
+			text-align: right;
+			padding-right: 6px;
+			font-weight: normal;
+		}
+		
+	div#attachments {
+		overflow: auto;
+	}
+	
+		div#attachments div.file-listing {
+			margin-bottom: 6px;
+			padding: 4px 0px 6px 2px;
+			border-bottom: 1px dotted lightgray;
+		}
+		
+		div#attachments div.file-listing img {
+			float: left;
+			margin-right: 10px;
+			border: none;
+		}
+/* PRINT */
+		
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+		
+	div#saudia-header {
+		text-align: center;
+	}
+		div#saudia-header img {
+			width: 12cm;
+		}
+		
+	h1, h2 {
+		text-transform: uppercase;
+		margin-top: 0.2em;
+		margin-bottom: 0.2em;
+	}
+	.cellspace {
+		padding-bottom: 0.8em;
+	}
+	
+	.justified {
+		text-align: justify;
+	}
+	.blue {
+		color: #548dd1;
+		font-weight: bold;
+	}
+	.editable {
+		border: 0;
+		font-size: 1em;
+		padding: 2px;
+	}
+		.editable:HOVER {
+			background-color: yellow;
+		}
+	.indentus {
+		float: left;
+		width: 1.5cm;
+	}
+	li {
+		margin-bottom: 0.5em;
+	}
+	
+	</style>}
+</head>
+<body>
+{#if:header:{header}}
+	<div id="saudia-header">
+		<img src="/orgs/saudia/logo_big.png" alt="Saudia CARGO" style="width: 12cm;" />
+		<h1 style="font-size: 1.5em;">Agreement of Release and Discharge</h1>
+	</div>{#use:iss:
+	<table style="width: 100%; border: 1px solid gray;">
+		<tr>
+			<td style="width: 50%; padding: 0.5em;" class="justified cellspace" valign="top">
+				<h2 style="font-size: 1.2em;">Between:</h2>
+				<p>1) Saudi Arabian Airlines Corporation, Saudi Arabian Airlines Corporation trading as “Saudi Airlines Cargo Co'',  and Saudi Airlines Cargo Company LLC, each of P.O Box 620, Jeddah 21231, Saudi Arabia and their respective parent, affiliated, associated and subsidiary company(ies), directors, officers, agents, servants, insurers and reinsurers (“the Releases”)</p>
+				<p>2) <span class="blue">{submitter.xdata.company_name}</span><br />
+				<input type="text" class="editable blue"></input> (&quot;the <b>Releasor</b>&quot;)
+				</p>
+			</td>
+			<td style="width: 50%; border-left: 1px solid black; padding: 0.5em;" valign="top">
+				<h2 style="font-size: 1.2em;">Definitions:</h2>
+				<table style="width: 100%;">
+					<tr><th valign="top" style="text-align: left; width: 2.5cm;">Claims:</th>
+					<td class="justified cellspace">Claims means any and all claims, actions, demands, expenses and costs (including legal expenses and costs) whether past, present or future, whether ascertained or unascertained, howsoever and whosesoever arising out of or in connection with the Carriage.</td></tr>
+					<tr><th valign="top" style="text-align: left; width: 2.5cm;">Carriage:</th>
+					<td class="justified cellspace">Carriage means any and all carriage and related services agreed to be performed under or in connection with:<br />
+					<b>AWB [ <span class="blue">{xfields.mawb.p}-{xfields.mawb.s}</span> ] dated [ <span class="blue">{xfields.carry_date}~date("Y-m-d")~</span> ]</b></td>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br />
+	<div style="border: 1px solid gray;">{!The text body section}
+		<h2>Whereas</h2>
+		<p>The <i>Releasor</i> has made Claims against the <i>Releasees</i> for alleged losses and damage arising out of Carriage.</p>
+		<p>It is agreed as follows:</p>
+		<ol style="text-indent: 1cm;">
+			<li>The Releasees agree to pay and the Releasors accept the sum of<br />
+			<input type="text" class="editable blue" value="[ USD 0.00 ] / (USD, -type amount here as text-)" style="width: 100%;"></input><br />
+			<b>(&quot;the Settlement Amount&quot;)</b> in full and final settlement of all Claims. <span style="font-size: 0.8em; font-weight: bold;">(this offer is valid for 10 working days only from the date of email sent).</span></li>
+			<li>In consideration of the payment of the Settlement Amount the Releasors:<br />
+				<p><span class="indentus">(a)</span>Agree to discontinue any and all legal proceedings in any jurisdiction; and</p>
+				<p><span class="indentus">(b)</span>Fully, irrevocably and forever release and discharge the Releasees from any and all Claims; and</p>
+				<p><span class="indentus">(c)</span>Agree to hold harmless, indemnify and defend each and every one of the Releasees from and against all Claims which may be made now or in the future against the Releasees whether by the Releasors and/or any other person having any interest in the Carriage and/or a right of action against the Releasees; and</p>
+				<p><span class="indentus">(d)</span>Acknowledge that this Agreement and the offer to pay and payment of the Settlement Amount does not constitute any admission of liability on the part of the Releasees; and</p>
+				<p><span class="indentus">(e)</span>Acknowledge that this agreement is strictly confidential and covenant that the terms shall not be disclosed to any other person or authority unless required by law and  notified to Saudi Airlines Cargo Company LLC <span class="blue">(Ref. <input style="width: 2.5cm;" type="text" class="editable blue" />)</span>; and</p>
+				<p><span class="indentus">(f)</span>Undertake not to lend any assistance of any nature to any other persons for the purpose of their pursuing Claims in any jurisdiction against the Releasees.</p>
+			</li>
+			<li>This &quot;Release and Discharge&quot; and the respective rights, duties and obligations of the parties there to are governed by the laws and regulations of Saudi Arabia and the parties irrevocably submit to the exclusive jurisdiction Courts of Saudi Arabia in relation to any matter connected with the matters recited above.</li>
+		</ol>
+	</div>
+	<br />
+	<table style="width: 100%; border: 1px solid gray;">
+		<tr><td valign="top" width="50%">
+			<p>Dated: This day of [<input type="text" style="width: 3cm;" class="editable" />]</p>
+			<p>Signed: <input type="text" class="editable" style="width: 80%;"><br />
+			Print Name of signatory:</p>
+			<p>[<input type="text" class="editable" style="width: 90%;">]<br />
+			Print position of signatory:</p>
+			<p>[<input type="text" class="editable" style="width: 90%;">]</p>
+			<p>On behalf of [<input type="text" style="width: 75%;" class="editable" />]</p>
+			<p>Signed <input type="text" style="width: 80%;" class="editable" /></p>
+		</td>
+		<td valign="top" width="50%">
+			<p style="color: lightgray;">[STAMPS]</p><br /><br /><br />
+			<p>Print name of witness: <input type="text" style="width: 60%;" class="editable" /></p>
+			<p>Address of witness: <input type="text" style="width: 60%;" class="editable" /><br />
+			<input type="text" style="width: 95%;" class="editable" /></p>
+			<p>Occupation/Position of witness: <input type="text" style="width: 40%;" class="editable" /><br />
+			<input type="text" style="width: 95%;" class="editable" /></p>
+		</td></tr>
+	</table>
+}
+{#if:footer:{footer}}
+</body>
+</html>

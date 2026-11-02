@@ -1,0 +1,6 @@
+# Error messages returned via JSON (by the send_Fail_JSON() method)
+
+# Messages related to sending system e-mails
+sysmsg:
+  msgrecord:    Unable to create the message record. Possible database error. Please contact support.
+  emailsend:    Sending the e-mail failed. A record of the failure has been logged and will be checked by tech support.

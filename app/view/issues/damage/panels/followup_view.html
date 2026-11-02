@@ -1,0 +1,77 @@
+{#use:%ist.xfield_def:
+
+{!Section - Risk assessment}
+	<h4 style="background-image: url('/img/icons16/balance_unbalance.png'); background-repeat: no-repeat; background-position: 4px;">Risk assessment</h4>
+	<table>
+		<tr><th>{resp.n}:</th><td>{^xfields.resp.value:<span class="gray">---</span>}</td></tr>
+		<tr><th valign="top">{class.n}:</th><td><b>{^xfields.class.value}</b><br /><span class='gray' style="font-size: 0.9em;">
+			{#if:^xfields.class.key=1:Small tears, dents or scratches to the outer packaging only}
+			{#if:^xfields.class.key=2:Damage might have affected the content.<br />Inspection is advised}
+			{#if:^xfields.class.key=3:Damage has affected the condition of the contents.<br />Inspection is <b>required</b>}
+			{#if:^xfields.class.key=4:Cargo suspected of pilferage<br />Inspection is <b>required</b>}
+			{#if:^xfields.class.key=5:Damage involving safety of life or property<br /><b>Inspection, decontamination and verification is required</b><br />(e.g. chemical, biological, radioactive leakage or spillage)}
+			</span>
+		</td></tr>
+		<tr><th>{risk_class.n}:</th><td>{#ifnot:^xfields.risk_class:<span class='gray'>---</span>}{#repeat:^xfields.risk_class:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{inv_done.n}</th><td>{#repeat:^xfields.inv_done:<span class="itembox{#if:key=req: inv-red}{#if:key=rc: inv-orange}">{value}</span>}</td></tr>
+		<tr><th>{ntfp.n}:</th><td>{#ifnot:^xfields.ntfp:<span class='gray'>---</span>}{#repeat:^xfields.ntfp:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+
+{!Section - Investigation}
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/question2.png'); background-repeat: no-repeat; background-position: 4px;">Investigation</h4>
+	<div>
+		<table style="width: 99%;">
+			<tr>
+				<td style="width: 33%; text-align: center;">Deadline</td>
+				<td style="width: 33%; text-align: center;">Started</td>
+				<td style="width: 33%; text-align: center;">Completed</td>
+			</tr>
+			<tr>
+				<td class="center">{#if:^xfields.inv_date:<span class='thick red'>{^xfields.inv_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_date:<span class='gray'>---</span>}</td>
+				<td class="center">{#if:^xfields.inv_start_date:<span class='thick blue'>{^xfields.inv_start_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_start_date:<span class='gray'>---</span>}</td>
+				<td class="center">{#if:^xfields.inv_end_date:<span class='thick green'>{^xfields.inv_end_date}~date("Y-m-d")~</span>}{#ifnot:^xfields.inv_end_date:<span class='gray'>---</span>}</td>
+			</tr>
+		</table>
+	</div>
+	<hr />
+	<table>
+		<tr><th>Person in charge:</th><td>{^xfields.inv_pers:<span class="gray">---</span>}</td></tr>
+	</table>
+
+	<h5 style="margin-left: 20px;">{inv_descr.n}:</h5>
+	{#if:^xfields.inv_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 120px; overflow: auto;">{^xfields.inv_descr}~nl2br~</div>}
+	{#ifnot:^xfields.inv_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+{!Section - Involved}
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/users.png'); background-repeat: no-repeat; background-position: 4px;">Involved</h4>
+	<table>
+		<tr><th>{inv_emp.n}:</th><td>{^xfields.inv_emp:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{inv_role.n}:</th><td>{^xfields.inv_role.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{workg.n}:</th><td>{^xfields.workg:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{shift.n}:</th><td>{^xfields.shift:<span class='gray'>---</span>}</td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{area.n}:</th><td>{^xfields.area.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{area_supr.n}:</th><td>{^xfields.area_supr:<span class="gray">---</span>}</td></tr>
+		<tr><th>{loc.n}:</th><td>
+			{#if:^xfields.loc:{^xfields.loc}{#if:^xfields.loc_id: ({^xfields.loc_id})}}
+			{#ifnot:^xfields.loc:<span class="gray">---</span>}</td>
+		</tr>
+	</table>
+
+{!Section - Contributing factors}	
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Contributing factors</h4>
+	<table>
+		<tr><th>{cf_behav.n}:</th><td>{#ifnot:^xfields.cf_behav:<span class='gray'>---</span>}{#repeat:^xfields.cf_behav:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_behav_oth:<span class="itembox">{^xfields.cf_behav_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_rules.n}:</th><td>{#ifnot:^xfields.cf_rules:<span class='gray'>---</span>}{#repeat:^xfields.cf_rules:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_rules_oth:<span class="itembox">{^xfields.cf_rules_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_eq.n}:</th><td>{#ifnot:^xfields.cf_eq:<span class='gray'>---</span>}{#repeat:^xfields.cf_eq:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_eq_oth:<span class="itembox">{^xfields.cf_eq_oth}</span>}
+		</td></tr>
+		<tr><th>{cf_org.n}:</th><td>{#ifnot:^xfields.cf_org:<span class='gray'>---</span>}{#repeat:^xfields.cf_org:<span class="itembox">{value}</span>}
+			{#if:^xfields.cf_org_oth:<span class="itembox">{^xfields.cf_org_oth}</span>}
+		</td></tr>
+	</table>
+}

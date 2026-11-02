@@ -1,0 +1,45 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{ext_ref.n}</th><td>{^xfields.ext_ref:<span class="gray">---</span>}</td></tr>
+		<tr><th>{prces.n}:</th><td><b>{^xfields.prces.value}</b></td></tr>
+		<tr><th>Internal stage:</th><td>{^xfields.fw_istage.value:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<h5>{fw_irem.n}:</h5>
+	{#if:^xfields.fw_irem:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto; margin-bottom: 10px;">{^xfields.fw_irem}~nl2br~</div>}
+	{#ifnot:^xfields.fw_irem:<div class="gray" style="text-indent: 20px;">-----</div>}
+	
+	<h5>{fw_customer.n}:</h5>
+	{#if:^xfields.fw_customer:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto; margin-bottom: 10px;">{^xfields.fw_customer}~nl2br~</div>}
+	{#ifnot:^xfields.fw_customer:<div class="gray" style="text-indent: 20px;">-----</div><hr />}
+	<table>
+		<tr><th>{project_no.n}</th><td>{^xfields.project_no:<span class="gray">---</span>}</td></tr>
+		<tr><th>{purch_no.n}</th><td>{^xfields.purch_no:<span class="gray">---</span>}</td></tr>
+		<tr><th>{shipm_no.n}</th><td>{^xfields.shipm_no:<span class="gray">---</span>}</td></tr>
+	</table>
+	<h5>{fw_remarks.n}:</h5>
+	{#if:^xfields.fw_remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto; margin-bottom: 10px;">{^xfields.fw_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.fw_remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+	<div class="clear"></div>
+	
+	<h4 style="margin-top: 8px;">Settlement: <a href="http://www.cargohub.nl/sdr-calculator/" target="_blank" style="float: right; text-indent: 20px; margin-right: 30px; font-weight: bold; background-image: url('/img/icons16/calculator.png'); background-repeat: no-repeat; background-position: left;">SDR Calculator</a></h4>
+	<table>
+		<tr><th>{claim_amt.n}:</th><td>
+			<b>{^xfields.claim_amt.serialized:<span class='gray'>---</span>}</b>
+			<span class='right' style='width: 120px;'>Date: {#if:^xfields.fw_acdate:{^xfields.fw_acdate}~date("Y-m-d")~</span>}{#ifnot:^xfields.fw_acdate:<span class='gray'>---</span>}</span>
+		</td></tr>
+
+		<tr><th>{fw_final_costs.n}:</th>
+			<td><b>{^xfields.fw_final_curr.value}~cut(4)~{^xfields.fw_final_costs}~numberformat(2)~</b>
+			<span class='right' style='width: 120px;'>Date: {#if:^xfields.fw_pcarridate:{^xfields.fw_pcarridate}~date("Y-m-d")~</span>}{#ifnot:^xfields.fw_pcarridate:<span class='gray'>---</span>}</span>
+		</td></tr>
+		<tr><th>{fw_payedins.n}:</th><td><b>{^xfields.fw_payedins.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{fw_provision.n}:</th><td><b>{^xfields.fw_provision_curr.value}~cut(4)~{^xfields.fw_provision}~numberformat(2)~</b></td></tr>
+		<tr><th>{fw_proposal.n}:</th><td><b>{^xfields.fw_proposal_curr.value}~cut(4)~{^xfields.fw_proposal}~numberformat(2)~</b></td></tr>
+		<tr><th>{fw_paidagent.n}:</th>
+			<td><b>{^xfields.fw_paidagent.serialized:<span class='gray'>---</span>}</b>
+			<span class='right' style='width: 120px;'>Date: {#if:^xfields.fw_pagntdate:{^xfields.fw_pagntdate}~date("Y-m-d")~</span>}{#ifnot:^xfields.fw_pagntdate:<span class='gray'>---</span>}</span>
+		</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{fw_formal_claim.n}:</th><td><b>{^xfields.fw_formal_curr.value}~cut(4)~{^xfields.fw_formal_claim}~numberformat(2)~</b></td></tr>
+	</table>
+}

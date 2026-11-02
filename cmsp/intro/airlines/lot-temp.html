@@ -1,0 +1,66 @@
+{@	<style>
+	@font-face {
+		font-family: LatoLatin-Regular;
+		font-weight: normal;
+		src: url("/orgs/lot/LatoLatin-Regular.woff") format("woff"), url("/orgs/lot/LatoLatin-Regular.ttf") format("truetype");
+	}
+	#page-title {
+		font-family: "LatoLatin-Regular",Arial,Helvetica,sans-serif;
+		color: #717a8c; font-size: 3.33em; margin: 20px;
+	}
+	
+	#tabs-claiminfo {
+		font-family: "LatoLatin-Regular",Arial,Helvetica,sans-serif;
+		font-size: 1.2em;
+		color: #152f70;
+	}
+	
+	table#claim-types {
+		width: 100%; border-collapse: collapse; border-spacing: 1px;
+	}
+
+	table#claim-types th, table#claim-types td {
+		padding: 5px;
+	}
+	</style>}
+	<div id="page-title">Cargo e-Claims</div>
+	{#plugin:recordgate}
+	<div id="tabs-claiminfo">
+			<div style="padding: 10px 30px !important;">
+				<p>A cargo claim is a written complaint demanding financial compensation from LOT Polish Airlines for loss of, damage or<br /> delay to cargo whilst in care and control pursuant to a contract of carriage.</p>
+				<p>In the case of damage or delay, the person entitled to delivery must complain to LOT Polish Airlines within the time lines stated below. If no complaint is made within the times indicated below, then no action can be brought against LOT Polish Airlines.</p>
+			</div>
+			<table id="claim-types" width="100%">
+				<tr class="jqx-widget-header jqx-widget-header-glacier jqx-fill-state-pressed jqx-fill-state-pressed-darkblue jqx-expander-header-expanded jqx-expander-header-expanded-glacier jqx-expander-header jqx-expander-header-glacier">
+					<th width="5%" style="text-align: center; color: #fff;">No.</th>
+					<th width="15%" style="color: #fff;">Claim Type</th>
+					<th width="40%" style="color: #fff;">Description</th>
+					<th width="40%" style="color: #fff;">Time Limit</th>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">1</td>
+					<td style="text-align: left;">Destruction.</td>
+					<td style="text-align: left;">Complete loss of whole consignment.</td>
+					<td style="text-align: left;"><span class='impno'>120</span> days from the AWB issuing date.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">2</td>
+					<td style="text-align: left;">Damage.</td>
+					<td style="text-align: left;">To consignment whole or in part.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">3</td>
+					<td>Partial loss.</td>
+					<td style="text-align: left;">Some of the consignment is missing or damaged.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">4</td>
+					<td>Delay.</td>
+					<td style="text-align: left;">To complete consignment or part of it</td>
+					<td style="text-align: left;"><span class='impno'>21</span> days from the placing date.</td>
+				</tr>
+			</table>
+	</div>
+<div class="clear"></div>

@@ -1,0 +1,350 @@
+<main >
+  <section class="hero">
+    <div class="hero-media"></div>
+    <div class="container hero-content width_mdl_contnt">
+      <div class="hero-copy">
+        <div class="eyebrow">IATA CARGO INNOVATION AWARDED</div>
+        <h1>Generate, manage and<br>submit air cargoclaims<br><span>for any airline</span></h1>
+        <p>on one secure, standardized platform.</p>
+      </div>
+    </div>
+  </section>
+    <section class="search-zone width_mdl_contnt">
+        <div class="container">
+            <div class="search-card">
+                <div class="search-intro">
+                    <div class="search-icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h3>Find your airline .Start your claim</h3>
+                        <p>Search by airline name, IATA / ICAO code or AWB prefix.</p>
+                    </div>
+                </div>
+                <div class="search-actions">
+                    <div class="airfind-wrap">
+                        {#plugin:airfind}
+                    </div>
+                    <a class="existing-claims" href="/contact/account?hash=issues" target="_blank">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <span>View my claims</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="trust width_mdl_contnt">
+    <div class="container">
+
+        <div class="trust-label">
+            TRUSTED BY LEADING AIRLINES AND CARGO ORGANISATIONS
+        </div>
+
+        <div class="logo-row">
+
+            <span>Atlas Air</span>
+
+            <span>ASL Airlines</span>
+
+            <span>Amerijet</span>
+
+            <span>Saudia Cargo</span>
+
+            <span>LOT Polish Airlines</span>
+
+            <span>Kales Airline Services</span>
+
+            <span class="award">
+                <i class="fa fa-trophy" aria-hidden="true"></i>
+                <span>IATA CARGO INNOVATION AWARD 2015</span>
+            </span>
+
+        </div>
+
+    </div>
+</section>
+    
+    <section class="how section-space width_mdl_contnt">
+    <div class="container">
+        <div class="section-title-row" style="display:flex; align-items:center;">
+            <div style="display:flex; align-items:center;">
+                <!-- <span class="small-line"></span> -->
+                <h2 style="margin:8px 0 0 12px;">
+                    How it works 
+                    <!-- <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span> -->
+                </h2>
+            </div>
+        </div>
+
+        <div class="steps-grid">
+
+            <article class="step">
+                <div class="step-no">1</div>
+                <div class="step-icon">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <h3>Find your airline</h3>
+                <p>Search by airline name, IATA / ICAO code or AWB prefix.</p>
+                <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/howto_submit_claim" target="_blank">
+                    Read submission Guide <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </article>
+
+            <article class="step">
+                <div class="step-no">2</div>
+                <div class="step-icon">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                </div>
+                <h3>Enter shipment details</h3>
+                <p>Provide key information about your shipment and claim.</p>
+                <!-- <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/howto_submit_claim" target="_blank">
+                    More information <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a> -->
+            </article>
+
+            <article class="step">
+                <div class="step-no">3</div>
+                <div class="step-icon">
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                </div>
+                <h3>Upload documents</h3>
+                <p>Add invoices, photos and other relevant files.</p>
+                <!-- <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/howto_submit_claim" target="_blank">
+                    More information <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a> -->
+            </article>
+
+            <article class="step">
+                <div class="step-no">4</div>
+                <div class="step-icon">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </div>
+                <h3>Generate and send claim</h3>
+                <p>Review, generate and submit your claim to the airline.</p>
+                <!-- <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/howto_submit_claim" target="_blank">
+                    More information <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a> -->
+            </article>
+
+        </div>
+
+            <div class="how-disclaimer">
+            <strong>Disclaimer:</strong>
+            CargoClaims does not handle claims on behalf of the airline.
+            The submitter is responsible for verifying the airline’s email
+            contact details before submitting a claim. Requests for claim
+            status updates must be sent directly to the carrier.
+        </div>
+
+    </div>
+</section>
+
+    
+    
+    <section class="program section-space width_mdl_contnt" >
+    <div class="container program-grid">
+      <div class="program-copy">
+        <!-- <span class="small-line"></span> -->
+        <h2>Cargo claims and loss prevention<br><span>for airlines and handlers</span></h2>
+        <p class="lead">From claim management to prevention — a complete program to reduce losses, improve performance and strengthen collaboration across the air cargo supply chain.</p>
+
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="feature-icon"><i class="fa fa-list-alt" aria-hidden="true"></i></div>
+            <h4>Claims Management</h4>
+            <p>Generate, track and resolve claims efficiently.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon"><i class="fa fa-shield" aria-hidden="true"></i></div>
+            <h4>Damage Control</h4>
+            <p>Identify risks and take action to minimize and control damages.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon"><i class="fa fa-search" aria-hidden="true"></i></div>
+            <h4>Tracing Recovery</h4>
+            <p>Real-time visibility and fast recovery of mishandled shipments.</p>
+          </div>
+          <!-- <div class="feature">
+            <div class="feature-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+            <h4>Expert Advisory</h4>
+            <p>Practical support for complex claims.</p>
+          </div> -->
+        </div>
+
+            <div style="display:flex !important; gap:14px !important;">
+                <!-- <a class="btn btn-outline" href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_airlines" target="_blank">Benefits For Airlines →</a> -->
+                <!-- <a class="btn btn-outline" href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_claimants" target="_blank">Benefits For Claimants →</a> -->
+                <!-- <a class="btn btn-outline" href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_handlers" target="_blank">Benefits For Handlers →</a> -->
+            </div>
+       
+      </div>
+
+      <aside class="calculator-card">
+        <div class="calc-head">
+          <div class="calc-icon"><i class="fa fa-calculator" aria-hidden="true"></i></div>
+          <div>
+            <h3>Maximum Claim Liability Calculator</h3>
+            <p>Quickly estimate the maximum claim liability under the Montreal Convention (MC99).
+             <a class="btnlib" href="http://www.cargohub.nl/liability-calculators" target="_blank" style=" color:#0b79ff !important; font-weight: 700 !important;text-decoration: underline !important;"> Liability →</a></p>
+           
+          </div>
+        </div>
+        
+    <div id="calculator-plugin">
+        {liability_Calculator}
+    </div> 
+
+
+        <small>Exchange rate updated daily</small>
+      </aside>
+      
+    </div>
+  </section>
+    
+    <!-- <section class="trust width_mdl_contnt">
+    <div class="container">
+
+        <div class="trust-label">
+            TRUSTED BY LEADING AIRLINES AND CARGO ORGANISATIONS
+        </div>
+
+        <div class="logo-row">
+
+            <span>Atlas Air</span>
+
+            <span>ASL Airlines</span>
+
+            <span>Amerijet</span>
+
+            <span>Saudia Cargo</span>
+
+            <span>LOT Polish Airlines</span>
+
+            <span>Kales Airline Services</span>
+
+            <span class="award">
+                <i class="fa fa-trophy" aria-hidden="true"></i>
+                <span>IATA CARGO INNOVATION AWARD 2015</span>
+            </span>
+
+        </div>
+
+    </div>
+</section> -->
+
+</main>
+<footer class="site-footer">
+
+    <div class="footer-photo"></div>
+
+    <div class="footer-content">
+
+        <div class="footer-links">
+
+            <div class="footer-brand">
+        <div class="brand inverse">
+          <a href="/" class="cc-logo">
+                    <img src="/img/cargoclaimlogoNew.png" alt="Cargo Claims">
+                </a>
+        </div>
+        <p>Digital solutions for a more efficient, transparent and sustainable air cargo industry.</p>
+        <a class="btn btn-footer" href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/about_us" target="_blank">About us <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+        <a class="btn btn-footer" href="http://www.cargohub.nl/contactus" target="_blank">Contact <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+
+            <div>
+                <h4>Contact</h4>
+
+                <p>
+                    <i class="fa fa-envelope"></i>
+                    support@cargohub.nl
+                </p>
+
+
+                <p>
+                    <i class="fa fa-map-marker"></i>
+                    A. van Leeuwenhoekweg 36B-11<br>
+                    2408 AN Alphen aan den Rijn <br>
+                    The Netherlands
+
+                </p>
+                  <p>
+                    <i class="fa fa-map-marker"></i>
+                    PS SRIJAN CORPORATE <br> 
+                    PARK – Tower II Sector V, <br>
+                     Salt Lake, Kolkata <br>
+                    India
+                </p> 
+            </div>
+
+            <div>
+                <h4>Quick links</h4>
+
+                <p>
+                    <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_airlines">
+                        Airlines
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/benefits_for_handlers">
+                        Handlers
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://cargohub.aero/cms?path=/cargoclaims/docs/benefits_for_claimants">
+                        Claims Advisory
+                    </a>
+                </p>
+
+                <p>
+                    <a href="http://www.cargohub.nl/liability-calculators">
+                        Liability
+                    </a>
+                </p>
+
+                <p>
+                    <a href="http://www.cargohub.nl/blog">
+                        Blog
+                    </a>
+                </p>
+            </div>
+
+            <div>
+                <h4>Legal</h4>
+
+                <p>
+                    <a href="https://cargoclaims.aero/cms?path=terms-of-use">
+                        Terms &amp; Conditions
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://cargoclaims.aero/cms?path=privacy">
+                        Privacy Policy
+                    </a>
+                </p>
+            </div>
+
+            <!-- <div>
+        <h4>Follow us</h4>
+        <div class="socials"><span>in</span><span>X</span></div>
+      </div> -->
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>
+                � 2026 CargoClaims.aero. All rights reserved. Part of CargoHub B.V.
+            </span>
+
+            <span>
+                Delivering a stronger air cargo industry.
+            </span>
+        </div>
+
+    </div>
+
+</footer>

@@ -1,0 +1,386 @@
+/* ============================= */
+/* PAGE WRAPPER */
+/* ============================= */
+
+.auditControlChartPage{
+    padding:20px;
+}
+div.site {
+    width: 90%;
+}
+
+
+/* ============================= */
+/* KPI SECTION */
+/* ============================= */
+
+
+
+
+
+.kpi-label{
+    font-size:13px; 
+    color:#6b7280;
+    font-weight:600;
+}
+
+
+
+
+
+/* ============================= */
+/* PAGE HEADER */
+/* ============================= */
+.chart-card-header {
+    background: #f3f3f3;
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin-bottom: 12px;
+    color: #4c4a4a;
+}
+.chart-card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.chart-header-left{
+    font-size:17px;
+    font-weight:600;
+    color:#1f2937;
+}
+
+.chart-header-left i{
+    margin-right:6px;
+    color:#2563eb;
+}
+
+.chart-header-right select{
+    padding:6px 10px;
+    border-radius:6px;
+    border:1px solid #d1d5db;
+    background:white;
+}
+
+
+
+/* ============================= */
+/* CHART GRID */
+/* ============================= */
+
+.chart-grid{
+    display:grid;
+    grid-template-columns:1fr;  /* ONE CARD PER ROW */
+    gap:26px;
+    margin-bottom:30px;
+}
+
+
+
+/* ============================= */
+/* CHART CARD */
+/* ============================= */
+
+.chart-card{
+    background:#ffffff;
+    border-radius:10px;
+    padding:22px 24px;
+    border:1px solid #eef1f5;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    transition:all .2s ease;
+}
+
+.chart-card:hover{
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+
+
+/* ============================= */
+/* CARD TITLE */
+/* ============================= */
+
+.chart-card h3{
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:16px;
+    color:#1f2937;
+}
+
+
+
+/* ============================= */
+/* INNER SECTION */
+/* ============================= */
+
+.innerSection{
+    margin-top:6px;
+}
+
+
+
+/* ============================= */
+/* CHART AREA */
+/* ============================= */
+
+.chart-container{
+    height:320px;
+    width:100%;
+    margin-bottom:10px;
+}
+
+.chart-canvas-wrap{
+    position:relative;
+    width:100%;
+}
+
+
+
+/* ============================= */
+/* CHECKBOX FILTERS */
+/* ============================= */
+
+.chart-checkboxes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:12px;
+    padding-top:10px;
+    border-top:1px solid #f1f3f6;
+    font-size:13px;
+}
+
+.chart-checkboxes label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+    white-space:nowrap;
+    color:#374151;
+}
+
+.chart-checkboxes input{
+    cursor:pointer;
+}
+
+
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+
+.claims-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    margin-top:12px;
+}
+
+.claims-table th{
+    background:#f8fafc;
+    padding:8px;
+    border:1px solid #e5e7eb;
+    text-align:center;
+    font-weight:600;
+    color:#374151;
+}
+
+.claims-table td{
+    padding:8px;
+    border:1px solid #e5e7eb;
+    text-align:center;
+    color:#374151;
+}
+
+.claims-table tbody tr:hover{
+    background:#f9fafb;
+}
+
+
+
+/* ============================= */
+/* TOTAL CELLS */
+/* ============================= */
+
+.table-total-col{
+    background:#f3f4f6;
+    font-weight:600;
+}
+
+.table-total-row td{
+    background:#f3f4f6;
+    font-weight:600;
+}
+
+
+
+/* ============================= */
+/* TABLE SCROLL (IF MANY MONTHS) */
+/* ============================= */
+
+.claims-table-wrapper{
+    overflow-x:auto;
+}
+
+
+
+/* ============================= */
+/* HR LINE */
+/* ============================= */
+
+.chart-card hr{
+    border:none;
+    border-top:1px solid #edf1f5;
+    margin:16px 0;
+}
+
+
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media(max-width:900px){
+
+    .auditControlChartPage{
+        padding:15px;
+    }
+
+    .chart-card{
+        padding:18px;
+    }
+
+    .chart-container{
+        height:280px;
+    }
+
+}
+
+
+
+/* ============================= */
+/* CANVAS */
+/* ============================= */
+
+canvas{
+    width:100%!important;
+    height:100%!important;
+}
+
+/* layout for chart + legend */
+
+.chart-layout{
+    display:flex;
+    align-items:flex-start;
+    gap:30px;
+}
+
+
+/* chart */
+
+.chart-container{
+    flex:1;
+    height:320px;
+}
+
+
+/* legend / checkboxes */
+
+.chart-checkboxes{
+    width:180px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+
+/* checkbox label */
+
+.chart-checkboxes label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+
+/* color box */
+
+.legend-color{
+    width:12px;
+    height:12px;
+    border-radius:3px;
+}
+
+.chart-actions{
+    float:right;
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.chart-actions i{
+    font-size:15px;
+    color:#6b7280;
+    cursor:pointer;
+    transition:all 0.2s ease;
+}
+
+.chart-actions i:hover{
+    color:#111827;
+    transform:scale(1.1);
+}
+
+.chart-actions .chart-pdf{
+    color: #2563eb;
+    padding: 6px;
+    background: #2563eb26;
+    border-radius: 5px;
+}
+.chart-actions .chart-pdf:hover{
+    color:#dc2626;
+}
+
+.overview-kpis{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;
+    margin-bottom:25px;
+}
+
+.kpi-card{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:14px 5px;
+}
+
+.kpi-title{
+    font-size:14px;
+    font-weight:600;
+    color:#6b7280;
+    margin-bottom:8px;
+        text-align: center;
+}
+
+.kpi-subline{
+    margin-top:8px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    font-size:13px;
+    color:#111827;
+}
+
+.kpi-subline b{
+    color:#111827;
+    font-weight:600;
+    margin-left:4px;
+}
+
+.kpi-subline i {
+    font-size: 14px;
+    margin-left: 4px;
+    color: #000;
+}

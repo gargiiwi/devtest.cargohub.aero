@@ -1,0 +1,62 @@
+<div style="float:left;width:93%;padding-top: 20px;" id="publish_documents_Div" class="publish_documents_div_section"> 
+    <h4 style="text-indent:0px;">
+        <!--<span style=""><img src="/img/icons16/clock_history_frame.png" alt="History" style="padding-right: 7px;"/>Published Docs &nbsp;({recent_issues_count})</span>-->
+        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+    </h4>
+    <div>
+
+        <div class="ratbsearch">
+            <div>
+                <span><b>Search by : </b></span>
+                <label class="sacheck">Name
+                    <input type="checkbox" name="search_publish_documents_type" value="by_name" >
+                    <span class="checkmark"></span>
+                </label>
+                <label class="sacheck">Description
+                    <input type="checkbox"  name="search_publish_documents_type" value="by_desc" >
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div>
+                <input type="hidden" id="search_publish_documents_type" value="department" />
+                <input type="text" name="search_publish_documents" placeholder="Document Name" id="search_publish_documents" class="search_publish_documents" />
+                <button class="rasearch" id="doments_rasearch">Search</button>
+            </div>
+
+        </div>
+
+        <div class="ratabs">
+            <div class="simple-spinner">
+                <span></span>
+              </div>
+              
+            <div id="tabsall">
+                <ul class="nav nav-tabs" id="user-nav-tabs">
+                    <li role="presentation" id="fetch_all_data"><button>Organizations</button></li>
+                    <li role="presentation" class="active"  id="fetch_department_data"><button>Departments</button></li>
+                    <li role="presentation" id="fetch_private_data"><button>Private</button></li>
+                    <!--<li role="presentation" id="fetch_request_to_publish_data"><button>Request To publish</button></li>-->
+                </ul>
+            </div>
+
+            <div id="content">
+                <div id="content1">
+                    <div class="rafiltertab">
+                        <label for="search_by_department_list">Filter by : </label>
+                        <select name="search_by_department_list" id="search_by_department_list">
+                            <option value="">Select Department </option>
+                            {assign_departments_list}
+                        </select>
+                    </div>
+                    <div>
+                        <table border="0" cellspacing="0"  id="publish_documents" style="border-spacing:0 5px;">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div> 

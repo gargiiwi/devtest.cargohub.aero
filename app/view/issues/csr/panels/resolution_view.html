@@ -1,0 +1,70 @@
+{#use:%ist.xfield_def:
+	<h5>{trc_find.n}:</h5>
+	<div class="clear"></div>
+	{#if:^xfields.trc_find:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.trc_find}~nl2br~</div>}
+	{#ifnot:^xfields.trc_find:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/warehouse.png'); background-repeat: no-repeat; background-position: 4px;">Facilities &amp; Warehouse</h4>
+	<table>
+		<tr><th>{inc_chrg.n}:</th><td><b>{^xfields.inc_chrg.serialized:<span class='gray'>--</span>}</b></td></tr>
+		<tr><th>{whs_chrg.n}:</th><td><b>{^xfields.whs_chrg.serialized:<span class='gray'>--</span>}</b></td></tr>
+		<tr><th>{dst_chrg.n}:</th><td><b>{^xfields.dst_chrg.serialized:<span class='gray'>--</span>}</b></td></tr>
+		<tr><th>{trans_charges.n}:</th><td><b>{^xfields.trans_charges.serialized:<span class='gray'>--</span>}</b></td></tr>
+	</table>
+	 
+	<h5>{cust_rmks.n}:</h5>
+	<div class="clear"></div>
+	{#if:^xfields.cust_rmks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.cust_rmks}~nl2br~</div>}
+	{#ifnot:^xfields.cust_rmks:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/money.png'); background-repeat: no-repeat; background-position: 4px;">Collection and Reference Information</h4>
+	<table>
+		<tr><th>{ref_nond.n}:</th><td>{^xfields.ref_nond:<span class='gray'>---</span>}
+			<div class="ra_200">
+				<label class="ra_label">Date:</label>
+				{#if:^xfields.nc_date:{^xfields.nc_date}~date("Y-m-d")~}{#ifnot:^xfields.nc_date:<span class='gray'>---</span>}
+			</div></td>
+		</tr>
+		<tr><th>{ref_prec.n}:</th><td>{^xfields.ref_prec:<span class='gray'>---</span>}
+			<div class="ra_200">
+				<label class="ra_label">Date:</label>
+				{#if:^xfields.pc_date:{^xfields.pc_date}~date("Y-m-d")~}{#ifnot:^xfields.pc_date:<span class='gray'>---</span>}
+			</div>
+		</td></tr>
+		<tr><th>{coll_ref.n}:</th><td><span>{^xfields.coll_ref:<span class='gray'>---</span>}</span>
+			<div class="ra_200">
+				<label class="ra_label">Date:</label>
+				{#if:^xfields.coll_date:{^xfields.coll_date}~date("Y-m-d")~}{#ifnot:^xfields.coll_date:<span class='gray'>---</span>}
+			</div>
+		</td></tr>	
+		<tr><th>{pay_ref.n}:</th><td><span>{^xfields.pay_ref:<span class='gray'>---</span>}</span>
+			<div class="ra_200">
+				<label class="ra_label">Date:</label>
+				{#if:^xfields.pay_date:{^xfields.pay_date}~date("Y-m-d")~}{#ifnot:^xfields.pay_date:<span class='gray'>---</span>}
+			</div>
+		</td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{pre_col.n}:</th><td><b>{^xfields.pre_col.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{coll_risk.n}:</th><td><b>{^xfields.coll_risk.serialized:<span class='gray'>---</span>}</b></td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{coll_amount.n}:</th><td><b>{^xfields.coll_amount.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{impduties.n}:</th><td><b>{^xfields.impduties.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{vat.n}:</th><td><b>{^xfields.vat.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{pen.n}:</th><td><b>{^xfields.pen.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{otrcharges.n}:</th><td><b>{^xfields.otrcharges.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{coll_final.n}:</th><td><b>{^xfields.coll_final.serialized:<span class='gray'>---</span>}</b>
+			<div class="ra_200">
+				<label class="ra_label">Date:</label>
+				{#if:^xfields.fp_date:{^xfields.fp_date}~date("Y-m-d")~}{#ifnot:^xfields.fp_date:<span class='gray'>---</span>}
+			</div>
+		</td></tr>
+		<tr><th>{recharge_amt.n}:</th><td><b>{^xfields.recharge_amt.serialized:<span class='gray'>---</span>}</b>
+	</table>
+	
+	<h4 style="background-image: url('/img/icons16/balance_unbalance.png'); background-repeat: no-repeat; background-position: 4px;">Legal Procedures</h4>
+	<table>
+		<tr><th>{procedure.n}:</th><td>{^xfields.procedure.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{mrn_status.n}:</th><td>{^xfields.mrn_status.value:<span class='gray'>---</span>}</td></tr>	
+		<tr><th>{appeal_ref.n}:</th><td>{^xfields.appeal_ref:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

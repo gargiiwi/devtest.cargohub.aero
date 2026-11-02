@@ -1,0 +1,14 @@
+{#use:%ist.xfield_def:
+	<table style="height: 200px;">
+		<tr ><th>{PDT.n}:</th><td>{^xfields.PDT:{^xfields.PDT}~date("Y-m-d")~}</td></tr>
+		<tr><th>{vb_number.n}:</th><td>{^xfields.vb_number:<span class="gray">---</span>}</td></tr>
+		<tr ><th>{vender_code.n}:</th><td>{^xfields.vender_code:<span class="gray">---</span>}</td></tr>
+		<tr ><th>{dangerous_good.n}:</th><td>{^xfields.dangerous_good.value:<span class="gray">---</span>}</td></tr>
+		<tr ><th>{invoice_number.n}:</th><td>{^xfields.invoice_number:<span class="gray">---</span>}</td></tr>
+		<tr ><th>{awb_number.n}:</th><td>{^xfields.awb_number:<span class="gray">---</span>}</td></tr>
+		<tr ><th>{transporter.n}:</th><td>{^xfields.transporter:<span class="gray">---</span>}</td></tr>
+		<tr ><th>{freight_costs.n}:</th><td>{#if:^xfields.freight_costs.amount_format:{^xfields.freight_costs.serialized}}{#ifnot:^xfields.freight_costs.amount_format:<span class='gray'>---</span>}</td></tr>
+		
+	</table>
+	
+}

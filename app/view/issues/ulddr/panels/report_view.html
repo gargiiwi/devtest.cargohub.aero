@@ -1,0 +1,35 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{process.n}:</th><td>{^xfields.process.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Incident Date &amp; Time:</th><td>
+			{#if:^xfields.date:{^xfields.date}~date("Y-m-d")~ &middot; {^xfields.time:<span class="gray">---</span>}}
+			{#ifnot:^xfields.date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{area.n}:</th><td>{^xfields.area.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{area_supr.n}:</th><td>{^xfields.area_supr:<span class="gray">---</span>}</td></tr>
+		<tr><th>{loc.n}:</th><td>
+			{#if:^xfields.loc:{^xfields.loc}{#if:^xfields.loc_id: ({^xfields.loc_id})}}
+			{#ifnot:^xfields.loc:<span class="gray">---</span>}</td>
+		</tr>
+		<tr><th>{station.n}:</th><td>{^xfields.station:<span class="gray">---</span>}</td></tr>
+	</table>
+	<h4>Damage discovered:</h4>
+	<div>{#repeat:^xfields.dmg_discover:<span class="itembox">{value}</span>}</div>
+	<table>
+		<tr><th>{refrig.n}</th><td>
+			{#if:^xfields.refrig.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.refrig.key: checked="checked"}> {^xfields.refrig.value}</label>}
+			{#ifnot:^xfields.refrig.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{serv.n}</th><td>
+			{#if:^xfields.serv.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.serv.key: checked="checked"}> {^xfields.serv.value}</label>}
+			{#ifnot:^xfields.serv.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<h5>{dmg_descr.n}</h5>
+	{#if:^xfields.dmg_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.dmg_descr}~nl2br~</div>}
+	{#ifnot:^xfields.dmg_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+	<br />
+	<h5>{remarks.n}</h5>
+	{#if:^xfields.remarks:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+}

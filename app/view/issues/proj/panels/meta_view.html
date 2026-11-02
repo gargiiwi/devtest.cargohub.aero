@@ -1,0 +1,20 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">---</span>}</td></tr>
+		<tr><th>{ref.n}:</th><td>{^xfields.ref:<span class="gray">---</span>}</td></tr>
+		<tr><th>{start.n}:</th>
+			<td>{#if:^xfields.start:{^xfields.start}~date("Y-m-d")~}{#ifnot:^xfields.start:<span class='gray'>---</span>}
+			<label class="ra_label">{end.n}:</label> {#if:^xfields.end:{^xfields.end}~date("Y-m-d")~}{#ifnot:^xfields.end:<span class='gray'>---</span>}
+			</td>
+		</tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{code_loc.n}:</th><td>{^xfields.code_loc:<span class="gray">---</span>}</td></tr>
+		<tr><th>{code_iso2.n}:</th><td>{^xfields.code_iso2.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{owner.n}:</th><td>{^xfields.owner:<span class="gray">---</span>}</td></tr>
+	</table>
+	
+	{#if:^xfields.comments:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 250px; overflow: auto;">{^xfields.comments}~nl2br~</div>}
+	{#ifnot:^xfields.comments:<div class="gray" style="text-indent: 20px;">---</div>}
+}

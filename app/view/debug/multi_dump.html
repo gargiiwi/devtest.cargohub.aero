@@ -1,0 +1,12 @@
+<table>
+<tr><th>Type</th><th>Label</th><th>Var-Dump</th><th>Location</th></tr>
+{#repeat::<tr>
+<td>{type}</td><td>{label}</td><td><pre style="max-height: 240px; overflow: auto;">{var_dump}</pre></td><td>{#if:meta:Line {meta.Line} in {meta.File}}
+{#if:show_source:
+<table style='border: 1px solid gray; width: 100%;'>
+<tr><td width="30" align="right"><pre>{#repeat:line_numbers:{$}.
+}</pre></td><td>{source}</td></tr>
+</table>}
+</td>
+</tr>}
+</table>

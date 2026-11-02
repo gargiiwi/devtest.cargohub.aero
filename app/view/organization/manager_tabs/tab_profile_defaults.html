@@ -1,0 +1,29 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/table_gear.png" /><span>User profile defaults</span>
+	</div>		
+	<div id='profile_edit_operations' style='display: none;'>
+		<button data-op="view" title="View stored data"><img src='/img/icons16/eye.png' /> View data</button>
+		<button data-op="edit-descr" title="Edit description"><img src='/img/icons16/pencil.png' /> Edit description</button>
+		<div class='toolbar-separator'></div>
+		<button data-op="reset-users" title="Reset organization users"><img src='/img/icons16/user_go.png' /> Reset users...</button>
+		<button data-op="copy-to" title="Copy to organization"><img src='/img/icons16/copy.png' /> Copy to...</button>
+		<div class='toolbar-accessory selected-item'></div>
+	</div>
+</div>
+<div id="records_grid"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="template-profile-record" type="text/dryjstpl">{@
+	<h3>{$pname:(Has no description)}</h3>
+	<textarea rows="1" style="width: 99%; height: 360px; resize: none;" readonly="readonly"></textarea>
+	<div class="gray">This cannot be edited here for safety reasons.<br />It can however be copy/pasted out and back into the database after being verified.</div>
+}</script>
+
+{@<script id="template_reset-usrprof" type="text/dryjstpl">
+<div class="spacey">
+	<h3>Select users who will revert to the default settings:</h3>
+	<div id='selected_users'></div></li>
+	<p>Profiles with key <b>{$pkey}</b> will be removed from all selected users!</p>
+</div>
+</script>}

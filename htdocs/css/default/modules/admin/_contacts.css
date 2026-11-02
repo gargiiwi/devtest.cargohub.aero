@@ -1,0 +1,37 @@
+/* Global Contacts Listing */
+div.toolbar {
+	overflow: hidden;
+}
+div.longjohnson {
+	width: 5000px;
+	white-space: nowrap;
+}
+
+div.extra-controls {
+	height: 26px;
+	margin-bottom: 4px;
+}
+
+	div.extra-controls > * {
+		float: left;
+	}
+
+	div.extra-controls > label {
+		display: block;
+		line-height: 26px;
+		width: 140px;
+		text-align: right;
+		padding-right: 8px;
+	}
+
+	div.extra-controls > input {
+		padding: 1px 0px;
+		height: 24px;
+	}
+	
+	/** Other content, not editable **/	
+	div.extra-controls > div.static {
+		line-height: 26px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}

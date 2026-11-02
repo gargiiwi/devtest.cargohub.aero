@@ -1,0 +1,16 @@
+<br /><div class='info-expander'>
+	<div>About the <b>Class</b> data group (click to open)</div>
+	<div class='spacey'>
+		<p>Classes are ways to organize elements, just like categories.</p>
+		<p>When using this type of data group, record types can choose which values are visible (partial selection)</p>
+	</div>
+</div>
+
+<script id="template_edit_class" type="text/dryjstpl">{@
+	<form method="post" action="?action=save_group&amp;type=class{#exists:uid:&amp;id={$uid}}">
+		<div><label for="group_name">Class name:</label><input type="text" id="group_name" name="group[name]" class='jqx-input jqx-rc-all {$_itc}' value='{$name}' style='width: 325px;'></div>
+		<div><div class="static" style="text-align: center; width: 100%;">Please keep the name short, it will be used in a dropdown</div></div>
+		{#missing:uid:}
+		{#exists:uid:}
+	</form>
+}</script>

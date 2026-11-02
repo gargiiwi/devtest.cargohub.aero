@@ -1,0 +1,243 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+		<tr style="height: 20px;">
+			<!--<th colspan="2" style="width: 66%;"><span style="display: block; width: 82%; margin: 0 auto;">{ref_no.display.label}: </span></th>-->
+			<th style="text-align: right;"><label for='{id}'>{ref_no.display.label}:</label></th>
+			<td colspan="2" style="text-align: center;">{#use:ref_no:<input style="width: 80%; margin-right: 177px;padding-right: 108px;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}</td>
+		<!--	<td style="text-align: center; width: 33%;">{hardcopy.display.label}</td>-->
+		</tr>
+		<tr>{#use:hdlstat:
+			<th style="text-align: right;"><label for='{id}'>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' class="dropselect" data-width="280" data-dwidth="280" data-dheight="244">
+				<option value=''></option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>
+		}</tr>	
+		<tr>{#use:hdlexstat:
+			<th style="text-align: right;"><label for='{id}'>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' class="dropselect" data-width="280" data-dwidth="280" data-dheight="244">
+				<option value=''></option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>
+		}</tr>	
+		{#use:validation:<tr>
+			<th style="text-align: right;"><label>{display.label}: </label></th>
+			<td>
+				<div style="margin: 0 auto; width: 110px;margin-right: 64px">  
+					{#repeat:options:<label style='display: block; float: left; margin: -3px 10px 0 0;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}
+				</div>
+			</td>
+		</tr>}
+	</table>
+	<table style="width: 99%; margin-top: 0;">
+	<tr style="height: 20px;">
+		<td style="text-align: center; width: 33%;">{crdate.display.label}</td>
+		<td style="text-align: center; width: 33%;">{prelimi_claim.display.label}</td>	
+		<td style="text-align: center; width: 33%;">{form_clm.display.label}</td>			
+	</tr>
+	<tr style="height: 30px;">
+		<td>{#use:crdate:<div style="margin: 0 auto;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:prelimi_claim:<div style="margin: 0 auto;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<td>{#use:form_clm:<div style="margin: 0 auto;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+		<!--<td style="text-align: center;">{#if:^xfields.prelimi_claim:{^xfields.prelimi_claim}~date("Y-m-d")~}{#ifnot:^xfields.prelimi_claim:<span class="gray">---</span>}</td>-->
+		
+	</tr>
+	</table>
+	<table style="width: 99%; margin-top: 0;">
+		<tr><td colspan="3" style="height: 20px;"><hr /></td></tr>
+		<tr style="height: 20px;">
+			<!--<td style="text-align: center; width: 33%;">{crdate.display.label}</td>-->
+			<td style="text-align: center; width: 33%;">{intime.display.label}</td>
+			<td style="text-align: center; width: 33%;">{hardcopy.display.label}</td>
+			<td style="text-align: center; width: 33%;">{acdate.display.label}</td>
+		
+		</tr>
+		<tr style="height: 30px;">
+			<!--<td>{#use:crdate:<div style="margin: 0 auto;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>-->
+			<td>{#use:intime:<div style="margin: 0 auto; width: 110px;">
+				{#repeat:options:<label style='display: block; float: left; margin: -3px 10px 0 0;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}
+			</div>}</td>
+		<td>{#use:hardcopy:<div style="margin: 0 auto; width: 110px;">
+				{#repeat:options:<label style='display: block; float: left; margin: -3px 10px 0 0;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}
+			</div>}</td>
+		
+			<td>{#use:acdate:<div style="margin: 0 auto;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div>}</td>
+			
+		</tr>
+	<tr><td colspan="3">&nbsp;<hr/></td></tr>
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;" class="info-tip" data-tooltip="Claimants other than the Shipper/Consignee require a Subrogation letter to be added">{subm_type.display.label}: <img class="inline-icon" src="/img/icons16/question.png" alt="?" /></td>
+			<td style="text-align: center; width: 33%;">{cass.display.label}</td>
+			<td style="text-align: center; width: 33%;">{subrog.display.label}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center;">{#use:subm_type:<select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value=''>(choose)</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}</td>
+			<td style="text-align: center;">{#use:cass:
+				<input style="width: 115px;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+			}</td>
+			<td>{#use:subrog:<div style="margin: 0 auto; width: 120px;">
+				{#repeat:options:<label style='display: block; float: left; margin: -3px 10px 0 0;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}
+			</div>}</td>
+		</tr>
+	</table>
+	
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/barcode_2d.png'); background-repeat: no-repeat; background-position: 4px;">Codes and weights</h4>
+	<table style="width: 99%;">
+		<tr>
+			<td style="text-align: center; width: 33%;">{como_type.display.label}</td>
+			<td style="text-align: center; width: 33%;">{code_srv.display.label}</td>
+			<td style="text-align: center; width: 33%;">{code_billing.display.label}</td>
+		</tr>
+		<tr>
+			{#use:como_type:<td style="text-align: center;">
+				<select class="dropselect multi-select" data-name='{name}' data-width="160" data-dwidth="515" data-dheight="335" data-dalign="left" data-filterable="1" id='{id}'>
+					{#repeat:options:<option style="text-align: left;" value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>
+			</td>}
+			{#use:code_srv:<td style="text-align: center;">
+				<select class="dropselect multi-select" data-name='{name}' data-width="160" data-dwidth="220" data-dheight="344" data-dalign="left" data-filterable="1" id='{id}'>
+					{#repeat:options:<option style="text-align: left;" value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>
+			</td>}
+			{#use:code_billing:<td style="text-align: center;">
+				<select class="dropselect" name='{name}' data-width="160" data-dwidth="270" data-dheight="296" data-dalign="right" data-filterable="1" id='{id}'>
+					<option value=''></option>
+					{#repeat:options:<option style="text-align: left;" value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>
+			</td>}
+		</tr>
+	<tr><td colspan="3">&nbsp;</td></tr>
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{cust_weight.display.label}</td>
+			<td style="text-align: center; width: 33%;">{g_weight.display.label}</td>
+			<td style="text-align: center; width: 33%;">{c_weight.display.label}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center;">{#use:cust_weight:<input style="width: 90px;" type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />} <span class='gray'>(kg)</span></td>
+			<td style="text-align: center;">{#use:g_weight:<input style="width: 90px;" type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />} <span class='gray'>(kg)</span></td>
+			<td style="text-align: center;">{#use:c_weight:<input style="width: 90px;" type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />} <span class='gray'>(kg)</span></td>
+		</tr>
+	</table>
+	<br />
+	
+	<h4 style="margin-top: 2px; background-image: url('/img/icons16/magnifier.png'); background-repeat: no-repeat; background-position: 4px;">Investigation</h4>
+	<table>
+		{#use:move:<tr>
+			<th><label>{display.label}:</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 110px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		<tr>{#use:station:
+			<th><label>{display.label}:</label></th>
+			<td><div class='searchbox' data-id='#{id}' data-sourceurl='?action=suggest_airport' data-width='348'></div>
+				<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+				{#use:station_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+			</td>
+		</tr>
+		<tr>{#use:station2:
+			<th><label>{display.label}:</label></th>
+			<td><div class='searchbox' data-id='#{id}' data-sourceurl='?action=suggest_airport' data-width='348'></div>
+				<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+				{#use:station2_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+			</td>
+		</tr>
+	</table>
+	{#use:handling_rem:
+		<h5>{display.label}</h5>
+		<textarea autocorrect="off" spellcheck="false" style="margin-bottom: 6px;" rows="8" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} fullwidth{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}>{value}</textarea>
+	}
+
+	<table>
+		<tr>{#use:cause:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		}</tr>
+		<tr>{#use:irreg_code:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' class="dropselect" data-width="355" data-dwidth="375" data-dheight="328" data-filterable="1">
+				<option value=''></option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>
+		}</tr>
+		<tr>{#use:inc_class:
+			<th><label for='{id}'>Conclusion:</label></th>
+			<td><select id='{id}' name='{name}' class="dropselect" data-width="355" data-dwidth="375" data-dheight="300" data-filterable="1">
+				<option value=''></option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>
+		}</tr>
+		<tr>{#use:liable:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' class="dropselect" data-width="255" data-dwidth="255" data-dheight="124">
+				<option value=''></option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>
+		}</tr>
+		<tr><td colspan="2"><hr /></td></tr>
+{!Unused "convention" field
+			<td style="width: 80px;">{convention.display.label}:</td>
+			<td style="width: 120px;">{#use:convention:<select id='{id}' name='{name}'>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}</td>
+}
+		<tr>{#use:caused_by:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' class="dropselect" data-width="150" data-dwidth="150" data-dheight="175">
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>
+		}</tr>
+		<tr>{#use:caused_other:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		}</tr>
+	</table>
+	
+	<h4 style="margin-top: 2px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Dossier closing <span class='gray'>(either rejected or paid)</span>:</h4>
+	<table style="width: 99%; margin-top: 0;">
+		<tr style="height: 20px;">
+			<td class='green' style="text-align: center; width: 33%;">{sla_30.display.label}</td>
+			<td class='orange' style="text-align: center; width: 33%;">{sla_60.display.label}</td>
+			<td class='red' style="text-align: center; width: 33%;">{sla_90.display.label}</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="text-align: center;">{#if:sla_30.value:{sla_30.value}~date("Y-m-d")~}{#ifnot:sla_30.value:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{#if:sla_60.value:{sla_60.value}~date("Y-m-d")~}{#ifnot:sla_60.value:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{#if:sla_90.value:{sla_90.value}~date("Y-m-d")~}{#ifnot:sla_90.value:<span class="gray">---</span>}</td>
+		</tr>
+	</table>
+	<!--<table>
+		{#use:sla_extend:<tr>
+			<th><label>{display.label}:</label></th>
+			<td><select class="dropselect" data-width="105" data-dwidth="125" data-dheight="220" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value=''>- none -</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+			</select></td>
+		</tr>}
+		<tr>{#use:doss_close_date:
+			<th><label for='{id}'>Closing date:</label></th>
+			<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+		}</tr>
+	</table>-->
+	<table>
+		<tr>
+			{#use:sla_extend:
+				<th><label>{display.label}:</label></th>
+				<td><select class="dropselect" data-width="105" data-dwidth="125" data-dheight="220" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme}'>
+						<option value=''>- none -</option>
+						{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+						}
+				</select></td>
+			}
+			{#use:doss_close_date:
+				<th style="width: 100px;"><label for='{id}'>Closing date:</label></th>
+				<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+			}
+		</tr>
+		<!--<tr></tr>-->
+	</table>
+</form>}

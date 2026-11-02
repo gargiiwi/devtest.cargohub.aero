@@ -1,0 +1,52 @@
+/* @version 2020.11.01 */
+
+table.contact-table.contact-edit button#contact-field-edit img {
+	float: right;
+}
+
+table.contact-table.contact-edit td {
+	-webkit-user-select: none;
+}
+
+table.contact-table.contact-edit #contact-name > input, table.contact-table.contact-edit #contact-email > input, table.contact-table.contact-edit td > input {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+	background-color: transparent;
+	box-sizing: border-box;
+	border: 1px solid transparent;
+	height: 26px;
+	line-height: 26px;
+	padding-left: 4px;
+}
+
+	table.contact-table.contact-edit input.field-error {
+		text-decoration: line-through;
+		color: red;
+	}
+
+	table.contact-table.contact-edit td > input:HOVER, table.contact-table.contact-edit td > input:FOCUS {
+		border: 1px solid lightgray;
+	}
+	
+table.contact-table.contact-edit th {
+	user-select: none;
+}
+		
+	table.contact-table.contact-edit th button {
+		float: left;
+		margin-top: 3px;
+		padding: 0 !important;
+		background-image: url("/img/icons16/delete.png");
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+		
+		table.contact-table.contact-edit th button:HOVER {
+			background-color: white;
+		}
+		
+	table.contact-table.contact-edit th label {
+		cursor: pointer;
+}

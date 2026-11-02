@@ -1,0 +1,37 @@
+<div class='spacey clear'>{#use:account:
+	<div id="user-info">
+		<div id="user-vcard">
+			{#include::includes/vcard.html}
+		</div>
+		<div id="user-account">
+{!			<h4>Account ID</h4>
+			<b style="margin-bottom: 8px;">{user}</b>}
+			<h4>Statistics</h4>
+			<table class="infotable">
+				<tr><th>Status:</th><td>{status}</td></tr>
+				<tr><th>Messages sent:</th><td>{count.msgs}</td></tr>
+				<tr><th>Unread convos:</th><td>{count.unread}</td></tr>
+				<tr><th>Uploaded files:</th><td>{count.files}</td></tr>
+				<tr><th>Assigned issues:</th><td>{count.issues}</td></tr>
+				<tr><th>Assigned tasks:</th><td>{count.tasks}</td></tr>
+				<tr><th>Contact records:</th><td>{count.ctx}</td></tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+	{#if:signature:<h4>Signature</h4>
+	<div id="user-signature">
+		{signature}
+	</div>}
+	{#if:department:<h4>Active department</h4>
+	<table class="infotable" style='padding: 6px;'><tbody>
+		<tr><th>Name:</th><td>{department.name}</td></tr>
+		<tr><th>Is the chief?</th><td>{#if:department.is_chief:YES}{#ifnot:department.is_chief:NO}</td></tr>
+		<tr><th>Comment for user:</th><td>{department.comment}</td></tr>
+	</tbody></table>}
+
+	{!User's current access - Privileges and Access Ids}
+	{#if:acls.privileges:<h3>{^strings.privileges_mode}</h3>
+		{#include:acls.privileges:private/privileges_matrix.html}
+	}
+}</div>

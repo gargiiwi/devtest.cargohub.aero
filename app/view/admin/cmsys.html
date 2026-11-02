@@ -1,0 +1,129 @@
+<div class="toolbar jqx-widget jqx-rc-all">
+	<button data-op="create" title="Create page"><img src="/img/icons16/draw_calligraphic.png" alt="Create page" /> Create page</button>	
+
+	<div class="bar-opendoc" style="display: none;">
+		<div class="toolbar-separator"></div>
+		<button data-op="preview" title="Preview current content of the editor"><img src='/img/icons16/eye.png' /> Preview</button>
+	</div>
+
+	<div class="bar-opendoc-changed" style="display: none;">
+		<button data-op="save" title="Save page"><img src="/img/icons16/save.png" alt="Save" /> Save</button>
+		<div class="toolbar-separator"></div>
+		<button data-op="revert" title="Revert to saved content"><img src="/img/icons16/arrow_undo.png" alt="Revert" /> Revert</button>
+	</div>
+	
+	<div class="bar-opendoc" style="display: none;">
+		<button data-op="close" title="Close current CMS page"><img src="/img/icons16/cross.png" alt="Close" /> Close</button>
+		<button data-op="delete" title="Delete page"><img src="/img/icons16/delete.png" alt="Delete" /> Delete</button>
+	</div>
+	
+	<div class="toolbar-separator"></div>
+	<button data-op="options" title="Options and settings"><img src="/img/icons16/check_box.png" alt="Options" /> Options</button>
+	<div class="toolbar-accessory" id="texted_name">{texted}</div>
+</div>
+
+<div id="page-information" class="jqx-widget jqx-rc-all"></div>
+<div id="status-bar"></div>
+<div id="splitter-naved">
+	<div>
+		<div id='navigator'>{!Five levels deep should be more than enough to build any tree. Actually, the code will refuse to create deeper paths...}
+			<ul>
+				{#repeat:templates:<li {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>
+					{#if:children:
+						<ul>
+							{#repeat:children:<li {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>
+								{#if:children:
+									<ul>
+										{#repeat:children:<li {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>
+											{#if:children:
+												<ul>
+													{#repeat:children:<li {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>
+														{#if:children:
+															<ul>
+																{#repeat:children:<li {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>}
+															</ul>
+														}
+													</li>}
+												</ul>
+											}
+										</li>}
+									</ul>
+								}
+							</li>}
+						</ul>
+					}
+				</li>}
+			</ul>
+		</div>
+	</div>
+	<div id="editor">
+		<textarea id="editor-content" rows='1' readonly="readonly" style="display: none;"></textarea>
+		<div id="editor-inactive">
+			<h2>Content Page Editor</h2><hr />
+			<p style="line-height: 32px;"><img style="margin-right: 8px; float: left;" src="/img/icons/arrow_left.png" />Click on a file on the left side tree to load it.</p>
+			
+			<p>This introduction will be replaced by the content of the file and become the editor you can use to change the content of that file.</p>
+			<p>It's also possible to create a new file by pressing the <b>[Create Page]</b> button in the toolbar above.</p>
+			
+			<hr />
+			<p>Before clicking on a page, choose which editor will be used for displaying the page with the <i>Options</i> button. The available options are:</p>
+			<ul>
+				<li><b>CodeMirror</b> (Programmer Editor) - Supports HTML+CSS code, better for templates and non-standard HTML.<br />Displays line numbers and keeps the code as it was.</li>
+				<li><b>TinyMCE</b> (Visual Editor) - Allows editing content in a friendly manner <span style='color: red;'>but it can change the underlying code unpredictibly.<br /><br />
+				Be warned, when a document has been transformed by TinyMCE <b>IT CANNOT BE REVERSED.</b><br />
+				<b>Use with extreme caution, and avoid if possible !</b></span><br />
+				In general, only edit documents which were created by TinyMCE itself.<br /><br />
+				<i style="font-size: 1.5em;">Make backups using <b>CodeMirror</b> before attempting any change</i></li>
+			</ul>
+			<hr />
+			<p><i>Note:</i> Choosing another editor will reload this module.</p>
+			<h3>Have fun ;)</h3>		
+		</div>
+	</div>
+</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template-page-information" type="text/dryjstpl">{@
+<h4 id="page-title" contenteditable="true" spellcheck="false">{$title}</h4>
+<table class="infotable">
+<tr>
+	<th>Path:</th>
+	<td>{$path}</td>
+	<th>Is active ?</th>
+	<td><b>{#exists:active:Yes}{#missing:active:No}</b></td>
+</tr>
+<tr>
+	<th>Page link:</th>
+	<td><a target="_blank" href="/cms?path={$path}">&lt;a href="/cms?path={$path}"&gt;</a></td>
+	{#exists:plugins:<th>Plugins:</th>
+	<td>{#loop:plugins:_idx:_plugin:ID: {$_plugin.id} - Embedding code: &#123;#plugin:{$_plugin.key}&#125;<br />}</td>}
+</tr>
+<tr>
+	<th>Description:</th>
+	<td id="page-description" colspan="3" contenteditable="true" spellcheck="false">{$description}</td>
+</tr>
+</table> 
+}</script>
+
+{@<script id="window-create-page" type="text/dryjstpl">
+	<form name="create-page" action="?action=create_page" enctype="application/x-www-form-urlencoded" method="post">
+		<div><label for="page-path">Path:</label><input type="text" id="page-path" name="page[path]" class="jqx-input jqx-rc-all {$_itc}" value="/" style="width: 318px;" /></div>
+		<div><label for="page-title">Title:</label><input type="text" id="page-title" name="page[title]" class="jqx-input jqx-rc-all {$_itc}" value="" style="width: 318px;" /></div>
+		<div><label for="page-description">Description:</label><input type="text" id="page-description" name="page[description]" class="jqx-input jqx-rc-all {$_itc}" value="" style="width: 318px;" /></div>
+		<p style="color: gray; margin-bottom: 4px;">Pressing OK will create a new page on the specified path.<br />
+		Folders are automatically created as needed.</p>
+		<p style="color: gray; margin-bottom: 4px;">Please enter a correct value for <b>Path</b> (small letters/numbers and the slash sign), as the path can't be edited after !<br />
+		Example path: <i>/docs/user/options</i></p>
+		<p style="color: gray;">If the page is created successfully, the module will reload and the page will be available in the left-side tree.</p>
+	</form>
+</script>}
+
+{@<script id="window-editor-options" type="text/dryjstpl">
+	<form name="switch-editor" action="?action=cms_preferences" enctype="application/x-www-form-urlencoded" method="post">
+		<h3>Choose the page editor</h3><hr />
+		<div class="texted_option" data-value="CodeMirror">CodeMirror (Programer Editor)</div>
+		<div class="texted_option" data-value="TinyMCE">TinyMCE (Visual Editor)</div>
+		<p style="color: gray; margin-bottom: 4px;">Each type of editor has it's strengths and weaknesses. There is no such thing as a &quot;perfect&quot; content editor.
+		It is recommended to use a Visual Editor when changing content pages, and a Programmer Editor when adjusting templates and making fine tweaks to the pages.</p>
+	</form>
+</script>}

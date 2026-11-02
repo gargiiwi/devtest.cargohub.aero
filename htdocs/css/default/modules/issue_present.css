@@ -1,0 +1,24 @@
+/** Issue System Presentation **/
+div.site > div.page > div#issue_links {
+}
+
+	div#issue_links div.opzone {
+		float: left;
+		width: 503px;
+		height: 80px;
+		margin: 8px 30px;
+		border: 1px solid lightgray;
+		border-radius: 7px;
+	}
+		div#issue_links div.opzone a {
+			font-size: 16px;
+			display: block;
+			margin-top: 14px;
+		}
+		
+		div#issue_links div.opzone img {
+			float: left;
+			margin: 10px 20px 20px 20px;
+			text-decoration: none;
+			border: none;
+		}

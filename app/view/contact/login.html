@@ -1,0 +1,19 @@
+<div id="login" class="jqx-rc-all">
+	<h4>Review existing records, files and communication for your E-mail address</h4>
+	<div class="logo left">
+		<img src="{html.base}/img/extra/contact.png" alt="Contact Account" />
+	</div>
+	<div class="form left">
+		<form action="?action=login" method="post">
+			<h3>Your E-mail</h3>
+			<div class="jqx-rc-all field"><input type="text" name="email" {#if:autofill_email: value="{autofill_email}"}/></div>
+			<h3>Password</h3>
+			<div class="jqx-rc-all field"><input type="password" name="password" {#if:autofill_password: value="{autofill_password}"}/></div>
+			<input type="submit" value="Proceed" class="right" />
+			<div class="clear"></div>
+		</form>
+	</div>
+	<div class="clear"></div>
+	<hr />
+	<p style="text-align: right; margin-right: 50px;">Do you need your password ?<br /><br /><a class="jqx-rc-all" href="?action=recover_password" style="font-weight: bold; display: inline-block; padding: 3px 8px; border: 1px solid gray; color: black; text-decoration: none;">click here</a> to obtain it !</p>
+</div>

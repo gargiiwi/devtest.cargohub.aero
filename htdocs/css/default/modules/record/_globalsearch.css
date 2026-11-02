@@ -1,0 +1,19 @@
+/** Global Record Locator **/
+@import url("../../sp_render.css");
+
+/* Minor fixes for jqX */
+.jqx-grid-cell-selected a {
+	color: yellow !important;
+}
+
+/* Some general styles for previewing records */
+div.recordpreview table {
+	margin-bottom: 8px;
+	width: 100%;
+}
+div.recordpreview th {
+	font-weight: normal;
+	padding-right: 6px;
+	text-align: right;
+	width: 180px;
+}

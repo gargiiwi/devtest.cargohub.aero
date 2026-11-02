@@ -1,0 +1,376 @@
+/* Communication Center */
+div.site > div.page div#comm-center {
+
+}
+
+	div#comm-center .jqx-tabs-titleContentWrapper > img {
+		float: left;
+		margin-right: 6px;
+		border: none;
+	}
+
+table.infotable.contact-result-row {
+	color: inherit;
+}
+
+	table.infotable.contact-result-row th {
+		text-align: right;
+		width: 60px;
+	}
+	
+	table.infotable.contact-result-row div.contact-name {
+		font-size: 16px;
+		font-weight: bold;
+		margin-bottom: 4px;
+	}
+	
+	table.infotable.contact-result-row div.contact-email {
+		text-decoration: underline;
+	}
+
+/** Some styles present on multiple tabs **/
+div.right-side-block {
+	margin-bottom: 12px;
+	width: 100%;
+}
+
+div.linked-element {
+	border: 1px solid #D3D3D3;
+	margin: 6px 0px 12px 0px;
+	padding: 4px;
+}
+
+/** Styles related to pop-up modals **/
+div#contact-search-scope > div {
+	margin-bottom: 6px;
+}
+
+	div#contact-search-scope > div > span {
+		display: block;
+		padding-left: 26px;
+	}
+
+/** Label and Contacts Tabs - Both same format, tree + tab **/
+div#tab_list #label-tree, div#tab_contacts #ctx-tree {
+	border: none;
+}
+
+	div#tab_list #label-tree li img, div#tab_contacts #ctx-tree li img {
+		float: left;
+		margin-right: 5px;
+	}
+	
+	div#tab_list #label-tree ul.jqx-tree-dropdown-root, div#tab_contacts #ctx-tree ul.jqx-tree-dropdown-root {
+		margin-top: 20px;
+	}
+
+/** Conversation Tab **/
+div#tab_conversation {
+}
+
+	div#tab_conversation div#convo-left-side {
+		float: left;
+		width: 770px;
+	}
+	
+		div.convo-empty {
+			text-align: center;
+			margin: 40px;
+		}
+	
+		div#convo-left-side div.convo-msg-closed {
+			height: 32px;
+			line-height: 32px;
+			padding: 4px;
+			background-color: #EEEEEE;
+			border-top: 1px solid lightgray;
+			font-size: 0.9em;
+		}
+		
+		div#convo-left-side div.convo-msg-open {
+            background-color: white;
+            padding-bottom: 10px;
+		}
+		
+		div#convo-left-side div.convo-msg-open .msg-header {
+			height: 42px;
+			line-height: 32px;
+			padding: 4px;
+			border-top: 1px solid lightgray;
+			font-size: 0.9em;			
+		}
+		
+			div.convo-msg-closed img.icon, div.convo-msg-open .msg-header img.icon {
+				position: absolute;
+			}
+			
+			div.convo-msg-open .msg-header .msg-buttons {
+				float: right;
+				height: 24px;
+				margin-left: 8px;
+			}
+			
+			div.convo-msg-open .msg-header div.msg-buttons img {
+				position: relative;
+				margin: 0px !important;
+			}
+			
+			div#convo-left-side div.convo-msg-open .msg-content {
+				margin-left: 40px;
+				margin-bottom: 16px;
+				word-wrap: break-word;
+			}
+
+		div#convo-left-side span.from-name {
+			font-weight: bold;
+			margin-left: 40px;
+		}
+			
+		div#convo-left-side div#convo-quickreply {
+			border-top: 1px solid lightgray;
+			padding-top: 8px;			
+			margin-bottom: 30px;
+		}
+		
+			div#convo-left-side div#convo-quickreply div#quickreply-help {
+				font-style: italic;
+				padding: 7px 0px;
+				color: gray;
+			}
+			
+				div#quickreply-help span {
+					text-decoration: underline;
+					cursor: pointer;
+				}
+				
+				div#quickreply-help span:HOVER {
+					color: black;
+				}
+
+			div#convo-quickreply div#quickreply-frame {
+				border: 1px solid #D3D3D3;
+			}
+			
+			div#convo-quickreply #reply-content {
+                background-color: white;
+			}
+
+			div#convo-quickreply img#reply-recipient-add, div#convo-quickreply img#reply-canned-toggle {
+				width: 25px;
+				margin: 0;
+				cursor: pointer;
+				float: right;
+			}
+			
+			div#convo-quickreply div#reply-recipient {
+				border: 1px solid #D3D3D3;
+			    background-color: #FFFFFF;
+				padding: 4px 6px 1px 8px;
+			}
+			
+				div#convo-quickreply div#reply-recipient > * {
+					display: inline-block; 		
+				}
+				
+				div#convo-quickreply div#reply-recipient > img {
+					float: left;
+					margin: 4px 4px 0px 0px;
+				}
+				
+				div#convo-quickreply div#reply-recipient > b {
+					float: left;
+					height: 27px;
+					line-height: 23px;
+					margin-right: 4px;
+				}
+				
+				div#convo-quickreply div#reply-recipient > span {
+					height: 27px;
+					line-height: 23px;
+					text-indent: 3px;
+				}
+				
+				div#convo-quickreply div#reply-recipient > span.contact-error {
+					text-decoration: line-through;
+					color: red;
+				}
+				
+			div#convo-quickreply div#reply-subject {
+				border-left: 1px solid #D3D3D3;
+				border-right: 1px solid #D3D3D3;
+				border-bottom:  1px solid #D3D3D3;
+				background-color: #FFFFFF;
+				padding: 6px;
+				margin-bottom: 4px;
+			}
+				
+			div#reply-subject input {
+				width: 725px;
+				padding: 0;
+				height: 24px;
+				line-height: 22px;
+				font-size: 15px;
+				border: none;
+			}
+			
+			div#convo-quickreply div.jqx-editor {
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+
+	div#tab_conversation div#convo-right-side {
+		float: right;
+		width: 335px;
+	}
+	
+		div#convo-right-side div.convo-contact {
+			margin: 3px 3px;
+			padding: 5px;
+			border: 1px solid lightgray;
+		}
+
+/** Compose Tab **/
+div#tab_compose {
+}
+
+	div#tab_compose  div#compose-left-side {
+		float: left;
+		width: 770px;
+		margin-bottom: 30px;
+	}
+
+		div#compose-left-side div#compose-frame {
+		    margin-bottom: 5px;
+		}
+		
+		div#compose-left-side img#compose-recipient-add, div#compose-left-side img#compose-canned-toggle {
+			width: 25px;
+			margin: 4px;
+			cursor: pointer;
+			float: right;
+		}
+		
+		div#compose-left-side div#compose-recipient {
+			border: 1px solid #D3D3D3;
+		    background-color: #FFFFFF;
+			padding: 4px 6px 1px 8px;
+		}
+			div#compose-left-side div#compose-recipient > * {
+				display: inline-block; 		
+			}
+		
+			div#compose-left-side div#compose-recipient > img {
+				float: left;
+				margin: 5px 4px 0px 0px;
+			}
+			
+			div#compose-left-side div#compose-recipient > b {
+				float: left;
+				height: 27px;
+				line-height: 23px;
+				margin-right: 4px;
+			}
+			
+			div#compose-left-side div#compose-recipient > span {
+				height: 27px;
+				line-height: 23px;
+				text-indent: 3px;
+			}
+			
+			div#compose-left-side div#compose-recipient > span.contact-error {
+				text-decoration: line-through;
+				color: red;
+			}
+		
+		div#compose-left-side div#compose-subject {
+			border-left: 1px solid #D3D3D3;
+			border-right: 1px solid #D3D3D3;
+			border-bottom:  1px solid #D3D3D3;
+			background-color: #FFFFFF;
+			padding: 4px 5px;
+			margin-bottom: 4px;
+		}
+		
+		div#compose-left-side div#compose-subject input {
+			width: 725px;
+			padding: 0;
+			height: 24px;
+			line-height: 22px;
+			font-size: 15px;
+			border: none;
+		}
+		
+		div#compose-left-side div#compose-content {
+			padding: 6px;
+		}
+		
+	div#tab_compose div#compose-right-side {
+		float: right;
+		width: 335px;
+	}
+	
+		div#compose-right-side div.compose-contact {
+			margin: 3px 3px;
+			padding: 5px;
+			border: 1px solid lightgray;
+		}
+		
+		div#compose-right-side div#compose-no-contacts {
+			border: 1px solid lightgray;
+			text-align: center;
+			padding: 20px 0px;		
+		}
+
+	div#compose-extra-recipients ul, div#reply-extra-recipients ul {
+		list-style: none;
+		margin: 0px;
+		padding-left: 0px;
+	}
+	
+		div#compose-extra-recipients ul li, div#reply-extra-recipients ul li {
+			text-overflow: ellipsis;
+			height: 21px;
+			line-height: 21px;
+			margin-top: 2px;
+			display: block;
+			padding-left: 4px;
+			border-bottom: 1px solid #F0F0F0;
+			cursor: url(/img/extra/cursor_delete.png), auto;
+		}
+		
+		div#compose-extra-recipients ul li:HOVER, div#reply-extra-recipients ul li:HOVER {
+			background-color: lightgray;	
+		}
+
+		.carboncopy {
+			border: 1px solid #D3D3D3;
+			border-top: none;
+		    background-color: #FFFFFF;
+			padding: 4px 6px 1px 8px;
+		}
+			.carboncopy > img, .carboncopy > b, .carboncopy > ul {
+				display: inline-block; 		
+			}
+		
+			.carboncopy > img {
+				float: left;
+				margin: 5px 4px 0px 0px;
+			}
+			
+			.carboncopy > b {
+				float: left;
+				height: 27px;
+				line-height: 23px;
+				margin-right: 4px;
+			}
+		
+/** Contact View/Edit Tab **/
+div#tab_vcard div#contact-left-side {
+	float: left;
+	width: 650px;
+}
+
+div#tab_vcard div#contact-right-side {
+	float: right;
+	width: 450px;
+}

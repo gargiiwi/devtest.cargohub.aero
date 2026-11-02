@@ -1,0 +1,288 @@
+{!Template for rendering the Quality/AEO Event as a string (html). This kind of view doesn't use any javascript for displaying the information and could be used to save a HTML file or send as a message/email
+  Contacts have a "mailto:" href in them; Attachments are sent as links back into the system; All other values are simply formatted text}
+{!TODO: A way to reorder these components (user, system, includes, issue data)}
+{!The system might add it's own piece of text in certain situations}
+{#if:_contents_system:<div class="system_contents">{_contents_system}</div>}
+{!Users are able to add their own text}
+{#if:_contents_user:<div class="user_contents">{_contents_user}</div>}
+{!User signature can be added after the issue data}
+{#if:_user_signature:<br /><hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" /><div class="user_signature">{_user_signature}</div><br /><br />}
+{!Support including extra templates here, which use the same data as this main template}
+{#if:_includes:{#repeat:_includes:
+	<div class="included_contents">{#include:%:{$}}</div>}}
+
+{#use:issue:
+<div style="max-width: 700px; padding: 5px; border: 1px solid lightgray; font-size: 12px;">
+
+<h4 style="background-image: url('https://cargohub.aero/img/icons16/ui_menu_blue.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Overview:</h4>
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{%ist.xfield_def.title.n}:</th><td>{xfields.title:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{%ist.xfield_def.event_theory.n}:</th><td>{xfields.event_theory.value:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{%ist.xfield_def.frisk.n}:</th><td>{#if:xfields.frisk.amount_format:{xfields.frisk.serialized}}{#ifnot:xfields.frisk.amount_format:<span style="color: #999;">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{%ist.xfield_def.risk_class.n}:</th><td>{#ifnot:xfields.risk_class:<span style="color: #999;">---</span>}{#repeat:xfields.risk_class:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> &nbsp; }</td></tr>
+	{#if:xfields.risk:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{%ist.xfield_def.risk.n}:</th><td>{#use:xfields.risk:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> &nbsp; }</td></tr>}
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{%ist.xfield_def.inv_done.n}:</th><td>{#ifnot:xfields.inv_done:<span style="color: #999;">---</span>}{#repeat:xfields.inv_done:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> &nbsp; }</td></tr>
+	<tr><td colspan="2"><hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" /></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Status:</th><td><span><img style="float: left; margin-right: 6px;" src='https://cargohub.aero/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Priority:</th><td><span><img style="float: left; margin-right: 6px;" src='https://cargohub.aero/img/icons16/priorities/{priority_key}.png' alt="{priority}" /> {priority}</span></td></tr>
+</table>
+
+{#if:%parts.contacts:
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	{#repeat:contact_links:
+		<tr><th valign="top" style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{label}:</th><td class='contact-item' data-con_id='{contact.id}'><div>{contact.name} &lt;<a href="mailto:{contact.email}">{contact.email}</a>&gt;</div>
+		{#if:contact.xdata.company_name:<div><span style="color: #999;">Company name:</span> {contact.xdata.company_name}</div>}
+		{#if:contact.xdata.phone:<div><span style="color: #999;">Phone number:</span> {contact.xdata.phone}</div>}
+		</td></tr>}
+</table>
+}
+
+{#if:%parts.event-dashboard|%override:{#use:%ist.xfield_def:
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/menus/event-dashboard.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">General information:</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Category:</th><td>{^group.name}</td></tr>	
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Event Date &amp; Time:</th><td>
+			{#if:^xfields.event_date:{^xfields.event_date}~date("Y-m-d")~ &middot; {^xfields.event_time:<span style="color: #999;">---</span>}}
+			{#ifnot:^xfields.event_date:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{event_theory.n}:</th><td>{^xfields.event_theory.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{event_result.n}:</th><td>
+			{#repeat:^xfields.event_result:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{event_loc.n}:</th><td>{^xfields.event_loc:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{station.n}:</th>
+			<td>
+				{#if:^xfields.station.value:<b>{^xfields.station.value.IATA}</b> <span style='color: darkblue;'>({^xfields.station.value.country})</span>}{#ifnot:^xfields.station.value:---}
+			</td>
+		</tr>
+{!		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{code_iso2.n}:</th><td>{^xfields.code_iso2.value:<span style="color: #999;">---</span>}</td></tr>}
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{x_cust.n}:</th><td>{^xfields.x_cust:<span class="gray">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cargo_event.n}:</th><td>{^xfields.cargo_event.value:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/ist/ulddr.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Incident and Shipment <span style="font-weight: lighter;">(for Cargo-related events)</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{x_impexp.n}:</th><td>{^xfields.x_impexp.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inc_type.n}:</th><td>{#ifnot:^xfields.inc_type:<span style="color: #999;">---</span>}{#repeat:^xfields.inc_type:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{mawb.n}:</th><td><b style='font-size: 16px;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{x_shpm_no.n}:</th><td>{^xfields.x_shpm_no:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{com_type.n}:</th><td>{#ifnot:^xfields.com_type:<span style="color: #999;">---</span>}{#repeat:^xfields.com_type:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{x_ctfnr.n}:</th><td>{^xfields.x_ctfnr:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{x_orig.n}:</th><td>{^xfields.x_orig:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{x_dest.n}:</th><td>{^xfields.x_dest:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{x_incident_occ.n}:</th><td>{^xfields.x_incident_occ.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Details:</th><td>{^xfields.x_incident_oth:<span style="color: #999;">---</span>}</td></tr>			
+	</table>
+	
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/users.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Involved parties</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_deps_list.n}:</th><td>{#ifnot:^xfields.inv_deps_list|^xfields.inv_deps:<span style="color: #999;">---</span>}{#repeat:^xfields.inv_deps_list:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+			{#if:^xfields.inv_deps:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{^xfields.inv_deps}</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_emps.n}:</th><td>{^xfields.inv_emps:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{event_time_ws.n}:</th><td>{^xfields.event_time_ws.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_orgs.n}:</th><td>{^xfields.inv_orgs:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{x_cust.n}:</th><td>{^xfields.x_cust:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{rep_pers.n}:</th><td>{^xfields.rep_pers:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Function:</th><td>{^xfields.rep_function:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Telephone:</th><td>{^xfields.rep_phone:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/exclamation.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Event risk description</h4>
+	
+	<h5 style='margin-bottom: 6px; margin-top: 10px;'>What happened?</h5>
+	{#if:^xfields.event_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.event_descr}~nl2br~</div>}
+	{#ifnot:^xfields.event_descr:<div style='color: #999; text-indent: 20px;'>-----</div>}
+	
+	<h5 style='margin-bottom: 6px; margin-top: 10px;'>Impact of event:</h5>
+	{#if:^xfields.impact:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.impact}~nl2br~</div>}
+	{#ifnot:^xfields.impact:<div style='color: #999; text-indent: 20px;'>-----</div>}
+
+	<h5 style='margin-bottom: 6px; margin-top: 10px;'>{recov_descr.n}:</h5>
+	{#if:^xfields.recov_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.recov_descr}~nl2br~</div>}
+	{#ifnot:^xfields.recov_descr:<div style='color: #999; text-indent: 20px;'>-----</div>}
+{!	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{recov_pers.n}:</th><td>{^xfields.recov_pers:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{recov_date.n}:</th><td>{#if:^xfields.recov_date:{^xfields.recov_date}~date("Y-m-d")~}{#ifnot:^xfields.recov_date:<span style="color: #999;">---</span>}</td></tr>
+	</table>}
+}}
+
+{#if:%parts.event-followup:{#use:%ist.xfield_def:
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/balance_unbalance.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Risk assessement</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{risk_class.n}:</th><td>{#ifnot:^xfields.risk_class:<span style="color: #999;">---</span>}{#repeat:^xfields.risk_class:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{severity.n}:</th><td>{^xfields.severity.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{probability.n}:</th><td>{^xfields.probability.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{risk.n}:</th><td>{#use:^xfields.risk:
+			{#ifnot:value:<span style="color: #999;">(not determined)</span>}
+			{#if:value:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span>}
+		}</td></tr>
+	</table>
+
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/question2.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Investigation</h4>
+	<table>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_done.n}:</th><td>{#ifnot:^xfields.inv_done:<span style="color: #999;">---</span>}{#repeat:^xfields.inv_done:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_start_date.n}:</th><td>{#if:^xfields.inv_start_date:{^xfields.inv_start_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_start_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_end_date.n}:</th><td>{#if:^xfields.inv_end_date:{^xfields.inv_end_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_end_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_pers.n}:</th><td>{^xfields.inv_pers:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+
+	<h5 style='margin-bottom: 6px; margin-top: 10px;'>{inv_descr.n}</h5>
+	{#if:^xfields.inv_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.inv_descr}~nl2br~</div>}
+	{#ifnot:^xfields.inv_descr:<div style='color: #999; text-indent: 20px;'>---</div>}
+
+	<h5 style='margin-bottom: 6px; margin-top: 10px;'>{inv_remarks.n}</h5>
+	{#if:^xfields.inv_remarks:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.inv_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.inv_remarks:<div style='color: #999; text-indent: 20px;'>---</div>}
+
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/judge-hammer.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Responsibility</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{respo.n}</th><td>
+			{#ifnot:^xfields.respo:<div style='color: #999;'>---</div>}
+			{#repeat:^xfields.respo:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{involved.n}</th><td>
+			{#ifnot:^xfields.involved:<div style='color: #999;'>---</div>}
+			{#repeat:^xfields.involved:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+			{#if:^xfields.involved_oth:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{^xfields.involved_oth}</span>}
+		</td></tr>
+	</table>
+	
+	<h4 style='font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Contributing factors:</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_behav.n}:</th><td>
+			{#ifnot:^xfields.cf_behav:<span style="color: #999;">---</span>}
+			{#repeat:^xfields.cf_behav:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+			{#if:^xfields.cf_behav_oth:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{^xfields.cf_behav_oth}</span>}			
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_rules.n}:</th><td>
+			{#ifnot:^xfields.cf_rules:<span style="color: #999;">---</span>}
+			{#repeat:^xfields.cf_rules:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+			{#if:^xfields.cf_rules_oth:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{^xfields.cf_rules_oth}</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_eq.n}:</th><td>
+			{#ifnot:^xfields.cf_eq:<span style="color: #999;">---</span>}
+			{#repeat:^xfields.cf_eq:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+			{#if:^xfields.cf_eq_oth:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{^xfields.cf_eq_oth}</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_org.n}:</th><td>
+			{#ifnot:^xfields.cf_org:<span style="color: #999;">---</span>}
+			{#repeat:^xfields.cf_org:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+			{#if:^xfields.cf_org_oth:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{^xfields.cf_org_oth}</span>}
+		</td></tr>
+	</table>
+}}	
+
+{#if:%parts.event-capa:{#use:%ist.xfield_def:
+	<h4 style='font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Corrective/Preventive actions (CaPa)</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{capa_done.n}</th><td>
+			{#if:^xfields.capa_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.capa_done.key: checked="checked"}> {^xfields.capa_done.value}</label>}
+			{#ifnot:^xfields.capa_done.value:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Ca/Pa Deadline:</th><td>{#if:^xfields.capa_dl:{^xfields.capa_dl}~date("Y-m-d")~}{#ifnot:^xfields.capa_dl:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Ca/Pa Started:</th><td>{#if:^xfields.capa_start_date:{^xfields.capa_start_date}~date("Y-m-d")~}{#ifnot:^xfields.capa_start_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Ca/Pa Completed:</th><td>{#if:^xfields.capa_date:{^xfields.capa_date}~date("Y-m-d")~}{#ifnot:^xfields.capa_date:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Responsible:</th><td>{^xfields.capa_pers:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{recov_done.n}</th><td>
+			{#if:^xfields.recov_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.recov_done.key: checked="checked"}> {^xfields.recov_done.value}</label>}
+			{#ifnot:^xfields.recov_done.value:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{capa_proc_cb.n}:</th><td>
+			{#ifnot:^xfields.capa_proc_cb:<span style="color: #999;">---</span>}
+			{#repeat:^xfields.capa_proc_cb:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+		</td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<h5>{ca_descr.n}:</h5>
+	{#if:^xfields.ca_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.ca_descr}~nl2br~</div>}
+	{#ifnot:^xfields.ca_descr:<div class="gray" style="text-indent: 20px;">---</div>}
+{!	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Responsible:</th><td>{^xfields.ca_pers:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Completed on:</th><td>{#if:^xfields.ca_date:{^xfields.ca_date}~date("Y-m-d")~}{#ifnot:^xfields.ca_date:<span style="color: #999;">---</span>}</td></tr>
+	</table>}
+	<h5>{capa_descr.n}:</h5>
+	{#if:^xfields.capa_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa_descr}~nl2br~</div>}
+	{#ifnot:^xfields.capa_descr:<div class="gray" style="text-indent: 20px;">---</div>}
+
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/flag_finish.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Evaluation / Closure</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eval_done.n}</th>
+		<td>
+			{#if:^xfields.eval_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eval_done.key: checked="checked"}> {^xfields.eval_done.value}</label>}
+			{#ifnot:^xfields.eval_done.value:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eval_pers.n}:</th><td>{^xfields.eval_pers:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eval_date.n}:</th><td>{#if:^xfields.eval_date:{^xfields.eval_date}~date("Y-m-d")~}{#ifnot:^xfields.eval_date:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+
+	<h5 style='margin-bottom: 6px; margin-top: 10px;'>{eval_descr.n}</h5>
+	{#if:^xfields.eval_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.eval_descr}~nl2br~</div>}
+	{#ifnot:^xfields.eval_descr:<div style='color: #999; text-indent: 20px;'>---</div>}
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{close_date.n}:</th><td>{#if:^xfields.close_date:{^xfields.close_date}~date("Y-m-d")~}{#ifnot:^xfields.close_date:<span style="color: #999;">(...still open)</span>}</td></tr>
+	</table>
+
+}}
+
+{#if:%parts.event-conclusion:{#use:%ist.xfield_def:
+	<h4 style="background-image: url('https://cargohub.aero/img/icons16/coins.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Financial outcome</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{f_liab.n}:</th><td>{^xfields.f_liab.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{frisk.n}:</th><td>{^xfields.frisk.serialized:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{fprov.n}:</th><td>{^xfields.fprov.serialized:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{fsug.n}:</th><td>{^xfields.fsug.serialized:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{f_sstage.n}:</th><td>{^xfields.f_sstage.value:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" />
+
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{f_compens.n}:</th><td>
+			{#ifnot:^xfields.f_compens:<span style="color: #999;">---</span>}
+			{#repeat:^xfields.f_compens:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{f_con.n}:</th><td>
+			{#ifnot:^xfields.f_con:<span style="color: #999;">---</span>}
+			{#repeat:^xfields.f_con:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+			{#if:^xfields.f_con_oth:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{^xfields.f_con_oth}</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{frisk2.n}:</th><td><b>{^xfields.frisk2.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+	</table>
+	
+	<h5 style='margin-bottom: 6px; margin-top: 10px;'>{f_remarks.n}</h5>
+	{#if:^xfields.f_remarks:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.f_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.f_remarks:<div style='color: #999; text-indent: 20px;'>---</div>}
+
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{finv.n}:</th><td>{^xfields.finv.serialized:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{fsol.n}:</th><td>{^xfields.fsol.serialized:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">ROI Potential impact:</th><td>{^xfields.roi_potential}~suffix(%,<span style="color: #999;">---</span>)~</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">ROI Actual impact:</th><td>{^xfields.roi_actual}~suffix(%,<span style="color: #999;">---</span>)~</td></tr>
+	</table>
+}}
+
+</div>}
+
+{!Deprecated... but unfortuantely still used in the frontend submit (until that one is recoded as well)}
+{#if:%parts.attachments|%override:{#if:issue.files:<div style="max-width: 600px; padding: 5px; margin-top: 5px;">
+	<h4 style='font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 5px; padding: 3px; text-indent: 20px;'>Attached documents (links):</h4>
+	<div id='attachments' style="margin-bottom: 8px;">
+		{#repeat:issue.files:
+		<div style="margin-bottom: 5px; padding: 5px 0px 5px 2px; border-bottom: 1px dotted lightgray;">
+			<a target='_blank' href='https://cargohub.aero/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'>
+			<img style="float: left; margin-right: 10px; border: none;" src='https://{%html.domain}/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span style="color: #999;">({description})</span>}<br />
+			<span style="color: #999;">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span style="color: #999;">Size:</span> {size}~numberformat~ bytes	
+			<div style="clear: both; height: 0px !important;"></div>
+		</div>
+		}
+	</div>
+</div>}}

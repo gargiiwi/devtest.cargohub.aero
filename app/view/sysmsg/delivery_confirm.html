@@ -1,0 +1,10 @@
+{!This message is sent back to the submitter to inform him about the successful delivery of an issue after a transfer procedure.}
+{#store:subject:{html.title} - Issue transfer confirmed by {confirm.to.name} &lt;{confirm.to.email}&gt;}
+<h2>Dear {issue.submitter.name},</h2>
+<p>On date {issue.ttime:{issue.ctime}}~date("Y-m-d")~ you have submitted a {issue.type.name} for mawb {issue.xfields.mawb}.</p>
+<p>This message is to confirm that your submission has been delivered to the recipient.<br />
+</p>
+<p>Please note that this is not an official acknowledgment receipt.In case you don't receive such an acknowledgement message in a few days, please contact the recipient on the e-mail address <a href="mailto:{confirm.to.email}">{confirm.to.email}</a> directly, and ask them about the {issue.type.name} with tracking number {issue.track}.</p>
+<hr />
+<p>{settings.system_name} is not responsible for the actions of your intended recipient, as this software is just a gateway to make the submission process simpler and faster</p>
+<h4>Thank you for using {settings.system_name} !</h4>

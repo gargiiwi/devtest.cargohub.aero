@@ -1,0 +1,81 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/administrator.png" /><span>Setup organization</span>
+	</div>
+	<button data-op="org-update" title="Add new canned message"><img src='/img/icons16/save.png' /> Update</button>
+        <!--IWI report cron settings for admin start-->
+        <button data-op="user-publication-access" title="Publication Access" style="float: right;">
+            <a  href="/manager/organization?id={current_org_modify}&reportcron" style="color: #000000;">
+                <img src='/img/icons16/contact_email.png' /> Set Report Cron
+            </a>
+        </button>
+        <!--IWI report cron settings for admin end-->
+</div>
+
+<form class='vertiform' name='org-setup' action="?action=update_organization" enctype="multipart/form-data" method="post">
+	<table style="width: 100%;">
+	<colgroup>
+		<col style="width: 49%;" /><col style="width: 49%;" />
+	</colgroup>
+	<tr> 
+		<td valign="top">
+			<h4>Primary organization information</h4>
+			<ul>
+				<li><label for="org_name">Name:</label><input id="org_name" name="org[name]" type="text" style="width: 300px;" /></li>
+				<li><label>Customer status:</label><div id="org_status" name="org[status]"></div></li>
+				<li><label>General manager:</label><div id="org_manager_id" name="org[manager_id]"></div></li>
+				<li><label>Record modules:</label><div id="ist2org"></div></li>
+                                <!--Add option to set or change logo from organization start--> 
+                                <li>
+                                    <label>Organization Logo:</label>
+                                    <input id="org_logo" name="org_logo" type="file" style="width: 200px;" />
+                                    <input id="org_logo_old" name="org_logo_old" type="hidden" value=""/>
+                                    <img src="" id="org_logo_view_thumb" style="max-height: 70px; background: #ccc; padding: 2px; min-width: 100px; min-height: 50px; max-width: 100px;" />
+                                </li>
+                                <!--Add option to set or change logo from organization end--> 
+			</ul>
+		</td>
+		<td valign="top">
+			<h4>Other settings and preferences</h4>
+			<ul>
+				<li><label>Webview template:</label><div id="features-webview_template" name="org[features][webview_template]"></div></li>
+			</ul>
+			<span class="gray">This is the template of type &quot;Webview&quot; used to display documents as webpages. If not selected, only the content will show on a completely blank page</span>
+			<ul style="margin-top: 8px;">
+				<li><label>Real attachments:</label><div id="features-real_attachments"></div></li>
+			</ul>
+			<span class="gray">If <b>ON</b>, messages addressed to this organization (when using internal messaging) will have the option to send real E-mail attachments instead of just links.</span>
+			<ul style="margin-top: 8px;">
+				<li><label>Notify Time-of-Day:</label><input id="features-ntf_tod" name="org[features][ntf_tod]" type="text" style="width: 75px; box-sizing: border-box; text-align: center;" /></li>
+			</ul>
+			<span class="gray">At what hour of the day (GMT+1, Netherlands time) should the automated daily notifications be scheduled. Usually set just before start of work hours</span>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<h4 style="margin-top: 20px;">Organization Search System</h4>
+			<ul style="margin-bottom: 24px;">
+				<li><label>Visible in search:</label><div id="features-org_active"></div></li>
+				<li><label>Primary contact:</label><div id="org_contact_id" name="org[contact_id]"></div></li>
+				<li><label>Contacts Manager:</label><img src="/img/icons16/book_addresses.png" alt="ABook" class="inline-icon16" style="margin-top: 5px;" /><a href="/manager/contacts?org_id={org_id}#search" style="line-height: 26px;">Open organization's contacts</a></li>				
+				<li><label>Tasks Manager:</label><img src="/img/icons16/to_do_list_checked_1.png" alt="ToDos" class="inline-icon16" style="margin-top: 5px;" /><a href="/manager/tasks:record?org_id={org_id}" style="line-height: 26px;">Open organization's tasks</a></li>				
+				<li><label>Redirect Domain:</label><div id="features_primary_domain" name="org[features][primary_domain]"></div></li>
+				<li><label>Domains Manager:</label><img src="/img/icons16/www_page.png" alt="Domains" class="inline-icon16" style="margin-top: 5px;" /><a href="#domains" style="line-height: 26px;">Show the domains list</a></li>
+			</ul>		
+		</td>
+		<td valign="top">
+			<h4 style="margin-top: 20px;">Admin links and tools</h4>
+			<ul>
+				<li><label>Departments:</label><img src="/img/icons16/plugin.png" alt="Deps" class="inline-icon16" style="margin-top: 5px;" /><a href="#deps" style="line-height: 26px;">Show the departments list</a></li>
+				<li><label>Users manager:</label><img src="/img/icons16/users.png" alt="Users" class="inline-icon16" style="margin-top: 5px;" /><a href="#users" style="line-height: 26px;">Show the users list</a></li>
+				<li><label>Partners manager:</label><img src="/img/icons16/handshake.png" alt="Handshake" class="inline-icon16" style="margin-top: 5px;" /><a href="#partners" style="line-height: 26px;">Show the partners list</a></li>
+			</ul>
+			<hr />
+			<ul>
+				<li><label>Global users:</label><img src="/img/icons16/users.png" alt="Users" class="inline-icon16" style="margin-top: 5px;" /><a href="/admin/users" style="line-height: 26px;">List all existing users</a></li>
+				<li><label>Admin Center:</label><img src="/img/icons16/user_statuses/admin.png" alt="Admin" class="inline-icon16" style="margin-top: 5px;" /><a href="/admin/center" style="line-height: 26px;">Overview of system activity</a></li>
+			</ul>
+		</td>
+	</tr>
+	</table>
+</form>

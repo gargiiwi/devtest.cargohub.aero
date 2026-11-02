@@ -1,0 +1,131 @@
+{! Some styles specific to DG }{@<style>
+</style>}
+{#use:iss:
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+<h4>Contact information:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>
+
+<h4>Overview:</h4>
+{#use:%ist.xfield_def:
+	<table class="infotable">
+		<tr><th>{shp_id.n}:</th><td>{^xfields.shp_id:<span class="gray">---</span>}</td></tr>
+		<tr><th>{imex.n}:</th><td>{^xfields.imex.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{f_un.n}:</th><td>{^xfields.f_un:<span class="gray">---</span>}</td></tr>
+		<tr><th>{pg.n}:</th><td>{^xfields.pg.value:<span class="gray">---</span>}</td></tr>
+	</table>
+	<hr />
+	<table class="infotable">
+		<tr><th>{sh_descr.n}:</th><td>{^xfields.sh_descr:<span class="gray">---</span>}</td></tr>
+		<tr><th>Pieces and Qty /piece:</th><td>{#if:^xfields.sh_pcs:<b>{^xfields.sh_pcs}</b> Pcs ; <b>{^xfields.sh_qtypce}</b> items/pc}{#ifnot:^xfields.sh_qtypce:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{sh_tqty.n}:</th><td>{^xfields.sh_tqty:<span class="gray">---</span>}</td></tr>
+	</table>
+}
+
+<h4>Warehouse:</h4>
+{#use:%ist.xfield_def:
+	<table class="infotable">
+		<tr><th>Location:</th><td>{^xfields.wh_loc:<span class="gray">---</span>}</td></tr>
+		<tr><th>Area:</th><td>{^xfields.wh_area:<span class="gray">---</span>}</td></tr>
+		<tr><th>Entry Date &amp; Time:</th><td>
+			{#if:^xfields.in_date:{^xfields.in_date}~date("Y-m-d")~ &middot; {^xfields.in_time:<span class="gray">---</span>}}
+			{#ifnot:^xfields.in_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>Exit Date &amp; Time:</th><td>
+			{#if:^xfields.out_date:{^xfields.out_date}~date("Y-m-d")~ &middot; {^xfields.out_time:<span class="gray">---</span>}}
+			{#ifnot:^xfields.out_date:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+}
+</div>
+{!Right column}
+<div class='column2'>
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th>Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}	
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+</table>
+
+{#if:files:<h4>Attached pictures and documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+
+<h4>Add more documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+<h4 style='margin-top: 20px;'>Communication area:</h4>
+<div id='convos-box' style="margin-bottom: 8px;">
+	{#ifnot:conversations:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+	{#if:conversations:
+	<div class="gray" style="font-size: 0.9em; border-bottom: 1px solid #D3D3D3; padding-bottom: 6px;">To view the conversation, send another message or make a reply, click on the subject line.</div>
+	<table class="infotable">	
+	{#repeat:conversations:
+		<tr><th>Subject:</th><td><a href="/?action=external_comm&amp;key={key}">{description:(Conversation has no subject)}</a></td></tr>
+		<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+		<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+	}
+	</table>
+	}
+</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the update button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Record' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_view_jstpl.html}
+{#if:update_by_mail:{#raw:includes/issue2message.html}}

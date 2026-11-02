@@ -1,0 +1,66 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{discover.n}:</th><td>{#ifnot:^xfields.discover:<span class='gray'>---</span>}{#repeat:^xfields.discover:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.discover_info:<tr><th>Other:</th><td>{^xfields.discover_info}</td></tr>}
+		<tr><th>{station.n}:</th><td>{^xfields.station:<span class="gray">---</span>}</td></tr>
+		<tr><th>{pack.n}:</th><td>{#ifnot:^xfields.pack:<span class='gray'>---</span>}{#repeat:^xfields.pack:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.pack_info:<tr><th>Other:</th><td>{^xfields.pack_info}</td></tr>}
+		<tr><th>{uld.n}:</th><td>{^xfields.uld:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<h4 style="background-image: url('/img/icons16/ist/damage.png'); background-repeat: no-repeat; background-position: 4px;">Damage:</h4>
+	<table>
+{!		<tr><th valign="top">{class.n}:</th><td><b>{^xfields.class.value}</b><br /><span class='gray' style="font-size: 0.9em;">
+			{#if:^xfields.class.key=1:Small tears, dents or scratches to the outer packaging only}
+			{#if:^xfields.class.key=2:Damage might have affected the content.<br />Inspection is advised}
+			{#if:^xfields.class.key=3:Damage has affected the condition of the contents.<br />Inspection is <b>required</b>}
+			{#if:^xfields.class.key=4:Cargo suspected of pilferage<br />Inspection is <b>required</b>}
+			{#if:^xfields.class.key=5:Damage involving safety of life or property<br /><b>Inspection, decontamination and verification is required</b><br />(e.g. chemical, biological, radioactive leakage or spillage)}
+			</span>
+		</td></tr>}
+		<tr><th>{damage.n}:</th><td>{#ifnot:^xfields.damage:<span class='gray'>---</span>}{#repeat:^xfields.damage:<span class="itembox idamage">{value}</span>}</td></tr>
+		{#if:^xfields.damage_info:<tr><th>Other:</th><td>{^xfields.damage_info}</td></tr>}
+		<tr><th>Content affected?</th><td>{^xfields.cont_aff.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Damaged:</th><td>{#if:^xfields.pdamage:<b>{^xfields.pdamage}</b> Pieces ; <b>{^xfields.pdamage_weight}</b> Kg}{#ifnot:^xfields.pdamage:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Items missing?</th><td>{^xfields.item_miss.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Missing:</th><td>{#if:^xfields.ppilf:<b>{^xfields.ppilf}</b> Pieces ; <b>{^xfields.ppilf_weight}</b> Kg}{#ifnot:^xfields.ppilf:<span class='gray'>---</span>}</td></tr>
+		{!<tr><th>Pieces total loss:</th><td>{#if:^xfields.ptloss:<b>{^xfields.ptloss}</b> Pieces ; <b>{^xfields.ptloss_weight}</b> Kg}{#ifnot:^xfields.ptloss:<span class='gray'>---</span>}</td></tr>}
+		<tr><th>{susp_pilf.n}?</th><td>{^xfields.susp_pilf.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{safety_issue.n}?</th><td>{^xfields.safety_issue.value:<span class="gray">---</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{condition.n}:</th><td>{#ifnot:^xfields.condition:<span class='gray'>---</span>}{#repeat:^xfields.condition:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.condition_info:<tr><th>Other:</th><td>{^xfields.condition_info}</td></tr>}
+		<tr><th>{recup_req.n}?</th><td>{^xfields.recup_req.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{recup.n}:</th><td>{#ifnot:^xfields.recup:<span class='gray'>---</span>}{#repeat:^xfields.recup:<span class="itembox irecov">{value}</span>}</td></tr>
+		{#if:^xfields.recup_info:<tr><th>Other:</th><td>{^xfields.recup_info}</td></tr>}
+	</table>
+	<h5>Affected house AWBs:</h5>
+	<table>
+		<col width="33%" /><col width="33%" /><col width="33%" />
+		<tr>
+			<td><b>1:</b> {^xfields.hawb1:<span class='gray'>---</span>}</td>
+			<td><b>2:</b> {^xfields.hawb2:<span class='gray'>---</span>}</td>
+			<td><b>3:</b> {^xfields.hawb3:<span class='gray'>---</span>}</td>
+		</tr>
+		{#if:^xfields.hawb4|^xfields.hawb5|^xfields.hawb6:<tr>
+			<td><b>4:</b> {^xfields.hawb4:<span class='gray'>---</span>}</td>
+			<td><b>5:</b> {^xfields.hawb5:<span class='gray'>---</span>}</td>
+			<td><b>6:</b> {^xfields.hawb6:<span class='gray'>---</span>}</td>
+		</tr>}
+		{#if:^xfields.hawb7|^xfields.hawb8|^xfields.hawb9:<tr>
+			<td><b>7:</b> {^xfields.hawb7:<span class='gray'>---</span>}</td>
+			<td><b>8:</b> {^xfields.hawb8:<span class='gray'>---</span>}</td>
+			<td><b>9:</b> {^xfields.hawb9:<span class='gray'>---</span>}</td>
+		</tr>}
+	</table>
+	
+	<h5 style="margin-left: 20px;">{cdr.n}:</h5>
+	{#if:^xfields.cdr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 120px; overflow: auto;">{^xfields.cdr}~nl2br~</div>}
+	{#ifnot:^xfields.cdr:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<table>
+		<tr><th>{rep_by.n}:</th><td>{^xfields.rep_by:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{rep_func.n}:</th><td>{^xfields.rep_func:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

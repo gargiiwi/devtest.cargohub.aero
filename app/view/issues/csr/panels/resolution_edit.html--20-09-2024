@@ -1,0 +1,201 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	{#use:trc_find:
+		<h5>{display.label}:</h5>
+		<textarea rows="5" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;" placeholder="">{value}</textarea>
+	}
+
+	<h4 style="background-image: url('/img/icons16/warehouse.png'); background-repeat: no-repeat; background-position: 4px;">Facilities &amp; Warehouse</h4>
+	<table>
+		<tr>
+			<th><label for='{id}'>{inc_chrg.display.label}</label></th>
+			<td>{#use:inc_chrg:<input type='text' id='{id}' name='{name}' value='{value}' class='only-numbers medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:inc_chrg_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>
+			<th><label for='{id}'>{whs_chrg.display.label}:</label></th>
+			<td>{#use:whs_chrg:<input type='text' id='{id}' name='{name}' value='{value}' class='only-numbers medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:whs_chrg_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>
+			<th><label for='{id}'>{dst_chrg.display.label}:</label></th>
+			<td>{#use:dst_chrg:<input type='text' id='{id}' name='{name}' value='{value}' class='only-numbers medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:dst_chrg_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>
+			<th><label for='{id}'>{trans_charges.display.label}:</label></th>
+			<td>{#use:trans_charges:<input type='text' id='{id}' name='{name}' value='{value}' class='only-numbers medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				{#use:trans_charges_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+	</table>
+	<hr />
+	
+	{#use:cust_rmks:
+		<h5>{display.label}:</h5>
+		<textarea rows="5" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;" placeholder="">{value}</textarea>
+	}	
+	
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/money.png'); background-repeat: no-repeat; background-position: 4px;">Collection and Reference Information</h4>
+	<table>
+		<tr>{#use:ref_nond:
+			<th><label>{display.label}:</label></th>
+			<td>
+				<span class="left inline-text"><input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} long' />}
+				Date</span> {#use:nc_date: <div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			</td>
+		</tr>
+		<tr>{#use:ref_prec:
+			<th><label>{display.label}:</label></th>
+			<td>
+				<span class="left inline-text"><input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} long' />}
+				Date</span> {#use:pc_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			</td>
+		</tr>
+		<tr>{#use:coll_ref:
+			<th><label>{display.label}:</label></th>
+			<td>
+				<span class="left inline-text"><input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} long' />}
+				Date</span> {#use:coll_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			</td>
+		</tr>
+		<tr>{#use:pay_ref:
+			<th><label>{display.label}:</label></th>
+			<td>
+				<span class="left inline-text"><input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} long' />}
+				Date</span> {#use:coll_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			</td>
+		 </tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		{#use:pre_col:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input  type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:pre_col_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		{#use:coll_risk:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input  type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:coll_risk_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		{#use:coll_amount:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:coll_amount_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>{#use:impduties:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:impduties_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}		
+			</td>
+		</tr>
+		<tr>{#use:vat:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input  type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:vat_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}	
+			</td>
+		</tr>
+		{#use:pen:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input  type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:pen_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>{#use:otrcharges:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input  type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:otrcharges_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}	
+			</td>
+		</tr>
+		{#use:coll_final:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input  type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:coll_final_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+		<tr>{#use:fp_date:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+		}</tr>
+		<tr>{#use:recharge_amt:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input  type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme} medium' />}
+				{#use:recharge_amt_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+			</td>
+		</tr>
+	</table>
+	
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/balance_unbalance.png'); background-repeat: no-repeat; background-position: 4px;">Legal Procedures</h4>
+	<table>
+		{#use:procedure:<tr>
+			<th><label>{display.label}:</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 90px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>		
+		</tr>}
+		{#use:mrn_status:<tr>
+			<th><label>{display.label}:</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>		
+		</tr>}
+		{#use:appeal_ref:<tr>
+			<th><label>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} long' /></td>
+		</tr>}
+	</table>
+	<div class="clear" style="margin-bottom: 8px;"></div>
+</form>}

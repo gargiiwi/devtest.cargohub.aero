@@ -1,0 +1,2 @@
+All components should have some common functionality, and extend from that object ( For example, the ability to setup and update configuration, etc. )
+Research this aspect and make a more coherent structure, instead of just extending from donrey.BASE

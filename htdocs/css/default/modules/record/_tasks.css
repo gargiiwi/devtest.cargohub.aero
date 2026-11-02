@@ -1,0 +1,383 @@
+/** Tasks tab **/
+#tab_tasks td.grid-cell-perspective_org {
+    font-style: italic;
+}
+
+#tab_tasks td.grid-cell-onhold {
+    background-color: yellow;
+}
+#tab_tasks td.grid-cell-completed {
+    background-color: lime;
+}
+#tab_tasks td.grid-cell-failed {
+    background-color: crimson;
+    color: yellow !important;
+}
+
+/** New version **/
+#task-editor div.ctrl-line {
+    margin-bottom: 4px;
+    height: 26px;
+}
+
+#task-editor div.ctrl-line label {
+    display: inline-block;
+    float: left;
+    line-height: 26px;
+    padding-right: 8px;
+    text-align: right;
+    width: 135px;
+}
+
+#task-editor div.ctrl-line .form-control {
+    float: left;
+    display: inline-block;
+}
+
+#task-editor div.ctrl-line input.form-control {
+    height: 24px;
+    padding-left: 3px;
+    box-sizing: border-box;
+}
+
+#task-editor div.ctrl-line .static {
+    display: inline-block;
+    color: gray;
+    height: 26px;
+    line-height: 26px;
+    text-shadow: 0 1px 0 lightgray;
+}
+
+#task-editor div#task-descr-ro {
+    padding: 10px;
+}
+
+#tab_tasks div.update-content {
+    text-indent: 30px;
+    overflow: auto;
+    white-space: nowrap;
+    -moz-user-select: auto;
+    -khtml-user-select: auto;
+    -webkit-user-select: auto;
+    -o-user-select: auto;
+    user-select: auto;
+}
+
+#task-viewer div.info-line {
+    margin-bottom: 4px;
+    height: 26px;
+}
+
+#task-viewer div.info-line label {
+    display: inline-block;
+    float: left;
+    line-height: 26px;
+    padding-right: 8px;
+    text-align: right;
+    width: 135px;
+}
+
+#task-viewer div.info-line div {
+    line-height: 26px;
+}
+
+/*IWI doc section file upload start*/
+.modern-file-upload {
+    position: relative;
+    display: inline-block;
+    margin: 10px 0 0 10px;
+}
+
+.modern-file-upload input[type="file"] {
+    display: none;
+}
+
+.modern-file-upload label {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.modern-file-upload label:hover {
+    background-color: #2563eb;
+}
+
+.modern-file-upload svg {
+    /* margin-right: 8px; */
+    height: 18px;
+    width: 18px;
+}
+
+.file-info {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #555;
+    margin-left: 20px;
+}
+/*IWI doc section file upload end*/
+
+
+
+/*IWI Record Details Page Redesign 10092026 start*/
+
+
+#tab_tasks div.toolbar img {
+	display: none;
+}
+#tab_tasks div.toolbar {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	min-height: 44px;
+	padding: 5px 7px;
+	box-sizing: border-box;
+	background: #f7f9fc;
+	border: 1px solid #dfe5ec;
+	border-radius: 6px;
+	gap: 5px;
+}
+#tab_tasks div.toolbar .toolbar-accessory {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	min-width: 32px;
+	height: 32px;
+	margin-right: 4px;
+	padding: 0;
+	border-right: 1px solid #dfe5ec;
+	box-sizing: border-box;
+}
+#tab_tasks div.toolbar .toolbar-accessory:before {
+	content: "\f03a";
+	font-family: FontAwesome;
+	font-size: 17px;
+	color: #2866C2;
+}
+#tab_tasks div.toolbar .toolbar-accessory span {
+	display: none;
+}
+#tab_tasks div.toolbar button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	float: none;
+	height: 30px;
+	min-height: 30px;
+	margin: 0;
+	padding: 0 10px;
+	box-sizing: border-box;
+	border: 1px solid #d5dce5;
+	border-radius: 4px;
+	background: #fff;
+	color: #465365;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 28px;
+	text-decoration: none;
+	white-space: nowrap;
+	box-shadow: none;
+	cursor: pointer;
+}
+#tab_tasks div.toolbar .jqx-widget,
+#tab_tasks div.toolbar .jqx-button,
+#tab_tasks div.toolbar .jqx-fill-state-normal,
+#tab_tasks div.toolbar .jqx-fill-state-hover,
+#tab_tasks div.toolbar .jqx-fill-state-pressed,
+#tab_tasks div.toolbar .jqx-fill-state-focus,
+#tab_tasks div.toolbar .jqx-rc-all {
+	box-shadow: none;
+}
+#tab_tasks div.toolbar [data-op="task-create"]:before {
+	content: "\f067";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_tasks div.toolbar [data-op="task-open"]:before {
+	content: "\f06e";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_tasks div.toolbar [data-op="task-delete"]:before {
+	content: "\f014";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_tasks div.toolbar [data-op="task-save"]:before {
+	content: "\f0c7";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_tasks div.toolbar [data-op="task-close"]:before {
+	content: "\f00d";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_tasks div.toolbar [data-op="exportxlsx"]:before {
+	content: "\f1c3";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_tasks div.toolbar [data-op="task-create"] {
+	min-width: 88px;
+	border-color: #2866C2;
+	background: #2866C2;
+	color: #fff;
+	font-weight: 600;
+}
+#tab_tasks div.toolbar [data-op="task-create"]:before {
+	color: #fff;
+}
+#tab_tasks div.toolbar [data-op="task-create"]:hover {
+	border-color: #2259aa;
+	background: #2259aa;
+	color: #fff;
+}
+#tab_tasks div.toolbar button:hover {
+	border-color: #b8c5d3;
+	background: #fff;
+	color: #2866C2;
+	text-decoration: none;
+}
+
+#tab_tasks div.toolbar .toolbar-separator {
+	width: 1px;
+	min-width: 1px;
+	height: 22px;
+	margin: 0 7px;
+	background: #dfe5ec;
+}
+#tab_tasks div.toolbar [data-op="task-delete"] {
+	margin-left: 2px;
+	border-color: #e1d7d7;
+	color: #a85454;
+}
+#tab_tasks div.toolbar [data-op="task-delete"]:before {
+	color: #b45757;
+}
+#tab_tasks div.toolbar [data-op="task-delete"]:hover {
+	border-color: #dfb6b6;
+	background: #fff6f6;
+	color: #c33b3b;
+}
+#tab_tasks div.toolbar [data-op="task-delete"]:hover:before {
+	color: #c33b3b;
+}
+#tab_tasks div.toolbar [data-op="task-save"] {
+	border-color: #2866C2;
+	background: #2866C2;
+	color: #fff;
+	font-weight: 600;
+}
+#tab_tasks div.toolbar [data-op="task-save"]:before {
+	color: #fff;
+}
+#tab_tasks div.toolbar [data-op="task-save"]:hover {
+	border-color: #2259aa;
+	background: #2259aa;
+	color: #fff;
+}
+#tab_tasks div.toolbar [data-op="exportxlsx"] {
+	margin-left: auto;
+}
+#tab_tasks div.toolbar button:disabled,
+#tab_tasks div.toolbar button[aria-disabled="true"] {
+	opacity: .5;
+	cursor: default;
+}
+@media (max-width: 900px) {
+	#tab_tasks div.toolbar {
+		flex-wrap: wrap;
+	}
+	#tab_tasks div.toolbar .tasks-row-ops {
+		flex-basis: 100%;
+	}
+}
+@media (max-width: 650px) {
+	#tab_tasks div.toolbar button {
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+}
+
+
+#tab_tasks .jqx-expander-header {
+	height: auto;
+	min-height: 38px;
+	padding: 0;
+	box-sizing: border-box;
+	background: #f7f9fc;
+	border: 1px solid #dfe5ec;
+	border-radius: 5px 5px 0 0;
+	color: #344054;
+}
+#tab_tasks .jqx-expander-header-content {
+	display: flex;
+	align-items: center;
+	height: 38px;
+	padding: 0 12px !important;
+	margin: 0 !important;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px !important;
+	font-weight: 600 !important;
+	color: #344054;
+}
+#tab_tasks .jqx-expander-header-content img.inline-icon {
+	display: none;
+}
+#tab_tasks .jqx-expander-header-content:before {
+	content: "\f03a";
+	font-family: FontAwesome;
+	font-size: 14px;
+	color: #2866C2;
+	margin-right: 8px;
+}
+#tab_tasks .jqx-expander-arrow {
+	width: 34px;
+	height: 38px;
+	margin: 0 !important;
+	border-left: 1px solid #dfe5ec;
+	background: #fff;
+	box-sizing: border-box;
+}
+#tab_tasks .jqx-expander-arrow:before {
+	font-size: 11px;
+	color: #667085;
+}
+#tab_tasks .jqx-expander-header:hover {
+	background: #f3f6fa;
+	border-color: #ccd5e0;
+}
+#tab_tasks .jqx-expander-header:hover .jqx-expander-header-content {
+	color: #2866C2;
+}
+#tab_tasks .jqx-expander-header:hover .jqx-expander-arrow {
+	background: #f8fafc;
+}
+#tab_tasks .jqx-expander-header-expanded {
+	background: #f7f9fc;
+	border-color: #dfe5ec;
+}
+#tab_tasks .jqx-expander-header-expanded .jqx-expander-header-content {
+	color: #2866C2;
+}
+#tab_tasks .jqx-expander-header-expanded .jqx-expander-arrow {
+	background: #fff;
+}
+
+/*IWI Record Details Page Redesign 10092026  end*/

@@ -1,0 +1,16 @@
+{#if:iss:<div style='padding: 20px;'>
+	<h2>Delivery confirmation for {ist.name} with tracking ID {iss.track}</h2>
+	<div style='border: 1px solid #D3D3D3; border-radius: 7px; padding: 10px; margin-top: 12px;'>
+		{#if:iss.status_key="new"|iss.status_key="xfer":
+		<p>Thank you for confirming the e-mail delivery of this {ist.name} addressed to <i>{iss.group.name}</i> !<br />
+		A message has been sent to the submitter, <a href='mailto:{iss.xfields.e_mail}'>{iss.xfields.name}</a> from {iss.organization.name}, informing him/her about your confirmation</p>
+		<p>Issue status has also been changed to <b>Delivered</b></p>}
+		{#ifnot:iss.status_key="new"|iss.status_key="xfer":
+		<p style='font-style: italic;'>The delivery of this {ist.name} has already been confirmed, or processing is in progress.</p>
+		<p>Current issue status is: <b>{iss.status}</b></p>}
+		<hr />
+		<p>The {ist.name} will remain recorded in it's current form (which you received by e-mail) in the CargoHub Connect 365 database and can be accessed if you decide to use this software to manage it.</p>
+		<p>This page can now be closed, or if interested please read about [ <a href='http://www.cargohub.nl/about-cargohub-connect/'>CargoHub Connect 365</a> ] by following the link.</p>
+	</div> 
+</div>}
+{#ifnot:iss:<p style='text-align: center;'>It appears that the link you followed contains an error or the link itself is outdated, cannot proceed.</p>}

@@ -1,0 +1,128 @@
+.rapblication{
+    padding: 10px 20px;
+}
+.rapblication h3{
+    color: #2866c2;
+    font-size: 14px;
+    /*font-weight: 600;*/
+    margin-bottom: 12px;
+}
+.tab_pblication{
+
+    width: 100%;
+    /* border-collapse: collapse; */
+
+}
+.tab_pblication thead tr{
+    background: #e4e9fd !important;
+}
+.tab_pblication tr th{
+    text-align: left;
+    padding: 12px 15px;
+    color: #3e3e3e;
+    font-weight: 600;
+}
+.tab_pblication tr td{
+    padding: 6px 15px;
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid #e7ebff;
+}
+.tab_pblication tr:nth-child(even) {
+    background-color: #f3f4f8;
+}
+
+.tab_pblication tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+thead>tr{
+    font-weight: 600;
+}
+.swal2-html-container{
+    font-size: inherit;
+}
+
+
+
+
+.reminderDateViewTable {
+    margin:auto;
+    width:100%;
+    overflow:hidden;
+    background-color:var(--white);
+    border-radius:10px;
+    position:relative;
+    border-collapse:collapse;
+    z-index:1;
+    color:var(--gray);
+    white-space:nowrap;
+}
+
+.reminderDateViewTable tbody tr:not(:last-child){
+    border-bottom:1px solid rgba(1,1,1,0.2);
+}
+
+.reminderDateViewTable th, .reminderDateViewTable td{
+    padding:1rem;
+    gap:10px;
+    position:relative;
+    cursor:default;
+}
+
+.reminderDateViewTable td:last-child:hover a{
+    color:#000000;
+}
+
+.reminderDateViewTable thead {
+    background-color: #e4e9fd;
+}
+
+.reminderDateViewTable th{
+    text-transform:uppercase;
+}
+
+
+.reminderDateViewTable tr:hover{
+    background-color:#f9f9f9;
+}
+
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}

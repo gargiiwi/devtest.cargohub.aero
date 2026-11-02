@@ -1,0 +1,318 @@
+{!Template for rendering the Aircraft Incident as a string (html). This kind of view doesn't use any javascript for displaying the information and could be used to save a HTML file or send as a message/email
+  Contacts have a "mailto:" href in them; Attachments are sent as links back into the system; All other values are simply formatted text}
+{!TODO: A way to reorder these components (user, system, includes, issue data)}
+{!The system might add it's own piece of text in certain situations}
+{#if:_contents_system:<div class="system_contents">{_contents_system}</div>}
+{!Users are able to add their own text}
+{#if:_contents_user:<div class="user_contents">{_contents_user}</div>}
+{!User signature can be added after the issue data}
+{#if:_user_signature:<br /><hr style="background-color: lightgray; border: 0; height: 1px; margin: 5px 0 9px;" /><div class="user_signature">{_user_signature}</div><br /><br />}
+{!Support including extra templates here, which use the same data as this main template}
+{#if:_includes:{#repeat:_includes:
+	<div class="included_contents">{#include:%:{$}}</div>}}
+{#use:issue:
+
+<div style="max-width: 700px; padding: 5px; border: 1px solid lightgray; font-size: 12px;">
+
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Processing overview:</h4>
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}
+</table>
+
+{#if:%parts.contacts|%override:<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Contact(s):</h4>
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	{#repeat:contact_links:
+		<tr><th valign="top">{label}:</th><td data-con_id='{contact.id}'><div>{contact.name} &lt;<a href="mailto:{contact.email}">{contact.email}</a>&gt;</div>
+		{#if:contact.xdata.company_name:<div><span style="color: #999;">Company name:</span> {contact.xdata.company_name}</div>}
+		{#if:contact.xdata.phone:<div><span style="color: #999;">Phone number:</span> {contact.xdata.phone}</div>}
+		</td></tr>}
+</table>
+}
+
+{#use:%ist.xfield_def:
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Incident details:</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{title.n}:</th><td>{^xfields.title:<span style="color: #999;">---</span>}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Incident Date &amp; Time:</th><td>
+				{#if:^xfields.inc_date:{^xfields.inc_date}~date("Y-m-d")~ &middot; {^xfields.inc_time:<span style="color: #999;">---</span>}}
+				{#ifnot:^xfields.inc_date:<span style="color: #999;">---</span>}
+			</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{flt_num.n}:</th><td>{^xfields.flt_num:<span style="color: #999;">---</span>}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Flight Date:</th><td>{#if:^xfields.flt_date:{^xfields.flt_date}~date("Y-m-d")~}{#ifnot:^xfields.flt_date:<span style="color: #999;">---</span>}</td></tr>
+{!			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{station.n}:</th>
+			{#if:^xfields.station.value:
+				<td><b>{^xfields.station.value.IATA}</b>: {^xfields.station.value.name}</td>}
+			{#ifnot:^xfields.station.value:
+				<td style="color: red;">(Station not completed)</td>}
+			</tr>}
+
+			<tr><td colspan="2"><br /></td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Flight Route:</th><td>{^xfields.flt_route:<span style="color: #999;">---</span>}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Carrier:</th><td style='font-weight: bold;'>{^group.name}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{flt_regno.n}:</th><td>{^xfields.flt_regno:<span style="color: #999;">---</span>}</td></tr>				
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{flt_actype.n}:</th><td>{^xfields.flt_actype:<span style="color: #999;">---</span>}</td></tr>
+			<tr><td colspan="2"><hr style="background-color: lightgray; border: 0; height: 1px; margin: 5px 0 9px;" /></td></tr>	
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Exact location:</th><td>{^xfields.inc_location:<span style="color: #999;">---</span>}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{phase_ops.n}:</th><td>{^xfields.phase_ops:<span style="color: #999;">---</span>}</td></tr>
+
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{flt_delayed.n}</th>
+			<td>
+				{#if:^xfields.flt_delayed.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.flt_delayed.key: checked="checked"}> {^xfields.flt_delayed.value}</label>}
+				{#ifnot:^xfields.flt_delayed.value:<span style="color: #999;">---</span>}
+			</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Flight delay:</th><td>{^xfields.flt_delayamt:<span style="color: #999;">---</span>}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{sched_gt.n}:</th><td>{^xfields.sched_gt:<span style="color: #999;">---</span>}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{flt_cncld.n}</th>
+			<td>
+				{#if:^xfields.flt_cncld.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.flt_cncld.key: checked="checked"}> {^xfields.flt_cncld.value}</label>}
+				{#ifnot:^xfields.flt_cncld.value:<span style="color: #999;">---</span>}
+			</td></tr>
+	</table>
+}
+
+{#if:%parts.acinc-onlocation|%override:
+{#use:%ist.xfield_def:
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Damage information:</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{gsa_inv.n}:</th><td>{^xfields.gsa_inv.value:<span style="color: #999;">---</span>}</td></tr>
+		{!<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{dmg_by.n}:</th><td>{^xfields.dmg_by.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{dmg_by_otr.n}:</th><td>{^xfields.dmg_by_otr:<span style="color: #999;">(nothing here)</span>}</td></tr>}
+		
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{dmg_area.n}:</th><td>
+			{#ifnot:^xfields.dmg_area:<div style='color: #999; text-indent: 20px;'>---</div>}{#repeat:^xfields.dmg_area:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Other location:</th><td>{^xfields.dmg_area_info:<span style="color: #999;">-----</span>}</td></tr>
+	</table>
+	<h5>{dmg_details.n}:</h5>
+	{#if:^xfields.dmg_details:<div style="border: 1px solid lightgray; padding: 4px; margin-bottom: 4px;">{^xfields.dmg_details}~nl2br~</div>}
+	{#ifnot:^xfields.dmg_details:<div class="gray" style="text-indent: 20px; color: #999;">-----</div>}
+
+	<h5 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>{dmg_narrative.n}:</h5>
+	{#if:^xfields.dmg_narrative:<div style="border: 1px solid lightgray; padding: 4px; margin-bottom: 4px;">{^xfields.dmg_narrative}~nl2br~</div>}
+	{#ifnot:^xfields.dmg_narrative:<div class="gray" style="text-indent: 20px; color: #999;">-----</div>}
+		
+	<h4 style="background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Actions taken at station:</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="width: 30%;">{act_engineer.n}</th>
+			<td>
+				{#if:^xfields.act_engineer.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_engineer.key: checked="checked"}> {^xfields.act_engineer.value}</label>}
+				{#ifnot:^xfields.act_engineer.value:<span style="color: #999;">---</span>}
+			</td>
+			<td>Name: {^xfields.act_engineer_name:<span style="color: #999;">---</span>}</td>
+		</tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Airline rep. informed?</th>
+			<td>
+				{#if:^xfields.act_airlinerep.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_airlinerep.key: checked="checked"}> {^xfields.act_airlinerep.value}</label>}
+				{#ifnot:^xfields.act_airlinerep.value:<span style="color: #999;">---</span>}
+			</td>
+			<td>Name: {^xfields.act_airlinerep_name:<span style="color: #999;">---</span>}</td>
+		</tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{act_unloadstop.n}</th>
+			<td>
+				{#if:^xfields.act_unloadstop.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_unloadstop.key: checked="checked"}> {^xfields.act_unloadstop.value}</label>}
+				{#ifnot:^xfields.act_unloadstop.value:<span style="color: #999;">---</span>}
+			</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{act_eqrem.n}</th>
+			<td>
+				{#if:^xfields.act_eqrem.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_eqrem.key: checked="checked"}> {^xfields.act_eqrem.value}</label>}
+				{#ifnot:^xfields.act_eqrem.value:<span style="color: #999;">---</span>}
+			</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{act_eqinv.n}</th>
+			<td>
+				{#if:^xfields.act_eqinv.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.act_eqinv.key: checked="checked"}> {^xfields.act_eqinv.value}</label>}
+				{#ifnot:^xfields.act_eqinv.value:<span style="color: #999;">---</span>}
+			</td></tr>
+			<tr><td colspan="3"><hr style="background-color: lightgray; border: 0; height: 1px; margin: 5px 0 9px;" /></td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{airp_notify.n}</th>
+			<td>
+				{#if:^xfields.airp_notify.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.airp_notify.key: checked="checked"}> {^xfields.airp_notify.value}</label>}
+				{#ifnot:^xfields.airp_notify.value:<span style="color: #999;">---</span>}
+			</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{airp_report.n}</th>
+			<td>
+				{#if:^xfields.airp_report.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.airp_report.key: checked="checked"}> {^xfields.airp_report.value}</label>}
+				{#ifnot:^xfields.airp_report.value:<span style="color: #999;">---</span>}
+			</td></tr>
+		</table>		
+}}
+
+{#if:%parts.acinc-report:
+{#use:%ist.xfield_def:
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Notifications and Reporting</h4>		
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{gh_notify.n}:</th><td>
+		{#ifnot:^xfields.gh_notify:<div style='color: #999; text-indent: 20px;'>---</div>}{#repeat:^xfields.gh_notify:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+		</td></tr>
+	</table>
+	
+	<h5>Incident/Accident reported by:</h5>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Name:</th><td>{^xfields.rep_name:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Function:</th><td>{^xfields.rep_func:<span style="color: #999;">---</span>}</td></tr>
+		{!<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Telephone:</th><td>{^xfields.rep_phone:<span style="color: #999;">---</span>}</td></tr>}
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{documents.n}:</th><td>
+			{#repeat:^xfields.documents:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+		</td></tr>
+	</table>
+	
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Witnesses (first, second, third):</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin: 0; width: 100%;">
+	<tr>
+		<td valign="top" style="width: 33.33%; padding: 0; font-size: 80%;">
+			<table>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Name:</th><td>{^xfields.w1_name:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Organization:</th><td>{^xfields.w1_org:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Telephone:</th><td>{^xfields.w1_phone:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Identification:</th><td>{^xfields.w1_id:<span style="color: #999;">---</span>}</td></tr>
+			</table>
+		</td>
+		<td valign="top" style="width: 33.33%; padding: 0; font-size: 80%;">
+			<table>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Name:</th><td>{^xfields.w2_name:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Organization:</th><td>{^xfields.w2_org:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Telephone:</th><td>{^xfields.w2_phone:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Identification:</th><td>{^xfields.w2_id:<span style="color: #999;">---</span>}</td></tr>
+			</table>
+		</td>
+		<td valign="top" style="width: 33.33%; padding: 0; font-size: 80%;">
+			<table>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Name:</th><td>{^xfields.w3_name:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Organization:</th><td>{^xfields.w3_org:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Telephone:</th><td>{^xfields.w3_phone:<span style="color: #999;">---</span>}</td></tr>
+				<tr><th style="font-weight: normal; text-align: left; width: 70px; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 10px;">Identification:</th><td>{^xfields.w3_id:<span style="color: #999;">---</span>}</td></tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+}}
+
+{#if:%parts.acinc-followup:
+{#use:%ist.xfield_def:
+<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Investigation</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_done.n}</th>
+		<td>
+			{#if:^xfields.inv_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.inv_done.key: checked="checked"}> {^xfields.inv_done.value}</label>}
+			{#ifnot:^xfields.inv_done.value:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_pers.n}:</th><td>{^xfields.inv_pers:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{inv_details.n}:</th><td>
+			{#ifnot:^xfields.inv_details:<div style='color: #999; text-indent: 20px;'>---</div>}{#repeat:^xfields.inv_details:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }
+		</td></tr>
+	</table>
+	<h5>{inv_remarks.n}:</h5>
+	{#if:^xfields.inv_remarks:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.inv_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.inv_remarks:<div class="gray" style="text-indent: 20px; color: #999;">-----</div>}
+	
+	<h5>{inv_descr.n}:</h5>
+	{#if:^xfields.inv_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.inv_descr}~nl2br~</div>}
+	{#ifnot:^xfields.inv_descr:<div class="gray" style="text-indent: 20px; color: #999;">-----</div>}
+		
+	<h4 style="background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Weather conditions</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{wc_vis.n}:</th><td>{^xfields.wc_vis:<span style="color: #999;">---</span>} <span style="color: #999;">meters</span></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{wc_wind.n}:</th><td>{^xfields.wc_wind:<span style="color: #999;">---</span>} <span style="color: #999;">knots</span></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{wc_temp.n}:</th><td>{^xfields.wc_temp:<span style="color: #999;">---</span>} <span style="color: #999;">celcius</span></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{wc_light.n}:</th><td>{^xfields.wc_light.value:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{wc_surface.n}:</th><td>{#ifnot:^xfields.wc_surface:<span style="color: #999;">---</span>}{#repeat:^xfields.wc_surface:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+	</table>
+
+	<h4 style="background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Vehicle / ramp equipment details and condition report</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eq_sfn.n}:</th><td>{^xfields.eq_sfn:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eq_type.n}:</th><td>{^xfields.eq_type:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eq_owner.n}:</th><td>{^xfields.eq_owner:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eq_area.n}:</th><td>{^xfields.eq_area:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eq_age.n}:</th><td>{^xfields.eq_age:<span style="color: #999;">---</span>}
+			<div style="display: inline-block; float: right; width: 250px;">
+				<label style="display: inline-block; margin-right: 5px; width: 100px; text-align: right;">Last Overhaul:</label>
+				{#if:^xfields.eq_lasto:{^xfields.eq_lasto}~date("Y-m-d")~}{#ifnot:^xfields.eq_lasto:<span style="color: #999;">---</span>}
+			</div></td></tr>
+	</table>
+	<h5>{eq_remarks.n}:</h5>
+	{#if:^xfields.eq_remarks:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.eq_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.eq_remarks:<div class="gray" style="text-indent: 20px; color: #999;">(no equipment remarks)</div>}
+	
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; padding: 3px; text-indent: 20px;'>Contributing factors:</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_behav.n}:</th><td>{#ifnot:^xfields.cf_behav:<span style="color: #999;">---</span>}{#repeat:^xfields.cf_behav:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+		{#if:^xfields.cf_behav_oth:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_behav_oth.n}:</th><td>{^xfields.cf_behav_oth}</td></tr>}
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_rules.n}:</th><td>{#ifnot:^xfields.cf_rules:<span style="color: #999;">---</span>}{#repeat:^xfields.cf_rules:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+		{#if:^xfields.cf_rules_oth:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_rules_oth.n}:</th><td>{^xfields.cf_rules_oth}</td></tr>}
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_eq.n}:</th><td>{#ifnot:^xfields.cf_eq:<span style="color: #999;">---</span>}{#repeat:^xfields.cf_eq:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+		{#if:^xfields.cf_eq_oth:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_eq_oth.n}:</th><td>{^xfields.cf_eq_oth}</td></tr>}
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_org.n}:</th><td>{#ifnot:^xfields.cf_org:<span style="color: #999;">---</span>}{#repeat:^xfields.cf_org:<span style="border: 1px solid lightgray; float: left; line-height: 18px; margin: 0 7px 5px 0; padding: 1px 8px; white-space: nowrap;">{value}</span> }</td></tr>
+		{#if:^xfields.cf_org_oth:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cf_org_oth.n}:</th><td>{^xfields.cf_org_oth}</td></tr>}
+	</table>
+
+	<h4 style="background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Corrective/Preventive actions (CaPa)</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{capa_done.n}</th>
+			<td>
+				{#if:^xfields.capa_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.capa_done.key: checked="checked"}> {^xfields.capa_done.value}</label>}
+				{#ifnot:^xfields.capa_done.value:<span style="color: #999;">---</span>}
+			</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{capa_dl.n}:</th><td>{#if:^xfields.capa_dl:{^xfields.capa_dl}~date("Y-m-d")~}{#ifnot:^xfields.capa_dl:<span style="color: #999;">---</span>}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{capa_pers.n}:</th><td>{^xfields.capa_pers:<span style="color: #999;">---</span>}</td></tr>
+			<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{capa_date.n}:</th><td>{#if:^xfields.capa_date:{^xfields.capa_date}~date("Y-m-d")~}{#ifnot:^xfields.capa_date:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	<h5>{capa_descr.n}</h5>
+	{#if:^xfields.capa_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa_descr}~nl2br~</div>}
+	{#ifnot:^xfields.capa_descr:<div style="text-indent: 20px; color: #999;">-----</div>}
+		
+	<h4 style="background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Evaluation/Closure</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eval_done.n}</th>
+		<td>
+			{#if:^xfields.eval_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eval_done.key: checked="checked"}> {^xfields.eval_done.value}</label>}
+			{#ifnot:^xfields.eval_done.value:<span style="color: #999;">---</span>}
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eval_pers.n}:</th><td>{^xfields.eval_pers:<span style="color: #999;">---</span>}</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{eval_date.n}:</th><td>{#if:^xfields.eval_date:{^xfields.eval_date}~date("Y-m-d")~}{#ifnot:^xfields.eval_date:<span style="color: #999;">---</span>}</td></tr>
+	</table>
+	<h5>{eval_descr.n}</h5>
+	{#if:^xfields.eval_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.eval_descr}~nl2br~</div>}
+	{#ifnot:^xfields.eval_descr:<div class="gray" style="text-indent: 20px; color: #999;">-----</div>}
+	<hr style="background-color: lightgray; border: 0; height: 1px; margin: 5px 0 9px;" />
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{close_date.n}:</th><td>{#if:^xfields.close_date:{^xfields.capa_dl}~date("Y-m-d")~}{#ifnot:^xfields.close_date:<span style="color: #999;">(...still open)</span>}</td></tr>
+	</table>
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;'>Financial situation</h4>
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{expected.n}:</th><td><b>{^xfields.expected_curr.value}~cut(4)~{^xfields.expected}~numberformat(2)~</b></td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{insured.n}:</th><td><b>{^xfields.insured_curr.value}~cut(4)~{^xfields.insured}~numberformat(2)~</b>
+			<span style="float: right; margin-right: 20px;"><label>Ins. Ref. #:</label> {^xfields.insref:<span style="color: #999;">---</span>}</span>
+		</td></tr>
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{provision.n}:</th><td><b>{^xfields.provision_curr.value}~cut(4)~{^xfields.provision}~numberformat(2)~</b></td></tr>
+	</table>
+	<hr style="background-color: lightgray; border: 0; height: 1px; margin: 5px 0 9px;" />
+	<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+		<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{liable.n}:</th><td>
+			{#if:^xfields.liable.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.liable.key: checked="checked"}> {^xfields.liable.value}</label>}
+			{#ifnot:^xfields.liable.value:<span style="color: #999;">---</span>}
+		</td></tr>
+		{#if:^xfields.claim_link:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Claim record link:</th><td>
+			<a href="http://{%html.domain}/issue?action=view&amp;track={^xfields.claim_link}" target="_blank">{^xfields.claim_link}</a>
+		</td></tr>}
+	</table>
+}}
+
+</div>}
+
+{!Deprecated... but unfortuantely still used in the frontend submit (until that one is recoded as well)}
+{#if:%parts.attachments|%override:{#if:issue.files:<div style="max-width: 600px; padding: 5px; margin-top: 5px;">
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 5px; padding: 3px; text-indent: 20px;'>Attached documents (links):</h4>
+	<div id='attachments' style="margin-bottom: 8px;">
+		{#repeat:issue.files:
+		<div style="margin-bottom: 5px; padding: 5px 0px 5px 2px; border-bottom: 1px dotted lightgray;">
+			<a target='_blank' href='http://{%html.domain}/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'>
+			<img style="float: left; margin-right: 10px; border: none;" src='http://{%html.domain}/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span style="color: #999;">({description})</span>}<br />
+			<span style="color: #999;">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span style="color: #999;">Size:</span> {size}~numberformat~ bytes	
+			<div style="clear: both; height: 0px !important;"></div>
+		</div>
+		}
+	</div>
+</div>}}

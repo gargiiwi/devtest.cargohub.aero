@@ -1,0 +1,123 @@
+div.site > div.page div#org-control-panel {
+
+}
+
+	div#org-control-panel .jqx-tabs-titleContentWrapper > img {
+		float: left;
+		margin-right: 6px;
+		border: none;
+	}
+
+#dep_members .member_list_elem {
+	height: 36px;
+}
+
+/* Main tab (Overview) */
+
+div#org-info {
+	padding: 6px;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	margin-bottom: 20px;	
+}
+
+	div#org-info #org-vcard {
+		width: 675px;
+		float: left;
+	}
+	
+	div#org-info #org-details {
+		width: 400px; float: right; overflow: hidden;
+	}
+
+
+/* Users tab - Displaying user overview */
+div#user-info {
+	padding: 6px;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	margin-bottom: 20px;	
+}
+
+	div#user-info #user-vcard {
+		width: 450px;
+		float: left;
+	}
+	
+	div#user-info #user-account {
+		width: 334px; float: right; overflow: hidden;
+	}
+
+/* General stuff (used all around the module) */
+table.infotable {
+	margin-bottom: 8px;
+}	
+
+	table.infotable th {
+		width: 120px;
+	}
+
+form.vertiform {
+}
+	
+	.vertiform input[type='text'], .vertiform input[type='password'] {
+		width: 200px;
+		padding: 4px;
+		margin: 0px;
+		border: 1px solid lightgray;
+		border-radius: 3px;
+	}
+	
+	.vertiform textarea {
+		width: 360px;
+		padding: 4px;
+		margin: 0px;
+		border: 1px solid lightgray;
+		border-radius: 3px;
+		resize: none;
+	}
+
+div.modal_content form > div {
+	height: 26px;
+	margin-bottom: 4px;
+}
+
+	div.modal_content form > div > * {
+		float: left;
+	}
+
+	div.modal_content form > div > label {
+		display: block;
+		line-height: 25px;
+		width: 120px;
+		text-align: right;
+		padding-right: 8px;
+	}
+
+	div.modal_content form > div > input {
+		padding: 1px 0px;
+		height: 25px;
+	}
+	/** Other content, not editable **/	
+	div.modal_content form > div > div.static {
+		line-height: 25px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}	
+	
+	div.modal_content form > div > span {
+		display: block;
+		height: 25px;
+		line-height: 25px;
+		font-size: 85%;
+		margin-left: 6px;
+		color: gray;
+	}
+	
+	div.modal_content .multiselect_buttons {
+		margin-top: 6px;
+	}
+	
+	div.modal_content .multiselect_buttons button {
+		margin-right: 21px;
+	}

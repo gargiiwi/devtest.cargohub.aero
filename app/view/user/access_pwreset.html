@@ -1,0 +1,15 @@
+{!This template is the system user password recovery form (contains one field, the e-mail address)}
+<div id="pwreset">
+	<div class="logo left">
+		<img src="/img/extra/pwreset.png" alt="Reset my password" />
+	</div>
+	<div class="form left">
+		<form action="?action=send_pwreset_code" method="post">
+			<h3>Type in your E-mail:</h3>
+			<div class='jqx-rc-all field'><input type='text' name="email" id="emailBox" /></div>
+			<input type="submit" value="Send reset code" class="right"/>
+			<div class="clear"></div>
+		</form>
+	</div>
+	<div class="clear"></div>
+</div>

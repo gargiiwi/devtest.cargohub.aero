@@ -1,0 +1,271 @@
+{@<style type="text/css">
+
+h1, h2 {
+	color: #214e78;
+}
+
+#maincontent {
+	float: left;
+	width: 762px;
+}
+
+	#maincontent #info-index {
+		font-size: 1.5em;
+		text-align: center;
+		border: 1px solid gray;
+		padding: 18px;
+		background-image: url("/img/bgs/gray_patt4.png");
+		color: #214e78;
+		text-shadow: 2px 2px 2px white;
+	}
+
+	#maincontent td.xlink {
+		border: 1px solid lightgray;
+		border-radius: 7px;
+		height: 66px;
+		width: 48%;
+	}
+	
+		#maincontent td.xlink img {
+			float: left;
+			margin: 10px 12px auto 12px;
+			text-decoration: none;
+			border: none;
+			width: 30px;
+		}
+	
+		#maincontent td.xlink a {
+			font-size: 17px;
+			font-weight: bold;
+			display: block;
+			margin-top: 8px;
+			font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+			color: #166EB7;
+		}
+		
+		#maincontent td.xlink p {
+			margin: 8px;
+		}	
+	
+	#maincontent #searchbox {
+		margin: 0 auto;
+		margin-top: 90px;
+		width: 500px;
+	}
+
+#sidebar {
+	float: right;
+	width: 316px;
+	background-image: url("/img/bgs/gray_patt4.png");
+	border: 1px solid gray;
+	padding: 6px;
+	margin-bottom: 12px;
+}
+
+	#sidebar > * {
+		display: block;
+	}
+	
+	#sidebar img {
+		border: 0;
+		margin: 10px auto 16px auto;
+		display: block;
+	}
+	
+	#track-box {
+		width: 214px;
+		height: 30px;
+		background-color: white;
+		box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15) inset;
+		box-sizing: border-box;
+		float: left;
+		text-indent: 8px;
+		font-size: 14px;
+	}
+	#track-btn {
+		background: #214e78;
+		border: none;
+		width: 80px;
+		height: 30px;
+		cursor: pointer;
+		color: #fff;
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		float: left;
+		margin-left: -3px;
+	}
+	
+	#sdr-calc {
+		width: 292px;
+		background-color: white;
+		border: 1px solid #c7c7c7;
+		box-shadow: 3px 3px 6px #bbbbbb;
+		margin: 6px auto;
+	}
+	
+	#sidebar img.mium {
+		border: 1px solid #c7c7c7;
+		box-shadow: 3px 3px 6px #bbbbbb;
+	}
+	
+#tabs-cargoclaim {
+	margin-top: 30px;
+}	
+	
+#tabs-cargoclaim div.jqx-tabs-content {
+	padding: 8px;
+}
+
+	.news-block {
+		float:left; width: 165px; margin: 10px; text-align: center;	
+	}
+		
+		.news-title {
+			display: block; height: 60px; font-weight: normal;font-size: 13px;margin-left: 1px;color: #287abe;text-transform: uppercase; font-weight: bold;
+		}
+
+	#stakeholders > a {
+		margin-left: 7px;
+	}
+	
+#benefits ul {
+	padding-left: 12px;
+}
+		
+		
+</style>}
+
+<div style="margin: 4px 12px 12px 12px; position: relative;">{!Content}
+
+<div id="maincontent">
+	{!<div id="info-index" class="jqx-rc-all">
+	MANAGE CLAIMS IN A CENTRALIZED PLATFORM FOR FREE 
+	</div>
+	}
+	<div style="width: 292px; margin: 0 24px 0 0; float: left;">
+		<h2 style="font-weight: bold; text-transform: uppercase;">Track your shipment</h2>
+		<form action="http://connect.track-trace.com/for/cargoclaims" method="post" target="_blank">
+			<input type="hidden" name="shipper" value="aircargo">
+			<input type="text" name="number" maxlength="40" id="track-box" class="jqx-input jqx-input-fresh jqx-rc-all">
+			<input type="submit" value="Track" id="track-btn" class="jqx-rc-r">
+			<div class="clear"></div>
+		</form>
+		<div class="center jqx-rc-all jqx-widget jqx-widget-fresh" id="sdr-calc">
+			<a style="text-indent: 20px; margin: 6px; display: inline-block; font-weight: bold; background-image: url('/img/icons16/calculator.png'); background-repeat: no-repeat; background-position: left;" target="_blank" href="http://www.cargohub.nl/sdr-calculator/">Calculate Compensation</a>
+		</div>
+	</div>
+	
+	<p style="text-align: justify; margin-top: 24px;">Manage your claims with ease in a centralized platform. a <b>FREE</b> account is automatically generated when submitting your first claim. 
+<br><br>Shippers, consignees, forwarders and Airlines benefit premium accounts at a low entrance fee. Contact E: support@cargohub.nl</p>
+	<div class="clear"></div>	
+	<hr style="margin-top: 8px;" />
+	
+	<div id="searchbox">
+		<div class="center" style="margin-bottom: 20px;">
+			<h1 style="background-color: #214e78; color: white; display: block; width: 490px; padding: 5px; border-radius: 18px;">SEARCH AIRLINE AND SUBMIT A CLAIM</h1>
+		</div>
+		{#plugin:airfind}
+		
+		<table style="width: 100%; border-spacing: 0; margin-top: 1.5em;"><tr>
+			<td class="xlink">
+				<a href="/contact/account?hash=issues"><img alt="Lupa" src="/img/icons/magnifier.png">Freemium login</a>
+				<p>View existing claims</p>
+			</td>
+			<td style="width: 20px;">&nbsp;</td>
+			<td class="xlink">
+				<a href="http://demo.cargoclaims.aero/issue?action=form&key=cargoclaim" target="_blank"><img alt="Demo area" src="/img/icons/question.png">Submit test </a>
+				<p>and see how it works</p>
+			</td>
+		</tr></table>
+	</div>
+	
+	<div style="width: 700px; margin: 90px auto 20px auto;">
+		<hr />
+	
+		
+	  
+	  <div class="center">
+			<a target="_blank" href="http://www.cargohub.nl/benefits-for-airlines/" title="Benefits for airlines"><img width="139" src="/cmsup/frontpage/four_t1.png" alt="four_t1"></a>
+			<a style="margin-left: -4px;" target="_blank" href="http://www.cargohub.nl/benefits-for-gsa/" title="Benefits for GSA"><img width="130" src="/cmsup/frontpage/gssa.png" alt="four_t2"></a>
+			<a target="_blank" href="http://www.cargohub.nl/cargo-claims-for-shippers/" title="Cargoclaims for shippers"><img width="130" src="/cmsup/frontpage/four_t3.png" alt="four_t3"></a>
+			<a target="_blank" href="http://www.cargohub.nl/benefits-for-forwarders/" title="Benefits for forwarders"><img width="130" src="/cmsup/frontpage/four_t4.png" alt="four_t4"></a>
+			<a href="#"><img width="130" src="/cmsup/frontpage/four_t5.png" alt="four_t5"></a>
+		</div>
+	</div>
+	
+</div>
+
+<div id="sidebar" class="jqx-widget jqx-widget-fresh jqx-rc-all" width="30%" valign="top">
+	<a style="margin-top: 12px;" target="_blank" href="http://www.iata.org/events/wcs/Pages/cargo-innovation-awards.aspx">
+		<img src="/cmsup/frontpage/finalist-2015-500.png" alt="IATA C.I.Award Finalist 2015" style="width: 292px;" />
+	</a>
+	<img class="mium jqx-rc-all" src="/cmsup/frontpage/freemium7.png" alt="Freemium" />
+	<img class="mium jqx-rc-all" src="/cmsup/frontpage/premium7.png" alt="Premium" />
+	<div class="center" style="font-weight: bold;">
+		<a href='/cms?path=/marketing/explorepremium'>More information</a> and <a href='/cms?path=/marketing/pricing'>Pricing details</a>
+	</div>
+	<a href="http://www.cargohub.nl/contact/" target="_blank">
+		<img src="/cmsup/frontpage/contact4.png" alt="Contact us !" id="img-contactus" />
+	</a>
+</div>
+
+
+
+	<div>
+		<table id="benefits" style="width: 100%; border-spacing: 8px; margin-top: 20px;">
+			<tr>
+			<td valign="top" style="width: 50%;">
+				<h4>How our services benefits claimants</h4>
+				<ul>
+					<li>Pre defined fields to complete the claim in submit form</li>
+					<li>All claim documents and pictures can be uploaded </li>
+					<li>You will receive a tracking confirmation immediately</li>
+					<li>A notice of claim is sent to the recipient with all submitted data</li>
+					<li>Update, track and monitor your claims from your one account</li>
+					<li>Manage your claims within a centralized platform</li>
+					<li>For information or support contact support@cargohub.nl</li>
+				</ul>
+				</td>
+				<td valign="top" style="width: 50%;">
+				<h4>How our services benefits participating airlines</h4>
+				<ul>
+					<li>Receive full claim data into your Cargo Claims 365 account</li>
+					<li>Optionally, receive our data directly into your CRM | Portal </li>
+					<li>Providing our customer 24/7 online registration</li>
+					<li>Receive cargo incident information from Ground Handlers</li>
+					<li>Increase the speed of processing your service recovery</li>
+					<li>Increase transparancy within your organization on any level</li>
+					<li>Read more about your benefits by clicking <a href="http://www.cargohub.nl/benefits-for-airlines"><b>here</b></a></li>
+				</ul>
+			</td>
+		</tr>
+		</table>
+	</div><br><br>
+	<div>
+		<h2 style="font-weight: bold;">Claim period for damage, delay or loss</h2><hr />
+		<p>
+		Receipt by the person entitled to delivery of the cargo without complaint shall be prima facie evidence that the cargo has been delivered in good condition and in accordance with the contract of carriage.<br />
+		In the case of loss of, damage or delay to cargo a complaint must be made to the Carrier by the person entitled to delivery.</p> 
+		<p>
+		Based upon the time limits as set forth in the Warsaw Convention as amended at the Hague 1955 and the Montreal Convention 1999, a preliminary claim must be filed shortly after receipt of your shipment.<br />
+		The time limits reffered to above are:</p>
+
+		<ul>
+			<li><b>Damage or partial loss</b>; immediately after discovery and at the latest within <span style='text-decoration: underline;'>14 days</span> from the date of receipt of the cargo</li>
+			<li><b>Delay</b>; within <span style='text-decoration: underline;'>21 days</span> from the date on which the cargo was placed at the disposal of the person entitled to delivery.</li>
+		</ul>	
+	</div>
+<br><br>
+	<div>
+		<h2 style="font-weight: bold;">Disclaimer and Terms of Use</h2><hr />
+		<p>This software is using E-mail technology to forward the information submitted to this application to the intended recipient. Although we are updating our contacts in accordance with the latest information available,
+		we shall not accept any liability in case your data doesn't reach the recipient, for any reason, technical or caused by human error.</p>
+		<p>If you did not receive a copy of your data by e-mail after submitting a claim, or notice that the automatically provided addresses are incorrect,<br />please contact <a href="mailto:support@cargohub.nl">support@cargohub.nl</a> or by telephone: <b>+31(0)20 6586220</b>.</p>
+		<p>Please read the full <a href="/cms?path=terms-of-use">Terms of Use</a></p>
+	</div>
+</div>
+
+
+
+{!End Content}</div>

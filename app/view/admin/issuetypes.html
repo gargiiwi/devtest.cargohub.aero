@@ -1,0 +1,45 @@
+<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<button data-op="create" title='Create issue type'><img src='/img/icons16/add.png' alt="Add" /> Create New</button>
+	<div id='ist_edit_operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="details" title="Details"><img src='/img/icons16/eye.png' /> Details</button>
+		<button data-op="edit" title="Edit structure"><img src='/img/icons16/brick_edit.png' /> Edit</button>
+		<button data-op="count" title="Recount elements"><img src='/img/icons16/number_42.png' /> Recount</button>
+		<div class='toolbar-separator'></div>
+		<button id="button-delete" data-op="delete" title="Remove selected" data-confirm="true" data-confirm_msg="remove selected issuetype ?"><img src='/img/icons16/bin.png' /> Remove selected</button>
+		<span id='selected_ist'></span>
+	</div>
+</div>
+<div id="ist_grid"></div>
+
+<br /><div class='info-expander'>
+	<div>Operational information (click to open/close)</div>
+	<div class='spacey'>
+		<h3>Record types manager.</h3>
+		<hr />
+		<h1>[ PLEASE BE WARNED ]</h1>
+		<p>This is a very sensitive part of the application ! Making a change here <b>CAN DESTORY DATA</b> !<br />
+		<span style="text-decoration: underline; font-size: 2em;">DO NOT CHANGE ANYTHING without asking <b>Wavetrex</b> !!!</span></p>
+		<h2>[ AGAIN, DO NOT USE IT UNLESS REALLY REALLY NECESSARY ]</h2>
+		<h2 style="text-decoration: underline;">I WILL NOT BE RESPONSIBLE IF YOU WIPE OUT CUSTOMER DATA !</h2>
+		<p class="gray">Signed,<br />Wavetrex Infinity</p>
+		<hr />
+		<p>The columns display the following information:</p>
+		<ul>
+			<li><b>Scope:</b> Usage class for this issue type (everyone, only an organization, admin build/test mode)</li>
+			<li><b>Folder Key:</b> Shows the Issue Type Key (Template folder name).</li>
+			<li><b>Name:</b> Singular name used in the application.</li>
+			<li><b>Plural form:</b> Name used when multiple issues are mentioned (Plural).</li>
+			<li><b>Description:</b> What this issue type is about.</li>
+			<li><b>Issues:</b> How many issues of this type are recorded in the application (total, including hidden, closed).</li>
+		</ul>
+		<hr />
+		<p>When selecting a row, buttons will appear that allow to view details about that issue type or remove it (after confirming <i>twice</i>)</p>
+		<p><span style='color: red;'>Please <b>DO NOT USE</b>  the delete function, it's not reversible !</span><br />
+		Once an issue type is removed, <b>ALL DATA OF THAT TYPE CANNOT BE RECOVERED.</b></p>
+		<p>To create an issue type, use the provided button which opens the issue type create form.<br />
+		Each issue type must have an unique folder key (the system will refuse creation if the same name has already been used).</p>
+	</div>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}

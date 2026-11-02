@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8" />
+	<title>{html.title}{#if:header.zone: | {header.zone}}</title>
+	<link rel="shortcut icon" type="image/x-icon" href="{html.favicon:/favico/default.ico}">
+	
+	<style>
+		
+{#raw:loading_overlay.css}
+	#upload{background-color:red}
+	</style>
+	<link href="/css/{html.css_theme}/cargo_its.css?v=2.7" type="text/css" rel="stylesheet" />
+	<link href="/css/{html.css_theme}/cargo_its_extra.css?v=0.1" type="text/css" rel="stylesheet" />
+     <link rel="stylesheet" href="/css/default/components/sweetalert2.min.css"  />
+</head>
+<body style="overflow-y: scroll;">
+    <span id="claim_type_name" style="display: none;">{claim_type_name}</span>
+	
+	<div  tabindex="-1"><div class="site">
+		<div class="header" style="margn:0px">
+		{#include::private/header.html}
+		</div>
+		
+		<div class="page" style="margin:0px 20px">
+			<p style="margin:0px;background-color:#DFDFDF;padding:10px 30px;">
+			<span style="font-family:sans-serif;background-color:white;padding:6px 10px;font-size:12px;border-radius:0px;font-weight:bold">EXCEL FILE IMPORT</span>
+			</p>
+			<p style="font-family:poppins;font-size:19px;">Instructions :</p>
+			<p style="font-family:poppins;font-size:14px;">1. Please make sure the correct file format is selected</p>
+			<p style="font-family:poppins;font-size:14px;">2. Only use columns A tm G to update your data</p>
+			<h5 align="right" style="margin:0px">
+			<a href="/mrnfiles/mrn_sample_data.xls">
+			
+			</a>
+			</h5>
+			<form enctype = "multipart/form-data" method="post" action="https://cargohub.aero/issue?action=importmrndatasubmit" id="upload_xls_data">    
+				<table style="margin: 15px 0px ;display:flex;" class="upload-table">
+					<tr style="margin:10px 0px">
+						<td style="font-family:poppins;font-size:15px;font-weight:bold">File :</td>
+						<td>
+						<input id = "upload" class="upload" style = " margin:0px 0px 0px -220px;" type="file" name="files" required = "required" accept="application/vnd.ms-excel">
+						</td>
+					<tr>
+					<tr style="vertical-align: middle;margin-top:40px">
+						<td style="position:relative ;padding-top:30px">
+						<input type="submit" name="xls_submit" value="Start Import" class="right" 
+								style="
+								background-color:#09b968;border:none;
+								color:#fff; font-weight: bold; border-radius:5px;cursor:pointer;;
+								box-shadow: 5px 3px 8px lightgray;padding:10px 90px"/>
+						<img src="/img/import-2.png" style="width:20px;height:20px;background-color:white;position:absolute;top:35px;left:24%"/>		
+						</td>
+						
+						<td style="padding-top:30px">
+						<a href="/mrnfiles/mrn_sample_data.xls" style="padding:10px 40px;margin:18px 0px 0px 20px; font-weight:bold;border-radius:5px;
+								cursor:pointer;background-color:#1A73E8;border:none;color:#fff;text-align:center;position:relative">
+								Download Sample XLS 
+							<img src="/img/Interface -1.png" style="width:15px;height:17px;position:absolute;top:8px;left:8%;"/>
+						</a>
+						</td>
+					<tr/>
+				</table>
+			  <br>  
+			</form>  
+			<p style="font-family:poppins;font-size:18px;margin-top:0px">Sample XLS:</p>
+			<img src="/img/icons16/mrn_import_sample.png" alt="Info" class="info-tip" data-tooltip="MRN Sample XLS Data" style='float: left; margin-left: 4px;' />
+			<br/><br/><br/><br/>
+		</div>
+		<div class='clear'></div>
+	</div></div>
+    <span id="user_on_this_record_page" data-cmd="{user_on_this_record_page}"></span>
+    <span id="user_on_this_record_page_all_name" data-cmd="{user_on_this_record_page_all_name}"></span>
+{#include::private/footer.html}
+	<script>
+	var
+	preloader = JSON.parse('{DONREY.preloader}~json~'), // DonReY JS Config (will be removed)
+	cargohub = JSON.parse('{DONREY.cargohub}~json~'), // CargoHub main container
+	CFG=JSON.parse('{CFG}~json~'); // Loaded Modules config
+{#raw:preloader.js}
+	</script>
+        <script src="/js/components/sweetalert2.min.js" referrerpolicy="no-referrer"></script>
+</body>
+</html>

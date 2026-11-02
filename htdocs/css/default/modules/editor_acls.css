@@ -1,0 +1,88 @@
+/* Styles for the ACLs editor (privileges, other lists) */
+#privileges-navbar div.header { 
+	text-indent: 30px;
+	text-shadow: 1px 1px white; font-size: 13px;
+}
+
+.privileges-array {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 1px;
+	margin-bottom: 12px;
+}
+
+.privileges-array tr {
+	height: 27px;
+	line-height: 25px;
+}
+
+	.privileges-array tr:nth-child(even) {
+		background-color: #FFFFFF;
+	}
+	
+	.privileges-array tr:nth-child(odd) {
+		background-color: #F8F8F8;
+	}
+	
+	.privileges-array th:nth-of-type(1) {
+		text-indent: 9px;
+		font-weight: normal;
+	}
+	
+	.privileges-array th:nth-of-type(1) img {
+		position: relative;
+		top: 3px;
+	}
+
+	/* The "Read" and "Modify" columns */
+	.privileges-array td:nth-of-type(1) {
+		width: 140px;
+		background-color: #CCFFCC;
+		border-right: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		text-align: center;
+	}
+	
+	.privileges-array td:nth-of-type(2) {
+		width: 140px;
+		background-color: #FFE4CC;
+		border-right: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		text-align: center;
+	}
+	
+/* An arrays header column */
+.privileges-array tr.tab-header {
+}
+	.privileges-array tr.tab-header > th:nth-of-type(2) {
+		width: 140px;
+		background-color: #00FF00;
+		text-align: center;
+	}
+	
+	.privileges-array tr.tab-header th:nth-of-type(3) {
+		width: 140px;
+		background-color: #FF7B00;
+		text-align: center;
+	}
+
+.privileges-array td > div {
+	margin: 0 25px 1px;
+}
+
+div.acl {
+}
+	div.acl > * {
+		display: block;
+		float: left;
+	}
+	div.acl > label {
+		text-align: right;
+		width: 140px; height: 26px;
+		line-height: 26px;
+		margin-right: 8px; margin-bottom: 8px;
+	}
+	
+	div.acl > button {
+		margin: 0px 0px 0px 8px;
+	}

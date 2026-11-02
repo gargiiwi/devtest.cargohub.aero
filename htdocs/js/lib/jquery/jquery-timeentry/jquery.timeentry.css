@@ -1,0 +1,10 @@
+/* TimeEntry styles v2.0.0 */
+input.is-timeEntry {
+	float: left;
+}
+
+.timeEntry-control {
+	float: left;
+	margin-left: 3px;
+	margin-top: 1px;
+}

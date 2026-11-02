@@ -1,0 +1,351 @@
+/* Column layout variants. Multiple sequences of colums of different arrangements possible in the same form */
+
+/* Do not divide the layout vertically */
+#issue_submit div.column1 {
+	width: 1134px;
+}
+
+/* Divide the layout into two columns */
+#issue_submit div.column2 {
+	width: 548px;
+	float: left;
+	margin-right: 7px;
+	border: 1px solid transparent;
+}
+
+/* Divide the layout into three columns */
+#issue_submit div.column3 {
+	width: 362px;
+	float: left;
+	margin-right: 7px;
+}
+
+/* Divide the layout into six columns */
+#issue_submit div.column6 {
+	width: 195px;
+	float: left;
+	
+}
+
+/* Asymmetrical 2-column layout where the left column is smaller than the right one */ 
+#issue_submit div.column_left {
+	width: 470px;
+	float: left;
+	margin-right: 12px;
+}
+#issue_submit div.column_right {
+	width: 630px;
+	float: right;
+}
+
+/* General field table styles */
+#issue_form table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 32px;
+}
+
+	#issue_form table .field_error {
+		background-color: Orange;
+		color: Black;
+		border: 1px solid black;
+		padding: 2px;
+	}
+
+	#issue_form div.column2 th {
+		width: 175px;
+		text-align: right;
+		padding-right: 5px;
+		font-weight: normal;
+	}
+	
+		#issue_form th label {
+			cursor: pointer;
+		}
+
+/** Div based label which is similar to the table ones **/
+#issue_form div.clabel {
+		float: left;
+		width: 172px;
+		margin: 5px 0px;
+ 		padding-left: 3px;
+ 		padding-right: 5px;
+		text-align: right;
+		margin-right: 2px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	
+		#issue_form div.clabel label {
+			font-weight: normal;
+			cursor: pointer;
+		}
+
+/** ContactSearchSystem related **/
+#issue_form div#issue-contacts {
+	margin-bottom: 10px;
+}
+		
+#issue_form div#issue-contacts div.issue-contact {
+	height: 27px;
+	padding-top: 2px;
+	position: relative;
+}
+
+ 	#issue-contacts div.issue-contact button {
+ 		position: absolute;
+		right: 3px;
+		top: 3px;
+ 		background-image: url("/img/icons16/vcard.png");
+ 		background-repeat: no-repeat;
+ 		background-position: center center;
+	}
+ 	
+ 	#issue-contacts div.issue-contact button:HOVER {
+		background-color: yellow;
+ 	}
+
+	#issue-contacts div.issue-contact > span, div#submit-contact-search > span {
+		float: left;
+		display: inline-block;
+		height: 20px;
+		line-height: 20px;
+		padding: 1px 0px 1px 2px;
+		font-size: 13px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		width: 333px;
+	}
+	
+	#issue-contacts div.issue-contact > span.contact-error, div#submit-contact-search > span.contact-error {
+		text-decoration: line-through;
+		color: red;
+	}
+		
+table.infotable.contact-result-row {
+	color: inherit;
+}
+
+	table.infotable.contact-result-row th {
+		text-align: right;
+		width: 60px;
+	}
+	
+	table.infotable.contact-result-row div.contact-name {
+		font-size: 16px;
+		font-weight: bold;
+		margin-bottom: 4px;
+	}
+	
+	table.infotable.contact-result-row div.contact-email {
+		text-decoration: underline;
+	}
+
+/* The contact editor */
+div#contact-label {
+	height: 26px;
+	padding: 1px;
+}
+
+	div#contact-label label {
+		text-align: right;
+		float: left;
+		margin-right: 6px;
+		color: #808080;
+		width: 142px;
+		line-height: 24px;
+	}
+	
+	div#contact-label input {
+		float: left;
+		height: 20px;
+		line-height: 20px;
+    	border-style: solid;
+	    border-width: 1px;
+		width: 150px;		
+	}
+		
+/* Form field styling */
+#issue_form td > input[type='text'], #issue_form td > textarea, #issue_form td > select, span.fake-input {
+	border-style: solid;
+	border-width: 1px;
+}
+
+	/* Standardized height and lengths of inputs, for uniform styling */
+	#issue_form td > input[type='text'] {
+		line-height: 20px;
+		height: 20px;
+	}	
+	#issue_form div.column2 .maxlen {
+		width: 358px;
+	}
+	#issue_form div.column2 .long {
+		width: 220px;
+	}
+	#issue_form div.column2 .medium {
+		width: 135px;
+	}
+	#issue_form div.column2 .short {
+		width: 83px;
+	}
+	#issue_form div.column2 .tiny {
+		width: 50px;
+	}
+	
+	span.fake-input {
+		background-color: white;
+	}
+
+#issue_form table.dual_col_table td {
+	border: 1px solid lightgray;
+	padding: 3px 3px 12px 3px;
+	width: 50%;
+}
+#issue_form table.dual_col_table td label, #issue_form table.radiotable td label, #issue_form td.radiotable label {
+	display: block;
+	width: 100%;
+	cursor: pointer;
+}
+#issue_form table.dual_col_table td label:HOVER, #issue_form table.radiotable td label:HOVER, #issue_form td.radiotable label:HOVER {
+	background-color: #F9F3DE;
+}
+
+#issue_form table.tri_col_table td {
+	border: 1px solid lightgray;
+	padding: 2px 2px 10px 2px;
+	width: 33%;
+	text-align: center;
+}
+
+#issue_form table.quad_col_table td {
+	border: 1px solid lightgray;
+	padding: 2px 2px 10px 2px;
+	width: 25%;
+	text-align: center;
+}
+
+#issue_form table.quad_col_table td:HOVER {
+	background-color: #F9F3DE;	
+}
+
+#issue_form .required {
+}
+	#issue_form th {
+		height: 27px;
+	}
+
+	#issue_form .required th, #issue_form .required td, #issue_form td.required, #issue_form div.required {
+		background-color: #cce8ff;
+	}
+	
+	#issue_form .required label span, .req_bullet {
+		background: url("/img/extra/required2.png") no-repeat;
+		display: inline-block;
+		width: 12px;
+		height: 12px;
+	}
+	
+h4.login-warn {
+	background-color: ForestGreen;
+	color: White;
+	padding: 6px 0;
+	border: none;
+	text-align: center;
+	font-weight: normal;
+	box-shadow: 1px 4px 2px LightGray;
+}
+
+div#uploads-helper {
+	padding: 6px 24px;
+	background-color: #F8F8FA;
+	font-style: italic;
+	font-size: 14px;
+	text-align: center;
+}
+
+div#attachments {
+	overflow: auto;
+}
+
+	div#attachments div.file-download {
+		margin-bottom: 6px;
+		padding: 4px 0px 6px 2px;
+		border-bottom: 1px dotted lightgray;
+	}
+	
+	div#attachments div.file-download img {
+		float: left;
+		margin-right: 10px;
+		border: none;
+	}
+	
+label.documents {
+	display: block;
+	width: 250px;
+	float: left;
+}
+
+div#file-submit-area {
+	position: relative;
+}
+	div#file-submit-area input {
+		width: 500px;
+		position: absolute;
+		left: 26px;
+	}
+
+	div#file-submit-area span {
+		display: block;
+		height: 24px;
+		line-height: 24px;
+		margin-top: 2px;
+		margin-bottom: 5px;
+	}
+	
+	div#file-submit-area span:HOVER {
+		background-color: #F0F0F0;
+	}
+
+ 	div#file-submit-area span button {
+		background-image: url("/img/icons16/delete.png");
+ 		background-repeat: no-repeat;
+ 		background-position: center center;
+ 		float: left;
+ 		margin-top: 1px;
+ 	}
+ 	
+ 	div#file-submit-area span button:HOVER {
+		background-color: yellow;
+ 	}
+	
+div#submit-proceed-box {
+	margin: 4px;
+	padding: 6px;
+	border: 1px solid lightgray;
+	background-image: url("/img/bgs/gray_patt1.png");
+}
+
+	div#submit-proceed-box h4 {
+		font-size: 0.9em;
+	}
+
+	span#submit-disclaimer {
+		font-size: 0.75em;
+	}
+
+	div#accept-disclaimer {
+		margin-top: 10px;
+		padding: 4px;
+		background-color: #F0F0F8;
+		margin-bottom: 8px;
+	}
+		div#accept-disclaimer span {
+			
+		}
+		
+.theclock {
+	height: 20px;
+	line-height: 20px;
+}

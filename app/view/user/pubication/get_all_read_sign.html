@@ -1,0 +1,91 @@
+<div style="padding-top: 20px;" id="" class="get_all_read_sign_div_section ">  
+
+    <!--<h4 style="text-indent:0px;"> </h4>-->
+    <div class="get_flx">
+        <div>
+            <h4 class="get_pub"  style="color:#000000;" >Pending Documents Read & Sign</h4>
+        </div>
+        <!--IWI publication new design 14042026 start-->
+<!--        <div>
+            <img class="log_pub" style="" alt="" src="{orgLogo}">
+        </div>-->
+<!--IWI publication new design 14042026 end-->
+    </div>
+    <div>
+
+
+        <div class="ratabs">
+            <div class="simple-spinner">
+                <span></span> 
+            </div>
+
+            <div>
+
+
+                <div class="rapblication">
+                    <div class="back_link" >
+                        <a href="/user/publication/get_publications" ><i class="fa  fa-arrow-left" aria-hidden="true" style=" font-size: 15px;"></i> Go To Publication  </a>
+                    </div>
+                    <div>
+                    </div>
+                    <div>
+                        <table class="table table-bordered tab_pending_read_sign_sec" id="getAllPendingReadSign">
+                            <thead>
+                                <tr>
+                                    <td style="">Total ({total_pending})</td>
+                                    <td style="">Document Title</td>
+                                    <td style="">Vs.</td>
+                                    <td style="">Access</td>
+                                    <td style="">Doc Type</td>
+                                    <td style="">Updated</td>
+                                    <td style="">Published By</td>
+                                    <td style="">Tracking</td>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {#repeat:getAllPendingReadSign:
+                                <tr id="row_{
+                                        rt_key
+                                    }">
+                                    <td style=""><a href="/?action=document&qp=orptwp&key={wv_key}&nid={nid}" target="_blank"><i class="fa fa-eye" aria-hidden="true" style="color: #000; font-size: 15px;"></i></a>
+                                        {#if:read_sign=='0':
+                                        <span style="margin-left: 5px"><img src="/img/icons16/statuses/new.png" alt='new'></span>
+                                        }
+                                        {#if:read_sign_update=='1':
+                                        <span style="margin-left: 5px"><img src="/img/icons16/statuses/update.png" alt="update"></span>
+                                        }
+                                    </td>
+                                    <td style=""><img src="/img/icons16/ist/cargoclaim.png" alt="cargoclaim" style="padding-right: 6px;">{title}</td>
+                                    <td>{version}</td>
+                                    <td>
+                                        <div class=" highlight-text displayThis" data-id="{id}"> ({department_count}) </div>
+                                        <span style="display:none" class="display_{
+                                                id
+                                            }"><br> {department}</span>
+                                    </td>
+                                    <td>{doc_type_full_name}</td>
+                                    <td>{dt}</td>
+                                    <td>{publishedByName}</td>
+                                    <td style=""><a href="/record/process:{track_id}#panels" id="" style="font-size: 12px;">{track_id}</a></td>
+                                </tr>
+
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div> 
+
+<input type="hidden" id="loadDataNoteId" value="{note_id}" /> 
+<input type="hidden" id="note_name" value="{noteTitle}" />

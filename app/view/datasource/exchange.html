@@ -1,0 +1,23 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<span>Use date:</span>
+	</div>
+	<div id="historic-date"></div>
+	<div class='toolbar-separator'></div>
+	<div id='data-row-ops' style='display: none;'>
+		<button data-op="edit-row" title="Edit an exchange rate"><img src='/img/icons16/edit_button.png' /> Edit rate</button>
+		<div class='toolbar-separator'></div>
+	</div>
+	<button data-op="grid-state-reset" title="Reset grid to default"><img src='/img/icons16/recycle.png' />Reset grid</button>
+{!	<button data-op="grid-options" title="Options for Global Search"><img src='/img/icons16/cog.png' />Options</button> ... no options yet}
+</div>
+<div id="exchange-grid"></div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template_edit-rate" type="text/dryjstpl">{@
+	<form name="grid-options" class="spacey">
+{!		<div><label>From:</label><div id="xe-from" name="xe[from_iso]"></div></div>
+		<div><label>To:</label><div id="xe-to" name="xe[to_iso]"></div></div>}
+		<div><label for="xe-xrate">Direct Rate:</label><input type='text' id='xe-xrate' name='rate[xrate]' class="jqx-input jqx-rc-all {$_itc}" maxlength="120" value="{$xrate}" /></div>
+	</form>
+}</script>

@@ -1,0 +1,60 @@
+@font-face {
+	font-family: 'DINPro';
+	font-style: normal;
+	font-weight: 200;
+	src: local('DINPro-Light'), url(/webfonts/DINPro-Light.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: italic;
+	font-weight: 200;
+	src: local('DINPro-LightItalic'), url(/webfonts/DINPro-LightItalic.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: normal;
+	font-weight: 300;
+	src: local('DINPro-Regular'), url(/webfonts/DINPro.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: italic;
+	font-weight: 300;
+	src: local('DINPro-Italic'), url(/webfonts/DINPro-Italic.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: normal;
+	font-weight: 400;
+	src: local('DINPro-Medium'), url(/webfonts/DINPro-Medium.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: italic;
+	font-weight: 400;
+	src: local('DINPro-MediumItalic'), url(/webfonts/DINPro-MediumItalic.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: normal;
+	font-weight: bold;
+	src: local('DINPro-Bold'), url(/webfonts/DINPro-Bold.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: italic;
+	font-weight: bold;
+	src: local('DINPro-BoldItalic'), url(/webfonts/DINPro-BoldItalic.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: normal;
+	font-weight: 800;
+	src: local('DINPro-Black'), url(/webfonts/DINPro-Black.otf) format('opentype');
+}
+@font-face {
+	font-family: 'DINPro';
+	font-style: italic;
+	font-weight: 800;
+	src: local('DINPro-BlackItalic'), url(/webfonts/DINPro-BlackItalic.otf) format('opentype');
+}

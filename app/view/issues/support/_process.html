@@ -1,0 +1,42 @@
+{@<style type="text/css">
+label.dualcolcbx {
+	display: block;
+	width: 240px;
+	float: left;
+}
+label.threecolcbx {
+	display: block;
+	width: 175px;
+	float: left;
+}
+
+.three_cel {
+	display: inline-block;
+	width: 116px;
+	margin-right: 5px;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="support-details" data-panel='0' style='height: 800px;' data-editable="1" data-edittpl="details" data-editheight="850">
+	<div><img src='/img/icons16/menus/support-details.png' />Ticket details</div>
+	<div class="datatable">
+{#include::panels/details_view.html}
+	</div>
+</div>
+
+<div id="support-info" data-panel='1' style='height: 600px;' data-editable="1" data-edittpl="info" data-editheight="600">
+	<div><img src='/img/icons16/menus/support-info.png' alt="x" />Quick notes</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/info_view.html}
+	}</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>
+
+<div id="support-followup" data-panel='1' style='height: 800px;' data-editable="1" data-edittpl="followup" data-editheight="900">
+	<div><img src='/img/icons16/menus/support-followup.png' alt="F" />Followup and Actions</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" style="background-color: #f4f4f4;">
+{#include::panels/followup_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>

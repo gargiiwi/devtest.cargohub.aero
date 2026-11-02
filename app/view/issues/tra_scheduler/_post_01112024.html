@@ -1,0 +1,361 @@
+{@<style type="text/css">
+	/* Some styles specific to claims */
+	div#file-submit-area input {
+		width: 500px;
+	}
+	label.documents {
+		display: block;
+		width: 250px;
+		float: left;
+		line-height: 24px;
+	}
+	.steps{
+	margin:10px 0px;
+	background:#d4d6dd;
+	padding:55px 0px;
+	}
+	.steps .step-btn{
+	width:45px;
+	height:45px;
+	background:#ffff;
+	margin-bottom:60px;
+	display:flex;
+	justify-content:center;
+	color:#000080;
+	border-radius:30px;
+	align-items:center;
+	}
+	
+	#issue_form{
+	display:flex;
+	justify-content:center;
+	}
+	.btn-text{
+	color:black;
+	margin-left: 20px;
+	}
+	.btn-text span{
+		display: block;
+		margin-bottom: 5px;
+		color: black;
+	}
+	.steps-container{
+	margin:0px 50px;
+	/* display:flex;
+	justify-content:space-between; */
+	}
+	.step-position1{
+	position:relative;
+	display: flex;
+	}
+	.line1{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position2{
+	position:relative;
+	display: flex;
+	}
+	.line2{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position3{
+	position:relative;
+	display: flex;
+	}
+	.line3{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	}
+	.step-position4{
+	position:relative;
+	display: flex;
+	}
+	.step-position4 .step-btn{
+		margin-bottom: 0;
+	}
+	/* .line4{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		background: #fff;
+	} */
+	.nav-btn{
+	margin:0px 0px 0px 250px;
+	padding:10px 50px;
+	background:#000080;
+	color:#ffff;
+	border:none;
+	}
+	#next-btn{
+		width: 60px;
+		background: #2866c2;
+		color: #ffff;
+		padding: 10px 15px;
+		text-align: center;
+		border: none;
+		margin-left: 0;
+		text-transform: capitalize;
+		font-size: 14px;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.prv-next-btns{
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+	
+	div.site > div.page{
+		display: flex;
+	   width:99%;
+	}
+	.steps{
+		width: 30%;
+		margin: 0;
+		border-radius: 10px 0 0 10px;
+	}
+	div.site > div.page div.zone{
+		width: 70%;
+		margin-bottom: 0;
+		background: #F2F5FF;
+		border-radius: 0 10px 10px 0;
+		padding: 30px 0;
+		 
+		overflow: auto;
+	} 
+	#issue_form .required{
+		background: #F2F5FF;
+	}
+	#issue_form div.clabel, #issue_form div.column2 th{
+		text-align: left;
+	}
+	#issue_form td > input[type='text'], #issue_form td > select{
+		height: 33px !important;
+		background: #fff;
+		border-radius: 4px;
+		padding: 5px 10px;
+		margin-bottom: 5px;
+	}
+	.raprv{
+		background: #e1e1e1 !important;
+		color: #000 !important;
+	}
+	.steps .steps-container .step-btn.active{
+		background-color: #fff !important;
+	}
+	.steps .steps-container .completed .step-btn{
+		background-color: #19a956 !important;
+		position: relative;
+	}
+	.steps .steps-container .completed .step-btn > img{
+		display: none;
+	}
+	.steps .steps-container .notCompleted {
+		opacity: 0.5;
+	}
+	.steps .steps-container .notCompleted.active {
+		opacity: 1;
+	}
+	.steps .steps-container .completed .step-btn::after{
+	content: "";
+	background-image: url(/img/icons/tick.png);
+	background-repeat: no-repeat;
+	width: 19px;
+	height: 13px;
+	position: absolute;
+	left: 14px;
+	top: 16px;
+	}
+	.steps .steps-container .completed .line1, .steps .steps-container .completed .line2, .steps .steps-container .completed .line3, .steps .steps-container .completed .line4{
+		background: #19a956;
+	}
+	
+	</style>}  
+
+<div class="steps">
+	<div class="steps-container">
+	<div class="step-position1">
+		<div class="step-btn" id="btn1" data-step="1"><img src="/img/icons/usern.png" alt=""></div>
+		<div class="btn-text"> <span>Step 1</span> Enter training details </div>
+		<div class="line1"></div>
+	</div>
+	
+	<div class="step-position2">
+		<div class="step-btn" id="btn2" data-step="2"><img src="/img/icons/reportn.png" alt=""></div>
+		<div class="btn-text"><span>Step 2</span> Provided Documents & Submit</div>
+		<!-- <div class="line2"></div> -->
+	</div>
+
+	<!-- <div class="step-position3">
+		<div class="step-btn" id="btn3" data-step="3"><img src="/img/icons/checklist.png" alt=""></div>
+		<div class="btn-text"><span>Step 3</span> Submit </div>
+		<div class="line4"></div>
+	</div> -->
+	</div>
+
+</div>
+
+
+
+<div id='issue_submit' class='zone jqx-rc-all'>{#use:form:<form action="?action=form" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+<!-- <h4>Training Scheduler:</h4> -->
+
+<div id="content1" class="content">
+  <div id="step-1-info">
+
+	<table>
+		{#if:%CFG.issue_submit.groups:{#use:group:<tr{#if:display.req: class='required'}>
+			<th style="width:30%;"><label>Training type:</label></th>
+			<td><div id='{id}_combo' ></div><input type='hidden' id='{id}' name='{name}' value='{value}'  /></td>
+		</tr>}}
+		{#use:training_ttl:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label></th>
+			<!-- 26092024   readonly addded by iwi start -->
+			<td><input type='text' readonly id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:place_train:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:train_loc:<tr{#if:display.req: class='required'}>
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+
+	<!-- 26092024   train_scheduler_classroom_type addded by iwi start -->
+	{#use:classroom_type:<tr id="train_scheduler_classroom_type" style="display: none;">
+		<th><label>{display.label}: </label></label><span class="mandatory-field">*</span></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'>
+			<input name='{^name}' class="classroom_type" type='radio' value='{value}'
+			{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	<!-- 26092024   train_scheduler_classroom_type addded by iwi end -->
+
+	
+		 {#use:max_trainee:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label></th>
+			<td><input style="width: 89px;height: 28px !important;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input whitebg jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		<!-- 06092024 added by iwi -->
+		
+		
+		
+		{#use:certificate_expiry:<tr{#if:display.req: class='required'}>
+
+			<th><label class="info-tip" data-tooltip="If the training has any expiry date or not!">{display.label}:</label></th>
+
+			<td>
+
+				<label style="display: block; width: 120px; float: left; margin-top: -3px;">
+
+					<input name="xfd[certificate_expiry]" value="1"{#if:options.0.active: checked="checked"} type="radio" onClick='$("#iftraingexp").show(); '> Yes</label>
+
+				<label style="display: block; width: 120px; float: left; margin-top: -3px;">
+
+					<input name="xfd[certificate_expiry]" value="0"{#if:options.1.active: checked="checked"} type="radio" onClick='$("#iftraingexp").hide();$("#inputxfd_train_exp").val("");'> No</label></td>
+
+			</td> 
+
+	{!		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>}
+
+		</tr>}
+		
+		
+		
+	 
+		<!-- 06092024 added by iwi -->
+		
+		{#use:date_train:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label> <span class="mandatory-field">*</span></th>
+			<td>
+				<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar left'> </div>
+			</td>
+		</tr>}
+	{#use:date_end:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label>  </th>
+			<td>
+				<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar left'> </div>
+			</td>
+		</tr>}
+	
+	{#use:train_exp:<tr{#if:display.req: class='required'} id="iftraingexp">
+			<th><label>{display.label}:</label><span class="mandatory-field">*</span></th>
+			<td>
+				<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar left'></div>
+			</td>
+		</tr> } 
+		<tr><td colspan="1" style="height: 20px;"></td></tr>
+
+	{#use:training_remarks:<tr{#if:display.req: class='required'}>
+			<th><label>{display.label}:</label></th>
+			
+				<td>
+				<textarea rows="6" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 400px; margin-bottom: 16px;background-color: white;" placeholder="(If possible, please keep this information short)">{value}</textarea>
+					
+			</td>
+		</tr>}
+	
+	
+	
+	</table>
+  </div>
+    <div class="prv-next-btns">
+		<div class=""></div>
+		<div class="step-btn" id="next-btn"onclick="cargoClaimStep(2)">next</div>
+	</div>
+	<div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+</div>
+
+<div id="content2" class="content">
+	<br /><div style="background-image: url('/img/icons16/upload.png'); background-repeat: no-repeat; background-position: 4px;"></div>
+	<div id="uploads-dropzone" class="dropzone">{!The fancy DropZone}</div>
+	<div id="uploads-helper" style="display: none;">
+		Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+	</div>
+
+	<div id="issue-contacts" style="display: none;"></div>
+	
+	<div class="prv-next-btns">
+	<div class="step-btn raprv" id="next-btn"onclick="cargoClaimPreviousStep(2)">Previous</div>
+   <div class="submit" > {#include::includes/submit_proceed_box1.html} </div>
+	</div>
+	<div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+</div>		
+<!-- {!Right column} -->
+
+<!-- <div class='clear'></div> -->
+
+
+<div class='column2'>
+</div>
+<div class='clear'></div>
+
+}
+</form></div>
+ {!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_submit_jstpl.html}
+{#raw:includes/issue2message.html}
+
+  
+ 
+
+

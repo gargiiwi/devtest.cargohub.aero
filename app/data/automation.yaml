@@ -1,0 +1,4 @@
+issue:
+  status:
+    autoclose: ["disc", "comp", "sttl", "tbar", "rej", "eot", "clos", "frml"]
+    autoopen: ["inpr"]

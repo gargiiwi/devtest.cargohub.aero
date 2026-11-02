@@ -1,0 +1,64 @@
+<div style="padding-top: 20px;" id="" class="get_all_read_sign_div_section ">  
+
+    <h4 style="text-indent:0px;"> </h4>
+    <div class="get_flx">
+        <div>
+            <h4 class="get_pub">Archived Announcement </h4>
+        </div>
+        <div>
+            <img class="log_pub" style="" alt="" src="{orgLogo}">
+        </div>
+    </div>
+    <div>
+
+
+        <div class="ratabs">
+            <div class="simple-spinner">
+                <span></span> 
+            </div>
+
+            <div>
+                <div class="rapblication">
+
+                    <div class="back_link" >
+                        <a href="/user/publication/get_publications" ><i class="fa  fa-arrow-left" aria-hidden="true" style=" font-size: 15px;"></i> Back To Publication Page </a>
+                    </div>
+                    <table class="table table-bordered tab_pending_read_sign_sec" id="getAllArchiveAnnouncement">
+                        <thead>
+                            <tr>
+                                <td style="">View</td>
+                                <td style=""> Title</td>
+                                <td style="">Access </td>
+                                <td style=""> Published By</td>
+                                <td style="">Tracking</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#repeat:getAllArchiveAnnouncement:
+                            <tr id="row_{sl_no}">
+                                <td style=""><a href="/?action=document&qp=orptwp&key={wv_key}&nid={nid}" target="_blank"><i class="fa fa-eye" aria-hidden="true" style="color: #000; font-size: 15px;"></i></a></td>  
+                                <td>{title}</td>
+                                <td><span class=" highlight-text displayThis" data-id="{id}"> ({department_count}) </span>
+                                    <span style="display:none" class="display_{id}"><br> {department}</span>
+                                </td>
+                                <td>{publishedByName}</td>
+                                <td><a href="/record/process:{track}#panels" target="_blank">{track}</a></td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div> 
+
+<input type="hidden" id="loadDataNoteId" value="{note_id}" /> 
+<input type="hidden" id="note_name" value="{noteTitle}" />

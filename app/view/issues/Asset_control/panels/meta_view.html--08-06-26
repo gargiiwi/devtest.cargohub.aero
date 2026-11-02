@@ -1,0 +1,17 @@
+{#use:%ist.xfield_def:
+	<table style="height: 20px;"> 
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">---</span>}</td></tr>
+		<tr><th>{b_name.n}:</th><td>{^xfields.b_name:<span class="gray">---</span>}</td></tr>
+		<tr><th>{reference.n}:</th><td>{^xfields.reference:<span class="gray">---</span>}</td></tr> 
+		<tr><th>{m_date.n}:</th><td>{#if:^xfields.m_date:{^xfields.m_date}~date("Y-m-d")~}{#ifnot:^xfields.m_date:<span class='gray'>(missing)</span>}</td></tr>
+	    <tr><th>{s_no.n}:</th><td>{^xfields.s_no:<span class="gray">---</span>}</td></tr>
+		<tr><th>{location.n}:</th><td>{^xfields.location:<span class="gray">---</span>}</td></tr>  
+		<tr><th>{address.n}:</th><td>{^xfields.address:<span class="gray">---</span>}</td></tr>   
+	 	<tr><th>{desc.n}:</th><td>{^xfields.desc:<span class="gray">---</span>}</td></tr> 
+		<tr><th>{user.n}:</th><td>{^xfields.user:<span class="gray">---</span>}</td></tr> 
+		<tr><th>{date_use.n}:</th><td>{#if:^xfields.date_use:{^xfields.date_use}~date("Y-m-d")~}{#ifnot:^xfields.date_use:<span class='gray'>(missing)</span>}</td></tr>
+		<tr><th>{end_date.n}:</th><td>{#if:^xfields.end_date:{^xfields.end_date}~date("Y-m-d")~}{#ifnot:^xfields.end_date:<span class='gray'>(missing)</span>}</td></tr>
+		<!-- <tr><th>{date_use.n}:</th><td>{^<xfields class="date_use"></xfields>:<span class="gray">---</span>}</td></tr> -->
+	    <tr><th>{business_impact.n}:</th><td>{^xfields.business_impact.value:<span class="gray">---</span>}</td>}</tr>
+	    
+ 	</table>

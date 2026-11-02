@@ -1,0 +1,32 @@
+{#use:%ist.xfield_def:
+	{!Various types of data output customizations that are specific to this issue type, directly in the template}
+	<table>
+		<tr><th>{mawb.n}:</th><td><b style='font-size: 16px;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>		
+		<tr><th>{awb_date.n}:</th><td>{#if:^xfields.awb_date:{^xfields.awb_date}~date("Y-m-d")~}{#ifnot:^xfields.awb_date:<span class='gray'>(missing)</span>}</td></tr>
+	    <tr><th>{orig_location.n}:</th><td>{^xfields.orig_location.value.IATA}</td></tr>
+	    <tr><th>{dest_location.n}:</th><td>{^xfields.dest_location.value.IATA}</td></tr>
+        <tr><th>{pieces.n}:</th><td>{^xfields.pieces}</td></tr>
+	    <tr><th>{g_weight.n}:</th><td>{^xfields.g_weight}</td></tr>
+	    <tr><th>{cwt.n}:</th><td>{^xfields.cwt}</td></tr>
+	    <tr><th>{inv_date.n}:</th><td>{#if:^xfields.awb_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span class='gray'>(missing)</span>}</td></tr>
+        <tr><th>{inv_ref_no.n}:</th><td>{^xfields.inv_ref_no}</td></tr>
+        <tr><th>{inv_num.n}:</th><td>{^xfields.inv_num}</td></tr>
+        
+	    <tr><th>{c_cwt.n}:</th><td>{^xfields.c_cwt}</td></tr>
+	    <tr><th>{a_rate.n}:</th><td>{^xfields.a_rate}</td></tr>
+	    <tr><th>{other.n}:</th><td>{^xfields.other}</td></tr>
+	  
+	</table>
+	<hr />
+	
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/coins.png'); background-repeat: no-repeat; background-position: 4px;">Financial data:</h4>		
+	<table class="financial_data_section">
+		<tr><th>{rate_app.n}:</th><td><b>{^xfields.rate_app.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{frei_am.n}:</th><td><b>{^xfields.frei_am.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{oth_charge.n}:</th><td><b>{^xfields.oth_charge.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{vat_awb.n}:</th><td><b>{^xfields.vat_awb.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{ttl_awb.n}:</th><td><b>{^xfields.ttl_awb.serialized:<span class='gray'>---</span>}</b></td></tr>
+	  <tr><th>{agp.n}:</th><td><b>{^xfields.agp.serialized:<span class='gray'>---</span>}</b></td></tr>
+	    <tr><th>{discrep.n}:</th><td><b>{^xfields.discrep.serialized:<span class='gray'>---</span>}</b></td></tr>
+	</table>
+}

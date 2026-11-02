@@ -1,0 +1,51 @@
+---
+arctic:
+  name: Arctic
+  display: Arctic Winter
+cargoconnect:
+  name: Cargoconnect
+  display: Blue Sky
+fresh:
+  name: Fresh
+  display: CargoHub
+energyblue:
+  name: Energylue
+  display: Electricity
+glacier:
+  name: Glacier
+  display: Glacier
+ui-smoothness:
+  name: Smoothness
+  display: Haze
+classic:
+  name: Classic
+  display: Neutral
+darkblue:
+  name: Darkblue
+  display: Oceanic
+office:
+  name: Office
+  display: Office
+shinyblack:
+  name: Shinyblack
+  display: Piano
+ui-redmond:
+  name: Redmond
+  display: Redmond 7
+black:
+  name: Black
+  display: Reverse
+  disabled: true
+web:
+  name: Web
+  display: Shadows
+ui-start:
+  name: Start
+  display: Start XP
+  disabled: true
+summer:
+  name: Summer
+  display: Summer
+bootstrap:
+  name: Bootstrap
+  display: Whiteboard

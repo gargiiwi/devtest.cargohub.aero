@@ -1,0 +1,185 @@
+{!OUTDATED}
+{! Some styles specific to Transit MRN }{@<style>
+.iss_document {
+	padding: 1px 4px;
+	margin-right: 5px;
+	color: green;
+	border: 1px solid lightgray;		
+}
+</style>}
+{#use:iss:<h2>Truck order for <b>{xfields.feeder.value}</b> created by <b>{submitter.xdata.company_name:{submitter.name}}</b></h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+<h4>Contact information:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>
+
+<h4>Truck Identification:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>Customer:</th><td>{^group.name}</td></tr>
+	<tr><th>{feeder.n}:</th><td>{^xfields.feeder.value}</td></tr>
+	<tr><th>{truck_no.n}:</th><td>{^xfields.truck_no:<span class='gray'>(not specified)</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+	<tr><th>{orig.n}:</th><td>{^xfields.orig:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{dest.n}:</th><td>{^xfields.dest:<span class="gray">(not specified)</span>}</td></tr>
+</table>}
+
+<h4>Travel Schedule:</h4>
+{#use:%ist.xfield_def:
+	<h3 style="text-indent: 30px;">Cargo pickup:</h3>
+	<table class="infotable">
+		<tr><th>{pick_date.n}:</th><td>{#if:^xfields.pick_date:{^xfields.pick_date}~date("Y-m-d")~}{#ifnot:^xfields.pick_date:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{pick_time.n}:</th><td>{^xfields.pick_time:<span class="gray">(not specified)</span>}</td></tr>
+		<tr><th>{pick_est_time.n}:</th><td>{^xfields.pick_est_time.value:<span class="gray">(not specified)</span>}</td></tr>
+		<tr><th>{pick_addr.n}:</th><td><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.pick_addr}~nl2br~</div></td></tr>
+	</table>
+	<hr /><h3 style="text-indent: 30px;">Cargo delivery:</h3>
+	<table class="infotable">
+		<tr><th>{deliv_date.n}:</th><td>{#if:^xfields.deliv_date:{^xfields.deliv_date}~date("Y-m-d")~}{#ifnot:^xfields.deliv_date:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{deliv_time.n}:</th><td>{^xfields.deliv_time:<span class="gray">(not specified)</span>}</td></tr>
+		<tr><th>{deliv_est_time.n}:</th><td>{^xfields.deliv_est_time.value:<span class="gray">(not specified)</span>}</td></tr>
+		<tr><th>{deliv_addr.n}:</th><td><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.deliv_addr}~nl2br~</div></td></tr>
+	</table>
+	<h4>Handler operations:</h4>	
+	<table class="infotable">
+		<tr><th>{arrival.n}:</th><td>{^xfields.arrival}</td></tr>
+		<tr><th>{arrival_date.n}:</th><td>{#if:^xfields.arrival_date:{^xfields.arrival_date}~date("Y-m-d")~}{#ifnot:^xfields.arrival_date:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{license.n}:</th><td>{^xfields.license:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{dock.n}:</th><td>{^xfields.dock:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{loading.n}:</th><td>{^xfields.loading}</td></tr>
+		<tr><th>{departure.n}:</th><td>{^xfields.departure}</td></tr>
+		<tr><th>{mrn_no.n}:</th><td>{^xfields.mrn_no:<span class='gray'>(not specified)</span>}</td></tr>
+	</table>
+}
+
+<h4>Shipment packing:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{packing.n}:</th><td>{#repeat:^xfields.packing:<span class='iss_document'>{value}</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+	<tr><th>{loose_pieces.n}:</th><td>{^xfields.loose_pieces:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{intact_units.n}:</th><td>{^xfields.intact_units:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{pack_weight.n}:</th><td>{^xfields.pack_weight:<span class="gray">(not specified)</span>} kg</td></tr>
+	<tr><th>{total_volume.n}:</th><td>{^xfields.total_volume:<span class="gray">(not specified)</span>} m3</td></tr>
+	<tr><th>{trucktype.n}:</th><td>{^xfields.trucktype.value:<span class="gray">(not specified)</span>}</td></tr>
+</table>}
+
+</div>
+{!Right column}
+<div class='column2'>
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th>Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}	
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+{!	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>}
+</table>
+
+<h4>Documentation:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{documents.n}:</th><td>{#repeat:^xfields.documents:<span class='iss_document' id='iss_doc_{key}'>{value}</span>}</td></tr>
+	<tr><th>{coll_date.n}:</th><td>{#if:^xfields.coll_date:{^xfields.coll_date}~date("Y-m-d")~}{#ifnot:^xfields.coll_date:<span class='gray'>(not specified)</span>}</td></tr>
+	<tr><th>{coll_amount.n}:</th><td>{^xfields.coll_amount:<span class='gray'>(not specified)</span>}</td></tr>
+	<tr><th>{coll_risk.n}:</th><td>{^xfields.coll_risk:<span class='gray'>(not specified)</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+	<tr><th>{awb1.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb1:<span class='gray'>(missing)</span>}</span> Pieces: <span>{^xfields.awb2_p:<span class='gray'>(unkn)</span>}</span></td></tr>
+	{#if:^xfields.awb2:<tr><th>{awb2.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb2}</span> Pieces: <span>{^xfields.awb2_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+	{#if:^xfields.awb3:<tr><th>{awb3.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb3}</span> Pieces: <span>{^xfields.awb3_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+	{#if:^xfields.awb4:<tr><th>{awb4.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb4}</span> Pieces: <span>{^xfields.awb4_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+	{#if:^xfields.awb5:<tr><th>{awb5.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb5}</span> Pieces: <span>{^xfields.awb5_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+	{#if:^xfields.awb6:<tr><th>{awb6.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb6}</span> Pieces: <span>{^xfields.awb6_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+	{#if:^xfields.awb7:<tr><th>{awb7.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb7}</span> Pieces: <span>{^xfields.awb7_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+	{#if:^xfields.awb8:<tr><th>{awb8.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb8}</span> Pieces: <span>{^xfields.awb8_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+	{#if:^xfields.awb9:<tr><th>{awb9.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb9}</span> Pieces: <span>{^xfields.awb9_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+</table>}
+
+{#if:xfields.cnotes:
+<h4>{%ist.xfield_def.cnotes.n}:</h4><div style="border: 1px solid lightgray; padding: 4px;">{xfields.cnotes}~nl2br~</div>}
+
+{#if:files:<h4>Attached pictures and documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+
+<h4>Add more documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+<h4 style='margin-top: 20px;'>Communication area:</h4>
+<div id='convos-box' style="margin-bottom: 8px;">
+	{#ifnot:conversations:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+	{#if:conversations:
+	<div class="gray" style="font-size: 0.9em; border-bottom: 1px solid #D3D3D3; padding-bottom: 6px;">To view the conversation, send another message or make a reply, click on the subject line.</div>
+	<table class="infotable">	
+	{#repeat:conversations:
+		<tr><th>Subject:</th><td><a href="/?action=external_comm&amp;key={key}">{description:(Conversation has no subject)}</a></td></tr>
+		<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+		<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+	}
+	</table>
+	}
+</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the update button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Truck Order' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_view_jstpl.html}
+{#if:update_by_mail:{#raw:includes/issue2message.html}}
+[VIEW]
+ Please write me !
+[VIEW]
+ Please write me !
+[VIEW]
+ Please write me !
+[VIEW]
+ Please write me !

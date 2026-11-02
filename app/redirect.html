@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Redirecting, please wait...</title>
+</head>
+<body>
+	<div style="text-align: center; width: 1000px; margin: 30px auto;">
+		<h2>Redirecting, please wait...</h2>
+		<p>If nothing happens in 5 seconds [ <a href="{redirecturl}">click here</a> ]</p>
+		<hr />
+		<h4>This is the 2nd attempt to redirect to the proper page</h4>
+		<p>If you're seeing this page it means the automatic HTTP Redirect has failed. Your browser ignored the request or simply didn't receive it correctly<br />
+		It's also possible that some software running on your computer is interfering with normal navigation</p>
+		<p>This page will attempt to redirect using JavaScript instead. If that fails as well, please use the link above to arrive at the proper location</p>
+	</div>
+	<script>
+		setTimeout(function() {
+			document.location = "{redirecturl}";
+		}, 5000);
+	</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:prog_hrs:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:dwork_start:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:dwork_end:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	</tr>}
+</table>
+{#use:prog_notes:
+	<h4 style="margin-top: 8px;">{display.label}</h4>
+	<textarea autocorrect="off" spellcheck="false" rows="14" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} fullwidth{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}>{value}</textarea>
+}
+{#use:tech_notes:
+	<h4 style="margin-top: 8px;">{display.label}</h4>
+	<textarea autocorrect="off" spellcheck="false" rows="14" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} fullwidth{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}>{value}</textarea>
+}
+<h4 style="margin-top: 8px;">Deployment</h4>
+<table>
+	{#use:ddep:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:dep_ver:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+</form>}

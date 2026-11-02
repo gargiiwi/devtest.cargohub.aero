@@ -1,0 +1,6 @@
+This contains controllers for fully-automated operations (Launched via Cron Jobs or another automation tool)
+
+No output is provided by running actions from controllers here, but instead log entries are put in the database for later viewing.
+There is also no input, so the actions should only depend on what information is stored in the database.
+
+The actions may however generate non-HTTP input/output, for example send e-mails or accessing FTP or a 3rd party API. 

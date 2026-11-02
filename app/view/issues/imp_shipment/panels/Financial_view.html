@@ -1,0 +1,26 @@
+{#use:%ist.xfield_def:
+	{!Various types of data output customizations that are specific to this issue type, directly in the template}
+	<table>
+        <b style="margin-left: 168px;">Buying</b>
+        <b style="margin-left: 149px;">Selling</b>
+
+       
+        <tr>
+            <th>{trucking_buying.n}:</th>
+            <td><b>{^xfields.trucking_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.trucking_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>  
+        <tr>
+            <th>{courier_buying.n}:</th>
+            <td><b>{^xfields.courier_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.courier_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>
+        <tr>
+            <th>{dg_buying.n}:</th>
+            <td><b>{^xfields.dg_buying.serialized:<span class='gray'>---</span>}</b> </td>
+            <td><b>{^xfields.dg_selling.serialized:<span class='gray'>---</span>}</b> </td>
+        </tr>
+
+        </table>
+  
+    }

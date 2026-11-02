@@ -1,0 +1,37 @@
+{#use:%ist.xfield_def:
+	<h4>Settlement: <a href="http://www.cargohub.nl/sdr-calculator/" target="_blank" style="float: right; text-indent: 20px; margin-right: 30px; font-weight: bold; background-image: url('/img/icons16/calculator.png'); background-repeat: no-repeat; background-position: left;">SDR Calculator</a></h4>
+	<table>
+		<tr><th>{fw_formal.n}:</th><td><b>{^xfields.fw_formal.serialized:<span class='gray'>(n/a)</span>}</b></td></tr>				
+		<tr><th>{fw_acdate.n}:</th><td>{#if:^xfields.fw_acdate:{^xfields.fw_acdate}~date("Y-m-d")~}{#ifnot:^xfields.fw_acdate:<span class='gray'>(not specified)</span>}</td></tr>
+		<tr><th>{fw_provision.n}:</th><td><b>{^xfields.fw_provision.serialized:<span class='gray'>(n/a)</span>}</b></td></tr>
+		<tr><th>{fw_proposal.n}:</th><td><b>{^xfields.fw_proposal.serialized:<span class='gray'>(n/a)</span>}</b></td></tr>
+		<tr><th>{fw_payed.n}:</th><td><b>{^xfields.fw_payed.serialized:<span class='gray'>(n/a)</span>}</b></td></tr>
+		<tr><th>{fw_insured.n}:</th><td><b>{^xfields.fw_insured.serialized:<span class='gray'>(n/a)</span>}</b>
+			<span class="right inline" style="width: 220px;"><label>Ins. Ref. #:</label> {^xfields.fw_ins_ref:<span class='gray'>(not set)</span>}</span>
+		</td></tr>
+	</table>
+
+	<h4>Investigation:</h4>
+	<table>
+		<tr><th>{fw_cause.n}:</th><td>{^xfields.fw_cause:<span class='gray'>(not set / unknown)</span>}</td></tr>
+		<tr><th>{fw_caused_by.n}:</th><td>{^xfields.fw_caused_by.value:<span class='gray'>(not set / unknown)</span>}</td></tr>
+		<tr><th>{fw_liable.n}:</th><td>
+			{#if:^xfields.fw_liable.value:<label><input type='checkbox' style="float: left;" disabled="disabled"{#if:^xfields.fw_liable.key=Yes: checked="checked"}> {^xfields.fw_liable.value}</label>}
+			{#ifnot:^xfields.fw_liable.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{fw_involved.n}:</th><td>
+			{#if:^xfields.fw_involved.value:<label><input type='checkbox' style="float: left;" disabled="disabled"{#if:^xfields.fw_involved.key=1: checked="checked"}> {^xfields.fw_involved.value}</label>}
+			{#ifnot:^xfields.fw_involved.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+	</table>
+	<hr />
+	{#if:^xfields.fw_findings:
+	<h5>{fw_findings.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.fw_findings}~nl2br~</div>}
+	{#ifnot:^xfields.fw_findings:<div class="gray" style="text-indent: 20px;">(no findings at this time)</div>}
+	{#if:^xfields.fw_actions_taken:
+	<h5>{fw_actions_taken.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.fw_actions_taken}~nl2br~</div>}
+	{#ifnot:^xfields.fw_actions_taken:<div class="gray" style="text-indent: 20px; margin-top: 8px;">(no actions taken yet)</div>}
+	{#if:^xfields.fw_outcome:
+	<h5>{fw_outcome.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.fw_outcome}~nl2br~</div>}
+	{#ifnot:^xfields.fw_outcome:<div class="gray" style="text-indent: 20px; margin-top: 8px;">(outcome not completed)</div>}
+}

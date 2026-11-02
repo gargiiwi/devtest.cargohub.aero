@@ -1,0 +1,71 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:oth_org:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	<tr{#if:display.req: class='required'}>
+		<th><label for='{flt_num.id}'>Flight number:</label></th>
+		<td>
+			{#use:flt_num:<span style="display: inline-block; width: 120px; float: left;"></span><input maxlength="8" type='text' id='{id}' name='{name}' value='{value}' class='left short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:flt_date:<span class="left" style="height: 22px; line-height: 24px; margin: 0 4px;"> Flight Date:</span><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'></div>}
+		</td>
+	</tr>
+	{#use:origin:<tr{#if:display.req: class='required'}>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			<div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+			<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+			{#use:origin_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+		</td>
+	</tr>
+	{#use:retby:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:uld_type:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td>
+			<select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'>
+				<option value=''>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+			{#use:uld_id:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+	{#use:uld_type2:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td>
+			<select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'>
+				<option value=''>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+			{#use:uld_id2:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+	{#use:uld_type3:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td>
+			<select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'>
+				<option value=''>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+			{#use:uld_id3:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+	{#use:uld_type4:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td>
+			<select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'>
+				<option value=''>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+			{#use:uld_id4:<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+</table>
+</form>}

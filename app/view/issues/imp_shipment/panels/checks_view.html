@@ -1,0 +1,19 @@
+{#use:%ist.xfield_def:
+	{!Various types of data output customizations that are specific to this issue type, directly in the template}
+	<table>
+        <tr><th>{eta.n}:</th><td>{#if:^xfields.eta:{^xfields.eta}~date("Y-m-d")~}{#ifnot:^xfields.eta:<span class='gray'>(missing)</span>}</td></tr>
+	     <tr><th>{ata.n}:</th><td>{#if:^xfields.ata:{^xfields.ata}~date("Y-m-d")~}{#ifnot:^xfields.ata:<span class='gray'>(missing)</span>}</td></tr>
+	   <tr><th>{noa.n}:</th><td>{#if:^xfields.noa:{^xfields.noa}~date("Y-m-d")~}{#ifnot:^xfields.noa:<span class='gray'>(missing)</span>}</td></tr>
+	   <tr><th>{pickup_airline.n}:</th><td>{#if:^xfields.pickup_airline:{^xfields.pickup_airline}~date("Y-m-d")~}{#ifnot:^xfields.pickup_airline:<span class='gray'>(missing)</span>}</td></tr>
+	  <tr><th>{inbound_whs.n}:</th><td>{#if:^xfields.inbound_whs:{^xfields.inbound_whs}~date("Y-m-d")~}{#ifnot:^xfields.inbound_whs:<span class='gray'>(missing)</span>}</td></tr>
+       <tr><th>{cl_pl.n}:</th><td><b>{^xfields.cl_pl.value}</b></td></tr> 
+	  <tr><th>{hs_code.n}:</th><td><b>{^xfields.hs_code.value}</b></td></tr>
+	   <tr><th>{atr_rex.n}:</th><td><b>{^xfields.atr_rex.value}</b></td></tr>
+        <tr><th>{atr_received.n}:</th><td><b>{^xfields.atr_received.value}</b></td></tr>
+        <tr><th>{quote.n}:</th><td><b>{^xfields.quote.value}</b></td></tr>
+	  <tr><th>{received_dn.n}:</th><td><b>{^xfields.received_dn.value}</b></td></tr>
+	  <tr><th>{invoiced.n}:</th><td><b>{^xfields.invoiced.value}</b></td></tr>
+	  
+        
+    </table>
+}

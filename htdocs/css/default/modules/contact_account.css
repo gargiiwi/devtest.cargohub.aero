@@ -1,0 +1,689 @@
+@import url("../sp_render.css");
+
+/** Contact Account **/
+div.site > div.page div#contact-account {
+
+}
+
+	div#contact-account .jqx-tabs-titleContentWrapper > img {
+		float: left;
+		margin-right: 6px;
+		border: none;
+	}
+
+div.command > button {
+}
+	div.command > button#btn_submit { 
+background-image: url("/img/icons/add.png"); 
+} 
+	div.command > button#btn_find {  
+background-image: url("/img/icons/magnifier.png"); 
+} 
+	div.command > button#btn_comm { 
+background-image: url("/img/icons/comments.png"); 
+}
+	
+	div.command > button#btn_abook { 
+background-image: url("/img/icons/book_addresses.png"); 
+}
+	
+	div.command > button#btn_vcard { 
+background-image: url("/img/icons/vcard.png"); 
+}
+	div.command > button#btn_logout { 
+background-image: url("/img/icons/application_exit.png"); 
+}
+	
+	/*div.command > button#btn_export_excel { background-image: url("/img/mime/application/msexcel.png"); } //IWI front end user record list page new design*/
+	/*div.command > button#btn_export_html { background-image: url("/img/mime/text/html.png"); }//IWI front end user record list page new design*/
+	/*div.command > button#btn_export_csv { background-image: url("/img/mime/text/csv.png"); }//IWI front end user record list page new design*/
+	/*IWI front end user record list page new design start*/
+/*div#export-commands {
+	float: right;
+	height: 50px;
+}
+
+div#export-commands div.command {
+	float: left;
+	margin-right: 30px;
+}*/
+/*IWI front end user record list page new design end*/	
+/** Contact Edit Tab **/
+div#tab_vcard div#contact-left-side {
+	float: left;
+	width: 650px;
+}
+
+div#tab_vcard div#contact-right-side {
+	float: right;
+	width: 450px;
+}
+
+h4.login-warn {
+	background-color: ForestGreen;
+	color: White;
+	padding: 6px 0;
+	border: none;
+	text-align: center;
+	font-weight: normal;
+	box-shadow: 1px 4px 2px LightGray;
+}
+
+	h4.login-warn a {
+		color: white;
+		text-decoration: underline;
+	}
+	
+/* Frontend issue finder */
+
+/*IWI front end user record list page new design start*/
+/*#tab_issues div.query-area {
+	margin-bottom: 15px;
+	padding-left: 14px;
+}
+
+#tab_issues div#tid-query form > input[type="text"] {
+    height: 23px;
+    padding: 1px 0;
+	text-align: center;
+}
+
+#tab_issues #contact-email-select {
+	float: left;
+}
+#tab_issues #contact-name {
+	line-height: 25px;
+}*/
+
+/*IWI front end user record list page new design end*/
+
+/*IWI front end user record list page new design start*/
+.contact_account_issues_front{
+    max-width: 100%;
+        margin: 0 auto;
+        border: solid 1px #E5E5E5;
+        border-radius: 12px;
+        padding: 20px 10px;
+}
+.contact_account_issues_front .div_wrap{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+.contact_account_issues_front .export_commands{
+    display: flex; 
+    gap: 10px; 
+    align-items: center; 
+           margin-top: 16px;
+        margin-bottom: -8px;
+    
+}
+.contact_account_issues_front .submit_button_section a button.submit_button.view_record_btn{
+    margin-top: 8px;
+}
+.contact_account_issues_front .export_commands button{
+    border: 1px solid rgba(234, 234, 234, 1);
+                border-radius: 7px;
+                width: 85px;
+                height: 35px;
+                background: rgba(255, 255, 255, 1);
+                font-weight: 600;
+                color: rgba(0, 0, 0, 1);
+                cursor: pointer;
+}
+.contact_account_issues_front .export_commands button span{
+    padding-right: 5px;
+}
+
+
+.contact_account_issues_front div#tid-query form {
+        display: flex;
+    }
+
+.contact_account_issues_front input#issue-search-tid {
+                height: 33px;
+    background-color: #F6F6F6;
+    color: #BCBEBF;
+    border-radius: 5px;
+    padding: 0 15px;
+    width: 250px;
+        }
+
+.contact_account_issues_front .query_area.method_2 li {
+    color: #6B6B6B;
+        }
+
+
+.contact_account_issues_front div#dropdownlistContentcontact-email-select {
+    color: #6C6C6C;
+        }
+.contact_account_issues_front .method_wraps {
+        display: flex;
+    }
+    .contact_account_issues_front {
+    & .method_wraps {
+        .method_1, .issueEmailSection, .method_2 {
+            width: 33.3%;
+            margin-right: 15px;
+        }
+    }
+}
+.contact_account_issues_front {
+    p {
+            padding-left: 0px !important;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #6B6B6B;
+            font-weight: 400;
+        }
+
+        h4 {
+                    margin: 0px;
+        font-size: 14px;
+        color: #0A0A0A;
+        font-weight: 600;
+        background: none;
+        border-bottom: 0;
+        text-indent:0;
+
+        }
+
+        
+
+        .right {
+            
+
+            .issueEmailSection_wrap {
+                display: flex;
+
+                #contact-email-select {
+                    height: 33px;
+                    background-color: #F6F6F6;
+                    color: #F6F6F6;
+                    border-radius: 4px;
+                    border: solid 1px #F6F6F6;
+                    padding: 0 15px;
+                    width: 200px;
+                    margin-right: 5px;
+                }
+            }
+
+        }
+
+        .method_2 {
+            /*margin-top: 20px;*/
+
+            ul {
+                padding-left: 0px;
+                list-style: none;
+                margin-top: 4px;
+
+                li {
+                    font-size: 12px;
+                    line-height: 22px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .export_commands {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 16px;
+
+            span:first-child {
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(108, 108, 108, 1);
+            }
+
+            .commands {
+                button {
+                    border: 1px solid rgba(234, 234, 234, 1);
+                    border-radius: 7px;
+                    width: 85px;
+                    height: 35px;
+                    background: rgba(255, 255, 255, 1);
+                    font-weight: 600;
+                    color: rgba(0, 0, 0, 1);
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .div_wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+        }
+
+        .query_dv_wrap {
+            border: 1px solid rgba(190, 219, 255, 0.46);
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-top: 12px;
+
+            .query_area {
+                h6 {
+                    color: #294EBA;
+                    font-size: 15px;
+                    font-weight: 600;
+                    margin-top: 0px;
+                    margin-bottom: 5px;
+                }
+
+                p {
+                    color: #96A6D5;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 20px;
+                    margin: 0px;
+                }
+            }
+        }
+}
+
+.contact_account_issues_front #iss-table #columntableiss-table .jqx-grid-column-header ,.contact_account_issues_front #iss-table #filterrow.iss-table{
+    background-color: #EFF1F4;
+    color: #2866C2;
+}
+
+.contact_account_issues_front #iss-table .jqx-dropdownlist-content{
+    color: #A6A6A6;
+}
+.contact_account_issues_front #iss-table #contenttableiss-table .jqx-grid-cell.jqx-grid-cell-classic{
+    border: none;
+    height: 35px;
+}
+.contact_account_issues_front #iss-table #contenttableiss-table > div:not(:last-child){
+        border-bottom: 1px solid #E5E5E5;
+}
+.contact_account_issues_front #iss-table .cellStyle {
+    padding: 0 10px;
+    text-align: left;
+    height: 100%;
+    display:grid; 
+    align-items:center; 
+    justify-content:center;    
+}
+.contact_account_issues_front #iss-table .statusrender .Submitted{
+        background-image: none;
+}
+
+.contact_account_issues_front #iss-table .cellStatus sup{
+        color: #016630;
+        background: #DBFCE7;
+    padding: 5px;
+    border-radius: 7px;
+    font-weight: 600;
+}
+
+.contact_account_issues_front #iss-table .jqx-grid-cell-alt{
+        background:#fff;
+}
+
+
+.contact_account_issues_front div#dropdownlistWrappercontact-email-select{
+        background-color:#F3F3F5;
+}
+
+
+
+
+/*  Remove the default jqx classic border & flatten header */
+        #contact-account .jqx-tabs-header {
+   background: none;
+    border-bottom: none;
+    height: 37px !important;
+    padding: 10px 0 0 0;
+}
+
+        #contact-account .jqx-tabs-title {
+            background: transparent !important;
+            border: none !important;
+            padding: 10px 18px !important;
+            font-weight: 500;
+            font-size: 14px;
+            color: #555;
+            transition: all 0.2s ease;
+        }
+
+         /*Hover effect*/ 
+        #contact-account .jqx-tabs-title:hover {
+            color: #4A89E8 !important;
+            background: #FFFFFF !important;
+            border: 1px solid #4A89E8 !important;
+            border-radius: 4px;
+        }
+        #contact-account .jqx-tabs-title {
+            border: 1px solid #4A89E8 !important;
+            border-radius: 4px;
+        }
+
+         /*Active tab*/ 
+        #contact-account .jqx-tabs-title-selected-top {
+            background: #4A89E8 !important;
+            font-size: 14px;
+            color: #FFFFFF;
+            border-radius: 4px;
+        }
+
+        
+
+        #contact-account #tab_vcard , #contact-account #tab_premium{
+            border: solid 1px #E5E5E5;
+            border-radius: 12px;
+            padding: 20px 10px;
+        }
+        
+#contact-account .jqx-tabs-title img {
+  width: 30px;
+  height: 18px;
+  object-fit: none;
+  object-position: right center; 
+  transition: object-position 0.3s ease; 
+}
+#contact-account .jqx-tabs-title-selected-top img{
+  object-position: left center; 
+}
+#contact-account .jqx-tabs-title-selected-top:hover img {
+ object-position: right center;
+}
+.contact_account_issues_front_body #cargohub-hotbar > div, .contact_account_issues_front_body div.site{
+  width: 1310px !important;
+}
+.contact_account_issues_front_body .jqx-tabs-content.jqx-tabs-content-classic.jqx-widget-content.jqx-widget-content-classic.jqx-rc-b.jqx-rc-b-classic{
+    padding: 10px;
+}
+
+.contact_account_issues_front_body .contact_account_issues_front div.command{
+    margin-bottom: 0;
+}
+        
+
+/* ==============================
+   CONTACT ACCOUNT VCARD FRONT
+   ============================== */
+
+.contact_account_vcard_front {
+  max-width: 1310px;
+  margin: 0 10px;
+  color: #0A0A0A;
+}
+
+/* -------- Toolbar -------- */
+.contact_account_vcard_front .toolbar {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.contact_account_vcard_front .toolbar-accessory {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0A0A0A;
+}
+
+.contact_account_vcard_front .toolbar-accessory img {
+  width: 22px;
+  height: 22px;
+}
+
+.contact_account_vcard_front .toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: #E5E5E5;
+  margin: 0 12px;
+}
+
+.contact_account_vcard_front .toolbar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid #E4E4E4;
+  background: #FAFAFA;
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: #0A0A0A;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact_account_vcard_front .toolbar button img {
+  width: 14px;
+  height: 14px;
+}
+
+.contact_account_vcard_front .toolbar button:hover {
+  background: #4A89E8;
+  color: #FFFFFF;
+  border-color: #4A89E8;
+}
+
+.contact_account_vcard_front .toolbar [data-op="vcard-delete"]:hover {
+  background: #E53935;
+  border-color: #E53935;
+}
+
+/* -------- Layout -------- */
+.contact_account_vcard_front #contact-left-side {
+  float: left;
+  width: 650px;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  padding: 20px 18px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.contact_account_vcard_front #contact-right-side {
+  float: right;
+  width: 450px;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  background: #F9FAFB;
+  padding: 20px 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* -------- Helper Section -------- */
+#contact-editing-helper {
+  margin-top: 15px;
+  text-align: center;
+}
+
+#contact-editing-helper div:first-child {
+  background-color: #FFFDEE;
+  border: 1px solid #F5E57E;
+  border-radius: 8px;
+  padding: 8px;
+  color: #6B6B6B;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#contact-editing-helper .gray {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #6B6B6B;
+}
+
+/* -------- Right Side Info -------- */
+.contact_account_vcard_front #contact-right-side h4 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0A0A0A;
+}
+
+.contact_account_vcard_front #contact-right-side p {
+  font-size: 13px;
+  color: #6B6B6B;
+  line-height: 1.6;
+}
+
+/* -------- Empty/Invalid Contact Message -------- */
+.contact_account_vcard_front h2.center {
+  text-align: center;
+  color: #E53935;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.contact_account_vcard_front p.center {
+  text-align: center;
+  color: #555;
+}
+
+.contact_account_vcard_front hr {
+  border: none;
+  border-top: 1px solid #E5E5E5;
+  margin: 10px 0 20px;
+}
+
+/* -------- Utility -------- */
+.contact_account_vcard_front .clear {
+  clear: both;
+}
+
+.contact_account_vcard_front .spacey {
+  padding: 10px;
+}
+.contact_account_vcard_front img#contact-picture{
+    max-height: 60px;
+}
+
+
+
+/* ================================
+   PREMIUM TAB (role="tabpanel")
+   ================================ */
+#tab_premium[role="tabpanel"] {
+  background: #ffffff;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 950px;
+  margin: 0 auto 40px auto;
+  font-family: "Open Sans", "Inter", sans-serif;
+  color: #4E4E4E;
+  line-height: 1.7;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Headings */
+#tab_premium[role="tabpanel"] h1,
+#tab_premium[role="tabpanel"] h2,
+#tab_premium[role="tabpanel"] h3 {
+  color: #294EBA;
+  font-weight: 700;
+  text-align: center;
+  margin: 25px 0 20px 0;
+}
+
+#tab_premium[role="tabpanel"] h2 {
+  font-size: 20px;
+  border-bottom: 2px solid #E0E8FF;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+/* Paragraphs */
+#tab_premium[role="tabpanel"] p {
+  font-size: 14px;
+  color: #4E4E4E;
+  margin-bottom: 18px;
+}
+
+/* Highlight / intro text */
+#tab_premium[role="tabpanel"] p:first-of-type {
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+  background: #F7F9FF;
+  border: 1px solid #E5E5E5;
+  border-radius: 10px;
+  padding: 15px 25px;
+  margin-bottom: 30px;
+}
+
+/* Feature List */
+#tab_premium[role="tabpanel"] ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 15px 0 25px 0;
+}
+
+#tab_premium[role="tabpanel"] ul li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+#tab_premium[role="tabpanel"] ul li::before {
+  content: "?";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #2866C2;
+  font-weight: bold;
+}
+
+/* Links */
+#tab_premium[role="tabpanel"] a {
+  color: #2866C2;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+#tab_premium[role="tabpanel"] a:hover {
+  color: #1E4FB6;
+  border-bottom: 1px solid #1E4FB6;
+}
+
+/* Images */
+#tab_premium[role="tabpanel"] img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  display: block;
+  margin: 30px auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Small spacing elements */
+#tab_premium[role="tabpanel"] ul + p,
+#tab_premium[role="tabpanel"] img + ul {
+  margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #tab_premium[role="tabpanel"] {
+    padding: 25px 20px;
+  }
+  #tab_premium[role="tabpanel"] img {
+    max-width: 100%;
+  }
+  #tab_premium[role="tabpanel"] p:first-of-type {
+    font-size: 14px;
+  }
+}
+
+/*IWI front end user record list page new design end*/ 

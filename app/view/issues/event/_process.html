@@ -1,0 +1,83 @@
+{@<style type="text/css">
+/* Some styles specific to Q & A Events */
+.itembox {
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+label.twocolcbox {
+	display: block;
+	width: 250px;
+	float: left;
+}
+label.threecolcbox {
+	display: block;
+	width: 175px;
+	float: left;
+}
+label.fourcolcbox {
+	display: block;
+	width: 128px;
+	float: left;
+}
+.three_cel {
+	display: inline-block;
+	width: 116px;
+	margin-right: 5px;
+	text-indent: 0;
+}
+.inv-orange {
+	background-color: orange;
+	color: white;
+}
+.inv-red {
+	background-color: red;
+	color: white;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="event-dashboard" data-panel='0' style='height: 1080px;' data-editable="1" data-edittpl="dashboard" data-editheight="1240">
+	<div><img src='/img/icons16/menus/event-dashboard.png' alt="{track}" />Event Dashboard</div>
+	<div class="datatable" style="background-color: #f4f4f4;">
+{#include::panels/dashboard_view.html}
+	</div>
+</div>
+
+<div id="event-followup" data-panel='1' style='height: 1080px;' data-editable="1" data-edittpl="followup" data-editheight="1240">
+	<div><img src='/img/icons16/menus/event-followup.png' alt="F" />Event Followup</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" style="background-color: #f4f4f4;">
+{#include::panels/followup_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+<div id="event-capa" data-panel='1' style='height: 500px;' data-editable="1" data-edittpl="capa" data-editheight="600">
+	<div><img src='/img/icons16/menus/event-capa.png' alt="CP" />Risk Evalution</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" style="background-color: #f4f4f4;">
+{#include::panels/capa_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+<div id="event-conclusion" data-panel='0' style='height: 500px;' data-editable="1" data-edittpl="conclusion" data-editheight="600">
+	<div><img src='/img/icons16/coins.png' alt="C" />Financial outcome</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" style="background-color: #f4f4f4;">
+{#include::panels/conclusion_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+{!Extra templates}
+<script id="risk-calc" type="text/dryjstpl">
+	<div style='height: 390px; overflow: auto;'>
+		<img src="/cmsup/updates/v295/risk-matrix.png" alt="" width="605" height="372">
+	</div>
+</script>
+
+<script id="five-whys" type="text/dryjstpl">
+	<div style='height: 522px; overflow: auto;'><iframe style="border: 0; width: 100%; height: 1030px; background-color: white;" src="http://cargohub.nl/root-cause-analysis/5whys/" /></div>
+</script>

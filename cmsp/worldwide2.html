@@ -1,0 +1,352 @@
+{!Note to the monkeys editing this file (and any other actually):
+
+1) !!! KEEP THE TAGS PROPERLY ALIGNED !!!!
+2) Use TABS for a tab, not 3 spaces, 4 spaces, 5 spaces or whatever the fuck your parkinson finger is managing to hit
+3) You open a tag - YOU CLOSE IT.
+4) HTML tags use FORWARD slashes. <br /> and not <br \>
+5) Stop being so messy !
+
+Thank you.
+
+}
+
+{@<style type="text/css">
+div.left-area {
+	width: 620px;
+	margin: 40px auto 0 auto;
+}
+
+div.right-area {
+	float: right;
+	width: 440px;
+}
+
+div.opzone {
+	width: 400px;
+	min-height: 80px;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	background-color: white;
+	box-shadow: 2px 2px 4px lightgray;
+}
+	div.opzone a {
+		font-size: 20px;
+		display: block;
+		margin-top: 14px;
+		font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+		color: #2B296C;
+	}
+	
+	div.opzone img {
+		float: left;
+		margin: 0px 20px 20px 20px;
+		text-decoration: none;
+		border: none;
+	}
+	
+div.contentblock {
+	width: 600px;
+	border-radius: 7px;
+}
+
+	div.contentblock a {
+		border: none;
+		color: #166EB7;
+	}
+	
+div#tabs-indexes div.jqx-tabs-content {
+	padding: 8px;
+}
+
+td.worldwide {
+	background: url(/img/icons16/world.png) no-repeat center center;
+}
+
+table#timeperiods td {
+	padding: 5px;
+	border-spacing: 3px;
+}
+
+div.slide-body {
+	width: 1130px;
+	height: 110px;
+}
+
+#customers .pages .page {
+	border-color: gray !important;
+}
+
+div.custlogo {
+	display: inline-block;
+	width: 24%;
+	height: 75px;
+	text-align:center;
+	margin-bottom: 25px;
+	white-space: nowrap;
+	text-align: center;
+}
+
+	div.custlogo img {
+		max-width: 100%; max-height: 75px;
+		vertical-align: middle;
+	}
+
+
+div#searchbox {
+	margin-left: 35px;
+}
+.graytitle {
+	font-size: 23px;
+	text-align: center;
+	margin: 100px 0 30px 0;
+	color: #5b5a5a;
+}
+div#tabs-cargoclaim {
+	margin: 30px 0;
+}
+.videos { text-align: center;}
+.videos .box { width: 40%; display: inline-block; margin: 20px; }
+.videos .box img { max-width: 100%;}
+.tracker { margin-top: 40px;}
+.tracker span { margin: 4px 30px; font-size: 20px;
+	display: block;
+	font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+	color: #2B296C; font-weight: bold;}
+.tracker form { margin: 10px 30px;}
+.tracker img { margin: 26px !important;}
+.tracker p { margin: 0; font-size: 11px; }
+
+.cclp-ad {
+	font-family: "Open Sans",sans-serif;
+}
+
+.cclp-headline {
+	color: #1877BF;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+.box_one {
+	background: #fff none repeat scroll 0 0;
+	border: 1px solid #ccc;
+	margin-bottom: 25px;
+	padding: 20px;
+	position: relative;
+}
+	.box_one .box_tl {
+		left: 0;
+		position: absolute;
+		top: 0;
+		height: 25px;
+	}
+	
+	.box_one .box_br {
+		bottom: 0;
+		position: absolute;
+		right: 0;
+		height: 25px;
+	}
+	.box_one .adv-center {
+		font-family: "Open Sans",sans-serif;
+		font-size: 22px;
+		color: #333333;
+		line-height: 25px;
+		position: relative;
+		top: 50%;
+		margin-top: -40px;
+	}
+	
+	div#login {
+		margin: 30px auto;
+		width: 550px;
+	}
+	div.site > div.page > div#login small {
+		color: #666666;
+	}
+	div#login > div.logo {
+		margin-left: 40px;
+		margin-right: 30px;
+		padding: 12px;
+		width: 128px;
+	}
+	div#login > div.form {
+		padding: 12px;
+	}
+	div#login > div.form div.field {
+		background-color: white;
+		border: 1px solid #c7c7c7;
+		margin-bottom: 15px;
+		padding: 2px;
+		width: 250px;
+	}
+	div#login > div.form div.field > input {
+		border: medium none;
+		font-size: 14px;
+		line-height: 19px;
+		resize: none;
+		text-indent: 8px;
+		width: 100%;
+	}
+	div#login > div.form #remember {
+		float: left;
+		margin-left: -3px;
+		margin-top: 4px;
+	}
+	
+</style>}
+
+<div style="margin: 26px 20px;">
+{#plugin:jqxtabs}
+	<div id="tabs-indexes">
+		<ul>
+			<li style="margin-left: 20px;">Airline index</li>
+			<li>GSA index</li>
+			<li>Handler index</li>
+			<li>Forwarder index</li>
+			<li>Road feeder index</li>
+		</ul>
+{!Tab Airlines}
+		<div>
+			<div class="left-area">
+				<div id="searchbox">
+				<div class="center" style="margin-bottom: 20px;">
+						<h1 style="background-color: #214e78; color: white; display: block; width: 490px; padding: 5px; border-radius: 18px;">SEARCH AIRLINE AND SUBMIT A CLAIM</h1>
+					</div>
+					{#plugin:airfind}
+				</div>
+				<div style="margin-left: 40px; margin-top: 30px;">
+					<p><b>Step 1.</b> Complete the claim form and submit (no login required)</p>
+					<p><b>Step 2.</b> Enter email address of the airline or select available contacts</p>
+					<p><b>Step 3.</b> Click the on the send email button and receive claim copy by email</p>
+				</div>
+			</div>
+		</div>
+{!GSA}
+		<div>
+			<div class="jqx-rc-all">
+			  (nothing here yet)
+			</div>
+		</div>
+{!Handler}
+		<div>
+			<div class="jqx-rc-all">
+			  (nothing here yet)
+			</div>
+		</div>
+{!Forwarder}
+		<div>
+			<div class="jqx-rc-all">
+			  (nothing here yet)
+			</div>
+		</div>
+{!Road feeder}
+		<div>
+			<div class="jqx-rc-all">
+			  (nothing here yet)
+			</div>
+		</div>
+	</div>
+
+{!	<div class="spacey">
+			<div class="contentblock" style="margin-left: 20px;">
+				<div class="cclp-ad">
+					<div class="cclp-headline center">
+						Our attendance to IATA Cargo Claims Loss Prevention conference is sponsored by:
+					</div>
+					<div class="center" style="width: 270px; float: left; margin-left: 30px; margin-top: 10px;">
+						<img src="/cmsup/worldwide/cc.png" alt="" width="135px" /><br /><br />
+						<span style="color: #ed7d31; font-size: 16px;">Increasing the customer experience</span><br /><br />
+						<img src="/cmsup/worldwide/blue-like.png" alt="Like" />
+					</div>
+					<div class="box_one" style="width: 180px; height: 180px; float: right;">
+						<div class="box_tl"><img src="/cmsup/worldwide/side.png" alt="" width="20" height="25"></div>
+						<div class="box_br"><img src="/cmsup/worldwide/side2.png" alt="" width="21" height="25"></div>
+						<div class="center adv-center" style="">Available<br />for<br />Advertising</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+}
+	<div class="graytitle">SOME OF OUR <b>VALUED CUSTOMERS</b></div>
+	<hr />
+	{#plugin:slider}
+	<div class="responsive-slider" id="customers">
+		<div class="slides" data-group="slides">
+			<ul>
+				<li style="position: relative;">
+					<div class="slide-body" data-group="slide">
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/amerijet.png" alt="Amerijet" title="Amerijet International Airlines" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/atlas-logo.png" alt="Atlas" title="Atlas Air" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/abc.png" alt="ABC" title="AirBridgeCargo" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/saudia-cargo.png" alt="Saudia" title="Saudia Cargo" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="slide-body" data-group="slide">
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/polar-air-logo-1.png" alt="Polar" title="Polar Air Logo" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/brussels.png" alt="Brussels" title="Brussels Airlines Cargo" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/kales.png" alt="Kales" title="Kales Airline Services" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/hdr-knnl2.png" alt="KN" title="KN Fresh Chain" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="slide-body" data-group="slide">
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/aramex.png" alt="Aramex" title="Aramex" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/fast-forward-freight.png" alt="FFF" title="Fast Forward Freight" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/crane.png" alt="Crane Worldwide" title="Crane Worldwide Logistics" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/hellmann.svg" alt="Hellmann" title="Hellmann Worldwide Logistics" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="slide-body" data-group="slide">
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/iaa.png" alt="IAA" title="International Airfreight Assoiciates" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/ip-handlers.png" alt="IP Handlers" title="IP Handlers" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/kwe.png" alt="Kintetsu" title="Kintetsu World Express" />
+						</div>
+						<div class="custlogo">
+							<img src="/cmsup/worldwide/galink-name.png" alt="GAL" title="Global Aviation Link" />
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<a class="slider-control left" href="#" data-jump="prev"><img src="/cmsup/worldwide/bullet_arrow_left.png" width="32" alt="" /></a>
+		<a class="slider-control right" href="#" data-jump="next"><img src="/cmsup/worldwide/bullet_arrow_right.png" width="32" alt="" /></a>
+		<div class="pages">
+			<a class="page active" href="#" data-jump-to="1">1</a>
+			<a class="page" href="#" data-jump-to="2">2</a>
+			<a class="page" href="#" data-jump-to="3">3</a>
+			<a class="page" href="#" data-jump-to="4">4</a>
+		</div>
+	</div>
+</div>

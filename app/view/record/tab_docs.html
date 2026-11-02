@@ -1,0 +1,390 @@
+{!New Documents tab - Will suplement or replace Notes tab}
+  
+  
+ <!--IWI if any update in the doc section, send reminder mail for read & sign  start-->
+<div class="simple-spinner" style="display: none;"> <span></span> </div>
+
+ <!--IWI if any update in the doc section, send reminder mail for read & sign end-->
+ 
+
+<div class='toolbar jqx-widget jqx-rc-all'>
+    <div class='toolbar-accessory'>
+        <img src="/img/icons/document_image_ver.png" alt="[DOC]" class="info-tip" data-tooltip="Editable documents for this record<br />To open or edit a document, double-click on it" /><span>Documents</span>
+    </div>
+
+    <div id='docs-create-op'>
+        <button data-op="doc-create" class="info-tip" data-tooltip="Creates a new document attached to this record"><img src='/img/icons16/add.png' /> Create</button>
+        <!--IWI docs list  export , active ,  closed button create start-->
+        <button data-op="filteractive" title="Active Tasks" id="taskAct">Active  [<span id="act_task">0</span>]</button>
+        <button data-op="filterclosed" title="Failed Task" id="taskOld">Closed  [<span id="old_task">0</span>]</button>
+        <button data-op="exportxlsx" title="Export table as ExcelX" id="taskXls"><img src='/img/icons16/table_export.png' /> Export XLSX</button>
+        <!--IWI docs list  export , active ,  closed button create end--> 
+    </div>
+    <div id='docs-row-ops' style="display: none;">
+        <button data-op="doc-open" class="info-tip" data-tooltip="Open selected document"><img src="/img/icons16/document_inspector.png" alt="[Open]" /> Open</button>
+        {!Disabled, is used only for testing	<button data-op="doc-view" class="info-tip" data-tooltip="[TEST] View document"><img src="/img/icons16/eye.png" alt="[View]" /> View</button>}
+        <button data-op="doc-copy" class="info-tip" data-tooltip="Create a copy of selected document<br />(Copy will have it's own webview link if enabled)"><img src='/img/icons16/page_copy.png' /> Copy</button>
+        <span class='docs-write-ops' style="display: none;">
+            <button data-op="doc-delete" class="info-tip right" data-tooltip_position="left" data-tooltip="Remove selected document.<br /><span class='red'><b>Warning:</b> This action is not reversible!</span>"><img src='/img/icons16/delete.png' /> Delete</button>
+        </span>
+        <span id='docs-open-webview' style="display: none;"> <!--IWI Record Details Page Redesign 10092026-->
+            <div class='toolbar-separator'></div>
+            <button data-op="doc-webview-newwin" class="info-tip" data-tooltip="View document as a webpage.<br />The URL can be shared outside this software!"><img src="/img/icons16/web_layout.png" alt="[View]" /> Webview</button>
+        </span><!--IWI Record Details Page Redesign 10092026-->
+    </div>
+    <div id='docs-open-ops' style='display: none;'>
+        <div class='toolbar-separator'></div>
+        <span class='docs-write-ops' style="display: none;">
+            <button data-op="doc-save" class="info-tip" data-tooltip="Save document"><img src='/img/icons16/save.png' /> Save</button>
+            <button id='doc-cmd-upver' style="display: none;" data-op="doc-upver" class="info-tip" data-tooltip="Save as new version<br />(Original is saved as a copy, without Webview link)"><img src='/img/icons16/upver.png' /> Version up</button>
+            <div class='toolbar-separator'></div>
+        </span>
+        <button data-op="doc-close" class="info-tip" data-tooltip="Close document without saving"><img src='/img/icons16/cross.png' /> Close</button>
+    </div>
+
+    <div id="doc-import" class="right info-tip" style="display: none; line-height: 18px; margin: 10px;" data-tooltip_position="left" data-tooltip="With this box checked, classic Notes are shown here instead of documents.<br />When a converted note is saved, it becomes a document and no longer shows in the Notes tab.">Convert Notes</div>
+</div>
+
+<div id="document-viewer" style="margin-bottom: 6px; display: none;">
+    <div style="padding-left: 2px;"></div>
+    <div>{!jqxExpander body}</div>
+</div>
+<div id="document-editor" style="margin-bottom: 6px; display: none;">
+    <div style="padding-left: 2px;"></div>
+    <div>{!jqxExpander body}
+        <form method="post" enctype="multipart/form-data" action="/global/note?action=Save">
+           <div class="create_frm">
+                <div>
+                    <div class='ctrl-line' style="margin-left: 14px;">
+                        <label for='doc-title'>Document name <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="When exporting your document, it will be saved under this name. Keep it short !"></label>
+                        <input type='text' id='doc-title' name='doc[title]' class="form-control left jqx-input jqx-rc-all" value="" style='width: 495px;' placeholder="(This document must have a name)" />
+                    </div>
+
+                    <div class='ctrl-line' style="margin-left: 14px;">
+                        <label for="doc-version">Version <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="version number !"></label><br />
+                        <input type="text" id="doc-version" name="doc[version]" style="width: 483px; padding: 4px;margin-left: 1px;" />
+                    </div>
+                    
+                    <div class='ctrl-line' id="doc-tpl-line" style="margin-left: 14px;">
+                        <label>Use template <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="The template may use information from the record<br />After the document is saved, any changes to the record will not affect the document !"></label>
+                        <div id="doc-template" ></div>
+                    </div>
+                    <!--IWI doc section file upload start-->
+<!--                    <div class='ctrl-line file_upld'>
+                        <label for='doc-description'>Upload Document <img src='/img/icons16/information.png' class="inline-icon info-tip " data-tooltip="Upload a .doc, .docx, or .pdf file for document body"></label>
+                        <input type='file'  accept=".doc,.docx" class="form-control jqx-input jqx-rc-all doc-file"  style='width: 250px;' placeholder="(Optional)" /><br>
+                    </div>
+                     <button type="button"   class="form-control doc-file-opload"  >Click to convert for publication</button> 
+                     <a href="javascript:void(0)" id="doc-file-opload" class="doc-file-opload" style="cursor: pointer;font-weight: bold;margin-left: 29%;">Click to convert for publication</a>-->
+                     
+                     <!--IWI doc section file upload end-->
+                     <!--IWI doc section file upload start-->
+                     <!--<a href="javascript:void(0)" id="doc-file-opload" class="doc-file-opload" style="cursor: pointer;font-weight: bold;">Upload File</a>-->
+                     
+                     <!--IWI doc section file upload start--> 
+
+                     <!-- <div class='ctrl-line file_upld' style="margin-bottom: 10px;">
+                        <label for='doc-description' style="font-weight: 500;">Attach File 
+                            <img src='/img/icons16/information.png' style="vertical-align: middle; margin-left: -2px;" class="inline-icon info-tip " data-tooltip="Attach file to download from view page">
+                        </label>
+                        
+
+                         <div style="display: flex; align-items: center; margin-top: -33px; margin-left: 0px;">
+                            <div id="doc-attach-multi-file" style="margin-left:113px;margin-top: 4%;"></div>
+                           <span style="margin-left: 15px;margin-top: 36px;"><b>OR</b></span>
+                           <input type='file' class="form-control jqx-input jqx-rc-all task-file" multiple 
+                           style='width: 100px; height: 21px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; margin-top: 36px;margin-left: 11px;' />
+                       </div> -->
+                        
+                        <!--<input type='file' class="form-control jqx-input jqx-rc-all "  style='width: 250px;' placeholder="(Optional)" /><br>-->
+                    <!-- </div> -->
+
+
+
+                    <div class='ctrl-line file_upld' style="margin-top: 10px;margin-left: 14px;">
+                    <label for='doc-description' style="font-weight: 500; white-space: nowrap;margin-top: 11px;">
+                        Attach File 
+                        <img src='/img/icons16/information.png'  style="vertical-align: middle; margin-left: -2px;" class="inline-icon info-tip" data-tooltip="Attach file to download from view page">
+                    </label>
+
+                    <div style="display: flex; align-items: flex-start; margin-left: 18px; gap: 10px;">
+                        <div id="doc-attach-multi-file" style="margin-top: 13px; min-width: 100px;margin-left: -19px;"></div>   
+                        <span style="margin-top: 19px; font-weight: bold;">OR</span>
+                        <div class="modern-file-upload">
+                            <label for="file-input" style="width:195px !important;height:13px;">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M4 12l8-8 8 8M12 4v12"/>
+                                </svg>
+                                Upload Files
+                            </label>
+                            <input id="file-input" type="file" name="files[]" multiple  />
+                            <div id="file-info" class="file-info"></div>
+                        </div>
+<!--                        <input type="file" class="form-control jqx-input jqx-rc-all task-file" multiple="" style="width: 193px !important; height: 32px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; margin-top: 6px;margin-left: -3px;">-->
+                    </div>
+</div>
+
+
+                     <!--IWI doc section file upload end-->
+                     
+                     
+<!--                     <div class="saparate_upload_section">
+                         <section class="upload-section">
+                             <div class="section-header">
+                                 <label for="doc-description">
+                                     Upload Document
+                                     <img src="/img/icons16/information.png" class="inline-icon info-tip" 
+                                          data-tooltip="Upload a .doc, .docx, or .pdf file for document body">
+                                 </label>
+                             </div>
+
+                             <div class="form-row">
+                                 <input type="file" accept=".doc,.docx" 
+                                        class="form-control jqx-input jqx-rc-all doc-file" 
+                                        style="width: 200px;" placeholder="(Optional)">
+
+                                 <a href="javascript:void(0)" id="doc-file-opload" 
+                                    class="doc-file-opload">
+                                     Click to convert for publication
+                                 </a>
+                             </div>
+                         </section>
+
+
+                     </div>-->
+                     
+                      <!--IWI doc section file upload end-->
+                    
+                </div> 
+                <!-- Iwi setting button task start -->
+                
+                <div >
+                    <button id="open-settings" type="button" style="color: white;border-radius: 8px;cursor: pointer;font-weight: 500;font-size: 14px;display: inline-flex; align-items: center;transition: background-color 0.3s ease;margin-left: 164px;border-color: black;">
+                        <img src="/img/icons/cog.png" alt="Settings">
+                        </button>
+
+                    <div id="settings-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 999; justify-content: center; align-items: center;">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; width: 400px; box-shadow: 0 0 10px rgba(0,0,0,0.3); position: relative;">
+                        <h3 style="width:100%;margin: 0;margin-left: -20px;padding: 10px 20px;font-size: 20px;font-weight: 600;color: #333;
+                                            background: linear-gradient(to right, #f0f0f0, #ffffff);border-top-left-radius: 8px; border-top-right-radius: 8px;"> <i class="fa fa-wrench" aria-hidden="true"></i>  Document Settings
+                            </h3><br>
+
+                        
+
+                        <div style="margin-bottom: 22px;">
+                        <label>Visibility:</label><br><br>
+                        <div id="doc-visibility" name="doc[visibility]" style="padding: 4px; border: 1px solid #ccc;">{!Visibility selector}</div>
+                        </div>
+
+                        <div style="margin-bottom: 12px;">
+                        <label>Editing access:</label><br><br>
+                        <div id="doc-edit_access" name="doc[edit_access]" style="padding: 4px; border: 1px solid #ccc;">{!Editing rights selector}</div>
+                        </div>
+
+                        <div style="text-align: right;">
+                        <button id="close-settings" type="button" style="padding: 5px 10px; border-radius: 4px; border: none; background-color: #ccc; cursor: pointer;">Close</button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- <div class='ctrl-line'>
+                        <label for="doc-version">Version:</label>
+                        <input type='text' id='doc-version' name='doc[version]' class="form-control  only-numbers jqx-input jqx-rc-all" value="" style='width: 60px;' />
+                    </div>
+                    <div class='ctrl-line'>
+                        <label>Visibility:</label>
+                        <div class=" form-control " id="doc-visibility"  name="doc[visibility]">{!Visibility selector}</div>
+                    </div>
+                    <div class='ctrl-line'>
+                        <label>Editing access:</label>
+                        <div class="form-control" id="doc-edit_access" name="doc[edit_access]">{!Editing rights selector}</div>
+                    </div> -->
+<!--                    <div class='ctrl-line'>
+                        <label for='doc-description'>Description <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="What is the document about ?<br />The description can be used to locate this document via search system"></label>
+                        <input type='text' id='doc-description' name='doc[description]' class="form-control jqx-input jqx-rc-all" value="" style='width: 855px;' placeholder="(Optional)" />
+                    </div>-->
+                    
+                </div>
+            </div>
+            <!--IWI doc section file upload start-->
+             <div class="saparate_upload_section left_part" style="margin-top: 40px;margin-left: 85px;">
+                         <section class="upload-section" style="width: 900px;">
+                             <div class="section-header">
+                                 <label for="doc-description">
+                                     Upload Document
+                                     <img src="/img/icons16/information.png" class="inline-icon info-tip" 
+                                          data-tooltip="Upload a .doc, .docx, or .pdf file for document body">
+                                 </label>
+                             </div>
+
+                             <div class="form-row">
+                                 <input type="file" accept=".doc,.docx" 
+                                        class="form-control jqx-input jqx-rc-all doc-file" 
+                                        style="width: 200px;" placeholder="(Optional)">
+
+                                 <a href="javascript:void(0)" id="doc-file-opload" 
+                                    class="doc-file-opload">
+                                     Click to convert for publication
+                                 </a>
+                             </div>
+                         </section>
+
+
+                     </div>
+                     
+                      <!--IWI doc section file upload end-->
+            <div class="div" style="padding-left: 60px;border-top: solid 2px #ccc;padding-top: 15px;margin-top: 15px;">
+                <div class='ctrl-line'>
+                    <label>Publish <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Webview allows this document to be viewed as a web page by another party<br />without needing to have access to this record where the document is stored"></label>
+                    <div class="left" id="doc-webview-state" style="margin-left: -6px;"></div>
+                    <span id="doc-webview-msg" class="doc-webview-info left static red " style="margin-left: 8px; display: none;">Turning off will invalidate existing link!</span>
+                </div>
+            </div>
+            <div class="published_frm">
+                <div class="published_left_part">
+                    <div class='ctrl-line doc-webview-info ' style="display: none;padding-left: 33px;">
+                        <label>Requires login <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="To view this document as a web page, the viewers must be logged into their organization account<br />It is not necessary to give them access to this record where the document is stored!"></label>
+                        <div class="left" id="doc-webview-secure" style="margin-left: -6px;"></div>
+                    </div>
+                    <div class='ctrl-line doc-webview-info ' style="display: none;">
+                        <label style="margin-left: 34px;">Announcement  <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Is it a notification ? "></label>
+                        <div class="left" id="doc-webview-notification" style="margin-left: -6px;"></div> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- 18022025 changes -->
+                        <div class='ctrl-line  doc-webview-notification_sec ' style="display: none; margin-left: 116px;">
+                            <label for="doc-webview-notification-days" 
+                            style="padding-right: 0px;width: auto !important;margin-left: -5px;margin-right: 5px;white-space:nowrap;">Days to view: 
+                            <img src='/img/icons16/information.png' 
+                            class="inline-icon info-tip" data-tooltip="days to view this notification."style="display:none;"></label>
+                            <input type='text' id='doc-webview-notification-days' class="form-control left jqx-input jqx-rc-all " value="30" style="width:51px;" />
+                        </div>
+                        <!-- 18022025 changes -->
+
+                    </div>
+                    <div class='ctrl-line doc-webview-info  doc-webview-document' style="display: none;padding-left: 33px;">
+                        <label>Read & Sign  <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Is required for read & sign? "></label>
+                        <div class="left" id="doc-webview-required-read-sign" style="margin-left: -6px;"></div>
+                        <div class='ctrl-line  doc-webview-info_refresh_after_days_sec repeat-read-sign-sec   after_days_dropdown'  style=" display: none;">
+                            <!-- <label for="doc-webview-link">Repeat after days <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="How many days this doc will be refresh?">:</label> -->
+                            <div  id="refresh_after_days" name="doc[refresh_after_days]"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="published_right_part">
+                    <div class='ctrl-line doc-webview-info publish_link ' id="pulish_link" style="display: none;margin-left: 89px;">
+                        <label for="doc-webview-link" >Publish Link:</label>
+                        <input type='text' id='doc-webview-link' class="form-control left jqx-input jqx-rc-all gray" value="== Save your document to receive a link ==" readonly="readonly" style="margin-left: -46px;width:253px;"/>
+                        <!--IWI doc tab changes 2072028 start-->
+                        <button type="button" id="copyPublishLink" onclick="this.style.backgroundColor='#0b4f84'" style="margin-left: 10px;padding: 6px 16px;background-color: #2196F3;color: white;border: none;border-radius: 6px;cursor: pointer;
+                font-size: 14px;transition: background-color 0.3s ease, transform 0.2s ease;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);"
+                onmouseover="this.style.backgroundColor='#1976D2'"onmouseout="this.style.backgroundColor='#2196F3'"onmousedown="this.style.transform='scale(0.97)'"onmouseup="this.style.transform='scale(1)'">Copy</button>
+                        <!--IWI doc tab changes 2072028 end-->
+                    </div>
+                    
+                    <div class="ctrl-line doc-webview-info " style="margin-left: 89px;">
+                        <label for="">Publish For:</label>
+        
+                        {#if:user_previliges_access=='no':
+                            <div style="
+                                display: flex;
+                                align-items: center;
+                                width: 20%;
+                                margin-left: -47px;
+                                "> Private
+                                <input type="radio" class="form-control publish_for_radio " checked="" value="private"  name="publish_for">
+                            </div>
+                            }
+<!--                            {#if:user_previliges_access=='no':}-->
+                            {#if:user_previliges_access=='yes':
+                                <div style="
+                                    display: flex;
+                                    align-items: center;
+                                    width: 20%;
+                                    margin-left: -47px;
+                                    "> Private
+                                    <input type="radio" class="form-control publish_for_radio " checked="" value="private"  name="publish_for">
+                                </div>
+                                
+        
+                                <div style="
+                                    display: flex;
+                                    align-items: center;
+                                    width: 20%;
+                                    "> Departments
+                                    <input type="radio" class="form-control  publish_for_radio" value="department" name="publish_for">
+                                </div>
+                            } 
+                    </div>
+                   
+                    {#if:user_previliges_access=='yes':
+                        <div class="pfdsc" style="display: none ;">
+                            <div class="ctrl-line doc-webview-info publish_for_department_sec radpr "  >
+                                <label class="mainl" style="margin-left: 89px;"> Department : </label>
+                                <details style="width: 247px;margin-left: -48px;">
+                                    <summary>Choose Department</summary> 
+                                    <ul>
+                                        <li>
+                                            <label class="radprl"><input type="checkbox" name="publish_for_department[]" id="clickAllDepartment"  value="all"  />All</label>
+                                        </li>
+                                        {getDepartmentsByUser}
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
+                    }
+                    
+                    <div class="ctrl-line    "  style=" display: none;">
+                                    
+                                    
+                        <!--IWI Refresh after days start--> 
+                            <!--<label>Repeat Read & Sign <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Check if this document is required for Read & Sign from users!"></label>-->
+                            <!--<div class="left" id="is_required_read_sign"></div>--> 
+<!--                            <div style="
+                                    display: flex;
+                                    align-items: center;
+                                    width: 15%;
+                                    "> 
+                                <input type="checkbox" class="form-control doc_read_sign "  value="1"  name="doc_read_sign">
+                                    <div class="left" id="doc_read_sign"></div>
+                            </div>-->
+                    </div>
+                    <!-- <div class='ctrl-line  doc-webview-info_refresh_after_days_sec  '  style=" display: none;">
+                        <label for="doc-webview-link">Repeat after days <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="How many days this doc will be refresh?">:</label>
+                        <div  id="refresh_after_days" name="doc[refresh_after_days]"></div>
+                    </div> -->
+                </div>
+            </div>
+            <textarea id="doc-content" rows='1' readonly="readonly" style="height: 1px; width: 1px;"></textarea>{!Gets replaced with TinyMCE}
+            <div id="doc-content-placeholder" class="loading-pleasewait" style='height: 235px;'></div>
+        </form>
+        {!		<div id="content-extra-commands" class='toolbar jqx-widget jqx-rc-all'>
+            <div class='toolbar-accessory'>
+                <span>Content Operations</span>
+            </div>		
+            <button data-op="doc-export-RTF" title="Export to RTF - Can be opened in MS Word, Libre Office or Open Office directly"><img src='/img/icons16/document_export.png' /> Export to RTF</button>
+            <button data-op="doc-import-RTF" title="Import from RTF - Please save your MS Word document to RTF before attempting to import !"><img src='/img/icons16/file_extension_rtf.png' /> Import from RTF</button>
+        </div>}
+    </div>
+</div>
+
+<div class="jqx-datatable" id="_record-docs"></div>
+
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template-doc-sec-viewer" type="text/dryjstpl">{@
+    <div class='info-line'>
+    <label>Created on <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Exact moment when this document was created (read-only)"></label><div>{$dt_format}</div>
+    </div>
+    <div class='info-line'>
+    <label>Description <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Short description of the content of this document"></label><div>{$description:---}</div>
+    </div>
+    <div class='info-line'>
+    <label>Version <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Version of the document"></label><div>{$version}</div>
+    </div>
+    <h4><img src="/img/icons16/info_rhombus.png" class="inline-icon" />{$name}</h4>
+    <div style="padding: 10px;" id="document-viewer-body">(loading, please wait)</div>
+    }</script>
+
+
+
+ 

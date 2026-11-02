@@ -1,0 +1,28 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+{!	<div class="left" style="width: 200px; text-align: center;">
+		{#use:orig_stat:<div style="margin-bottom: 8px;">
+			<label for='{id}'>{display.label}:</label><br />
+			<input type='text' id='{id}' name='{name}' value='{value}' class='center whitebg jqx-input jqx-input-{%jqxtheme} tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+		</div>}
+		{#use:dest_stat:<div style="margin-bottom: 8px;">
+			<label for='{id}'>{display.label}:</label><br />
+			<input type='text' id='{id}' name='{name}' value='{value}' class='center whitebg jqx-input jqx-input-{%jqxtheme} tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+		</div>}
+		{#use:liab_stat:<div style="margin-bottom: 8px;">
+			<label for='{id}'>{display.label}:</label><br />
+			<input type='text' id='{id}' name='{name}' value='{value}' class='center whitebg jqx-input jqx-input-{%jqxtheme} tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+		</div>}
+	</div>
+	<div class="right" style="width: 325px;">}
+	<table>
+		{#use:irreg_code:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select class="dropselect multi-select" data-name='{name}' data-width="300" data-dwidth="350" data-dheight="224" data-dalign="right" data-filterable="1" id='{id}'>
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select>
+			<input type='hidden' name='{name}' value='' /></td>
+		</tr>}
+	</table>
+	{!</div>}
+	<div class="clear"></div>
+</form>}

@@ -1,0 +1,78 @@
+# The name and short name of the organization type. Appended beside the name of the organization when using partnership functions 
+name: Claim Broker
+shortname: Broker
+
+# CSV list of controllers (without the App_Ctrl_ prefix) that this organization type has access to
+controllers:
+  - user_overview
+  - user_settings
+  - user_commcenter
+  - global_operations
+  - global_contact
+  - issue_list 
+  - issue_listexport
+  - issue_item
+  - issue_tasks
+  - issue_reports
+  - manager_myorg
+  - manager_department
+  - manager_user
+  - contact_account
+  - user_publication #publication read only
+  - issue_capa
+  - record_reports
+
+mainmenu:
+  -
+    name: Control Panel
+    icon: dashboard.png
+    access: Yes
+    route: /user/overview#dashboard
+  -
+    name: Notifications
+    icon: bell.png
+    access: Yes
+    route: /user/overview#notify
+  -
+    name: Issues
+    icon: %s
+    access: issues_view
+    route: /issue/list
+  -
+    name: Tasks
+    icon: to_do_list_cheked_1.png
+    access: issues_view
+    route: /issue/tasks
+  -
+    name: My Organization
+    icon: company-building-icon.png
+    access: Yes
+    route: /manager/myorg#overview
+  -
+    name: Mail (%d new)
+    icon_open: email_open.png
+    icon_closed: email.png
+    access: Yes
+    route: /user/commcenter#list
+  -
+    name: Settings
+    icon: cog.png
+    access: Yes
+    route: /user/settings
+  -
+    name: Support
+    icon: help.png
+    access: Yes
+    route: mailto:support@cargohub.nl
+
+# Default features for organizations of this type
+default_features:
+
+# Default privilege set for organizations of this type
+default_privileges:
+
+# Default access ids information for organizations of this type
+default_access_ids:
+
+# Issue Type Overrides for this type of organization
+ist_or:

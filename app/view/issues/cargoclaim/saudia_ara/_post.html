@@ -1,0 +1,270 @@
+{@<style type="text/css">
+/* Some styles specific to claims */
+div#file-submit-area input {
+	width: 500px;
+}
+label.documents {
+	display: block;
+	width: 250px;
+	float: left;
+}
+/* Adjustments for RTL */
+#issue_form div.column2 th {
+	text-align: left !important;
+	padding-left: 8px;
+}
+
+</style>}
+
+<div id='issue_submit' class='zone jqx-rc-all' style="direction: rtl; font-size: 1.2em;"><form action="?action=form" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">{#use:form:
+{!Left column}
+<div class='column2'>
+
+<h4>المستندات المرفقة</h4>
+<table>
+	<tr><td style="padding: 6px 0px 10px 30px;">
+		<input type="button" value="طريقة إرسال المستندات" data-action="open-window" data-window="1000,600,Guidelines for submitting documents" data-template='guidelines' />
+	</td></tr>
+{#use:documents:<tr{#if:display.req: class='required'}>
+	<td>{#repeat:options:<label class='documents'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}}
+	</td></tr>
+	<tr><td><br />
+		{#if:%attachments:<br /><h4>Attached pictures and documents:</h4>{!Fallback mode, showing files on IE8}
+		<div id='attachments' style="margin-bottom: 8px; display: none;">
+		{#repeat:%attachments:
+			<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{type}.png' alt="{type}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+			<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+			<div class='clear'></div></div>
+		}
+		</div>}
+		<div id="uploads-dropzone" class="dropzone">{!The fancy DropZone}
+			<div class="fallback">
+				<div style='margin: 0 0 0 26px;'>
+					<h3>Choose documents from your computer</h3>
+					<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+				</div>
+				<div id="file-submit-area">
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+					<span><input type="file" name="uploads[]" /></span>
+				</div>
+				<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+				<p class="gray" style="font-size: 0.9em;">Please use a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a> in order to view the upload feedback and allow simultaneous multiple files selections. The very outdated <b>Internet Explorer</b> does not support many of the advanced features that this application provides.</p>
+			</div>
+		</div>
+		<div id="uploads-helper" style="display: none;">
+			Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+		</div>
+	</td></tr>
+</table>
+{#include::includes/ara/submit_proceed_box.html}
+{!End of left column}</div>
+
+{!Right column}
+<div class='column2'>
+
+	<h4>بيانات صاحب المطالبة<img src="/img/icons16/question.png" alt="Info" class="info-tip" data-tooltip="The button beside the e-mail address allows for more information to be entered (company name, phone number, etc.)." style='float: right; margin-right: 4px;' /></h4>
+	<div style="margin: 12px 0 12px 0;">يرجي استكمال بيانات الإتصال (البريد الإلكتروني ، الإدارة ، القسم) بالضغط على الزر الأيسر لزر "تم الإرسال بواسطة".</div>
+	<div id="issue-contacts"></div>
+{!	<div style="margin-bottom: 20px; height: 27px; padding-top: 2px;">
+		<input type="button" value="Add another contact..." data-action="add-contact" style="margin-left: 182px;" />
+		<img src="/img/icons16/question.png" alt="Info" class="info-tip" data-tooltip="Use this button if you need to specify other e-mail addresses besides your own." style='margin-left: 6px;' />
+	</div>}
+
+	<h4>بيانات الشحنة</h4>
+	<table>
+	<tr{#if:mawb_p.display.req: class='required'}>
+		<th><label class="info-tip" data-tooltip="Typing the AWB Prefix automatically searches and selects the airline (if available in the list below)" for='{mawb_p.id}'>بوليصة الشحن الرئيسية{#if:mawb_p.display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			<input class="jqx-input-{%jqxtheme} only-numbers auto-move link-field" data-automove_len="3" data-automove_to="{mawb_s.id}" data-link_to="{group.id}_combo" data-link_type="comboBox" data-link_source="groups" data-link_error="This AWB Code is not present in the list of Airlines, please check if correct."
+				type='text' id='{mawb_p.id}' name='{mawb_p.name}' value='{mawb_p.value}' maxlength="3" style='width: 25px;'{#if:mawb_p.display.error: class='field_error' data-tooltip='{mawb_p.display.error}'} /> - 
+			<input class="jqx-input-{%jqxtheme} only-numbers" type='text' id='{mawb_s.id}' name='{mawb_s.name}' value='{mawb_s.value}' maxlength="8" style='width: 60px;'{#if:mawb_s.display.error: class='field_error' data-tooltip='{mawb_s.display.error}'} />
+			<img src="/img/icons16/question.png" alt="Info" class="info-tip info-click" data-tooltip="Type 000-00000000 if you don't know the MAWB yet" style='margin-left: 6px; vertical-align: middle;' />
+		</td>
+	</tr>
+	{#if:%CFG.issue_submit.groups:{#use:group:<tr{#if:display.req: class='required'}>
+		<th><label>Airline:</label></th>
+		<td><div id='{id}_combo'></div><input type='hidden' id='{id}' name='{name}' value='{value}' /></td>
+	</tr>}}
+	{#use:nature_of_goods:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>نوع الشحنة</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	<tr{#if:display.req: class='required'}>
+		<th><label class="info-tip" data-tooltip="Type the number of pieces and weight (if known), not the AWB number !">إجمالي القطع حسب البوليصة</label></th>
+		<td>
+		{#use:mawb_pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> القطع}
+		{#use:mawb_weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> الكيلوجرام}
+		</td>
+	</tr>
+	{#use:hawb1:<tr class="hawb_field{#if:display.req: required}" id="hawb1">
+		<th><label for='{id}'>بوليصة الشحن الفرعية</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="float: left;" />
+			<input type="button" value="بوالص شحن أخرى" data-action="reveal-multi-area" data-idprefix='hawb' data-idstart='2' data-idmax='4' style="float: right; margin-left: 8px;" />
+		</td>
+	</tr>}
+	{#use:hawb2:<tr class="hawb_field{#if:display.req: required}" id="hawb2" style='display: none;'>
+		<th><label for='{id}'>الثانية بوليصة الشحن الفرعية</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:hawb3:<tr class="hawb_field{#if:display.req: required}" id="hawb3" style='display: none;'>
+		<th><label for='{id}'>بوليصة الشحن الفرعية الثالثة</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:hawb4:<tr class="hawb_field{#if:display.req: required}" id="hawb4" style='display: none;'>
+		<th><label for='{id}'>بوليصة الشحن الفرعيةالرابعة</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	<tr><td colspan="2"><hr /></td></tr>
+	{#use:shipper_n:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>إسم الشاحن</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:consig_n:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>إسم المستلم</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	</table>
+
+	<h4>معلومات الرحلة</h4>
+	<table>
+	{#use:carry_date:<tr{#if:display.req: class='required'}>
+		<th><label>تاريخ الرحلة الفعلي</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:arrival_date:<tr{#if:display.req: class='required'}>
+		<th><label>تاريخ الوصول</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:flight_no:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>الرحلة رقم 1</label></th>
+		<td><input maxlength="8" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:flight_no_2:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>الرحلة رقم 2</label></th>
+		<td><input maxlength="8" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:orig_loc:<tr{#if:display.req: class='required'}>
+		<th><label>محطة المصدر</label></th>
+		<td>
+			<div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+			<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+			{#use:orig_loc_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+		</td>
+	</tr>
+	{#use:viaa:<tr{#if:display.req: class='required'}>
+		<th><label>عبر مطار</label></th>
+		<td>
+			<div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+			<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+			{#use:viaa_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+		</td>
+	</tr>
+	{#use:dest_loc:<tr{#if:display.req: class='required'}>
+		<th><label>محطة الوصول</label></th>
+		<td>
+			<div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+			<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+			{#use:dest_loc_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+		</td>
+	</tr>
+	</table>
+
+	<h4>معلومات المطالبة</h4>
+
+	<table>
+	{#use:pstage:<tr{#if:display.req: class='required'}>
+		<th><label class="info-tip" data-tooltip="Preliminary claims do not usually have a Claim amount set">نوع المطالبة</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:claim_amt:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>مبلغ المطالبة</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style='height: auto;' />}
+			{#use:claim_amt_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>اختار</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{#use:invoice_val:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>قيمة الفاتورة</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style='height: auto;' />}
+			{#use:invoice_val_curr:<select id='{id}' name='{name}' style='width: 80px; font-family: monospace;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>اختار</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	{#use:insurance:<tr{#if:display.req: class='required'}>
+		<th><label>تأمين الشحنة</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	<tr{#if:claim_type.display.req: class='required'}>
+		<th valign="top" style='padding-top: 5px;'><label>جوانب المطالبة{#if:claim_type.display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			<table style="margin-bottom: 0;">{!This special field is visually associated with other fields}
+				<tr><td width="120"><label>{#use:claim_type.options.0:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> تلف</label>}</td>
+					<td>
+						{#use:dmg_pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> القطع}
+						{#use:dmg_weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> الكيلوجرام}
+					</td>
+				</tr>
+				<tr><td><label>{#use:claim_type.options.1:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> فقدان</label>}</td>
+					<td>
+						{#use:loss_pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> القطع}
+						{#use:loss_weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> الكيلوجرام}
+					</td>
+				</tr>
+				<tr><td><label>{#use:claim_type.options.2:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> تأخير</label>}</td>
+					<td>
+						{#use:delay_pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> القطع}
+						{#use:delay_weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> الكيلوجرام}
+					</td>
+				</tr>
+				<tr><td><label>{#use:claim_type.options.3:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> فقدان جزئي</label>}</td>
+					<td>
+						{#use:ploss_pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> القطع}
+						{#use:ploss_weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> الكيلوجرام}
+					</td>
+				</tr>
+				<tr><td><label>{#use:claim_type.options.4:<input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}</td>
+					<td>
+						{#use:pilf_pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Pieces}
+						{#use:pilf_weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Kg}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	{#use:what_happened:
+		<h4>تفاصيل المطالبة</h4>
+		<textarea rows="6" id='{id}' name='{name}' class='jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 542px;" placeholder="(يرجى كتابة شرح مختصر)">{value}</textarea>
+	}
+
+	<div class='required' style='text-align: center; margin-top: 10px;'><span style='padding: 7px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> (لإنهاء إجراءات المطالبة يرجى إكمال البيانات المؤشرة باللون)</span></div>	
+	{!End of right column}
+</div>
+<div class='clear'></div>
+
+}
+{#if:stored_issue:<input type="hidden" name="stored_issue[id]" value="{stored_issue.id}" /><input type="hidden" name="stored_issue[track]" value="{stored_issue.track}" />}
+{#if:%CFG.issue_submit.auto_group:<input type='hidden' id='issue_group' name='issue[group]' value='{%CFG.issue_submit.auto_group}' />}
+</form></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_submit_jstpl.html}
+{#raw:includes/issue2message.html}
+
+<script id="guidelines" type="text/dryjstpl">
+	<div style='height: 510px; overflow: auto;'>
+		{#include::static/claim_documents.html}
+		{#include::static/ist_descr/cargoclaim.html}
+	</div>
+</script>

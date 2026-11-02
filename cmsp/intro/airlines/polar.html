@@ -1,0 +1,506 @@
+{@<style type="text/css">
+div.header {
+	padding-bottom: 0 !important;
+}
+	div.header > div.header-bar {
+		margin-bottom: 0 !important;
+	}
+
+.polar-container {
+}
+
+.polar-left {
+	vertical-align: top;
+	width: 24%;
+	padding: 10px;
+	background-image: url("/orgs/po/leftcol-bg-top.jpg");
+	background-position: right top;
+	background-repeat: no-repeat;
+	float: left;
+}
+
+.polar-body {
+	vertical-align: top;
+	width: 72%;
+	float: left;
+}
+
+.polar-text {
+	color: #808080;
+	font-size: 12px;
+	font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+}
+
+.polar-menu {
+	width: 80%;
+	font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+	margin: 10px;
+}
+
+	.polar-menu > a {
+		text-transform: uppercase;
+		display: block;
+		font-size: 13px;
+		line-height: 14px;
+		text-decoration: none;
+		color: #2D6CB1;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 3px;
+		margin-bottom: 12px;
+	}
+	.polar-menu a:hover {
+		color: black;
+	}
+
+ul.polar-submenu {
+	margin-top: 8px;
+	list-style-type: none;
+	padding-left: 10px;
+}
+
+	ul.polar-submenu a {
+		color: gray;
+		text-decoration: none;
+	}
+
+table#claim-types {
+	width: 100%; border-collapse: collapse; border-spacing: 1px;
+}
+
+	table#claim-types th, table#claim-types td {
+		padding: 5px;
+	}
+
+.impno {
+	display: inline-block;
+	width: 30px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 2px;
+}
+
+#ready-ship-box {
+	background: rgba(0, 0, 0, 0) url("/orgs/po/ready-ship-box.jpg") no-repeat scroll 0 0;
+	height: 36px;
+	margin: 13px 0 0 10px;
+	width: 214px;
+}
+
+.polar-box {
+	width: 202px;
+	margin-left: 14px;
+	height: 180px;
+	background: #F0F0F0;
+	border-radius: 0 0 6px 6px;
+	border: 2px solid #fff;
+	border-top: none;
+	box-shadow: 0px 0px 2px #000;
+	font-size: 12px;
+	font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+}
+	
+	.polar-box p {
+		margin: 0;
+		font-size: 12px;
+		color: #868686;
+	}
+	
+.polar-box select {
+	width: 190px !important;
+	margin: 6px 0;
+	display: block;
+}
+
+.polar-list {
+	
+}
+.polar-list label {
+	display: inline-block;
+	width: 150px;
+}
+	
+.polar-watch {
+	display: inline-block;
+	background: url(/orgs/po/watch.jpg);
+	background-repeat: no-repeat;
+	height: 70px;
+	width: 33.2%;
+}
+	
+.polar-watch span {
+	display: block;
+	height: 70px;
+	margin-left: 80px;
+	font-family: 'Open Sans' sans-serif;
+	font-size: 12px;
+	}
+	
+.polar-second {
+	display: inline-block;
+	margin-top: 29px;
+	padding-top: 47px;
+	background: rgba(0, 0, 0, 0) url("/orgs/po/polar-services.gif") no-repeat scroll left top;
+	background-repeat: no-repeat;
+	width: 33.2%;
+	height: 103px;
+	}
+	
+.polar-third {
+	display: inline-block;
+	background: url(/orgs/po/glob.jpg);
+	background-repeat: no-repeat;
+	width: 30%;
+	height: 100px;
+	}
+
+.polar-third span {
+	display: block;
+	height: 70px;
+	margin-left: 80px;
+	font-family: 'Open Sans' sans-serif;
+	font-size: 12px;
+	}
+
+.polar-watch a:link, .polar-second a:link, .polar-third a:link {
+	color: #003d80;
+	text-decoration: none;
+}
+#polar-footer-container {
+	position: fixed;
+	bottom: 0px;
+	width: 1135px;
+	margin: 0 auto;
+	z-index: 1000;
+}
+#polar-footer {
+	font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+	margin-left: -5px;
+	color: #080808;
+	height: 59px;
+	padding-top: 10px;
+	text-align: center;
+	font-size: 11px;
+	border-top: 1px solid #989898;
+	background-color: #eaeaea;
+}
+	#polar-footer a {
+		color: #616161;
+		text-decoration: none;
+	}
+
+.xlink {
+	display: inline-block;
+	margin: 0 auto 20px auto;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	height: 80px;
+	width: 360px;
+	float: left;
+}
+	.xlink:hover {
+		background-color: #eee;
+		text-decoration: none;
+	}
+	
+		.xlink:hover h1 {
+			color: black;
+		}
+
+	.xlink img {
+		float: left;
+		margin: 10px 20px 20px 20px;
+		text-decoration: none;
+		border: none;
+	}
+
+	.xlink h1 {
+		font-weight: bold;
+		font-size: 18px;
+		display: block;
+		margin-top: 14px;
+		color: #2D6CB1;
+	}
+	
+	.xlink p {
+		color: gray;
+	}
+	
+
+#left-nav {
+	color: #808080;
+	float: left;
+	font-size: 14px;
+	margin-top: 13px;
+	padding-left: 16px;
+	padding-top: 0;
+	position: relative;
+	width: 208px;	
+}
+
+	#left-nav ul {
+		list-style: outside none none;
+		margin: 0 0 0 8px;
+		padding: 0;
+	}
+	
+	#left-nav li {
+		float: left;
+		margin: 0 0.15em;	
+	}
+	
+	#left-nav li a {
+		background: rgba(0, 0, 0, 0) url("/orgs/po/left-line-bg.gif") repeat-x scroll center top;
+		color: #808080;
+		display: block;
+		float: left;
+		font: 12px Arial;
+		padding: 3px 0;
+		text-align: left;
+		text-decoration: none;
+		width: 11em;	
+	}
+	
+	#left-nav li ul {
+		float: left;
+		margin: 11px 0.3em 8px 0;
+		width: 208px;	
+	}
+	
+	#left-nav ul ul {
+		display: block;
+		position: relative;	
+	}
+	
+	#left-nav li ul li {
+		float: left;
+		margin: 1px 0.15em;
+		width: 208px;	
+	}
+	
+	#left-nav li ul li a {
+		background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+		color: #757575;
+		display: block;
+		float: left;
+		font: 12px Arial;
+		padding: 0;
+		text-align: left;
+		text-decoration: none;
+		width: 210px;	
+	}
+		
+</style>}
+<div class="polar-container">
+	<div class="polar-left">
+	
+		<div class="polar-menu">
+			<a target="_top" href="http://www.polaraircargo.com/our-company.html">Our Company</a>
+			<a target="_top" href="http://www.polaraircargo.com/services.html">Products &amp; Services</a>
+			<a target="_top" href="http://www.polaraircargo.com/customer-support.html">Customer Support</a>
+			<ul class="polar-submenu">
+				<li><a target="_top" title="Procurement" href="http://www.polaraircargo.com/procurement.html">Procurement</a></li>
+				<li><a target="_top" title="Shipping Guides" href="http://www.polaraircargo.com/shipping-guides.html">Shipping Guides</a></li>
+				<li><a target="_top" title="Proof of Delivery" href="http://www.polaraircargo.com/pod/pod.asp">Proof of Delivery</a></li>
+				<li><a target="_top" href="#submit">Cargo e-Claims</a></li>
+			</ul>
+			<a target="_top" href="http://www.polaraircargo.com/contactus.html">Contact Us</a><br>
+		</div>
+		<div id="ready-ship-box">&nbsp;</div>
+		<div class="polar-box">
+			<div class="spacey">
+			<p>Contact us today to find out more about Polar Air, schedule your shipment, or arrange to ship your cargo via charter.
+				<br /><br />
+				<p style="font-weight: bold;">CONTACT LOCAL OFFICE:</span>
+			</p>
+			<select id="local-office" style="width:138px; font-size:11px; color:#474747;">
+				<option selected="">Select a city</option>
+				<optgroup label="Asia">
+					<option value="HONGKONG">Hong Kong (China)</option>
+					<option value="SHANGHAI">Shanghai (China)</option>
+		
+					<option value="NAGOYA">Nagoya (Japan)</option>
+					<option value="NARITA">Narita (Japan)</option>	
+					<option value="TOKYO">Tokyo (Japan)</option>
+					<option value="SEOUL">Seoul (Korea)</option>
+					<option value="MANILA">Manila (Philippines)</option>
+					<option value="TAIPEI">Taipei (Taiwan)</option>
+				</optgroup>
+				<optgroup label="Europe">
+					<option value="LEIPZIG">Leipzig (Germany)</option>
+				</optgroup>
+				<optgroup label="North America">
+					<option value="TORONTO">Toronto (Canada)</option>
+					<option value="GUADALAJARA">Guadalajara (Mexico)</option>
+					<option value="MEXICOCITY">Mexico City (Mexico)</option>
+					<option value="Anchorage">Anchorage, AK (US)</option>
+					<option value="ATLANTA">Atlanta, GA (US)</option>
+					<option value="CHICAGO">Chicago, IL (US)</option>
+					<option value="DALLAS">Dallas, TX (US)</option>
+					<option value="HOUSTON">Houston, TX (US)</option>
+					<option value="LOSANGELES">Los Angeles, CA (US)</option>
+					<option value="NEWYORK">New York, NY (US)</option>
+					<option value="PURCHASE">Purchase, NY (US)</option>
+					<option value="FRANCISCO">San Francisco, CA (US)</option>
+				</optgroup>
+			</select>
+			<p style="text-align: right;"><a href="JavaScript:top.location = 'http://www.polaraircargo.com/contact-list.html#'+$('#local-office').val();"><img src="/orgs/po/go.jpg" style="margin-right: 10px;"></a></p>
+			</div>
+		</div>
+	</div>
+	<div class="polar-body">
+		<img src="/orgs/po/cargo-eclaims.jpg" alt="Cargo e-Claims" />
+		<div class="polar-text" style="text-align: justify;">
+			<p class="thick">Polar Air Cargo is always ready to serve you.</p>
+			<p>Welcome to the Polar Air Cargo e-Claims portal which is available 24/7 - 365 days a year to accept your preliminary and formal claims.<br />
+			Our &quot;state of the art&quot; Cargo e-Claims system will provide you with efficient filing of both preliminary and formal claims as well as the ability to upload related documentation.</p>
+			<p>An email address and password will be required to view claims that have been submitted. In just a few key-strokes preliminary claims that have been entered previously can also be converted to a formal priced claim and additional required documentation added to the file.</p>
+			<p>Please explore the information contained in the portal which outlines time lines for claims as well as the documentation required to submit claims and the related documentation into the system.</p> 
+		</div>
+		<div class="clear" style="margin-top: 30px;"></div>
+
+		<div style="margin: 1.5em auto; width: 744px;">
+			<a href="/issue?action=form&group=196&mawbp=403" id="submit" class="xlink">
+				<h1><img src="/img/icons/ist/cargoclaim_general.png" alt="Cash">Submit Cargo Claim</h1>
+				<p style="margin-top: 4px;">Fill in the form and upload documents</p>
+			</a>
+			<div style="width: 20px; float: left;">&nbsp;</div>
+	
+			<a href="/contact/account?hash=issues" class="xlink">
+				<h1><img src="/img/icons/magnifier.png" alt="Lupe">Search submitted claims</h1>
+				<p style="margin-top: 4px;">Review your existing claims <i>(requires log-in)</i></p>
+			</a>
+			<div class="clear"></div>
+		</div>
+		
+	{#plugin:jqxtabs}
+	<div id="tabs-claiminfo">
+		<ul>
+			<li style="margin-left: 20px;">Filing a claim</li>
+			<li>Requirements for claim</li>
+			<li>Need more information?</li>
+		</ul>
+		<div class='polar-text'>
+			<div class="spacey">
+				<p>A cargo claim is a written complaint demanding financial compensation from Polar Air Cargo Worldwide for loss of, damage or<br /> delay to cargo whilst in care and control pursuant to a contract of carriage.</p>
+				<p>In the case of damage or delay, the person entitled to delivery must complain to Polar Air Cargo Worldwide within the time lines stated below. If no complaint is made within the times indicated below, then no action can be brought against Polar Air Cargo Worldwide.</p>
+			</div>
+			
+			<table id="claim-types">
+				<tr bgcolor="#c7c7c7" style="color: #ffffff;">
+					<th width="5%" style="text-align: center; color: #fff;">No.</th>
+					<th width="15%" style="color: #fff;">Claim Type</th>
+					<th width="40%" style="color: #fff;">Description</th>
+					<th width="40%" style="color: #fff;">Time Limit</th>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">1</td>
+					<td style="text-align: left;">Loss.</td>
+					<td style="text-align: left;">Loss of whole consignment.</td>
+					<td style="text-align: left;"><span class='impno'>120</span> days from the AWB issuing date.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">2</td>
+					<td style="text-align: left;">Damage.</td>
+					<td style="text-align: left;">To consignment whole or in part.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">3</td>
+					<td>Partial Loss.</td>
+					<td style="text-align: left;">Loss of part of the consignment.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">4</td>
+					<td>Delay.</td>
+					<td style="text-align: left;">To complete consignment or part of it</td>
+					<td style="text-align: left;"><span class='impno'>21</span> days from the placing date.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">5</td>
+					<td>Pilferage.</td>
+					<td style="text-align: left;">To consignment whole or in part</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+			</table>
+			<div>&nbsp;</div>
+		</div>
+		<div class='polar-text'>
+			<div class="spacey">
+			<p>If a preliminary claim was not submitted through our e-Claims portal, then a copy of the official complaint made to Polar Air Cargo must be uploaded into your formal claim file. Also an official claim from the person entitled to delivery must also be uploaded.</p>
+			<p>The following lists documentation that may be required and should also be uploaded into your formal claim file if available.</p>
+{!			<p>Intent to claim/preliminary letter (if submitted earlier and attach the email sent to claims department or our station/GSA)<br />
+			Official claim letter with claimed amount and detailed description about the claim from either shipper or consignee mentioned on the master AWB, stamped and signed mentioning the following:</p>}
+			<hr />
+			<ul class="polar-list">
+				<li>Claim type: total loss, partial loss, damage or delay</li>
+				<li>Mishandled weight and pieces</li>
+				<li>Claimed amount</li>
+				<li>Commercial  Invoices (highlighting the mishandled goods only in the invoices)</li>
+				<li>Packing List (highlighting the mishandled goods only)</li>
+				<li>Customs Report (if available)</li>
+				<li>Proof of delivery (POD) (if available), not required for total loss claims</li>
+				<li>Subrogation letter (in case claimant is not the shipper or consignee) and it should be on an official company letter head, stamped and signed by an authorized person.</li>
+				<li>Proof of contract: Copy of the master air waybill and house air waybill</li>
+				<li>Detailed statement of Claim fully describing details of loss/damage</li>
+				<li>Proof of mitigation of loss: Salvage receipts or repair invoices</li>
+				<li>Dump certificate proving cargo was destroyed as per local, state or governmental regulations. If a shipment is destroyed a letter from the claimant is required indicating why the cargo could not be used, repaired or salvaged</li>
+				<li>Cargo survey:  Performed by a licensed Marine Surveyor (if available)</li>
+			</ul>
+			</div>
+		</div>
+		<div class='polar-text'>
+			<div class="spacey">
+{!			<p>
+			  Filing a preliminary claim: <a href="http://www.polaraircargo.com/pdf/PRELIMININARY.pdf" target="_blank" class="highlight-blue-large">Read here</a>
+			| Filing a formal price claim: <a href="http://www.polaraircargo.com/pdf/DEAR1.pdf" target="_blank" class="highlight-blue-large">Read here</a>
+			</p>
+			<hr />}
+			<p>You may use one of the following channels:</p>
+			<ul class="polar-list">
+				<li><label>Claims Administration:</label><b>Tamilla Suleymanova</b></li>
+				<li><label>Email:</label><a href="mailto:preliminaryclaims@polaraircargo.com">preliminaryclaims@polaraircargo.com</a></li>
+				<li><label>Mail:</label>1 North Lexington Avenue, White Plains, NY 10601 </li>
+				<li>The nearest Polar Air Cargo office.</li>
+				<li><label>Phone:</label>+1 914 318 4729</li>
+				<li><label>Fax (NYC):</label>+1 914 697 5092</li>
+			</ul>
+			<p>Please note that the calculation of the time limit will be based on the date of receipt of your request and not the letter date.<br>
+			In order for you to reserve your right to claim for two years, we advise you to submit your intention to claim letter immediately after discovering the damaged, missing or delayed shipment.</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="polar-text">
+		<div class="polar-watch">
+			<span>
+				Polar Air's 98% on-time
+				commitment is unique in
+				the industry<br /><br />
+				<a href="http://www.polaraircargo.com/our-company.html" target="_top">Read more <img src="/orgs/po/airow-small.gif" style="vertical-align: middle;"></a>
+			</span>
+		</div>
+		<div class="polar-second">
+			<span>
+				Polar's premium services ensure priority boarding and quicker recovery time<br /><br />
+				<a href="http://www.polaraircargo.com/polar-priority-services.html" target="_top">Compare Services <img src="/orgs/po/airow-small.gif" style="vertical-align: middle;"></a>
+			</span>
+		</div>
+		<div class="polar-third">
+			<span>
+				Polar serves 130 cities around the world with regularly scheduled flights<br /><br />
+				<a href="http://www.polaraircargo.com/networkmap.html" target="_top">View network map <img src="/orgs/po/airow-small.gif" style="vertical-align: middle;"></a>
+			</span>
+		</div>
+	</div>
+</div>	
+<div style="clear: both;"></div>
+
+
+<div id="polar-footer-container">
+<div id="polar-footer">
+ &copy;2008-2017 Polar Air Cargo Worldwide, Inc. All rights reserved &middot; Powered by <a style="color: black !important;" href="http://www.cargohub.nl/worldwide-cargo-claims-platform">CargoHub</a><br />
+	<a href="http://www.polaraircargo.com/legal.html" target="_top">Legal</a> &nbsp; | &nbsp; <a href="http://www.polaraircargo.com/sitemap.html" target="_top">Site Map</a> &nbsp; | &nbsp; <a href="https://employees.atlasair.com/defaulthome.asp" target="_top">Employee Login</a> &nbsp; | &nbsp; <a href="http://ces.landsend.com/Atlas_Air_Inc" target="_top">Company Store</a> &nbsp; | &nbsp; <a href="http://www.polaraircargo.com/careers.asp" target="_top">Careers</a> <br />
+An Atlas Air Worldwide Holdings, Inc. Company <a href="http://www.atlasair.com/holdings/corporate-background.html" target="_top">Company Information</a> &nbsp; | &nbsp; <a href="http://www.atlasair.com/holdings/investor-information.html" target="_top">Investors</a> &nbsp; | &nbsp; <a href="http://www.atlasair.com/holdings/news-events.asp" target="_top">Press</a>
+</div>
+</div>

@@ -1,0 +1,605 @@
+<?php
+/**
+ * Plugin to generate and execute actions that handle task events (warning, deadline, post-deadline closure)
+ *
+ * @author Wavetrex Infinity <wavetrex@gmail.com>
+ * @package CargoConnect
+ * @subpackage Plugin.Action
+ * @version 2020.09.29
+ */
+class App_Plugin_Action_Task implements App_Plugin_Action
+{
+	public $name = "Task Actions";
+
+	public static $valid_operations = array(
+		'assign',		// Task assign (or reassign) notification action, created when a user, department or group is selected as Assignee
+		'unassign',		// Task "unassign" - Used when reassigning, the original Assignee gets an "unassign" notification
+		'delegate',		// A delegate is set for department-assigned task (This is an extra user with managing abilities on the task)
+		'retract',		// Previous delegation is retracted
+		'reminder',		// A task may perform operations as a warning that the deadline is approaching (for example, send a notification)
+		'deadline',		// A task has a deadline, and when reached it should perform operations (send e-mails, or modify data somewhere)
+		'overdue',		// Overdue notification action, which regenerates itself every time it's triggered (instead of archiving), until it's deleted or the time-limit is reached
+		'completion',	// Task has been completed (either by Assignee or another party)
+		'failure',		// Task has been set as "failed" by the Creator
+		'closure',		// After the deadline, a task may self-close or do other things by itself, if configured to do so; Also used for manual closing
+		'expiry'		// Maximum task age as been reached and it was automatically closed
+	);
+
+	const	RESULT_EXEC_OK=				 1,
+			RESULT_EMAIL_SENT=			 2,
+
+			ERR_PARAMETER_ERROR=		-1,
+			ERR_TEMPLATE_NOT_FOUND=		-2,
+			ERR_RECIPIENT_NOT_FOUND=	-3,
+			ERR_TASK_NOT_FOUND=			-4,
+			ERR_UNMATCHED_IDS=			-5	// When Action ID stored in the task doesn't match the Action's current ID for the specific action
+		;
+
+	/**
+	 * The object that instanced this plugin
+	 * @var App_Model_Actions
+	 */
+	private $_master = null;
+
+	/**
+	 * Meta information about the action being processed by the plugin
+	 * @var array
+	 */
+	private $meta;
+
+	/**
+	 * The Task model used to process changes to tasks
+	 * @var App_Model_Task
+	 */
+	private $task;
+
+	/**
+	 * The User model that is used to read the contact IDs for various users mentioned in the actions
+	 * @var App_Model_User
+	 */
+	private $user;
+
+	/**
+	 * The task that is associated with the action (always read, as actions need to check inforamtion from the task when performing)
+	 * -- If the task is missing, or the action ID is not correctly present in the task, the action will be dumped as invalid
+	 * @var array
+	 */
+	private $task_data;
+
+	/**
+	 * Plugin constructor
+	 * @param array $params
+	 * @param App_Model_Actions $master
+	 */
+	public function __construct($meta, $master = null)
+	{
+		if($master instanceof App_Model_Actions)
+			$this->_master = &$master;
+
+		$this-> task = new App_Model_Task();
+		$this-> user = new App_Model_User();
+
+		$this-> meta = $meta;
+
+		if(empty($meta))
+			return;
+
+		// When Meta information is present (instancing on an existing action), also read the linked task,
+		// and make sure the "creator_id" from the task matches, otherwise the action is dropped via exception handling
+		if(empty($meta['creator_id']))
+			throw new Plugin_Exception("Creator Task ID missing from action", self::ERR_PARAMETER_ERROR);
+
+		// Always read the associated task. Individual ops might check if their ID matches the one stored in the task, if not they will drop/archive the action with error
+		// -- Necessary to avoid orphaned actions (leftover after task has been changed)
+		$this-> task_data = $this-> task-> read($meta['creator_id'], array('task', 'creator'));
+		if(!$this-> task_data)
+			throw new Plugin_Exception("Task {$meta['creator_id']} linked to Action {$meta['id']} not found or read error", self::ERR_TASK_NOT_FOUND);
+                        
+                        
+	}
+
+	/**
+	 * Checks if the operation is valid and if the action contains the valid parameters for Task actions
+	 * -- (before Action is being created or updated)
+	 *
+	 * @see App_Plugin_Action::verify_Action()
+	 */
+	public function verify_Action($operation, $action_data = null, $comment_append = null)
+	{
+		if(empty($operation) || !in_array($operation, self::$valid_operations))
+			return MVC_Core::$debug-> dump(sprintf("Task Action - Invalid Operation: %s", $operation), __METHOD__, null, 'error');
+
+		// TODO: Study $action and build $comment (based on what's in $operation and $action)
+		$comment = '';
+
+		if(!empty($comment_append))
+			if(!empty($comment))
+				$comment.=' ('.$comment_append.')';
+			else
+				$comment = $comment_append;
+
+		return array(
+			'operation'=> $operation,
+			'data'=> $action_data,
+			'comment'=> $comment
+		);
+	}
+
+	private $op_result;
+
+	/**
+	 * Due to the fact that Task operations are all about sending notificaitons, this common method is used to perform the operation
+	 *
+	 * @param string $op
+	 * @param array $action 
+	 * @param array $cc		Extra contact IDs to which this notification is sent (beside the automatically selected ones) - Useful for department delegate and deadline informing to creator
+	 * @param array $bcc	Extra invisible contact IDs to which this notification is sent
+	 * -- Note: Only valid in E-mail mode
+	 */
+	private function send_Notification($op, $action, $cc = null, $bcc = null)
+	{
+		$this-> op_result = array();
+		// - For "E-mail" based notifications, a template that is supposed to assemble the information in the notification and then get sent via App_Model_Comm::create, then App_Model_Comm::msg_Mailer
+		// - For "System" based notifications, a different template is used to send the notification to the user via App_Model_Evan::create (e-mail is not sent)
+		// The plugin will read all relevant data and give it to the template system, so common and special tags can display various information in the notification Title and Body
+
+		// On success, the action is archived and task is updated to reflect the fact that the "reminder" has been sent (action_stage "rem")
+
+		// Checks if the Reminder Operation (which is a Notification) should be done by E-mail or as an In-system notification
+		if(empty($action['type'])) {
+			MVC_Core::$debug-> dump("Reminder action doesn't have any specified notification type. Defaulting to [sys]", __METHOD__, null, 'warning');
+			$action['type'] = 'sys';
+		}
+
+		// Build the template locator_key relevant for the $op, (notification) "type" and (recipient) "mode" (Optional)
+		$locator_key = "task-{$op}-{$action['type']}";
+		if(isset($action['mode']))
+			$locator_key.='-'.$action['mode'];
+
+		// Attempt to find if a matching template exists
+		$m_template = new App_Model_Template();
+		$tpl_id =$m_template-> locate("ntf", $locator_key);
+		if(!$tpl_id) {
+			MVC_Core::$debug-> dump("Template with locator: {$locator_key} not found. Unable to send notification", __METHOD__, null, 'error');
+			return self::ERR_TEMPLATE_NOT_FOUND;
+		}
+
+		// ... and read the template
+		$tpl = $m_template-> read($tpl_id);
+
+		// All the useful elements that may appear in the template
+		$tpl_data = array();
+
+		// Read the related task
+		$tpl_data['task'] = $this-> task_data;
+
+		// Read the basic organization info for which this action is triggered
+		$m_org = new App_Model_Organization();
+		$tpl_data['org'] = $m_org-> read($this-> meta['org_id'], array('contact'));
+
+		// Read the related linked information
+		if(isset($action['link'])) {
+			switch($action['link']['type']) {
+				// only records supported currently
+				case 'record':
+					$m_rec = new App_Model_Issue();
+					$tpl_data['record'] = $m_rec-> read($action['link']['id'], array('type', 'group', 'organization', 'submitter'), $this-> meta['org_id'], null, null, array('serialize'));
+					break;
+				default:
+					MVC_Core::$debug-> dump("Unsupported link type {$action['link']['type']}. Data might be missing from the generated message.", __METHOD__, null, 'warning');
+			}
+		}
+
+		$dt_CFG = new stdClass();
+		$drytpl = new Drytemplate($dt_CFG);
+
+		if(isset($action['by']))
+			$tpl_data['operator'] = $this-> user-> read($action['by'], array('user_comm', 'contact'));
+
+		$m_contact = new App_Model_Contact();
+		switch($action['type']) {
+			// Notification by E-mail, done through App_Model_Comm
+			case 'email':
+
+				// Notification mode - "contact", "user", "department" or "group" (user group) ?
+				switch($action['mode']) {
+					// TODO: Implement contact mode, where a task notification is being sent to an arbitrary contact (which might be outside the system)
+					case 'contact':
+
+						break;
+					// User mode - The "to" is a system user ID (only one message will be sent)
+					case 'user':
+						// Read the user information, add to the template, and also find the user's primary contact
+						$tpl_data['recipient'] = $this-> user-> read($action['to'], array('user_comm', 'contact'));
+						if(!$tpl_data['recipient'])
+							return MVC_Core::$debug-> dump("Unable to read recipient data: Sending not possible", __METHOD__, null, 'error');
+
+						break;
+					// Department mode, the "to" is a Department ID (Read the deparment, find a Chief, if one is present than the Chief's email is the target for the notification)
+					// If no chief is found but a contact or more mentioned in $cc, then that contact is being used (Department assignment with Delegated member)
+					case 'dep':
+						$m_dep = new App_Model_Department();
+						$dep = $m_dep-> read($action['to'], array('chief', 'members'));
+						if(!$dep)
+							return MVC_Core::$debug-> dump("Unable to read department data: Sending not possible", __METHOD__, null, 'error');
+
+						if(!isset($dep['chief']) || !isset($dep['chief']['contact_id'])) {
+							if(empty($cc)) {
+								// Note: Since BCC is ignored here, if no chief present and $cc is empty, send_Notification() will fail
+								return MVC_Core::$debug-> dump("Department has no chief: No target for notification", __METHOD__, null, 'error');
+							} else {
+								// When $cc is specified, recipient is the first contact in $cc (the delegate?)
+								if(is_int($cc)) // Just 1 ?
+									$cc = array($bcc);
+
+								$firstcc = array_shift($cc);
+								$tpl_data['recipient'] = $m_contact-> read($firstcc);
+								$tpl_data['recipient']['contact_id'] = $firstcc;
+							}
+						} else {
+							$tpl_data['recipient'] = $dep['chief'];
+						}
+
+						$tpl_data['dep'] = array(
+							'id'=> (int)$dep['id'],
+							'name'=> $dep['name'],
+							'members'=> $dep['members']
+						);
+
+						break;
+					// TODO: Implement user group mode, the "to" is a User Group ID (All members are automatically placed in To: section)
+					case 'group':
+
+						break;
+				}
+
+				// Assemble the Subject and Body of the E-mail
+				try {
+					$content = $drytpl-> render_String($tpl['body'], $tpl_data);
+					$subject = $drytpl-> render_String($tpl['title'], $tpl_data);
+				} catch(Exception $e) {
+					// Error during render ? Probably bad template
+					return MVC_Core::$debug-> dump("Template rendering error: Sending not possible", __METHOD__, null, 'error');
+				}
+
+				$this-> op_result['tpl_render'] = true;
+
+				// Sender contact for E-mail notification (optional). It may be present inside the template metadata
+				$tpl_xdata = !empty($tpl['xdata'])? @json_decode($tpl['xdata'], true): array();
+				// Prepare message meta
+				$msg_meta = array(
+					'org_id'=> $this-> meta['org_id'],
+					'from_id'=> !empty($tpl_xdata['ntf_contact'])? (int)$tpl_xdata['ntf_contact']: 0,
+					'recipients'=> array(
+						'to'=> array($tpl_data['recipient']['contact_id'])
+					)
+				);
+
+				// Extra contacts for this notification ?
+				if(!empty($cc)) {
+					if(is_int($cc)) // Just 1 ?
+						$cc = array($cc);
+					$msg_meta['recipients']['cc'] = $cc;
+				}
+				if(!empty($bcc)) {
+					if(is_int($bcc)) // Just 1 ?
+						$bcc = array($bcc);
+					$msg_meta['recipients']['bcc'] = $bcc;
+				}
+
+				$m_comm = new App_Model_Comm();
+				$msg_iid = $m_comm-> create("system", $content, $subject, $msg_meta);
+				if(!$msg_iid)
+					return MVC_Core::$debug-> dump("Database error: Unable to record the message: Sending not possible", __METHOD__, null, 'error');
+
+				$this-> op_result['msg_id'] = $msg_iid;
+
+				$mailer_response = $m_comm-> msg_Mailer($msg_iid);
+				$this-> op_result['r_mailer'] = $mailer_response;
+
+				$this-> op_result['code'] = self::RESULT_EMAIL_SENT;
+				break;
+			// Notification by internal messages, done through App_Model_Evan
+			case 'sys':
+
+				$this-> op_result['code'] = self::RESULT_EXEC_OK;
+				break;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Helper function to log errors in sending notifications
+	 * @param int $r
+	 */
+	protected function notification_Error_Handler($r)
+	{
+		// Handling notification errors (this plugin is working, but due to some invalid data the action could not be performed)
+		if($r == self::ERR_TEMPLATE_NOT_FOUND || $r == self::ERR_RECIPIENT_NOT_FOUND) {
+			// Notification failed;
+			// TODO: Create a system notification entry to Task creator about the fact that the Assignee could not be informed
+		}
+
+		$err = MVC_Core::$debug-> get_Last_Dump();
+		return array(
+			'code'=> $r,
+			'error'=> $err['data']
+		);
+	}
+
+	/**
+	 * Notification that a task has been assigned
+	 *
+	 * @param array $action Information about the operation that is about to be executed (decoded JSON, can be anything)
+	 */
+	public function op_Assign($action = null)
+	{
+		$r = $this-> send_Notification("assign", $action);
+		if($r < 0)
+			return $this-> notification_Error_Handler($r);
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification that a task has been unassigned
+	 *
+	 * @param array $action Information about the operation that is about to be executed (decoded JSON, can be anything)
+	 */
+	public function op_Unassign($action = null)
+	{
+		$r = $this-> send_Notification("unassign", $action);
+		if($r < 0)
+			return $this-> notification_Error_Handler($r);
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification that a department task received a delegate (can happen at the same time with assignment)
+	 *
+	 * @param array $action
+	 */
+	public function op_Delegate($action = null)
+	{
+		$r = $this-> send_Notification("delegate", $action);
+		if($r < 0)
+			return $this-> notification_Error_Handler($r);
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification to a user that they are no longer the delegate (user loses ability to edit the task, unless they are the chief)
+	 *
+	 * @param array $action
+	 */
+	public function op_Retract($action = null)
+	{
+		$r = $this-> send_Notification("retract", $action);
+		if($r < 0)
+			return $this-> notification_Error_Handler($r);
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification about task approaching due date (deadline)
+	 *
+	 * @param array $action Information about the operation that is about to be executed (decoded JSON, can be anything)
+	 */
+	public function op_Reminder($action = null)
+	{
+		if($this-> meta['id'] != $this-> task_data['rem_action_id'])
+			throw new Plugin_Exception("Id mismatch to Task rem_action_id {$this-> task_data['rem_action_id']}", self::ERR_UNMATCHED_IDS);
+
+		// A department task with a delegate will add the delegate's primary contact as cc (beside the chief)
+		if($action['mode'] == 'dep' && !empty($this-> task_data['delegate_id'])) {
+			// Read the delegate, and add its contact ID as the cc
+			$delegate = $this-> user-> read($this-> task_data['delegate_id']);
+			$cc = $delegate['contact_id'];
+		} else
+			$cc = null;
+
+		$r = $this-> send_Notification("reminder", $action, $cc);
+		if($r < 0) {
+			// Notification failed, update the task to reflect that fact
+			$this-> task-> update($this-> meta['creator_id'], array(
+				'rem_action_id'=> $r
+			), 0, null, true);
+
+			return $this-> notification_Error_Handler($r);
+		}
+
+		// Notification successful - Update the task so it reflects the change
+		$this-> task-> update($this-> meta['creator_id'], array(
+			'action_stage'=> "rem",
+			'rem_action_id'=> -1
+		), 0, null, true);
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification about task deadline passed
+	 *
+	 * @see op_Reminder
+	 */
+	public function op_Deadline($action = null)
+	{
+		if($this-> meta['id'] != $this-> task_data['dl_action_id'])
+			throw new Plugin_Exception("Id mismatch to Task dl_action_id {$this-> task_data['dl_action_id']}", self::ERR_UNMATCHED_IDS);
+
+		// Also CC the delegate if one is set
+		if($action['mode'] == 'dep' && !empty($this-> task_data['delegate_id'])) {
+			// Read the delegate, and add its contact ID as the cc
+			$delegate = $this-> user-> read($this-> task_data['delegate_id']);
+			$cc = $delegate['contact_id'];
+		} else
+			$cc = null;
+
+		// Also BCC the task creator on deadline, unless the creator is the same as the assignee ; On department tasks the operator is always informed
+		if(($action['mode'] == 'user' && $action['to'] != $action['by']) || ($action['mode'] == 'dep')) {
+			$operator = $this-> user-> read($action['by']);
+			$bcc = $operator['contact_id'];
+		} else
+			$bcc = null;
+
+		$r = $this-> send_Notification("deadline", $action, $cc, $bcc);
+		if($r < 0) {
+			// Notification failed, update the task to reflect that fact
+			$this-> task-> update($this-> meta['creator_id'], array(
+				'dl_action_id'=> $r
+			), 0, null, true);
+
+			return $this-> notification_Error_Handler($r);
+		}
+
+		// Notification successful - Update the task so it reflects the change
+		$this-> task-> update($this-> meta['creator_id'], array(
+			'action_stage'=> "dl",
+			'dl_action_id'=> -1
+		), 0, null, true);
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification about time passed after deadline (recurrent)
+	 *
+	 * @see op_Reminder
+	 */
+	public function op_Overdue($action = null)
+	{
+		if($this-> meta['id'] != $this-> task_data['ovd_action_id'])
+			throw new Plugin_Exception("Id mismatch to Task ovd_action_id {$this-> task_data['ovd_action_id']}", self::ERR_UNMATCHED_IDS);
+
+		if(empty($this-> task_data['ovd_repeat']))
+			$this-> task_data['ovd_repeat'] = 0;
+		$this-> task_data['ovd_repeat']++;
+
+		// A department task with a delegate will add the delegate's primary contact as cc (beside the chief)
+		if($action['mode'] == 'dep' && !empty($this-> task_data['delegate_id'])) {
+			// Read the delegate, and add its contact ID as the cc
+			$delegate = $this-> user-> read($this-> task_data['delegate_id']);
+			$cc = $delegate['contact_id'];
+		} else
+			$cc = null;
+
+		// If there is no limit, the "overdue" notification is sent and keeps renewing as long as the task is active
+		if(!empty($this-> task_data['ovd_rep_limit']) && $this-> task_data['ovd_repeat'] >= $this-> task_data['ovd_rep_limit']) {
+
+			// Overlimit notificaitons are also sent to the Operator as Bcc, unless the operator is the assignee ; On department tasks the operator is always informed
+			if(($action['mode'] == 'user' && $action['to'] != $action['by']) || ($action['mode'] == 'dep')) {
+				$operator = $this-> user-> read($action['by']);
+				$bcc = $operator['contact_id'];
+			} else
+				$bcc = null;
+
+			$r = $this-> send_Notification("overlimit", $action, $cc, $bcc);
+		} else {
+			$r = $this-> send_Notification("overdue", $action, $cc);
+
+			if($this-> task_data['ovd_intv'] > 0)
+				$renew = true;
+		}
+
+		if($r < 0) {
+			// Notification failed, update the task to reflect that fact
+			$this-> task-> update($this-> meta['creator_id'], array(
+				'ovd_action_id'=> $r
+			), 0, null, true);
+
+			return $this-> notification_Error_Handler($r);
+		}
+
+		// On success, the action is archived and task is updated to reflect the fact that the first "overdue" notification has been sent (action_stage "ovd")
+		if(isset($renew)) {
+			// Renew the overdue action?
+			$intv = new DateInterval("P{$this-> task_data['ovd_intv']}D");
+			$new_trigger = $this-> meta['trigger'];
+			$new_trigger-> add($intv);
+			// If the new trigger is in the past, create new trigger based on present day
+			$now = new DateTime();
+			if($new_trigger <= $now)
+				$new_trigger = $now-> add($intv);
+
+			$ovd_action_id = $this->_master-> create($new_trigger, 'task', 'overdue', $this-> meta['creator_id'], $action, $this-> meta['org_id'], "src: {$this-> meta['id']}");
+
+			$this-> task-> update($this-> meta['creator_id'], array(
+				'action_stage'=> "ovd",
+				'ovd_action_id'=> $ovd_action_id,
+				'ovd_repeat'=> $this-> task_data['ovd_repeat']
+			), 0, null, true);
+
+			$this-> op_result['ovd_count'] = $this-> task_data['ovd_repeat'];
+		} else {
+			// No, we're done, no more notifications
+			$this-> task-> update($this-> meta['creator_id'], array(
+				'action_stage'=> "end",
+				'ovd_repeat'=> $this-> task_data['ovd_repeat'],
+				'ovd_action_id'=> -1
+			), 0, null, true);
+
+			$this-> op_result['ovd_count'] = $this-> task_data['ovd_repeat'];
+			$this-> op_result['ovd_final'] = true;
+		}
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification that the task has been completed (generated when task status is set to "completed")
+	 *
+	 * @see op_Reminder
+	 */
+	public function op_Completion($action = null)
+	{
+		$r = $this-> send_Notification("completion", $action);
+		if($r < 0)
+			return $this-> notification_Error_Handler($r);
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification that the task has been completed (generated when task status is set to "completed")
+	 *
+	 * @see op_Reminder
+	 */
+	public function op_Failure($action = null)
+	{
+		$r = $this-> send_Notification("failure", $action);
+		if($r < 0)
+			return $this-> notification_Error_Handler($r);
+
+		return $this-> op_result;
+	}
+
+	/**
+	 * Notification that a task has been closed (made invisible) by the Janitor system
+	 * - Sent only to task Creator for completed/failed tasks, or to Assignee and Creator for open tasks (assigned, inprogress, onhold)
+	 *
+	 * @param string $action Information about the operation that is about to be executed (decoded JSON, can be anything)
+	 */
+	public function op_Closure($action = null)
+	{
+		$r = $this-> send_Notification("closure", $action);
+		if($r < 0)
+			return $this-> notification_Error_Handler($r);
+
+		return $this-> op_result;
+	}
+
+}
+
+
+// (temp info): Action stages:
+// - prep - Actions have been prepared, none was sent yet
+// - rem - Reminder action has been triggered (only if Reminder action is active)
+// - dl - Deadline action has been triggered
+// - ovd - First "Overdue" action has been triggered (only if overdue notifications are active)
+// - end - The task has been completed, failed or closed - All notification actions are removed
+// - to - The task reached timeout interval - The "overdue" notification is removed to stop the recurring sending
+

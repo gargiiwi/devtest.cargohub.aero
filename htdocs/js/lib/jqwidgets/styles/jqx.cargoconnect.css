@@ -1,0 +1,225 @@
+.jqx-widget-cargoconnect
+{
+  font-family: Verdana;
+}
+.jqx-widget-content-cargoconnect
+{
+  color: #4A5571;
+  border-color: #336BB2;
+  background-color: #FFFFFF;
+  font-family: Verdana;
+}
+.jqx-widget-header-cargoconnect
+{
+  color: #FFFFFF;
+  border-color: #336BB2;
+  background-color: #589BED;
+  font-family: Verdana;
+}
+.jqx-grid-cell-cargoconnect
+{
+  background-color: #FFFFFF;
+}
+.jqx-fill-state-normal-cargoconnect
+{
+  color: #FFFFFF;
+  border-color: #336BB2;
+  background-color: #589BED;
+}
+.jqx-grid-selectionarea-cargoconnect
+{
+  border-color: #336BB2;
+  background-color: #589BED;
+}
+.jqx-grid-cell-sort-cargoconnect, .jqx-grid-cell-filter-cargoconnect, .jqx-grid-cell-pinned-cargoconnect
+{
+  background-color: #E4F0FF;
+  color: #373F55;
+}
+.jqx-grid-cell-alt-cargoconnect, .jqx-grid-cell-sort-alt-cargoconnect, .jqx-grid-cell-filter-alt-cargoconnect
+{
+  background-color: #E4F0FF;
+  color: #373F55;
+}
+.jqx-fill-state-hover-cargoconnect
+{
+  color: #FFFFFF;
+  border-color: #1158B2;
+  background-color: #307CDA;
+}
+.jqx-fill-state-pressed-cargoconnect
+{
+  color: #FFFFFF;
+  border-color: #1158B2;
+  background-color: #307CDA;
+}
+.jqx-tabs-title-selected-top-cargoconnect, .jqx-tabs-selection-tracker-top-cargoconnect
+{
+  color: #4A5571;
+  border-color: #336BB2;
+  border-bottom: 1px solid #FFFFFF;
+  background-image: none ;
+  background-color: #FFFFFF;
+}
+.jqx-tabs-title-selected-bottom-cargoconnect, .jqx-tabs-selection-tracker-bottom-cargoconnect
+{
+  color: #4A5571;
+  border-color: #336BB2;
+  border-top: 1px solid #FFFFFF;
+  background-image: none ;
+  background-color: #FFFFFF;
+}
+.jqx-splitter-splitbar-hover-cargoconnect
+{
+  background: #307CDA;
+}
+.jqx-splitter-splitbar-vertical-cargoconnect, .jqx-splitter-splitbar-horizontal-cargoconnect, .jqx-slider-track-horizontal-cargoconnect, .jqx-slider-track-vertical-cargoconnect
+{
+  background: #589BED;
+}
+.jqx-splitter-collapse-button-horizontal-cargoconnect, .jqx-splitter-collapse-button-vertical-cargoconnect, .jqx-slider-rangebar-cargoconnect
+{
+  background: #307CDA;
+}
+.jqx-scrollbar-state-normal-cargoconnect
+{
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+.jqx-grid-bottomright-cargoconnect, .jqx-panel-bottomright-cargoconnect, .jqx-listbox-bottomright-cargoconnect
+{
+  background-color: #FFFFFF;
+}
+.jqx-scrollbar-thumb-state-normal-cargoconnect
+{
+  background-color: #589BED;
+background-image: none;
+}
+.jqx-scrollbar-thumb-state-hover-cargoconnect
+{
+  background-color: #307CDA;
+  background-image: none;
+}
+.jqx-scrollbar-thumb-state-pressed-cargoconnect.jqx-progressbar-value-vertical-cargoconnect
+{
+  background-color: #307CDA;
+  background-image: none;
+}
+.jqx-radiobutton-check-checked-cargoconnect
+{
+  background: #FFFFFF;
+}
+.jqx-grid-column-sortascbutton-cargoconnect, .jqx-expander-arrow-bottom-cargoconnect, .jqx-window-collapse-button-cargoconnect, .jqx-menu-item-arrow-up-cargoconnect, .jqx-menu-item-arrow-top-up-cargoconnect, .icon-arrow-up-cargoconnect
+{
+  background-image: url('images/icon-up-white.png');
+}
+.jqx-menu-item-arrow-up-selected-cargoconnect, .icon-arrow-up-selected-cargoconnect
+{
+  background-image: url('images/icon-up-white.png');
+}
+.icon-arrow-up-hover-cargoconnect
+{
+  background-image: url('images/icon-up-white.png');
+}
+.jqx-grid-column-menubutton-cargoconnect, .jqx-grid-column-sortdescbutton-cargoconnect, .jqx-expander-arrow-top-cargoconnect, .jqx-window-collapse-button-collapsed-cargoconnect, .jqx-menu-item-arrow-down-cargoconnect, .jqx-menu-item-arrow-down-cargoconnect, .icon-arrow-down-cargoconnect
+{
+  background-image: url('images/icon-down-white.png');
+}
+.jqx-menu-item-arrow-down-selected-cargoconnect, .icon-arrow-down-selected-cargoconnect
+{
+  background-image: url('images/icon-down-white.png');
+}
+.icon-arrow-down-hover-cargoconnect
+{
+  background-image: url('images/icon-down-white.png');
+}
+.jqx-tabs-arrow-left-cargoconnect, .jqx-menu-item-arrow-top-left-cargoconnect, .icon-arrow-left-cargoconnect, .icon-arrow-down-left-cargoconnect
+{
+  background-image: url('images/icon-left-white.png');
+}
+.icon-arrow-left-hover-cargoconnect
+{
+  background-image: url('images/icon-left-white.png');
+}
+.jqx-menu-vertical-cargoconnect
+{
+  background: #FFFFFF;
+}
+.jqx-menu-item-arrow-left-selected-cargoconnect, .icon-arrow-left-selected-cargoconnect
+{
+  background-image: url('images/icon-left-white.png');
+}
+.jqx-tabs-arrow-right-cargoconnect, .jqx-menu-item-arrow-top-right-cargoconnect, .icon-arrow-right-cargoconnect
+{
+  background-image: url('images/icon-right-white.png');
+}
+.icon-arrow-right-hover-cargoconnect
+{
+  background-image: url('images/icon-right-white.png');
+}
+.jqx-menu-item-arrow-right-selected-cargoconnect, .icon-arrow-right-selected-cargoconnect
+{
+  background-image: url('images/icon-right-white.png');
+}
+.jqx-window-close-button-cargoconnect, .jqx-tabs-close-button-cargoconnect, .icon-close-cargoconnect
+{
+  background-image: url('images/close_white.png');
+}
+.jqx-tabs-close-button-selected-cargoconnect
+{
+  background-image: url('images/close_white.png');
+}
+.jqx-tabs-close-button-hover-cargoconnect
+{
+  background-image: url('images/close_white.png');
+}
+.jqx-widget-cargoconnect .jqx-grid-column-header-cargoconnect, .jqx-widget-cargoconnect .jqx-grid-cell-cargoconnect, .jqx-widget-cargoconnect .jqx-grid-group-cell-cargoconnect, .jqx-grid-cell-cargoconnect
+{
+  border-color: #336BB2;
+}
+.jqx-window-modal-cargoconnect
+{
+  background: #000000;
+}
+.jqx-window-modal-cargoconnect
+{
+  border-color: #336BB2;
+}
+.jqx-checkbox-check-checked-cargoconnect
+{
+  background-image: url('images/check_white.png');
+}
+.jqx-checkbox-check-indeterminate-cargoconnect
+{
+  background-image: url('images/check_indeterminate_white.png');
+}
+
+
+
+.jqx-scrollbar-state-normal-cargoconnect .icon-arrow-up-cargoconnect,
+.jqx-scrollbar-button-state-normal-cargoconnect .icon-arrow-up-cargoconnect { background-image: url('images/icon-up.png'); }
+.jqx-scrollbar-button-state-hover-cargoconnect .icon-arrow-up-cargoconnect,
+.jqx-scrollbar-button-state-pressed-cargoconnect .icon-arrow-up-cargoconnect { background-image: url('images/icon-up-white.png'); }
+
+.jqx-scrollbar-state-normal-cargoconnect .icon-arrow-down-cargoconnect,
+.jqx-scrollbar-button-state-normal-cargoconnect .icon-arrow-down-cargoconnect { background-image: url('images/icon-down.png'); }
+.jqx-scrollbar-button-state-hover-cargoconnect .icon-arrow-down-cargoconnect,
+.jqx-scrollbar-button-state-pressed-cargoconnect .icon-arrow-down-cargoconnect { background-image: url('images/icon-down-white.png'); }
+
+
+.jqx-scrollbar-state-normal-cargoconnect .icon-arrow-left-cargoconnect,
+.jqx-scrollbar-button-state-normal-cargoconnect .icon-arrow-left-cargoconnect { background-image: url('images/icon-left.png'); }
+.jqx-scrollbar-button-state-hover-cargoconnect .icon-arrow-left-cargoconnect,
+.jqx-scrollbar-button-state-pressed-cargoconnect .icon-arrow-left-cargoconnect { background-image: url('images/icon-left-white.png'); }
+
+.jqx-scrollbar-state-normal-cargoconnect .icon-arrow-right-cargoconnect,
+.jqx-scrollbar-button-state-normal-cargoconnect .icon-arrow-right-cargoconnect { background-image: url('images/icon-right.png'); }
+.jqx-scrollbar-button-state-hover-cargoconnect .icon-arrow-right-cargoconnect,
+.jqx-scrollbar-button-state-pressed-cargoconnect .icon-arrow-right-cargoconnect { background-image: url('images/icon-right-white.png'); }
+
+
+.jqx-widget .jqx-grid-column-menubutton, .jqx-widget .jqx-grid-column-sortascbutton, .jqx-widget .jqx-grid-column-sortdescbutton, .jqx-widget .jqx-grid-column-filterbutton
+{
+   background-color: transparent;
+   border-color: #336bb2;
+}

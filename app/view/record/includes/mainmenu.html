@@ -1,0 +1,129 @@
+{!Record Process Main-Menu}
+{#root::
+{#ifnot:rec.master_org_id:<div class='rec-noorg jqx-rc-all spacey'>
+<b>&middot; This record doesn't have an active master organization &middot;</b><hr />
+<i>Only superusers can see this record!</i>
+</div>} 
+
+<div id='record-process-mainmenu' style="margin-bottom: 12px;">
+	<ul>		
+		<li><img src='/img/icons16/table.png' alt="[#]" /><a href="/issue/list">Records Grid</a></li>
+		{#if:acls.unrestricted|acls.privileges.issue_add:<li><img src="/img/icons16/add.png" alt="Add" />
+			{#if:_cache.current_rt.name!='Cargo Damage':<a href="/issue?action=form&amp;key={rt.key}">}
+			{#if:_cache.current_rt.name=='Cargo Damage':<a href="https://cclp.aero/#/save-report?isFrom=CREATE_REPORT" >}
+				New Record
+			</a>
+		</li>}
+		{#if:recent:<li title="Recenly opened records" ><img src='/img/icons16/clock_history_frame.png' alt="History" />History...
+			<ul style='width: 900px;'>
+				{#repeat:recent:
+				<li><img src="/img/icons16/ist/{rt_key}.png" alt="{rt_name}" /><a href="/record/process:{*}#panels"><span class="gray" style="width: 110px; display: inline-block;">{*}</span>{#if:pri: ({pri})}</a></li>}
+			</ul>
+		</li>}
+		{#if:duplicates:<li style="background-color: rgba(255, 96, 0, 0.6);"><img src='/img/icons16/dupe16.png' alt="[%]" /><b>Potential duplicates</b>
+			<ul style='width: 320px;'>
+				{#repeat:duplicates:<li>{n} = {value} <span class='gray'>[{count}]</span> ...
+					<ul style='width: 700px;'> 
+						{#repeat:list:
+						<li><a href="/record/process:{track}#panels"><span class="gray" style="width: 110px; display: inline-block;">{track}</span> {submitter.name} &nbsp;&lt;{submitter.email}&gt;</span></a></li>}
+					</ul> 
+				</li>}
+			</ul>
+		</li>}
+{!		{#if:acls.unrestricted|acls.privileges.issue_edit_notes|acls.privileges.issue_edit_attachs|acls.privileges.tasks_create:<li><img src="/img/icons16/add.png" alt="Add" />Add...
+			<ul style='width: 170px;'>
+				{#if:acls.privileges.issue_edit_attachs|acls.unrestricted:<li data-op="create" data-item="file"><img src="/img/icons16/attach.png" alt="[File]" />Upload File(s)</li>}
+				{#if:acls.privileges.tasks_manager|acls.unrestricted:<li data-op="create" data-item="task"><img src='/img/icons16/to_do_list.png' alt="[Task]" />Define Task</li>}
+				{#if:acls.privileges.issue_edit_notes|acls.unrestricted:<li data-op="create" data-item="note"><img src="/img/icons16/note.png" alt="[Note]" />Write a Note</li>}
+				{#if:acls.unrestricted:<li data-op="create" data-item="contact"><img src='/img/icons16/vcard.png' alt="[VCard]" />Link Contact</li>}
+			</ul>
+		</li>}
+}
+		<li><img src="/img/icons16/eye.png" alt="Eye" />View...
+			<ul style="width: 340px;">
+				<li data-tooltip_width="360" data-tooltip_position="right" data-tooltip="Opens a new window or tab containing a simplified Web-view of this {rt.name}.<br />The generated browser address can also be used by an external party to see this information."><img src='/img/icons16/web_layout.png' alt="Web" /><a href="/issue?action=view&amp;track={rec.track}&amp;key={rec.access_key}" target='_blank'>Open <i>Web-View</i></a></li>
+				{#if:rec.organization.is_master|acls.unrestricted:<li data-op="command" data-cmd="reset-access-key" data-tooltip_width="300" data-tooltip_position="right" data-tooltip="Assigns a new Web View access key, making existing web-view links to this {rt.name} obsolete."><img src="/img/icons16/link_break.png" alt="LinkOff" /> Reset <i>Web-View</i> address</li>}
+				<li class="menu-separator"></li>
+				{#repeat:rt.settings.panels:
+					<li data-op="open-panel" data-id="{id}"><img src='/img/icons16/menus/{id}.png' alt="{title}" /><span class="right gray">[Panel]</span>{title}</li>}
+				<li class="menu-separator"></li>
+				<li data-op="open-modal" data-modal="print"><img src="/img/icons16/printer.png" alt="[Print]" />Print Setup</li>
+			</ul>		
+		</li>
+{!
+		<li><img src="/img/icons16/comments.png" alt="Talk" />Communication
+			<ul style="width: 300px;">
+				{#if:acls.privileges.issue_sendby_mail|acls.unrestricted:
+				<li data-op="open-modal" data-modal="transfer" data-tooltip_width="360" data-tooltip_position="right" data-tooltip="Send by mail and share this <b>{rt.name}</b> to an a organization in CargoHub network"><img src='/img/icons16/company-building-icon.png' alt="[Org]" /><b>Share data</b> (by E-mail)</li>}
+				<li data-op="command" data-cmd="send-email" data-tooltip_position="right" data-tooltip="Compose new e-mail from scratch"><img src='/img/icons16/contact_email.png' alt="(@)" />Compose any E-mail</li>
+
+				<li data-op="command" data-cmd="comm-options" data-tooltip="Options for the mailing function."><img src='/img/icons16/check_box.png' alt="Option" /> Communication Options</li>
+				<li data-op="command" data-cmd="resend-confirm"><img src='/img/icons16/email_to_friend.png' alt="(Re)send confirmation" /> (Re)send confirmation</li>
+				<li class="menu-separator"></li>
+				<li data-op="ni"><img src='/img/icons16/file_extension_pdf.png' alt="Create PDF File" />Create PDF File</li>
+			</ul>
+		</li>
+}		
+		{#if:acls.unrestricted|acls.privileges.issue_set_group|acls.privileges.issue_set_status|acls.privileges.issue_set_priority|acls.privileges.issue_self_assign|acls.privileges.issue_assign_to|acls.privileges.issue_close|acls.privileges.issue_delete:
+		<li><img src='/img/icons16/hammer.png' alt="Hammer" />Modify
+			<ul style='width: 220px;'>
+				{#if:rec.organization.is_master|acls.unrestricted:{#if:acls.privileges.issue_set_group|acls.unrestricted:
+					<li data-op="open-modal" data-modal="change-group"><img src='/img/icons16/groups/{rt.settings.group_config.type}.png' alt="[Move]" />Move to another {rt.settings.group_config.name}</li>
+				<li class="menu-separator"></li>}}
+				{#if:acls.privileges.issue_self_assign|acls.privileges.issue_assign_to|acls.unrestricted:
+					<li data-op="open-modal" data-modal="assign-user"><img src='/img/icons16/user_go.png' alt="Assign to user" />Assign to user</li>
+					{#if:rec.assigned.id:<li data-op="unassign"><img src='/img/icons16/cross.png' alt="Unassign {rt.name}" /> Unassign the Record</li>} 
+				<li class="menu-separator"></li>}
+				{!Disabled, Tag/Lock functions not yet done
+				<li><img src='/img/icons16/tag_yellow.png' alt="Tag / Untag" /><a href="?action=tag&amp;track={rec.track}">Tag / Untag</a></li>
+				<li><img src='/img/icons16/lock.png' alt="Lock / Unlock" /><a href="?action=lock&amp;track={rec.track}">Lock / Unlock</a></li>
+				}
+				{#if:acls.privileges.issue_set_priority|acls.unrestricted:<li><img src='/img/icons16/vslider.png' alt="Slider" />Change priority...
+					<ul style='width: 120px;'>
+					{#repeat:rt.priorities_ex:
+						<li data-op="set-stat-prio" data-fn="priority" data-key="{*}"><img src='/img/icons16/priorities/{*}.png' alt="{*}" />{$}~cut(100,2)~</li>}
+					</ul>
+				</li>}
+				{#if:acls.privileges.issue_set_status|acls.unrestricted:<li><img src='/img/icons16/flag_2.png' alt="Flag" />Set status...
+					<ul style='width: 150px;'>
+					{#repeat:rt.statuses_ex:
+						<li data-op="set-stat-prio" data-fn="status" data-key="{*}"><img src='/img/icons16/statuses/{*}.png' alt="{*}" />{$}</li>}
+					</ul>
+				</li>}
+				{#if:rec.organization.id:
+					<li class="menu-separator"></li>
+					{#ifnot:rec.process="closed":{#if:acls.privileges.issue_close|acls.unrestricted:<li data-op="command" data-cmd="close"><img src='/img/icons16/ghost-2-icon.png' alt="Close" />Close the record (Hide)</li>}}
+					{#if:rec.process="closed":{#if:acls.privileges.issue_close|acls.unrestricted:<li data-op="command" data-cmd="open"><img src='/img/icons16/eye.png' alt="Open" />Reactivate record (Unhide)</li>}}
+					{#if:acls.privileges.issue_delete|acls.unrestricted:<li data-op="command" data-cmd="delete"><img src='/img/icons16/trash.png' alt="Trash" />
+                                             <!--IWI delete all task when delete record start-->
+                                            <!--{#ifnot:acls.unrestricted:Delete the record}{#if:acls.unrestricted:Disable org. access}-->
+                                            Delete
+                                             <!--IWI delete all task when delete record end-->
+                                        </li>}
+				}
+			</ul>
+		</li>}
+		{#if:acls.privileges.issue_access_deps|acls.unrestricted:<li><img src="/img/icons16/lock.png" alt="Lock" />Access Control
+			<ul style="width: 200px;">
+				{#if:acls.privileges.issue_access_deps|acls.unrestricted:
+				<li data-op="open-modal" data-modal="access-deps" data-tooltip_width="340" data-tooltip_position="right" data-tooltip="Configure which departments within the organization can access (view) this record. It's also possible to give access to all with one click."><img src="/img/icons16/plugin.png" alt="Dep" /> Department Access</li>}
+			</ul>
+		</li>}
+{!		<li><img src='/img/icons16/application_view_tile.png' alt="Layout" />Layouts
+			<ul style='width: 220px;'>
+				<li data-op="state" data-action="reset" data-confirm="true"><img src='/img/icons16/support.png' alt="Reset to default" /> Reset to default</li>
+				{#if:acls.unrestricted:<li data-op="state" data-action="set_default" data-confirm="true"><img src='/img/icons16/save.png' alt="Set as default [Admin function only]" />Set as default [Admin]</li>}
+			</ul>
+		</li>}
+		<!--<li><img src='/img/icons16/lightning_go.png' alt="[go!]" />Shortcuts
+			<ul style='width: 150px;'>
+				<li><img src='/img/icons16/magnifier.png' alt="[Q]" /><a href="/search/global">Global Search</a></li>
+				<li class="menu-separator"></li>
+				<li><img src='/img/icons16/cog.png' alt="[cog]" /><a href="/user/settings#preferences.1">Preferences</a></li>
+				<li class="menu-separator"></li>
+				{#if:acls.privileges.org_template_manager|acls.unrestricted:<li><img src='/img/icons16/template.png' alt="Organization templates" /><a href="/manager/organization#templates">Templates</a></li>}
+				<li><img src='/img/icons16/book_addresses.png' alt="[abook]" /><a href="/manager/contacts">Address Book</a></li>
+			</ul>
+		</li>-->
+	</ul>
+</div>}

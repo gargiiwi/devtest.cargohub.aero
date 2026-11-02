@@ -1,0 +1,33 @@
+{!Left side}<div id="rt-list"></div>
+{!Right side}<div id="rt-description" class="jqx-rc-all">
+	<div style='padding-top: 18px;'>
+		<img style="float: left; margin-right: 8px;" src="/img/icons/bricks.png" alt="Mods" />
+		<h2>Please select a module from the left side.</h2>
+		<hr />
+		<p>This area will display information about the selected module and provide <b>Submit</b> and <b>List</b> shortcuts.</p>
+		<p>Please note that not all displayed modules may be enabled for your account.<br />
+		Those that are available are listed in <b>black-bold text</b>, those that are not are <span class='gray'>lighter and gray</span></p>
+	</div>
+</div>
+<div class="clear"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="window-chart_config" type="text/dryjstpl">{@
+	<div id="charts-selector" style="margin: 10px 20px;"></div>
+	<p class='gray center'>Drag and drop to reorder, checkboxes to turn on/off</p>
+}</script>
+
+<script id="template-rt_chart" type="text/dryjstpl">{@
+	<div id="chart-{$name}" class="chart-container jqx-rc-all">
+		<div class="chart-process info-tip" data-tooltip_position="right" data-tooltip="Select if you want to display active/closed or all records" style="display: none;"><span>All records</span></div>
+		<div class="chart-controls">
+			<div class="chart-period-select info-tip" data-tooltip_position="top" data-tooltip="Choose statistics period" style="display: none;"></div>
+			<button class="chart-dump info-tip" data-tooltip_position="top" data-tooltip="Export chart data to MS Excel and compatible" style="display: none;"><img src="/img/mime16/application/msexcel.png" alt="Export"></button>
+			<button class="chart-image info-tip" data-tooltip_position="top" data-tooltip="Save this chart as a PNG picture.<br />You will be prompted to download it" data-tooltip="Export chart data to MS Excel and compatible" style="display: none;"><img src="/img/icons16/download.png" alt="Save Image"></button>
+			<button class="chart-print info-tip" data-tooltip_position="top" data-tooltip="Print this chart" style="display: none;"><img src="/img/icons16/printer.png" alt="Print"></button>
+		</div>
+		{!The chart itself - Fixed size for now, more flexible in the future}
+		<div class="jqxchart" style="height: 320px; margin: 5px;"></div>
+		<div class="clear"></div>
+	</div>	
+}</script>

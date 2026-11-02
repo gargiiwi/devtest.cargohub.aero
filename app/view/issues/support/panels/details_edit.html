@@ -1,0 +1,73 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+		{#use:title:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:customer:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:section:<tr>
+			<th><label>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long'>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}</select></td>
+		</tr>}	
+		{#use:loc_det:<tr>
+			<th><label for='{id}'>Section details:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+	</table>
+	{#use:descr:
+		<h4 style="background-image: url('/img/icons16/question2.png'); background-repeat: no-repeat; background-position: 4px; margin-top: 12px;">Problem/ Question/ Suggestion/ Idea</h4>
+		<textarea rows="10" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;" placeholder="">{value}</textarea>
+	}
+	
+	<h4 style="background-image: url('/img/icons16/computer.png'); background-repeat: no-repeat; background-position: 4px;">Computing environment</h4>
+	<table>
+		{#use:browser:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select class="dropselect multi-select" data-name='{name}' data-width="200" data-dwidth="200" data-dheight="224" data-dalign="left" data-filterable="1" id='{id}'>
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select></td>
+		</tr>}
+		{#use:opsys:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select class="dropselect multi-select" data-name='{name}' data-width="200" data-dwidth="200" data-dheight="272" data-dalign="left" data-filterable="1" id='{id}'>
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select></td>
+		</tr>}
+	</table>
+
+	<h4 style="background-image: url('/img/icons16/ist/support.png'); background-repeat: no-repeat; background-position: 4px;">Support department interaction</h4>
+	<table>
+		{#use:work:<tr>
+			<th><label>{display.label}</label></th>
+			<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} long'>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}</select></td>
+		</tr>}
+		{#use:phone_supp:<tr>
+			<th><label>Phone support needed:</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 100px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		{#use:phone_cback:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:phone_call:<tr>
+			<th><label>{display.label}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 100px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		<tr><td colspan="2"><hr /></td></tr>
+		{#use:repeat:<tr>
+			<th><label>{display.label}:</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 100px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+	</table>
+	{#use:reproduce:
+		<h5>{display.label}:</h5>
+		<textarea rows="5" id='{id}' name='{name}' class='walloftext jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;" placeholder="">{value}</textarea>		
+	}
+</form>}

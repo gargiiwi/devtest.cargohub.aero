@@ -1,0 +1,345 @@
+{! Some styles specific to General Incident }
+{@<style type="text/css">
+#witnesses {
+	width: 100%;
+	margin: 0;
+	border-collapse: collapse;	
+}
+	#witnesses h3 {
+		background-color: #eee;
+		padding: 3px;
+	}
+	#witnesses td {
+		margin: 0;
+		padding: 0;
+		border: 1px solid lightgray;
+	}
+
+	#witnesses div {
+		margin: 0 0 6px 8px;
+	}
+		#witnesses div > label {
+			font-size: 80%;
+			color: gray;
+			display: block;
+		}
+		#witnesses div > p {
+			font-size: 90%;
+			margin: 0;
+		}
+#people-inv {
+	width: 100%;
+	margin: 0;
+}
+	#people-inv th {
+		font-size: 95%;
+		color: gray;
+	}
+</style>}
+
+{#use:iss:<h2>General Incident {#if:xfields.place:in <b>{xfields.place}</b>} on date <b>{xfields.date}~date("Y-m-d")~</b></h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	{#if:edtime:<tr><th>Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}	
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+</table>  
+  
+<h4>Incident Information:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+  	<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">(not specified)</span>}</td></tr>
+  	<tr><th>Category:</th><td style='font-weight: bold;'>{^group.name}</td></tr>
+	<tr><th>Date &amp; Time:</th><td>
+		{#if:^xfields.date:{^xfields.date}~date("Y-m-d")~ &middot; {^xfields.time:<span class="gray">(not specified)</span>}}
+		{#ifnot:^xfields.date:<span class='gray'>(missing)</span>}
+	</td></tr>
+	<tr><th>{place.n}:</th><td>{^xfields.place:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{deps.n}:</th><td>{^xfields.deps:<span class="gray">(not specified)</span>}</td></tr>
+</table>}
+  
+<h4>Description of the incident:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{damage.n}:</th><td>{^xfields.damage:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>{injury.n}:</th><td>{^xfields.injury:<span class="gray">(not specified)</span>}</td></tr> 
+</table>}
+<h5>What happened:</h5>
+{#if:xfields.descr:
+<div style="border: 1px solid lightgray; padding: 4px;">{xfields.descr}~nl2br~</div>}
+{#ifnot:xfields.descr:<div class="gray" style="text-indent: 20px;">(no description provided yet)</div>}
+<br />  
+<h4>Injury details<span style="font-weight: normal;"> (when category is <i>injury</i>)</span>:</h4>
+{#use:%ist.xfield_def:<table>
+	{!<tr><th>{acc_inj.n}:</th>
+	<td>
+		{#if:^xfields.acc_inj.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_inj.key: checked="checked"}> {^xfields.acc_inj.value}</label>}
+		{#ifnot:^xfields.acc_inj.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>}
+  	<tr><th>{acc_inj_perm.n}:</th>
+	<td>
+		{#if:^xfields.acc_inj_perm.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_inj_perm.key: checked="checked"}> {^xfields.acc_inj_perm.value}</label>}
+		{#ifnot:^xfields.acc_inj_perm.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+  	<tr><th>{acc_hosp_visit.n}:</th>
+	<td>
+		{#if:^xfields.acc_hosp_visit.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_hosp_visit.key: checked="checked"}> {^xfields.acc_hosp_visit.value}</label>}
+		{#ifnot:^xfields.acc_hosp_visit.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr> 
+  	<tr><th>{acc_hospital.n}:</th><td><div>{^xfields.acc_hospital:<span class="gray">(not specified)</span>}</div></tr>
+	<tr><th>{acc_polyclinic.n}:</th>
+	<td>
+		{#if:^xfields.acc_polyclinic.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_polyclinic.key: checked="checked"}> {^xfields.acc_polyclinic.value}</label>}
+		{#ifnot:^xfields.acc_polyclinic.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr> 
+  	<tr><th>{acc_workinsp.n}:</th>
+	<td>
+		{#if:^xfields.acc_workinsp.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_workinsp.key: checked="checked"}> {^xfields.acc_workinsp.value}</label>}
+		{#ifnot:^xfields.acc_workinsp.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr> 
+</table>}
+
+{#use:%ist.xfield_def:
+<h4>People involved:</h4>
+<table id="people-inv"><tr>
+	<col width="100" /><col width="30%" /><col width="100" /><col width="30%" />
+	<tr><th>Name:</th><td>{^xfields.p1_name:<span class="gray">(not specified)</span>}</td>
+		<th>Name:</th><td>{^xfields.p2_name:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>Company:</th><td>{^xfields.p1_comp:<span class="gray">(not specified)</span>}</td>
+		<th>Company:</th><td>{^xfields.p2_comp:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>Function:</th><td>{^xfields.p1_func:<span class="gray">(not specified)</span>}</td>
+		<th>Function:</th><td>{^xfields.p2_func:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>Telephone:</th><td>{^xfields.p1_phone:<span class="gray">(not specified)</span>}</td>
+		<th>Telephone:</th><td>{^xfields.p2_phone:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>Driver licence:</th><td>{^xfields.p1_licence:<span class="gray">(not specified)</span>}</td>
+		<th>Driver licence:</th><td>{^xfields.p2_licence:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>Insured by:</th><td>{^xfields.p1_insured:<span class="gray">(not specified)</span>}</td>
+		<th>Insured by:</th><td>{^xfields.p2_insured:<span class="gray">(not specified)</span>}</td></tr>
+</table>
+}
+{#use:%ist.xfield_def:
+<table id="witnesses">
+	<col width="33%" /><col width="33%" /><col width="33%" />
+	<tr>		
+		<td valign="top">
+			<h3>First witness:</h3>
+			<div><label>Name:</label><p>{^xfields.w1_name:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>Company:</label><p>{^xfields.w1_company:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>Telephone:</label><p>{^xfields.w1_phone:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>ID:</label><p>{^xfields.w1_licence:<span class="gray">(not specified)</span>}</p></div>
+		</td>
+		<td valign="top">
+			<h3>Second witness:</h3>
+			<div><label>Name:</label><p>{^xfields.w2_name:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>Company:</label><p>{^xfields.w2_company:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>Telephone:</label><p>{^xfields.w2_phone:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>ID:</label><p>{^xfields.w2_licence:<span class="gray">(not specified)</span>}</p></div>
+		</td>
+		<td valign="top">
+			<h3>Third witness:</h3>
+			<div><label>Name:</label><p>{^xfields.w3_name:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>Company:</label><p>{^xfields.w3_company:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>Telephone:</label><p>{^xfields.w3_phone:<span class="gray">(not specified)</span>}</p></div>
+			<div><label>ID:</label><p>{^xfields.w3_licence:<span class="gray">(not specified)</span>}</p></div>
+		</td>
+	</tr>
+</table>  
+}
+{#use:%ist.xfield_def:
+<h4 style="margin-top: 8px;">Reporting:</h4>
+<h3>Internal report prepared by:</h3>
+<table class="infotable">
+	<tr><th>Name:</th><td>{^xfields.rep_name:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>Function:</th><td>{^xfields.rep_function:<span class="gray">(not specified)</span>}</td></tr>
+</table>
+
+{#if:^xfields.remarks:
+<h5>{remarks.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.remarks}~nl2br~</div>}
+{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">(no remarks at this time)</div>}
+<hr />
+  
+<table class="infotable">
+	<tr><th>{copy_sent.n}:</th><td>{#repeat:^xfields.copy_sent:[{value}] }</td></tr>
+	<tr><th>{rep_sent.n}:</th><td>{#repeat:^xfields.rep_sent:[{value}] }</td></tr>
+	<tr><th>{rep_oth.n}:</th><td>{^xfields.rep_oth:<span class="gray">(not specified)</span>}</td></tr>
+</table>
+<br />
+  <table class="infotable">
+	<tr><th>{rep_expert.n}:</th><td>{^xfields.rep_expert:<span class="gray">(not specified)</span>}</td></tr>
+</table>}
+<h4>Contact information:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>
+
+<h4 style='margin-top: 20px;'>Communication area:</h4>
+<div id='convos-box' style="margin-bottom: 8px;">
+	{#ifnot:conversations:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+	{#if:conversations:
+	<div class="gray" style="font-size: 0.9em; border-bottom: 1px solid #D3D3D3; padding-bottom: 6px;">To view the conversation, send another message or make a reply, click on the subject line.</div>
+	<table class="infotable">	
+	{#repeat:conversations:
+		<tr><th>Subject:</th><td><a href="/?action=external_comm&amp;key={key}">{description:(Conversation has no subject)}</a></td></tr>
+		<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+		<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+	}
+	</table>
+	}
+</div>
+  
+</div>
+{!Right column}
+<div class='column2'>
+
+<h4>Event Followup:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+		<tr><th>{respo.n}:</th><td>{^xfields.respo.value:<span class="gray">(no option chosen)</span>}</td></tr>		
+	</table>}  
+<h4>Investigation</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{inv_done.n}</th>
+	<td>
+		{#if:^xfields.inv_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.inv_done.key: checked="checked"}> {^xfields.inv_done.value}</label>}
+		{#ifnot:^xfields.inv_done.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+	<tr><th>{inv_by.n}:</th><td>{^xfields.inv_by:<span class="gray">(no information provided)</span>}</td></tr>
+	<tr><th>{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span class='gray'>(not specified)</span>}</td></tr>
+	<tr><th>{inv_details.n}:</th><td>{#repeat:^xfields.inv_details:<span class="twocolvalue">[{value}]</span> }</td></tr>
+</table>
+{#if:^xfields.inv_remarks:<h5>{inv_remarks.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.inv_remarks}~nl2br~</div>}
+{#ifnot:^xfields.inv_remarks:<div class="gray" style="text-indent: 20px;">(investigation not performed)</div>}
+{#if:^xfields.inv_cause:<h5>{inv_cause.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.inv_cause}~nl2br~</div>}
+{#ifnot:^xfields.inv_cause:<div class="gray" style="text-indent: 20px;">(cause of event not specified)</div>}}
+
+<h4 style="margin-top: 8px;">Weather conditions</h4>	
+{#use:%ist.xfield_def:<table class="infotable">
+		<tr><th>{cir_vis.n}:</th><td>{^xfields.cir_vis:<span class="gray">(not specified)</span>} <span class="gray">meters</span></td></tr>
+		<tr><th>{cir_wind.n}:</th><td>{^xfields.cir_wind:<span class="gray">(not specified)</span>} <span class="gray">knots</span></td></tr>
+		<tr><th>{cir_temp.n}:</th><td>{^xfields.cir_temp:<span class="gray">(not specified)</span>} <span class="gray">celcius</span></td></tr>
+		<tr><th>{cir_light.n}:</th><td>{^xfields.cir_light.value:<span class="gray">(not specified)</span>}</td></tr>
+		<tr><th>{cir_surface.n}:</th><td>{#repeat:^xfields.cir_surface:<span class="threecolvalue">[{value}]</span> }</td></tr>
+	</table>}  
+  
+<h4>Contributing factors:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{cf_behav.n}:</th><td>{#repeat:^xfields.cf_behav:[{value}] }</td></tr>
+	<tr><th>{cf_behav_oth.n}:</th><td>{^xfields.cf_behav_oth}</td></tr>
+	<tr><th>{cf_org.n}:</th><td>{#repeat:^xfields.cf_org:[{value}] }</td></tr>
+	<tr><th>{cf_org_oth.n}:</th><td>{^xfields.cf_org_oth}</td></tr>
+	<tr><th>{cf_eq.n}:</th><td>{#repeat:^xfields.cf_eq:[{value}] }</td></tr>
+	<tr><th>{cf_eq_oth.n}:</th><td>{^xfields.cf_eq_oth}</td></tr>
+	<tr><th>{cf_rules.n}:</th><td>{#repeat:^xfields.cf_rules:[{value}] }</td></tr>
+	<tr><th>{cf_rules_oth.n}:</th><td>{^xfields.cf_rules_oth}</td></tr>
+</table>}
+  
+<h4 style="margin-top: 10px;">Corrective/Preventive actions (CaPa)</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+		<tr><th>{capa_done.n}</th>
+		<td>
+			{#if:^xfields.capa_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.capa_done.key: checked="checked"}> {^xfields.capa_done.value}</label>}
+			{#ifnot:^xfields.capa_done.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{capa_deadline.n}:</th><td>{#if:^xfields.capa_deadline:{^xfields.capa_deadline}~date("Y-m-d")~}{#ifnot:^xfields.capa_deadline:<span class='gray'>(none)</span>}</td></tr>
+		<tr><th>{capa_responsible.n}:</th><td>{^xfields.capa_responsible:<span class="gray">(no information provided)</span>}</td></tr>
+		<tr><th>{capa_date.n}:</th><td>{#if:^xfields.capa_date:{^xfields.capa_date}~date("Y-m-d")~}{#ifnot:^xfields.capa_date:<span class='gray'>(not specified)</span>}</td></tr>
+	</table>
+{#if:^xfields.capa_remarks:<h5>{capa_remarks.n}</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa_remarks}~nl2br~</div>}
+{#ifnot:^xfields.capa_remarks:<div class="gray" style="text-indent: 20px;">(no corrective/preventive actions)</div>}
+}
+  	
+<h4 style="margin-top: 8px;">Evaluation/Closure</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{eva_done.n}</th>
+	<td>
+		{#if:^xfields.eva_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eva_done.key: checked="checked"}> {^xfields.eva_done.value}</label>}
+		{#ifnot:^xfields.eva_done.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+	<tr><th>{eva_by.n}:</th><td>{^xfields.eva_by:<span class="gray">(no information provided)</span>}</td></tr>
+	<tr><th>{eva_date.n}:</th><td>{#if:^xfields.eva_date:{^xfields.eva_date}~date("Y-m-d")~}{#ifnot:^xfields.eva_date:<span class='gray'>(not specified)</span>}</td></tr>
+</table>
+{#if:^xfields.eva_details:<h5>{eva_details.n}</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.eva_details}~nl2br~</div>}
+{#ifnot:^xfields.eva_details:<div class="gray" style="text-indent: 20px;">(no evaluation yet)</div>}
+}
+<hr style="margin-top: 4px;" />
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{eva_cdate.n}:</th><td>{#if:^xfields.eva_cdate:{^xfields.eva_cdate}~date("Y-m-d")~}{#ifnot:^xfields.eva_cdate:<span class='gray'>(...still open)</span>}</td></tr>
+</table>}
+
+<h4>Financial situation</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{expected.n}:</th><td><b>{^xfields.expected.serialized:<span class='gray'>(not specified)</span>}</b></td></tr>
+	<tr><th>{insured.n}:</th><td><b>{^xfields.insured.serialized:<span class='gray'>(not specified)</span>}</b>
+			<span style="float: right; margin-right: 20px;"><label>Ins. Ref. #:</label> {^xfields.insref:<span class='gray'>(not set)</span>}</span>
+	</td></tr>
+	<tr><th>{provision.n}:</th><td><b>{^xfields.provision.serialized:<span class='gray'>(not specified)</span>}</b></td></tr>
+</table>}
+<hr />
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{liable.n}:</th><td>
+		{#if:^xfields.liable.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.liable.key: checked="checked"}> {^xfields.liable.value}</label>}
+		{#ifnot:^xfields.liable.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+	<tr><th>{claim_link.n}:</th><td>
+		{#if:^xfields.claim_link:<a href="/record/process:{^xfields.claim_link}#panels" target="_blank">{^xfields.claim_link}</a>}
+		{#ifnot:^xfields.claim_link:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+</table>}  
+  
+{#if:files:<h4>Attached pictures and documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+
+<h4>Add more documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+  
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div style='text-align: center;'>
+	<input type='button' value='Update General Incident' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+</div>
+
+}
+</form>
+</div>
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_view_jstpl.html}
+{#if:update_by_mail:{#raw:includes/issue2message.html}}

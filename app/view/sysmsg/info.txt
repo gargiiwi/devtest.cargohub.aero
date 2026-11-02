@@ -1,0 +1,9 @@
+These are system messages that are used to notify users of things that have happened.
+They are HTML and can be used either to display directly in the interface as content, or as message content for automatic messages.
+
+Examples:
+- System welcomes an user
+- EULA
+- User is being assigned to an issue / task
+- An issue the user has been working on has been closed/resolved by someone else ?
+- ... 

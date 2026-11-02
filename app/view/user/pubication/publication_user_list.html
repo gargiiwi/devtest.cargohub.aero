@@ -1,0 +1,59 @@
+<div style="float:left;width:93%;padding-top: 20px;" id="" class="readonly_publish_documents_div_section ">  
+
+    <!--Add option to set or change logo from organization start-->
+    <h4 style="text-indent:0px;"> </h4>
+    <div class="get_flx">
+        <div>
+            <h4 class="get_pub">Users List </h4>
+        </div>
+        <div>
+            <img class="log_pub" style="" alt="" src="{orgLogo}">
+        </div>
+    </div>
+    <!--Add option to set or change logo from organization end-->
+    <div>
+
+
+        <div class="ratabs">
+            <div class="simple-spinner">
+                <span></span>
+            </div>
+
+            <div>
+                <!--IWI Create a button to bulk mail send start-->
+                <div class="rapblication">
+                    <div style="display: flex;align-items: center;justify-content: space-between;margin-bottom: 10px;">
+                        <h3><a href="/user/publication/get_publications" style="color: #74804E;"><i class='fa  fa-arrow-left' aria-hidden='true' style=' font-size: 15px;' ></i> Back </a></h3>
+                        <!--<h3>Title : {noteTitle}</h3>-->
+                        <!--IWI Create a log for read and sign reminder mail send start-->
+                        <div>
+                            <a href="/user/publication?action=publication_reminder_mail_log&id={note_id}" target="_blank" style="background: #cccccc;color: #fff; padding: 6px 15px; border-radius: 3px; text-decoration: none; font-size: 13px; margin-right: 20px;"><i class="fa fa-history" aria-hidden="true"></i> Reminder Log Details </a>
+                            <a href="javascript:void(0);" id="publicationSendReminderAll" style="background: #2866c2;color: #fff; padding: 6px 15px; border-radius: 3px; text-decoration: none; font-size: 13px;"><i class="fa fa-bell" aria-hidden="true"></i> Send reminder to all </a>
+                        </div>
+                        <!--IWI Create a log for read and sign reminder mail send end-->
+
+                    </div>
+                    <table class="table table-bordered tab_pblication" id="readSignUserListData">
+
+                    </table>
+
+                </div>
+                <!--IWI Create a button to bulk mail send end-->
+
+
+            </div>
+
+            <!-- <div id="content">
+
+
+                <div id="dataTable">
+                </div> 
+            </div> -->
+        </div>
+
+    </div>
+
+</div> 
+
+<input type="hidden" id="loadDataNoteId" value="{note_id}" /> 
+<input type="hidden" id="note_name" value="{noteTitle}" />

@@ -1,0 +1,61 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	<tr>
+		<th><label for='{id}'>Surname/Name(s):</label></th>
+		<td>
+			{#use:emp_surname:<input type='text' id='{id}' name='{name}' value='{value}' placeholder='(e.g. Johnson)' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:emp_name:<input type='text' id='{id}' name='{name}' value='{value}' placeholder='(e.g. Robert)' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+	{#use:emp_birth:<tr>
+		<th><label for='{id}'>{display.label}:<img src="/img/icons16/question.png" alt="Info" class="info-tip info-click" data-tooltip="This is not a date selector !<br />Enter the date manually, it will be stored as text." style='margin-left: 6px; vertical-align: middle;' /></label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:emp_phone:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' style="height: 24px; line-height: 24px;" class='jqx-rc-all medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:emp_email:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' style="height: 24px; line-height: 24px;" class='jqx-rc-all medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+{#use:emp_info:
+	<h5>Extra personal information</h5>
+	<textarea rows="5" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 100%; margin-bottom: 16px;" placeholder="(e-mail, home address, other phone numbers, related people, etc.)">{value}</textarea>
+}
+
+<h4 style="background-image: url('/img/icons16/company-building-icon.png'); background-repeat: no-repeat; background-position: 4px;">Employment Details</h4>
+<table>
+	{#use:emp_hire:<tr>
+		<th><label>{display.label}:<img src="/img/icons16/question.png" alt="Info" class="info-tip info-click" data-tooltip="ISO 8601 date format: Year-Month-Day" style='margin-left: 6px; vertical-align: middle;' /></label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:emp_job:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><select id='{id}' name='{name}' class='dropselect' data-name='{name}' data-width="104" data-dwidth="104" data-dheight="99">
+			<option value=''>---</option>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}</select></td>
+	</tr>}
+{!deprecated	{#use:emp_dep:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}}
+	{#use:emp_id:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' style="height: 24px; line-height: 24px;" class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:emp_roles:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><select id='{id}' class="dropselect multi-select" data-name='{name}' data-width="135" data-dwidth="135" data-dheight="176" data-filterable="1">
+			{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+		</select></td>
+	</tr>}
+</table>
+{#use:emp_rem:
+	<h5>Employment remarks</h5>
+	<textarea rows="7" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 100%; margin-bottom: 16px;" placeholder="(please keep this text short)">{value}</textarea>
+}
+
+</form>}

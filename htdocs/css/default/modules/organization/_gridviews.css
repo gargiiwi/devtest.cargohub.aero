@@ -1,0 +1,19 @@
+/* Editing modals */
+#gvss-screensizes label {
+	display: inline-block;
+	width: 300px;
+}
+
+#gvss-screensizes b {
+	cursor: pointer;
+	color: gray;
+}
+
+#gv-visibility {
+	 height: 27px;
+}
+
+	#gv-visibility > div {
+		display: inline-block;
+		margin-right: 35px;
+	}

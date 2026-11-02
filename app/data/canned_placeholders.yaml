@@ -1,0 +1,121 @@
+# List of placeholders used in canned messages (grouped into categories)
+-
+  name: Global
+  list:
+    -
+      name: Domain
+      ph: "{html.domain}"
+    -
+      name: Site Title
+      ph: "{html.title}"
+    -
+      name: Header/Logo
+      ph: "<img src='http://{html.domain}/img/hdrs/{html.logo}' alt='{html.title}' />"
+-
+  name: Current User
+  list:
+    -
+      name: Name
+      ph: "{user.name}"
+    -
+      name: E-mail
+      ph: "{user.email}"
+    -
+      name: Signature
+      ph: "{user.signature}"
+    -
+      name: Active Dep.
+      ph: "{user.department}"
+-
+  name: Organization
+  list:
+    -
+      name: Name
+      ph: "{organization.name}"
+    -
+      name: Type
+      ph: "{organization.orgtype.name}"
+    -
+      name: Short type
+      ph: "{organization.orgtype.shortname}"
+    -
+      name: Contact / E-mail
+      ph: "{organization.contact.email}"
+    -
+      name: Contact / Phone
+      ph: "{organization.contact.xdata.phone}"
+    -
+      name: Contact / Address
+      ph: "{organization.contact.xdata.address}"
+-
+  name: Record Meta
+  list:
+    -
+      name: Type Name
+      ph: "{ist.name}"
+    -
+      name: Type (Plural)
+      ph: "{ist.short_plural}"
+    -
+      name: ID
+      ph: "{issue.id}"
+    -
+      name: Track#
+      ph: "{issue.track}"
+    -
+      name: Data Group (Airline, etc.)
+      ph: "{issue.group.name}"
+    -
+      name: External View Link
+      ph: "<a href='http://{global.domain}/issue?action=view&track={issue.track}&key={issue.access_key}'>Link to this record</a>"
+    -
+      name: Priority
+      ph: "{issue.priority}~cut(100,2)~"
+    -
+      name: Status
+      ph: "{issue.status}"
+    -
+      name: Creation Time
+      ph: "{issue.ctime}~date(\"Y-M-d (H:i)\")~"
+    -
+      name: Communication Time
+      ph: "{issue.commtime}~date(\"Y-M-d (H:i)\")~"
+    -
+      name: Field Edit Time
+      ph: "{issue.edtime}~date(\"Y-M-d (H:i)\")~"
+    -
+      name: Submitter Name
+      ph: "{issue.submitter.name}"
+    -
+      name: Submitter E-mail
+      ph: "{issue.submitter.email}"
+    -
+      name: Submitter Company Name
+      ph: "{issue.submitter.xdata.company_name}"
+    -
+      name: Submitter's IP Address
+      ph: "{issue.submitter.ip}"
+    -
+      name: Assigned to
+      ph: "{issue.assigned.name}"
+    -
+      name: Assignee E-mail
+      ph: "{issue.assigned.email}"
+-
+  name: Cache-Field
+  list:      
+    -
+      name: primary
+      ph: "{issue.cache.primary}"
+    -
+      name: secondary
+      ph: "{issue.cache.secondary}"
+    -
+      name: tertiary
+      ph: "{issue.cache.tertiary}"
+    -
+      name: quaternary
+      ph: "{issue.cache.quaternary}"
+    -
+      name: quinary
+      ph: "{issue.cache.quinary}"

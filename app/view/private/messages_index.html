@@ -1,0 +1,101 @@
+<h2>Message center</h2>
+<div id="messages">
+	<div>
+		<div class='command'><button id='mail_compose' title='Compose'></button>Compose</div>
+		<div id='con_tree'>
+			<ul>{#repeat:con_tree:
+				<li{#ifnot:children: id='mailcon_{id}' data-name='{name}' data-count='{count_msgs}' data-selectable='true'}><img src='/img/icons16/mailcon/{type}.png' alt="{name}" /><span>{name}{#if:count_msgs: ({count_msgs})}</span>
+					{#if:children:<ul>{#repeat:children:
+						<li id='mailcon_{id}' data-selectable='true'><img src='/img/icons16/mailcon/c-user.png' alt="{name}" /><span>{name}{#if:count_msgs: ({count_msgs})}</span></li>	
+					}</ul>}
+				</li>
+			}</ul>
+		</div>
+	</div>
+	<div>
+		<div id="con_view">
+			<div class='command' style='width: 25%; float: left;'><button id='mail_read' title='Read'></button>Read</div>
+		<div class='command' style='width: 25%; float: left;'><button id='mail_delete' title='Delete'></button>Delete</div>
+			<div class='command' style='width: 25%; float: left;'><button id='mail_move' title='Move to'></button>Move to&hellip;</div>
+		<div class='command' style='width: 25%; float: left;'><button id='mail_container' title='Manage Container'></button>Manage Folders</div>
+			<div class='clear' style="border: none" id="con_grid"></div>
+		</div>
+		<div id="msg_view">
+		</div>
+		<textarea id="editview" class="tinymce">
+		</textarea>
+	</div>
+</div>
+<div class='clear'></div>
+{!UI elements which are initially hidden}
+<div style="display: none;">
+
+<div id="win_move_to">
+	<div>Move to&hellip;</div>
+	<div style="padding: 10px;">
+		<div id='mv_tree'>
+			
+			<ul>{#repeat:con_tree:
+					{#if:children:
+				<li id='{id}' data-name='{name}' data-count='{count_msgs}' data-selectable='{#ifnot:children:true}'><img src='/img/icons16/mailcon/{type}.png' alt="{name}" /><span>{name}{#if:count_msgs: ({count_msgs})}</span>
+				<ul>{#repeat:children:
+					<li id='{id}' data-selectable='true'><img src='/img/icons16/mailcon/c-user.png' alt="{name}" /><span>{name}{#if:count_msgs: ({count_msgs})}</span></li>	
+				}</ul>
+				</li>}
+			}</ul>
+        </div>
+		<div style="padding-top: 8px;">
+			<div class="right">
+				<input type="button" class="btn-ok" value="Ok" />
+				<input type="button" class="btn-cancel" value="Cancel" />
+			</div>
+		</div>
+	</div>
+</div>
+
+{@
+<div id="modal_window">
+	<div></div>
+    <div>
+    	<div id='modal_content'>
+    	</div>
+		<div id='modal_buttons'>
+			<input type="button" id="modal_ok" value="Ok" />
+			<input type="button" id="modal_cancel" value="Cancel" />
+		</div>
+    </div>
+</div>
+
+<div id="template_container">
+		<div class='toolbar jqx-widget jqx-rc-all'>
+			<input type="button" data-op="cont-add" value="Add Folder" />
+			<div class='toolbar-separator'></div>
+			<input type="button" data-op="cont-edit" value="Edit Folder" />
+			<input type="button" data-op="cont-del" value="Delete Folder" />
+		</div>
+	   <div style="border: none;" id="cust_container_list"></div>
+</div>
+
+{!Some templates}
+<div id="template_mail_read">
+	<div class='command' style='width: 25%; float: left;'><button id='mail_reply' title='Reply'></button>Reply</div>
+	<div class='command' style='width: 25%; float: left;'><button id='mail_forward' title='Forward'></button>Forward</div>
+	<div class='command' style='width: 25%; float: left;'><button id='mail_delete' title='Delete'></button>Delete</div>
+	<div class='command' style='width: 25%; float: left;'><button id='mail_move' title='Move to'></button>Move to&hellip;</div>
+	<div class='header spacey clear'>
+		<div class="right"><b>Date:</b> {$date_str}</div>
+		<b>From:</b> {$from}<br />
+		<b>Subject:</b> <span title="{$subject}">{$subject}</span><br />
+	</div>
+	<div class='body spacey clear'>{$content}</div>
+</div>
+<div id="template_mail_write">
+	<div class='command' style='width: 33%; float: left;'><button id='mail_send' title='Send'></button>Send</div>
+	<div class='command' style='width: 34%; float: left;'><button id='mail_attach' title='Attach files'></button>Attach files&hellip;</div>
+	<div class='command' style='width: 33%; float: left;'><button id='mail_discard' title='Discard'></button>Discard</div>
+	<div class='header_form header spacey clear'>
+		<label for="mail_to">To:</label><div id='mail_to' style="float: left;" name="mail[to]"></div>
+		<label for="mail_subject">Subject:</label><div class="start"><input id="mail_subject" name="mail[subject]" type="text" value="{$subject}" /></div>
+	</div>
+</div>
+}</div>

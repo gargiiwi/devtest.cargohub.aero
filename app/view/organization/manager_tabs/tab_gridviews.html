@@ -1,0 +1,91 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/eye.png" /><span>Grid Views</span>
+	</div>
+	<div class='toolbar-accessory' id='gridviews-message'>
+		<div class='toolbar-separator'></div>
+		<b>Note:</b> Views can only be created in the <a href='/issue/list'>Records Grid</a> module itself. This area can operate existing ones.
+	</div>
+	<div id='gridviews-row-ops' style='display: none;'>
+		<button data-op="gv-edit" title="Configure certain paramenters of selected view"><img src='/img/icons16/wrench.png' />Configure</button>
+		<button data-op="gv-copy" title="Duplicate the view and assign to another entity"><img src='/img/icons16/copy.png' />Duplicate</button>
+		<button data-op="gv-del" title="Delete selected view from the database"><img src='/img/icons16/delete.png' /> Delete</button>
+		{#if:acls.unrestricted:
+			<div class='toolbar-separator'></div>
+			<button data-op="gv-copy2org" title="Copy the view to another organization"><img src='/img/icons16/company-building-icon.png' />Copy to org...</button>
+		}
+	</div>
+	{!gap}
+	<button class='right' data-op="grid-state-reset" title="Reset grid to default"><img src='/img/icons16/recycle.png' />Reset grid</button>
+</div>
+<div id="gridviews-grid"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="window-gridviews_edit" type="text/dryjstpl">{@
+	<table class='unselectable' style="width: 100%; margin: 4px;">
+		<tr style="width: 133px;">
+			<td>View's name:</td>
+			<td style="line-height: 25px;"><input id="gv-name" type="text" class="jqx-input jqx-rc-all {$_itc}" style="width: 380px; height: 27px; line-height: 22px; box-sizing: border-box;" placeholder="(Name the view)" value="{$name}" /></td>
+		</tr>
+		<tr>
+			<td>Visibility:</td>
+			<td id='gv-visibility'>
+				<div data-value="user">User only</div>
+				<div data-value="dep">Department</div>
+				<div data-value="org">Organization</div>
+			</td>
+		</tr>
+		<tr>
+			<td>Current owner:</td>
+			<td class="gray info-tip" style="line-height: 25px;" data-tooltip_position="left" data-tooltip_width="220" data-tooltip="{$visibility_tooltip}"><b>{$link_name}</b> ({$visibility_text})</td>
+		</tr>
+		<tr style="display: none;">
+			<td>Department:</td>
+			<td><div id="gv-link-select-dep"></div></td>
+		</tr>
+		<tr style="display: none;">
+			<td>Select user:</td>
+			<td><div id="gv-link-select-user"></div></td>
+		</tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr>
+			<td class="info-tip" data-tooltip_position="left" data-tooltip="Current width: {$width} pixels">Screen width:</td>
+			<td style="line-height: 25px;"><div class='inline left' style='margin-right: 15px; width: 45px;'>950px </div><div id="gvss-width" style='float: left; clear: none;'></div><div class='inline left' style='margin-left: 16px;'> 4070px</div></td>
+		</tr>
+	</table>
+	<div style="margin: 0px 6px;">
+		<p>Recommended widths for different monitor types (click on number to set):</p>
+		<ul id="gvss-screensizes">
+			<li><label>Older 4:3 monitor (17&quot;, 19&quot;)</label><b>1140</b> pixels</li>
+			<li><label style="font-style: italic;">Common laptop (15&quot;) - Default</label><b>1320</b> pixels</li>
+			<li><label>Older wide-screen monitor (19&quot;, 22&quot;)</label><b>1640</b> pixels</li>
+			<li><label>Modern Full HD wide-screen (24&quot;, 27&quot;)</label><b>1880</b> pixels</li>
+			<li><label>Professional QuadHD panel (27&quot;, 30&quot;)</label><b>2520</b> pixels</li>
+			<li><label>Ultra-High Definition TV</label><b>4050</b> pixels</li>
+		</ul>
+	</div>
+}</script>
+
+<script id="window-gridviews_copy" type="text/dryjstpl">{@
+	<table class='unselectable' style="width: 100%; margin: 4px;">
+		<tr style="width: 150px;">
+			<td>Name for the copy:</td>
+			<td style="line-height: 25px;"><input id="gv-copyname" type="text" class="jqx-input jqx-rc-all {$_itc}" style="width: 350px; height: 27px; line-height: 22px; box-sizing: border-box;" placeholder="(Name the view)" value="{$name} (copy)" /></td>
+		</tr>
+		<tr>
+			<td colspan="2" class='gray' style="line-height: 25px;">After the copy is created, you can use <b>Configure</b> command to change it</td>
+		</tr> 
+	</table>
+}</script>
+
+<script id="window-gridviews_copy2org" type="text/dryjstpl">{@
+	<table class='unselectable' style="width: 100%; margin: 4px;">
+		<tr style="width: 130px;">
+			<td>Target organization:</td>
+			<td><div id='gv-targetorg'></div></td>
+		</tr>
+		<tr>
+			<td colspan="2" class='gray' style="line-height: 25px;">After the copy is created, switch to the target organization to configure it</td>
+		</tr> 
+	</table>
+}</script>

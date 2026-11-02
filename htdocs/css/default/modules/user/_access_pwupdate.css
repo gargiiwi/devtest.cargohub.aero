@@ -1,0 +1,35 @@
+/** User Password Reset **/
+div#pwupdate {
+	width: 640px;
+	margin: 20px auto;
+	color: #666666;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+	div#pwupdate > div#pwlogo {
+		width: 180px; 
+		padding-left: 25px;
+	}
+
+	div#pwupdate > div#pwform {
+		width: 432px;
+	}
+
+	div#pwupdate > div#pwform div.field {
+		background-color: white;
+		width: 210px;
+		border: 1px solid #C7C7C7;
+		padding: 2px;
+		margin-bottom: 15px;
+	}
+
+		div#pwupdate > div#pwform div.field > input {
+			width: 100%;
+			border: none;
+			resize: none;
+			font-size: 14px;
+			text-indent: 8px;
+			line-height: 19px;
+		}

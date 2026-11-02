@@ -1,0 +1,415 @@
+{@<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+<style type="text/css">
+.page {
+	font-family: "Open Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+	font-size: 13px;
+	line-height: 1.42857;
+	color: #4e6484;
+	background-color: #fff;
+	margin: 0 auto;
+}
+.page a {color: #0075bf; text-decoration: none;}
+.page a:hover { text-decoration: underline;}
+.page .nav { float:left; width:100%; list-style: none; padding-left: 0; margin: 0;}
+.page .nav li { float: left; padding: 0 17px; display: block;}
+.page .nav li a { padding: 8px; font-size: 15px; font-weight: 300; color: #8397b5; border-radius: 3px; display: block;}
+.page .nav li a:hover { background: #0075bf; color: #fff; text-decoration: none; }
+.page .main-search-form input { width: 172px; }
+.page input.m6 { height: 26px; font-size: 15px; font-weight: 300; background: #fff; padding: 5px; color: #8397b5; border: 1px solid #e9f0f8; }
+.page .tracking { width: 90%;}
+.page .btn { min-width: 0;
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
+	text-align: center;
+	height: 38px;
+	display: table;
+	color: #fff;
+	background-color: #0075bf; border:0; border-radius: 3px;
+}
+.page .banner { background: url('/orgs/m6/amerijet-banner.jpg') no-repeat; width: 100%; height: 399px; float:left;}
+.page .banner .head2 { color: #0075bf; font-size: 38px; line-height: 1.3; font-weight: 300; text-align: center;}
+.page .row { float: left; width: 100%;}
+.page .col-2 { width: 16.66%; float: left; }
+.page .col-3 { width: 25%; float: left; }
+.page .col-4 { width: 33.33%; float:left;}
+.page .col-6 { width: 50%; float:left;}
+.page .col-8 { width: 66.66%; float:left;}
+.page .col-9 { width: 75%; float:left;}
+.page .head3 {color: #3abbf0; font-size: 38px; line-height: 1; font-weight: 300; margin-top: 18px; margin-bottom: 9px; font-weight: 300;}
+.page .head4 { color: #3abbf0; margin:0; padding: 10px 10px 5px 10px; font-size: 17px; font-weight: 300;}
+.page .head5 { color: #3abbf0; margin-top: 0px; margin-bottom: 9px; font-weight: 300; font-size: 13px;}
+.page .schedule .fa { font-size: 30px; }
+.page .schedule span { display: block; margin: 10px; text-align: center; font-size: 22px; }
+.page .schedule a { margin: 5px; display: block; border: 1px solid #ddd; padding: 30px 0 5px; text-align: center; }
+.page .footer { border-top: 1px solid #e9f0f8; border-bottom: 1px solid #e9f0f8; margin: 30px 0; padding: 10px 0; }
+.page ul.footer-links { border-left: 1px solid #3abbf0; margin-left: 12px; margin-top: 10px; padding-left: 10px; list-style: none;}
+.page ul.footer-links li a { padding: 8px; font-size: 15px; font-weight: 300; color: #8397b5; display: block; border-radius: 3px;}
+.page ul.footer-links li a:hover { text-decoration: none; background-color: #eee;}
+.page ul.follow { list-style: none; font-size: 35px; margin:0;}
+.page .row.copyright { text-align: center; }
+.page .panel-body { background: #8397b5; float:left; width: 331px; padding: 20px; margin: 10px;}
+.page .tracking-title { color: #fff; padding: 10px 0; font-size: 15px; }
+
+table#claim-types {
+	width: 100%; border-collapse: collapse; border-spacing: 1px;
+}
+
+	table#claim-types th, table#claim-types td {
+		padding: 5px;
+	}
+
+.impno {
+	display: inline-block;
+	width: 30px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 2px;
+}
+.content-list {
+	
+}
+	.content-list label {
+		display: inline-block;
+		width: 150px;
+	}
+	.content-list li {
+		line-height: 18px;
+	}
+	
+.xlink {
+	display: inline-block;
+	margin: 0 auto 15px auto;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	height: 100px;
+	width: 360px;
+	float: left;
+}
+	.xlink:hover {
+		background-color: #eee;
+		text-decoration: none;
+	}
+	
+		.xlink:hover h1 {
+			color: black;
+		}
+
+	.xlink img {
+		float: left;
+		margin: 10px 15px 20px 15px;
+		text-decoration: none;
+		border: none;
+	}
+
+	.xlink h1 {
+		font-weight: bold;
+		font-size: 18px;
+		display: block;
+		margin-top: 20px;
+		color: #2D6CB1;
+	}
+	
+	.xlink p {
+		color: gray;
+	}
+	
+div#login {
+	margin: 30px auto;
+	width: 550px;
+}
+div.site > div.page > div#login small {
+	color: #666666;
+}
+div#login > div.logo {
+	margin-left: 40px;
+	margin-right: 30px;
+	padding: 12px;
+	width: 128px;
+}
+div#login > div.form {
+	padding: 12px;
+}
+div#login > div.form div.field {
+	background-color: white;
+	border: 1px solid #c7c7c7;
+	margin-bottom: 15px;
+	padding: 2px;
+	width: 250px;
+}
+div#login > div.form div.field > input {
+	border: medium none;
+	font-size: 14px;
+	line-height: 19px;
+	resize: none;
+	text-indent: 8px;
+	width: 100%;
+}
+div#login > div.form #remember {
+	float: left;
+	margin-left: -3px;
+	margin-top: 4px;
+}
+	
+</style>}
+<ul id="topMenu" class="nav">
+	<li>
+		<a href="https://mycargo.amerijet.com/login" class="menu-item">MyCargo</a>
+	</li>
+	<li>
+		<a href="https://amerijet.com/en/Shipping" class="menu-item">Shipping</a>
+	</li>
+	<li>
+		<a href="https://mycargo.amerijet.com/tracking" class="menu-item">Tracking</a>
+	</li>
+	<li>
+		<a href="https://mycargo.amerijet.com/reservations/quick_new?new=Yes" class="menu-item">Quote</a>
+	</li>
+	<li>
+		<a href="https://amerijet.com/en/Locations" class="menu-item">Locations</a>
+	</li>
+	<li>
+		<a href="https://amerijet.com/en/News-and-Events" class="menu-item">News &amp; Events</a>
+	</li>
+	<li>
+		<a href="https://amerijet.com/en/Learn" class="menu-item">Learn</a>
+	</li>
+	<li>
+		<a href="https://mycargo.amerijet.com/employmentNew" class="menu-item">Careers</a>
+	</li>
+	<li>
+		<form class="main-search-form" action="/SearchResults" method="get">
+			<input class='m6' name="searchTerms" type="text" placeholder="Search">
+		</form>
+	</li>
+</ul>
+<div class="banner">
+	<p class='head2'>Quotes, easy and fast, tailored to you.<br>Find Your Right Shipping Solution.</p>
+</div>
+<div style="height: 30px;">&nbsp;</div>
+	{#plugin:jqxtabs}
+	<div id="tabs-claiminfo" style="border: 1px solid #e9f0f8;">
+		<ul>
+			<li style="margin-left: 20px;"><img src='/img/icons16/email_go.png' />Submit Cargo Claim</li>
+			<li><img src='/img/icons16/key.png' />Find existing claims <span style="color: #56b8e9;">(your account)</span></li>
+			<li><img src='/img/icons16/question2.png' />Claim Guidelines 2018</li>
+		</ul>
+		<div class='content-text'>
+			<div class="spacey">
+				<p>A cargo claim is a written complaint demanding financial compensation from Amerijet International Airlines for loss of, damage or<br /> delay to cargo whilst in care and control pursuant to a contract of carriage.</p>
+				<p>In the case of damage or delay, the person entitled to delivery must complain to Amerijet International Airlines within the time lines stated below. If no complaint is made within the times indicated below, then no action can be brought against Amerijet International Airlines.</p>
+			</div>
+		
+			<div style="margin: 1.5em auto; width: 744px;">
+				<a href="/issue?action=form&group=208&mawbp=810" id="submit" class="xlink">
+					<h1 style="color: #56b8e9;"><img src="/img/icons/email_go.png" alt="Cash">Preliminary notice of claim</h1>
+					<p style="margin-top: 4px;">Please check time limits below.<br />Claims may be rejected if not sent in time</p>
+				</a>
+				<div style="width: 20px; float: left;">&nbsp;</div>
+	
+				<a href="/cms?path=/intro/airlines/amerijet-formal" id="submit" class="xlink">
+					<h1 style="color: #002b55;"><img src="/img/icons/coins.png" alt="Cash">Formal claim</h1>
+					<p style="margin-top: 4px;">All your documents ready ?<br />You can also update existing preliminary here</p>
+				</a>
+				<div class="clear"></div>
+			</div>
+			
+			<table id="claim-types" style="color: black;">
+				<tr bgcolor="#a0a0a0" style="color: #ffffff;">
+					<th width="5%" style="text-align: center; color: #fff;">No.</th>
+					<th width="15%" style="color: #fff;">Claim Type</th>
+					<th width="40%" style="color: #fff;">Description</th>
+					<th width="40%" style="color: #fff;">Time Limit</th>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">1</td>
+					<td style="text-align: left;">Loss.</td>
+					<td style="text-align: left;">Loss of whole consignment.</td>
+					<td style="text-align: left;"><span class='impno'>120</span> days from the AWB issuing date.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">2</td>
+					<td style="text-align: left;">Damage.</td>
+					<td style="text-align: left;">To consignment whole or in part.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">3</td>
+					<td>Partial Loss.</td>
+					<td style="text-align: left;">Loss of part of the consignment.</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">4</td>
+					<td>Delay.</td>
+					<td style="text-align: left;">To complete consignment or part of it</td>
+					<td style="text-align: left;"><span class='impno'>21</span> days from the placing date.</td>
+				</tr>
+				<tr>
+					<td align="center" style="text-align: center;">5</td>
+					<td>Pilferage.</td>
+					<td style="text-align: left;">To consignment whole or in part</td>
+					<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+				</tr>
+			</table>
+			<hr />
+			<div class="spacey">
+				<p>If a preliminary claim was not submitted through our e-Claims portal, then a copy of the official complaint made to Amerijet International Airlines must be uploaded into your formal claim file. Also an official claim from the person entitled to delivery must also be uploaded.</p>
+			</div>
+		</div>
+		<div class='content-text'>
+			<div id="login" class="jqx-rc-all">
+				<div class="logo left">
+					<img src="{html.base}/img/extra/contact.png" alt="Contact Account" />
+				</div>
+				<div class="form left">
+					<form action="/contact/access?action=authenticate&autoforward=1" method="post">
+						<h3>Your E-mail</h3>
+						<div class="jqx-rc-all field"><input type="text" name="email" {#if:autofill_email: value="{autofill_email}"}/></div>
+						<h3>Password</h3>
+						<div class="jqx-rc-all field"><input type="password" name="password" {#if:autofill_password: value="{autofill_password}"}/></div>
+						<input type="submit" value="Proceed" class="right" />
+						<div class="clear"></div>
+					</form>
+				</div>
+				<div class="clear"></div>
+				<hr />
+				<p style="text-align: right; margin-right: 50px;">Do you need your password ?<br /><br /><a class="jqx-rc-all" href="/contact/access?action=recover_password" style="font-weight: bold; display: inline-block; padding: 3px 8px; border: 1px solid gray; color: black; text-decoration: none;">click here</a> to obtain it !</p>
+			</div>
+		</div>
+		<div class='content-text'>
+			<div style="padding: 20px 50px !important;">
+
+<h3>Dear Customer,</h3>
+<p style="text-align: justify;">To guide you smoothly into the future of Claims, we have the rules and guidelines for you to understand your position in this matter and which steps to take.</p>
+<p style="text-align: justify;"><b>Notice of the damages</b> - This documents is crucial for your claim evidence file.<br />
+Also, you must notify <i>Amerijet International Airlines</i> of these damages as soon as possible but always <b>within 14 days</b>.
+<p style="text-align: justify;">The claimant, the party that is entitled to the goods, must prove the extent of the damages. This means you need to file the following:</p>
+<ul>
+	<li><label style="font-weight: bold;">Commercial Invoice</label></li>
+	<li><label style="font-weight: bold;">The Invoice of the produce sold (salvage invoice)</label></li>
+	<li><label style="font-weight: bold;">Invoices of repairs</label></li>
+	<li><label style="font-weight: bold; display: inline-block; width: 15em;">Pictures</label><span>(showing AWB, Strickers or other Proof)</span></li>
+	<li><label style="font-weight: bold; display: inline-block; width: 15em;">Survey Report</label><span>This document is mandatory for damages above 1000 EUR/USD</span></li>
+	<li><label style="font-weight: bold; display: inline-block; width: 15em;">Invoice of the Survey report</label><span>(you can add these charges to your claim amount)</span></li>
+	<li><label style="font-weight: bold; display: inline-block; width: 15em;">Packing list</label><span>(must prove the weight of the damaged or missing goods)</span></li>
+	<li><label style="font-weight: bold;">Claim letter</label></li>
+</ul>
+<p style="text-align: justify;">Accompany these documents you must file a Claim Letter contains an explaining of what happened and how much you are claiming on your company's letterhead, date, sign and stamp this document.</p>
+<p style="text-align: justify;">The liability of Amerijet International Airlines conforms the Montreal conditions restricted to <b>19 SDR per Kg</b> of damaged or missing produce.</p>
+<p style="text-align: justify;"><span style="text-decoration: underline;">Amerijet International Airlines is not liable for damages in the following cases:</span>
+<ul>
+<li>delay due to force majeure (war, an act of government)</li>
+<li>faulty packaging</li>
+<li>nature of the goods</li>
+<li>the fault of the claimant</li>
+</ul>
+</p>
+			</div>
+		</div>
+	</div>
+
+<div class="row">
+	<div class="col-8">
+		<p class='head3'>Flight and Truck Schedules</p>
+		<p class='head5'>Click to download Amerijet Schedules</p>
+		<div class="row">
+			<div class="col-4 schedule"><a href="" title="Air Schedule"><i class="fa fa-plane"></i><span>Air Schedule</span></a></div>
+			<div class="col-4 schedule"><a href="" title="Air Schedule"><i class="fa fa-truck"></i><span>Truck Schedule</span></a></div>
+			<div class="col-4 schedule"><a href="" title="Air Schedule"><i class="fa fa-map"></i><span>Route Map</span></a></div>
+		</div>
+	</div>
+	<div class="col-4">   
+		<div class="panel-body">
+			<form class="tracking-form row">
+				<div class="tracking-title">Tracking number</div>
+				<div class="col-9">
+					<input type="text" name="tracking-number" id="tracking-number" class="m6 tracking" placeholder="Tracking Number" maxlength="11">
+				</div>
+				<div class="col-3">
+					<button type="button" id="submitTrackingNumber" class="btn">Track</button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	
+</div>
+<div class="clear"></div>
+
+<div class="row footer">
+	<div class="col-2">
+		<p class='head4'>About Amerijet</p>
+		<ul class="footer-links">
+		<li><a href="https://amerijet.com/en/About-Amerijet" class="menu-item"> About </a></li>
+		<li><a href="https://amerijet.com/en/Team-Leaders" class="menu-item"> Meet The Team </a></li>
+		<li><a href="https://amerijet.com/en/Other-Links/Business-Opportunities" class="menu-item"> Business Opportunities </a></li>
+		<li><a href="https://mycargo.amerijet.com/employmentNew" class="menu-item"> Careers </a></li>
+		</ul>
+	</div>
+	<div class="col-2">
+		<p class='head4'>Customer Service</p>
+		<ul class="footer-links">
+			<li><a href="https://amerijet.com/en/Contact-Us" class="menu-item"> Contact Us </a></li>
+			<li><a href="https://amerijet.com/en/Learn" class="menu-item"> Learn </a></li>
+			<li><a href="https://amerijet.com/en/Learn/Document-Library" class="menu-item"> Document Library </a></li>
+			<li><a href="https://amerijet.com/en/Other-Links/Star-Service" class="menu-item"> Star Service </a></li>
+			<li><a href="https://amerijet.com/en/Frequently-Asked-Questions" class="menu-item"> FAQs </a></li>
+		</ul>
+	</div>
+	<div class="col-2">
+		<p class='head4'>Service Information</p>
+		<ul class="footer-links">
+			<li><a href="https://amerijet.com/en/Shipping" class="menu-item"> Shipping </a></li>
+			<li><a href="https://amerijet.com/en/Other-Links/Charters" class="menu-item"> Charters </a></li>
+			<li><a href="https://amerijet.com/en/Learn/Load-Configurations" class="menu-item"> Fleet </a></li>
+			<li><a href="https://amerijet.com/en/News-and-Events" class="menu-item"> News &amp; Events </a></li>
+		</ul>
+	</div>
+	<div class="col-2">
+		<p class='head4'>Terms & Policies</p>
+		<ul class="footer-links">
+			<li><a href="https://amerijet.com/en/Learn/Terms-and-Conditions" class="menu-item"> Terms And Conditions </a></li>
+			<li><a href="https://amerijet.com/en/Website-Policy" class="menu-item"> Website Policy </a></li>
+			<li><a href="https://amerijet.com/-/media/Documents/HT-Awareness-Poster.pdf" class="menu-item"> Corporate Responsibilities </a></li>
+			<li><a href="https://amerijet.com/en/Other-Links/Social-Responsibilities" class="menu-item"> Social Responsibilities </a></li>
+		</ul>
+	</div>
+	<div class="col-2">
+		<p class='head4'>Tools</p>
+		<ul class="footer-links">
+			<li><a href="https://mycargo.amerijet.com/dashboard.aspx" class="menu-item"> MyCargo </a></li>
+			<li><a href="https://mycargo.amerijet.com/reservations/quick_new.aspx?new=Yes" class="menu-item"> Quote </a></li>
+			<li><a href="https://mycargo.amerijet.com/tracking.aspx" class="menu-item"> Tracking </a></li>
+			<li><a href="https://amerijet.com/en/Learn/Dim-Calculator" class="menu-item"> Dimensional Calculator </a></li>
+		</ul>
+	</div>
+	<div class="col-2">
+		<p class='head4'>Follow Us</p>
+		<ul class="follow">
+			<li><a href="https://www.facebook.com/Amerijet/" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+			<li><a href="https://twitter.com/amerijet" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
+			<li><a href="https://www.linkedin.com/company/98661/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+			<li><a href="https://www.youtube.com/amerijet" target="_blank"><i class="fab fa-youtube-square"></i></a></li>
+		</ul>
+	</div>
+</div>
+<div class="row copyright">
+	<div class="col-2">
+		<img src="/orgs/m6/ceiv-pharma-logo.png" alt="CEIV Pharma" width="100" />
+	</div>
+	<div class="col-8">
+		<p>
+			<strong>Amerijet International, Inc.&#174;</strong> All Rights Reserved.
+			<br>Customs-Trade Partnership Against Terrorism
+			<br>C-TPAT SVI# acc2ff29-d9aa-4651-9cfe-8b60cd969d80
+		</p>
+		<p>
+			Cargo E-Claims powered by <b>CARGOHUB</b>
+		</p>
+	</div>
+	<div class="col-2">
+		<img src="/orgs/m6/validated.png" alt="CTPAT Validated" />
+	</div>
+</div>
+<div class="clear"></div>

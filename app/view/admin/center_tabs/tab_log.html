@@ -1,0 +1,80 @@
+<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<button data-op="exportxlsx" title="Export table as ExcelX"><img src='/img/icons16/table_export.png' /> Export XLSX</button>
+	<div id='log-row-ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="item-view" title="View item"><img alt="(/)" src="/img/icons16/eye.png"> View</button>
+		<div class='toolbar-separator'></div>
+		<button data-op="item-edit" title="Edit this item"><img alt="(/)" src="/img/icons16/pencil.png"> Edit</button>
+		<button data-op="item-delete" title="Delete this item"><img alt="(-)" src="/img/icons16/delete.png"> Delete</button>
+	</div>
+	<div class='log-open-ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<span class='log-write-ops' style="display: none;">
+			<button data-op="item-save" class="info-tip" data-tooltip="Save item"><img src='/img/icons16/save.png' /> Save</button>
+		</span>
+		<button data-op="item-close" class="info-tip" data-tooltip="Close item (Edit mode: Without saving)"><img src='/img/icons16/cross.png' /> Close</button>
+	</div>
+	
+	<button class="right" data-op="grid-state-reset" title="Reset grid to default"><img src='/img/icons16/recycle.png' />Reset grid</button>
+</div>
+<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<input id="log-new" type="text" style="width: 1010px; height: 24px; line-height: 24px;" class="jqx-input jqx-rc-all whitebg jqx-widget" placeholder="(Type a text here and press Enter to create new log item)" />
+	</div>
+	<button class='right' data-op="log-post" title="Post new log item"><img alt="(+)" src="/img/icons16/add.png">Post</button>
+</div>
+
+<div id="log-viewer" style="display: none; margin-bottom: 10px;">
+	<div style="padding-left: 2px;"></div>
+	<div>{!jqxExpander body}</div>
+</div>
+
+<div id="log-editor" style="display: none; margin-bottom: 10px;">
+	<div style="padding-left: 2px;"></div>
+	<div>{!jqxExpander body}
+		<form method="post">
+			<div class='info-line'>
+				<label>User <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Note: The user cannot be changed"></label>
+				<div style="line-height: 26px;" id="log-user_name">&mdash;</div>
+			</div>
+			<div class='ctrl-line'>
+				<label>Area <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="To which area is this log item relevant ?"></label>
+				<div id='log-area' class='form-control'></div>
+			</div>
+			<div class='ctrl-line'>
+				<label>Date/Time <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Date and Time for this item"></label>
+				<div id='log-date-day' class='form-control calendar'></div>
+				<input id='log-date-time' class='form-control theclock jqx-input jqx-input-{%jqxtheme}' style="margin-left: 8px; width: 60px;" type="text" />
+			</div>
+			<div class='ctrl-line'>
+				<label for='log-comment'>Text</label>
+				<input type='text' id='log-comment' class="form-control jqx-input jqx-rc-all" value="" style='width: 950px;' />
+			</div>
+		</form>
+	</div>
+</div>
+
+<h4 id='log-table-title' style="display: none; margin-top: 30px;"><img src="/img/icons16/control_fastforward_blue.png" class="inline-icon" /> Log items</h4>
+<div id="log-grid"></div>
+
+<br /><div class='info-expander'>
+	<div>Operational information (click to open/close)</div>
+	<div class='spacey'>
+		<h3>Staff activity log:</h3>
+		<hr />
+		<p>(TODO: add information here)</p>
+	</div>
+</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+{!Task Create/Update - For the person assigning and changing tasks ( task manager )}
+<script id="template-log-viewer" type="text/dryjstpl">{@
+	<div class='info-line'>
+		<label>Item date <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Date when this log item was entered"></label><div>{$dt_format}</div>
+	</div>
+	<div class='info-line'>
+		<label>Area <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="To which area is this log item relevant ?"></label><div>{$area}</div>
+	</div>
+	<h4><img src="/img/icons16/superman.png" class="inline-icon" />{$user_name}</h4>
+	<div style="padding: 10px;">{$comment}</div>
+}</script>

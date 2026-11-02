@@ -1,0 +1,57 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{subj.n}:</th><td>{^xfields.subj:<span class="gray">---</span>}</td></tr>
+		<tr><th>{customer_name.n}:</th><td>{^xfields.customer_name:<span class="gray">---</span>}</td></tr>
+		<tr><th>{subm_type.n}:</th><td>{^xfields.subm_type.value:<span class="gray">---</span>}</td></tr>
+			
+	</table>
+	<hr />
+	<table>
+		<tr><th>{cargo_related_event.n}:</th><td>{^xfields.cargo_related_event.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{mawb.n}:</th><td>
+			{#if:^xfields.mawb.p:<b style='font-size: 16px;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b>}
+			{#ifnot:^xfields.mawb.p:<span class='gray'>---</span>}
+		</td></tr>
+
+		<tr><th>{com_type.n}:</th><td>{#ifnot:^xfields.com_type:<span class='gray'>---</span>}{#repeat:^xfields.com_type:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{fno.n}:</th><td>{^xfields.fno:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{fdate.n}:</th><td>{^xfields.fdate:<span class='gray'>---</span>}</th></tr>
+	</table>
+	<hr />
+	<h5>{details.n}</h5>
+	{#if:^xfields.details:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; height:164px; overflow: auto;">{^xfields.details}~nl2br~</div>}
+	{#ifnot:^xfields.details:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<!-- <table> -->
+		<!-- 20112024 Customer Inquiry section work start-->
+
+		
+		<!-- <tr><th>{company_name.n}:</th><td>{^xfields.company_name:<span class="gray">---</span>}</td></tr> -->
+		<!-- <tr><th>{cargo_related_event.n}:</th><td>{^xfields.cargo_related_event.value:<span class="gray">---</span>}</td></tr> -->
+		<!-- <tr><th>{routing.n}:</th><td>{^xfields.routing.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{shipment_type.n}:</th><td>{^xfields.shipment_type.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{commodity.n}:</th><td>{^xfields.commodity:<span class="gray">---</span>}</td></tr> -->
+		<!-- <tr><th>{customer_name.n}:</th><td>{^xfields.customer_name:<span class="gray">---</span>}</td></tr> -->
+		<!-- <tr><th>{is_capa.n}:</th><td>{^xfields.is_capa.value:<span class="gray">---</span>}</td></tr> -->
+		<!-- <tr><th>{complain_resolved_by.n}:</th><td>{^xfields.complain_resolved_by.value:<span class="gray">---</span>}</td></tr> -->
+
+	<!-- 20112024 Customer Inquiry section work end-->
+	<!-- </table> -->
+
+
+</hr><br><br>
+	<h4 style="background-image: url('/img/icons16/receipt_invoice.png'); background-repeat: no-repeat; background-position: 4px;">Invoice details</h4>
+	<table>
+		<tr><th>{inv_rel.n}:</th><td>{^xfields.inv_rel.value:<span class="gray">---</span>}</td></tr>
+		<!-- <tr><th>{inv_company.n}:</th><td>{^xfields.inv_company:<span class="gray">---</span>}</td></tr> -->
+		<!-- <tr><th>{is_capa.n}:</th><td>{^xfields.is_capa.value:<span class="gray">---</span>}</td></tr> -->
+		<tr><th>{inv_dispute.n}:</th><td><b>{^xfields.inv_dispute.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{inv_no.n}:</th><td>{^xfields.inv_no:<span class="gray">---</span>}</td></tr>
+		<tr><th>{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span class='gray'>---</span>}</td></tr>
+		<!-- <tr><th>{routing.n}:</th><td>{^xfields.routing.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{shipment_type.n}:</th><td>{^xfields.shipment_type.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{commodity.n}:</th><td>{^xfields.commodity:<span class="gray">---</span>}</td></tr> -->
+		<!-- <tr><th>{customer_name.n}:</th><td>{^xfields.customer_name:<span class="gray">---</span>}</td></tr> -->
+	</table>
+	
+}

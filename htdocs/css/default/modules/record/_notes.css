@@ -1,0 +1,201 @@
+/** Notes tab, note content preview **/
+#tab_notes div.note-content {
+    overflow: auto;
+    white-space: nowrap;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -o-user-select: text;
+    user-select: text;
+}
+
+div.modal_content #note-title {
+    width: 500px;
+}
+
+div.modal_content #note-text {
+    overflow: auto;
+    resize: none;
+    padding: 5px;
+    width: 715px;
+    height: 250px;
+}
+
+#tab_notes td.grid-cell-shared {
+    background-color: #ffff7f;
+}
+
+#tab_notes td.grid-cell-private {
+    background-color: #ff7f7f;
+}
+
+#tab_notes td.grid-cell-perspective_org {
+    font-style: italic;
+}
+
+#modal_viewnote div.modal_content {
+    overflow: auto !important;
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
+#modal_viewnote div.jqx-window-header div {
+    width: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#modal_viewnote div.jqx-window-header div > img {
+    top: 0;
+}
+
+
+/*IWI Record Details Page Redesign 10092026 start*/
+
+#tab_notes div.toolbar img {
+	display: none;
+}
+#tab_notes div.toolbar {
+	align-items: center;
+	width: 100%;
+	min-height: 44px;
+	padding: 5px 7px;
+	box-sizing: border-box;
+	background: #f7f9fc;
+	border: 1px solid #dfe5ec;
+	border-radius: 6px;
+	gap: 5px;
+}
+#tab_notes div.toolbar .toolbar-accessory {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	min-width: 32px;
+	height: 32px;
+	margin-right: 4px;
+	padding: 0;
+	border-right: 1px solid #dfe5ec;
+	box-sizing: border-box;
+}
+#tab_notes div.toolbar .toolbar-accessory:before {
+	content: "\f02d";
+	font-family: FontAwesome;
+	font-size: 17px;
+	color: #2866C2;
+}
+#tab_notes div.toolbar .toolbar-accessory span {
+	display: none;
+}
+#tab_notes div.toolbar button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	float: none;
+	height: 30px;
+	min-height: 30px;
+	margin: 0;
+	padding: 0 10px;
+	box-sizing: border-box;
+	border: 1px solid #d5dce5;
+	border-radius: 4px;
+	background: #fff;
+	color: #465365;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 28px;
+	text-decoration: none;
+	white-space: nowrap;
+	box-shadow: none;
+	cursor: pointer;
+}
+#tab_notes div.toolbar .jqx-widget,
+#tab_notes div.toolbar .jqx-button,
+#tab_notes div.toolbar .jqx-fill-state-normal,
+#tab_notes div.toolbar .jqx-fill-state-hover,
+#tab_notes div.toolbar .jqx-fill-state-pressed,
+#tab_notes div.toolbar .jqx-fill-state-focus,
+#tab_notes div.toolbar .jqx-rc-all {
+	box-shadow: none;
+}
+#tab_notes div.toolbar [data-op="note-create"]:before {
+	content: "\f067";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_notes div.toolbar [data-op="note-view"]:before {
+	content: "\f06e";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_notes div.toolbar [data-op="note-edit"]:before {
+	content: "\f044";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_notes div.toolbar [data-op="note-delete"]:before {
+	content: "\f014";
+	font-family: FontAwesome;
+	font-size: 12px;
+	margin-right: 6px;
+}
+#tab_notes div.toolbar [data-op="note-create"] {
+	min-width: 92px;
+	border-color: #2866C2;
+	background: #2866C2;
+	color: #fff;
+	font-weight: 600;
+}
+#tab_notes div.toolbar [data-op="note-create"]:before {
+	color: #fff;
+}
+#tab_notes div.toolbar [data-op="note-create"]:hover {
+	border-color: #2259aa;
+	background: #2259aa;
+	color: #fff;
+}
+#tab_notes div.toolbar [data-op="note-view"]:hover,
+#tab_notes div.toolbar [data-op="note-edit"]:hover {
+	border-color: #b8c5d3;
+	background: #fff;
+	color: #2866C2;
+}
+#tab_notes div.toolbar .toolbar-separator {
+	width: 1px;
+	min-width: 1px;
+	height: 22px;
+	margin: 0 7px;
+	background: #dfe5ec;
+}
+#tab_notes div.toolbar [data-op="note-delete"] {
+	margin-left: 2px;
+	border-color: #e1d7d7;
+	color: #a85454;
+}
+#tab_notes div.toolbar [data-op="note-delete"]:before {
+	color: #b45757;
+}
+#tab_notes div.toolbar [data-op="note-delete"]:hover {
+	border-color: #dfb6b6;
+	background: #fff6f6;
+	color: #c33b3b;
+}
+#tab_notes div.toolbar [data-op="note-delete"]:hover:before {
+	color: #c33b3b;
+}
+#tab_notes div.toolbar button:disabled,
+#tab_notes div.toolbar button[aria-disabled="true"] {
+	opacity: .5;
+	cursor: default;
+}
+@media (max-width: 650px) {
+	#tab_notes div.toolbar button {
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+}
+/*IWI Record Details Page Redesign 10092026 end*/

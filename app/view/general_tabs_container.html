@@ -1,0 +1,26 @@
+{!This is a general template for a module which displays it's content in "Tabs"}{#use:module:
+{#if:toolbar:<div class="toolbar jqx-widget jqx-rc-all">{#repeat:toolbar:
+	{#if:type=accessory:<div class="toolbar-accessory">
+		{#if:icon:<img src="{icon}" alt="{icon_alt:(icn)}" />}<span>{text}</span>
+	</div>}
+	{#if:type=opbar:<div class="opbar" id="{id}" {#if:hidden:style="display: none;"}>
+{#include::{include}}
+	</div>}
+	{#if:type=button:<button data-op="{op}" title="{text}"><img src="{icon}" alt="{icon_alt:icn}" /> {text}</button>}	
+}</div>}
+{#if:mainmenu:{#include::{mainmenu}}}
+{#if:beforetabs:{#repeat:beforetabs:
+	{#include::{$}}}}
+<div id='tabs-container'>
+	{!Tab headers}<ul style='margin-left: 16px;'>
+		{#repeat:tabs:
+			<li{#if:tooltip: data-tooltip="{tooltip}" data-tooltip_position="top"}><img src='/img/icons16/{icon}' alt='{icon}' /> {title}</li>}
+	</ul>
+{!AJAX Loaded Tabs}{#repeat:tabs:
+	<div id='{id}' {#if:spacey: class="spacey"} style="border: none; overflow: hidden;">
+		<div class="loading-pleasewait" style="height:250px;"></div>
+	</div>}
+</div>
+{#if:aftertabs:{#repeat:aftertabs:
+	{#include::{$}}}}
+}

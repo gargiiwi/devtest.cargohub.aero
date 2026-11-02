@@ -1,0 +1,107 @@
+{! @version 2020.11.01 }
+<table class="infotable contact-table{#if:_edit: contact-edit}" style="width: 100%;">
+	<tr>{!Header - Picture, Name and Primary E-mail}
+		<th><img id="contact-picture" src="/global/contact?action=get_picture&amp;ireq=1{#if:id:&amp;id={id}}" /></th>
+		<td>
+			<h1 id='contact-name' style="background-color: #FFFFA0; border: 1px solid lightgray;">
+				{#if:_edit:<input{#if:_create.name: class="gray" data-empty="true"} type="text" value="{name}" placeholder="(Name of this contact - Mandatory)" />}
+				{#ifnot:_edit:<span>{name}</span>}
+			</h1>
+			<h2 id='contact-email' style="background-color: #FFFFA0; border: 1px solid lightgray;">
+				{#if:_edit:<input{#if:_create.email: class="gray" data-empty="true"} type="text" value="{email}" placeholder="(Enter EMAIL address here - Mandatory)" />}
+				{#ifnot:_edit:<span>{email}</span>}
+			</h2>
+		</td>
+	</tr>
+	{#if:_edit:
+		<tr><th>Add or change data</th>{!Editing mode has this extra row with a button on it}
+		<td><button id="contact-field-edit" type="button" style="padding: 0; font-size: inherit;">Select <img src="/img/icons16/bullet_arrow_down.png" alt="Select" /></button></td></tr>}
+	{#repeat:xdata:{!Contact information, with groups}
+		<tr class="contact-group" id="contact-group-{*}">{#use:meta:<td colspan="2"><img src="{img}" alt="{title}" /> {title}</td>}</tr>
+		{#if:^_edit:{!Edit mode, has remove buttons and the lines contain inputs}
+			{#repeat:fields:{Contact fields}
+				<tr id="contact-field-{key}">
+					<th><button type="button" title="Remove field" style="display: none;"></button><label>{label}</label></th>
+					<td>{#ifnot:info:<input class="gray" data-empty="true" type="text" placeholder="&ctdot;"  autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" />}{#if:info:<input type="text" value="{info}" />}</td>
+				</tr>
+			}
+			{#if:^_edit:<tr class="contact-group-end" id="contact-group-end-{*}"><td colspan="2"></td></tr>}
+		}
+		{#ifnot:^_edit:{!View mode, only spans}
+			{#repeat:fields:{Contact fields}
+				<tr id="contact-field-{key}">
+					<th><label>{label}</label></th>
+					<td>{#ifnot:%_edit:{#ifnot:info:<hr style="opacity: 0.33" />}{#if:info:{info}}}</td>
+				</tr>
+			}
+		}
+	}
+        
+        
+        <!--change user password from admin and user end  START--> 
+{#if:edit_mode:
+        
+         <tr class="contact-group " id="contact-group-primary"><td colspan="2"><img src="/img/icons16/vcard.png"> Change Password [* Leave it blank, if do not want to change password]</td></tr>
+{#ifnot:loggedin_type: 
+<tr class="change-password-form">
+            <th><label>Old Password</label></th>
+            <td >
+                {#if:_edit:<input {#if:_create.password: class="gray" data-empty="true"} id='old_password' class="gray" spellcheck="false" data-empty="true" type="password" placeholder="" style="    border: 1px solid lightgray;" />}</td>  
+             
+        </tr> 
+        }
+        <tr class="change-password-form">{!Change Password From Admin}
+            <th><label>New Password</label></th>
+            <td >
+                {#if:_edit:<input {#if:_create.password: class="gray" data-empty="true"} id='contact_password' class="gray" spellcheck="false" data-empty="true" type="password" placeholder="* Leave it blank, if do not want to change password" style="    border: 1px solid lightgray;" />}</td>  
+             
+        </tr> 
+        <tr class="change-password-form">
+            <th><label>Confirm New Password</label></th>
+            <td >{#if:_edit:<input {#if:_create.con_password: class="gray" data-empty="true"} id='contact_con_password' class="gray" spellcheck="false" data-empty="true" type="password" placeholder=""  style="    border: 1px solid lightgray;" />}</td>  
+	</tr>
+        <tr class="change-password-form error_msg_passwrod_change" style="display:none;"><td colspan="2"><p style=" padding-left: 20%;">Password and Confirm Password must be same.</p></td></tr>
+        <tr class="change-password-form">
+            <th><label></label></th>
+            <td >
+                <span>
+                    Forgot password? <a id="clickToGetPassword" style="cursor: pointer;"> Click here to get a auto generated password. </a>
+                </span>    
+            </td>  
+                     </tr> 
+                     
+                     
+          }           
+                     
+        
+        <!--change user password from admin and user end  END-->
+        
+        
+
+        
+</table>
+{#if:id:<input type="hidden" id="vcard-loaded-id" value="{id}" />}
+{#if:_edit:{!Some dryjs templates needed in editing mode}{@
+<script id="template-contact-group" type="text/dryjstpl">
+<tr class="contact-group" id="contact-group-{$key}"><td colspan="2"><img src="{$img}" alt="{$title}" /> {$title}</td></tr>
+<tr class="contact-group-end" id="contact-group-end-{$key}"><td colspan="2"></td></tr>
+</script>
+
+<script id="template-contact-field" type="text/dryjstpl">
+<tr id='contact-field-{$key}'>
+	<th><button type="button" title="Remove field" style="display: none;"></button><label>{$label}</label></th>
+	<td>{#missing:info:<input class="gray" spellcheck="false" data-empty="true" type="text" placeholder="&ctdot;" />}{#exists:info:<input type="text" value="{$info}" />}</td>
+</tr>
+</script>
+
+<script id="template-field-ddmenu" type="text/dryjstpl">
+<div id="field-ddmenu"><ul style="width: 170px;">
+	{#loop:ddmenu:_group:group_cfg:
+	<li><img src="{$group_cfg.meta.img}" alt="{$group_cfg.meta.title}" /> {$group_cfg.meta.menu}
+		<ul{#exists:group_cfg.meta.width: style="width: {$group_cfg.meta.width}px;"}>{#loop:group_cfg.fields:_field:field_cfg:
+			<li data-op="contact-focus-field" data-group="{$_group}" data-field="{$_field}"> {$field_cfg.text}</li>}
+		</ul>
+	</li>}
+</ul></div>
+</script>
+}}

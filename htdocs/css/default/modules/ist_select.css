@@ -1,0 +1,41 @@
+div.issuetype {
+	border-bottom: 1px solid lightgray;
+	padding: 12px 5px;
+}
+	div.issuetype a.selector {
+		font-size: 18px;
+		color: black;
+		line-height: 32px;
+		margin-left: 24px;
+	}
+	
+	div.issuetype a.selector img {
+		float: left;
+		margin-left: 20px;
+		border: none;
+	}
+	
+	img#go_submit {
+		height: 64px;
+	}
+	
+	a.go_submit {
+		display: block;
+		height: 48px;
+		font-size: 18px;
+		line-height: 48px;
+		text-decoration: none;
+		color: black;
+		margin: 12px 0px 20px 0px;
+	}
+	
+	a.go_submit:HOVER {
+		text-decoration: underline;
+	}
+	
+	a.go_submit img {
+		height: 48px;
+		float: left;
+		margin-right: 16px;
+		border: none;
+	}

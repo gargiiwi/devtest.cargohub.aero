@@ -1,0 +1,16 @@
+<table id="rec-metadata"><tr>
+	<td valign="top" style="min-width: 250px;">{!Submitted by}
+		<label>Submitted by:</label><span style="font-size: 110%;" class="thick inline contact-item info-tip info-click" data-tooltip="{rec.submitter.name}<br /><b>{rec.submitter.email}</b><hr />Click on name to open full contact information" data-con_id="{rec.submitter.id}"><img src="/img/icons16/vcard.png" style="margin-top: 2px;" alt="[vcard]" />{rec.submitter.xdata.company_name:{rec.submitter.name}}</span>
+		<br /><label>Submit IP: </label><a class="inline info-tip" target="_blank" data-tooltip="Click to open external map service to locate the submitter" href="http://ipaddress.is/{rec.submitter.ip}"><img src="/img/icons16/map.png" style="margin-top: 3px; border: none;" alt="[map]" />{rec.submitter.ip}</a>
+		{#if:rec.submitter.domain:<br /><label>Submit Domain:</label><a href="//{rec.submitter.domain}/" target="_blank">{rec.submitter.domain}</a>}
+		<br /><label>Track ID:</label><span class="info-tip" data-tooltip="{rec.id}">{rec.track}</span>
+	</td>
+	<td valign="top">{!Timers1}
+		<label>Created on:</label><span>{rec.ctime}~date("Y-m-d H:i:s (l)")~</span>
+		<br /><label>Updated:</label><span>{rec.utime}~date("Y-m-d H:i:s (l)")~</span>
+		<br /><label{#if:rec.time_close: class="thick"}>Closed:</label><span>{#if:rec.time_close:{rec.time_close}~date("Y-m-d H:i:s (l)")~}{#ifnot:rec.time_close:<span class="gray">(still active)</span>}</span>
+		{#if:rec.edtime:<br /><label>Fields edited:</label><span>{rec.edtime}~date("Y-m-d H:i:s (l)")~</span>}
+		{#if:rec.commtime:<br /><label>Communication:</label><span>{rec.commtime}~date("Y-m-d H:i:s (l)")~</span>}
+		{#if:rec.transfer.time:<br /><label>Shared on:</label><span>{rec.transfer.time}~date("Y-m-d H:i:s (l)")~</span>}
+	</td>
+</tr></table>

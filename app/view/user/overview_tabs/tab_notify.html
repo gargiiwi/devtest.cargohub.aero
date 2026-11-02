@@ -1,0 +1,29 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/bell.png" /><span>Notifications</span>
+	</div>
+	<div id='item-operations' style='display: none;'>
+		<button data-op="read" title="Read notifications"><img src="/img/icons16/email_open.png" alt="Read" /> Read</button>
+		<button data-op="dismiss" title="Dismiss notification"><img src="/img/icons16/cross.png" alt="Dismiss" /> Dismiss</button>
+		<!-- <button data-op="archive" title="Archive notification"><img src="/img/icons16/clock_history_frame.png" alt="Archive" /> Archive</button> -->
+		<div class="toolbar-separator"></div>
+		{!<button data-op="set-imp" title="Change notification importance"><img src="/img/icons16/vslider.png" alt="Importance" /> Set Importance</button>}
+		<button data-op="open-item" title="Open related item"><img src="/img/icons16/assigned.png" alt="Open" /> Open related item</button>
+		<div class="toolbar-separator"></div>
+	</div>
+	<button data-op="dismiss-all" title="Dismiss all new notifications (clears the bar)"><img src="/img/icons16/recycle.png" alt="Recycle" /> Dismiss all</button>
+	<button data-op="link" data-link="/user/settings#notifysub" style="float: right;"><img src='/img/icons16/cog.png' />Subscription settings</button>
+</div>
+<div id="grid-notifications"></div>
+
+<br /><div class='info-expander'>
+	<div><img class="header-icon" src="/img/icons16/information.png" alt="Info" /> Information about the notifications grid (click to show/hide)</div>
+	<div class='spacey'>
+		<h3>This is the list of notifications that you received.</h3>
+		<p>CargoHub Connect records all the notifications that you have received, so nothing is forgotten.
+		When you reaceive a notification about an event, it will be visible here in this grid.<br />
+		<p>You have the ability to read, dismiss or archive one or more notifications, and also search among them using the grid's search header.<br />
+		A read or dismissed notification is not counted and shown in the notification bar, but is still visible in the grid. By default, the archived notifications are not shown and you have to actively enable them to view them.</p>
+		<p>Notifications cannot be directly deleted, however the system automatically cleans archived notifications which are older than one year.</p> 
+	</div>
+</div>

@@ -1,0 +1,56 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{name.n}:</th><td>{^xfields.name:<span class="gray">---</span>}</td></tr>
+		 <tr><th>{audit_number.n}:</th><td>{^xfields.audit_number:<span class="gray">---</span>}</td></tr>
+		<tr><th>Scheduled Date:</th>
+			<td>{#if:^xfields.scheduled_date:{^xfields.scheduled_date}~date("Y-m-d")~}{#ifnot:^xfields.scheduled_date:<span class='gray'>---</span>}</td>
+		</tr>
+		<tr><th>{inex.n}:</th><td>{^xfields.inex.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{scope.n}:</th><td>{^xfields.scope.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{code_loc.n}:</th><td>{^xfields.code_loc:<span class="gray">---</span>}</td></tr>
+		<tr><th>{code_iso2.n}:</th><td>{^xfields.code_iso2.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{audit_com_name.n}:</th><td>{^xfields.audit_com_name.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{dept.n}:</th><td>{^xfields.dept:<span class="gray">---</span>}</td></tr>
+		<tr><th>{requested.n}:</th><td>{^xfields.requested:<span class="gray">---</span>}</td></tr>
+			<tr><th>{score.n}:</th><td>{^xfields.score:<span class="gray">---</span>} {^xfields.score2.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{auditer_name.n}:</th><td>{^xfields.auditer_name:<span class="gray">---</span>}</td></tr>
+		 <tr><th>{2nd_auditor.n}:</th><td>{^xfields.2nd_auditor:<span class="gray">---</span>}</td></tr>
+	  <tr><th>{3rd_auditor.n}:</th><td>{^xfields.3rd_auditor:<span class="gray">---</span>}</td></tr>
+	  <tr><th>{main_rep.n}:</th><td>{^xfields.main_rep:<span class="gray">---</span>}</td></tr>
+	  <tr><th>{main_email.n}:</th><td>{^xfields.main_email:<span class="gray">---</span>}</td></tr>
+		<tr><th>{auditer_depart.n}:</th><td>{^xfields.auditer_depart:<span class="gray">---</span>}</td></tr>
+	
+	</table>
+		<h4 style="margin-top: 15px; background-image: url('/img/icons16/numbers123.png'); background-repeat: no-repeat; background-position: 4px;">Audit Scheduler</h4>
+
+	<table>		
+		<tr>
+			<th>Repetition</th>
+			<td>
+				{^xfields.sched_rep.value:<span class="gray">---</span>}
+			</td>
+		</tr>
+		<tr>
+			<th>Start Date:</th>
+			<td>{#if:^xfields.date_start:{^xfields.date_start}~date("Y-m-d")~}{#ifnot:^xfields.date_start:<span class='gray'>---</span>}
+				<label class="ra_label" style="padding-left: 47px;">End Date:</label> {#if:^xfields.date_end:{^xfields.date_end}~date("Y-m-d")~}{#ifnot:^xfields.date_end:<span class='gray'>---</span>}
+			</td>
+		</tr>
+		<tr>
+			<th style="font-weight: bold;" style="padding-top: 15px;">{rec_Pos.n}:</th>
+			<td style="font-weight: bold;"style="padding-top: 15px;">{^xfields.rec_Pos.value:<span class="gray">---</span>}		
+				<label class="ra_label" style="width:147px"><a id= "open_Parent" href='javascript:par_Route("{^xfields.parent_Track}")'>Open Parent</a></label> 
+			</td>
+		</tr>
+		<tr>
+			<th style="font-weight: bold;">{has_Child.n}:</th>
+			<td style="font-weight: bold;">{^xfields.has_Child.value:<span class="gray">---</span>}
+				<span id = "showchild" style='font-weight:600'></span>
+				<label class="ra_label" style="width:147px;margin-left: 55px;"><a id= "delete_childs" href="javascript:child_delete({^xfields.inex.issue_id})">Delete duplicates</a></label>
+			</td>
+	</table>
+	
+	<h5>{comments.n}:</h5>
+	{#if:^xfields.comments:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 120px; overflow: auto;">{^xfields.comments}~nl2br~</div>}
+	{#ifnot:^xfields.comments:<div class="gray" style="text-indent: 20px;">-----</div>}
+}

@@ -1,0 +1,17 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>Contact person 1:</th><td>{^xfields.contact_person:<span class="gray">---</span>}</td></tr>
+		<tr><th>Job title 1:</th><td>{^xfields.owner_name:<span class="gray">---</span>}</td></tr>
+		<tr><th>Contact Email 1:</th><td>{^xfields.contact_email:<span class="gray">---</span>}</td></tr>
+		<tr><th>Contact tel 1:</th><td>{^xfields.contact_tel:<span class="gray">---</span>}</td></tr>
+		<tr><td colspan="2"><br /></td></tr>
+		<tr><th>Contact person 2:</th><td>{^xfields.contact_person1:<span class="gray">---</span>}</td></tr>
+		<tr><th>Job title 2:</th><td>{^xfields.job_titl1:<span class="gray">---</span>}</td></tr>
+		<tr><th>Contact Email 2:</th><td>{^xfields.contact_email1:<span class="gray">---</span>}</td></tr>
+		<tr><th>Contact tel 2:</th><td>{^xfields.contact_tel1:<span class="gray">---</span>}</td></tr>
+
+	</table>	
+		{#if:^xfields.xinfo:
+		<div>{^xfields.xinfo}~nl2br~</div>}
+		{#ifnot:^xfields.xinfo:<div class="gray" style="text-indent: 20px;">(use this area as a quick clipboard)</div>}
+}

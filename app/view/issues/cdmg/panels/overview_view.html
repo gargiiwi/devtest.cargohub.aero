@@ -1,0 +1,46 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">---</span>}</td></tr>
+		<tr><th>{class.n}:</th><td>{^xfields.class.value}</td></tr>
+		<tr><th>Incident Date &amp; Time:</th><td>
+			{#if:^xfields.idate:{^xfields.idate}~date("Y-m-d")~ &middot; {^xfields.itime:<span class="gray">---</span>}}
+			{#ifnot:^xfields.idate:<span class='gray'>(missing)</span>}
+		</td></tr>
+		<tr><th>{loc.n}:</th><td>{^xfields.loc:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{process.n}:</th><td>{^xfields.process.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{carr_type.n}:</th><td>{^xfields.carr_type.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{ftnr.n}:</th><td>{^xfields.ftnr:<span class='gray'>---</span>}
+		<div class="ra_250">
+			<label class="ra_label">Date:</label>
+			{#if:^xfields.ftdate:{^xfields.ftdate}~date("Y-m-d")~}{#ifnot:^xfields.ftdate:<span class='gray'>---</span>}
+		</div></td></tr>
+	</table>
+	<hr />
+	<table style="width: 99%;">
+		<tr>
+			<td style="width: 50%; text-align: center;">{orig.n}:</td>
+			<td style="width: 50%; text-align: center;">{dest.n}:</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">{^xfields.orig:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{^xfields.dest:<span class="gray">---</span>}</td>
+		</tr>
+	</table>
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/hash.png'); background-repeat: no-repeat; background-position: 4px;">References:</h4>	
+	<table>
+		<tr><th>{ref_ex.n}:</th><td>{^xfields.ref_ex:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{ref_in.n}:</th><td>{^xfields.ref_in:<span class='gray'>---</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>{docid_air.n}:</th><td>{^xfields.docid_air:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{docid_land.n}:</th><td>{^xfields.docid_land:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{docid_ocean.n}:</th><td>{^xfields.docid_ocean:<span class='gray'>---</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>{shipper.n}:</th><td>{^xfields.shipper:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{consignee.n}:</th><td>{^xfields.consignee:<span class='gray'>---</span>}</td></tr>
+	</table>
+
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">{documents.n}:</h4>	
+	{#repeat:^xfields.documents:<span class="itembox green">{value}</span>}
+	{#ifnot:^xfields.documents:<div class="gray" style="text-indent: 20px; margin: 8px 0px;">(no documents mentioned)</div>}
+	<div class="clear"></div>
+}

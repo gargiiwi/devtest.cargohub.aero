@@ -1,0 +1,18 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{oth_org.n}:</th><td>{^xfields.oth_org:<span class="gray">---</span>}</td></tr>
+		<tr><th>{flt_num.n}:</th><td>{^xfields.flt_num:<span class='gray'>---</span>}
+		<div class="ra_250">
+			<label class="ra_label">Flight Date:</label>
+			{#if:^xfields.flt_date:{^xfields.flt_date}~date("Y-m-d")~}{#ifnot:^xfields.flt_date:<span class='gray'>---</span>}
+		</div></td></tr>
+		<tr><th>{origin.n}:</th>
+			{#if:^xfields.origin.value:<td class="info-tip" data-tooltip="{^xfields.origin.value.name}<br /><span class='darkblue'>{^xfields.origin.value.country}</span>">{^xfields.origin.value.IATA}</td>}
+			{#ifnot:^xfields.origin.value:<td class="gray">---</td>}</tr>
+		<tr><th>{retby.n}:</th><td>{^xfields.retby:<span class="gray">---</span>}</td></tr>
+		<tr><th>{uld_id.n}:</th><td>{^xfields.uld_type.value} {^xfields.uld_id:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{uld_id2.n}:</th><td>{^xfields.uld_type2.value} {^xfields.uld_id2:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{uld_id3.n}:</th><td>{^xfields.uld_type3.value} {^xfields.uld_id3:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{uld_id4.n}:</th><td>{^xfields.uld_type4.value} {^xfields.uld_id4:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

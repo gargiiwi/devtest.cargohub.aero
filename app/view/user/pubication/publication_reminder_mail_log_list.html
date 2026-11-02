@@ -1,0 +1,83 @@
+<div style="f"  class="readonly_reminder_mail_log readonly_publish_documents_div_section "> 
+    <h4 style="text-indent:0px;"> </h4>
+    <div class="get_flx">
+        <div>
+            <h4 class="get_pub">Reminder Mail Log</h4>
+        </div>
+        <div>
+            <img class="log_pub" style="" alt="" src="{orgLogo}">
+        </div>
+    </div>
+    <div>
+
+
+        <div class="ratabs">
+            <!--            <div class="simple-spinner">
+                            <span></span>
+                        </div>-->
+
+            <div>
+                <div class="rapblication">
+
+                    <div class="back_link" >
+                        <a href="/user/publication?action=publication_user_list&id={note_id}" ><i class="fa  fa-arrow-left" aria-hidden="true" style=" font-size: 15px;"></i> Back </a>
+                    </div>
+
+
+                    <!--                    <div style="align-items: center;justify-content: space-between;margin-bottom: 10px;">
+                                            <h3>Title : {noteTitle}</h3>
+                                            <h3>Track : <a href="/record/process:{issue_track}#docs">{issue_track}</a></h3>
+                                        </div>-->
+                    <table class="table table-bordered tab_pblication" id="readSignReminderLogListData">
+                        <thead>
+                            <tr>
+                                <td style="">Sl. No.</td>
+                                <td style="">{noteTitle} </td>
+                                <td style="">Last Reminder Sent </td>
+                                <td style="">Count</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#repeat:readSignReminderLogData:
+                            <!--{user}-->
+                            <tr id="1">
+                                <td>{sl_no}</td>
+                                <td>{name}</td>
+                                <td>{date}</td>
+                                <td class="reminderDateView highlight-text" data-user="{user_id}" data-doc="{doc_id}">{count_user}</td> <!-- IWI popup to view all reminder dates -->
+
+                            </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <!--IWI popup to view all reminder dates  start-->
+
+
+                <div class="reminderDateViewSec modal">
+                    <div class="modal-content">
+                        <table class="reminderDateViewTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Sent</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reminderDateViewTbody">
+                            </tbody>
+                        </table>
+                    </div>                
+                </div>
+                <!--IWI popup to view all reminder dates end-->
+
+            </div>
+        </div>
+
+    </div>
+
+</div> 
+
+<input type="hidden" id="loadDataNoteId" value="{note_id}" />

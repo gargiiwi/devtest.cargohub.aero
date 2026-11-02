@@ -1,0 +1,97 @@
+<div style="height: 40px;">
+	&nbsp;
+</div>
+
+<div style="float: left;margin-left: 30px;">
+
+	<!--<p style="font-style: italic; margin-top: 0;"><b>Important notice:</b><br />
+	<span style="font-size: 110%;">Please use browsers <a href="https://www.google.com/chrome/index.html"><b>Google Chrome</b></a> or <a href="https://www.mozilla.org/en-US/firefox/new/"><b>Mozilla Firefox</b></a> with this software.</span><br /><br />
+	<span style="font-size: 85%;">Some older Internet Explorer versions have known issues and you might not be able to complete the process!</span></p>
+	<hr />-->
+	<div style="width: 1055px;">
+	<!--CargoClaims.aero offers an easy way for filing a cargo claim.-->
+	
+	<br>
+	  This is not the official website of {html.title}. {html.title} is referred to solely as the airline against which the claim is submitted. <br><br>
+    CargoClaims is an independent cargo claims platform operated by CargoHub B.V. and is not affiliated with or endorsed by {html.title}. The IATA cargo innovation awarded <b><a href="https://www.cargoclaims.aero"> Cargo Claims and Loss Prevention CCLP</a></b> platform enables you to manage and submit your cargo claims to any airline from <b>ONE</b> single platform. Your claims are stored and presented with a clear overview within your account which is automatically generated upon submitting your first claim. 
+	<br><br>
+When using our platform and submitting a claim agains the carrier, please make sure a correct and valid emailaddress is used and accepted by {html.title}.
+<hr/>
+
+	</div>
+	
+	
+	<h4 style="margin-left: 2px;margin-top: 16px;">Submit a claim to {html.title} in easy steps:</h4>
+	<ol style="padding-left: 16px; margin-left:30px;">
+		<li>Complete the cargo claim form and submit (no login required)</li>
+		<li>Enter email address of the airline or select available contacts</li>
+		<li>Click on the send email button. A copy of the claim will be sent to your email address</li>
+	</ol>
+	<br>
+	<br>
+	<div>
+		<a href="https://www.cargoclaims.aero"><img src="img/hdrs/cargoclaim-pre.jpg" style="display: block;margin-left: auto;margin-right: auto;width: 70%"></a>
+	</div>
+	<!--<h2 style="font-weight: bold; margin-top: 30px;">Submit a notice of claim to {html.title} in 3 easy steps:</h2>
+	<ol style="padding-left: 16px;">
+		<li>Complete the cargo claim form and submit (no login required)</li>
+		<li>Enter email address of the airline or select available contacts</li>
+		<li>Click on the send email button. A copy of the claim will be sent to your email address</li>
+	</ol>
+
+	<h2 style="font-weight: bold; margin-top: 30px;">About us:</h2>
+	<p style="margin-top: 16px;">
+		<a href="https://www.cargoclaims.aero">Cargo Claims</a> streamlines the claims handling process within the air cargo industry.<br />
+		The IATA cargo innovation awarded platfrom increases the customer experience and contributes to the competitiveness of the air cargo product by offering stakeholders a more transparent cargo claims process and an increased speed of service recovery.
+	</p>
+	
+	<h2 style="font-weight: bold; margin-top: 30px;">Contact us:</h2>
+	<p style="margin-top: 16px;">
+		Email: <a href="mailto:support@cargohub.nl">support@cargohub.nl</a><br />
+		Web: <a href="https://www.cargoclaims.aero">www.cargoclaims.aero</a>
+	</p>-->
+</div>
+
+	<!--<div style="float: right; width: 450px; margin-right: 30px;">
+	<div style="text-align: center; margin-bottom: 30px;">
+		<a href="https://www.cargohub.nl/wp-content/uploads/2015/12/Cargo-Claims-CCLP-3.0.mp4?_=1" target="_blank">
+			<img src="/cmsup/cms/worldwideimg.jpg" alt="Worldwide Image">
+		</a>
+	</div>-->
+<div style="display: grid;grid-template-columns: 1fr 1fr;grid-gap: 20px;width: 50%;">
+	<div style="margin: 10px;">	
+		<h4 style="width: 485px;margin-left: 30px; margin-top: 16px;"><a href="https://www.cargohub.nl/blog/claim-management-for-forwarders-made-simple" target="_blank">Benefits for forwarders and shippers</a></h4>
+		<ul style="padding-left: 25px;margin-left:30px;">
+			<li>Benefit an industry standardized claims proces</li>
+			<li>Submit a claim to any airline in just 3 easy steps</li>
+			<li>Manage all your claims from a single user or organzation account</li>
+			<li>Read more about benefits for claimants <a href="https://www.cargohub.nl/blog/claim-management-for-forwarders-made-simple" target="_blank" style="font-weight: bold;">click here</a></li>
+		</ul>
+	</div>
+	<div style="margin: 10px;">
+		<h4 style="width: 485px;margin-left:30px; margin-top: 16px;"><a href="https://www.cargohub.nl/worldwide-cargo-claims-platform" target="_blank">Benefits for airlines and gsa</a></h4>
+		<ul style="padding-left: 25px;margin-left:30px;">
+			<li>Transparent cargo claims dashboard</li>
+			<li>Integrated claim management and communcation tools</li>
+			<li>Increased customer experience and transparency</li>
+			<li>Read more about benefits for airlines <a href="https://www.cargohub.nl/blog/worldwide-claims-management-for-airlines-made-simple" target="_blank" style="font-weight: bold;">click here</a></li>
+		</ul>
+	</div>
+</div>
+<div style="float: left;margin-left: 30px;">
+	
+
+	<!--<h4 style="margin-left: 10px;margin-top: 16px;margin-right: 39px;">Our mission</h4>-->
+	<p style="margin-top: 16px;margin-left:30px;width: 1063px;">
+	
+	  <!--The <b><a href="https://www.cargoclaims.aero">Cargo Claims and Loss Prevention</a></b> platform streamlines the claims handling process within the air cargo industry.<br />
+		Our solution increases the customer experience and contributes to the competitiveness of the air cargo product by offering stakeholders a more transparent cargo claims process and an increased speed of service recovery.-->
+	
+	</p>
+	<div style="margin-left: 29px;"></div>
+	<p style="margin-left: 29px;">
+	<!--	Email: <a href="mailto:support@cargohub.nl">support@cargohub.nl</a><br />
+		Web: <a href="https://www.cargoclaims.aero">www.cargoclaims.aero</a>-->
+	</p>
+</div>
+<div class="clear"></div>

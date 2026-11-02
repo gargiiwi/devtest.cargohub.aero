@@ -1,0 +1,257 @@
+<!--<div id="export-commands">
+    <div class='command'><button class="info-tip" id='btn_export_excel' data-op="export" data-format="xls" data-tooltip="Export to Microsoft Excel 2007+"></button> Export XLS</div>
+    <div class='command'><button class="info-tip" id='btn_export_html' data-op="export" data-format="html" data-tooltip="Export to HTML Page"></button> Export HTML</div>
+    <div class='command'><button class="info-tip" id='btn_export_csv' data-op="export" data-format="csv" data-tooltip="Export to Comma Sepparated Values"></button> Export CSV</div>
+</div>
+
+<div class='query-area method_1' id="tid-query">{!When knowing the TrackID, enter it directly}
+    <h2>Method 1:</h2>
+    <p style="margin-top: 0; padding-left: 40px;"><b>Enter</b> Tracking #number of your submitted record:</p>
+    <form action="/issue&amp;action=view" method="get">
+        <input type="text" id='issue-search-tid' name='track' maxlength="12" />
+        <input type="submit" value="View record" />
+    </form>
+</div>
+<div class='query-area method_2'>
+    <h2>Method 2:</h2>
+    <ul style="margin-top: 0;">
+        <li><b>Click</b> on a row in the grid to copy it's Track # in the search box</li>
+        <li><b>DoubleClick</b> to view the record directly.</li>
+    </ul><br />
+    {!This feature is available for contact account only - In "user" mode the listed issues are the ones submitted while the user was logged in - TODO: The required checks}
+</div> 
+
+<div class='right issueEmailSection' style="margin-right: 15px;">
+    <h3>Select the E-mail address used as the submitter:</h3>
+    <div id="contact-email-select"></div><br />
+    <span id="contact-name"></span> 
+    <div class="clear"></div>
+    <div class="submit_button_section">
+        <a href="/cms?path=worldwide" target="_blank">
+        <img src="/img/icons16/add.png" alt="Submit new">
+        <button class="submit_button">Submit New</button>
+        </a>
+    </div>
+</div>
+{!jqxGrid, to locate the issue}
+<div id="iss-table"></div>
+
+<div class='query-area'>
+    <h2>Please read:</h2>
+    <p>If your E-mail address has been changed after records were submitted, use the selector on the right to choose under which e-mail the records were submitted.<br />
+        The grid will initially be empty if no new records were created with a new E-mail address !</p>
+</div>
+<div class='query-area'><b>Note:</b> Fields <i>Reference</i> and <i>Secondary</i> depend on type of data.</div>-->
+
+
+
+
+
+
+
+
+<div class="contact_account_issues_front">
+
+<div class="top_div" style="border: solid 1px #E5E5E5; border-radius: 12px; padding: 15px 25px;    margin-bottom: 15px;">
+
+<div class="method_wraps">
+            <!-- {!When knowing the TrackID, enter it directly} -->
+            <div class='query_area method_1' id="tid-query">
+                <h4>Method 1:</h4>
+                <p>Enter Tracking number of your submitted record:</p>
+                <form action="/issue&amp;action=view" method="get">
+                    <input type="text" id='issue-search-tid' name='track' maxlength="12" class="tracking_method_input"
+                        placeholder="Enter tracking number" />
+                    <input type="submit" value="View record" class="view_record_btn" style="background-color: #2866C1; border: solid 1px #2866C1; border-radius: 4px; color: #ffff; padding: 8px 11px; margin-left: 5px; font-size: 12px; background-image: none;" />
+                </form>
+            </div>
+            <div class='right issueEmailSection' style="margin-right: 15px;">
+                <h4>&nbsp;</h4>
+    <p>Select the E-mail address used as the submitter:</p>
+    <div id="contact-email-select"></div><br />
+    <!--<span id="contact-name"></span>--> 
+<!--    <div class="clear"></div>
+    <div class="submit_button_section">
+        <a href="/cms?path=worldwide" target="_blank">
+        <img src="/img/icons16/add.png" alt="Submit new">
+        <button class="submit_button">Submit New</button>
+        </a>
+    </div>-->
+</div>
+            <div class='query_area method_2'>
+                <h4>Method 2:</h4>
+                <ul>
+                    <li><b>Click</b> on a row in the grid to copy it's Track # in the search box</li>
+                    <li><b>Double-Click</b> to view the record directly.</li>
+                </ul><br />
+                <!-- {!This feature is available for contact account only - In "user" mode the listed issues are the ones
+            submitted
+            while the user was logged in - TODO: The required checks} -->
+            </div>
+
+        </div>
+        <div class="border_bottom" style="border-bottom: solid 2px #EBEBEB; margin-top: -12px;"></div>
+
+    <div class="div_wrap">
+    <div id="export-commands" class="export_commands">
+        <span>Export:</span>
+        
+        <div class='command'>
+            <button class="info-tip" id='btn_export_excel' data-op="export" data-format="xls" data-tooltip="Export to Microsoft Excel 2007+">
+                <span><img src="/img/mime/text/excel_1.png" alt=""></span>
+                XLS
+            </button>
+        </div>
+        
+        <div class='command'>
+            <button class="info-tip" id='btn_export_html' data-op="export" data-format="html" data-tooltip="Export to HTML Page">
+                <span><img src="/img/mime/text/html_1.png" alt=""></span>
+                HTML
+            </button>
+        </div>
+        
+        <div class='command'>
+            <button class="info-tip" id='btn_export_csv' data-op="export" data-format="csv" data-tooltip="Export to Comma Separated Values">
+                <span><img src="/img/mime/text/csv_1.png" alt=""></span>
+                CSV
+            </button>
+        </div>
+    </div>
+
+    <div class="submit_button_section">
+        <a href="/cms?path=worldwide" target="_blank">
+            <button class="submit_button view_record_btn" style="background-color: #2866C1; border: solid 1px #2866C1; border-radius: 4px; color: #ffff; padding: 8px 11px; margin-left: 5px; font-size: 12px;display: flex;">
+                <span style="padding-right: 5px;"><img src="/img/icons16/add.png" alt=""></span>
+                Submit New
+            </button>
+        </a>
+    </div>
+</div>
+</div>
+{!jqxGrid, to locate the issue}
+<div id="iss-table" ></div>
+
+<!-- <div class='query-area'>
+    <h2>Please read:</h2>
+    <p>If your E-mail address has been changed after records were submitted, use the selector on the right to choose under which e-mail the records were submitted.<br />
+        The grid will initially be empty if no new records were created with a new E-mail address !</p>
+</div>
+<div class='query-area'><b>Note:</b> Fields <i>Reference</i> and <i>Secondary</i> depend on type of data.</div> -->
+<div style="border: 2px solid #BEDBFF75;padding: 15px;background-color: #f9f9f9;position: relative;border-radius: 10px; ">
+  <div style="margin-bottom: 10px;">
+    <h2 style="margin-top: 0; color: #294EBA;">Please read:</h2>
+    <p style="color: #6281db;">
+      If your E-mail address has been changed after records were submitted, use the selector on the right to choose under which e-mail the records were submitted.<br />
+      The grid will initially be empty if no new records were created with a new E-mail address!
+    </p>
+  </div>
+  <div style="color: #6281db;">
+    <b>Note:</b> Fields <i>Reference</i> and <i>Secondary</i> depend on type of data.
+  </div>
+  <div style="height: 4px;  position: absolute; bottom: 0; left: 0; width: 100%;"></div>
+</div>
+
+
+</div>
+
+
+<!-- <div class="submitted_data_wrap" style="width:1200px; margin:0 auto; border:solid 1px #E5E5E5; border-radius:12px; padding:20px 10px;">
+  <div class="top_div" style="border:solid 1px #E5E5E5; border-radius:12px; padding:15px 25px;">
+    <div class="method_wraps" style="display:flex;">
+      <div class="query_area method_1" id="tid-query" style="width:33.3%;">
+        <h4 style="margin:0px; font-size:14px; color:#0A0A0A; font-weight:600;">Method 1:</h4>
+        <p style="margin-top:8px; font-size:13px; color:#6B6B6B; font-weight:400;">Enter Tracking number of your submitted record:</p>
+        <form action="/issue&amp;action=view" method="get">
+          <input type="text" id="issue-search-tid" name="track" maxlength="12" class="tracking_method_input"
+            placeholder="Enter tracking number"
+            style="height:33px; background-color:#F6F6F6; color:#F6F6F6; border-radius:4px; border:solid 1px #F6F6F6; padding:0 15px; width:250px;" />
+          <input type="submit" value="View record"
+            style="background-color:#2866C1; border:solid 1px #2866C1; border-radius:4px; color:#fff; padding:8px 11px; margin-left:5px; font-size:12px;" />
+        </form>
+      </div>
+
+      <div class="right issueEmailSection" style="width:33.3%;">
+        <p style="margin-top:20px; font-size:13px; color:#6B6B6B; font-weight:400;">Select the E-mail address used as the submitter:</p>
+        <div class="issueEmailSection_wrap" style="display:flex;">
+          <div id="contact-email-select" style="height:33px; background-color:#F6F6F6; color:#F6F6F6; border-radius:4px; border:solid 1px #F6F6F6; padding:0 15px; width:200px; margin-right:5px;"></div>
+          <div class="clear"></div>
+
+        </div>
+      </div>
+
+      <div class="query_area method_2" style="width:33.3%; margin-top:20px;">
+        <h4 style="margin:0px; font-size:14px; color:#0A0A0A; font-weight:600;">Method 2:</h4>
+        <ul style="padding-left:0px; list-style:none; margin-top:4px;">
+          <li style="font-size:13px; line-height:22px; font-weight:500;"><b>Click</b> on a row in the grid to copy it's Track # in the search box</li>
+          <li style="font-size:13px; line-height:22px; font-weight:500;"><b>Double-Click</b> to view the record directly.</li>
+        </ul><br />
+      </div>
+    </div>
+
+    <div class="border_bottom" style="border-bottom:solid 2px #EBEBEB; margin-top:-12px;"></div>
+
+    <div class="div_wrap" style="display:flex; justify-content:space-between; align-items:end;">
+      <div id="export-commands" class="export_commands" style="display:flex; gap:10px; align-items:center; margin-top:16px;">
+        <span style="font-size:14px; font-weight:400; color:rgba(108,108,108,1);">Export:</span>
+        <div class="commands">
+          <button class="info-tip" id="btn_export_excel" data-op="export" data-format="xls"
+            data-tooltip="Export to Microsoft Excel 2007+"
+            style="border:1px solid rgba(234,234,234,1); border-radius:7px; width:85px; height:35px; background:rgba(255,255,255,1); font-weight:600; color:rgba(0,0,0,1); cursor:pointer;">
+            <span style="padding-right:5px;"><img src="/img/mime/application/msexcel.png" alt=""></span>
+          </button>
+        </div>
+        <div class="commands">
+          <button class="info-tip" id="btn_export_html" data-op="export" data-format="html"
+            data-tooltip="Export to HTML Page"
+            style="border:1px solid rgba(234,234,234,1); border-radius:7px; width:85px; height:35px; background:rgba(255,255,255,1); font-weight:600; color:rgba(0,0,0,1); cursor:pointer;">
+            <span style="padding-right:5px;"><img src="/img/mime/text/html.png" alt=""></span>
+          </button>
+        </div>
+        <div class="commands">
+          <button class="info-tip" id="btn_export_csv" data-op="export" data-format="csv"
+            data-tooltip="Export to Comma Sepparated Values"
+            style="border:1px solid rgba(234,234,234,1); border-radius:7px; width:85px; height:35px; background:rgba(255,255,255,1); font-weight:600; color:rgba(0,0,0,1); cursor:pointer;">
+            <span style="padding-right:5px;"><img src="/img/mime/text/csv.png" alt=""></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="submit_button_section">
+        <a href="/cms?path=worldwide" target="_blank">
+          <button class="submit_button view_record_btn"
+            style="background-color:#2866C1; border:solid 1px #2866C1; border-radius:4px; color:#fff; padding:8px 11px; margin-left:5px; font-size:12px;">
+            <span style="padding-right:5px;"><img src="/img/icons16/add.png" alt=""></span>Submit New
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="iss-table"></div>
+
+  <div class="query_dv_wrap" style="border:1px solid rgba(190,219,255,0.46); border-radius:6px; padding:10px 15px; margin-top:12px;">
+    <div class="query_area">
+      <h6 style="color:#294EBA; font-size:15px; font-weight:600; margin-top:0px; margin-bottom:5px;">Please read:</h6>
+      <p style="color:#96A6D5; font-size:12px; font-weight:400; line-height:20px; margin:0px;">
+        If your E-mail address has been changed after records were submitted, use the selector on the right to choose under which e-mail the records were submitted.
+        The grid will initially be empty if no new records <br> were created with a new E-mail address !
+      </p>
+    </div>
+    <div class="query_area">
+      <p style="color:#96A6D5; font-size:12px; font-weight:400; line-height:20px; margin:0px;">
+        <b>Note:</b> Fields <i>Reference</i> and <i>Secondary</i> depend on type of data.
+      </p>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+
+<script>
+    $('.site').addClass('accountRecordList');
+</script>

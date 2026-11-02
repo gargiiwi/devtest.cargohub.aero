@@ -1,0 +1,403 @@
+{@<style type="text/css">
+
+h3 {
+	color: #002b55;
+}
+
+div.header {
+	padding-bottom: 0 !important;
+}
+	div.header > div.header-bar {
+		margin-bottom: 0 !important;
+	}
+
+.content-container {
+}
+
+.content-body {
+	vertical-align: top;
+	width: 95%;
+	margin: 0 auto;
+}
+
+.content-text {
+	color: #404040;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 13px;
+}
+
+table#claim-types {
+	width: 100%; border-collapse: collapse; border-spacing: 1px;
+}
+
+	table#claim-types th, table#claim-types td {
+		padding: 5px;
+	}
+
+.impno {
+	display: inline-block;
+	width: 30px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 2px;
+}
+
+.content-list {
+}
+	.content-list label {
+		display: inline-block;
+		width: 150px;
+	}
+	.content-list li {
+		line-height: 18px;
+	}
+	
+.xlink {
+	display: block;
+	margin: 0 auto 25px auto;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	height: 100px;
+	width: 300px;
+}
+	.xlink:hover {
+		background-color: #eee;
+		text-decoration: none;
+	}
+	
+		.xlink:hover h1 {
+			color: black;
+		}
+
+	.xlink img {
+		float: left;
+		margin: 10px 15px 20px 15px;
+		text-decoration: none;
+		border: none;
+	}
+
+	.xlink h1 {
+		font-weight: bold;
+		font-size: 18px;
+		display: block;
+		margin-top: 20px;
+		color: #2D6CB1;
+	}
+	
+	.xlink p {
+		color: gray;
+	}
+	
+
+#left-nav {
+	color: #808080;
+	float: left;
+	font-size: 14px;
+	margin-top: 13px;
+	padding-left: 16px;
+	padding-top: 0;
+	position: relative;
+	width: 208px;	
+}
+
+	#left-nav ul {
+		list-style: outside none none;
+		margin: 0 0 0 8px;
+		padding: 0;
+	}
+	
+	#left-nav li {
+		float: left;
+		margin: 0 0.15em;	
+	}
+	
+	#left-nav li a {
+		color: #808080;
+		display: block;
+		float: left;
+		font: 12px Arial;
+		padding: 3px 0;
+		text-align: left;
+		text-decoration: none;
+		width: 11em;	
+	}
+	
+	#left-nav li ul {
+		float: left;
+		margin: 11px 0.3em 8px 0;
+		width: 208px;	
+	}
+	
+	#left-nav ul ul {
+		display: block;
+		position: relative;	
+	}
+	
+	#left-nav li ul li {
+		float: left;
+		margin: 1px 0.15em;
+		width: 208px;	
+	}
+	
+	#left-nav li ul li a {
+		background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+		color: #757575;
+		display: block;
+		float: left;
+		font: 12px Arial;
+		padding: 0;
+		text-align: left;
+		text-decoration: none;
+		width: 210px;	
+	}
+	
+	div#login {
+		margin: 30px auto;
+		width: 550px;
+	}
+	div.site > div.page > div#login small {
+		color: #666666;
+	}
+	div#login > div.logo {
+		margin-left: 40px;
+		margin-right: 30px;
+		padding: 12px;
+		width: 128px;
+	}
+	div#login > div.form {
+		padding: 12px;
+	}
+	div#login > div.form div.field {
+		background-color: white;
+		border: 1px solid #c7c7c7;
+		margin-bottom: 15px;
+		padding: 2px;
+		width: 250px;
+	}
+	div#login > div.form div.field > input {
+		border: medium none;
+		font-size: 14px;
+		line-height: 19px;
+		resize: none;
+		text-indent: 8px;
+		width: 100%;
+	}
+	div#login > div.form #remember {
+		float: left;
+		margin-left: -3px;
+		margin-top: 4px;
+	}
+
+</style>}
+<div class="content-container">
+	<div class="content-body">
+		<div class="content-text" style="text-align: justify;">
+			<div style="height: 30px;">&nbsp;</div>
+			<h2>Welcome to the Kales Airline Services Cargo e-Claims portal</h2>
+			<p>This service is available 24/7 - 365 days a year to accept your preliminary and formal claims.<br />
+			Our &quot;state of the art&quot; Cargo e-Claims system will provide you with efficient filing of both preliminary and formal claims as well as the ability to upload related documentation.</p>
+			<p>An email address and password will be required to view claims that have been submitted. In just a few key-strokes preliminary claims that have been entered previously can also be converted to a formal priced claim and additional required documentation added to the file.</p>
+			<p>Please explore the information contained in the portal which outlines time lines for claims as well as the documentation required to submit claims and the related documentation into the system.</p> 
+		</div>
+		<div class="clear" style="margin-top: 30px;"></div>
+
+	{#plugin:jqxtabs}
+	<div id="tabs-claiminfo">
+		<ul>
+			<li style="margin-left: 20px;"><img src='/img/icons16/ist/claim.png' />Submit Cargo Claim</li>
+{!			<li><img src='/img/icons16/ist/damage.png' />Submit Damage report</li>}
+			<li><img src='/img/icons16/magnifier.png' />Log into your account</li>
+                        <!--IWI how to page like add start-->
+                        <li><a class="cmsHowToLi" target="_blank" href="https://cargoclaims.aero/cms?path=/cargoclaims/docs/howto_submit_claim">How to submit</a></li>
+                        <!--IWI how to page like add end-->
+		</ul>
+		<div class='content-text'>
+		
+			<div class="left" style="width: 340px; margin-top: 32px;">
+				<a href="https://kales.cargoclaims.aero/issue?action=form&key=cargoclaim" id="submit" class="xlink">
+					<h1><img src="/img/iso3166/netherlands_flag.png" alt="NL">Kales Netherlands</h1>
+					<p style="margin-top: 4px;">Route destination/origin: <b>AMS</b><br />Schiphol Airport</p>
+				</a>
+				
+				<a href="https://kales-bru.cargoclaims.aero/issue?action=form&key=cargoclaim" id="submit" class="xlink">
+					<h1><img src="/img/iso3166/belgium_flag.png" alt="BE">Kales Belgium</h1>
+					<p style="margin-top: 4px;">Route destination/origin: <b>BRU</b><br />Brussels Airport</p>
+				</a>
+				
+				<a href="https://www.cargoclaims.aero/" id="submit" class="xlink">
+					<h1><img src="/img/iso3166/world.png" alt="NL">Other routes</h1>
+					<p style="margin-top: 4px;">Choose this when departure/arrival</br >is not in the locations above</p>
+				</a>
+			</div>
+			
+			<div class="right spacey" style="width: 714px;">
+			
+				<a class='right' style="margin: 12px 20px 0 0;" href="/contact/access?action=login"><img class="inline-icon16" src="/img/icons16/magnifier.png" alt="SRC">Search existing claims</img></a>
+			
+				<h2 style="margin-top: 24px;">Service for forwarding agents</h2>
+			
+				<p>A cargo claim is a written complaint demanding financial compensation from the <b>carrier</b> for loss of, damage or delay to cargo whilst in care and control pursuant to a contract of carriage.</p>
+				<p>In the case of damage or delay, the person entitled to delivery must complain to the carrier within the time lines stated below. If no complaint is made within the times indicated below, then no action can be brought against the carrier involved.</p>
+				
+				<table id="claim-types" style="color: black;">
+					<tr bgcolor="#a0a0a0" style="color: #ffffff;">
+						<th width="5%" style="text-align: center; color: #fff;">No.</th>
+						<th width="15%" style="color: #fff;">Claim Type</th>
+						<th width="40%" style="color: #fff;">Description</th>
+						<th width="40%" style="color: #fff;">Time Limit</th>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">1</td>
+						<td style="text-align: left;">Loss.</td>
+						<td style="text-align: left;">Loss of whole consignment.</td>
+						<td style="text-align: left;"><span class='impno'>120</span> days from the AWB issuing date.</td>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">2</td>
+						<td style="text-align: left;">Damage.</td>
+						<td style="text-align: left;">To consignment whole or in part.</td>
+						<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">3</td>
+						<td>Partial Loss.</td>
+						<td style="text-align: left;">Loss of part of the consignment.</td>
+						<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">4</td>
+						<td>Delay.</td>
+						<td style="text-align: left;">To complete consignment or part of it</td>
+						<td style="text-align: left;"><span class='impno'>21</span> days from the placing date.</td>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">5</td>
+						<td>Pilferage.</td>
+						<td style="text-align: left;">To consignment whole or in part</td>
+						<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+					</tr>
+				</table>
+				<hr />
+				<div class="spacey">
+					<p>If a preliminary claim was not submitted through our e-Claims portal, then a copy of the official complaint must be uploaded into your formal claim file. Also an official claim from the person entitled to delivery must also be uploaded.</p>
+				</div>
+				
+			</div>
+			{!Guidelines}
+			{@<style>
+			.dochelp {
+				line-height: 18px;
+			}
+			.dochelp th {
+				text-align: left;
+				width: 200px;
+				min-width: 200px;
+			}
+			.dochelp tr {
+				display: block;
+				margin-bottom: 8px;
+			}
+			</style>}
+			
+			<div class="clear"></div>
+			<hr />
+			<div style="padding: 12px;">
+				<h2>Guidelines for submitting documents</h2>
+				<p>Please include the following information when submitting the e-Claim in order prevent any delay in handling your claim. The more information you provide, the more quickly your claim can be handled or settled.</p>
+				<table class='dochelp'>
+				<tr><th valign="top">1. PRELIMINARY CLAIM</th>
+				<td>Enclose the preliminary notice of claim in written !</td></tr>
+				<tr><th valign="top">2. MASTER AIR WAYBILL</th>
+				<td>Copy of the  contract of carriage  ( Master Airwaybill ) and eight digit number assigned to the shipment.</td></tr>
+				<tr><th valign="top">3. CLAIMED AMOUNT</th>
+				<td>List the damaged or shorted merchandise by item and quantity and provide the amount you would like to be compensated for.<br />
+				Tell exactly what was damaged and how you came to your claimed amount.<br />
+				List how many pounds/ kilograms or what number carton was damaged.</td></tr>
+				<tr><th valign="top">4. FREIGHT CHARGES</th>
+				<td>In most cases, the freight charges must be paid before a claim is finalized.</td></tr>
+				<tr><th valign="top">5. INSPECTION REPORT</th>
+				<td>If damage was noted at destination, the agent should have been requested to prepare this report.<br />
+				If an inspection was not done, just state that non was done.<br />
+				An inspection completed by an independent surveyor may also be included.</td></tr>
+				<tr><th valign="top">6. INVOICE</th>
+				<td>Provide the original vendor’s invoice for the damaged merchandise in question.<br />
+				This will indicate the value of the goods claimed.</td></tr>
+				<tr><th valign="top">7. PACKING LIST</th>
+				<td>This would list the quantity and weight of the items in each box.<br />
+				For personal effects shipments, the value of each item should also be listed.</td></tr>
+				<tr><th valign="top">8. REPAIR OR PARTS REPLACEMENT BILL</th>
+				<td>If the damaged goods are repairable, provide the receipt for repair.</td></tr>
+				<tr><th valign="top">9. SALVAGE VALUE</th>
+				<td> It is the shipper / consignee’s responsibility to minimize the loss by salvaging goods.<br />
+				Explain what was done with the damaged shipment; for example, was it thrown away, repaired, or sold for discount price.</td></tr>
+				</table>
+				<p><span style="font-size: small;">Remember that you must retain all damaged material until the claim is completely resolved. In some cases, the carrier will notify you that they intend to pick up the damaged material. If you are not able to provide the material for the carrier, then the claim is denied.</span></p>
+				<hr />
+				<h2>FREIGHT FORWARDERS AND INSURANCE COMPANIES</h2>
+				<p>In addition to the above please include:</p>
+				<table class='dochelp'>
+				<tr><th valign="top">10. HOUSE AIRWAYBILL</th>
+				<td>Delivery record copy</td></tr>
+				<tr><th valign="top">11. SETTLEMENT DRAFT</th>
+				<td>Proof of payment to ultimate consignee</td></tr>
+				<tr><th valign="top">12. SUBROGATION RECEIPT</th>
+				<td>Statement from payee authorizing you to act on behalf of shipper or consignee</td></tr>
+				</table>
+			</div>
+		</div>
+{!		<div class='content-text'>
+		
+			<div class="left" style="width: 340px; margin-top: 32px;">
+			
+				<a href="https://kales.cargoclaims.aero/issue?action=form&key=damage" id="submit" class="xlink">
+					<h1><img src="/img/iso3166/netherlands_flag.png" alt="NL">Kales Netherlands</h1>
+					<p style="margin-top: 4px;">Route destination/origin: <b>AMS</b><br />Schiphol Airport</p>
+				</a>
+				
+				<a href="https://kales-bru.cargoclaims.aero/issue?action=form&key=damage" id="submit" class="xlink">
+					<h1><img src="/img/iso3166/belgium_flag.png" alt="BE">Kales Belgium</h1>
+					<p style="margin-top: 4px;">Route destination/origin: <b>BRU</b><br />Brussels Airport</p>
+				</a>
+				
+				<a href="http://www.kales.com/cargo" id="submit" class="xlink">
+					<h1><img src="/img/iso3166/world.png" alt="NL">Other locations</h1>
+					<p style="margin-top: 4px;">Contact your local station</p>
+				</a>
+			</div>
+			
+			<div class="right spacey" style="width: 714px;">
+
+				<a class='right' style="margin: 12px 20px 0 0;" href="/contact/access?action=login"><img class="inline-icon16" src="/img/icons16/magnifier.png" alt="SRC">Search existing reports</img></a>
+			
+				<h2 style="margin-top: 24px;">Service for ground handlers</h2>
+				<p class='gray'>
+					(content under construction)
+				</p>
+			</div>
+		</div>}
+		<div class='content-text'>
+			<div id="login" class="jqx-rc-all">
+				<div class="logo left">
+					<img src="{html.base}/img/extra/contact.png" alt="Contact Account" />
+				</div>
+				<div class="form left">
+					<form action="/contact/access?action=authenticate&autoforward=1" method="post">
+						<h3>Your E-mail</h3>
+						<div class="jqx-rc-all field"><input type="text" name="email" {#if:autofill_email: value="{autofill_email}"}/></div>
+						<h3>Password</h3>
+						<div class="jqx-rc-all field"><input type="password" name="password" {#if:autofill_password: value="{autofill_password}"}/></div>
+						<input type="submit" value="Proceed" class="right" />
+						<div class="clear"></div>
+					</form>
+				</div>
+				<div class="clear"></div>
+				<hr />
+				<p style="text-align: right; margin-right: 50px;">Do you need your password ?<br /><br /><a class="jqx-rc-all" href="/contact/access?action=recover_password" style="font-weight: bold; display: inline-block; padding: 3px 8px; border: 1px solid gray; color: black; text-decoration: none;">click here</a> to obtain it !</p>
+			</div>
+		</div>
+                 <!--IWI how to page like add start-->
+                        <div>&nbsp;</div>
+                        <!--IWI how to page like add end-->
+	</div>
+	<div style="height: 30px;">&nbsp;</div>
+</div>

@@ -1,0 +1,193 @@
+ 
+<!DOCTYPE html>{!Used by document webview without a default document}
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{title}</title>
+
+        <link rel="stylesheet" href="/css/default/components/sweetalert2.min.css"  />
+        <link rel="stylesheet" href="/css/default/modules/document_view_container.css"  />
+        <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"  /> 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="bg"> 
+                <!--<div class="top_header"></div>-->
+                <header>
+                    
+                    <div>
+<!--                        <div style=" margin-bottom: 5px;font-weight: 600; "> 
+                            publication read only IWI start
+                            {#if:is_readonly=='yes':
+                            <a href="/user/publication">Publication Index</a>
+                            }
+                            {#if:is_readonly=='no':
+                            <a href="/user/publication/get_publications">Publication Index</a> 
+                            }
+                            publication read only IWI end
+
+                        </div>-->
+                        
+                         {#if:is_readonly=='yes':
+                          <!--<div style=" margin-bottom: 5px;font-weight: 600; "><a href="/user/publication">Publication Index</a></div>-->
+                          <div style=" margin-bottom: 5px;font-weight: 600; text-transform: capitalize;"><a href="javascript:void(0)">{title}</a></div>
+                          <div style="padding-top: 6px;">ID : {track_id}</div>
+                        <!-- <div style="padding-top: 10px;">REF.NO : {ref_number}</div> IWI ref no for documents -->
+                         }
+                            {#if:is_readonly=='no':
+                          <!--<div style=" margin-bottom: 5px;font-weight: 600; "><a href="/user/publication/get_publications">Publication Index</a></div>-->
+                          <div style=" margin-bottom: 10px;font-weight: 600; text-transform: capitalize;"><a href="javascript:void(0)">{title}</a></div>
+                          <div style="padding-top: 6px;">ID : <a href="/record/process:{track_id}#docs" style="font-size: 14px;">{track_id}</a></div>
+                        <!-- <div style="padding-top: 10px;">REF.NO : {ref_number}</div>IWI ref no for documents IWI Create section for Notification start / end -->
+                        }
+                        
+                        
+                    </div>
+                    <!--IWI Create section for Notification start -->
+                    <!--IWI Create section fornotification div wrap add start 27-01-25------>
+                        <div class="IWI_create_sec_wrap">
+                            <a  href="/user/publication" class="print" title="Back to Publication" style="margin-top: -24px;margin-right: 94px; cursor: pointer;color: #8d8d8d;"><i class="fa fa-hand-o-left" aria-hidden="true" ></i></a> <!--IWI Create section for Notification start / end -->
+                            <a  href="javasscript:void(0)" id="showHistory" class="print" title="History" style="margin-top: -24px;margin-right: 60px; cursor: pointer;"><i class="fa fa-history" aria-hidden="true" ></i>  </a>
+                            <!--<div class="row">
+                                <div class="col-md-6">
+                                    <div id="showHistory" style="margin-top: -35px;margin-left: 566px;"><i class="fa fa-history" aria-hidden="true"></i> History </div>
+                                </div>
+                            </div>-->
+                            <a href="javasscript:void(0)" onclick="window.print()" class="print" title="Print This" style="color: #8d8d8d;margin-top: -24px; margin-right:18px ;cursor: pointer;"><i class="fa fa-print" aria-hidden="true"></i></a>
+                        </div>
+                    <!--IWI Create section fornotification div wrap add end 27-01-25------->
+                    <!--IWI Create section for Notification  end -->
+                </header>
+
+
+                <section class="main">
+                    <section class="body_text">
+                        {body}
+                    </section>
+                </section>
+                <!--IWI doc section file upload start-->
+                <div class="document-viewer">
+                    <h2>Attached Documents </h2>
+                    <div class="file-grid">
+{#repeat:get_AttachedFiles:
+<div class="file-card">
+                            <div class="file-thumb">
+                                <a href="javascript:void(0);" target="_blank">
+                                    <img src="{thumbnailPath}" alt="PNG">
+                                </a>
+                                <a href="/files?action=download_attachment&ch={chash}"  class="overlay-download" ><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <!--<a href="/files?action=download_attachment&amp;ch=6703901978dcb3dbf2d9915e1d3e066cfe712b0a&amp;qp=piuteurr"><img style="border: none;" src="/img/icons/download_cloud.png" alt="Down!"></a>-->
+                            </div>
+                            <div class="file-name" title="example.png">{name}</div>
+                        </div>
+                        
+                        }
+
+                    </div>
+                </div>
+
+
+
+                
+                <!--IWI doc section file upload end-->
+                <!--IWI doc seen & sign start-->
+                {#if:logged_in_user:
+                {#if:is_required_read_sign=='yes':
+                <section class="doc_sign_sec">
+                    <!-- <div class="row">
+                        <div class="col-md-6">
+                            <div id="showHistory"><i class="fa fa-history" aria-hidden="true"></i> History </div>
+                        </div>
+                    </div> -->
+                    
+                     {#if:is_notification=='no': <!--IWI read and sign required-->
+                    <div class="col-md-6">
+                        <label class="racheck"> Read & Sign
+                            <input type='hidden' id='note_id' value="{note_id}" />
+                            <input type="checkbox"  id="doc_sign" {#if:read_sign: checked } {#if:read_sign: disabled }  required="" >
+                            <span class="checkmark"></span>
+                        </label>
+                        {#if:signed_at:
+                        <p style="margin: 5px 0 0 0; font-size: 12px; color: #818181; flex-direction: column; align-items: end;" class=" ">You have signed at : {signed_at}</p>
+                        }
+                    </div>
+                     }
+                     }
+
+                    
+                </section>
+                }
+                <!--IWI doc seen & sign end-->
+
+
+                <!--IWI identify what was change in version start-->
+
+
+                
+                <div class="historySec" style="display: none;">
+                    <div class="timeline">
+                        {#repeat:get_history:
+                        <div class="container right">
+                            <div class="content" id="hisCon_{curr_row}">
+                                <h2>{updated_at}</h2>
+                                <!--<strong><u>Field Name</u> : {title}  </strong>-->
+                                <p class="output_val">
+                                    
+                                </p> 
+                                <div class="oldDetailsHide" style="display: none">                    
+                                    <div class="old_val">{old_val}</div>
+                                    <div class="new_val">{new_val}</div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    <input type="hidden" id="totalHistoryCount" value="{get_history_count}"/>
+                </div> 
+
+
+
+<!--                <div class="oldDetailsHide" style="display: none">
+                    <section class="old_body_text">{getLastBody}</section> 
+                </div>-->
+                
+                
+
+                <!--IWI identify what was change in version end--> 
+
+
+
+                <footer>
+                    <!--Document view footer change IWI 10-01-2024 start--> 
+                    <div class="footer-div-contain">
+                        <div> <span style="width: 118px; display: inline-block;">Ref.No. </span>: {ref_number}</div> <!-- IWI ref no for documents --> <!--IWI Create section for Notification start / end -->
+                        <!-- <div><span style="width: 115px; display: inline-block;">Document Name</span> : {title}</div> -->
+                        <div>Version : {version} </div>
+                        <div><p>Last Update : {dt} </p>
+                       <p> Published by : {published_by} </p></div>
+                    </div>
+                    <div class="footer_bottom" style="margin-top: -50px;">
+                        <div style="margin-bottom: 5px;">
+                            <span style="width: 115px; display: inline-block;">Created by</span> : {created_by}</div>
+
+                        <div style="margin-bottom: 5px;"><span style="width: 115px; display: inline-block;">Last Edited by</span> : {last_edited_by}</div>
+                        <!-- <div><span style="width: 115px; display: inline-block;">Published by</span> : {published_by}</div> -->
+                    </div>
+                    <!--Document view footer change IWI 10-01-2024 end--> 
+                </footer>
+
+            </div>
+        </div>
+        <script src="/js/components/jquery.min.js" referrerpolicy="no-referrer"></script>
+        <script src="/js/modules/document_view_container.js" referrerpolicy="no-referrer"></script>
+        <script src="/js/components/sweetalert2.min.js" referrerpolicy="no-referrer"></script>
+        <script>
+
+        </script>
+    </body>
+</html>

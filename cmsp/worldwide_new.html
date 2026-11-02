@@ -1,0 +1,314 @@
+{@<style type="text/css">
+
+h1, h2 {
+	color: #214e78;
+}
+
+#maincontent {
+	float: left;
+	width: 762px;
+}
+
+	#maincontent #info-index {
+		font-size: 1.5em;
+		text-align: center;
+		border: 1px solid gray;
+		padding: 18px;
+		background-image: url("/img/bgs/gray_patt4.png");
+		color: #214e78;
+		text-shadow: 2px 2px 2px white;
+	}
+
+	#maincontent td.xlink {
+		border: 1px solid lightgray;
+		border-radius: 7px;
+		height: 66px;
+		width: 48%;
+	}
+	
+		#maincontent td.xlink img {
+			float: left;
+			margin: 10px 12px auto 12px;
+			text-decoration: none;
+			border: none;
+			width: 30px;
+		}
+	
+		#maincontent td.xlink a {
+			font-size: 17px;
+			font-weight: bold;
+			display: block;
+			margin-top: 8px;
+			font-family: Calibri,Geneva,Arial,Helvetica,sans-serif;
+			color: #166EB7;
+		}
+		
+		#maincontent td.xlink p {
+			margin: 8px;
+		}	
+	
+	#maincontent #searchbox {
+		margin: 0 auto;
+		margin-top: 90px;
+		width: 500px;
+	}
+
+	#maincontent #benefits {
+		margin-top: 90px;
+	}
+	
+		#maincontent #benefits ul {
+			padding-left: 12px;
+		}
+		
+		#benefits #stakeholders {
+			margin-top: 20px;
+		}
+		
+		#benefits #stakeholders > a {
+			margin-left: 7px;
+		}
+
+#sidebar {
+	float: right;
+	width: 316px;
+	background-image: url("/img/bgs/gray_patt4.png");
+	border: 1px solid gray;
+	padding: 6px;
+	margin-bottom: 12px;
+}
+
+	#sidebar > * {
+		display: block;
+	}
+	
+	#sidebar img {
+		border: 0;
+		margin: 10px auto 16px auto;
+		display: block;
+	}
+	
+	#sidebar #track-box {
+		width: 214px;
+		height: 30px;
+		background-color: white;
+		box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15) inset;
+		box-sizing: border-box;
+		float: left;
+		text-indent: 8px;
+		font-size: 14px;
+	}
+	#sidebar #track-btn {
+		background: #214e78;
+		border: none;
+		width: 80px;
+		height: 30px;
+		cursor: pointer;
+		color: #fff;
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		float: left;
+		margin-left: -3px;
+	}
+	
+	#sidebar #sdr-calc {
+		width: 292px;
+		background-color: white;
+		border: 1px solid #c7c7c7;
+		box-shadow: 3px 3px 6px #bbbbbb;
+		margin: 6px auto;
+	}
+	
+	#sidebar img.mium {
+		border: 1px solid #c7c7c7;
+		box-shadow: 3px 3px 6px #bbbbbb;
+	}
+	
+div#tabs-cargoclaim div.jqx-tabs-content {
+	padding: 8px;
+}
+
+	.news-block {
+		float:left; width: 165px; margin: 10px; text-align: center;	
+	}
+		
+		.news-title {
+			display: block; height: 50px; font-weight: normal;font-size: 13px;margin-left: 1px;color: #287abe;text-transform: uppercase; font-weight: bold;
+		}
+
+</style>}
+<div style="margin: 4px 12px 12px 12px; position: relative;">{!Content}
+
+<div id="maincontent">
+	<div id="info-index" class="jqx-rc-all">
+		Manage all your claims in a centralized portal, completely <b>free of charge</b>!
+	</div>
+	
+	<div id="searchbox">
+		<div class="center" style="margin-bottom: 20px;">
+			<h1>Search Airline and Submit Cargo Claim</h1>
+			<h2>Type IATA/ICAO code or AWB Prefix</h2>
+		</div>
+		{#plugin:airfind}
+		
+		<table style="width: 100%; border-spacing: 0; margin-top: 1em;"><tr>
+			<td class="xlink">
+				<a href="/contact/account?hash=issues"><img alt="Lupa" src="/img/icons/magnifier.png">Freemium Login</a>
+				<p>View and manage claims</p>
+			</td>
+			<td style="width: 20px;">&nbsp;</td>
+			<td class="xlink">
+				<a href="http://demo.cargoclaims.aero/issue?action=form&key=cargoclaim" target="_blank"><img alt="Submit a test Claim" src="/img/icons/question.png">Submit test claim</a>
+				<p>Try and see how it works</p>
+			</td>
+		</tr></table>
+	</div>
+	
+	<div id="benefits">
+		<hr /><br />
+		<h1 style="text-align: center;">Benefits for all stakeholders involved</h1>
+		<div id="stakeholders">
+			<a target="_blank" href="http://www.cargohub.nl/benefits-for-airlines/" title="Benefits for airlines"><img width="142" height="148" src="http://www.cargohub.nl/wp-content/uploads/2014/05/four_t1.png" alt="four_t1"></a>
+			<a target="_blank" href="http://www.cargohub.nl/benefits-for-gsa/" title="Benefits for GSA"><img width="142" height="148" src="http://www.cargohub.nl/wp-content/uploads/2014/05/gssa.png" alt="four_t2"></a>
+			<a target="_blank" href="http://www.cargohub.nl/cargo-claims-for-shippers/" title="Cargoclaims for shippers"><img width="142" height="148" src="http://www.cargohub.nl/wp-content/uploads/2014/05/four_t3.png" alt="four_t3"></a>
+			<a target="_blank" href="http://www.cargohub.nl/benefits-for-forwarders/" title="Benefits for forwarders"><img width="142" height="148" src="http://www.cargohub.nl/wp-content/uploads/2014/05/four_t4.png" alt="four_t4"></a>
+			<a target="_blank" href="http://www.cargohub.nl/wp-content/uploads/2014/05/four_t5.png"><img width="142" height="148" src="http://www.cargohub.nl/wp-content/uploads/2014/05/four_t5.png" alt="four_t5"></a>
+		</div>
+		
+		<table style="width: 100%; border-spacing: 8px; margin-top: 20px;">
+			<tr>
+			<td valign="top" style="width: 50%;">
+				<h4>How our services benefits claimants</h4>
+				<ul>
+					<li>Pre defined fields to complete the claim in submit form</li>
+					<li>All claim documents and pictures can be uploaded </li>
+					<li>You will receive a tracking confirmation immediately</li>
+					<li>A notice of claim is sent to the recipient with all submitted data</li>
+					<li>Update, track and monitor your claims from your one account</li>
+					<li>Manage your claims within a centralized platform</li>
+					<li>For information or support contact support@cargohub.nl</li>
+				</ul>
+				</td>
+				<td valign="top" style="width: 50%;">
+				<h4>How our services benefits participating airlines</h4>
+				<ul>
+					<li>Receive full claim data into your Cargo Claims 365 account</li>
+					<li>Optionally, receive our data directly into your CRM | Portal </li>
+					<li>Providing our customer 24/7 online registration</li>
+					<li>Receive cargo incident information from Ground Handlers</li>
+					<li>Increase the speed of processing your service recovery</li>
+					<li>Increase transparancy within your organization on any level</li>
+					<li>Read more about your benefits by clicking <a href="http://www.cargohub.nl/benefits-for-airlines"><b>here</b></a></li>
+				</ul>
+			</td>
+		</tr>
+		</table>
+	</div>
+	
+</div>
+
+<div id="sidebar" class="jqx-widget jqx-widget-fresh jqx-rc-all" width="30%" valign="top">
+	<a target="_blank" href="http://www.iata.org/events/wcs/Pages/cargo-innovation-awards.aspx">
+		<img src="/cmsup/frontpage/finalist-2015-500.png" alt="IATA C.I.Award Finalist 2015" style="width: 292px;" />
+	</a>
+	<div style="width: 292px; margin: 8px auto;">
+		<h2 style="font-weight: bold; text-transform: uppercase;">Track your shipment</h2>
+		<form action="http://connect.track-trace.com/for/cargoclaims" method="post" target="_blank">
+			<input type="hidden" name="shipper" value="aircargo">
+			<input type="text" name="number" maxlength="40" id="track-box" class="jqx-input jqx-input-fresh jqx-rc-all">
+			<input type="submit" value="Track" id="track-btn" class="jqx-rc-r">
+			<div class="clear"></div>
+		</form>
+	</div>
+	<div class="center jqx-rc-all jqx-widget jqx-widget-fresh" id="sdr-calc">
+		<a style="text-indent: 20px; margin: 6px; display: inline-block; font-weight: bold; background-image: url('/img/icons16/calculator.png'); background-repeat: no-repeat; background-position: left;" target="_blank" href="http://www.cargohub.nl/sdr-calculator/">Calculate Compensation</a>
+	</div>
+	<img class="mium jqx-rc-all" src="/cmsup/frontpage/freemium7.png" alt="Freemium" />
+	<img class="mium jqx-rc-all" src="/cmsup/frontpage/premium7.png" alt="Premium" />
+	<div class="center" style="font-weight: bold;">
+		<a href='/cms?path=/marketing/explorepremium'>More information</a> and <a href='/cms?path=/marketing/pricing'>Pricing details</a>
+	</div>
+	<a href="http://www.cargohub.nl/contact/" target="_blank">
+		<img src="/cmsup/frontpage/contact4.png" alt="Contact us !" id="img-contactus" />
+	</a>
+</div>
+
+<div class="clear"></div>
+
+{#plugin:jqxtabs}
+<div id="tabs-cargoclaim">
+	<ul>
+		<li style="margin-left: 20px;">News &amp; Events</li>
+		<li>Important claims information</li>
+		<li>Terms of Use</li>
+	</ul>
+	<div>
+		{! The "Static News" - Temporary - Line 1, Line 2 }
+		<div style="width: 1880px;">
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="CargoHub updated CargoClaims platform to version 2.7!" target="_blank" href="http://www.cargohub.nl/blog/cargohub-updates-its-platform-to-version-2-7/">CargoHub updated CargoClaims platform to version 2.7!</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/cargohub-updates-its-platform-to-version-2-7/"><img width="130" alt="platform update" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2015/10/ch-vs-2.7.png"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Meet us at the IATA Cargo Claims &#038; Loss Prevention Conference in Montreal" target="_blank" href="http://www.cargohub.nl/blog/meet-us-at-the-iata-cargo-claims-loss-prevention-conference-in-montreal/">Meet us at the IATA Cargo Claims &#038; Loss Prevention Conference in Montreal</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/meet-us-at-the-iata-cargo-claims-loss-prevention-conference-in-montreal/"><img width="130" alt="conference montreal" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2015/09/cargoclaims-montreal.jpg"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Interview with founder CargoClaims Raoul Paul in Voice of the Independent" target="_blank" href="http://www.cargohub.nl/blog/interview-with-founder-cargoclaims-raoul-paul-in-voice-of-the-independent/">Interview with founder CargoClaims Raoul Paul in Voice of the Independent</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/interview-with-founder-cargoclaims-raoul-paul-in-voice-of-the-independent/"><img width="130" alt="interview raoul paul" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2015/09/voice-of-the-independent.jpg"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Aramex Netherlands joines IATA innovation awarded CargoClaims platform" target="_blank" href="http://www.cargohub.nl/blog/aramex-netherlands-joines-iata-cargo-innovation-awarded-cargoclaims-platform/">Aramex Netherlands joines IATA innovation awarded CargoClaims platform</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/aramex-netherlands-joines-iata-cargo-innovation-awarded-cargoclaims-platform/"><img width="130" alt="customer aramex" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2015/08/aramex.jpg"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Kales Airline Services Brussels joins CargoClaims Platform" target="_blank" href="http://www.cargohub.nl/blog/kales-airline-services-brussels-joins-cargohub-claims-portal/">Kales Airline Services Brussels joins CargoClaims Platform</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/kales-airline-services-brussels-joins-cargohub-claims-portal/"><img width="130" alt="customer kales bru" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2014/02/kales-logo.jpg"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Permalink to Brussels Airlines Cargo joines the Worldwide CargoClaims platform" target="_blank" href="http://www.cargohub.nl/blog/brussels-airlines-cargo-joines-the-worldwide-cargoclaims-platform/">Brussels Airlines Cargo joines the Worldwide CargoClaims platform</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/brussels-airlines-cargo-joines-the-worldwide-cargoclaims-platform/"><img width="130" height="60" alt="brussels airlines cargo" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2015/06/brussels-airlines-cargo.jpg"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Permalink to Creating e-Awareness CargoClaims joins E event Brussels" target="_blank" href="http://www.cargohub.nl/blog/creating-e-awareness-cargoclaims-joins-e-event-brussels/">Creating e-Awareness CargoClaims joins E event Brussels</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/creating-e-awareness-cargoclaims-joins-e-event-brussels/"><img width="130" height="111" alt="brussels event" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2015/06/brussels-event.jpg"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Permalink to All IATA member Airlines added to CargoClaims Platform" target="_blank" href="http://www.cargohub.nl/blog/all-iata-member-airlines-added-to-cargoclaims-platform/">All IATA member Airlines added to CargoClaims Platform</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/all-iata-member-airlines-added-to-cargoclaims-platform/"><img width="130" height="95" alt="old vs new" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2015/05/old-vs-new.jpg"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Permalink to CargoClaims attends e-event BRU organized by ACMAB and BAFI" target="_blank" href="http://www.cargohub.nl/blog/cargoclaims-attends-e-event-bru-organized-by-acmab-and-bafi/">CargoClaims attends e-event BRU organized by ACMAB and BAFI</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/cargoclaims-attends-e-event-bru-organized-by-acmab-and-bafi/"><img width="100" height="78" alt="news" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2013/10/news-e1382895512620.jpeg"></a>  
+			</div>
+			<div class="news-block">
+				<h2 class="news-title"><a style="color: #0270d1;" rel="bookmark" title="Permalink to Meet us at Air Cargo Europe in Munich 5 &ndash; 8 May" target="_blank" href="http://www.cargohub.nl/blog/meet-us-at-air-cargo-europe-in-munchen-5-8-may/">Meet us at Air Cargo Europe in Munich 5 &ndash; 8 May</a></h2>
+				<a target="_blank" href="http://www.cargohub.nl/blog/meet-us-at-air-cargo-europe-in-munchen-5-8-may/"><img width="130" height="77" alt="air cargo europe" class="alignright wp-post-image featured_image wp-post-image" src="http://www.cargohub.nl/wp-content/uploads/2015/04/air-cargo-europe.jpg"></a>  
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div>
+		<h2 style="font-weight: bold; text-align: center;">Claim period for damage, delay or loss</h2><hr />
+		<p>
+		Receipt by the person entitled to delivery of the cargo without complaint shall be prima facie evidence that the cargo has been delivered in good condition and in accordance with the contract of carriage.<br />
+		In the case of loss of, damage or delay to cargo a complaint must be made to the Carrier by the person entitled to delivery.</p> 
+		<p>
+		Based upon the time limits as set forth in the Warsaw Convention as amended at the Hague 1955 and the Montreal Convention 1999, a preliminary claim must be filed shortly after receipt of your shipment.<br />
+		The time limits reffered to above are:</p>
+		<ul>
+			<li><b>Damage or partial loss</b>; immediately after discovery and at the latest within <span style='text-decoration: underline;'>14 days</span> from the date of receipt of the cargo</li>
+			<li><b>Delay</b>; within <span style='text-decoration: underline;'>21 days</span> from the date on which the cargo was placed at the disposal of the person entitled to delivery.</li>
+		</ul>	
+	</div>
+	<div>
+		<h2 style="font-weight: bold; text-align: center;">Disclaimer and Terms of Use</h2><hr />
+		<p>This software is using E-mail technology to forward the information submitted to this application to the intended recipient. Although we are updating our contacts in accordance with the latest information available,
+		we shall not accept any liability in case your data doesn't reach the recipient, for any reason, technical or caused by human error.</p>
+		<p>If you did not receive a copy of your data by e-mail after submitting a claim, or notice that the automatically provided addresses are incorrect,<br />please contact <a href="mailto:support@cargohub.nl">support@cargohub.nl</a> or by telephone: <b>+31(0)20 6586220</b>.</p>
+		<p>Please read the full <a href="/cms?path=terms-of-use">Terms of Use</a></p>
+	</div>
+</div>
+
+{!End Content}</div>

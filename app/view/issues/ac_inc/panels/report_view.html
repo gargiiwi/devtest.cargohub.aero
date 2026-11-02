@@ -1,0 +1,45 @@
+{#use:%ist.xfield_def:
+	<table>
+		{!<tr><th>{cntf_pers.n}:</th><td>{^xfields.cntf_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>Date &amp; Time:</th><td>
+			{#if:^xfields.cntf_date:{^xfields.cntf_date}~date("Y-m-d")~ &middot; {^xfields.cntf_time:<span class="gray">---</span>}}
+			{#ifnot:^xfields.cntf_date:<span class='gray'>(missing)</span>}
+		</td></tr>}
+		<tr><th>{gh_notify.n}:</th><td>{#repeat:^xfields.gh_notify:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+	
+	<h4>Incident/Accident reported by:</h4>
+	<table>
+		<tr><th>Name:</th><td>{^xfields.rep_name:<span class="gray">---</span>}</td></tr>
+		<tr><th>Function:</th><td>{^xfields.rep_func:<span class="gray">---</span>}</td></tr>
+{!		<tr><th>Telephone:</th><td>{^xfields.rep_phone:<span class="gray">---</span>}</td></tr>			}
+		<tr><th>{documents.n}:</th><td>{#repeat:^xfields.documents:<span class='itembox'>{value}</span>}</td></tr>
+	</table>
+	
+	<table id="witnesses">
+		<col width="33%" /><col width="33%" /><col width="33%" />
+		<tr>		
+			<td valign="top">
+				<h3>First witness:</h3>
+				<div><label>Name:</label><p>{^xfields.w1_name:<span class="gray">---</span>}</p></div>
+				<div><label>Organization:</label><p>{^xfields.w1_org:<span class="gray">---</span>}</p></div>
+				<div><label>Telephone:</label><p>{^xfields.w1_phone:<span class="gray">---</span>}</p></div>
+				<div><label>ID:</label><p>{^xfields.w1_id:<span class="gray">---</span>}</p></div>
+			</td>
+			<td valign="top">
+				<h3>Second witness:</h3>
+				<div><label>Name:</label><p>{^xfields.w2_name:<span class="gray">---</span>}</p></div>
+				<div><label>Organization:</label><p>{^xfields.w2_org:<span class="gray">---</span>}</p></div>
+				<div><label>Telephone:</label><p>{^xfields.w2_phone:<span class="gray">---</span>}</p></div>
+				<div><label>ID:</label><p>{^xfields.w2_id:<span class="gray">---</span>}</p></div>
+			</td>
+			<td valign="top">
+				<h3>Third witness:</h3>
+				<div><label>Name:</label><p>{^xfields.w3_name:<span class="gray">---</span>}</p></div>
+				<div><label>Organization:</label><p>{^xfields.w3_org:<span class="gray">---</span>}</p></div>
+				<div><label>Telephone:</label><p>{^xfields.w3_phone:<span class="gray">---</span>}</p></div>
+				<div><label>ID:</label><p>{^xfields.w3_id:<span class="gray">---</span>}</p></div>
+			</td>
+		</tr>
+	</table>  
+}

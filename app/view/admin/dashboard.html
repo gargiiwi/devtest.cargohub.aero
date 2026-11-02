@@ -1,0 +1,103 @@
+{!version 2019.01.24}
+<div id="admin-dashboard"></div>
+
+{!Panels - invisible until added to the docker}
+<div id="panels-content" style="display: none;">
+	<div id="panel-statistics">
+		<div>Global Statistics and Links</div>
+		<div>{#use:global_statistics:
+			<div class='command'><button class="info-tip" id='btn_orgs' data-op='link' data-link='/admin/orgs' data-tooltip="Displays all organizations in a grid."></button><label>Organizations: </label><span>{org_count}</span></div>
+			<div class='command'><button class="info-tip" id='btn_users' data-op='link' data-link='/admin/users' data-tooltip="System users (staff) search."></button><label>Users: </label><span>{user_count}</span></div>
+			<div class='command'><button class="info-tip" id='btn_messages' data-op='link' data-link='/admin/messages' data-tooltip="Global message search."></button><label>Messages: </label><span>{message_count}</span></div>
+			<div class='command'><button class="info-tip" id='btn_contacts' data-op='link' data-link='/admin/contacts' data-tooltip="Global contacts search and operations."></button><label>Contacts: </label><span>{contact_count}</span></div>
+			<div class='command'><button class="info-tip" id='btn_groups' data-op='link' data-link='/admin/groups' data-tooltip="Lists group types and groups available in the application."></button><label>Data Groups</label></div>
+			<hr />
+			<div class='command'><button id='btn_issues' data-op='link' data-link='/search/global' title='Records'></button><label>Find Records: </label><span>{issue_count._total.count}</span></div>
+			<div class='command'><button id='btn_tasks' data-op='link' data-link='/manager/tasks?list=global' title='Tasks'></button><label>All Tasks</label></div>	
+{!			<div class='command'><button id='btn_deps' data-op='alert' data-text="Admin's departments manager not yet implemented" title='Departments'></button><label>Departments: </label><span>{dep_count}</span></div>}
+		}</div>
+	</div>
+	<div id="panel-systemnotify">
+		<div>Send System-Wide Notifications</div>
+		<div>
+			<div class="information info-tip" data-tooltip="Send SYSTEM-WIDE notifications to users. EVERYONE will see them (including admin).<br />
+			Please only use when really necessary, as it might the disrput activity of the users!<br />
+			The notifications are received immediately by all logged in users, and are also sent by mail." data-tooltip_width="640"></div>
+			<div class='command'><button class="info-tip" id='btn_ntf_message' data-op='notify' data-subtype='message' data-tooltip="Sends a general message to all users of the system."></button><label>System-Wide Message</label></div>
+			<div class='command'><button class="info-tip" id='btn_ntf_shutdown' data-op='notify' data-subtype='shutdown' data-tooltip="Sends a shutdown notification with a ONE-HOUR warning."></button><label>Server Shutdown</label></div>
+			<div class='command'><button class="info-tip" id='btn_ntf_boot' data-op='notify' data-subtype='boot' data-tooltip="Sends a message that the system has been restarted."></button><label>Server Boot-up</label></div>
+			<div class='command'><button class="info-tip" id='btn_ntf_updated' data-op='notify' data-subtype='updated' data-tooltip="Notify about an aplication update."></button><label>Application Update</label></div>
+			<div class='command'><button class="info-tip" id='btn_ntf_error' data-op='notify' data-subtype='error' data-tooltip="Warn users about a significant discovered error."></button><label>Important Error Discovered</label></div>
+		</div>
+	</div>
+	<div id="panel-configuration">
+		<div>System Configuration</div>
+		<div>
+			<div class='command'><button id='btn_blog' data-op='link' data-link='/admin/updates' title='Blog'></button><label>Software Updates Editor</label></div>
+			<div class='command'><button id='btn_cmsys' data-op='link' data-link='/admin/cmsys' title='CMS'></button><label>Content Management System</label></div>
+			<div class='command'><button id='btn_sysdata' data-op='link' data-link='/admin/sysdata' title='System databases'></button><label>System databases</label></div>
+			<p class="warning"><span style="font-size: 1.5em; color: red;">Warning!</span><br />Critical system config. Extra care needed!</p>
+			<div class='command'><button id='btn_templates' data-op='link' data-link='/admin/templates' title='Templates'></button><label>Templates Editor</label></div>
+			<div class='command'><button id='btn_ist' data-op='link' data-link='/admin/rtlist' title='Record Types Overview'></button><label>Record Types Overview</label></div>
+{!			<div class='command'><button id='btn_settings' data-op='link' data-link='/admin/settings' title='Global Settings'></button><label>Global Settings</label></div>}
+		</div>
+	</div>
+	<div id="panel-db_maintenance" style="min-height: 200px;">
+		<div>Database Maintenance & Tests</div>
+		<div>
+			<div class="information info-tip" data-tooltip="These operations are used to correct some desynchronizations in the database which may result from incomplete code or system updates.<br />
+			These operations can be performed anytime, however some might be heavy andh crunch a lot of numbers, so avoid using them unless really necessary (like obvious display errors)." data-tooltip_width="500"></div>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=DBm_Rebuild_CFields" target="_blank" data-tooltip="Rebuilds the record cache for one fixed type (100 at a time, self looping)" data-tooltip_width="400">Rebuild Cache-Fields (100)</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=DBm_Convert_Currency" target="_blank" data-tooltip="Rebuilds the record cache for one fixed type (100 at a time, self looping)" data-tooltip_width="400">Convert Currency (100)</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=DBm_Clear_Bans" target="_blank" data-tooltip="View and Clear IP Bans (Crack Protection)" data-tooltip_width="300">Clear IP Bans</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=DBm_XFSingle2Multi" target="_blank" data-tooltip="Convert custom field from Single Choice to Multiple Choice" data-tooltip_width="230">XF Single &#8594; Multi</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=DBm_XFMSChoices" target="_blank" data-tooltip="Updates choices in a multi-select while updating the data as well" data-tooltip_width="250">XF Multi choices update</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=DBm_XFRekey" target="_blank" data-tooltip="Allows changing a field name and key, keeping User/View Columns intact" data-tooltip_width="280">XF Rekey</a>
+
+{!
+	CHECK THESE if they are still required, valid, etc.
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=DBm_ProcessMessages" target="_blank" data-tooltip="Fixes communication messages data" data-tooltip_width="400">Process messages</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=DBm_Canned2Templates" target="_blank" data-tooltip="Convert Canned messages into Organization templates" data-tooltip_width="400">Convert Canned</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=dbm_org_stats" target="_blank" data-tooltip="Recalculates the counters for organizations (users, issues, messages, stored files, contacts) to provide a better overview of organization activity" data-tooltip_width="300">Recalc organization statistics</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=dbm_user_stats" target="_blank" data-tooltip="Recalculates the counters for users (sent messages, uploaded files, assigned tasks, assigned issues, unread messages, associated contacts)." data-tooltip_width="300">Recalc user statistics</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=dbm_mop_messages" target="_blank" data-tooltip="Finds messages which were sent to or from contacts which do not exist anymore, and set the contact id to be 0 (Unknown/Deleted). If both the sender and recipient is missing, it will delete the message completely." data-tooltip_width="350">Messages cleanup</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=dbm_lab_stats" target="_blank" data-tooltip="Recalculates the number of elements in each communication label so it indicates the actual number of conversations or contacts." data-tooltip_width="350">Recalc Comm Label</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=dbm_dep_access" target="_blank" data-tooltip="Gives access to all departments in all organizations viewing an issue" data-tooltip_width="500">Issue Deps Acccess Fix</a>
+			<a class="cmd_link jqx-rc-all info-tip" href="?action=dbm_orgspec&amp;count=1&amp;startfrom=0" target="_blank" data-tooltip="Builds organization specific data (500 at a time)" data-tooltip_width="500">Per-Org Data (500)</a>
+			<a class="cmd_link jqx-rc-all" href="?action=dbm_fix_tasks" target="_blank">Tasks: Fix fields (500)</a>
+			<a class="cmd_link jqx-rc-all" href="?action=dbm_CommTargets" target="_blank">Comm Targets (USE ONLY ONCE!)</a>
+}				
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="panel-issue_type_count">
+		<div>Record types statistics</div>
+		<div class="faux-table">
+			{#repeat:global_statistics.issue_count:
+				<div{#if:sum: class=' sum'}><label>{name}:</label> {count}</div>}
+		</div>
+	</div>
+	<div id="panel-issue_monthly_count">
+		<div>Records monthly statistics</div>
+		<div class="faux-table">
+			{#repeat:global_statistics.issue_monthly_count:
+				<div{#if:sum: class=' sum'}><label>{year} {month}:</label> {c}</div>}
+		</div>
+	</div>
+	<div id="panel-online_users">
+		<div>Online Users (Autoupdate: 1m)</div>
+		<div id="table-online_users"></div>
+	</div>	
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template-syswide-ntf" type="text/dryjstpl">
+	<form class='vertiform' name='adduser' action="?action=send_sysntf" method="post">
+		<ul>
+		<li><label for="msg_title">Message title:</label><input id="msg_title" name="title" type="text" value="{$title}" style="width: 300px;" /></li>
+		<li><label>Importance:</label><div id="msg_importance" name="importance"></div></li>
+		<li style='height: 120px;'><label for="msg_description">Details:</label><textarea id="msg_description" name="description" style="width: 296px; height: 124px; resize: none; overflow: auto;">{$description}</textarea></li>
+		</ul>
+		<input id="msg_subtype" name="subtype" type="hidden" value="{$subtype}" />
+	</form>
+</script>}

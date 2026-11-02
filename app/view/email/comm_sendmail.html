@@ -1,0 +1,55 @@
+<!DOCTYPE html>{!Global container for e-mails sent by the internal communication system}
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:v="urn:schemas-microsoft-com:vml"
+ xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<meta charset="UTF-8">
+	<title>{subject}</title>
+{!Unfortunately styles don't work properly in E-mails, this should be @deprecated and replaced completely with inline styles in the templates themselves}
+	<style type="text/css">
+{#if:styles:{#raw:{styles}}}
+	</style>
+<!--[if gte mso 9]><xml>
+	<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+	</o:OfficeDocumentSettings>
+</xml><![endif]-->
+</head>
+<body style="font-family: Verdana,Arial,sans-serif; font-size: 12px;">
+	{!TODO Make the Prologue text more flexible !}
+	{!No use for this yet{#if:prologue:<div style="display: block; padding: 8px; background-color: #F0F0F0; border: 1px solid lightgray; font-size: 0.9em;"></div>}}
+	<div style="background-color: white; margin: 6px 0px; font-family: Verdana,Arial,sans-serif; font-size: 12px;">
+{contents}
+	</div>
+	{!Cloud attachments - Replaces the attachments in _render templates}
+	{#if:cloud_files:
+	<h4 style='background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin: 10px 0 5px 0; padding: 3px; text-indent: 20px;'>Cloud-stored attachments:</h4>
+	<div id='attachments' style="margin-bottom: 8px;">{!TODO: Support downloading all cloud_files via a "package" link - Which would build and send a ZIP archive}
+		{#repeat:cloud_files:
+		<div style="margin-bottom: 5px; padding: 5px 0px 5px 2px; border-bottom: 1px dotted lightgray;">
+			<a target='_blank' href='http://{%domain}/dlch/{chash}'>
+				<img style="float: left; margin-right: 10px; border: none;" src='http://{%domain}/img/mime/{mimetype}.png' alt="{mimetype}">
+			{name}</a>{#if:description: <span style="color: #999;">({description})</span>}<br />
+			<span style="color: #999;">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span style="color: #999;">Size:</span> {size}~numberformat~ bytes	
+			<div style="clear: both; height: 0px !important;"></div>
+		</div>
+		}
+	</div>}
+	{!Signature/Epilogue contains signature information (user and/or organization) - Should be fully customizable...}
+{#if:signature:
+	<div style="display: block; padding: 8px; margin-top: 24px;">
+		<hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0px 9px 0px;" />
+{signature}
+	</div>}
+{#if:epilogue:
+	<hr style="background-color: #1585d2; border: none; height: 1px; margin: 12px 0;" />
+	<div style="display: block; margin: 8px auto; padding: 0; text-align: center;">
+		Powered by<br />
+		<a href="https://www.cargohub.nl/">
+			<img style="width: 123px; height: 23px;" alt="CARGOHUB" src="cid:powered.by@cargohub.aero" />
+		</a>
+	</div>
+}
+</body>
+</html>

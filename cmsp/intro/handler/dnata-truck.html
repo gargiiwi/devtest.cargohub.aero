@@ -1,0 +1,256 @@
+{@<style type="text/css">
+div.header {
+	padding-bottom: 0 !important;
+}
+	div.header > div.header-bar {
+		margin-bottom: 0 !important;
+	}
+	
+.page, .jqx-widget-content {
+	box-sizing: border-box;
+	color: rgb(57, 57, 57);
+	display: block;
+	font-family: tahoma, verdana, helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 21px;
+}
+
+#mainmenu {
+	margin: 0 0 20px 0;
+	font-size: 16px;
+	background-color: #0088CE;
+	height: 47px;
+}
+#mainmenu ul {
+	text-align: left;
+	display: inline;
+	margin: 0;
+	list-style: none;
+	color: white;
+}
+
+#mainmenu ul li a:link, #mainmenu a:hover, #mainmenu a:visited {
+	color: rgb(57, 57, 57);
+	text-decoration: none;
+}
+#mainmenu a:hover {
+	text-decoration: underline !important;
+}
+
+#mainmenu ul li {
+	font-weight: bold;
+	height: 47px;
+	line-height: 47px;
+	padding-left: 15px;
+	padding-right: 15px;
+	display: inline-block;
+	margin-right: -3px;
+	position: relative;
+	cursor: pointer;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+	color: #fff;
+}
+
+#mainmenu ul li:hover {
+	background: #005294;
+	color: #fff;
+}
+
+#mainmenu ul li ul {
+	font-weight: normal;
+	padding: 0;
+	position: absolute;
+	top: 47px;
+	left: 0;
+	width: 240px;
+	padding-left: 20px;
+	background-color: white;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	display: none;
+	opacity: 0; 
+	visibility: hidden;
+	-webkit-transiton: opacity 0.2s;
+	-moz-transition: opacity 0.2s;
+	-ms-transition: opacity 0.2s;
+	-o-transition: opacity 0.2s;
+	-transition: opacity 0.2s;
+	border: 1px solid #DEE1E3;
+	border-top: none;
+	z-index: 10000;
+	font-size: 14px;
+}
+
+#mainmenu ul li ul a {
+	display: block;
+}
+
+#mainmenu ul li:hover ul {
+	display: block;
+	opacity: 1;
+	visibility: visible;
+}
+
+#mainmenu ul #lastmenu {
+	float: right;
+	margin-right: 40px;
+}
+
+#xlinks {
+	margin: 1.5em auto;
+	width: 745px;
+}
+
+.xlink {
+	display: inline-block;
+	margin: 0 auto 15px auto;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	height: 90px;
+	width: 360px;
+	float: left;
+}
+	.xlink:hover {
+		background-color: #eee;
+		text-decoration: none;
+	}
+	
+		.xlink:hover h1 {
+			color: black;
+		}
+
+	.xlink img {
+		float: left;
+		margin: 10px 15px 20px 15px;
+		text-decoration: none;
+		border: none;
+	}
+
+	.xlink h1 {
+		font-weight: bold;
+		font-size: 18px;
+		display: block;
+		margin-top: 20px;
+		color: #005294;
+	}
+	
+	.xlink p {
+		color: gray;
+	}
+	
+#tracktruck {
+	display: block;
+	width: 745px;
+	margin: 0 auto;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	font-size: 14px;
+}
+
+#tracktruck div {
+	padding: 8px;
+	float: left;
+	line-height: 46px;
+}
+
+#tracktruck input {
+	border: #2c1c6b solid thin;
+	border-radius: 6px; padding-left: 6px; font-size: 14px; height: 34px; font-weight: bold;
+}
+
+#tabs-trucking {
+	margin-top: 40px;
+}
+
+</style>}
+
+<div id="mainmenu">
+	<ul>
+		<li><a style="color: white;" href="https://www.dnata.com/en/ground-handling">Ground Handling</a>
+			<ul>
+				<a href="https://www.dnata.com/en/ground-handling/ramp-services" title="Ramp Services" data-id="header_nav_link" data-link="Ground Handling - Ramp Services">Ramp Services</a>
+				<a href="https://www.dnata.com/en/ground-handling/passenger-services" title="Passenger Services" data-id="header_nav_link" data-link="Ground Handling - Passenger Services">Passenger Services</a>
+				<a href="https://www.dnata.com/en/ground-handling/lcfo" title="Load Control and Flight Operations" data-id="header_nav_link" data-link="Ground Handling - Load Control and Flight Operations">Load Control and Flight Operations</a>
+				<a href="https://www.dnata.com/en/ground-handling/airport-lounges" title="Airport Lounges" data-id="header_nav_link" data-link="Ground Handling - Airport Lounges">Airport Lounges</a>
+				<a href="https://www.dnata.com/en/ground-handling/meet-and-greet" title="Meet and Greet" data-id="header_nav_link" data-link="Ground Handling - Meet and Greet">Meet and Greet</a>
+				<a href="https://www.dnata.com/en/ground-handling/private-aviation" title="Private Aviation" data-id="header_nav_link" data-link="Ground Handling - Private Aviation">Private Aviation</a>
+			</ul>
+		</li>
+		<li><a style="color: white;" href="https://www.dnata.com/en/cargo">Cargo</a>
+			<ul style="width: 150px;">
+				<a href="https://www.dnata.com/en/cargo/cargo-handling" title="Cargo Handling" data-id="header_nav_link" data-link="Cargo - Cargo Handling">Cargo Handling</a>
+				<a href="https://www.dnata.com/en/cargo/cargo-web-portal" title="Cargo Web Portal" data-id="header_nav_link" data-link="Cargo - Cargo Web Portal">Cargo Web Portal</a>
+				<a href="https://www.dnata.com/en/cargo/freight-forwarding" title="Freight Forwarding" data-id="header_nav_link" data-link="Cargo - Freight Forwarding">Freight Forwarding</a>
+				<a href="https://www.dnata.com/en/cargo/gssa-services" title="GSSA Services" data-id="header_nav_link" data-link="Cargo - GSSA Services">GSSA Services</a>
+				<a href="https://www.dnata.com/en/cargo/road-feeder" title="Road Feeder" data-id="header_nav_link" data-link="Cargo - Road Feeder">Road Feeder</a>
+			</ul>
+		</li>
+		<li><a style="color: white;" href="https://www.dnata.com/en/catering">Catering</a>
+			<ul style="width: 190px;">
+				<a href="https://www.dnata.com/en/catering/inflight-catering" title="Inflight Catering" data-id="header_nav_link" data-link="Catering - Inflight Catering">Inflight Catering</a>
+				<a href="https://www.dnata.com/en/catering/inflight-retail" title="Inflight Retail" data-id="header_nav_link" data-link="Catering - Inflight Retail">Inflight Retail</a>
+				<a href="https://www.dnata.com/en/catering/airport-food-and-beverage" title="Airport Food and Beverage" data-id="header_nav_link" data-link="Catering - Airport Food and Beverage">Airport Food and Beverage</a>
+			</ul>
+		</li>
+		<li><a style="color: white;" href="https://www.dnata.com/en/travel">Travel</a>
+			<ul style="width: 170px;">
+				<a href="https://www.dnata.com/en/travel/our-approach" title="Our Approach" data-id="header_nav_link" data-link="Travel - Our Approach">Our Approach</a>
+				<a href="https://www.dnata.com/en/travel/business-to-business" title="Business to Business" data-id="header_nav_link" data-link="Travel - Business to Business">Business to Business</a>
+				<a href="https://www.dnata.com/en/travel/consumer-business" title="Consumer Business" data-id="header_nav_link" data-link="Travel - Consumer Business">Consumer Business</a>
+				<a href="https://www.dnata.com/en/travel/partnerships" title="Partnerships" data-id="header_nav_link" data-link="Travel - Partnerships">Partnerships</a>
+				<a href="https://www.dnata.com/en/travel/travel-brochures" title="dnata Travel brochures" data-id="header_nav_link" data-link="Travel - dnata Travel brochures">dnata Travel brochures</a>
+			</ul>
+		</li>
+		<li id="lastmenu"><a style="color: white;" href="https://www.dnata.com/en/global-network">Global Network</a></li>
+	</ul>
+</div>
+
+
+<div id='xlinks'>
+	<a href="/issue?action=form" id="submit" class="xlink">
+		<h1><img src="/img/icons/ist/truck.png" alt="Trk">Submit truck order</h1>
+		<p style="margin-top: 4px;">Choose slot and complete form</p>
+	</a>
+	<div style="width: 20px; float: left;">&nbsp;</div>
+
+	<a href="/contact/account?hash=issues" class="xlink">
+		<h1><img src="/img/icons/magnifier.png" alt="Lupe">View your truck orders</h1>
+		<p style="margin-top: 4px;">All previous orders in your account</p>
+	</a>
+	<div class="clear"></div>
+</div>
+
+<form action="/cms?path=intro/handler/trackdemo" name="track" id="tracktruck" method="POST">
+	<div style="width:70px; margin-left: 110px; font-weight: bold;">Order ID:</div>
+	<div style="width:220px;"><input type="text" value="" name="s" maxlength="30" id="mrnno" style="width: 180px;"></div>
+	<div><input type="submit" style="cursor: pointer;" value="Track your shipment [MOCKUP]"></div>
+	<div class="clear" style="float: none; height: 0; padding: 0;"></div>
+</form>
+
+{#plugin:jqxtabs}
+<div id="tabs-trucking">
+	<ul>
+		<li style="margin-left: 20px;"><img src='/img/icons16/ist/truck.png' />Submitting your order</li>
+		<li><img src='/img/icons16/vbox.png' />Slot distribution</li>
+		<li><img src='/img/icons16/traffic_lights.png' />Handler traffic indicator</li>
+		<li><img src='/img/icons16/question2.png' />Need more information</li>
+	</ul>
+	<div class="spacey">
+		<p>Truck orders can be submitted for any handler connected to our platform</p>
+		<p>Track your submitted truck orders or updated your submitted information</p>
+	</div>
+	<div class="spacey">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla viverra mi porta, feugiat ligula ac, convallis orci. Cras egestas eu dolor vitae pellentesque. Vivamus elementum purus vitae turpis imperdiet facilisis. In pellentesque erat a sapien pellentesque venenatis. Praesent fermentum accumsan diam, eu tincidunt enim mattis at. Duis lobortis at odio rutrum aliquet. Aliquam urna metus, cursus in massa quis, vulputate iaculis metus. Vivamus eleifend sagittis nibh, non laoreet massa commodo vel. Donec luctus turpis in turpis placerat, id bibendum diam sagittis.</p>
+	</div>
+	<div class="spacey">
+		<p>Donec eu sapien semper, imperdiet mauris at, rhoncus quam. Mauris facilisis ut ligula sed hendrerit. Proin condimentum fringilla felis non ornare. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis vel tincidunt nisl. Quisque ultricies sagittis enim, ut commodo velit dictum nec. Fusce dignissim urna vitae dapibus vehicula. Nulla suscipit ac purus nec semper. Donec non mi at massa accumsan venenatis vel sit amet nulla. Nullam at nisi ac velit interdum aliquet vel nec tortor.</p>
+	</div>
+	<div class="spacey">
+		<p>Nullam at pharetra erat. Sed consectetur, dolor nec volutpat condimentum, quam eros fermentum tortor, feugiat maximus massa leo vitae ligula. Ut fringilla molestie ipsum posuere accumsan. Duis gravida metus lectus, vitae malesuada nisi suscipit vitae. Duis sit amet erat tempus, mattis lectus id, lacinia lectus. Suspendisse lobortis eleifend mauris. Ut ultrices nibh sodales sodales porta. Curabitur nibh odio, bibendum nec egestas id, sodales id odio. Phasellus quis enim ac nibh hendrerit vehicula ut vel massa. Vestibulum pretium pulvinar nibh. Pellentesque eget molestie ligula. Pellentesque fermentum leo elit, vitae pretium sem pharetra eget. Sed vel ex metus. Praesent est urna, vehicula in nisi non, vulputate feugiat justo. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+	</div>
+</div>

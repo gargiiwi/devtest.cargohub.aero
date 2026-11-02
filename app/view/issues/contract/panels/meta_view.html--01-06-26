@@ -1,0 +1,28 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>Company name:</th><td>{^xfields.name_title:<span class="gray">---</span>}</td></tr>
+		<tr><th>Reference:</th><td>{^xfields.reference:<span class="gray">---</span>}</td></tr>
+		<tr><th>{contract.n}:</th><td><b>{^xfields.contract.value}</b></td></tr>
+		<tr><th>{contract_type.n}:</th><td><b>{^xfields.contract_type.value}</b></td></tr>
+		<!-- <tr><th>Company name:</th><td>{^xfields.owner_name:<span class="gray">---</span>}</td></tr> -->
+		<tr><th>{issue_date.n}:</th>
+			<td>{#if:^xfields.issue_date:{^xfields.issue_date}~date("Y-m-d")~}{#ifnot:^xfields.issue_date:<span class='gray'>---</span>}
+			<label class="ra_label">Expire Date:</label> {#if:^xfields.expire_date:{^xfields.expire_date}~date("Y-m-d")~}{#ifnot:^xfields.expire_date:<span class='gray'>---</span>}
+			</td>
+		</tr>
+		<tr><td colspan="2"><br /></td></tr>
+		<tr><th>{location.n}:</th><td>{^xfields.location:<span class="gray">---</span>}</td></tr>
+		<tr><th>{country.n}:</th><td>{^xfields.country:<span class="gray">---</span>}</td></tr>
+		<tr><th>{department.n}:</th><td>{^xfields.department:<span class="gray">---</span>}</td></tr>
+		<tr><td colspan="2"><br /></td></tr>
+		<!-- <tr><th>{contract_val_year.n}:</th><td><b>{^xfields.contract_val_year.serialized:<span class='gray'>---</span>}</b></td></tr> -->
+		 <tr>
+		<tr><th>{contract_val_year.n}:</th><td><b>{^xfields.contract_val_year.serialized:<span id="total_year_value">---</span>}</b></td></tr>
+		<tr><th>{contract_val_month.n}:</th><td><b>{^xfields.contract_val_month.serialized:<span id="total_month_value">---</span>}</b></td></tr>
+		<tr><td colspan="2"><br /></td></tr>
+		<tr><th>Approved By:</th><td>{^xfields.ap_by:<span class="gray">---</span>}</td></tr>
+		<tr><th>Signed By:</th><td>{^xfields.s_by:<span class="gray">---</span>}</td></tr>
+	</table>
+	
+	
+} 

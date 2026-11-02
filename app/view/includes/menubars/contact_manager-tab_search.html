@@ -1,0 +1,48 @@
+<div class="opbar" id="ops-label_selected" style="display: none;">
+	<div id="ops-newcontact" style="display: none;">
+		<button data-op="vcard-add" title="Create new contact"><img src="/img/icons16/vcard_add.png" alt="Add" /> New contact</button>
+	</div>
+	<button data-op="refresh" title="Refresh contacts"><img src="/img/icons16/arrow_refresh.png" alt="Refresh" /> Refresh</button>
+	{!Toolbar buttons shown when one or multiple standard conversations are selected in the datatable}
+	<div id="ops-basiccon_any_select" style="display: none;">
+		<div class="toolbar-separator"></div>
+		<div id="ops-setlabel" style="display: none;">
+			<button data-op="set-label" title="Set label for one or more contacts"><img src="/img/icons16/commlabel/tag_orange.png" alt="Tag" /> Set label</button>
+		</div>
+		<div id="ops-delcontact" style="display: none;">
+			<button data-op="delete" title="Delete one or more contacts"><img src="/img/icons16/delete.png" alt="Delete" /> Delete</button>
+		</div>
+		{!<div class="toolbar-separator"></div>}
+	</div>
+	{!Toolbar buttons that are shown when only one single basic contact is clicked in the datatable}
+	<div id="ops-basiccon_single_select" style="display: none;">
+		<button id="op-details" data-op="details" title="Details about selected contact"><img src="/img/icons16/vcard.png" alt="Details" /> Details</button>
+	</div>
+	<div id="ops-labels" style="display: none;">
+		<div class="toolbar-separator"></div>
+		<button data-op="label-create" title="Create label"><img src="/img/icons16/tag_blue_add.png" alt="Tag" /> Create label</button>	
+		<div id="ops-customlabel" style="display: none;">
+			<button data-op="label-rename" title="Rename selected label"><img src="/img/icons16/tag_blue_edit.png" alt="Ren" /> Rename label</button>
+			<button data-op="label-delete" title="Delete selected label"><img src="/img/icons16/tag_blue_delete.png" alt="Del" /> Delete label</button>
+		</div>
+	</div>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="modal-label_editor" type="text/dryjstpl">
+<div class="spacey">
+	<form class='vertiform' action="?action=Save_Label" method="post">
+		<ul>
+			<li><label for="dep_name">Text:</label><input id="lbl_name" name="lbl[name]" maxlength="40" value="{$name}" type="text" style="width: 232px; height: 26px; box-sizing: border-box;" class="jqx-input jqx-rc-all {$_itc}" /></li>
+			<li><label>Color:</label><div id='lbl_color' name="lbl[color]"></div></li>
+		</ul>
+	</form>
+</div>
+</script>}
+
+{@<script id="modal-label_select" type="text/dryjstpl">
+<div class="spacey">
+	<div id="label-select"></div>
+	<p class='center'>Choose label for selected contact(s) then press OK</p>
+</div>
+</script>}

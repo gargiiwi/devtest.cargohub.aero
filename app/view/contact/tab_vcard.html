@@ -1,0 +1,40 @@
+<div class="contact_account_vcard_front">
+
+<div class="spacey">{#if:contact:
+	<div class='toolbar jqx-widget jqx-rc-all'>
+		<div class='toolbar-accessory'>
+			<img src="/img/icons/vcard.png" /><span>Contact editor</span>
+		</div>
+		{!<button data-op="tab-overview" title="My account"><img src="/img/icons16/arrow_undo.png" alt="Back" /> My account</button>}
+		{!<button data-op="vcard-close" title="Close"><img src="/img/icons16/cross.png" alt="Close" /> Close</button>}
+		<div class="toolbar-separator"></div>
+		<button data-op="vcard-save" id="contact-save-button" title="Save"><img src="/img/icons16/save.png" alt="Save" /> Save</button>
+		<div id="vcard_delete_action" style="display: none;">{!Not shown by default, as the primary contact itself cannot be deleted}
+			<div class="toolbar-separator"></div>
+			<button data-op="vcard-delete" title="Remove this contact from the database"><img src="/img/icons16/vcard_delete.png" alt="Delete" /> Delete</button>
+		</div>
+	</div>
+	<div id="contact-left-side">
+		{#include:contact:includes/vcard.html}
+		<div id="contact-editing-helper">
+			<div style="background-color: #FFFFA0; padding: 2px; font-size: 0.90em; text-align: center; margin-top: 9px;">Fields with the yellow background are mandatory and must be filled in.</div>
+			<div class="gray" style="text-align: center; margin-top: 5px;">Click on any of the detail lines to edit them.<br />The [SAVE] button will be enabled if the contact information is valid.</div>
+		</div>
+	</div>
+	<div id="contact-right-side">
+		<div class="right-side-block">
+			<h4>My contact information</h4>
+			<p>This data is being sent with your claims to the claim handler.<br />Please make sure to fill in any information that is relevant to speed up the process.</p>
+			<p>The SAVE button is enabled if the contact information is valid, after making a change to one of the fields (make sure you press ENTER after done changing the field).</p>
+		</div> 
+	</div>
+	<div class="clear"></div>
+}{#ifnot:contact:
+	<div style="margin: 24px;">
+		<h2 class="center">Invalid contact ID specified or contact not found. Cannot load any content !</h2>
+		<hr />
+		<p class="center" style="padding: 8px;">Try loading another contact. If this keeps failing, please contact support@cargohub.nl<br /><br />
+		<img src="/img/extra/nothinghere.jpg" alt="Move along, there's nothing to see here." /></p>
+	</div>
+}</div>
+</div>

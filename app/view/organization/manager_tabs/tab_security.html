@@ -1,0 +1,30 @@
+<table style="width: 100%;">
+	<colgroup>
+		<col style="width: 40%;" /><col style="width: 59%;" />
+	</colgroup>
+	<tr>
+		<td valign="top" id="secu-search">
+			<h4>Search security overrides</h4>
+			<div>
+				<label id="sl-rt">Module <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Find departments and users with access to the selected module"></label>
+				<div class="form-control" id='secu-rt'></div>
+			</div>
+			<div>
+				<label id="sl-priv">Privilege <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Find departments and users with selected privilege override"></label>
+				<div class="form-control" id='secu-priv'></div>
+			</div>
+			<div>
+				<label id="sl-grp">Group <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Find departments and users with access to the selected group"></label>
+				<div class="form-control" id='secu-grp'></div>
+			</div>
+			<div class='gray center' style='margin-top: 30px;'>
+				Only one security search can be active at a time!<br />
+				Choosing one of the controls will clear the other two.
+			</div>
+		</td>
+		<td valign="top">
+			<h4 id="secu-results-title">Results</h4>
+			<div id="secu-results-grid"></div>
+		</td>
+	</tr>
+</table>

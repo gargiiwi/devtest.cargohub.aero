@@ -1,0 +1,441 @@
+<div class="reportCronSec">
+    <section class="its-tbl-sec">
+        <div class="container-fluid">
+            <div class="its-slt-div">
+                <div class="its-slt">
+                    <div class="form-group">
+                        <label>Select Type: </label>
+                    </div>
+                    <select class="form-control custom-select" id="ChooseTrainingScheduler">
+                        <option selected="" value="">Choose a Type</option>
+                        <option value="Training Expiry">Training Expiry</option>
+                        <option  value="Audit Plan">Audit Plan</option>
+                    </select>
+                </div>
+                <button id="addModalbtn" type="button" class="plus-1" onclick="document.getElementById('open-modal').classList.add('show')">
+                    <span><i class="fa fa-plus" aria-hidden="true"></i></span>
+                </button>
+
+
+            </div>
+            <section id="TrainingExpirySec">
+                <div class="its-tbl-div">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>User Name</th>
+                                <th>Email Frequency</th>
+                                <th>Day</th>
+                                <th>Count</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" style="text-align:center; color:#6b7280; padding:20px;">
+                                    Please choose a type first
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="open-modal" class="modal-window">
+        <div>
+            <button type="button" title="Close" class="modal-close" onclick="document.getElementById('open-modal').classList.remove('show')">
+                <span><i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i></span>
+            </button>
+
+
+            <div class="its1-modal1-form">
+                <div class="modalTitle" >
+                    Add New 
+                </div>
+                <form id="addNewReportCronFrm" data-org='{curr_org_id}' method="post">
+                    <div class="its1-modal1-form-div" style="padding: 20px; background: #fff; border-radius: 6px; font-family: Arial, sans-serif; font-size: 14px;">
+                        <div class="row" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <input type="hidden" name="org_id" value='{curr_org_id}' data-org='{curr_org_id}' >
+
+                            <div class="col-md-12" style="flex: 1 1 100%;">
+                                <div class="add-training-frm" style="margin-bottom: 10px;">
+                                    <div class="form-group" style="margin-bottom: 5px;">
+                                        <label style="font-weight: bold;">User Name<span style="color:red; margin-left:2px;">*</span></label> <!-- reportCornmodal enhancement-ad -->
+                                    </div>
+                                    <select class="form-control custom-select" name="user_id" >
+                                        <option value="">Select</option>
+                                        {#repeat:users:
+                                        <option value="{id}">{name}</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="add-training-frm">
+                                    <div class="form-group">
+                                        <label for="emailFrequency">Email Frequency<span style="color:red; margin-left:2px;">*</span></label>  <!-- reportCornmodal enhancement-ad -->
+                                    </div>
+                                    <select id="addemailFrequency" name="email_frequency" class="form-control custom-select emailFrequency">
+                                        <option value="">Select</option>
+                                        <option value="daily">Daily</option>
+                                        <option value="weekly">Weekly</option>
+                                        <option value="biweekly">Bi-Weekly</option>
+                                        <option value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        <div class="col-md-6 " id="add_day_section">
+                                <div class="add-training-frm">
+                                    <div class="form-group">
+                                        <label for="dayOrDate">Day<span style="color:red; margin-left:2px;">*</span></label>   <!-- reportCornmodal enhancement-ad -->
+                                    </div>
+                                    <select id="adddaySelect" name="day_select" class="form-control custom-select daySelect">
+                                        <option value="">Select</option>
+                                        <option value="Monday">Monday</option>
+                                        <option value="Tuesday">Tuesday</option>
+                                        <option value="Wednesday">Wednesday</option>
+                                        <option value="Thursday">Thursday</option>
+                                        <option value="Friday">Friday</option>
+                                        <option value="Saturday">Saturday</option>
+                                        <option value="Sunday">Sunday</option>
+                                    </select>
+                                    <input type="date" name="date_select" id="adddatePicker" class="form-control datePicker" style="display:none;" />
+                                </div>
+                            </div>
+                        </div>
+                        <section class="filterPartHideShowSec filterForTrainingScheduler" >
+                        <div class="row">
+                            <div class="col-md-12" style="flex: 1 1 100%;">
+                                <hr style="margin: 10px 0; border-top: 1px solid #ddd;">
+                            </div>
+                        </div>
+                        <div class="row filterSection" style="display: flex; flex-wrap: wrap; gap: 10px;" >
+                           
+<!--                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Trainee Name :</label>
+                                    </div>
+                                    <select name="send_by_filter[trainee_name]" id="person_name_list" class="form-control custom-select person_name_list" >
+                                        <option value="">Select</option>
+                                    </select>
+
+                                    <input type="hidden" name="send_by_filter[user_issue_id]" id="addFrm_user_issue_id" value="0"/>
+                                </div>
+                            </div>-->
+                            
+                            
+                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Send Expiry Report : </label>
+                                    </div>
+                                    <select name="send_by_filter[days]"  class="form-control custom-select " >
+                                        <option value="">Select</option>
+                                        <option value="0">Expired</option>                                        
+                                        <option value="7">Next 7 Days</option>
+                                        <option value="30">Next 30 Days</option>
+                                        <option value="60">Next 60 Days</option>
+                                        <option value="30">Next 90 Days</option>
+                                    </select>
+                                </div>
+                            </div>
+
+<!--                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Training : </label>
+                                    </div>
+                                    <select name="send_by_filter[training_name]" id="training_name_list" class="form-control custom-select training_name_list" >
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Users Type :</label>
+                                    </div>
+                                    <select name="send_by_filter[users_type]" class="form-control custom-select" id="training_user_list">
+                                        <option value="">Select</option>
+                                        <option value="1">Internal Users</option>
+                                        <option value="0">External Users</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Training Result :</label>
+                                    </div>
+                                    <select name="send_by_filter[training_result]" class="form-control custom-select" >
+                                        <option value="">Select</option>
+                                        <option value="2">Pending</option>
+                                        <option value="1">Pass</option>
+                                        <option value="0">Fail</option>
+                                        <option value="3">No Training</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Expiry From Date :</label>
+                                    </div>
+                                    <input type="date" class="form-control datePicker" name="send_by_filter[expiry_from_date]"  >
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Expiry To Date :</label>
+                                    </div>
+                                    <input type="date" class="form-control datePicker"  name="send_by_filter[expiry_to_date]"  >
+                                </div>
+                            </div>-->
+                        </div>
+                        </section>
+                        
+                        <section class="filterPartHideShowSec filterForAuditPlan"  >
+                            <!--<input type="hidden" name="send_by_filter[audit_scheduled_in]"  value="7"/>-->
+                            <div class="col-md-12" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Scheduled Audit Report : </label>
+                                    </div>
+                                    <select name="send_by_filter[audit_scheduled_in]"  class="form-control custom-select " >
+                                        <option value="">Select</option>                                   
+                                        <option value="7">Next 7 Days</option>
+                                        <option value="30">Next 30 Days</option>
+                                        <option value="60">Next 60 Days</option>
+                                        <option value="30">Next 90 Days</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="col-md-12" style="flex: 1 1 100%; display: flex; justify-content: space-between; margin-top: 10px;">
+                            <button type="button" class="btn training-sub-btn training-reset-btn" data-dismiss="modal" style="background: #ccc; color: #000; border: none; padding: 8px 16px; border-radius: 4px;" onclick="resetModal()">     <!-- reportCornmodal enhancement-ad -->
+                                Reset
+                            </button>
+                            <button type="button" class="btn training-sub-btn" data-dismiss="modal" style="background: #1d6fb8; color: #fff; border: none; padding: 8px 16px; border-radius: 4px;" onclick="validateAndSubmit()">             <!-- reportCornmodal enhancement-ad -->
+                                Submit
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!--edit modal-->
+    <div id="edit-modal" class="modal-window">
+        <div>
+            <button type="button" title="Close" class="modal-close" onclick="document.getElementById('edit-modal').classList.remove('show')">
+                <span><i class="fa fa-times" aria-hidden="true" style="color: #fff;"></i></span>
+            </button>
+
+
+            <div class="its1-modal1-form">
+                <div class="modalTitle" >
+                    Edit
+                </div>
+                <form id="editReportCronFrm" method="post">
+                    <div class="its1-modal1-form-div" style="padding: 20px; background: #fff; border-radius: 6px; font-family: Arial, sans-serif; font-size: 14px;">
+
+                        <input type="hidden" name="id" id="formId" value=""/>
+                        <input type="hidden" name="org_id"  value="{curr_org_id}"/>
+
+                        <div class="row" style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+                            <div class="col-md-12" style="flex: 1 1 100%;">
+                                <div class="add-training-frm" style="margin-bottom: 10px;">
+                                    <div class="form-group" style="margin-bottom: 5px;">
+                                        <label style="font-weight: bold;">User Name<span style="color:red; margin-left:2px;">*</span></label> <!-- reportCornmodal enhancement-ad -->
+                                    </div>
+                                    <select class="form-control custom-select" name="user_id" >
+                                        <option value="">Select</option>
+                                        {#repeat:users:
+                                        <option value="{id}">{name}</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="add-training-frm">
+                                    <div class="form-group">
+                                        <label for="emailFrequency">Email Frequency<span style="color:red; margin-left:2px;">*</span></label>  <!-- reportCornmodal enhancement-ad -->
+                                    </div>
+                                    <select id="edit_emailFrequency" name="email_frequency" class="form-control custom-select emailFrequency">
+                                        <option value="">Select</option>
+                                        <option value="daily">Daily</option>
+                                        <option value="weekly">Weekly</option>
+                                        <option value="biweekly">Bi-Weekly</option>
+                                        <option value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" id="edit_day_section">
+                                <div class="add-training-frm">
+                                    <div class="form-group">
+                                        <label for="dayOrDate">Day<span style="color:red; margin-left:2px;">*</span></label>   <!-- reportCornmodal enhancement-ad -->
+                                    </div>
+                                    <select id="edit_daySelect" name="day_select" class="form-control custom-select daySelect">
+                                        <option value="">Select</option>
+                                        <option value="Monday">Monday</option>
+                                        <option value="Tuesday">Tuesday</option>
+                                        <option value="Wednesday">Wednesday</option>
+                                        <option value="Thursday">Thursday</option>
+                                        <option value="Friday">Friday</option>
+                                        <option value="Saturday">Saturday</option>
+                                        <option value="Sunday">Sunday</option>
+                                    </select>
+                                    <input type="date" name="date_select" id="edit_datePicker" class="form-control datePicker" style="display:none;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="flex: 1 1 100%;">
+                                <hr style="margin: 10px 0; border-top: 1px solid #ddd;">
+                            </div>
+                        </div>
+                        <section class="filterPartHideShowSec filterForTrainingScheduler"  >
+                        <div class="row filterSection" style="display: flex; flex-wrap: wrap; gap: 10px;" id="filterForTrainingScheduler" >
+<!--                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Trainee Name :</label>
+                                    </div>
+                                    <select name="send_by_filter[trainee_name]" id="person_name_list" class="form-control custom-select person_name_list" >
+                                        <option value="" >Select</option>
+                                    </select>
+                                    <input type="hidden" name="send_by_filter[user_issue_id]" id="editFrm_user_issue_id" value="0"/>
+                                </div>
+                            </div>-->
+                            
+                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Send Expiry Report : </label>
+                                    </div>
+                                    <select name="send_by_filter[days]"  class="form-control custom-select " >
+                                        <option value="">Select</option>
+                                        <option value="0">Expired</option>                                        
+                                        <option value="7">Next 7 Days</option>
+                                        <option value="30">Next 30 Days</option>
+                                        <option value="60">Next 60 Days</option>
+                                        <option value="30">Next 90 Days</option>
+                                    </select>
+                                </div>
+                            </div>
+
+<!--                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Training : </label>
+                                    </div>
+                                    <select name="send_by_filter[training_name]" id="training_name_list" class="form-control custom-select training_name_list" >
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Users Type :</label>
+                                    </div>
+                                    <select name="send_by_filter[users_type]" class="form-control custom-select" id="training_user_list">
+                                        <option value="">Select</option>
+                                        <option value="1">Internal Users</option>
+                                        <option value="0">External Users</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Training Result :</label>
+                                    </div>
+                                    <select name="send_by_filter[training_result]" class="form-control custom-select" >
+                                        <option value="">Select</option>
+                                        <option value="2">Pending</option>
+                                        <option value="1">Pass</option>
+                                        <option value="0">Fail</option>
+                                        <option value="3">No Training</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Expiry From Date :</label>
+                                    </div>
+                                    <input type="date" class="form-control datePicker" name="send_by_filter[expiry_from_date]"  >
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Expiry To Date :</label>
+                                    </div>
+                                    <input type="date" class="form-control datePicker" name="send_by_filter[expiry_to_date]"  >
+                                </div>
+                            </div>-->
+                        </div>
+                        </section>
+                         <section class="filterPartHideShowSec filterForAuditPlan"   >
+                            <!--<input type="hidden" name="send_by_filter[audit_scheduled_in]"  value="7"/>-->
+                            <div class="col-md-12" >
+                                <div class="add-training-frm" >
+                                    <div class="form-group" >
+                                        <label style="font-weight: bold;">Scheduled Audit Report : </label>
+                                    </div>
+                                    <select name="send_by_filter[audit_scheduled_in]"  class="form-control custom-select " >
+                                        <option value="">Select</option>                                   
+                                        <option value="7">Next 7 Days</option>
+                                        <option value="30">Next 30 Days</option>
+                                        <option value="60">Next 60 Days</option>
+                                        <option value="30">Next 90 Days</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="col-md-12" style="flex: 1 1 100%; display: flex; justify-content: space-between; margin-top: 10px; margin-left: 480px;">
+                            <!-- <button type="button" class="btn training-sub-btn training-reset-btn" data-dismiss="modal" style="background: #ccc; color: #000; border: none; padding: 8px 16px; border-radius: 4px;" onclick="resetModaledit()">     
+                                Reset
+                            </button> -->
+                            <button type="button" class="btn training-sub-btn" data-dismiss="modal" style="background: #1d6fb8; color: #fff; border: none; padding: 8px 16px; border-radius: 4px;" onclick="validateAndSubmitEdit()">             
+                                Submit
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+            
+            </section>
+        </div>
+    </section>
+    <!-- Modal -->
+    
+</div>
+<input type="hidden" id="curr_org_id" value="{curr_org_id}" />

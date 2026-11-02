@@ -1,0 +1,8 @@
+{!This creates a bar containing "Steps" to make it clear that another operation is necessary to complete the process.
+The bar itself is pure CSS, and can have 2 steps (for now). Possible in the future it will support 3 steps}
+<div id="multi-steps-bar">{#use:multistep:
+{#if:steps=2:<div class='two-steps-bar'>
+	<div class="mstep1 step-on">{steps.1}</div>
+	<div class="mstep2 step-{#if:c_step=1:off}{#if:c_step=2:on}">{steps.2}</div>
+</div>}
+}</div>

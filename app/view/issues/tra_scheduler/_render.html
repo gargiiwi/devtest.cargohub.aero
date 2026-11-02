@@ -1,0 +1,23 @@
+{!Template for rendering the Quality/AEO Event as a string (html). This kind of view doesn't use any javascript for displaying the information and could be used to save a HTML file or send as a message/email
+  Contacts have a "mailto:" href in them; Attachments are sent as links back into the system; All other values are simply formatted text}
+{!TODO: A way to reorder these components (user, system, includes, issue data)}
+{!The system might add it's own piece of text in certain situations}
+{#if:_contents_system:<div class="system_contents">{_contents_system}</div>}
+{!Users are able to add their own text}
+{#if:_contents_user:<div class="user_contents">{_contents_user}</div>}
+{!User signature can be added after the issue data}
+{#if:_user_signature:<br /><hr style="background-color: lightgray; border: none; height: 1px; margin: 5px 0 9px;" /><div class="user_signature">{_user_signature}</div><br /><br />}
+{!Support including extra templates here, which use the same data as this main template}
+{#if:_includes:{#repeat:_includes:
+	<div class="included_contents">{#include:%:{$}}</div>}}
+	
+{#use:issue:
+ <div style="max-width: 400px; padding: 5px; border: 1px solid lightgray; font-size: 12px;">
+
+<h4 style="background-image: url('https://cargohub.aero/img/icons16/ui_menu_blue.png'); background-repeat: no-repeat; background-position: 4px; font-size: 12px; background-color: #dfdfdf; border-bottom: 1px solid #a0b0c0; color: #000000; display: block; margin-bottom: 6px; margin-top: 8px; padding: 3px; text-indent: 20px;">Overview:</h4>
+<table style="color: #000000; font-family: Verdana,Geneva,Arial,Helvetica,sans-serif; font-size: 12px; margin-bottom: 8px; width: 100%;">
+	 <tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{%ist.xfield_def.training_ttl.n}:</th><td>{xfields.training_ttl.serialized:<span style="color: #999;">---</span>}</td></tr>
+</table>}
+
+{!Deprecated... but unfortuantely still used in the frontend submit (until that one is recoded as well)}
+ 

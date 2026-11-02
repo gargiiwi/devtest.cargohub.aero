@@ -1,0 +1,20 @@
+<div class='query-area'>
+	<h2>Welcome {acc.name} ({acc.email})</h2>
+	<h3>Find your submitted issue using the following methods:</h3>
+	<hr />
+</div>
+
+<div class='query-area' id="tid-query">{!When knowing the TrackID, enter it directly}
+	<h3>Method 1: Enter Track # of your issue:</h3>
+	<form action="/issue" method="get">
+		<input type='hidden' name='action' value='view' />
+		<input type="text" id='track' name='track' maxlength="12" />
+		<input type="submit" value="View issue" />
+	</form>
+</div>
+
+<div class='query-area' id="grid-finder">{!jqxGrid, to locate the issue}
+	<h3>Method 2: Find your issue in the search grid, using filters to locate it</h3>
+	<div id="iss-table">
+	</div>
+</div>

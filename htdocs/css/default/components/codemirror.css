@@ -1,0 +1,9 @@
+/** Special styles for CodeMirror component **/
+
+.CodeMirror {
+	background-color: White;
+}
+
+.CodeMirror-gutters {
+	background-color: #E8E8FF;
+}

@@ -1,0 +1,85 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<h4>Handler operations:</h4>
+<table>
+	{#use:arrival:<tr>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type="text" id='{id}' name='{name}' data-value='{#if:value:{value}}' class='theclock jqx-input jqx-input-{%jqxtheme} short' /></td>
+	</tr>}
+	{#use:arrival_date:<tr>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	</tr>}
+	{#use:license:<tr>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium' /></td>
+	</tr>}
+	{#use:loading:<tr>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type="text" id='{id}' name='{name}' data-value='{#if:value:{value}}' class='theclock jqx-input jqx-input-{%jqxtheme} short' /></td>
+	</tr>}
+	{#use:dock:<tr>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input maxlength="3" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' /></td>
+	</tr>}
+	{#use:departure:<tr>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type="text" name='{name}' data-value='{#if:value:{value}}' class='theclock jqx-input jqx-input-{%jqxtheme} short' /></td>
+	</tr>}
+	{#use:mrn_no:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium' />}
+			{#use:mrn_type:{#repeat:options:<label style="line-height: 14px;"><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}}
+		</td>
+	</tr>
+	{#use:mrn_status:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td class="radiotable">{#repeat:options:<label style="line-height: 14px;"><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+</table>
+
+<h4>Cargo pickup:</h4>
+<table class='dual_col_table'>
+<tr>
+	<td style="width: 150px; text-align: center;">
+		{#use:pick_date:
+		<h3>Request Date</h3>
+		<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar' style="margin: 0 auto;"></div>}
+		{#use:pick_time:
+		<h3>Request Time</h3>
+		<div style="width: 108px; margin: 0 auto;"><input type="text" id='{id}' name='{name}' data-value='{#if:value:{value}}' class='theclock jqx-input jqx-input-{%jqxtheme} short' /></div><div class="clear"></div>}
+		{#use:pick_est_time:
+		<h3>Estimated Time</h3>
+		<select style="width: 108px; height: 22px; line-height: 22px;" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} '>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}
+		</select>}
+	</td>
+	<td style="width: 360px;" valign="top">{#use:pick_addr:
+		<textarea rows="8" id='{id}' name='{name}' class='jqx-input-{%jqxtheme} ' style="resize: none; border-width: 0px; width: 352px;" placeholder="{display.label}">{value}</textarea>
+	}</td>
+</tr>
+</table>
+
+<h4>Cargo delivery:</h4>
+<table class='dual_col_table'>
+<tr>
+	<td style="width: 150px; text-align: center;">
+		{#use:deliv_date:
+		<h3>Request Date</h3>
+		<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar' style="margin: 0 auto;"></div>}
+		{#use:deliv_time:
+		<h3>Request Time</h3>
+		<div style="width: 110px; margin: 0 auto;"><input type="text" id='{id}' name='{name}' data-value='{#if:value:{value}}' class='theclock jqx-input jqx-input-{%jqxtheme} short' /></div><div class="clear"></div>}
+		{#use:deliv_est_time:
+		<h3>Estimated Time</h3>
+		<select style="width: 108px; height: 22px; line-height: 22px;" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} '>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}
+		</select>}
+	</td>
+	<td style="width: 360px;" valign="top">{#use:deliv_addr:
+		<textarea rows="7" id='{id}' name='{name}' class='jqx-input-{%jqxtheme} ' style="resize: none; border-width: 0px; width: 352px;" placeholder="{display.label}">{value}</textarea>
+	}</td>
+</tr>
+</table>
+</form>}

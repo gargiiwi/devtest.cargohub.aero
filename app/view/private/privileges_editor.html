@@ -1,0 +1,245 @@
+<div id='privileges-navbar'>
+{! Rights related to record grid section (list) }
+<div class='header'>{acls.privilege_groups.issue_grid}</div>
+<div><table class='jqx-reset privileges-array'>
+<tr class='tab-header'>{!Header row}
+	<th>&nbsp;</th>
+	<th>Feature access</th>
+	<th>Modify/Write</th>
+</tr>
+<tr>
+	<th><img alt="Table" src="/img/icons16/table.png"> {acls.privileges.issues_view}</th>
+	<td><div id='priv-issues_view'></div></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<th><img alt="Unknown" src="/img/icons16/question.png"> {acls.privileges.issues_view_unassgn}</th>
+	<td><div id='priv-issues_view_unassgn'></div></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<th><img alt="Woman" src="/img/icons16/user_female.png"> {acls.privileges.issues_view_assgn_oth}</th>
+	<td><div id='priv-issues_view_assgn_oth'></div></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<th><img alt="Columns" src="/img/icons16/column_double.png"> {acls.privileges.issues_list_customize_columns}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-issues_list_customize_columns'></div></td>
+</tr>
+</table></div>
+
+{! Privileges related to ability to modify issue metadata (both grid and detail) }
+<div class='header'>{acls.privilege_groups.issue_metadata}</div>
+<div><table class='jqx-reset privileges-array'>
+<tr class='tab-header'>{!Header row}
+	<th>&nbsp;</th>
+	<th>Feature A</th>
+	<th>Feature B</th>
+</tr>
+<tr>
+	<th><img alt="Create" src="/img/icons16/add.png"> {acls.privileges.issue_add}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-issue_add'></div></td>
+</tr>
+<tr>
+	<th><img alt="Group" src="/img/icons16/transform_move.png"> {acls.privileges.issue_set_group}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-issue_set_group'></div></td>
+</tr>
+<tr>
+	<th><img alt="User" src="/img/icons16/user_go.png"> {acls.privileges.issue_self_assign}</th>
+	<td><div id='priv-issue_self_assign'></div></td>
+	<td><div id='priv-issue_assign_to'></div></td>
+</tr>
+<tr>
+	<th><img alt="Status" src="/img/icons16/vslider.png"> {acls.privileges.issue_set_status}</th>
+	<td><div id='priv-issue_set_status'></div></td>
+	<td><div id='priv-issue_set_priority'></div></td>
+</tr>
+<tr>
+	<th><img alt="Email" src="/img/icons16/email_add.png"> {acls.privileges.issue_sendby_mail}</th>
+	<td><div id='priv-issue_sendby_mail'></div></td>
+	<td>&nbsp;</td>
+</tr>
+{!Temporary disabled, as nothing is verifying this AR<tr>
+	<th><img alt="Handshake" src="/img/icons16/handshake.png"> {acls.privileges.issue_partner_share}</th>
+	<td><div id='priv-issue_partner_share'></div></td>
+	<td><div id='priv-issue_transfer'></div></td>
+</tr>}
+<tr>
+	<th><img alt="Dep" src="/img/icons16/plugin.png"> {acls.privileges.issue_access_deps}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-issue_access_deps'></div></td>
+</tr>
+<tr>
+	<th><img alt="Ghost" src='/img/icons16/ghost-2-icon.png'> {acls.privileges.issue_close}</th>
+	<td><div id='priv-issue_close'></div></td>
+	<td><div id='priv-issue_delete'></div></td>
+</tr>
+</table></div>
+
+{! Rights related to detail section (item) }
+<div class='header'>{acls.privilege_groups.issue_detail}</div>
+<div><table class='jqx-reset privileges-array'>
+<tr class='tab-header'>{!Header row}
+	<th>&nbsp;</th>
+	<th>Access to tab</th>
+	<th>Change/Manage</th>
+</tr>
+<tr>
+	<th><img alt="Panels" src="/img/icons16/application_view_tile.png"> {acls.privileges.issue_xfields}</th>
+	<td><div id='priv-issue_xfields'></div></td>
+	<td><div id='priv-issue_edit_xfields'></div></td>
+</tr>
+<tr>
+	<th><img alt="Chat" src="/img/icons16/comments.png"> {acls.privileges.issue_view_comm}</th>
+	<td><div id='priv-issue_view_comm'></div></td>
+	<td><div id='priv-issue_manage_comm'></div></td>
+</tr>
+<tr>
+	<th><img alt="Clippy" src="/img/icons16/attach.png"> {acls.privileges.issue_view_attachs}</th>
+	<td><div id='priv-issue_view_attachs'></div></td>
+	<td><div id='priv-issue_edit_attachs'></div></td>
+</tr>
+<tr>
+	<th><img alt="Note" src="/img/icons16/note.png"> {acls.privileges.issue_view_notes}</th>
+	<td><div id='priv-issue_view_notes'></div></td>
+	<td><div id='priv-issue_edit_notes'></div></td>
+</tr>
+<tr>
+	<th><img alt="Contact" src="/img/icons16/vcard.png"> {acls.privileges.issue_view_contacts}</th>
+	<td><div id='priv-issue_view_contacts'></div></td>
+	<td><div id='priv-issue_edit_contacts'></div></td>
+</tr>
+<tr>
+	<th><img alt="Handshake" src="/img/icons16/handshake.png"> {acls.privileges.issue_view_sharing}</th>
+	<td><div id='priv-issue_view_sharing'></div></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<th><img alt="Clock" src="/img/icons16/clock_history_frame.png"> {acls.privileges.issue_view_history}</th>
+	<td><div id='priv-issue_view_history'></div></td>
+	<td>&nbsp;</td>
+</tr>
+</table></div>
+
+{!Privileges related to tasks and contacts (review this)}
+<div class='header'>{acls.privilege_groups.tasks}</div>
+<div><table class='jqx-reset privileges-array'>
+<tr class='tab-header'>{!Header row}
+	<th>&nbsp;</th>
+	<th>View access</th>
+	<th>Change/Manage</th>
+</tr>
+<tr>
+	<th><img alt="Task" src="/img/icons16/to_do_list_checked_1.png"> {acls.privileges.tasks_access} | Manage tasks (Create, Edit, Delete)</th>
+	<td><div id='priv-tasks_access'></div></td>
+	<td><div id='priv-tasks_manager'></div></td>
+</tr>
+<tr>
+	<th><img alt="Dep" src='/img/icons16/plugin.png'> {acls.privileges.tasks_access_dep}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-tasks_access_dep'></div></td>
+</tr>
+<tr>
+	<th><img alt="Org" src='/img/icons16/company-building-icon.png'> {acls.privileges.tasks_access_org}</th>
+	<td><div id='priv-tasks_access_org'></div></td>
+	<td>&nbsp;</td>
+</tr>
+</table></div>
+
+{! Privileges related to the organization module }
+{#if:enable_org_section|superuser:
+<div class='header'>{acls.privilege_groups.org}</div>
+<div><table class='jqx-reset privileges-array'>
+<tr class='tab-header'>{!Header row}
+	<th>&nbsp;</th>
+	<th>Feature access</th>
+	<th>Write access</th>
+</tr>
+{!Not implemented<tr>
+	<th><img alt="Online" src="/img/icons16/user_green.png"> {acls.privileges.view_online}</th>
+	<td><div id='priv-view_online'></div></td>
+	<td>&nbsp;</td>
+</tr>}
+<tr>
+	<th><img alt="Org" src="/img/icons16/company-building-icon.png"> {acls.privileges.org_view_stats}</th>
+	<td><div id='priv-org_view_stats'></div></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<th><img alt="Contact" src="/img/icons16/vcard.png"> {acls.privileges.dep_contacts_view}</th>
+	<td><div id='priv-dep_contacts_view'></div></td>
+	<td><div id='priv-dep_contacts_manager'></div></td>
+</tr>
+<tr>
+	<th><img alt="Contact" src="/img/icons16/vcard.png"> {acls.privileges.org_contacts_view}</th>
+	<td><div id='priv-org_contacts_view'></div></td>
+	<td><div id='priv-org_contacts_manager'></div></td>
+</tr>
+<tr>
+	<th><img alt="Dep" src="/img/icons16/plugin.png"> {acls.privileges.org_deps_view}</th>
+	<td><div id='priv-org_deps_view'></div></td>
+	<td><div id='priv-org_deps_manager'></div></td>
+</tr>
+<tr>
+	<th><img alt="Users" src="/img/icons16/users.png"> {acls.privileges.org_users_view}</th>
+	<td><div id='priv-org_users_view'></div></td>
+	<td><div id='priv-org_user_manager'></div></td>
+</tr>
+<tr>
+	<th><img alt="Handhshake" src="/img/icons16/handshake.png"> {acls.privileges.org_partners_view}</th>
+	<td><div id='priv-org_partners_view'></div></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<th><img alt="Group" src="/img/icons16/folders.png"> {acls.privileges.org_groups_view}</th>
+	<td><div id='priv-org_groups_view'></div></td>
+	<td>&nbsp;</td>
+</tr>
+{!Obsolete<tr>
+	<th><img alt="Jar" src="/img/icons16/jar_empty.png"> {acls.privileges.org_canned_manager}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-org_canned_manager'></div></td>
+</tr>}
+<tr>
+	<th><img alt="Eye" src="/img/icons16/eye.png"> {acls.privileges.grid_manage_views}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-grid_manage_views'></div></td>
+</tr>
+<tr>
+	<th><img alt="Template" src="/img/icons16/template.png"> {acls.privileges.org_templates_manager}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-org_templates_manager'></div></td>
+</tr>
+</table></div>
+}{!End Org section}
+
+{! Superuser abilities (are usually overriding other access rights); Can only be granted by Admin }
+{#if:superuser:
+<div class='header'>{acls.privilege_groups.superuser}</div>
+<div><table class='jqx-reset privileges-array'>
+<tr class='tab-header'>{!Header row}
+	<th>&nbsp;</th>
+	<th>Feature A</th>
+	<th>Feature B</th>
+</tr>
+<tr>
+	<th><img alt="Boss" src="/img/icons16/administrator.png"> {acls.privileges.issues_view_orgowned}</th>
+	<td><div id='priv-issues_view_orgowned'></div></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<th><img alt="Domains" src="/img/icons16/www_page.png"> {acls.privileges.org_domains_view}</th>
+	<td><div id='priv-org_domains_view'></div></td>
+	<td><div id='priv-org_domains_manager'></div></td>
+</tr>
+<tr>
+	<th><img alt="Access" src="/img/icons16/lock.png"> {acls.privileges.org_access_manager}</th>
+	<td>&nbsp;</td>
+	<td><div id='priv-org_access_manager'></div></td>
+</tr>
+</table></div>
+}{!End Superuser}
+</div>

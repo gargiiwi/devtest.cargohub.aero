@@ -1,0 +1,166 @@
+{#use:CFG.admin_rteditor:
+<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/{#if:key:ist/{key}.png}{#ifnot:key:ncc1701.png}" /><span>{#if:key:Edit {name}}{#ifnot:key:Create new Record Type}
+	</div>
+	<div id='rtedit-globalops'>{! style='display: none;'}
+		<button data-op="save" title="Save"><img alt="Save and view" src="/img/icons16/save.png"> Save</button>
+{!		{#if:_mode="edit":<button data-op="duplicate" title="Duplicate"><img alt="Create variant" src="/img/icons16/page_copy.png"> New variant</button>}}
+	</div>
+	<button class="right" data-op="back" title="Back to RT list"><img alt="Back to list" src="/img/icons16/bricks.png"> RT Overview</button>
+</div>
+
+<div id="rt-main-config" style="margin-bottom: 6px;">
+	<div><img src="/img/icons16/cog.png" alt="[o]" class="inline-icon"> {#if:key:Edit primary configuration - Name, Statuses, Priorities, Groups}{#ifnot:key:Create new Record Type - Enter Name, Folder key, select Statuses, Priorities and Group information}</div>
+	<div style="padding-top: 6px;">
+		<form class='vertiform' name="rt_config" action="?action=Save_Primary" method="post">
+		<ul>
+			<li><label for="rt_name">Name <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="The name of the Record Type, as seen by the users"></label>
+				<input class='left' id="rt_name" name="rt[name]" type="text" value="{name}" />
+				<label for="rt_short_plural">Plural form <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="When addressing multiple records of a certain type<br />eg. Claims (not Claim)"></label>
+				<input class='left' id="rt_short_plural" name="rt[short_plural]" type="text" value="{short_plural}" />
+			</li>
+			<li><label for="rt_key">Folder Key <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Used in multiple places, must be unique for one RT.<br />Also location of the HTML templates"></label>
+				<input id="rt_key" name="rt[key]" type="text" value="{key}" /><span class="gray" style="margin-left: 12px; display: inline-block;">The Key must not have spaces or any other characters except letters and numbers !</span></li>
+			<li><label for="rt_description">Short description: </label><input id="rt_description" name="rt[description]" type="text" value="{description}" style="width: 650px;" /></li>
+			<li><h4 style="text-indent: 120px;"><img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="The complete list of possible statuses and priorities<br />are in the system configuration and cannot be modified here.<br /><br />The controls here only turn them on/off"> &nbsp; Status and Priority settings</h4></li>
+			<li style="height: 225px;">
+				<label>Statuses list</label><div class='left' id='rt_statuses' name="rt[statuses]"></div>
+				<label>Priorities list</label><div class='left' id='rt_priorities' name="rt[priorities]"></div>
+			</li>
+			<li>
+				<label>Incoming status</label><div class='left' id='rt_settings_irs' name="rt[settings][init][recv][stat]"></div>
+				<label>Incoming priority</label><div class='left' id='rt_settings_irp' name="rt[settings][init][recv][prio]"></div>
+			</li>
+			<li>
+				<label>Self create status</label><div class='left' id='rt_settings_iss' name="rt[settings][init][self][stat]"></div>
+				<label>Self create priority</label><div class='left' id='rt_settings_isp' name="rt[settings][init][self][prio]"></div>
+			</li>
+			<li><h4 style="text-indent: 150px;">Groups configuration</h4></li>	
+			<li>
+				<label>Group set <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Which kind of Data Groups is used by this record type"></label><div style="float: left;" id='rt_settings_group' name="rt[settings][group_type]"></div>
+				<label>Group filter <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Certain Data Groups can have an additional filter<br />(to only show some of the groups instead of all)"></label><div id='rt_group_ids' name="rt[group_ids]"></div>
+			</li>
+		</ul>
+		</form>
+	</div>
+</div>
+
+{!<div id="sidebar" class="right jqx-rc-all">
+<div class="center">
+	<button data-op="config-panels">Panels Config</button>
+	<button data-op="config-cache">Cache-Fields Setup</button>
+</div>
+<div id="templates-tree"></div>
+</div>
+<div class="clear"></div>}
+}
+<div id="rt-field-def" style="margin-bottom: 6px;">
+	<div><img src="/img/icons16/table.png" alt="[o]" class="inline-icon"> Field definitions</div>
+	<div style="border: none !important;">
+		<div class='toolbar' class='jqx-widget jqx-rc-all'>
+			<div id='field-create-op'>
+				<button data-op="field-create" title="Create field"><img alt="(+)" src="/img/icons16/add.png"> Add</button>
+			</div>
+			<div id='rtedit-fieldops' style='display: none;'>
+				<div class='toolbar-separator'></div>
+				<button data-op="field-edit" title="Edit field"><img alt="(/)" src="/img/icons16/pencil.png"> Edit</button>	
+				<button data-op="field-copy" title="Copy field"><img alt="(%)" src="/img/icons16/copy.png"> Copy</button>
+				<button data-op="field-delete" class="right info-tip" data-tooltip="<span class='red'>Delete the selected field</span><br /><br />Confirmation is required for this action."><img alt="(-)" src="/img/icons16/delete.png"> Delete</button>
+				<div id="field-delete-removedata" style="line-height: 24px;" class="right info-tip" data-tooltip="When enabled, user data and profile info<br />for this field is also deleted !<br /><br /><span class='red thick'>ALERT ! The data is not recoverable !</span>">Remove data too</div>
+			</div>
+			<div id='field-open-ops' style="display: none;">
+				<div class='toolbar-separator'></div>
+				<button data-op="field-save" class="info-tip" data-tooltip="Save changes to this data field"><img alt="[*]" src="/img/icons16/save.png"> Save</button>
+				<div id="field-save-alterdata" style="line-height: 24px;" class="info-tip" data-tooltip="When enabled certain changes to field definition also affect stored data !<br /><br /><span class='red'>Please make sure you know of all implications before turning this on !</span>">Alter stored data</div>
+				<button data-op="field-close" class="info-tip" data-tooltip="Close field editor without saving"><img alt="[x]" src='/img/icons16/cross.png' /> Close</button>
+			</div>
+			<div class='toolbar-separator'></div>
+			<button data-op="field-sections" title="Sections editor"><img alt="(=)" src="/img/icons16/application_tile_vertical.png"> Sections</button>
+		</div>
+
+		<div id="rt-field-editor" style="margin-bottom: 6px; display: none;">
+			<div style="padding-left: 2px;"></div>
+			<div>{!jqxExpander body}
+				
+					<table style="width: 100%; border-spacing: 6px;">
+						<colgroup><col style="width: 685px;" /></colgroup>
+						<tbody>
+						<tr><td valign="top">{!Left side is a form, values are captured on Save}
+								<form method="post" action="?action=Save_Field">
+									<div class='ctrl-line'>
+										<label>Field type <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Indicates what kind of data is being stored by this field<br />Available only when creating a new field."></label>
+										<div class="left" id='field-t' name="field[t]"></div>
+									</div>
+									<div class='ctrl-line'>
+										<label for='field-n'>Field name <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Name of this field, as it appears it multiple locations (unless overridden)"></label>
+										<input type='text' id='field-n' name='field[n]' class="form-control left jqx-input jqx-rc-all" value="" style='width: 350px;' placeholder="(The field must have a name)" />
+									</div>
+									<div class='ctrl-line'>
+										<label for="field-fk">Template key <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="This special text is used in the templates.<br />Must be letters and underscore _ only, no spaces<br /><br />Should be kept short"></label>
+										<input type='text' id='field-fk' name='field[fk]' class="form-control left jqx-input jqx-rc-all" value="" style='width: 150px;' /><span class="gray" style="margin-left: 12px; display: inline-block; line-height: 22px">Keep this short!</span>
+									</div>
+									<div class='ctrl-line blue' style='font-size: 11px; line-height: 26px; text-align: center;'>When changing template key, the HTML in the templates must also be updated !</div>
+									<div class='ctrl-line'>
+										<label for="field-s">Section <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Section identifier.<br />Must be letters and underscore _ only, no spaces<br /><br />Should be kept short"></label>
+										<div class="left" id='field-s'></div>
+										{!<input type='text' id='field-s' name='field[s]' class="form-control left jqx-input jqx-rc-all" value="" style='width: 150px; box-sizing: border-box;' />}
+										<span class="gray" style="margin-left: 12px; display: inline-block; line-height: 22px">Type the ID or use the Sections list</span>
+									</div>
+								</form>
+								<div class='ctrl-line'>
+									<label>Choices <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="For <b>Single Choice</b> and <b>Multiple Choices</b> fields,<br />the value choices can be edited"></label>
+									<button id="field-cd" style='width: 152px;'>Edit values</button> <span class='red' id='cd-changed' style="display: none;">(unsaved)</span>
+								</div>
+								<div class='ctrl-line' id="field-choices-readonly" style="display: none;">
+									<div></div>
+								</div>
+							</td>
+						<td valign="top" id="field-options-area">{!Right side}
+							<h4>Configuration options and restrictions</h4>
+							<div class='ctrl-line'><label id='field-o_req'>Field is required <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="This field must be entered in the record submit form<br /><br />The system doesn't allow creating the record without a value in this field"></label></div>
+							<div class='ctrl-line' style="display: none;"><label id='field-o_def'>Default value <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="For Text, Numeric fields - The content of field<br />For Single Choice - The &quot;key&quot; of one of the choices<br /><br />Other field types cannot have a default value yet."></label><input type='text' id="field-o_def-value" class="form-control left jqx-input jqx-rc-all" style='width: 180px; box-sizing: border-box;' /></div>
+							<div class='ctrl-line' style="display: none;"><label id='field-o_len'>Max contents length <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Maximum number of <b>characters</b><br />accepted by this field"></label><div id="field-o_len-value"></div></div>
+							<div class='ctrl-line' style="display: none;"><label id='field-o_num'>Single Choices are numeric (optimize storage)</label></div>
+							<div class='ctrl-line' style="display: none;"><label id='field-o_flag'>Multiple Choices are flags (get all with 1/0)</label></div>
+{!Not implemented			<div class='ctrl-line'><label id='field-o_hide'>Hide the field</label></div>}
+							<h4>Settings for the main grid</h4>
+							<div class='ctrl-line'><label id='field-o_colw'>Initial column width <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="Initial size in <b>pixels</b><br />when adding this column to the grid view"></label><div id="field-o_colw-value"></div></div>
+							<div class='ctrl-line'><label id='field-o_colr'>Column render style</label><div id="field-o_colr-value"></div></div>
+						</td></tr>
+						</tbody>
+					</table>
+			</div>
+		</div>
+		
+		<div id="fields-grid"></div>
+	</div>
+</div>
+
+<div id='info-container'>
+	<div><img src="/img/icons16/question2.png" alt="[o]" class="inline-icon"> Help and guidance</div>
+	<div class='spacey'>
+		<h3>How to use the Record Type Editor:</h3>
+		<hr />
+		<p>(TODO: add information here)</p>
+	</div>
+</div>
+
+{!Associative Data editor (name,key), used by several parts of the Record Blueprint}
+<script id="win-assoc_editor" type="text/dryjstpl">{@
+	<div class="spacey">
+		<div class="command">
+			<button class="button-moveup" title="Move Up" data-cmd="moveup"></button>
+			<button class="button-movedown" title="Move Down" data-cmd="movedown"></button><div>Up/Down</div>
+			<button class="button-movetop" title="Move as first" data-cmd="movetop"></button>
+			<button class="button-movebottom" title="Move to end" data-cmd="movebottom"></button><div>First/Last</div>
+			<button class="button-delete" title="Delete" data-cmd="delete"></button><div>Delete</div>
+			<button class="button-create" title="Create new" data-cmd="create"></button><div>Create</div>
+		</div>
+		<div id="assoc-table"></div>
+		<div id="assoc-new">
+			<input type='text' id='assoc-val' class="left jqx-input jqx-rc-all" value="" style='width: 440px; height: 36px;' placeholder="(value)" />
+			<input type='text' id='assoc-key' maxlength="20" class="left jqx-input jqx-rc-all" value="" style='width: 140px; height: 36px;' placeholder="(key)" />
+		</div>
+	</div>
+}</script>

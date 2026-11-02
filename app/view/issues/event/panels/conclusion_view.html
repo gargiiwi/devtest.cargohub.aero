@@ -1,0 +1,61 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{frisk.n}</th><td>{#if:^xfields.frisk.amount_format:{^xfields.frisk.serialized}}{#ifnot:^xfields.frisk.amount_format:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{fcltype.n}:</th><td>{^xfields.fcltype.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{f_sstage.n}:</th><td>{^xfields.f_sstage.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{f_liab.n}:</th><td>{#ifnot:^xfields.f_liab:<span class='gray'>---</span>}{#repeat:^xfields.f_liab:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{f_motiv.n}:</th><td>{^xfields.f_motiv:<span class="gray">---</span>}</td></tr>
+		<tr><th>{fmaxli.n}:</th><td>{#if:^xfields.fmaxli.amount_format:{^xfields.fmaxli.serialized}}{#ifnot:^xfields.fmaxli.amount_format:<span class='gray'>---</span>}
+			<span class="right"><img src="/img/icons16/calculator.png" style="margin-right: 5px;" /><a href='http://www.cargohub.nl/liability-calculators' target="_blank">Liability calculators</a></span>
+		</td></tr>
+		<tr><th>{fins.n}:</th><td>{#if:^xfields.fins.amount_format:{^xfields.fins.serialized}}{#ifnot:^xfields.fins.amount_format:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{fprov.n}:</th><td>{#if:^xfields.fprov.amount_format:{^xfields.fprov.serialized}}{#ifnot:^xfields.fprov.amount_format:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{fsug.n}:</th><td>{#if:^xfields.fsug.amount_format:{^xfields.fsug.serialized}}{#ifnot:^xfields.fsug.amount_format:<span class='gray'>---</span>}</td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{f_compens.n}:</th><td>{#ifnot:^xfields.f_compens:<span class='gray'>N/A</span>}{#repeat:^xfields.f_compens:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{frisk2.n}:</th><td>
+			<b>{#if:^xfields.frisk2.amount_format:{^xfields.frisk2.serialized}}{#ifnot:^xfields.frisk2.amount_format:<span class='gray'>---</span>}</b>
+			<span class="right" style='margin-right: 20px;'>Payment date: {#if:^xfields.pay_date:{^xfields.pay_date}~date("Y-m-d")~}{#ifnot:^xfields.pay_date:<span class='gray'>---</span>}</span>
+		</td></tr>
+		<tr><th>{fchback.n}:</th><td>
+			<b>{#if:^xfields.fchback.amount_format:{^xfields.fchback.serialized}}{#ifnot:^xfields.fchback.amount_format:<span class='gray'>---</span>}</b>
+			<span class="right" style='margin-right: 20px;'>Invoice date: {#if:^xfields.invo_date:{^xfields.invo_date}~date("Y-m-d")~}{#ifnot:^xfields.invo_date:<span class='gray'>---</span>}</span>
+		</td></tr>
+		<tr><th>{f_cbto.n}:</th><td>{^xfields.f_cbto:<span class="gray">---</span>}</td></tr>
+	  <tr><th>Claim record link:</th><td>
+			{#if:^xfields.claim_link:<a href="/record/process:{^xfields.claim_link}#panels" target="_blank">{^xfields.claim_link}</a>}
+			{#ifnot:^xfields.claim_link:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	
+	<h5>{f_remarks.n}</h5>
+	{#if:^xfields.f_remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.f_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.f_remarks:<div class="gray" style="text-indent: 20px;">-----</div><hr style="margin-top: 4px;" />}
+
+<!--	<table>
+		<tr>
+			<td><span class='gray'>{finv.n}:</span><br />
+				<b>{#if:^xfields.finv.amount_format:{^xfields.finv.serialized}}{#ifnot:^xfields.finv.amount_format:<span class='gray'>---</span>}</b>
+			</td>
+			<td><span class='gray'>{fsol.n}:</span><br />
+				<b>{#if:^xfields.fsol.amount_format:{^xfields.fsol.serialized}}{#ifnot:^xfields.fsol.amount_format:<span class='gray'>---</span>}</b>
+			</td>
+		</tr>
+		<tr>
+			<td><span class='gray'>ROI Potential impact:</span><br />
+				{^xfields.roi_potential}~suffix(%,<span class='gray'>---</span>)~
+			</td>
+			<td><span class='gray'>ROI Actual impact:</span><br />
+				{^xfields.roi_actual}~suffix(%,<span class='gray'>---</span>)~
+			</td>
+		</tr>
+	</table>
+
+	<hr />
+	<table>
+		<tr><th>Claim record link:</th><td>
+			{#if:^xfields.claim_link:<a href="/record/process:{^xfields.claim_link}#panels" target="_blank">{^xfields.claim_link}</a>}
+			{#ifnot:^xfields.claim_link:<span class='gray'>---</span>}
+		</td></tr>
+	</table> -->
+}

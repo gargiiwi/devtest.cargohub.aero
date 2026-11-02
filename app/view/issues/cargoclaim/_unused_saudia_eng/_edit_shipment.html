@@ -1,0 +1,91 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+<tr>
+	<th><label for='{mawb_p.id}'>{mawb_p.display.label}:</label></th>
+	<td>
+		<input type='text' id='{mawb_p.id}' name='{mawb_p.name}' value='{mawb_p.value}' maxlength="3" style='width: 30px;'{#if:mawb_p.display.error: class='field_error' data-tooltip='{mawb_p.display.error}'} /> - 
+		<input type='text' id='{mawb_s.id}' name='{mawb_s.name}' value='{mawb_s.value}' maxlength="8" style='width: 70px;'{#if:mawb_s.display.error: class='field_error' data-tooltip='{mawb_s.display.error}'} />
+	</td>
+</tr>
+<tr>{#use:nature_of_goods:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:mawb_date:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+}</tr>
+<tr>
+	<th><label>MAWB Total:</label></th>
+	<td>
+	{#use:mawb_pieces: <input style='width: 50px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Pieces}
+	{#use:mawb_weight: <input style='width: 50px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Kg}
+	</td>
+</tr>
+<tr>{#use:hawb1:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:hawb2:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:hawb3:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:hawb4:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:hawb5:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:hawb6:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+</table>
+
+<h4>Flight information:</h4>
+<table>
+<tr>{#use:carry_date:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+}</tr>
+<tr>{#use:arrival_date:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+}</tr>
+<tr>{#use:flight_no:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:flight_no_2:
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+}</tr>
+<tr>{#use:orig_loc:
+	<th><label>{display.label}:</label></th>
+	<td><div class='searchbox' data-id='#{id}' data-sourceurl='?action=suggest_airport' data-width='348'></div>
+	<input type='hidden' id='{id}' name='{name}' value='{value}' />
+	</td>
+}</tr>
+{#use:orig_loc_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+{#use:viaa:<tr{#if:display.req: class='required'}>
+	<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+	<td>
+		<div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox' data-width='348'></div>
+		<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+		{#use:viaa_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+	</td>
+</tr>
+<tr>{#use:dest_loc:
+	<th><label>{display.label}:</label></th>
+	<td><div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox' data-width='348'></div>
+	<input type='hidden' id='{id}' name='{name}' value='{value}' />
+}</tr>
+{#use:dest_loc_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+</table>
+</form>}

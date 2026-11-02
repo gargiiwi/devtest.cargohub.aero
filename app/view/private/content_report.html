@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>{report.name}</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+{@<style type="text/css">
+body {
+	color: black;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	margin-left:1em;
+	margin-right:1em;
+	margin-top:0;
+	margin-bottom:0;
+	background-color: white;
+}
+table.white {
+	background-color: #ffffff ;
+	color : #23559C;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+table.white tr:nth-child(odd) {
+	background:#EEEEE8;
+}
+
+table.white th {
+	padding: 4px 6px;
+	background-color: #ffffff;
+	color : #23559C;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	border: #b2babd 1px solid;
+	border-collapse: collapse;
+	background-image: url(/img/extra/tableheader.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	text-overflow: ellipsis;
+}
+table.white td {
+	padding: 3px 6px;
+	border: 1px solid #D1DCEB;
+}
+a {
+	text-decoration: none;
+	color: blue;
+}
+a:HOVER {
+	text-decoration: underline;
+}
+hr {
+	background-color: gray;
+	border: none;
+	height: 1px;
+}
+.fontbtn {
+	background: none;
+	border: none;
+	width: 24px;
+	height: 24px;
+	background-repeat: no-repeat;
+}
+.fontbtn:ACTIVE {
+	background-position: 2px 1px;
+}
+.tsmall {
+	background-image: url(/img/extra/tsmall.png);
+}
+.tmed {
+	background-image: url(/img/extra/tmed.png);
+}
+.tlarge {
+	background-image: url(/img/extra/tlarge.png);
+}
+</style>
+<script type="text/javascript">
+function set_cookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function get_cookie(name) {
+	var name_eq = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(name_eq) == 0) return c.substring(name_eq.length,c.length);
+	}
+	return null;
+}
+
+if(get_cookie("report_fontsize") != null){
+	document.write('<style>');
+	document.write('table{');
+	document.write('font-size:'+ get_cookie("report_fontsize") + 'em');
+	document.write('}');
+	document.write('<'+'/style>');
+}else{
+	document.write('<style>');
+	document.write('table{');
+	document.write('font-size: 0.9em');
+	document.write('}');
+	document.write('<'+'/style>');
+};
+</script>}
+</head>
+<body>
+	<h2>{report.name}</h2>
+	<p><b>{input.date_start}~date("Y-m-d")~</b> - <b>{input.date_end}~date("Y-m-d")~</b>&nbsp;
+		<input type="button" value="Print report" onclick="window.print()" />
+		<input class='fontbtn tsmall' type="button" title="Small" onclick="javascript:document.getElementsByTagName('table')[0].style.fontSize='0.6em'; set_cookie('report_fontsize', '0.6', 30);" />
+		<input class='fontbtn tmed' type="button" title="Medium" onclick="javascript:document.getElementsByTagName('table')[0].style.fontSize='0.9em'; set_cookie('report_fontsize', '0.9', 30);" />
+		<input class='fontbtn tlarge' type="button" title="Large" onclick="javascript:document.getElementsByTagName('table')[0].style.fontSize='1.2em'; set_cookie('report_fontsize', '1.2', 30);" />
+	</p>
+	{#if:tbody:<table cellpadding="3" class='white'>
+	{!header (columns)}
+	<thead><tr style="border-bottom:1px solid #000000; white-space: nowrap;">
+		{#repeat:thead:<th id='head-{key}'{#if:opt.colw: style='width: {opt.colw}px;'}>{name}</th>}
+	</tr></thead>
+	{!rows (rows)}
+	<tbody>
+	{#repeat:tbody:<tr style="white-space: nowrap;">
+		{#repeat::<td{align}>{html}</td>}
+	</tr>}
+	</tbody>
+	</table>}
+	{#ifnot:tbody:We are sorry, but there are no results with the requested parameters}
+</body>
+</html>

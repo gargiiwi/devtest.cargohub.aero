@@ -1,0 +1,73 @@
+<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/document_image_ver.png" /><span>HTML Template Editing</span>
+	</div>	
+	<button data-op="add" title='New template'><img src='/img/icons16/add.png' /> New template</button>
+	<div id='tem_prev_operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="preview" id="preview" title="Preview template"><img src='/img/icons16/eye.png' /> Preview template</button>
+		<div id="command_buttons">
+			<button value="Save" data-op="save" id="cmdSave" style="display:none">Save</button>
+			<button value="Revert" data-op="revert" id="cmdRevert" style="display:none">Revert</button>
+			<button value="Close" data-op="close" id="cmdClose">Close</button>
+		</div>
+		<div id="delete" style="display:none">
+			<div class='toolbar-separator'></div>
+			<button data-op="delete" title="Delete template"><img src='/img/icons16/delete.png' /> Delete template</button>
+		</div>
+	</div>
+</div>
+<div id="message_box"></div>
+<div class="templates">
+    <div>
+        <div id='tree'>{!Four levels deep should be enough for now}
+			<ul>
+				{#repeat:templates:<li id="node-{name}" {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}{#ifnot:path:data-selectable='false'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>
+					{#if:children:
+						<ul>
+							{#repeat:children:<li id="node-{name}" {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}{#ifnot:path:data-selectable='false'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>
+								{#if:children:
+									<ul>
+										{#repeat:children:<li id="node-{name}" {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}{#ifnot:path:data-selectable='false'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>
+											{#if:children:
+												<ul>
+													{#repeat:children:<li id="node-{name}" {#if:path:data-path="{path}" }{#if:path:data-selectable='true'}{#ifnot:path:data-selectable='false'}><img {#if:path:src='{%html.base}/img/icons16/document_image_ver.png' alt="file"}{#ifnot:path:src='{%html.base}/img/icons16/folder.png' alt="folder"} /><span>{name}</span>}
+												</ul>
+											}
+										</li>}
+									</ul>
+								}
+							</li>}
+						</ul>
+					}
+				</li>}
+			</ul>
+        </div>
+    </div>
+    <div id="editor">
+		<textarea id="content" style='width: 100%; height: 400px; border: 0; padding: 0; margin 0; resize: none;' rows='1'>
+Hello and welcome to the fancy colored HTML editor :)
+
+Click on a template on the left side to load a template.</textarea>
+    </div>
+</div>
+<!--<div id="command_buttons">
+	<input type="button" value="Save" id="cmdSave" />
+	<input type="button" value="Revert" id="cmdRevert" />
+	<input type="button" value="Close" id="cmdClose" />
+</div>-->
+<div class="clear"></div>
+{!Templates}
+    <div style="display: none;">
+	{@<div id="template_preview">
+	</div>}
+    </div>
+    <div style="display: none;">
+	{@<div id="template_create">
+        <form class='vertiform' name='addtemp' action="?action=create" method="post">
+			<ul>
+			<li><label for="tpl_name" style="text-align: left;width:40px;margin-right: 12px;">Name:</label><input id="tpl_name" name="name" type="text" value="" /></li>
+			</ul>
+		</form>
+	</div>}
+    </div>

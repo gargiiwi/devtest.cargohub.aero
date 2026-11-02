@@ -1,0 +1,99 @@
+{@<style type="text/css">
+/* Some styles specific to Aircraft Incident */
+.twocolvalue {
+	display: inline-block;
+	width: 49%;
+}
+.threecolvalue {
+	display: inline-block;
+	width: 32%;
+}
+div.ra_250 {
+	display: inline-block;
+	float: right;
+	width: 250px;
+}
+label.ra_label {
+	display: inline-block;
+	margin-right: 5px;
+	width: 100px;
+	text-align: right;
+}
+#witnesses {
+	width: 100%;
+	margin: 0;
+	margin-top: 8px;
+	border-collapse: collapse;	
+}
+	#witnesses h3 {
+		background-color: #eee;
+		padding: 3px;
+	}
+	#witnesses td {
+		margin: 0;
+		padding: 0;
+		border: 1px solid lightgray;
+	}
+
+	#witnesses div {
+		margin: 0 0 6px 8px;
+	}
+		#witnesses div > label {
+			font-size: 80%;
+			color: gray;
+			display: block;
+		}
+		#witnesses div > p {
+			font-size: 90%;
+			margin: 0;
+		}
+label.threecolcbox {
+	display: block;
+	width: 160px;
+	float: left;
+}
+label.twocolcbox {
+	display: block;
+	width: 250px;
+	float: left;
+}
+.itembox {
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+</style>}
+{!These are the issue-type specific panels}
+<div id="acinc-dashboard" data-panel='0' style='height: 660px;' data-editable="1" data-edittpl="dashboard" data-editheight="660">
+	<div><img src='/img/icons16/menus/acinc-dashboard.png' alt="{track}" />Incident dashboard</div>
+	<div class="datatable">
+{#include::panels/dashboard_view.html}
+	</div>
+</div>
+
+ <!-- <div id="acinc-onlocation" data-panel='1' style='height: 400px;' data-editable="1" data-edittpl="onlocation" data-editheight="850">
+	<div><img src='/img/icons16/menus/acinc-onlocation.png' alt="Pin" /> Correction </div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/Correction_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div> -->
+
+<!-- <div id="acinc-report" data-panel='1' style='height: 450px;' data-editable="1" data-edittpl="report" data-editheight="570">
+	<div><img src='/img/icons16/menus/acinc-report.png' alt="Notebook" />Reporting and Witnesses</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/Correction_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div> -->
+
+<div id="acinc-followup" data-panel='1' style='height: 587px;' data-editable="1" data-edittpl="followup" data-editheight="2030">
+	<div><img src='/img/icons16/menus/acinc-report.png' alt="Notebook" />Cargo Sales</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/followup_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>

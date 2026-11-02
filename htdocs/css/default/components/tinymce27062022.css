@@ -1,0 +1,15 @@
+/** Special styles for TinyMCE component **/
+
+div.mce-tinymce {
+    display: block !important;
+}
+
+/* Necessary to "disable" TinyMCE toolbar */
+div.mce-toolbar-cover {
+    position: absolute !important;
+    height: 100% !important;
+    width: 100% !important;
+    left: 0; top: 0;
+    background-color: white;
+    opacity: 0.5;
+}

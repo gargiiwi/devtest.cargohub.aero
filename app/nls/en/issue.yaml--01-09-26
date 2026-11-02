@@ -1,0 +1,104 @@
+# Issue related strings
+---
+
+data:
+  statuses:
+    new:  New
+    api:  WebAPI
+    time: Scheduled
+    subm: Submitted
+    dlv:  Delivered
+    wr:   Waiting
+    idea: Idea/Concept
+    req:  Request
+    brn:  Brainstorming
+    plan: Planning
+    inpr: Processing
+    open: Open
+    prog: Work started
+    miss: Missing Docs
+    repl: Replied
+    inve: Investigation
+    onh:  On Hold
+    glue: Stuck
+    rech: Chargeback
+    insu: Insurance
+    nins: No insurance
+    leg:  Legal proceeding
+    xfer: Transferred
+    moni: Monitoring
+    lock: Locked
+    conf: Confirmed
+    crep: Can't replicate
+    arr:  Arrived
+    exp:  Expected
+    mani: Manifested
+    chki: Checked in
+    load: Loading
+    disc: Discharged
+    ndis: Non discharged
+    isen: Info. sent
+    iinc: Info. incomplete
+    dep:  Departed
+    pcol: Pre Collection
+    fcol: Final Collection
+    outd: Outdated
+    expi: Expired
+    tick: Verified
+    frsk: Customs declared
+    ack:  Acknowledged
+    rev:  Reviewing
+    prop: Proposal
+    neg:  Negociation
+    proa: Proposal accepted
+    pay:  Payment process
+    comp: Completed
+    sttl: Settled
+    tbar: Time barred
+    rej:  Rejected
+    rvok: Revoked
+    eot:  End Tracing
+    capa: CaPa Started
+    eval: Evaluation
+    test: Testing
+    live: Deployed-2-Live
+    feed: Feedback
+    can:  Cancelled
+    outs: Outsourced
+    clos: Resolved
+    unr: Unresolved
+    mmin: Meeting minute
+    frml: Replaced by Formal
+    mrn: MRN Allocated
+    insp: Inspection
+    aprv: Approved
+    vald: Valid
+    ntrn: No Training
+    iue:  In use
+    irep: In repair
+    sby:  Standby
+    unser: Unserviceable
+    conm: Contract Missing
+  
+  priorities:
+    1crt: 1.Critical!
+    2urg: 2.Urgent!
+    3hgh: 3.High
+    4med: 4.Medium
+    5low: 5.Low
+    6ser: 6.Serviceable
+    7uins: 7.Under Inspection
+    8imtc: 8.In Maintenance
+    9ire: 9.In Repair
+    10apts: 0.Awaiting Parts
+    11dmg: 1.Damaged
+    12usvc: 2.Unserviceable
+    13lst: 3.Lost 
+    
+errors:
+  xf:
+    missreq: The content is empty
+    coor:    Field choice(s) out-of-range
+    nnum:    Field is not numeric and it should be
+    notdate: Field is not a parsable date
+    plugin:  Error returned by field plugin

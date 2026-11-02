@@ -1,0 +1,817 @@
+<div class="airCargoClaimChartPage">
+
+    <!-- MAIN TABS -->
+    <div class="main-tabs">
+        <button class="tab active" data-target="cargo-claim">Cargo Claim</button>
+        <button class="" ><a href="/issue/list#chart" style=" color: #0f172a; ">KPI</a></button>
+        <button class="" ><a href="/issue/list#chart" style=" color: #0f172a; ">Issued AWBs</a></button>
+        <button class="" ><a href="/issue/list#chart" style=" color: #0f172a; ">Agent Report</a></button>
+        <button class="" ><a href="/user/overview?action=Export_Record_Statistics_Chart_print&rt_key=cargoclaim&model=records_per_provision" target="_blank" style=" color: #0f172a; ">Provisions</a></button>
+
+
+        <!--        <button class="tab" data-target="kpi">KPI</button>
+                <button class="tab" data-target="issued-awbs">Issued AWBs</button>
+                <button class="tab" data-target="agent-report">Agent Report</button>
+                <button class="tab" data-target="provisions">Provisions</button>-->
+    </div>
+
+    <!-- MAIN TAB CONTENT -->
+    <section class="tab-content active" id="cargo-claim"> 
+
+        <!-- SUB-TABS -->
+        <nav class="sub-tabs">
+            <button class="sub-tab active" data-target="cargo-overview">Overview</button>
+            <button class="sub-tab" data-target="active-formal-claim">Financial</button>
+            <!--<button class="sub-tab" data-target="claim-aspects">Claim Aspects</button>-->
+            <button class="" ><a href="/issue/list#chart" style=" color: #0f172a; ">Formal Claim</a></button>
+            <button class="" ><a href="/issue/list#chart" style=" color: #0f172a; ">Claim Aspects</a></button>
+            <button class="" ><a href="/issue/list#chart" style=" color: #0f172a; ">Root-Cause</a></button>
+            <!--<button class="" ><a href="/issue/list#chart" style=" color: #0f172a; ">Financials</a></button>-->
+            <!--            <button class="sub-tab" data-target="formal-claim">Formal Claim</button>
+                        <button class="sub-tab" data-target="claim-aspects">Claim Aspects</button>
+                        <button class="sub-tab" data-target="root-cause">Root-Cause</button>
+                        <button class="sub-tab" data-target="financials">Financials</button>-->
+        </nav>
+
+        <!-- SUB-TAB CONTENT -->
+
+        <!-- ===== CARGO OVERVIEW ===== -->
+        <section id="cargo-overview" class="sub-tab-content active">
+
+            <!-- KPI -->
+            <div class="overview-kpis" id="cargoOverviewKPI">
+
+                <div class="kpi-card">
+                    <div class="kpi-label"><span>Total Preliminary Claims</span></div>
+                    <div class="kpi-subline">
+                        <a>Active: <span id="totalPreliminaryClaimActive">0</span></a>
+                        <a>Closed: <span id="totalPreliminaryClaimClosed">0</span></a>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-label"><span>Total Formal Claims</span></div>
+                    <div class="kpi-subline">
+                        <a>Active: <span id="totalFormalClaimActive">0</span></a>
+                        <a>Closed: <span id="totalFormalClaimClosed">0</span></a>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-label"><span>Active Formal Claims Assignment</span></div>
+                    <div class="kpi-subline">
+                        <a>Assigned: <span id="totalClaimAssigned">0</span></a>
+                        <a href="/user/overview?action=Export_Record_Unassigned" target="_blank" title="View details">
+                            Unassigned: <span id="totalClaimUnassigned">0</span>
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- HEADER -->
+            <div class="chart-card-header">
+                <div class="chart-header-left">
+                    <i class="fa fa-line-chart"></i>
+                    Cargo Claim Overview (<span class="chart-year-label">Year 2026</span>)
+                </div>
+                <div class="chart-header-right">
+                    <select name="chart_period_select" class="chart-period-select"></select>
+                </div>
+            </div>
+
+
+            <!-- ================= CHARTS ================= -->
+            <div class="chart-grid">
+
+                <!-- Preliminary -->
+                <div class="chart-card">
+                    <div class="chart-loader"><div class="spinner"></div></div>
+                    <h3>Preliminary Claim</h3>
+                    <div class="innerSection">
+                        <div class="chart-container">
+                            <div class="chart-canvas-wrap">
+                                <canvas id="preliminaryClaimChart"></canvas>
+                            </div>
+                        </div>
+                        <hr/>
+                        <table class="claims-table">
+                            <thead><tr></tr></thead>
+                            <tbody id="preliminaryClaimTableBody"></tbody>
+                            <tfoot><tr></tr></tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Formal -->
+                <div class="chart-card ">
+                    <div class="chart-loader"><div class="spinner"></div></div>
+                    <h3>Formal Claim</h3>
+                    <div class="innerSection">
+                        <div class="chart-container">
+                            <div class="chart-canvas-wrap">
+                                <canvas id="formalClaimChart"></canvas>
+                            </div>
+                        </div>
+                        <hr/>
+                        <table class="claims-table">
+                            <thead><tr></tr></thead>
+                            <tbody id="formalClaimTableBody"></tbody>
+                            <tfoot><tr></tr></tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-card-header">
+                <div class="chart-header-left">
+                    <i class="fa fa-line-chart"></i>
+                    Formal Claim Overview 
+                </div>
+            </div>
+            <div class="chart-grid">
+
+
+                <!-- Active Formal By User -->
+                <div class="chart-card wide">
+                    <div class="chart-loader"><div class="spinner"></div></div>
+                    <h3>Total Active Formal Claims by User</h3>
+                    <div class="innerSection">
+                        <div class="chart-with-sidebar">
+                            <div class="chart-container vertical">
+                                <div class="chart-canvas-wrap">
+                                    <canvas id="activeFormalClaimChart"></canvas>
+                                    <div class="chart-checkboxes below" id="userClaimCheckboxes"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr/>
+                        <table class="claims-table"  style="display: none;"> <!-- as per discussion , no need to show table for this part only -->
+                            <thead><tr></tr></thead>
+                            <tbody id="activeFormalClaimTableBody"></tbody>
+                            <tfoot><tr></tr></tfoot>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <!-- TOTAL ACTIVE FORMAL -->
+                <div class="chart-card wide">
+    <div class="chart-loader"><div class="spinner"></div></div>
+    <h3>Total Active Formal Claim </h3>
+    <div class="innerSection">
+        <div class="chart-with-sidebar">
+            <div class="chart-container vertical">
+                <div class="chart-canvas-wrap" style="overflow-x:auto;">
+                    <canvas id="totalActiveFormalClaimChart"></canvas>
+                    <div class="chart-checkboxes below" id="yearClaimCheckboxes"></div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div style="overflow-x:auto;">
+            <table class="claims-table" style="min-width:1200px;">
+                <thead><tr></tr></thead>
+                <tbody id="totalActiveFormalClaimTableBody"></tbody>
+                <tfoot><tr></tr></tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+            </div>
+
+
+        </section>
+
+        <!-- ===== ACTIVE FORMAL CLAIM ===== -->
+        <section class="sub-tab-content" id="active-formal-claim">
+<div class="chart-loader"><div class="spinner"></div></div>
+            <!-- ===== HEADER ===== -->
+            <div class="chart-card-header">
+                <div class="chart-header-left">
+                    <i class="fa fa-line-chart"></i>
+                    <span class="chart-year-label">Active Financial Overview</span>
+                </div>
+                <div class="chart-header-right">
+
+                    <div class="header-info">
+                        Active Records:
+                        <span id="totalFormalActiveClaim">13</span>
+                    </div>
+                    {#if:show_airline_select='yes':
+                    <div class="header-filter">
+                        <select id="airlineFilter" class="chart-select">
+                            <option value="1" selected="">Atlas Air</option>
+                            <option value="2" >Polar Air Cargo</option>
+                            <option value="3">Both</option>
+                        </select>
+                    </div>
+                    }
+
+
+                </div>
+
+            </div>
+
+            <!-- ===== KPI SUMMARY ===== -->
+            <div class="overview-kpis active-claims-kpis">
+
+
+                <div class="kpi-card">
+                    <div class="kpi-label">
+                        <span>Active Claims assignment</span>
+                    </div>
+
+                    <div class="kpi-subline">
+                        <a href="javascript:void(0);">
+                            Assigned: <span id="totalFormalClaimAssigned">0</span>
+                            <!--<i class="fa fa-eye"></i>-->
+                        </a>
+                        <a href="javascript:void(0);">
+                            Unassigned: <span id="totalFormalClaimUnassigned">0</span>
+                            <!--<i class="fa fa-eye"></i>-->
+                        </a>
+                    </div>
+                </div>
+
+                <div class="kpi-card kpi-has-view">
+                    <a id="claimedDetailsLink" href="/user/overview?action=Export_Record_Claimed_Amount&rt_key=cargoclaim" target="_blank" class="kpi-view" title="View details">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <div class="kpi-label">Total claimed amount </div>
+                    <div class="kpi-amount" id="totalFormalClaimAmount">$0.00</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-label">Total suggested amount</div>
+                    <div class="kpi-amount" id="totalFormalSuggestedAmount">$0.00</div>
+                </div>
+
+                <!--                <div class="kpi-card">
+                                    <div class="kpi-label">Total settled amount</div>
+                                    <div class="kpi-amount" id="totalFormalSettledAmount">$0.00</div>
+                                </div>-->
+                <div class="kpi-card  kpi-has-view">
+                    <a id="provisionDetailsLink" href="/user/overview?action=Export_Record_Statistics_Chart_print&rt_key=cargoclaim&model=records_per_provision" target="_blank" class="kpi-view" title="View details">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <div class="kpi-label">Total Provision amount</div>
+                    <div class="kpi-amount" id="totalFormalProvisionAmount">$0.00</div>
+                </div>
+
+
+            </div>
+
+
+
+
+            <!-- ===== GRID ===== -->
+            <div class="chart-grid">
+
+                <div class="chart-card wide">
+                    <h3>
+                        Claimed Amount Last 4 Years 
+                        <span class="record-count"> ( <span id="totalAmountFormalClaimed_total_record">0</span> Records )</span>
+                        <i class="fa fa-download chart-download" style="cursor:pointer; float:right;"></i>
+                    </h3>
+                    <!-- ===== CLAIMED CHART ===== -->
+                    <div class="innerSection">
+                        <div class="chart-with-sidebar">
+                            <!--<h3>Chart</h3>-->
+
+                            <div class="chart-container vertical">
+                                <div class="chart-canvas-wrap">
+                                    <canvas id="claimedAmountChart"></canvas>
+                                    <div class="chart-checkboxes below" id="claimedYearChecks"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr/>
+                        <!-- ===== CLAIMED TABLE ===== -->
+                        <div >
+                            <table class="claims-table">
+                                <thead><tr></tr></thead>
+                                <tbody id="claimedTableBody"></tbody>
+                                <tfoot><tr></tr></tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card wide">
+                    <h3>
+                        Suggested Amount Last 4 Years  
+                        <span class="record-count">( <span id="totalSuggestedAmount_total_record">0</span> Records )</span> 
+                        <i class="fa fa-download chart-download" style="cursor:pointer; float:right;"></i>
+                    </h3>
+                    <div class="innerSection">
+                        <!-- ===== Suggested CHART ===== -->
+                        <div class="chart-with-sidebar">
+                            <!--<h3>Chart</h3>-->
+
+                            <div class="chart-container vertical">
+                                <div class="chart-canvas-wrap">
+                                    <canvas id="suggestedAmountChart" ></canvas>
+                                    <div class="chart-checkboxes below" id="suggestedYearChecks"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr/>
+                        <!-- ===== SUGGESTED TABLE ===== -->
+                        <div >
+                            <table class="claims-table">
+                                <thead><tr></tr></thead>
+                                <tbody id="suggestedTableBody"></tbody>
+                                <tfoot><tr></tr></tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card wide">
+                    <h3>
+                        Provision Amount Last 4 Years  
+                        <span class="record-count">
+                            ( <span id="totalProvisionAmount_total_record">0</span> Records , Amount: <span id="totalFormalSettledAmount">0</span> )
+                        </span> 
+
+                        <i class="fa fa-download chart-download" style="cursor:pointer; float:right;"></i>
+                    </h3>
+                    <div class="innerSection">
+                        <!-- ===== Suggested CHART ===== -->
+                        <div class="chart-with-sidebar">
+                            <!--<h3>Chart</h3>-->
+
+                            <div class="chart-container vertical">
+                                <div class="chart-canvas-wrap">
+                                    <canvas id="provisionAmountChart" ></canvas>
+                                    <div class="chart-checkboxes below" id="provisionYearChecks"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr/>
+                        <!-- ===== SETTLED TABLE ===== -->
+                        <div >
+                            <table class="claims-table">
+                                <thead><tr></tr></thead>
+                                <tbody id="provisionTableBody"></tbody>
+                                <tfoot><tr></tr></tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card wide ">
+                    <h3>
+                        Settled Amount Last 4 Years  
+                        <span class="record-count">( <span id="totalSettledAmount_total_record">0</span> Records )</span>
+                        <i class="fa fa-download chart-download" style="cursor:pointer; float:right;"></i>
+                    </h3>
+                    <div class="innerSection">
+                        <!-- ===== SETTLED CHART ===== -->
+                        <div class="chart-with-sidebar">
+                            <!--<h3> Chart</h3>-->
+
+                            <div class="chart-container vertical">
+                                <div class="chart-canvas-wrap">
+                                    <canvas id="settledAmountChart"></canvas>
+                                    <div class="chart-checkboxes below" id="settledYearChecks"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr/>
+
+                        <!-- ===== SETTLED TABLE ===== -->
+                        <div >
+                            <table class="claims-table">
+                                <thead><tr></tr></thead>
+                                <tbody id="settledTableBody"></tbody>
+                                <tfoot><tr></tr></tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ===== CLAIM ASPECTS ===== -->
+        <section class="sub-tab-content" id="claim-aspects">
+            <div class="overview-kpis" id="claimAspectKPI">
+                <div class="kpi-card"><span>Damage</span><h2 id="kpiDamage">0</h2></div>
+                <div class="kpi-card"><span>Delay</span><h2 id="kpiDelay">0</h2></div>
+                <div class="kpi-card"><span>Total Loss</span><h2 id="kpiTotalLoss">0</h2></div>
+                <div class="kpi-card"><span>Pilferage</span><h2 id="kpiPilferage">0</h2></div>
+            </div>
+
+            <div class="chart-card-header">
+                <div class="chart-header-left"><i class="fa fa-line-chart"></i><span class="chart-year-label">Year 2026</span></div>
+                <div class="chart-header-right"><select name="chart_period_select" class="chart-period-select"></select><i class="fa fa-download chart-download"></i></div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card wide chart-with-sidebar">
+                    <div class="chart-loader"><div class="spinner"></div></div>
+                    <h3>Claim Aspects Count (Monthly)</h3>
+                    <div class="chart-container">
+                        <canvas id="claimAspectTrendChart"></canvas>
+                        <div class="checkbox-filter" id="claimAspectTrendChecks"></div>
+                    </div>
+                </div>
+                <div class="chart-card wide chart-with-sidebar">
+                    <div class="chart-loader"><div class="spinner"></div></div>
+                    <h3>Claim Aspects by Origin</h3>
+                    <div class="chart-container">
+                        <canvas id="claimAspectOriginChart"></canvas>
+                        <div class="checkbox-filter" id="claimAspectOriginChecks"></div>
+                    </div>
+                </div>
+                <div class="chart-card wide chart-with-sidebar">
+                    <div class="chart-loader"><div class="spinner"></div></div>
+                    <h3>Claim Aspects by Destination</h3>
+                    <div class="chart-container">
+                        <canvas id="claimAspectDestinationChart"></canvas>
+                        <div class="checkbox-filter" id="claimAspectDestinationChecks"></div>
+                    </div>
+                </div>
+                <div class="chart-card wide chart-with-sidebar">
+                    <div class="chart-loader"><div class="spinner"></div></div>
+                    <h3>Loss Details</h3>
+                    <div class="chart-canvas-wrap">
+                        <div class="chart-container">
+                            <canvas id="lossDetailsChart"></canvas>
+                            <div class="checkbox-filter" id="lossDetailsChecks"></div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="lossDetailsTable">
+                                <thead>
+                                    <tr></tr> <!-- Needed for renderClaimAspectTable -->
+                                </thead>
+                                <tbody id="lossDetailsTableBody"></tbody>
+                                <tfoot>
+                                    <tr></tr> <!-- Needed for totals -->
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card wide chart-with-sidebar">
+                    <div class="chart-loader"><div class="spinner"></div></div>
+                    <h3>Special Handling Codes</h3>
+                    <div class="chart-canvas-wrap">
+                        <div class="chart-container">
+                            <canvas id="specialHandlingChart"></canvas>
+                            <div class="checkbox-filter" id="specialHandlingChecks"></div>
+                        </div>
+                        <div class="table-wrapper">
+
+                            <table id="specialHandlingTable">
+                                <thead>
+                                    <tr></tr>
+                                </thead>
+                                <tbody id="specialHandlingTableBody"></tbody>
+                                <tfoot>
+                                    <tr></tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+
+
+        <!-- ===== ROOT CAUSE ===== -->
+        <section class="sub-tab-content" id="root-cause">
+            <div class="overview-kpis" id="rootCauseKPI">
+                <div class="kpi-card"><span>Total Irregularities</span><h2 id="kpiIrregularities">0</h2></div>
+                <div class="kpi-card"><span>Total Conclusions</span><h2 id="kpiConclusions">0</h2></div>
+            </div>
+
+            <div class="chart-card-header">
+                <div class="chart-header-left"><i class="fa fa-line-chart"></i><span class="chart-year-label">Year 2026</span></div>
+                <div class="chart-header-right"><select name="chart_period_select" class="chart-period-select"></select><i class="fa fa-download chart-download"></i></div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card wide chart-with-sidebar"><h3>Irregularity Trend by Origin</h3>
+                    <div class="chart-container">
+                        <canvas id="irrOriginChart"></canvas>
+                        <div class="checkbox-filter" id="irrOriginChecks"></div>
+                    </div>
+                </div>
+                <div class="chart-card wide chart-with-sidebar"><h3>Irregularity Trend by Destination</h3>
+                    <div class="chart-container">
+                        <canvas id="irrDestChart"></canvas>
+                        <div class="checkbox-filter" id="irrDestChecks"></div>
+                    </div>
+                </div>
+                <div class="chart-card wide chart-with-sidebar"><h3>Conclusion Trend by Origin</h3>
+                    <div class="chart-container">
+                        <canvas id="conOriginChart"></canvas>
+                        <div class="checkbox-filter" id="conOriginChecks"></div>
+                    </div>
+                </div>
+                <div class="chart-card wide chart-with-sidebar"><h3>Conclusion Trend by Destination</h3>
+                    <div class="chart-container">
+                        <canvas id="conDestChart"></canvas>
+                        <div class="checkbox-filter" id="conDestChecks"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- ===== FORMAL CLAIM ===== -->
+        <section class="sub-tab-content" id="formal-claim">
+
+            <!-- KPI CARDS -->
+            <div class="overview-kpis" id="formalClaimKPI">
+                <div class="kpi-card"><span>Total Formal Claims</span><h2 id="kpiFormalTotal">0</h2></div>
+                <div class="kpi-card"><span>Open Formal Claims</span><h2 id="kpiOpenFormal">0</h2></div>
+                <div class="kpi-card"><span>Closed Formal Claims</span><h2 id="kpiClosedFormal">0</h2></div>
+            </div>
+
+            <!-- Chart Header -->
+            <div class="chart-card-header">
+                <div class="chart-header-left"><i class="fa fa-line-chart"></i><span class="chart-year-label">Year 2026</span></div>
+                <div class="chart-header-right"><select name="chart_period_select"  class="chart-period-select"></select><i class="fa fa-download chart-download"></i></div>
+            </div>
+
+            <div class="chart-grid">
+                <!-- Existing Charts -->
+                <div class="chart-card"><h3>Total Formal Claims (Origin vs Destination)</h3><canvas id="formalClaimsTotalChart"></canvas></div>
+                <div class="chart-card"><h3>Formal Claim Activity</h3><canvas id="formalClaimActivityChart"></canvas></div>
+
+                <!-- Special Handling Codes (Monthly) -->
+                <div class="chart-card wide chart-with-sidebar">
+                    <h3>Special Handling Codes (Monthly)</h3>
+                    <div class="chart-container">
+                        <canvas id="shcMonthlyChart"></canvas>
+                        <div class="checkbox-filter" id="shcMonthlyChecks"></div>
+                    </div>
+                </div>
+
+                <!-- Open Formal Claim Records -->
+                <div class="chart-card wide">
+                    <h3>Open Formal Claim Records</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>ID</th><th>Origin</th><th>Destination</th><th>Claim</th><th>Amount</th></tr>
+                            </thead>
+                            <tbody id="openFormalClaimTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Closed Formal Claim Records -->
+                <div class="chart-card wide">
+                    <h3>Closed Formal Claim Records</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>ID</th><th>Origin</th><th>Destination</th><th>Claim</th><th>Amount</th></tr>
+                            </thead>
+                            <tbody id="closedFormalClaimTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Other existing charts -->
+                <div class="chart-card wide"><h3>Loss Details (Monthly)</h3>
+                    <div class="table-wrapper"><table><thead><tr><th>Month</th><th>Damage</th><th>Total Loss</th><th>Delay</th><th>Partial Loss</th><th>Pilferage</th></tr></thead><tbody id="lossDetailsTable"></tbody></table></div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ===== FINANCIALS ===== -->
+        <section class="sub-tab-content" id="financials">
+            <div class="overview-kpis" id="financialsKPI">
+                <div class="kpi-card"><span>Total Claim Amount</span><h2 id="kpiTotalClaim">0</h2></div>
+                <div class="kpi-card"><span>Total Paid Amount</span><h2 id="kpiTotalPaid">0</h2></div>
+            </div>
+
+            <div class="chart-card-header">
+                <div class="chart-header-left"><i class="fa fa-line-chart"></i><span class="chart-year-label">Year 2026</span></div>
+                <div class="chart-header-right"><select name="chart_period_select" class="chart-period-select"></select><i class="fa fa-download chart-download"></i></div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card wide"><h3>Origin Financials</h3>
+                    <div class="table-wrapper"><table>
+                            <thead><tr><th>Origin</th><th>Claim Amount</th><th>Paid Amount</th></tr></thead>
+                            <tbody id="originFinancialTable"></tbody>
+                        </table></div>
+                </div>
+                <div class="chart-card wide"><h3>Destination Financials</h3>
+                    <div class="table-wrapper"><table>
+                            <thead><tr><th>Destination</th><th>Claim Amount</th><th>Paid Amount</th></tr></thead>
+                            <tbody id="destinationFinancialTable"></tbody>
+                        </table></div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+    </section>
+
+    <!-- OTHER TABS -->
+    <section class="tab-content" id="kpi">
+        <div class="kpi-page">
+
+            <!-- KPI Cards -->
+            <div class="overview-kpis" id="kpiCards">
+                <div class="kpi-card"><span>Formal Claims per 1000 AWBs</span><h2 id="kpiFormalPer1000">0</h2></div>
+                <div class="kpi-card"><span>Total vs Formal Claims per 1000 AWBs</span><h2 id="kpiTotalVsFormal">0</h2></div>
+                <div class="kpi-card"><span>Total Claimed Amount USD per 1000 AWBs</span><h2 id="kpiAmountPer1000">0</h2></div>
+                <div class="kpi-card"><span>Records by Claimed Amount</span><h2 id="kpiRecordsBucket">0</h2></div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="chart-grid">
+
+                <!-- Formal Claims per 1000 AWBs -->
+                <div class="chart-card wide">
+                    <h3>Formal Claims per 1000 AWBs</h3>
+                    <canvas id="formalPer1000Chart"></canvas>
+                </div>
+
+                <!-- Total vs Formal Claims per 1000 AWBs -->
+                <div class="chart-card wide">
+                    <h3>Total Claims vs Formal Claims per 1000 AWBs</h3>
+                    <canvas id="totalVsFormalChart"></canvas>
+                </div>
+
+                <!-- Total Claimed Amount USD per 1000 AWBs -->
+                <div class="chart-card wide">
+                    <h3>Total Claimed Amount (USD) per 1000 AWBs</h3>
+                    <canvas id="amountPer1000Chart"></canvas>
+                </div>
+
+                <!-- Records by Claimed Amount -->
+                <div class="chart-card wide">
+                    <h3>Number of Records by Claimed Amount</h3>
+                    <canvas id="recordsPerBucketChart"></canvas>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="tab-content" id="issued-awbs">
+
+        <div class="issued-header">
+            <h2>Issued AWBs</h2>
+
+            <div class="issued-actions">
+                <input type="text" id="issuedSearch" class="table-search" placeholder="Search...">
+                <button id="addIssuedAWB" class="btn-primary">+ Add Issued AWBs</button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="issued-table">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Month</th>
+                        <th>Issued AWBs</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="issuedAWBsTable"></tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+
+    <section class="tab-content" id="agent-report">
+
+        <!-- FILTERS -->
+        <div class="agent-filters">
+            <div class="filter-group">
+                <label>Year *</label>
+                <select id="agentYear"></select>
+            </div>
+
+            <div class="filter-group">
+                <label>Agent</label>
+                <select id="agentAgent">
+                    <option value="">Select</option>
+                    <option>Agent A</option>
+                    <option>Agent B</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Origin</label>
+                <select id="agentOrigin">
+                    <option value="">Select</option>
+                    <option>AMS</option>
+                    <option>ACC</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Status</label>
+                <select id="agentStatus">
+                    <option value="">Select</option>
+                    <option>Open</option>
+                    <option>Closed</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- KPI -->
+        <div class="overview-kpis">
+            <div class="kpi-card"><span>No of Claims</span><h2 id="kpiTotalClaims">124</h2></div>
+            <div class="kpi-card"><span>Preliminary</span><h2 id="kpiPreClaims">76</h2></div>
+            <div class="kpi-card"><span>Formal</span><h2 id="kpiFormalClaims">19</h2></div>
+            <div class="kpi-card"><span>Formal Claim Amount</span><h2 id="kpiFormalAmount">30,233</h2></div>
+        </div>
+
+        <!-- LINE CHART -->
+        <div class="chart-card chart-with-sidebar">
+            <div class="chart-container">
+                <canvas id="claimsLineChart"></canvas>
+
+                <div class="checkbox-filter">
+                    <button class="select-all-btn">Select All</button>
+
+                    <label><input type="checkbox" data-line="total" checked> Total</label>
+                    <label><input type="checkbox" data-line="pre" checked> Preliminary</label>
+                    <label><input type="checkbox" data-line="formal" checked> Formal</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLES (4 IN ONE ROW) -->
+        <div class="agent-tables">
+
+            <div class="table-card">
+                <h4>Preliminary - By Origin</h4>
+                <table>
+                    <thead><tr><th>Origin</th><th>Count</th></tr></thead>
+                    <tbody id="preOriginTable"></tbody>
+                </table>
+            </div>
+
+            <div class="table-card">
+                <h4>Preliminary - By Destination</h4>
+                <table>
+                    <thead><tr><th>Destination</th><th>Count</th></tr></thead>
+                    <tbody id="preDestTable"></tbody>
+                </table>
+            </div>
+
+            <div class="table-card">
+                <h4>Formal - By Origin</h4>
+                <table>
+                    <thead><tr><th>Origin</th><th>Count</th></tr></thead>
+                    <tbody id="formalOriginTable"></tbody>
+                </table>
+            </div>
+
+            <div class="table-card">
+                <h4>Formal - By Destination</h4>
+                <table>
+                    <thead><tr><th>Destination</th><th>Count</th></tr></thead>
+                    <tbody id="formalDestTable"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="tab-content" id="provisions"><p>Provisions tab placeholder.</p></section>
+
+</div>

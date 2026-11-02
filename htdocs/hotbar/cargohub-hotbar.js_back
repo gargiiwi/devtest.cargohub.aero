@@ -1,0 +1,25 @@
+(function(){
+	var x = document.createElement("link"), w = document.getElementsByTagName("head")[0], y = document.createElement('div'), z = document.getElementsByTagName("body")[0];
+	x.setAttribute("rel", "stylesheet"); x.setAttribute("type", "text/css");
+	x.setAttribute("href", "/hotbar/cargohub-hotbar.css");
+	y.id = 'cargohub-hotbar';
+	y.innerHTML = ''+
+'<div>'+
+	'<a href="http://www.cargohub.nl/"><img src="/hotbar/cargohub-logo.png" alt="CargoHub | E-Commerce Community Solutions"></a>'+
+	'<a class="hotbar-link" href="https://www.cargoclaims.aero/">Claims</a>'+
+	'<a class="hotbar-link" href="http://www.cargojobs.nl/">Jobs</a>'+
+	'<a class="hotbar-link" href="http://www.cargomagazine.nl/">Magazine</a>'+
+	'<a class="hotbar-link" href="http://www.cargohub.nl/?ls=&location=">Companies</a>'+
+	'<a class="hotbar-link" href="http://www.cargohub.nl/blog/">Blog</a>'+
+	'<a class="hotbar-link" style="float: right;" href="http://www.cargohub.nl/contact/">Contact</a>'+
+	'<div id="hotbar-social">'+
+	'	<a title="LinkedIn - cargo-hub-schiphol" class="in" target="_blank" href=http://www.linkedin.com/groups?gid=3852592&trk=hb_side_g">LinkedIn - cargo-hub-schiphol</a>'+
+	'	<a title="Twitter @cargohub_europe" class="tw" target="_blank" href="http://twitter.com/#!/cargohub_europe">Twitter @cargohub_europe</a>'+
+	'	<a title="Facebook/CargoHub" class="fb" target="_blank" href="http://www.facebook.com/CargoHub">Facebook/CargoHub</a>'+
+	'	<a title="Live Support!" class="ls" target="_blank" onclick="MyWindow=window.open(\'http://support.cargohub.nl/client.php?locale=en\',\'LiveChat\',\'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=400\'); return false;" href="JavaScript:void(0);">Live Support</a>'+
+	'</div>'+
+	'<div class="hotbar-clear"></div>'+
+'</div>';
+	w.appendChild(x);
+	z.insertBefore(y, z.firstChild);
+})();

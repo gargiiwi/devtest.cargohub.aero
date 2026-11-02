@@ -1,0 +1,56 @@
+<script id="template-contact-result" type="text/dryjstpl">
+<table class="infotable contact-result-row">
+<tr>
+	{#exists:id:<th><img id="contact-picture" src="/global/contact?action=get_picture&amp;ireq=1&amp;id={$id}" style="width: 48px" /></th>}
+	<td valign="top">
+		<div class='contact-name'><span>{$name}</span></div>
+		<div class='contact-email' style='white-space: normal;'><span>{$email}</span></div>
+	</td>
+</tr>
+{#exists:xdata.company_name:<tr>
+	<th><label>Company</label></th>
+	<td>{$xdata.company_name}</td>
+</tr>}
+{#exists:xdata.address:<tr>
+	<th><label>Address</label></th>
+	<td>{$xdata.address}</td>
+</tr>}
+</table>
+<hr style="margin: 0;" />
+</script>
+
+<script id="template-contact-line" type="text/dryjstpl">
+<div class="issue-contact{#exists:required: required}" id="{$key}" tabindex="0">
+	<div class="clabel"><label>{$label}:{#exists:required: <span>&nbsp;</span>}</label></div>
+	<span class="{#missing:contact.id:gray }fake-input jqx-input-{$jqxtheme} jqx-widget-content jqx-widget-content-{$jqxtheme} jqx-rc-all jqx-rc-all-{$jqxtheme}">{$combobox_value:(Type an E-mail address)}</span>
+	<button type="button" title="Change or delete this contact"></button>
+</div>
+</script>
+
+<script id="field-delete-button" type="text/dryjstpl">
+<button title="Cancel this upload" />
+</script>
+
+<script id="template_contact_operate" type="text/dryjstpl">
+<div class="toolbar jqx-widget jqx-rc-all">
+	<div class="toolbar-accessory">
+		<img src="/img/icons/vcard.png" alt="Contact details" /><span>Contact information</span>
+	</div>
+	<button data-op="vcard-save" title="Save" id="contact-save-button"><img src="/img/icons16/save.png" alt="Save" /> Save</button>{!Saves either a draft or a full contact} 
+	<div class="toolbar-separator"></div>
+	<button data-op="vcard-close" title="Close"><img src="/img/icons16/cross.png" alt="Close" /> Close</button>
+	{#exists:buttons.remove:<button data-op="vcard-remove-row" title="Remove line"><img src="/img/icons16/table_row_delete.png" alt="Remove this contact from the form" /> Do not use</button>}
+	{#exists:buttons.delete:<button data-op="vcard-delete" title="Delete"><img src="/img/icons16/vcard_delete.png" alt="Delete contact" /> Delete contact</button>}
+</div>
+<div id="contact-label"><label for="contact-label-input">Contact label:</label><input type="text" id="contact-label-input" maxlength="30" readonly="readonly" style="background-color: #eee;" /></div>
+<hr />
+<div id="contact-modal"></div>
+<div id="contact-editing-helper">
+	<div style="background-color: #FFFFA0; padding: 5px 2px; font-size: 0.90em; text-align: center; margin-top: 9px; border: 1px solid orange;">Any field with yellow background color is mandatory and must be filled in.</div>
+	<div class="gray" style="font-size: 0.87em; text-align: center; margin-top: 5px;">Click on any of the detail lines to edit them. The [Save] or [Ok] buttons will save the changes to this contact.</div>
+</div>
+</script>
+
+<script id="template-transfer-header" type="text/dryjstpl">
+<p class="green thick" style="margin: 4px 0 10px 0; text-align: center;">Please make sure you complete this step ! &nbsp; Otherwise your data will not reach the recipient !</p>
+</script>

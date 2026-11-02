@@ -1,0 +1,48 @@
+{#use:%ist.xfield_def:
+	<h4 style="text-indent: 3px;">{rep_sent.n}:{#ifnot:^xfields.rep_sent: <span class="gray">---</span>}</h4>
+	{#repeat:^xfields.rep_sent:<span class="itembox">{value}</span>}
+	<table>
+		<tr><th>{rep_oth.n}:</th><td>{^xfields.rep_oth:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{insref.n}:</th><td>{^xfields.insref:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{rep_expert.n}:</th><td>{^xfields.rep_expert:<span class='gray'>---</span>}</td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{acc_liabsent.n}:</th><td>
+			{#if:^xfields.acc_liabsent.value!=-1:
+				<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_liabsent.key: checked="checked"}> {^xfields.acc_liabsent.value}</label>
+				{#if:^xfields.acc_liseda:<span class='right' style="margin-right: 3em;">Date: {^xfields.acc_liseda}~date("Y-m-d")~</span>}
+			}
+			{#ifnot:^xfields.acc_liabsent.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{acc_liabrecv.n}:</th><td>
+			{#if:^xfields.acc_liabrecv.value!=-1:
+				<label><input type='checkbox' disabled="disabled"{#if:^xfields.acc_liabrecv.key: checked="checked"}> {^xfields.acc_liabrecv.value}</label>
+				{#if:^xfields.acc_lirecda:<span class='right' style="margin-right: 3em;">Date: {^xfields.acc_lirecda}~date("Y-m-d")~</span>}
+			}
+			{#ifnot:^xfields.acc_liabrecv.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{liable.n}:</th><td>
+			{#if:^xfields.liable.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.liable.key: checked="checked"}> {^xfields.liable.value}</label>}
+			{#ifnot:^xfields.liable.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<table>
+		<tr><th>{claim_amt.n}:</th><td><b>{^xfields.claim_amt.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{expected.n}:</th><td><b>{^xfields.expected.serialized:<span class='gray'>---</span>}</b></td></tr>
+{!		<tr><th>{insured.n}:</th><td><b>{^xfields.insured.serialized:<span class='gray'>---</span>}</b></td></tr>}
+		<tr><th>{provision.n}:</th><td><b>{^xfields.provision.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{paid_ins.n}:</th><td><b>{^xfields.paid_ins.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{paid.n}:</th><td><b>{^xfields.paid.serialized:<span class='gray'>---</span>}</b></td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+{!		<tr><th>{claim_link.n}:</th><td>
+			{#if:^xfields.claim_link:<a href="/record/process:{^xfields.claim_link}#panels" target="_blank">{^xfields.claim_link}</a>}
+			{#ifnot:^xfields.claim_link:<span class='gray'>---</span>}
+		</td></tr>}
+		<tr><th>{dmgamt.n}:</th><td><b>{#if:^xfields.dmgamt:{^xfields.dmgamt_curr.value}~cut(4)~{^xfields.dmgamt}~numberformat(2)~}{#ifnot:^xfields.dmgamt:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{recv.n}:</th><td><b>{#if:^xfields.recv:{^xfields.recv_curr.value}~cut(4)~{^xfields.recv}~numberformat(2)~}{#ifnot:^xfields.recv:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{recharge.n}:</th><td>
+			{#if:^xfields.recharge.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.recharge.key: checked="checked"}> {^xfields.recharge.value}</label>}
+			{#ifnot:^xfields.recharge.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{recharge_to.n}:</th><td>{^xfields.recharge_to:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

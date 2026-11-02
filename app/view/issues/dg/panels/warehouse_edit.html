@@ -1,0 +1,25 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	<tr>
+		<th><label for='{id}'>Location:</label></th>
+		<td>
+			{#use:wh_loc:<input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			Area: {#use:wh_area:<input type='text' id='{id}' name='{name}' value='{value}' class='short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}	
+		</td>
+	</tr>
+	<tr>
+		<th><label>Entry:</label></th>
+		<td>
+			{#use:in_date:<div id='{id}' style="float: left;" name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			{#use:in_time:<input style="float: left; margin-left: 8px;" type="text" id='{id}' name='{name}' data-value='{value}' class='theclock jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+	<tr>
+		<th><label>Exit:</label></th>
+		<td>
+			{#use:out_date:<div id='{id}' style="float: left;" name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			{#use:out_time:<input style="float: left; margin-left: 8px;" type="text" id='{id}' name='{name}' data-value='{value}' class='theclock jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+		</td>
+	</tr>
+</table>
+</form>}

@@ -1,0 +1,603 @@
+cargohub.issue_chart_audit_control_chart = donrey.BASE._extend(function () {
+
+    const self = this;
+
+    /* COLOR PALETTE */
+
+    const colors = [
+        "rgba(54,162,235,1)",
+        "rgba(255,99,132,1)",
+        "rgba(75,192,192,1)",
+        "rgba(153,102,255,1)",
+        "rgba(255,159,64,1)"
+    ];
+
+
+    /* MONTHS */
+
+    const months = [
+        "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+        "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"
+    ];
+
+
+
+    const charts = {};
+
+
+
+    // ===== DROPDOWNS =========
+    const currentYear = new Date().getFullYear();
+    const years = ["Last Month", "Last 3 Months", "Last 6 Months", "Last 12 Months"];
+    for (let i = 0; i < 5; i++)
+        years.push((currentYear - i).toString());
+
+    $('.chart-period-select').each(function () {
+        const $select = $(this);
+        $select.html(years.map(y => `<option value="${y}">${y}</option>`).join(''));
+        $select.val(currentYear.toString());
+        updateYearLabel($select);
+        $select.on('change', function () {
+            const selected = $(this).val();
+            updateYearLabel($(this), selected);
+
+
+            const {startDate, endDate} = getDateRange(selected);
+            console.log("Start:", startDate);
+            console.log("End:", endDate);
+            updateOverview(startDate, endDate);
+
+        });
+    });
+
+    function updateYearLabel($select, value) {
+        const selected = value || $select.val();
+        const $label = $select.closest('.chart-card-header').find('.chart-year-label');
+        var ranges = ["Last Month", "Last 3 Months", "Last 6 Months", "Last 12 Months"];
+        if ($label.length) {
+            $label.text(ranges.includes(selected) ? selected : `Year ${selected}`);
+        }
+    }
+
+
+
+    const defaultPeriod = $('.chart-period-select').first().val();
+    const {startDate, endDate} = getDateRange(defaultPeriod);
+
+    updateOverview(startDate, endDate);
+
+    function formatDate(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+    function getDateRange(selected) {
+        const today = new Date();
+        let startDate, endDate;
+
+        switch (selected) {
+            case "Last Month":
+                startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                endDate = new Date(today.getFullYear(), today.getMonth(), 0);
+                break;
+
+            case "Last 3 Months":
+                startDate = new Date(today.getFullYear(), today.getMonth() - 3, 1);
+                endDate = today;
+                break;
+
+            case "Last 6 Months":
+                startDate = new Date(today.getFullYear(), today.getMonth() - 6, 1);
+                endDate = today;
+                break;
+
+            case "Last 12 Months":
+                startDate = new Date(today.getFullYear(), today.getMonth() - 12, 1);
+                endDate = today;
+                break;
+
+            default:
+                // Year selected (e.g. "2026")
+                const year = parseInt(selected, 10);
+                startDate = new Date(year, 0, 1);   // Jan 1
+                endDate = new Date(year, 11, 31); // Dec 31
+                break;
+        }
+
+        return {
+            startDate: formatDate(startDate),
+            endDate: formatDate(endDate)
+        };
+    }
+
+    /* ============================= Overview page start ============================= */
+/* ============================= GLOBALS ============================= */
+
+
+/* ============================= UPDATE ============================= */
+
+function updateOverview(startDate, endDate) {
+getTopPartCount(startDate, endDate);
+    getTotalRecordChart(startDate, endDate);
+    getStatusChart(startDate, endDate);
+    getPriorityChart(startDate, endDate);
+    getRiskChart(startDate, endDate);
+    getTypeChart(startDate, endDate);
+
+}
+
+/* ============================= CHART API CALLS ============================= */
+
+function getTopPartCount(startDate, endDate) {
+
+    $.post("/user/overview?action=Load_AuditControlOverviewChart", {
+        chart_section: 'getTopPartCount',
+        startDate:startDate, 
+        endDate:endDate
+    }, function (x) {
+
+        const getAuditControlTotalRecord_count = x.getAuditControlTotalRecord_count || [];
+        const getAuditControlAssesmentDetails_count = x.getAuditControlAssesmentDetails_count || [];
+        const getAuditControlTotalType_count = x.getAuditControlTotalType_count || [];
+        const getRiskRecord_count = x.getRiskRecord_count || [];
+
+       console.log(getAuditControlTotalRecord_count);
+       console.log(getAuditControlAssesmentDetails_count);
+       console.log(getAuditControlTotalType_count);
+       console.log(getRiskRecord_count);
+       
+        $('#kpiActive').html(getAuditControlTotalRecord_count.active || 0);
+        $('#kpiClosed').html(getAuditControlTotalRecord_count.close || 0);
+        
+        $('#totalAuditAssigned').html(getAuditControlAssesmentDetails_count.assigned_count || 0);
+        $('#totalAuditUnassigned').html(getAuditControlAssesmentDetails_count.unassigned_count || 0);
+        
+        $('#TotalReportTypeWiseInvestigation').html(getAuditControlTotalType_count.Investigation || 0);
+        $('#TotalReportTypeWiseCorrective').html(getAuditControlTotalType_count.Corrective || 0);
+        $('#TotalReportTypeWisePreventive').html(getAuditControlTotalType_count.Preventive || 0);
+        
+        $('#TotalReportRiskWiseMinor').html(getRiskRecord_count.Minor || 0);
+        $('#TotalReportRiskWiseMajor').html(getRiskRecord_count.Major || 0);
+        $('#TotalReportRiskWiseCritical').html(getRiskRecord_count.Critical || 0);
+       
+    });
+}
+function getTotalRecordChart(startDate, endDate) {
+
+    $.post("/user/overview?action=Load_AuditControlOverviewChart", {
+        chart_section: 'getTotalRecord',
+        startDate:startDate, 
+        endDate:endDate
+    }, function (x) {
+
+        const data = x.totalRecord || [];
+
+        const labels = data.map(i => i.month);
+        const datasets = [
+            { label: "Active", data: data.map(i => i.active) },
+            { label: "Closed", data: data.map(i => i.closed) }
+        ];
+
+        createChart({
+            canvasId: "totalRecordsChart",
+            type: "bar",
+            labels,
+            datasets,
+            checkboxContainer: "totalRecordsCheckboxes",
+            tableHead: "totalRecordsTableHead",
+            tableBody: "totalRecordsTableBody",
+            tableFoot: "totalRecordsTableFoot"
+        });
+
+    });
+}
+
+function getStatusChart(startDate, endDate) {
+
+    $.post("/user/overview?action=Load_AuditControlOverviewChart", {
+        chart_section: 'getStatus',
+        startDate, endDate
+    }, function (x) {
+
+        const { labels, datasets } = transformChartData(x.StatusRecord || [], 'status_key');
+
+        createChart({
+            canvasId: "statusChart",
+            type: "bar",
+            labels,
+            datasets,
+            checkboxContainer: "statusCheckboxes",
+            tableHead: "statusTableHead",
+            tableBody: "statusTableBody",
+            tableFoot: "statusTableFoot"
+        });
+
+    });
+}
+
+function getPriorityChart(startDate, endDate) {
+
+    $.post("/user/overview?action=Load_AuditControlOverviewChart", {
+        chart_section: 'getPriority',
+        startDate, endDate
+    }, function (x) {
+
+        const { labels, datasets } = transformChartData(x.priorityRecord || [], 'priority_key');
+
+        createChart({
+            canvasId: "priorityChart",
+            type: "bar",
+            labels,
+            datasets,
+            checkboxContainer: "priorityCheckboxes",
+            tableHead: "priorityTableHead",
+            tableBody: "priorityTableBody",
+            tableFoot: "priorityTableFoot"
+        });
+
+    });
+}
+
+function getRiskChart(startDate, endDate) {
+
+    $.post("/user/overview?action=Load_AuditControlOverviewChart", {
+        chart_section: 'getRisk',
+        startDate, endDate
+    }, function (x) {
+
+        const { labels, datasets } = transformChartData(x.riskRecord || [], 'risk');
+
+        createChart({
+            canvasId: "riskWiseChart",
+            type: "bar",
+            horizontal: true,
+            labels,
+            datasets,
+            checkboxContainer: "riskWiseCheckboxes",
+            tableHead: "riskWiseTableHead",
+            tableBody: "riskWiseTableBody",
+            tableFoot: "riskWiseTableFoot"
+        });
+
+    });
+}
+
+function getTypeChart(startDate, endDate) {
+
+    $.post("/user/overview?action=Load_AuditControlOverviewChart", {
+        chart_section: 'getType',
+        startDate, endDate
+    }, function (x) {
+
+        const { labels, datasets } = transformChartData(x.typeRecord || [], 'action_type');
+
+        createChart({
+            canvasId: "typeWiseChart",
+            type: "bar",
+            horizontal: true,
+            labels,
+            datasets,
+            checkboxContainer: "typeWiseCheckboxes",
+            tableHead: "typeWiseTableHead",
+            tableBody: "typeWiseTableBody",
+            tableFoot: "typeWiseTableFoot"
+        });
+
+    });
+}
+
+
+
+/* ============================= TRANSFORM ============================= */
+
+function transformChartData(data, keyName) {
+
+    const labels = [];
+    const datasetMap = {};
+
+    data.forEach(item => {
+        const month = item.month;
+        const key = item[keyName];
+        const value = parseInt(item.total) || 0;
+
+        if (!labels.includes(month)) {
+            labels.push(month);
+        }
+
+        if (!datasetMap[key]) {
+            datasetMap[key] = {
+                label: key,
+                data: []
+            };
+        }
+    });
+
+    Object.values(datasetMap).forEach(ds => {
+        ds.data = new Array(labels.length).fill(0);
+    });
+
+    data.forEach(item => {
+        const monthIndex = labels.indexOf(item.month);
+        const key = item[keyName];
+        datasetMap[key].data[monthIndex] = parseInt(item.total) || 0;
+    });
+
+    return {
+        labels,
+        datasets: Object.values(datasetMap)
+    };
+}
+/* ============================= CREATE CHART ============================= */
+
+function createChart(config) {
+
+    const canvas = document.getElementById(config.canvasId);
+
+    // ? AUTO destroy old chart
+    if (charts[config.canvasId]) {
+        charts[config.canvasId].destroy();
+    }
+
+    // apply colors
+    config.datasets.forEach((ds, i) => {
+        const color = colors[i % colors.length];
+        ds.borderColor = color;
+        ds.backgroundColor = color;
+        ds.fill = false;
+        ds.tension = 0.35;
+    });
+
+    const chart = new Chart(canvas, {
+        type: config.type,
+        data: {
+            labels: config.labels, // ? FIXED
+            datasets: config.datasets
+        },
+        options: {
+                indexAxis: config.horizontal ? 'y' : 'x',
+                responsive: true,
+                maintainAspectRatio: false,
+
+                interaction: {
+                    mode: "index",
+                    intersect: false
+                },
+
+                animation: {
+                    duration: 500
+                },
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    },
+
+                    tooltip: {
+                        backgroundColor: "#1f2937",
+                        titleColor: "#ffffff",
+                        bodyColor: "#ffffff",
+                        padding: 10,
+                        cornerRadius: 4
+                    }
+
+                },
+
+                scales: {
+
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: "#6b7280",
+                            font: {
+                                size: 12,
+                                weight: "500"
+                            }
+                        }
+                    },
+
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: "#e5e7eb",
+                            lineWidth: 1
+                        },
+                        ticks: {
+                            color: "#6b7280",
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+
+                }
+
+            }
+    });
+
+    charts[config.canvasId] = chart;
+
+    buildCheckboxes(config.checkboxContainer, config.datasets, config.canvasId);
+    buildTable(config.tableHead, config.tableBody, config.tableFoot, config.labels, config.datasets);
+}
+
+/* ============================= CHECKBOX ============================= */
+
+function buildCheckboxes(containerId, datasets, chartId) {
+
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    datasets.forEach((ds, i) => {
+
+        const label = document.createElement("label");
+
+        label.innerHTML = `
+            <input type="checkbox" checked
+                data-chart="${chartId}"
+                data-dataset="${i}">
+            <span style="background:${ds.backgroundColor};width:10px;height:10px;display:inline-block;margin:0 5px;"></span>
+            ${ds.label}
+        `;
+
+        label.querySelector("input").addEventListener("change", function () {
+            const chart = charts[chartId];
+            chart.data.datasets[i].hidden = !this.checked;
+            chart.update();
+        });
+
+        container.appendChild(label);
+    });
+}
+
+/* ============================= TABLE ============================= */
+
+function buildTable(headId, bodyId, footId, labels, datasets) {
+
+    const thead = document.getElementById(headId);
+    const tbody = document.getElementById(bodyId);
+    const tfoot = document.getElementById(footId);
+
+    if (!thead || !tbody || !tfoot) return;
+
+    thead.innerHTML = "";
+    tbody.innerHTML = "";
+    tfoot.innerHTML = "";
+
+    let head = "<th></th>";
+    labels.forEach(m => head += `<th>${m}</th>`);
+    head += "<th>Total</th>";
+    thead.innerHTML = head;
+
+    let grandTotal = 0;
+
+    datasets.forEach(ds => {
+
+        let row = `<tr><td><b>${ds.label}</b></td>`;
+        let rowTotal = 0;
+
+        ds.data.forEach(val => {
+            row += `<td>${val}</td>`;
+            rowTotal += val;
+        });
+
+        grandTotal += rowTotal;
+        row += `<td>${rowTotal}</td></tr>`;
+
+        tbody.innerHTML += row;
+    });
+
+    tfoot.innerHTML = `<td colspan="${labels.length + 1}"></td><td>${grandTotal}</td>`;
+}
+
+    /* ============================= Overview page end  ============================= */
+
+
+    
+
+
+    /* =============================
+     CHECKBOX EVENTS
+     ============================= */
+
+    document.addEventListener("change", function (e) {
+
+        if (e.target.dataset.chart) {
+
+            const chart = charts[e.target.dataset.chart];
+
+            chart.setDatasetVisibility(
+                    e.target.dataset.dataset,
+                    e.target.checked
+                    );
+
+            chart.update();
+
+        }
+
+    });
+
+
+    document.addEventListener("click", function (e) {
+
+        if (!e.target.classList.contains("chart-download"))
+            return;
+
+        const card = e.target.closest(".chart-card");
+
+        if (!card)
+            return;
+
+        html2canvas(card, {
+            scale: 2,
+            backgroundColor: "#ffffff"
+        }).then(canvas => {
+
+            const link = document.createElement("a");
+
+            link.download = "audit-chart.png";
+            link.href = canvas.toDataURL("image/png");
+
+            link.click();
+
+        });
+
+    });
+
+    document.addEventListener("click", function (e) {
+
+        if (!e.target.classList.contains("chart-pdf"))
+            return;
+
+        const card = e.target.closest(".chart-card");
+        if (!card)
+            return;
+
+        html2canvas(card, {
+            scale: 2,
+            backgroundColor: "#ffffff"
+        }).then(canvas => {
+
+            const img = canvas.toDataURL("image/png");
+
+            const win = window.open("", "_blank");
+
+            win.document.write(`
+            <html>
+            <head>
+                <title>Audit Chart</title>
+                <style>
+                    body{
+                        margin:0;
+                        text-align:center;
+                        background:#fff;
+                    }
+                    img{
+                        width:100%;
+                        max-width:1200px;
+                    }
+                </style>
+            </head>
+            <body>
+                <img src="${img}">
+                <script>
+                    window.onload = function(){
+                        window.print();
+                    }
+                <\/script>
+            </body>
+            </html>
+        `);
+
+            win.document.close();
+
+        });
+
+    });
+
+});

@@ -1,0 +1,1912 @@
+@import url(/webfonts/DINPro.css);
+
+body{
+    background-image:none !important;
+}
+div.site {
+    width: 100%;
+}
+
+/*div#tabs-cargoclaim{
+    width: 1200px;
+    margin: auto;
+}*/
+
+.width_mdl_contnt{    
+    width: 1200px;
+    margin: auto;
+}
+
+:root {
+    --navy: #0b2a67;
+    --blue: #0b79ff;
+    --blue-2: #1989ff;
+    --light-blue: #edf7ff;
+    --muted: #6f79a0;
+    --text: #10255a;
+    --border: #dbe7f4;
+    --white: #ffffff;
+}
+
+#cargohub-hotbar {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#cargohub-hotbar .cc-header {
+    width: 100%;
+    height: 76px;
+    margin: 0;
+    padding: 0;
+    background: #071a43;
+    position: relative;
+    z-index: 9999;
+}
+
+#cargohub-hotbar .cc-header-top {
+    width: 100%;
+    height: 76px;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+#cargohub-hotbar .cc-container {
+    width: 1180px;
+    max-width: calc(100% - 50px);
+    margin: 0 auto;
+    padding: 0;
+}
+
+#cargohub-hotbar .cc-header-inner {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+#cargohub-hotbar .cc-logo {
+    width: 180px !important;
+    height: 48px !important;
+    min-width: 180px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+    text-decoration: none !important;
+    background: transparent !important;
+}
+
+#cargohub-hotbar .cc-logo img {
+    display: block !important;
+    width: 180px !important;
+    height: 48px !important;
+    max-width: 180px !important;
+    max-height: 48px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+    border: 0 !important;
+}
+
+#cargohub-hotbar .cc-nav {
+    flex: 1;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+#cargohub-hotbar .cc-nav a {
+    display: inline-flex;
+    align-items: center;
+    height: 76px;
+    margin: 0;
+    padding: 0;
+    color: #c8d5e9;
+    background: transparent;
+    border: 0;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    transition: color .2s ease;
+}
+
+#cargohub-hotbar .cc-nav a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#cargohub-hotbar .cc-login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 34px;
+    margin: 0;
+    padding: 0 14px;
+    border: 1px solid rgba(255,255,255,.20);
+    border-radius: 4px;
+    background: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+#cargohub-hotbar .cc-login:hover {
+    color: #ffffff;
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.35);
+    text-decoration: none;
+}
+
+#cargohub-hotbar .cc-login i {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1;
+}
+
+#cargohub-hotbar .cc-login span {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Tablet */
+
+@media (max-width: 980px) {
+
+    #cargohub-hotbar .cc-container {
+        max-width: calc(100% - 30px);
+    }
+
+    #cargohub-hotbar .cc-header-inner {
+        gap: 18px;
+    }
+
+    #cargohub-hotbar .cc-logo {
+        width: 160px !important;
+        min-width: 160px !important;
+    }
+
+    #cargohub-hotbar .cc-logo img {
+        width: 160px !important;
+        max-width: 160px !important;
+    }
+
+    #cargohub-hotbar .cc-nav {
+        gap: 16px;
+    }
+
+    #cargohub-hotbar .cc-nav a {
+        font-size: 13px;
+    }
+
+    #cargohub-hotbar .cc-login {
+        padding: 0 11px;
+        font-size: 12px;
+    }
+}
+
+
+/* Small Tablet */
+
+@media (max-width: 760px) {
+
+    #cargohub-hotbar .cc-header,
+    #cargohub-hotbar .cc-header-top {
+        height: auto;
+        min-height: 76px;
+    }
+
+    #cargohub-hotbar .cc-header-inner {
+        min-height: 76px;
+        height: auto;
+        padding: 14px 0;
+        flex-wrap: wrap;
+    }
+
+    #cargohub-hotbar .cc-nav {
+        order: 3;
+        width: 100%;
+        height: 42px;
+        flex: none;
+        justify-content: center;
+        gap: 18px;
+        border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    #cargohub-hotbar .cc-nav a {
+        height: 42px;
+        font-size: 12px;
+    }
+
+    #cargohub-hotbar .cc-login {
+        margin-left: auto;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 520px) {
+
+    #cargohub-hotbar .cc-container {
+        max-width: calc(100% - 24px);
+    }
+
+    #cargohub-hotbar .cc-header-inner {
+        padding: 12px 0;
+    }
+
+    #cargohub-hotbar .cc-logo {
+        width: 145px !important;
+        min-width: 145px !important;
+        height: 42px !important;
+    }
+
+    #cargohub-hotbar .cc-logo img {
+        width: 145px !important;
+        height: 42px !important;
+        max-width: 145px !important;
+        max-height: 42px !important;
+    }
+
+    #cargohub-hotbar .cc-login {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+    }
+
+    #cargohub-hotbar .cc-login span {
+        display: none;
+    }
+
+    #cargohub-hotbar .cc-login i {
+        font-size: 14px;
+    }
+
+    #cargohub-hotbar .cc-nav {
+        gap: 10px;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    #cargohub-hotbar .cc-nav a {
+        flex-shrink: 0;
+        font-size: 11px;
+    }
+}
+
+.hero {
+    position: relative;
+    min-height: 330px;
+    overflow: hidden;
+    background: #f5f9fd;
+}
+
+.hero-media {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,251,255,.98) 0%,
+            rgba(247,251,255,.94) 28%,
+            rgba(247,251,255,.72) 48%,
+            rgba(247,251,255,.18) 72%,
+            rgba(247,251,255,0) 100%
+        ),
+        url('/img/cargo-aircraft.png') center right / cover no-repeat;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding: 52px 0 58px;
+}
+
+.hero-copy {
+    max-width: 620px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: .18em;
+    font-weight: 700;
+    color: #476392;
+    margin-bottom: 18px;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 30px;
+    height: 2px;
+    background: var(--blue);
+}
+
+.hero-copy h1 {
+    margin: 0;
+    max-width: 560px;
+    font-size: 38px;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+.hero-copy h1 span {
+    color: var(--blue);
+}
+
+.hero-copy p {
+    margin: 12px 0 0;
+    color: #6f79a0;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+
+@media (max-width: 640px) {
+
+    .hero {
+        min-height: 390px;
+    }
+
+    .hero-media {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(247,251,255,.98) 0%,
+                rgba(247,251,255,.90) 55%,
+                rgba(247,251,255,.35) 100%
+            ),
+            url('/img/icons16/cargo-aircraft.png') center bottom / cover no-repeat;
+    }
+
+    .hero-content {
+        padding: 42px 0 48px;
+    }
+
+    .hero-copy {
+        max-width: 100%;
+    }
+
+    .hero-copy h1 {
+        font-size: 30px;
+        line-height: 1.08;
+    }
+
+    .hero-copy p {
+        font-size: 14px;
+    }
+}
+
+
+.search-zone {
+  background: #fff;
+  padding: 28px 0 8px;
+}
+
+.search-card {
+  display: grid;
+  grid-template-columns: .95fr 1.35fr;
+  align-items: center;
+  gap: 24px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(25, 72, 130, .10);
+  padding: 18px 20px;
+}
+
+.search-intro {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-icon {
+  color: var(--blue);
+  font-size: 46px;
+  line-height: 1;
+}
+
+.search-intro h3 {
+  margin: 0 0 3px;
+  font-size: 18px;
+  color: var(--navy);
+}
+
+.search-intro p {
+  margin: 0;
+  color: #64739c;
+  font-size: 13px;
+}
+
+.search-actions {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+}
+
+input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #cfdded;
+  border-radius: 6px;
+  padding: 0 16px;
+  font: inherit;
+  color: var(--text);
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(11,121,255,.10);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+}
+
+.btn-secondary,
+.btn-outline {
+  background: #fff;
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.section-space {
+  padding: 48px 0;
+}
+
+
+.search-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 12px;
+    align-items: start;
+    width: 100%;
+}
+
+.airfind-wrap {
+    min-width: 0;
+}
+
+/* AirFind itself */
+
+.airfind-wrap #cms_airlinesearch {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.airfind-wrap #cms_airlinesearch > p {
+    margin: 0 0 7px !important;
+    padding: 0 !important;
+    color: #68788d !important;
+    text-align: left !important;
+    font-size: 11px !important;
+    line-height: 16px !important;
+}
+
+/* Search box */
+
+.airfind-wrap #airline_searchbox {
+    width: 100% !important;
+    height: 48px !important;
+    border: 1px solid #c9d7e6 !important;
+    border-radius: 7px !important;
+    background: #fff !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 6px rgba(16,37,90,.04) !important;
+}
+
+.airfind-wrap #dropdownlistWrapperairline_searchbox {
+    width: 100% !important;
+    height: 100% !important;
+    float: none !important;
+}
+
+.airfind-wrap #dropdownlistContentairline_searchbox {
+    width: calc(100% - 48px) !important;
+    height: 46px !important;
+    left: 0 !important;
+    top: 0 !important;
+    border: 0 !important;
+    background: #fff !important;
+}
+
+.airfind-wrap .jqx-combobox-input {
+    width: 100% !important;
+    height: 46px !important;
+    margin: 0 !important;
+    padding: 0 15px !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: #fff !important;
+    color: #172b4d !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+}
+
+.airfind-wrap #dropdownlistArrowairline_searchbox {
+    width: 48px !important;
+    height: 46px !important;
+    left: auto !important;
+    right: 0 !important;
+    top: 0 !important;
+    border: 0 !important;
+    border-left: 1px solid #e1e8f0 !important;
+    background: #f7f9fc !important;
+    box-sizing: border-box !important;
+}
+
+.airfind-wrap .jqx-icon-arrow-down {
+    margin-top: 16px !important;
+}
+
+.airfind-wrap #airline_searchbox.jqx-fill-state-focus {
+    border-color: #1989ff !important;
+    box-shadow: 0 0 0 3px rgba(25,137,255,.10) !important;
+}
+
+/* Existing claims button */
+
+.existing-claims {
+    align-self: end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 18px;
+    border: 1px solid #b9cee4;
+    border-radius: 7px;
+    background: #f7fbff;
+    color: #174a91;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: all .18s ease;
+}
+
+ .existing-claims:hover {
+    border-color: #8eafd1;
+    background: #edf6ff;
+    color: #075fbd;
+}
+
+ .existing-claims i {
+    font-size: 14px;
+}
+
+/*
+ * IMPORTANT:
+ * Airline result must use the full width,
+ * not remain inside the first grid column.
+ */
+
+.airfind-wrap #airline_info {
+    margin-top: 12px !important;
+}
+
+/* Result card */
+
+.airfind-wrap #airline_info > .jqx-rc-all {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 82px !important;
+    padding: 11px 14px !important;
+    border: 1px solid #d7e3ef !important;
+    border-radius: 7px !important;
+    background: #f7fbff !important;
+    box-sizing: border-box !important;
+}
+
+/* Result logo */
+
+.airfind-wrap #airline_logo {
+    width: 70px !important;
+    height: 54px !important;
+    margin: 0 15px 0 0 !important;
+    padding: 5px !important;
+    border: 1px solid #dfe7ef !important;
+    border-radius: 5px !important;
+    background: #fff !important;
+    object-fit: contain !important;
+}
+
+/* Result details */
+
+.airfind-wrap #airline_details {
+    padding: 0 !important;
+}
+
+.airfind-wrap #airline_details h2 {
+    margin: 0 0 5px !important;
+    color: #10255a !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 20px !important;
+}
+
+.airfind-wrap #airline_details p {
+    margin: 2px 0 !important;
+    color: #68788d !important;
+    font-size: 12px !important;
+    line-height: 17px !important;
+}
+
+.airfind-wrap #airline_details p span {
+    color: #8795a7 !important;
+}
+
+.airfind-wrap #airline_details a {
+    color: #0879e8 !important;
+    text-decoration: none !important;
+}
+
+/* Inactive / submit area */
+
+.airfind-wrap #airline_info > div:not(.jqx-rc-all) {
+    position: relative !important;
+    min-height: 58px !important;
+    margin-top: 2px !important;
+    border-top: 1px solid #edf2f7 !important;
+}
+
+.airfind-wrap #ist_selector {
+    min-height: 58px !important;
+    padding: 9px 65px 9px 3px !important;
+    box-sizing: border-box !important;
+}
+
+.airfind-wrap #ist_selector p {
+    margin: 0 !important;
+    color: #66758b !important;
+    font-size: 12px !important;
+    line-height: 18px !important;
+}
+
+.airfind-wrap #ist_selector p span {
+    color: #c83b3b !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+.airfind-wrap #ist_selector b {
+    color: #10255a !important;
+}
+
+.airfind-wrap #go_button {
+    position: absolute !important;
+    right: 0 !important;
+    top: 7px !important;
+    width: 55px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.airfind-wrap #go_submit,
+.airfind-wrap #no_submit {
+    width: 38px !important;
+    height: 38px !important;
+    object-fit: contain !important;
+}
+
+@media (max-width: 700px) {
+
+    .search-actions {
+        display: block;
+    }
+
+     .existing-claims {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
+.how {
+    background: #fff;
+}
+
+.how .section-title-row {
+    margin-bottom: 28px;
+}
+
+.how .section-title-row h2 {
+    color: var(--navy);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+}
+
+.how .section-title-row h2 span {
+    color: var(--blue);
+}
+
+.how .small-line {
+    width: 32px;
+    height: 2px;
+    background: var(--blue);
+    display: inline-block;
+}
+
+
+/* =========================================================
+   STEPS
+   ========================================================= */
+
+.how .steps-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.how .step {
+    position: relative;
+    min-height: 220px;
+    padding: 6px 28px 0;
+    text-align: center;
+    border-right: 1px solid var(--border);
+}
+
+.how .step:first-child {
+    padding-left: 0;
+}
+
+.how .step:last-child {
+    padding-right: 0;
+    border-right: 0;
+}
+
+
+/* =========================================================
+   STEP NUMBER
+   ========================================================= */
+
+.how .step-no {
+    position: absolute;
+    left: 10px;
+    top: 0;
+
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--light-blue);
+    color: var(--blue);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FONT AWESOME ICON
+   ========================================================= */
+
+.how .step-icon {
+    margin: 22px 0 12px;
+
+    color: var(--blue);
+
+    font-size: 40px;
+    line-height: 1;
+}
+
+.how .step-icon i {
+    font-size: inherit;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.how .step h3 {
+    margin: 0 0 7px;
+
+    color: var(--navy);
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.how .step p {
+    max-width: 210px;
+
+    margin: 0 auto 14px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   MORE INFORMATION
+   ========================================================= */
+
+.how .step a {
+    color: var(--blue);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.how .step a:hover {
+    color: #075fc9;
+}
+
+.how .step a .fa {
+    margin-left: 4px;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+    .how .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .how .step {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        padding: 22px 18px;
+    }
+
+    .how .step:first-child {
+        padding-left: 18px;
+    }
+
+    .how .step:last-child {
+        padding-right: 18px;
+        border-bottom: 0;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .how .section-title-row h2 {
+        font-size: 30px;
+    }
+
+    .how .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .how .step {
+        min-height: 0;
+        padding: 20px 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .how .step:first-child {
+        padding-left: 0;
+    }
+
+    .how .step:last-child {
+        padding-right: 0;
+        border-bottom: 0;
+    }
+
+    .how .step-no {
+        left: 0;
+    }
+}
+
+
+
+/* =========================================================
+   CARGO CLAIMS & LOSS PREVENTION
+   ========================================================= */
+
+.program {
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        #f8fcff 0%,
+        #eef8ff 100%
+    );
+    border-top: 1px solid #edf3f8;
+    border-bottom: 1px solid #edf3f8;
+}
+
+.program .container {
+    width: 1109px;
+    max-width: calc(100% - 50px);
+    margin: 0 auto;
+    padding: 0;
+}
+
+.program-grid {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 42px;
+    align-items: center;
+}
+
+.program-copy {
+    width: 100%;
+    min-width: 0;
+}
+
+.program-copy > .small-line {
+    display: inline-block;
+    width: 32px;
+    height: 2px;
+    margin: 0;
+    background: var(--blue);
+    vertical-align: middle;
+}
+
+.program-copy h2 {
+    margin: 10px 0 0;
+    color: var(--navy);
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.program-copy h2 span {
+    color: var(--blue);
+}
+
+.program-copy .lead {
+    max-width: 650px;
+    margin: 13px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   PROGRAM FEATURES
+   ========================================================= */
+
+.program .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 28px 0 28px;
+    padding: 0;
+}
+
+.program .feature {
+    min-width: 0;
+    padding: 0 18px;
+    border-right: 1px solid var(--border);
+}
+
+.program .feature:first-child {
+    padding-left: 0;
+}
+
+.program .feature:last-child {
+    padding-right: 0;
+    border-right: 0;
+}
+
+.program .feature-icon {
+    height: 42px;
+    margin: 0 0 10px;
+    color: var(--blue);
+    font-size: 34px;
+    line-height: 42px;
+}
+
+.program .feature-icon i,
+.program .feature-icon svg {
+    width: 34px;
+    height: 34px;
+    color: var(--blue);
+}
+
+.program .feature h4 {
+    margin: 0 0 5px;
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.program .feature p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PROGRAM BUTTONS
+   ========================================================= */
+
+.program-copy > div:last-child {
+    display: flex !important;
+    align-items: center;
+    gap: 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-wrap: wrap;
+}
+
+.program-copy > div:last-child .btn {
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--blue);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.program-copy > div:last-child .btn:hover {
+    background: var(--blue);
+    color: #fff;
+}
+
+
+/* =========================================================
+   LIABILITY CALCULATOR CARD
+   ========================================================= */
+
+.program .calculator-card {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(25,72,130,.08);
+}
+
+.program .calc-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin: 0 0 20px;
+    padding: 0;
+}
+
+.program .calc-icon {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    color: var(--blue);
+    font-size: 36px;
+    line-height: 42px;
+}
+
+.program .calc-icon i,
+.program .calc-icon svg {
+    width: 36px;
+    height: 36px;
+    color: var(--blue);
+}
+
+.program .calc-head h3 {
+    margin: 0 0 4px;
+    color: var(--navy);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.program .calc-head p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.program .calc-head .btnlib {
+    color: var(--blue) !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CALCULATOR PLUGIN
+   ========================================================= */
+
+.program #calculator-plugin {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #344054;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.program #calculator-plugin *,
+.program #calculator-plugin *::before,
+.program #calculator-plugin *::after {
+    box-sizing: border-box;
+}
+
+.program #calculator-plugin .container.manual {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+}
+
+.program #calculator-plugin .container.manual .container-left,
+.program #calculator-plugin .container.manual .container-right {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+}
+
+.program #calculator-plugin .container.manual .clear {
+    display: none !important;
+}
+
+.program #calculator-plugin .calc {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    color: var(--blue) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+}
+
+.program #calculator-plugin #waight_val {
+    /* width: calc(100% - 78px) !important;
+    height: 34px !important;
+    margin: 3px 5px 3px 0 !important;
+    padding: 0 10px !important;
+    border: 1px solid #cbd9e8 !important;
+    border-radius: 5px !important;
+    background: #fff !important;
+    color: #344054 !important;
+    font-size: 12px !important;
+    vertical-align: middle !important;
+    outline: none !important; */
+    display: inline-block !important;
+    width: 372px !important;
+    height: 34px !important;
+    margin: 3px 6px 3px 10px !important;
+    vertical-align: middle !important;
+}
+
+.program #calculator-plugin #waight_val:focus {
+    border-color: var(--blue) !important;
+    box-shadow: 0 0 0 3px rgba(11,121,255,.08) !important;
+}
+
+.program #calculator-plugin #waight_val + span {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 !important;
+    color: #6f79a0 !important;
+    font-size: 10px !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+}
+
+.program #calculator-plugin .valuesr {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    width: 100% !important;
+    margin: 3px 0 7px !important;
+}
+
+.program #calculator-plugin #final_srd,
+.program #calculator-plugin #final_EUR {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-width: 454px !important;
+    /* width: 100% !important; */
+    height: 30px !important;
+    min-height: 30px !important;
+    margin: 0 !important;
+    padding: 5px 10px !important;
+    border: 1px solid #d5e9fa !important;
+    border-radius: 5px !important;
+    background: var(--light-blue) !important;
+    color: var(--blue) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+
+.program #calculator-plugin #datepicker {
+    width: 96px !important;
+    height: 30px !important;
+    margin: 3px 5px 3px 0 !important;
+    padding: 0 7px !important;
+    border: 1px solid #cbd9e8 !important;
+    border-radius: 5px !important;
+    background: #fff !important;
+    color: #344054 !important;
+    font-size: 11px !important;
+    text-align: center !important;
+}
+
+.program #calculator-plugin #sldt2new {
+    width: 70px !important;
+    height: 30px !important;
+    margin: 0 0 0 4px !important;
+    padding: 0 5px !important;
+    border: 1px solid #cbd9e8 !important;
+    border-radius: 5px !important;
+    background: #fff !important;
+    color: #344054 !important;
+    font-size: 11px !important;
+}
+
+.program #calculator-plugin #exchange {
+    color: var(--navy) !important;
+    font-weight: 700 !important;
+}
+
+.program #calculator-plugin #ratecurr {
+    color: var(--blue) !important;
+    font-weight: 600 !important;
+}
+
+.program #calculator-plugin .container.manual > div[style*="Exchange Rate"] {
+    width: 100% !important;
+    margin: 7px 0 !important;
+    padding: 7px 0 !important;
+    color: #66758b !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    float: none !important;
+}
+
+.program #calculator-plugin input[type="submit"] {
+    /* width: 122px !important; */
+    height: 32px !important;
+    margin: 10px 0 0  !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+    background: var(--blue) !important; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='105' height='34'%3E%3Ctext x='52.5' y='21' text-anchor='middle' font-family='Arial' font-size='12' font-weight='600' fill='white'%3ECalculate%3C/text%3E%3C/svg%3E") !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+}
+
+.program #calculator-plugin input[type="submit"]:hover {
+    background: #0969df !important;
+}
+
+.program #calculator-plugin a {
+    color: var(--blue) !important;
+}
+
+.program > .container > .calculator-card > small {
+    display: block;
+    margin-top: 9px;
+    color: #7a85a7;
+    font-size: 10px;
+    text-align: right;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .program-grid {
+        grid-template-columns: minmax(0, 1fr) 400px;
+        gap: 28px;
+    }
+
+    .program .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+    }
+
+    .program .feature {
+        border-right: 0;
+    }
+
+    .program .feature:nth-child(1),
+    .program .feature:nth-child(2) {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 16px;
+    }
+}
+
+
+@media (max-width: 980px) {
+
+    .program-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .program .calculator-card {
+        max-width: 100%;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .program .container {
+        max-width: calc(100% - 28px);
+    }
+
+    .program-copy h2 {
+        font-size: 30px;
+    }
+
+    .program-copy .lead {
+        font-size: 13px;
+    }
+
+    .program .feature-grid {
+        grid-template-columns: 1fr;
+        row-gap: 0;
+    }
+
+    .program .feature {
+        padding: 16px 0 !important;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .program .feature:first-child {
+        padding-top: 0 !important;
+    }
+
+    .program .feature:last-child {
+        border-bottom: 0;
+    }
+
+    .program-copy > div:last-child {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .program-copy > div:last-child .btn {
+        width: 100%;
+    }
+
+    .program .calculator-card {
+        padding: 17px;
+    }
+
+    .program .calc-head h3 {
+        font-size: 16px;
+    }
+
+    .program #calculator-plugin #waight_val {
+        width: calc(100% - 78px) !important;
+    }
+}
+
+/* =========================================================
+   TRUST / ORGANISATIONS
+   ========================================================= */
+
+.trust {
+    width: 100%;
+    margin: 0;
+    padding: 24px 0 28px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+}
+
+.trust .container {
+    width: 1180px;
+    max-width: calc(100% - 50px);
+    margin: 0 auto;
+    padding: 0;
+}
+
+.trust-label {
+    margin: 0 0 16px;
+    color: #7682a3;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .20em;
+    line-height: 1.4;
+}
+
+.trust .logo-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr) auto;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.trust .logo-row > span {
+    min-width: 0;
+    padding: 0 18px;
+    color: #17336f;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    white-space: nowrap;
+    border-right: 1px solid var(--border);
+}
+
+.trust .logo-row > span:first-child {
+    padding-left: 0;
+}
+
+.trust .logo-row > span:last-child {
+    border-right: 0;
+}
+
+
+/* =========================================================
+   IATA AWARD
+   ========================================================= */
+
+.trust .award {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-left: 20px;
+    color: #17336f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1.35;
+    text-align: left;
+}
+
+.trust .award i {
+    flex: 0 0 auto;
+    color: var(--blue);
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .trust .logo-row {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 18px;
+    }
+
+    .trust .logo-row > span {
+        border-right: 1px solid var(--border);
+    }
+
+    .trust .logo-row > span:nth-child(3),
+    .trust .logo-row > span:last-child {
+        border-right: 0;
+    }
+
+    .trust .award {
+        justify-content: flex-start;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .trust {
+        padding: 22px 0;
+    }
+
+    .trust .container {
+        max-width: calc(100% - 28px);
+    }
+
+    .trust-label {
+        margin-bottom: 14px;
+        font-size: 8px;
+    }
+
+    .trust .logo-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .trust .logo-row > span,
+    .trust .logo-row > span:first-child {
+        width: 100%;
+        padding: 10px 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+    }
+
+    .trust .logo-row > span:last-child {
+        border-bottom: 0;
+    }
+
+    .trust .award {
+        padding: 12px 0 0;
+    }
+}
+
+/* =========================================================
+   SITE FOOTER
+   ========================================================= */
+
+.site-footer {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #0b2a67;
+    color: #fff;
+}
+
+.footer-photo {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7,35,75,.97) 0%,
+            rgba(7,42,85,.94) 45%,
+            rgba(11,42,103,.88) 100%
+        ),
+        url('/img/cargo-aircraft.png') center / cover no-repeat;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 2;
+    width: 1180px;
+    max-width: calc(100% - 50px);
+    margin: 0 auto;
+    padding: 42px 0 18px;
+}
+
+
+/* =========================================================
+   FOOTER LINKS AREA
+   ========================================================= */
+
+.footer-links {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr 1fr .85fr .85fr;
+    gap: 30px;
+    margin: 0;
+    padding: 24px 0 30px;
+    border-top: 0;
+    border-top: 1px solid rgba(255, 255, 255, .45);
+    border-bottom: 1px solid rgba(255, 255, 255, .45);
+}
+
+.footer-links > div {
+    min-width: 0;
+}
+
+.footer-links h4 {
+    margin: 0 0 11px;
+    padding: 0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.footer-links p {
+    margin: 0 0 5px;
+    padding: 0;
+    color: #d5e2f2;
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+.footer-links a {
+    color: #d5e2f2;
+    text-decoration: none;
+    transition: color .18s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   FOOTER BRAND
+   ========================================================= */
+
+.footer-brand {
+    padding-right: 20px;
+}
+
+.footer-brand .brand {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0 12px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-brand .brand-name {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.footer-brand .brand-sub {
+    margin-top: 4px;
+    color: #c9dcf4;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .30em;
+    line-height: 1;
+}
+
+.footer-brand > p {
+    max-width: 280px;
+    margin: 0;
+    color: #cdddf0;
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   FOOTER CONTACT ICONS
+   ========================================================= */
+
+.footer-links p i {
+    display: inline-block;
+    width: 17px;
+    margin-right: 5px;
+    color: #8fc5ff;
+    font-size: 11px;
+    text-align: center;
+}
+
+.footer-links p i.fa-map-marker {
+    vertical-align: top;
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   SOCIAL ICONS
+   ========================================================= */
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.socials a {
+    display: grid;
+    place-items: center;
+    width: 31px;
+    height: 31px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 4px;
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background .18s ease, border-color .18s ease;
+}
+
+.socials a:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+   ========================================================= */
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0;
+    padding: 15px 0 0;
+    color: #b9cce2;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.footer-bottom span:last-child {
+    text-align: right;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+    .footer-content {
+        max-width: calc(100% - 30px);
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px 22px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        padding-right: 0;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .footer-content {
+        max-width: calc(100% - 28px);
+        padding: 32px 0 16px;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 18px;
+        padding-bottom: 24px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-links h4 {
+        font-size: 11px;
+    }
+
+    .footer-links p {
+        font-size: 11px;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .footer-bottom span:last-child {
+        text-align: left;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+}
+.btn-footer {
+    border: 1px solid rgba(255, 255, 255, .75);
+    color: #fff;
+    min-height: 31px;
+    gap: 10px;
+}
+.footer-links p, .footer-links a {
+    color: #d8e5f1;
+    font-size: 13px;
+    line-height: 1.7;
+}
+.cc-logo {
+    display: flex !important;
+    align-items: center !important;
+    width: 180px !important;
+    height: 48px !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+}
+.cc-logo img {
+    display: block !important;
+    width: 180px !important;
+    height: 48px !important;
+    max-width: 180px !important;
+    max-height: 48px !important;
+    object-fit: contain !important;
+}

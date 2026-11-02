@@ -1,0 +1,401 @@
+{@<style type="text/css">
+.left-area {
+	float: left;
+	width: 500px;
+}
+
+.right-area {
+	float: right;
+	width: 420px;
+}
+
+.contentblock {
+	padding: 10px;
+	border: 1px solid lightgray;
+	border-radius: 8px;
+}
+
+/* Shared for all accordion types */
+.accordion {
+    font-family:Arial, Helvetica, sans-serif; 
+    margin:0 auto;
+    font-size:12px;
+    border:1px solid lightgray;
+    border-radius:10px;
+    width:475px;
+    padding:10px;
+    background:#fff;
+}
+.accordion ul {
+    list-style:none;
+    margin:0;
+    padding:0;    
+}
+.accordion li {
+    margin:0;
+    padding:0;
+}
+.accordion [type=radio], .accordion [type=checkbox] {
+    display:none;
+}
+.accordion label {
+    display:block;
+    font-size:12px;
+    line-height:16px;
+    background:#E6E6E6;
+    border:1px solid #542437;
+    color:#2E8AE6;
+    text-shadow:1px 1px 1px rgba(255,255,255,0.3);
+    font-weight:700;
+    cursor:pointer;
+    text-transform:uppercase;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+}
+.accordion ul li label:hover, .accordion [type=radio]:checked ~ label, .accordion [type=checkbox]:checked ~ label {
+    background:#2E8AE6;
+    color:#FFF;
+    text-shadow:1px 1px 1px rgba(0,0,0,0.5)
+}
+.accordion .content {
+    padding:0 10px;
+    overflow:hidden;
+    border:1px solid #fff; /* Make the border match the background so it fades in nicely */
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+}
+.accordion p {
+    color:#333;
+    margin:0 0 10px;
+}
+.accordion h3 {
+    color:#542437;
+    padding:0;
+    margin:10px 0;
+}
+
+
+/* Vertical */
+.vertical ul li {
+    overflow:hidden;
+    margin:0 0 1px;
+}
+.vertical ul li label {
+    padding:10px;
+}
+.vertical [type=radio]:checked ~ label, .vertical [type=checkbox]:checked ~ label {
+    border-bottom:0;
+}
+.vertical ul li label:hover {
+    border:1px solid #542437; /* We don't want the border to disappear on hover */
+}
+.vertical ul li .content {
+    height:0px;
+    border-top:0;
+}
+.vertical [type=radio]:checked ~ label ~ .content, .vertical [type=checkbox]:checked ~ label ~ .content {
+    height:300px;
+    border:1px solid #542437;
+}
+
+
+/* Button design */
+.button {
+   border: 1px solid #0a3c59;
+   background: #2e8ae6;
+   background: -webkit-gradient(linear, left top, left bottom, from(#99badb), to(#2e8ae6));
+   background: -webkit-linear-gradient(top, #99badb, #2e8ae6);
+   background: -moz-linear-gradient(top, #99badb, #2e8ae6);
+   background: -ms-linear-gradient(top, #99badb, #2e8ae6);
+   background: -o-linear-gradient(top, #99badb, #2e8ae6);
+   background-image: -ms-linear-gradient(top, #99badb 0%, #2e8ae6 100%);
+   padding: 7px 14px;
+   -webkit-border-radius: 30px;
+   -moz-border-radius: 30px;
+   border-radius: 30px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #7ea4bd 0 1px 0;
+   color: #1e446b;
+   font-size: 13px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border: 1px solid #0a3c59;
+   text-shadow: #1e4158 0 1px 0;
+   background: #2566a8;
+   background: -webkit-gradient(linear, left top, left bottom, from(#7791ab), to(#2566a8));
+   background: -webkit-linear-gradient(top, #7791ab, #2566a8);
+   background: -moz-linear-gradient(top, #7791ab, #2566a8);
+   background: -ms-linear-gradient(top, #7791ab, #2566a8);
+   background: -o-linear-gradient(top, #7791ab, #2566a8);
+   background-image: -ms-linear-gradient(top, #7791ab 0%, #2566a8 100%);
+   color: #ffffff;
+   }
+.button:active {
+   text-shadow: #1e4158 0 1px 0;
+   border: 1px solid #0a3c59;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#2566a8));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   background-image: -ms-linear-gradient(top, #3e779d 0%, #65a9d7 100%);
+   color: #fff;
+   }
+
+</style>}
+
+<!-- Top Columns-->
+
+<div style="height: 10px;"></div>
+<div style="width: 966px; margin-left: auto; margin-right: auto;">
+    <div class="left-area">
+	  <a name="linktotop"><h1>Frequently Asked Questions for new users</h1></a>
+		<div class="contentblock">
+            <p style="text-align: justify">Are you still uncertain if you should use CargoClaims for all your future Claims and Incident management? Read the special FAQ dedicated to new users first. Please <a href="http://www.cargohub.nl/contact/"><b>contact us</b></a>&nbsp;if you still have questions afterwards, we will be available to answer all your questions. Premium users can turn to the CargoClaims help page with their questions within <a href="http://cargoclaims.aero/access?action=login"><span style="text-decoration: underline;">their account</span></a>.</p><div style="height: 5px;"></div><hr>
+		  <div style="height: 10px;"></div>  
+			<div style="text-align: center"><h2><b>Benefits for all stakeholders involved</b></h2></div>
+            <div style="text-align: center"><p>
+			<a href="http://www.cargohub.nl/wp-content/uploads/2015/06/CargoClaims-Shipper.pdf"><img src="/cmsup/chainparty/icon_1.png" alt="Benefits for Shippers" width="80px"></a> 
+			<a href="http://www.cargohub.nl/wp-content/uploads/2015/05/CargoClaims-Forwarders.pdf"><img src="/cmsup/chainparty/icon_2.png" alt="Benefits for Forwarders" width="80px" style="margin-left: 15px;"></a>
+			<a href="http://www.cargohub.nl/wp-content/uploads/2015/06/CargoClaims-GHA.pdf"><img src="/cmsup/chainparty/icon_3.png" alt="Benefits for Ground Handlers" width="90px" style="margin-left: 15px;"></a>
+			<a href="http://www.cargohub.nl/wp-content/uploads/2015/05/CargoClaims-Airlines.pdf"><img src="/cmsup/chainparty/icon_4.png" alt="Benefits for Airlines and GSAs" width="95px" style="margin-left: 15px;"></a>   							 
+			</p></div>
+		  <div style="height: 10px;"></div>
+		</div>
+	</div>
+	<div class="right-area">
+<div style="height: 28px;"></div>
+		<div class="contentblock">
+		  <div style="text-align: center"><h2><b>Get started with your freemium account!</b></h2></div>
+            <div style="text-align: center"><p>You can directly start using CargoClaims as a Freemium user by filing your first claim. Go to the <a href="http://cargoclaims.aero/"><b>homepage</b></a> and tryout the application by submitting a test claim.</p></div><div style="height: 11px;"></div><hr>
+		  <div style="height: 8px;"></div>
+		  <div style="text-align: center"><h2><b>Free 30 day Premium trial.</b></h2></div>
+            <div style="text-align: center"><p>Do you want full access to all the CargoClaims features? Start your free trial today! Please <b><a href="mailto:support@cargohub.nl">contact us</a></b> for a full access 30 day Premium trial.</p></div><hr>
+		  <div style="text-align: center"><p> Click the button to see how CargoClaims works:<br><br><a href='http://www.cargohub.nl/wp-content/uploads/2015/05/CargoClaims-How-it-works.pdf' class='button'>How it works</a></p></div>
+	    </div>
+	</div>
+    <div class="clear"></div>
+</div>
+
+<!-- Left Side Column General FAQ-->
+
+<div style="height: 30px;"></div>
+<div style="width: 940px; margin-left: 56px; margin-right: 56px;">
+    <div class="left-area">  
+	  <a name="generalfaq"><h1>General FAQ</h1></a>
+<div class="accordion vertical">
+    <ul>
+        <li>
+            <input type="radio" id="radio-1" name="radio-accordion" checked="checked" />
+            <label for="radio-1">What is CargoClaims?</label>
+            <div class="content">
+			    <h3>&nbsp;</h3> 
+			    <p>CargoClaims is an online integrated data forwarding and claim management platform. <i>CargoClaims does not represent airlines or supply chain parties.</i> The application is developed to manage your claims online and communicate with your contacts to resolve filed cargo claims.</p>
+			    <p>How CargoClaims will benefit you and all your customers:</p>
+			    <p>- Submit your claim in just a few easy steps.<br>- Immediate confirmation of receipt per email.<br>- Providing our customer 24/7 online registration<br>- Increases the speed of processing your cargo claim.<br>- Online tracking of claims processing 24/7.<br>- Providing overview of all your cargo claims.<br>- All communication and documentation logged into your account.
+		    </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-2" name="radio-accordion" />
+            <label for="radio-2">Do I have to register to use CargoClaims?</label>
+            <div class="content">
+			    <h3>&nbsp;</h3> 
+                
+			    <p>A Freemium account will be automatically generated once you have filed a claim for the first time. You will receive an email with the login credentials to the CargoClaims Portal.</p>
+                <p>A Premium account will need to be activated by the CargoHub support desk and benefits of full features of the CargoClaims Portal</p>
+			  	<p>Enterprise accounts will benefit unlimited records, multi stations overview, customized pages and much more.</p>
+			  	<p>For more information, please contact us by email: <a href="mailto:info@cargoclaims.com">info@cargohub.com</a>.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-3" name="radio-accordion" />
+            <label for="radio-3">Why should I register on CargoClaims?</label>
+            <div class="content">
+			    <h3>&nbsp;</h3> 
+                <p>If you or your company is in need of a more efficient way to manage or file claims then CargoClaims is the software for you! We make filing and managing of claims transparent and reliable in one centralized integrated system. Quality and efficiency will increase due to digitizing processes, user friendly tools and a 100% paperless working environment. Handling claims was never this easy! We run regular updates to provide the latest requirements for quick and cost-effective claim handling.</p>
+                <p>The satisfaction of the customers will also increase due to the fact that you and your company will be able to respond to claims much faster with CargoClaims.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-4" name="radio-accordion" />
+            <label for="radio-4">What is a Premium account?</label>
+            <div class="content">
+			    <h3>&nbsp;</h3> 
+                <p>As a Premium user you will be able to manage the whole claim process, from the beginning of an incident until finalizing a claim. Being a Premium user will allow you to use the CargoClaims application fully including the following:</p>
+                <p>- modify account preferences<br>- customize the claims overview<br>- set and change status and priorities to files<br>- manage and process claims per department<br>- assign claims to specific persons or departments<br>- assign tasks and create notes<br>- share files with third parties<br>- use the advanced integrated communication module<br>- export overviews to Excel, HTML or CSV</p>
+			    <p>Please <a href="mailto:info@cargoclaims.com">contact us</a> if you are interested in a Premium account and for a 30 day Premium trial!</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-5" name="radio-accordion" />
+            <label for="radio-5">What are the system requirements for CargoClaims?</label>
+            <div class="content">
+                <h3>The following browsers are supported for CargoClaims:</h3>
+                <p>- Internet Explorer 8<br>- Internet Explorer 9<br>- Internet Explorer 10+<br>- Chrome<br>- Firefox<br>- Safari</p>
+                <h3>The following operating systems are supported for CARGO/Claims:</h3>
+			    <p>- Windows XP<br>- Windows 7<br>- Windows 8<br>- MAC OS X</p><br>
+			    <p>To get the best experience with the CargoClaims software, a network with a fast and stable line speed is necessary and usage of the most up-to-date version of your browser.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-6" name="radio-accordion" />
+            <label for="radio-6">Where can I find the terms of use for CargoClaims?</label>
+            <div class="content">
+                <h3>Legal information</h3>
+                <p>The Terms of Use can be found <a href="http://cargoclaims.aero/cms?path=terms-of-use">here</a>.</p>   
+                <p>The Privacy Policy can be found <a href="http://cargoclaims.aero/cms?path=privacy">here</a>.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-7" name="radio-accordion" />
+            <label for="radio-7">Which parties are supported?</label>
+            <div class="content">
+                <h3>Supported parties:</h3>
+                <p>With the CargoClaims platform you will be able to submit claims directly to any of the registered IATA member airlines.</p>   
+                <p>In case there are no Airline contacts predefined in our system, please enter your available contact information manually for the subjected Airline or GSA and submit your claim.</p>
+			    <p>Please contact <a href="mailto:support@cargoclaims.aero">support@cargoclaims.aero</a> in case your target Airline is not available in our system. We will update our system within 24 hours and inform you accordingly.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-8" name="radio-accordion" />
+            <label for="radio-8">Can I still file a claim if the Airline is not supported?</label>
+            <div class="content">
+                <h3>Supported airlines:</h3>
+                <p>It is not possible to file claims at airlines that the CargoClaims application does not support at this moment.</p>
+			    <p>All IATA member airlines are currently supported by CargoClaims.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-9" name="radio-accordion" />
+            <label for="radio-9">What do the status and priority of a file mean?</label>
+            <div class="content">
+                <h3>Overview system:</h3>
+                <p>CargoClaims uses a status and priority system to get a better overview of all the files. This way users can expedite the handling of files, sorted on priority and status. <br><br> [<a href="http://www.cargoclaims.aero/cms?path=/help/status-and-priority"><b>Click here</b></a>] to find out more about status and priority within the CargoClaims application.</p>
+            </div>
+        </li>
+    </ul>	 
+	  </div>
+  </div>
+
+  
+<!-- Right Side Column Freemium FAQ--> 
+  
+	<div class="right-area">
+	  <a name="freemiumfaq"><h1>Freemium FAQ</h1></a>
+<div class="accordion vertical">
+    <ul>
+        <li>
+            <input type="radio" id="radio-10" name="radio-accordion"/>
+            <label for="radio-10">What is a Freemium account?</label>
+            <div class="content">
+			    <h3>&nbsp;</h3> 
+			    <p>As a Freemium user you will be able to file and manage claims within one centralized portal, free of charge.</p>
+			    <p><b>CargoClaims features for Freemium users include:</b></p>
+    			<p>- Filing claims<br>- Record overview<br>- Managing records<br>- Exporting records to a XLS, HTML or CSV file<br> - Customization of account information<br></p> 
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-11" name="radio-accordion" />
+            <label for="radio-11">How do I create an account on CargoClaims?</label>
+            <div class="content">
+                <h3>&nbsp;</h3>
+                <p>File a cargo claim or incident to activate your Freemium account. Once you have pressed the 'Send Claim' button on the communication module of the CargoClaims homepage, you will instantly receive login details to start using your Freemium account.</p>
+				<p>You can change your password in the account settings once you are logged into your personal enviroment. All personal information and passwords are encrypted.</p>
+			    <p>Please contact us by <a href="info@cargoclaims.com" target="blank">email</a> if you are interested in our Premium and Enterprise packages.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-12" name="radio-accordion" />
+            <label for="radio-12">How do I file a claim? </label>
+            <div class="content">
+                <h3>&nbsp;</h3> 
+                <p>Follow the steps on the <a href="http://www.cargoclaims.aero/">CargoClaims</a> homepage. Choose the airline in the dropdown menu by typing the Prefix, IATA or ICAO code. Then press the green button and you will be directed to the CargoClaims form to start filing your claim.</p>
+			    <p>Once completed, your claim will be sent out.</p>
+			    <p><a href="http://www.cargoclaims.aero/cms?path=/help/how-do-I-file-a-claim">Click here</a> for a more in-depth explanation on how to file a claim.</p>
+		    </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-13" name="radio-accordion" />
+            <label for="radio-13">I forgot my password</label>
+            <div class="content">
+                <h3>&nbsp;</h3> 
+                <p>Go to the CargoClaims homepage and click on <a href="http://cargoclaims.aero/cms?path=worldwide">'Freemium Login'</a>.</p>
+                <p>Press the '[Click here]' link and fill in the email address used to set up your account. You will receive a system generated email to retrieve your password. Check your spam box if you cannot find the mail in your inbox.</p>
+			  <p><a href="http://www.cargoclaims.aero/cms?path=/help/How-do-I-login-freemium"></a></p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-14" name="radio-accordion" />
+            <label for="radio-14">How do I update existing Freemium files?</label>
+            <div class="content">
+                <h3>&nbsp;</h3> 
+                <p>To update Freemium files, please go to the homepage of <a href="http://www.cargoclaims.aero/">CargoClaims</a> and click on the "Search submitted claims".</p>
+			    <p>Log into your account and go to 'Submitted issues'. Select the claim you wish to update by pressing on the blue Tracking # or by double clicking on the file.</p>
+			    <p>Adding documents, pictures and changing claim information will be possible once you are in the claim file.</p>
+			    <p><a href="http://www.cargoclaims.aero/cms?path=/help/how-do-I-update">Click here</a> for a more in-depth explanation on how to update existing Freemium files.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-15" name="radio-accordion" />
+            <label for="radio-15">How do I use the application to communicate with other parties?</label>
+            <div class="content">
+                <h3>&nbsp;</h3> 
+                <p>Log into your CargoClaims Freemium account and select the claim file you wish share.</p>   
+                <p>Emails to the other involved party can be sent in the communication panel by clicking on the claim subject. The communication module will pop up and you will be able to compile your message here. Click on "Send" to share the desired information.</p>
+			  	<p><a href="http://www.cargoclaims.aero/cms?path=/help/How-do-I-communicate">Click here</a> for a more in-depth explanation on how to communicate in the application.</p>
+            </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-16" name="radio-accordion" />
+            <label for="radio-16">How do I make an offline copy of the claim table?</label>
+            <div class="content">
+                <h3>&nbsp;</h3> 
+                <p>Log into your CargoClaims Freemium account and go to the 'Submitted issues' tab.</p>   
+                <p>In the top right corner of the tab you see three types of export buttons that you can use to create an offline copy. The claim files can be exported to a XLS, HTML and CSV file.</p>
+			  	<p><b>NOTE:</b> The offline copy will be an exact copy of your CargoClaims dashboard view. This means that the exported table will be in the same format and will contain the exact same information and columns as the table in the application.</p>
+			  	<p>To view more rows, go to the bottom of the table in your dashboard and click on the dropdown shown next to 'Show rows'. The maximum amount of claims that can be exported as an offline copy is 1000 per export. </p>
+            	<p><a href="http://www.cargoclaims.aero/cms?path=/help/offline-copy-claim-table">Click here</a> for a more in-depth explanation on how to create offline copies of the claim overview.</p>
+		    </div>
+        </li>
+        <li>
+            <input type="radio" id="radio-17" name="radio-accordion" />
+            <label for="radio-17">How do I change my account information?</label>
+            <div class="content">
+                <h3>&nbsp;</h3> 
+                <p>Log into your account on <a href="http://www.cargoclaims.aero/">www.cargoclaims.aero</a>. Click on 'Edit my contact data'. Then click on the dropdown 'Select' to update your information.</p>
+			    <p>When you've finished updating, press 'Save'.</p>
+			    <p><a href="http://www.cargoclaims.aero/cms?path=/help/How-do-I-change-account-information">Click here</a> for a visual explanation on how to look up and change account information.</p>
+            </div>
+        </li>
+	    <li>
+            <input type="radio" id="radio-18" name="radio-accordion" />
+            <label for="radio-18">No response after a claim?</label>
+            <div class="content">
+                <h3>&nbsp;</h3> 
+                <p>You can resend existing claim file(s) or an updated version to your contact, to request a response.</p>
+			    <p>Contact your airline or GSA directly in case you did not receive any communication from them after submitting your claim with this service.</p>
+			  	<p>A useful Global Directory of Airlines and Agency contacts can be found by visiting <a href="http://www.azfreight.com/">A-Z Freight</a>.</p>
+			    <p>Should you require communication updates to the carrier for claims submitted within your account, please login into your account, open existing claim and update communication.</p>  
+            </div>
+        </li>
+    </ul>	 
+	  </div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<!-- Footer-->
+<div style="height: 50px;"></div>
+<div style="width: 125px; margin-left: auto; margin-right: auto;">
+	<div class="contentblock">  
+  <a style="font-size: 15px; align= center" href="#linktotop"><b>Back To Top</b></a>	  
+  </div>
+  <div style="height: 30px;"></div>
+  <div class="clear"></div>
+</div>

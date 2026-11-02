@@ -1,0 +1,202 @@
+{!version 2019.05.02}
+{@<style>
+	.itembox {
+		padding: 1px 8px;
+		margin: 0px 7px 5px 0px;
+		border: 1px solid lightgray;
+		white-space: nowrap;
+		float: left;
+		box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6);
+	}
+	
+	span.awb {
+		width: 120px; 
+		display: inline-block;
+	}
+	span.awbp {
+		margin-right: 15px; 
+		width: 35px; 
+		display: inline-block; 
+		text-align: right;
+	}
+	span.awbkg {
+		width: 45px; 
+		display: inline-block; 
+		text-align: right;
+	}
+</style>}
+{#use:iss:<h2>Truck order for {group.name}</h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+	<h4 style="background-image: url('/img/icons16/ist/truck.png'); background-repeat: no-repeat; background-position: 4px;">Truck movement:</h4>
+	{#use:%ist.xfield_def:<table class="infotable">
+		<tr><th>Airline:</th><td>{^group.name}</td></tr>
+		<tr><th>{movement.n}:</th><td>{^xfields.movement.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{flight_no.n}:</th><td>
+			<div style="display: inline-block; width: 160px;">{^xfields.flight_no:<span class='gray'>---</span>}</div>
+			<span class='gray'>Date:</span> {#if:^xfields.flight_date:{^xfields.flight_date}~date("Y-m-d")~}{#ifnot:^xfields.flight_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{trans_name.n}:</th><td>
+			<div style="display: inline-block; width: 160px;">{^xfields.trans_name:<span class='gray'>---</span>}</div>
+			<span class='gray'>{trans_id.n}:</span>{^xfields.trans_id:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{consignor.n}:</th><td style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="{^xfields.consignor}">{^xfields.consignor:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{consignee.n}:</th><td style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="{^xfields.consignee}">{^xfields.consignee:<span class='gray'>---</span>}</td></tr>
+	</table>
+
+	<hr />
+	<div><table style="width: 99%;">
+		<tr>
+			<td style="width: 33%; text-align: center;">{origin.n}</td>
+			<td style="width: 33%; text-align: center;">{destination.n}</td>
+			<td style="width: 33%; text-align: center;">{non_airp.n}</td>
+		</tr>
+		<tr>
+			{#if:^xfields.origin.value:<th class="info-tip center" data-tooltip="{^xfields.origin.value.name}<br /><span class='darkblue'>{^xfields.origin.value.country}</span>">{^xfields.origin.value.IATA}</th>}
+				{#ifnot:^xfields.origin.value:<td class="gray center">---</td>}
+			{#if:^xfields.destination.value:<th class="info-tip center" data-tooltip="{^xfields.destination.value.name}<br /><span class='darkblue'>{^xfields.destination.value.country}</span>">{^xfields.destination.value.IATA}</th>}
+				{#ifnot:^xfields.destination.value:<td class="gray center">---</td>}
+			<td style="text-align: center;">{^xfields.non_airp:<span class="gray">---</span>}</td>
+		</tr>
+	</table></div>
+	}
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/blueprint.png'); background-repeat: no-repeat; background-position: 4px;">Planning</h4>
+	{#use:%ist.xfield_def:<table class="infotable">
+		<tr><th>{pick_est_time.n}:</th><td>{^xfields.pick_est_time.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Estimated arrival (ETA):</th><td>
+			<div style="display: inline-block; width: 160px;"><span class="gray">Time:</span> {^xfields.atd_time:<span class="gray">---</span>}</div>
+			<span class="gray">Date:</span> {#if:^xfields.pick_date:{^xfields.pick_date}~date("Y-m-d")~}{#ifnot:^xfields.pick_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{trans_id.n}:</th><td>{^xfields.trans_id:<span class='gray'>---</span>}</td></tr>
+	</table>}
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/text_list_bullets.png'); background-repeat: no-repeat; background-position: 4px;">Shipment manifest</h4>	
+	{#use:%ist.xfield_def:<table class="infotable">
+		<tr><th>Items:</th><td>{^xfields.intact_units:<span class="gray">---</span>}</td></tr>
+		<tr><th>Total weight:</th><td>{^xfields.pack_weight:<span class="gray">---</span>} kg</td></tr>
+		<tr><th>Pieces:</th><td>{^xfields.loose_pieces:<span class="gray">---</span>}</td></tr>
+		<tr><th>{packing.n}:</th><td>{#ifnot:^xfields.packing:<span class="gray">---</span>}{#repeat:^xfields.packing:<span class='itembox'>{value}</span>}</td></tr>
+		<tr><th>{trucktype.n}:</th><td>{^xfields.trucktype.value:<span class="gray">---</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>{awb1.n}:</th><td><span class="awb">{^xfields.awb1:<span class='gray'>(missing)</span>}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb1_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb1_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+		<tr><th>{awb1_goods.n}:</th><td>{^xfields.awb1_goods:<span class='gray'>---</span>}</td></tr>
+		{#if:^xfields.awb2:<tr><th>{awb2.n}:</th><td><span class="awb">{^xfields.awb2}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb2_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb2_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb2_goods.n}:</th><td>{^xfields.awb2_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb3:<tr><th>{awb3.n}:</th><td><span class="awb">{^xfields.awb3}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb3_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb3_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb3_goods.n}:</th><td>{^xfields.awb3_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb4:<tr><th>{awb4.n}:</th><td><span class="awb">{^xfields.awb4}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb4_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb4_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb4_goods.n}:</th><td>{^xfields.awb4_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb5:<tr><th>{awb5.n}:</th><td><span class="awb">{^xfields.awb5}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb5_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb5_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb5_goods.n}:</th><td>{^xfields.awb5_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb6:<tr><th>{awb6.n}:</th><td><span class="awb">{^xfields.awb6}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb6_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb6_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb6_goods.n}:</th><td>{^xfields.awb6_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb7:<tr><th>{awb7.n}:</th><td><span class="awb">{^xfields.awb7}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb7_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb7_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb7_goods.n}:</th><td>{^xfields.awb7_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb8:<tr><th>{awb8.n}:</th><td><span class="awb">{^xfields.awb8}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb8_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb8_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb8_goods.n}:</th><td>{^xfields.awb8_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb9:<tr><th>{awb9.n}:</th><td><span class="awb">{^xfields.awb9}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb9_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb9_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb9_goods.n}:</th><td>{^xfields.awb9_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb10:<tr><th>{awb10.n}:</th><td><span class="awb">{^xfields.awb10}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb10_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb10_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb10_goods.n}:</th><td>{^xfields.awb10_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb11:<tr><th>{awb11.n}:</th><td><span class="awb">{^xfields.awb11}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb11_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb11_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb11_goods.n}:</th><td>{^xfields.awb11_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb12:<tr><th>{awb12.n}:</th><td><span class="awb">{^xfields.awb12}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb12_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb12_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb12_goods.n}:</th><td>{^xfields.awb12_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb13:<tr><th>{awb13.n}:</th><td><span class="awb">{^xfields.awb13}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb13_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb13_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb13_goods.n}:</th><td>{^xfields.awb13_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb14:<tr><th>{awb14.n}:</th><td><span class="awb">{^xfields.awb14}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb14_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb14_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb14_goods.n}:</th><td>{^xfields.awb14_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb15:<tr><th>{awb15.n}:</th><td><span class="awb">{^xfields.awb15}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb15_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb15_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb15_goods.n}:</th><td>{^xfields.awb15_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+	</table>}
+</div>
+{!Right column}
+<div class='column2'>
+
+	<h4 style="background-image: url('/img/icons16/company-building-icon.png'); background-repeat: no-repeat; background-position: 4px;">Handling information and communication</h4>
+	<table class="infotable">
+		{#repeat:%contacts:
+			<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+		}
+	</table>
+	<hr />
+	<table class="infotable">
+		<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+		{#if:edtime:<tr><th>Updated on date:</th><td>{edtime}~date("Y-M-d (H:i)")~</td></tr>}	
+		<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+		<tr><th>Organization:</th><td>{organization.name}</td></tr>
+		<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+		{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+		<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	{!	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>}
+	</table>
+	<hr />
+	<div id='convos-box' style="margin-bottom: 8px;">
+		{#ifnot:conversations:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+		{#if:conversations:
+		<div class="gray" style="font-size: 0.9em; border-bottom: 1px solid #D3D3D3; padding-bottom: 6px;">To view the conversation, send another message or make a reply, click on the subject line.</div>
+		<table class="infotable">	
+		{#repeat:conversations:
+			<tr><th>Subject:</th><td><a href="/?action=external_comm&amp;key={key}">{description:(Conversation has no subject)}</a></td></tr>
+			<tr><th>From:</th><td>{starter.from_name} &lt;<a href="mailto:{starter.from_email}">{starter.from_email}</a>&gt;</td></tr>
+			<tr><th>Messages:</th><td>{count_msgs} &middot; <span class="gray">Last message on:</span> {last_msg.time}</td></tr>
+			<tr><td colspan="2"><hr /></td></tr>
+		}
+		</table>
+		}
+	</div>
+	
+	{#if:files:<h4>Attached pictures and documents:</h4>
+	<div id='attachments' style="margin-bottom: 8px;">
+	{#repeat:files:
+		<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+		<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+		<div class='clear'></div></div>
+	}
+	</div>}
+	
+	<h4 style="margin-top: 10px;">Add more documents (Upload computer files):</h4>
+	<div id="uploads-dropzone" class="dropzone"></div>
+	<div id="uploads-helper" style="display: none;">
+		Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+	</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the update button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Truck Order' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_view_jstpl.html}
+{#if:update_by_mail:{#raw:includes/issue2message.html}}

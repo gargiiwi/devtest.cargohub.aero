@@ -1,0 +1,245 @@
+<div id="contractAnalyticsPage" class="ca-page">
+    <div class="ca-wrapper">
+        <div class="ca-header">
+            <div class="ca-header-left">
+                <div class="ca-header-icon">
+                    <i class="fa fa-bar-chart"></i>
+                </div>
+                <div>
+                    <h2>Contract Analytics</h2>
+                    <p>Overview of contracts by group, location and country</p>
+                </div>
+            </div>
+            <div class="ca-header-right">
+                 <a href="/issue/list?action=get_supplier_contracts"  class="supplier_report"   title="Supplier Report">
+                    <i class="fa fa-users"></i>
+                    <span>Supplier Report</span>
+                </a>
+
+<!--<a href="/issue/list?action=contracts_analytics" class="contract_analytics"  title="Contract Analytics">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>Contract Analytics</span>
+                </a>-->
+
+                <a href="/issue/list?action=get_all_assets" class="asset_report"  title="Asset Report">
+                    <i class="fa fa-cubes"></i>
+                    <span>Asset Report</span>
+                </a>
+            </div>
+        </div>
+        <div class="ca-filter-bar">
+            <div class="ca-filter-item">
+                <div class="ca-search">
+                    <i class="fa fa-search"></i>
+                    <input type="text" id="ca-search"  placeholder="Search group, location or country">
+                </div>
+            </div>
+            <button type="button" id="ca-reset" class="ca-btn">
+                <i class="fa fa-refresh"></i>
+                Reset
+            </button>
+        </div>
+        <div class="ca-summary-grid">
+            <div class="ca-summary-card">
+                <div class="ca-summary-icon ca-icon-blue">
+                    <i class="fa fa-file-text-o"></i>
+                </div>
+                <div class="ca-summary-content">
+                    <span>Total Contracts</span>
+                    <strong id="ca-total-contracts">
+                        0
+                    </strong>
+                </div>
+            </div>
+            <div class="ca-summary-card">
+                <div class="ca-summary-icon ca-icon-green">
+                    <i class="fa fa-check-circle"></i>
+                </div>
+                <div class="ca-summary-content">
+                    <span>Active Contracts</span>
+                    <strong id="ca-active-contracts">
+                        0
+                    </strong>
+                </div>
+            </div>
+            <div class="ca-summary-card">
+                <div class="ca-summary-icon ca-icon-orange">
+                    <i class="fa fa-clock-o"></i>
+                </div>
+                <div class="ca-summary-content">
+                    <span>Expiring Soon</span>
+                    <strong id="ca-expiring"> 0 </strong>
+                </div>
+            </div>
+            <div class="ca-summary-card">
+                <div class="ca-summary-icon ca-icon-purple">
+                    <i class="fa fa-eur"></i>
+                </div>
+                <div class="ca-summary-content">
+                    <span>Annual Contract Value</span>
+                    <strong id="ca-total-value">
+                        &euro;0.00
+                    </strong>
+                </div>
+            </div>
+        </div>
+        <div class="ca-tabs">
+            <div class="ca-tab-buttons">
+                <button type="button" class="ca-tab-button active" data-tab="group">
+                    <i class="fa fa-sitemap"></i>
+                    Groups
+                </button>
+                <button type="button" class="ca-tab-button" data-tab="location">
+                    <i class="fa fa-map-marker"></i>
+                    Locations
+                </button>
+                <button type="button" class="ca-tab-button" data-tab="country">
+                    <i class="fa fa-globe"></i>
+                    Countries
+                </button>
+            </div>
+            <div class="ca-tab-content active"
+                 id="ca-tab-group">
+                <div class="ca-section-header">
+                    <div class="ca-section-title">
+                        <div class="ca-section-icon">
+                            <i class="fa fa-sitemap"></i>
+                        </div>
+                        <div>
+                            <h3>Contracts by Group</h3>
+                            <span>
+                                Contract distribution across groups
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ca-section-count" id="ca-group-count">
+                        0 Groups
+                    </div>
+                </div>
+                <div class="ca-card-grid" id="ca-group-list"> </div>
+            </div>
+            <div class="ca-tab-content" id="ca-tab-location">
+                <div class="ca-section-header">
+                    <div class="ca-section-title">
+                        <div class="ca-section-icon ca-location-icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div>
+                            <h3>Contracts by Location</h3>
+                            <span>
+                                Contract distribution across locations
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ca-section-count" id="ca-location-count">
+                        0 Locations
+                    </div>
+                </div>
+                <div class="ca-card-grid" id="ca-location-list"> </div>
+            </div>
+            <div class="ca-tab-content" id="ca-tab-country">
+                <div class="ca-section-header">
+                    <div class="ca-section-title">
+                        <div class="ca-section-icon ca-country-icon">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <div>
+                            <h3>Contracts by Country</h3>
+                            <span>
+                                Contract distribution across countries
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ca-section-count" id="ca-country-count">
+                        0 Countries
+                    </div>
+                </div>
+                <div class="ca-card-grid" id="ca-country-list"> </div>
+            </div>
+        </div>
+        <div id="ca-empty" class="ca-empty-state">
+            <i class="fa fa-folder-open-o"></i>
+            <h3>No results found</h3>
+            <p>
+                No groups, locations or countries match your search.
+            </p>
+        </div>
+    </div>
+    <div id="ca-detail-overlay" class="ca-detail-overlay">
+        <div class="ca-detail-modal">
+            <div class="ca-detail-header">
+                <div class="ca-detail-heading">
+                    <div class="ca-detail-icon" id="ca-detail-icon">
+                        <i class="fa fa-sitemap"></i>
+                    </div>
+                    <div>
+                        <div class="ca-detail-type" id="ca-detail-type">
+                            GROUP
+                        </div>
+                        <h3 id="ca-detail-title">
+                            Airport Operations
+                        </h3>
+                    </div>
+                </div>
+                <button type="button" id="ca-detail-close" class="ca-detail-close">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="ca-detail-summary">
+                <div>
+                    <span>Total Contracts</span>
+                    <strong id="ca-detail-count">
+                        0
+                    </strong>
+                </div>
+                <div>
+                    <span>Annual Value</span>
+                    <strong id="ca-detail-value"> &euro;0.00 </strong>
+                </div>
+                <div>
+                    <span>Active</span>
+                    <strong id="ca-detail-active"> 0 </strong>
+                </div>
+                <div>
+                    <span>Closed</span>
+                    <strong id="ca-detail-closed"> 0 </strong>
+                </div>
+            </div>
+            <div class="ca-detail-body">
+                <div class="ca-detail-table-wrapper">
+                    <table class="ca-detail-table"> 
+                        <thead> 
+                            <tr> 
+                                <th>Track</th> 
+                                <th>Contract Name</th> 
+                                <th>Contract Nr</th> 
+                                <th>Group</th> 
+                                <th>Type</th> 
+                                <th>Period</th> 
+                                <th>Location</th> 
+                                <th>Country</th> 
+                                <th>Start Date</th> 
+                                <th>End Date</th> 
+                                <th>Notice Date</th> 
+                                <th>Notice</th> 
+                                <th>Year Value </th> 
+                                <th>Month Value </th> 
+                                <th>Approved By</th> 
+                                <th>Status</th> 
+                                <th>Terminated</th> 
+                                <th>Terminated Date</th> 
+                                <th>Expiry</th> 
+                            </tr> 
+                        </thead> 
+                        <tbody id="ca-detail-table-body"></tbody> 
+                    </table>
+                </div>
+            </div>
+            <div class="ca-detail-footer">
+                <button type="button" id="ca-detail-footer-close" class="ca-btn">
+                    <i class="fa fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

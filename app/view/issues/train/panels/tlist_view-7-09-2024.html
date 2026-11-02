@@ -1,0 +1,156 @@
+<!--{#use:%ist.xfield_def:
+
+
+<div class="center">
+	<label style="width: 120px; display: inline-block;">{tr_nxt.n}: </label>
+		{#if:^xfields.tr_nxt:<b>{^xfields.tr_nxt}~date("d-m-Y")~</b> - {^xfields.tr_nxt_name.value}}
+		{#ifnot:^xfields.tr_nxt:<span class='gray'>(undetermined)</span>}
+</div>
+<hr />
+<table style="width: 99%">
+	<tr><td>&nbsp;</td><td style="width: 85px;">&nbsp;</td>
+		<td style="width: 100px;">From</td><td style="width: 100px;">To</td></tr>
+	<tr><td{#if:^xfields.trns.0.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.0.active: checked="checked"} /> {^xfields.trns.0.value}</td>
+		<td class='mini'>[Intro]</td>
+		<td>{#if:^xfields.tr_intro_from:{^xfields.tr_intro_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_intro_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_intro_to:{^xfields.tr_intro_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_intro_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.1.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.1.active: checked="checked"} /> {^xfields.trns.1.value}</td>
+		<td class='mini'>[SAW]</td>
+		<td>{#if:^xfields.tr_saw_from:{^xfields.tr_saw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_saw_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_saw_to:{^xfields.tr_saw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_saw_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.2.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.2.active: checked="checked"} /> {^xfields.trns.2.value}</td>
+		<td class='mini'>[CAW]</td>
+		<td>{#if:^xfields.tr_caw_from:{^xfields.tr_caw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_caw_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_caw_to:{^xfields.tr_caw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_caw_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.3.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.3.active: checked="checked"} /> {^xfields.trns.3.value}</td>
+		<td class='mini'>[DGAW]</td>
+		<td>{#if:^xfields.tr_dgaw_from:{^xfields.tr_dgaw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgaw_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_dgaw_to:{^xfields.tr_dgaw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgaw_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.4.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.4.active: checked="checked"} /> {^xfields.trns.4.value}</td>
+		<td class='mini'>[ENVAW]</td>
+		<td>{#if:^xfields.tr_envaw_from:{^xfields.tr_envaw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_envaw_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_envaw_to:{^xfields.tr_envaw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_envaw_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.5.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.5.active: checked="checked"} /> {^xfields.trns.5.value}</td>
+		<td class='mini'>[PILAW]</td>
+		<td>{#if:^xfields.tr_pilaw_from:{^xfields.tr_pilaw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_pilaw_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_pilaw_to:{^xfields.tr_pilaw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_pilaw_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.6.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.6.active: checked="checked"} /> {^xfields.trns.6.value}</td>
+		<td class='mini'>[SAFAW]</td>
+		<td>{#if:^xfields.tr_safaw_from:{^xfields.tr_safaw_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_safaw_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_safaw_to:{^xfields.tr_safaw_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_safaw_to:<span class='gray'>---</span>}</td>
+	</tr>
+<tr><td colspan="4"><hr /></td></tr>
+	<tr><td{#if:^xfields.trns.7.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.7.active: checked="checked"} /> {^xfields.trns.7.value}</td>
+		<td class='mini'>[EAC]</td>
+		<td>{#if:^xfields.tr_eac_from:{^xfields.tr_eac_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_eac_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_eac_to:{^xfields.tr_eac_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_eac_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.8.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.8.active: checked="checked"} /> {^xfields.trns.8.value}</td>
+		<td class='mini'>[CAC]</td>
+		<td>{#if:^xfields.tr_cac_from:{^xfields.tr_cac_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_cac_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_cac_to:{^xfields.tr_cac_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_cac_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.9.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.9.active: checked="checked"} /> {^xfields.trns.9.value}</td>
+		<td class='mini'>[Sec Spv]</td>
+		<td>{#if:^xfields.tr_secspv_from:{^xfields.tr_secspv_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_secspv_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_secspv_to:{^xfields.tr_secspv_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_secspv_to:<span class='gray'>---</span>}</td>
+	</tr>
+	
+	<tr><td{#if:^xfields.trns.10.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.10.active: checked="checked"} /> {^xfields.trns.10.value}</td>
+		<td class='mini'>[BAL]</td>
+		<td>{#if:^xfields.tr_bal_from:{^xfields.tr_bal_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_bal_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_bal_to:{^xfields.tr_bal_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_bal_to:<span class='gray'>---</span>}</td>
+	</tr>
+	
+	<tr><td{#if:^xfields.trns.23.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.23.active: checked="checked"} /> {^xfields.trns.23.value}</td>
+		<td class='mini'>[CITO]</td>
+		<td>{#if:^xfields.tr_cito_from:{^xfields.tr_cito_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_cito_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_cito_to:{^xfields.tr_cito_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_cito_to:<span class='gray'>---</span>}</td>
+	</tr>
+	
+	<tr><td{#if:^xfields.trns.11.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.11.active: checked="checked"} /> {^xfields.trns.11.value}</td>
+		<td class='mini'>[DG ADR]</td>
+		<td>{#if:^xfields.tr_dgadr_from:{^xfields.tr_dgadr_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgadr_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_dgadr_to:{^xfields.tr_dgadr_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgadr_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.12.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.12.active: checked="checked"} /> {^xfields.trns.12.value}</td>
+		<td class='mini'>[DG IATA]</td>
+		<td>{#if:^xfields.tr_dgiata_from:{^xfields.tr_dgiata_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgiata_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_dgiata_to:{^xfields.tr_dgiata_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_dgiata_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.13.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.13.active: checked="checked"} /> {^xfields.trns.13.value}</td>
+		<td class='mini'>[PGS&nbsp;15:2016]</td>
+		<td>{#if:^xfields.tr_pgs15_from:{^xfields.tr_pgs15_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_pgs15_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_pgs15_to:{^xfields.tr_pgs15_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_pgs15_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.14.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.14.active: checked="checked"} /> {^xfields.trns.14.value}</td>
+		<td class='mini'>[RA IATA]</td>
+		<td>{#if:^xfields.tr_raiata_from:{^xfields.tr_raiata_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_raiata_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_raiata_to:{^xfields.tr_raiata_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_raiata_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.15.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.15.active: checked="checked"} /> {^xfields.trns.15.value}</td>
+		<td class='mini'>[PIL-AR IATA]</td>
+		<td>{#if:^xfields.tr_piliar_from:{^xfields.tr_piliar_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_piliar_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_piliar_to:{^xfields.tr_piliar_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_piliar_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.16.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.16.active: checked="checked"} /> {^xfields.trns.16.value}</td>
+		<td class='mini'>[PIL-C IATA]</td>
+		<td>{#if:^xfields.tr_pilic_from:{^xfields.tr_pilic_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_pilic_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_pilic_to:{^xfields.tr_pilic_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_pilic_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.17.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.17.active: checked="checked"} /> {^xfields.trns.17.value}</td>
+		<td class='mini'>[JCC]</td>
+		<td>{#if:^xfields.tr_jcc_from:{^xfields.tr_jcc_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_jcc_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_jcc_to:{^xfields.tr_jcc_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_jcc_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.18.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.18.active: checked="checked"} /> {^xfields.trns.18.value}</td>
+		<td class='mini'>[CC]</td>
+		<td>{#if:^xfields.tr_cc_from:{^xfields.tr_cc_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_cc_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_cc_to:{^xfields.tr_cc_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_cc_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.19.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.19.active: checked="checked"} /> {^xfields.trns.19.value}</td>
+		<td class='mini'>[FLO]</td>
+		<td>{#if:^xfields.tr_flo_from:{^xfields.tr_flo_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_flo_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_flo_to:{^xfields.tr_flo_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_flo_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.20.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.20.active: checked="checked"} /> {^xfields.trns.20.value}</td>
+		<td class='mini'>[XRay]</td>
+		<td>{#if:^xfields.tr_xray_from:{^xfields.tr_xray_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_xray_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_xray_to:{^xfields.tr_xray_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_xray_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.21.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.21.active: checked="checked"} /> {^xfields.trns.21.value}</td>
+		<td class='mini'>[BHV]</td>
+		<td>{#if:^xfields.tr_bhv_from:{^xfields.tr_bhv_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_bhv_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_bhv_to:{^xfields.tr_bhv_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_bhv_to:<span class='gray'>---</span>}</td>
+	</tr>
+	<tr><td{#if:^xfields.trns.22.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.22.active: checked="checked"} /> {^xfields.trns.22.value}</td>
+		<td class='mini'>[VOG]</td>
+		<td>{#if:^xfields.tr_vog_from:{^xfields.tr_vog_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_vog_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_vog_to:{^xfields.tr_vog_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_vog_to:<span class='gray'>---</span>}</td>
+	</tr>
+	
+	<tr><td{#if:^xfields.trns.24.active: class="thick"}><input type='checkbox' disabled="disabled"{#if:^xfields.trns.24.active: checked="checked"} /> {^xfields.trns.24.value}</td>
+		<td class='mini'>[VGB]</td>
+		<td>{#if:^xfields.tr_vgb_from:{^xfields.tr_vgb_from}~date("Y-m-d")~}{#ifnot:^xfields.tr_vgb_from:<span class='gray'>---</span>}</td>
+		<td>{#if:^xfields.tr_vgb_to:{^xfields.tr_vgb_to}~date("Y-m-d")~}{#ifnot:^xfields.tr_vgb_to:<span class='gray'>---</span>}</td>
+	</tr>
+</table>
+
+
+
+
+}
+-->
+
+
+{#use:%ist.xfield_def:
+		{#if:^xfields.training_remarks:
+		<div>{^xfields.training_remarks}~nl2br~</div>}
+		{#ifnot:^xfields.training_remarks:<div class="gray" style="text-indent: 20px;">(use this area as a quick clipboard)</div>}
+}

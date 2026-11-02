@@ -1,0 +1,335 @@
+<?php
+/**
+ * Field plugin for storing monetary value (Currency)
+ * - Stores data in both columns of "ixf", int_value is the currency ( 1 = USD, 2 = EUR, etc... ), and amount in "value"
+ * - List of available currencies are stored in the "cd" field, one per line (ISO is used). Example: USR EUR GBP ; If missing, all available currencies are shown.
+ * - "Default" value refers to the currency selector, and not the the amount of money (That always starts empty)
+ * @see https://en.wikipedia.org/wiki/ISO_4217
+ *
+ * @author Wavetrex Infinity <wavetrex@gmail.com>
+ * @package CargoConnect
+ * @subpackage Plugins
+ * @version 2.7.1
+ */
+class App_Plugin_Field_Money
+{
+	public $name = "Money Amount";
+
+	/**
+	 * List of all currencies known to the system. Loaded from a YAML file on first use.
+	 * @var array
+	 */
+	private static $_currencies = array();
+
+	/**
+	 * All currencies, indexed by the ISO code (necessary for some search operations/filters)
+	 * @var array
+	 */
+	private static $_currency_iso_index = array();
+
+	/**
+	 * Loads and indexes the currency table on first use
+	 */
+	public function __construct()
+	{
+		if(empty(self::$_currencies)) {
+			$currency_data = MVC_Core::$spyc-> loadFile(ROOT .DS. 'app'. DS. 'data'. DS. 'currencies.yaml');
+			foreach($currency_data as &$entry) {
+				self::$_currencies[(int)$entry['curr']] = &$entry;
+				self::$_currency_iso_index[$entry['iso']] = &$entry;
+			}
+		}
+	}
+
+	/**
+	 * Field definition for the next field being processed
+	 * @var array
+	 */
+	public $fdef;
+
+	/**
+	 * Where is the Amount stored (for filters)
+	 *
+	 * @var string
+	 */
+	public $data_column = "value";
+
+	/**
+	 * Checks if the value sent from the form is correct.
+	 *
+	 * @param Field data $fdata (From form)
+	 * @param bool $update_mode
+	 * @return bool
+	 */
+	public function check(&$fdata, $update_mode = false)
+	{
+		$fdata['amount'] = trim($fdata['amount']);
+
+		// In update mode, it allows the "amount" part to be empty, and currency is ignored
+		if($update_mode && strlen($fdata['amount'])==0)
+			return false;
+
+		// In normal mode, if the field is required, it must contain a proper value and currency
+		if(isset($this-> fdef['o']['req']) && $this-> fdef['o']['req']==true && strlen($fdata['amount'])==0)
+			return "Currency amount must be entered";
+
+		// When the amount is entered, make sure it's a number and the currency has been selected
+		if(strlen($fdata['amount'])>0) {
+			if(!preg_match("/^[0-9]+(?:.[0-9]{1,2})?$/", $fdata['amount']))
+				return "The entered amount must be a valid positive number";
+ 			if($fdata['curr']==0)
+ 				return "The currency has not been selected";
+
+			$fdata['curr'] = (int)$fdata['curr'];
+ 			if(!isset(self::$_currencies[$fdata['curr']]))
+ 				return "Invalid currency selected. Possible template error";
+ 		}
+
+ 		return false; // No problems detected
+	}
+
+	/**
+	 * Converst the input data into the format which can be stored in the database
+	 * @param array $fdata
+	 * @return array
+	 */
+	public function get_Field_Store(&$fdata)
+	{
+		if(strlen($fdata['amount'])==0) // When no amount is entered, the field should be cleared (including currency, removed)
+			// && (!isset($fdata['curr']) || strlen($fdata['curr'])==0)
+			return array();
+
+		return array(
+			'int_value'=> isset($fdata['curr'])? (int)$fdata['curr']: null,
+			'value'=> strlen($fdata['amount'])>0? $fdata['amount']: null
+		);
+	}
+
+	/**
+	 * Currency fields do not have a default value (They start with 0, but they can have a default currency)
+	 */
+	public function get_Default()
+	{
+ 		$field_store = array(
+ 			'value'=> 0,
+ 			'int_value'=> self::$_currency_iso_index[$this-> fdef['o']['def']]
+ 		);
+	}
+
+	/**
+	 * Template system needs placeholders
+	 *
+	 * @param string $key Base key
+	 * @param string $primary_field_name
+	 * @return array
+	 */
+	public function get_Serialized_Placeholders($key, $primary_field_name = null, $group = null)
+	{
+		if(!$primary_field_name)
+			$primary_field_name = "Money";
+
+		$phs = array();
+		$phs[] = array(
+			'n'=> $primary_field_name. " / Value",
+			'group'=> $group,
+			'ph'=> '{'.$key.'.amtf}'
+		);
+		$phs[] = array(
+			'n'=> $primary_field_name.' / Currency',
+			'group'=> $group,
+			'ph'=> '{'.$key.'.curr}'
+		);
+		return $phs;
+	}
+
+	/**
+	 * Decodes the stored special field into the usable data
+	 * @param array $xf Field data
+	 * @param bool $serialize Serialize the field data (for the grid)
+	 * @return array|string
+	 */
+	public function decode($xf, $serialize = false)
+	{
+		if(!is_numeric($xf['int_value']) || !isset(self::$_currencies[(int)$xf['int_value']]))
+			$curr_row = array(
+				'curr'=> 0,
+				'name'=> "Unknown",
+				'iso'=> '(?)',
+				'sym'=> ''
+			);
+		else
+			$curr_row = self::$_currencies[(int)$xf['int_value']];
+
+		if(strlen($xf['value'])>0) {
+			$xf['value'] = str_replace(',', '.', $xf['value']);
+			$amtf = number_format($xf['value'], 2, '.', '');
+ 			// Obtain serialized form
+ 			if(isset($this-> fdef['o']['colr']) && $this-> fdef['o']['colr'] == 1) {
+ 				$curr = $curr_row['sym'];
+				if(!empty($curr_row['sym_before']))
+					$serialized = $curr_row['sym'].$amtf; // No space in "before" mode ($100)
+				else
+					$serialized = $amtf.' '.$curr_row['sym']; // Symbol comes after (100 €)
+			} else {
+				// ISO mode, always at the end
+				$serialized = $amtf.' '.$curr_row['iso'];
+ 				$curr = $curr_row['iso'];
+			}
+
+			// Not really serialized, but this field is displayed into TWO columns, not one, so each one needs it's own string.
+			$fake_serialize = array(
+				'amtf'=> $amtf,
+				'curr'=> $curr
+			);
+		} else {
+			$xf['value'] = null;
+			$amtf = null;
+			$serialized = null;
+			$fake_serialize = null;
+		}
+
+		// It returns serialized anyway, but if $serielize is true, it returns ONLY the serialized version
+		if($serialize)
+			return $fake_serialize;
+		else
+			return array_merge($curr_row, array('amount'=> $xf['value'], 'amount_format'=> $amtf, 'serialized'=> $serialized)); // True serialized ?
+	}
+
+	/**
+	 * Sets up the form objects for this field type
+	 * @param MVC_Form $form
+	 * @param string $key
+	 * @param array $xfields // all incoming form values
+	 */
+	public function setup_Form(MVC_Form &$form, $key, &$xfields)
+	{
+		$value = (is_array($xfields) && isset($xfields[$key]))? $xfields[$key]: null;
+
+		if(!is_null($value))
+			$default = $value;
+		elseif(isset($this-> fdef['o']) && isset($this-> fdef['o']['def'])) // Default definition must be correct!
+			$default = array('amount'=> '', 'curr'=> self::$_currency_iso_index[$this-> fdef['o']['def']]['curr']);
+		else
+			$default = array('amount'=>'', 'curr'=> null);
+
+		$required = isset($this-> fdef['o']) && isset($this-> fdef['o']['req']) && ($this-> fdef['o']['req'] == true);
+
+		// Options for the currency dropdown
+		$currencies = array();
+		foreach(self::$_currencies as $c_id=> $currency)
+			if(empty($this-> fdef['cd_ex']) || (!empty($this-> fdef['cd_ex']) && isset($this-> fdef['cd_ex'][$currency['iso']])))
+				$currencies[$c_id] = $currency['iso'].' '.$currency['sym']; // TODO - Configurable format for the dropdown?
+
+		// Value part (Number / Float)
+		$form-> add_Element("Scalar", $key, 'amount', $default['amount'], null, "xfd.{$key}", array('label'=> $this-> fdef['n'], 'req'=> (bool)$required));
+		// Currency selector part
+		$form-> add_Element("Enum", $key.'_curr', 'curr', $default['curr'], $currencies, "xfd.{$key}", array('label'=> $this-> fdef['n']." Currency", 'req'=> false));
+	}
+
+	public function form_Compat($xfield, $key)
+	{
+		if(strlen($xfield['value'])>0) {
+			return array(
+				'amount'=> str_replace(',', '.', $xfield['value']),
+				'curr'=> $xfield['int_value']
+			);
+		} else
+			return array(
+				'amount'=> null,
+				'curr'=> null
+			);
+	}
+
+	/**
+	 * Converts a field search value from the format it is displayed (and possibly searched for) to the format it is stored
+	 * @param array $search_value
+	 */
+	public function prepare_Data_Search(&$filter_item, &$filter_info)
+	{
+//  	dd($filter_item);
+// 		dd($filter_info);
+		if(!empty($filter_info['att_data_search'])) {
+			// Cannot be done for now... don't remember how this fucking thing works
+		}
+
+		// First match attempt: Condition, followed by amount, followed by currency (optional)
+		$value = trim($filter_item['v']);
+
+		if($value == '+') {
+			// Special value - Makes sure the amount has been set!
+			return $filter_item['c'] = "NOT_EMPTY";
+		}
+
+		preg_match("/([=><~]?)([0-9.]+) ?(.*)/i", $value, $matches);
+		if(empty($matches)) {
+			// Standard format not found, try the text as the name of a currency ( and ISO code )
+			if(strlen($value)==3 && isset(self::$_currency_iso_index[strtoupper($value)])) {
+				// Probably ISO
+				$currency = self::$_currency_iso_index[strtoupper($value)];
+				$filter_item['extra_c'] = "`xf_{$filter_info['fkey']}`.int_value = ".$currency['curr'];
+			} else {
+				// Try it with symbol (or by name) - Slower, not indexed
+				foreach(self::$_currencies as $currency)
+					if($value == $currency['sym'] || (strlen($value)>2 && stripos($currency['name'], $value)!==false)) {
+						$filter_item['extra_c'] = "`xf_{$filter_info['fkey']}`.int_value = ".$currency['curr'];
+						break;
+					}
+			}
+			if(isset($filter_item['extra_c']))
+				$filter_item['c'] = "NOT_EMPTY";
+			else
+				// Nothing found: Ignore filter
+				$filter_item['v'] = null;
+			return;
+		}
+
+		if(strlen($matches[2])>0) {
+			$filter_item['cast'] = "decimal";
+			// We have an amount !
+
+			switch($matches[1]) {
+				// Must value exactly (integer part, ignore what's after dot)
+				case '=':
+					$filter_item['c'] = "BETWEEN";
+					$filter_item['v'] = array(number_format(floor($matches[2]), 2, '.', ''), number_format(floor($matches[2])+0.99, 2, '.', ''));
+					break;
+				case '>':
+					$filter_item['c'] = "GREATER_THAN_OR_EQUAL";
+					$filter_item['v'] = number_format($matches[2]-0.005, 2, '.', '');
+					break;
+				case '<':
+					$filter_item['c'] = "LESS_THAN_OR_EQUAL";
+					$filter_item['v'] = number_format($matches[2]+0.005, 2, '.', '');
+					break;
+				case '~':
+					$filter_item['c'] = "BETWEEN";
+					$filter_item['v'] = array(number_format($matches[2] * 0.95, 2, '.', ''), number_format($matches[2] * 1.05, 2, '.', ''));
+					break;
+				default:
+					$filter_item['c'] = "BETWEEN";
+					$filter_item['v'] = array(number_format($matches[2] * 0.995, 2, '.', ''), number_format($matches[2] * 1.005, 2, '.', ''));
+					break;
+			}
+
+			if(strlen($matches[3])>0) {
+				// We have a currency specified, if found, only show the amounts with that currency
+				if(strlen($matches[3])==3 && isset(self::$_currency_iso_index[strtoupper($matches[3])])) {
+					// Probably ISO
+					$currency = self::$_currency_iso_index[strtoupper($matches[3])];
+					$filter_item['extra_c'] = "`xf_{$filter_info['fkey']}`.int_value = ".$currency['curr'];
+				} else {
+					$search = trim($matches[3]);
+					// Try it with symbol (or by name) - Slower, not indexed
+					foreach(self::$_currencies as $currency)
+						if($search == $currency['sym'] || (strlen($search)>2 && stripos($currency['name'], $search)!==false)) {
+							$filter_item['extra_c'] = "`xf_{$filter_info['fkey']}`.int_value = ".$currency['curr'];
+							break;
+						}
+				}
+			}
+
+		} else
+			$filter_item['c'] = null; // No value, nothing to filter
+	}
+
+}

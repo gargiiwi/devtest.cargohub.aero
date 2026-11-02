@@ -1,0 +1,5 @@
+jQWidgets v3.9.0 (2015-Oct)
+
+Notes:
+- jqxSwitchButton does not work properly in invisible areas, so it gets initialized after the browser shows the stuff (with a delay)
+- TODO: Check if still valid ?

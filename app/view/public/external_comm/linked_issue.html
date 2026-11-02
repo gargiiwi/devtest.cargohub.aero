@@ -1,0 +1,56 @@
+{@<style type="text/css">
+/* Some styles specific issues linked to comm center tabs */
+div.linked-element table {
+	width: 100%;
+	margin-bottom: 6px;
+}
+	div.linked-element table tr {
+		height: 20px;
+	}
+
+	div.linked-element table th {
+		width: 14%;
+	}
+	
+	div.linked-element table a {
+		font-weight: bold;
+		color: #48B4DB;
+	}
+	
+	div.linked-element table img {
+		float: left;
+		margin-right: 6px;
+	}
+</style>}
+{!Embed issue type specific styles}
+<style type="text/css">
+{#raw:issues/{type.key}/embedded_styles.css}
+</style>
+<table class="infotable">
+<tr>
+	<th>Tracking ID:</th>
+	<td><a href="/issue?action=view&track={track}">{track}</a></td>
+	<th>Submitted by:</th>
+	<td><span class='contact-item' data-con_id="{submitted_by}">{submitter.name}</span></td>
+</tr>
+<tr>
+	<th>Created on:</th>
+	<td>{ctime}~date("Y-m-d (H:i)")~</td>
+	<th>Submitted for:</th>
+	<td>{group.name}</td>
+</tr>
+<tr>
+	<th>Updated on:</th>
+	<td>{utime}~date("Y-m-d (H:i)")~</td>
+	<th>Status:</th>
+	<td><img src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</td>
+</tr>
+<tr>
+	<th>Current handler:</th>
+	<td>{#if:organization.contact_id:<span class='contact-item' data-con_id="{organization.contact_id}">}{organization.name}{#if:organization.contact_id:</span>}</td>
+	<!-- 
+	<th>Priority:</th>
+	<td><img src='/img/icons16/priorities/{priority_key}.png' alt="{priority}" /> {priority}~cut(100,2)~</td>
+	 -->
+</tr>
+</table>

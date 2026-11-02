@@ -1,0 +1,133 @@
+{@<style type="text/css">
+#witnesses {
+	width: 100%;
+	margin: 0;
+	margin-top: 8px;
+	border-collapse: collapse;	
+}
+	#witnesses h3 {
+		background-color: #eee;
+		padding: 3px;
+	}
+	#witnesses td {
+		margin: 0;
+		padding: 0;
+		border: 1px solid lightgray;
+	}
+
+	#witnesses div {
+		margin: 0 0 6px 8px;
+	}
+		#witnesses div > label {
+			font-size: 80%;
+			color: gray;
+			display: block;
+		}
+		#witnesses div > p {
+			font-size: 90%;
+			margin: 0;
+		}
+
+.inputblock {
+	border: 1px solid lightgray;
+	padding: 8px;
+}
+	.inputblock:HOVER {
+		background-color: #f6f8fA;
+	}
+
+	.inputblock div {
+		margin: 0 4px 6px 2px;
+	} 
+	.inputblock label {
+		display: block;
+		margin-bottom: 2px;
+		font-size: 90%;
+		color: gray;
+	}
+	.inputblock input {
+		position: relative;
+		width: 100%;
+		height: 20px;
+		line-height: 20px;
+		background-color: white;
+	}
+	
+#people-inv {
+	width: 100%;
+	margin: 0;
+}
+	#people-inv th {
+		font-size: 95%;
+		color: gray;
+	}
+div.fourcolcbox label {
+	display: block;
+	width: 140px;
+	float: left;
+}
+
+.itembox {
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6);
+	line-height: 16px !important;
+}
+label.twocolcbox {
+	display: block;
+	width: 250px;
+	float: left;
+}
+label.threecolcbox {
+	display: block;
+	width: 175px;
+	float: left;
+}
+label.fourcolcbox {
+	display: block;
+	width: 135px;
+	float: left;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="gen_inc-dashboard" data-panel='0' style='height: 1200px;' data-editable="1" data-edittpl="dashboard" data-editheight="1400">
+	<div><img src='/img/icons16/menus/gen_inc-dashboard.png' alt="{track}" />Incident dashboard</div>
+	<div class="datatable">
+{#include::panels/dashboard_view.html}
+	</div>
+</div>
+
+<div id="gen_inc-people" data-panel='0' style='height: 650px;' data-editable="1" data-edittpl="people" data-editheight="800">
+	<div><img src='/img/icons16/menus/gen_inc-people.png' alt="People" />Involved people and Reporting</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/people_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+<div id="gen_inc-followup" data-panel='1' style='height: 1330px;' data-editable="1" data-edittpl="followup" data-editheight="1650">
+	<div><img src='/img/icons16/menus/gen_inc-followup.png' alt="Glass" />Event Followup</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/followup_view.html}	
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+<div id="gen_inc-financial" data-panel='1' style='height: 520px;' data-editable="1" data-edittpl="financial" data-editheight="700">
+	<div><img src='/img/icons16/menus/gen_inc-financial.png' alt="Money" />Financial situation</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/financial_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>
+
+{!Extra templates}
+<script id="risk-calc" type="text/dryjstpl">
+	<div style='height: 330px; overflow: auto;'>
+		<img src="/cmsup/updates/v295/risk-matrix2.png" alt="" width="632" height="294">
+	</div>
+</script>

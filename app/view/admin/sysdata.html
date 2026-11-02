@@ -1,0 +1,52 @@
+{!Version 2019.01.20}
+<div id="sysdata-menubar">
+	<ul>
+		<li><img src="/img/icons16/table_gear.png " alt="[*]" /> Data set
+			<ul style="width: 200px;">
+				<li><img src="/img/icons16/sysdata/airline.png" alt="Airline"> <a href="?type=airline">Airline</a></li>
+				<li><img src="/img/icons16/sysdata/airport.png" alt="Airport"> <a href="?type=airport">Airport</a></li>
+				<li><img src="/img/icons16/sysdata/country.png" alt="Country"> <a href="?type=country">Country</a></li>
+				{#if:config.type:<li ty{!}pe="separator"></li>
+				<li><img src="/img/icons16/folders.png" alt="Folders"> <a href="/admin/sysdata" style="font-style: italic;">* Unselect *</a></li>}
+			</ul>
+		</li>
+		{#if:config.type:
+		<li data-op="create"><img src="/img/icons16/add.png" alt="(+)" /> New entry</li>
+		<li><img src="/img/icons16/sysdata/{config.type}.png" alt="Selected {config.name}" /> Selected {config.name}...
+			<ul style="width: 150px;">
+				<li data-op="action" data-action="view"><img src="/img/icons16/eye.png" alt="[~]" /> View</li>
+				<li data-op="action" data-action="edit"><img src="/img/icons16/pencil.png" alt="[/]" /> Edit</li>
+				<li ty{!}pe="separator"></li>
+				<li data-op="action" data-action="delete" data-confirm="true"><img src="/img/icons16/delete.png" alt="Unregister" /> Delete</li>
+			</ul>
+		</li>
+		<li><img src="/img/icons16/folder.png " alt="[_]" /> Extras and links
+			<ul style="width: 180px;">
+				<li data-op="reset"><img src="/img/icons16/recycle.png" alt="[#]" /> Reset grid</li>
+				{#if:config.type=airline:<li ty{!}pe="separator"></li>
+				<li><img src="/img/icons16/folders.png" alt="[=]" /> <a href="/admin/groups?type=airline">Data groups - Airlines</a></li>}
+			</ul>
+		</li>
+		}
+	</ul>
+</div>
+<br />
+
+{#if:config.type:
+	<h2>{config.name_plural} database</h2>
+	<div id="sysdata-grid"></div>
+	{!Data type specific info and operational templates}
+	{#include::admin/sysdata/{config.type}.html}
+}
+{#ifnot:config.type:
+	<div id="sysdata-info" class='info-expander' data-expanded="true">
+		<div>Select system data table:</div>
+		<div class='spacey'>
+			<ul>
+				<li><a href="?type=airline">Airline</a> - Name and IATA/ICAO codes of an Airline/Carrier (not all are actively used)</li>
+				<li><a href="?type=airport">Airport</a> - Name and IATA/ICAO codes for Airports/Stations (searcheble for various record types)</li>
+				<li><a href="?type=country">Country</a> - English name and National language name of world countries (currently not used)</li>
+			</ul>
+		</div>
+	</div>
+}

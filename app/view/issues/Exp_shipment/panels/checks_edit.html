@@ -1,0 +1,64 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+        {#use:pick_up:<tr>
+            <th><label for='{id}'>{display.label}:</label></th>
+            <td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+        </tr>}
+	      {#use:warehouse_in:<tr>
+            <th><label for='{id}'>{display.label}:</label></th>
+            <td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>
+        </tr>}
+	  
+	    {#use:sec_status:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+        {#use:screening:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+	  
+	   {#use:cus_doc:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+    
+        {#use:ex_a:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+
+       {#use:doc:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+	  
+	   {#use:awb_ins:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+	  
+	   {#use:awb_draft:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+	  
+	   {#use:awb_app:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+      
+	   {#use:pre_alert:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+	  
+	   {#use:fwb_fhl:<tr>
+            <th><label>{display.label}:</label></th>
+            <td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+        </tr>}
+
+  
+
+     </table>
+    }

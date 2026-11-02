@@ -1,0 +1,240 @@
+<div id="todo-page" class="todo-page">
+    <!-- ===================================================== PAGE HEADER ===================================================== -->
+    <div class="todo-page-header">
+        <div class="todo-page-heading">
+            <div class="todo-page-title"><i class="fa fa-check-square-o"></i> <span>Todo List</span></div>
+            <div class="todo-page-subtitle">Manage and track your tasks</div>
+        </div>
+        <a href="javascript:void(0)" class="todo-page-add-btn" onclick="cargohub.user_alltodo.addTodo();">
+            <i class="fa fa-plus"></i> Add Todo
+        </a>
+    </div>
+    <!-- ===================================================== SUMMARY ===================================================== -->
+    <div class="todo-summary">
+        <div class="todo-summary-card">
+            <div class="todo-summary-icon todo-summary-icon-all"><i class="fa fa-list"></i></div>
+            <div class="todo-summary-content">
+                <div class="todo-summary-value" id="todo-count-all">0</div>
+                <div class="todo-summary-label">Total Tasks</div>
+            </div>
+        </div>
+        <div class="todo-summary-card">
+            <div class="todo-summary-icon todo-summary-icon-pending"><i class="fa fa-clock-o"></i></div>
+            <div class="todo-summary-content">
+                <div class="todo-summary-value" id="todo-count-pending">0</div>
+                <div class="todo-summary-label">Pending</div>
+            </div>
+        </div>
+        <div class="todo-summary-card">
+            <div class="todo-summary-icon todo-summary-icon-overdue"><i class="fa fa-exclamation-circle"></i></div>
+            <div class="todo-summary-content">
+                <div class="todo-summary-value" id="todo-count-overdue">0</div>
+                <div class="todo-summary-label">Overdue</div>
+            </div>
+        </div>
+        <div class="todo-summary-card">
+            <div class="todo-summary-icon todo-summary-icon-completed"><i class="fa fa-check"></i></div>
+            <div class="todo-summary-content">
+                <div class="todo-summary-value" id="todo-count-completed">0</div>
+                <div class="todo-summary-label">Completed</div>
+            </div>
+        </div>
+    </div>
+    <!-- ===================================================== TOOLBAR ===================================================== -->
+    <div class="todo-toolbar">
+        <div class="todo-toolbar-left">
+            <label class="todo-select-all">
+                <input type="checkbox" id="todo-select-all" /> <span>Select All</span>
+            </label>
+            <div class="todo-filter-group">
+<!--                <a href="javascript:void(0)" class="todo-filter active" data-filter="all"> All </a>
+                <a href="javascript:void(0)" class="todo-filter" data-filter="pending"> Pending </a>
+                <a href="javascript:void(0)" class="todo-filter" data-filter="overdue"> Overdue </a>-->
+                <a href="javascript:void(0)" class="todo-filter active" data-filter="active"> Active </a>
+                <a href="javascript:void(0)" class="todo-filter" data-filter="completed"> Completed </a>
+            </div>
+        </div>
+        <div class="todo-toolbar-right">
+            <div class="todo-selection-info" id="todo-selection-info">0 selected</div>
+            <a
+                href="javascript:void(0)"
+                class="todo-bulk-status-btn disabled"
+                id="todo-bulk-status-btn"
+                onclick="cargohub.user_alltodo.toggleSelectedStatus();"
+            >
+                <i class="fa fa-check"></i> <span>Complete</span>
+            </a>
+            <a
+                href="javascript:void(0)"
+                class="todo-delete-selected-btn disabled"
+                id="todo-delete-selected-btn"
+                onclick="cargohub.user_alltodo.deleteSelected();"
+            >
+                <i class="fa fa-trash-o"></i> Delete
+            </a>
+            <div class="todo-search-box">
+                <i class="fa fa-search"></i> <input type="text" id="todo-page-search" placeholder="Search tasks..." />
+            </div>
+            <select id="todo-priority-filter" class="todo-select">
+                <option value="">All Priority</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+                <option value="normal">Normal</option>
+            </select>
+        </div>
+    </div>
+    <!-- ===================================================== TODO CONTENT ===================================================== -->
+    <div class="todo-page-content">
+        <!-- OVERDUE -->
+        <div class="todo-group">
+            <div class="todo-group-header">
+                <div class="todo-group-title">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Overdue
+                </div>
+                <div class="todo-group-count">0 tasks</div>
+            </div>
+            <div class="todo-page-list"></div>
+        </div>
+
+        <!-- TODAY -->
+        <div class="todo-group">
+            <div class="todo-group-header">
+                <div class="todo-group-title">
+                    <i class="fa fa-calendar-check-o"></i>
+                    Today
+                </div>
+                <div class="todo-group-count">0 tasks</div>
+            </div>
+            <div class="todo-page-list"></div>
+        </div>
+
+        <!-- UPCOMING -->
+        <div class="todo-group">
+            <div class="todo-group-header">
+                <div class="todo-group-title">
+                    <i class="fa fa-clock-o"></i>
+                    Upcoming
+                </div>
+                <div class="todo-group-count">0 tasks</div>
+            </div>
+            <div class="todo-page-list"></div>
+        </div>
+
+        <!-- NO DUE DATE -->
+        <div class="todo-group">
+            <div class="todo-group-header">
+                <div class="todo-group-title">
+                    <i class="fa fa-calendar-o"></i>
+                    No Due Date
+                </div>
+                <div class="todo-group-count">0 tasks</div>
+            </div>
+            <div class="todo-page-list"></div>
+        </div>
+
+        <!-- COMPLETED -->
+        <div class="todo-group">
+            <div class="todo-group-header">
+                <div class="todo-group-title">
+                    <i class="fa fa-check-circle-o"></i>
+                    Completed
+                </div>
+                <div class="todo-group-count">0 tasks</div>
+            </div>
+            <div class="todo-page-list"></div>
+        </div>
+
+        <!-- DELETED -->
+        <div class="todo-group collapsed">
+    <div class="todo-group-header">
+        <div class="todo-group-title">
+            <i class="fa fa-trash-o"></i>
+            Deleted
+        </div>
+        <div class="todo-group-header-right">
+            <div class="todo-group-count">0 tasks</div>
+            <i class="fa fa-chevron-down todo-group-toggle"></i>
+        </div>
+    </div>
+    <div class="todo-page-list"></div>
+</div>
+    </div>
+</div>
+<!-- ========================================================= TODO POPUP ========================================================= -->
+<div id="todo-popup" class="todo-popup">
+    <div class="todo-popup-overlay" onclick="cargohub.user_alltodo.closeTodoPopup();"></div>
+    <div class="todo-popup-box">
+        <!-- HEADER -->
+        <div class="todo-popup-header">
+            <div class="todo-popup-title">
+                <i class="fa fa-check-square-o"></i> <span id="todo-popup-heading"> Add Todo </span>
+            </div>
+            <a href="javascript:void(0)" class="todo-popup-close" onclick="cargohub.user_alltodo.closeTodoPopup();">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <!-- BODY -->
+        <div class="todo-popup-body">
+            <input type="hidden" id="todo-id" value="" />
+            <!-- TITLE -->
+            <div class="todo-form-group">
+                <label>Title</label>
+                <input type="text" id="todo-title-input" class="todo-form-input" placeholder="Enter task title" />
+            </div>
+            <!-- DATE + PRIORITY -->
+            <div class="todo-form-row">
+                <div class="todo-form-group">
+                    <label>Due Date</label> <input type="date" id="todo-date-input" class="todo-form-input" />
+                </div>
+                <div class="todo-form-group">
+                    <label>Priority</label>
+                    <select id="todo-priority-input" class="todo-form-input">
+                        <option value="low">Low</option>
+                        <option value="normal">Normal</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+            <!-- DESCRIPTION -->
+            <div class="todo-form-group">
+                <label>Description</label>
+                <textarea
+                    id="todo-description-input"
+                    class="todo-form-input todo-form-textarea"
+                    placeholder="Add description"
+                ></textarea>
+            </div>
+            <!-- REMARK -->
+            <div class="todo-form-group">
+                <label>Closing Remark</label>
+                <textarea
+                    id="todo-remark-input"
+                    class="todo-form-input todo-form-textarea"
+                    placeholder="Add remark"
+                ></textarea>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div class="todo-popup-footer">
+            <button
+                type="button"
+                id="todo-delete-btn"
+                class="todo-delete-btn"
+                onclick="cargohub.user_alltodo.deleteTodoFromPopup();"
+            >
+                <i class="fa fa-trash-o"></i> Delete
+            </button>
+            <div class="todo-popup-actions">
+                <button type="button" class="todo-cancel-btn" onclick="cargohub.user_alltodo.closeTodoPopup();">
+                    Cancel
+                </button>
+                <button type="button" class="todo-save-btn" onclick="cargohub.user_alltodo.saveTodo();">
+                    <i class="fa fa-check"></i> <span id="todo-save-text"> Add Todo </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

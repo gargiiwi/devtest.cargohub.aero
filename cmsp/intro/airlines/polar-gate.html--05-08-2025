@@ -1,0 +1,497 @@
+{@<style type="text/css">
+/* @import must be at top of file, otherwise CSS will not work */
+@font-face {font-family: 'Geogrotesque-BoldItalic';src: url('/orgs/po/307A92_0_0.eot');src: url('/orgs/po/307A92_0_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_0_0.woff2') format('woff2'),url('/orgs/po/307A92_0_0.woff') format('woff'),url('/orgs/po/307A92_0_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-Light';src: url('/orgs/po/307A92_1_0.eot');src: url('/orgs/po/307A92_1_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_1_0.woff2') format('woff2'),url('/orgs/po/307A92_1_0.woff') format('woff'),url('/orgs/po/307A92_1_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-MediumItalic';src: url('/orgs/po/307A92_2_0.eot');src: url('/orgs/po/307A92_2_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_2_0.woff2') format('woff2'),url('/orgs/po/307A92_2_0.woff') format('woff'),url('/orgs/po/307A92_2_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-RegularItalic';src: url('/orgs/po/307A92_3_0.eot');src: url('/orgs/po/307A92_3_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_3_0.woff2') format('woff2'),url('/orgs/po/307A92_3_0.woff') format('woff'),url('/orgs/po/307A92_3_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-Medium';src: url('/orgs/po/307A92_4_0.eot');src: url('/orgs/po/307A92_4_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_4_0.woff2') format('woff2'),url('/orgs/po/307A92_4_0.woff') format('woff'),url('/orgs/po/307A92_4_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-Regular';src: url('/orgs/po/307A92_5_0.eot');src: url('/orgs/po/307A92_5_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_5_0.woff2') format('woff2'),url('/orgs/po/307A92_5_0.woff') format('woff'),url('/orgs/po/307A92_5_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-Bold';src: url('/orgs/po/307A92_6_0.eot');src: url('/orgs/po/307A92_6_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_6_0.woff2') format('woff2'),url('/orgs/po/307A92_6_0.woff') format('woff'),url('/orgs/po/307A92_6_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-SemiBold';src: url('/orgs/po/307A92_7_0.eot');src: url('/orgs/po/307A92_7_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_7_0.woff2') format('woff2'),url('/orgs/po/307A92_7_0.woff') format('woff'),url('/orgs/po/307A92_7_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-SemiBoldItalic';src: url('/orgs/po/307A92_8_0.eot');src: url('/orgs/po/307A92_8_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_8_0.woff2') format('woff2'),url('/orgs/po/307A92_8_0.woff') format('woff'),url('/orgs/po/307A92_8_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-Thin';src: url('/orgs/po/307A92_9_0.eot');src: url('/orgs/po/307A92_9_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_9_0.woff2') format('woff2'),url('/orgs/po/307A92_9_0.woff') format('woff'),url('/orgs/po/307A92_9_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-UltraLight';src: url('/orgs/po/307A92_A_0.eot');src: url('/orgs/po/307A92_A_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_A_0.woff2') format('woff2'),url('/orgs/po/307A92_A_0.woff') format('woff'),url('/orgs/po/307A92_A_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-ThinItalic';src: url('/orgs/po/307A92_B_0.eot');src: url('/orgs/po/307A92_B_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_B_0.woff2') format('woff2'),url('/orgs/po/307A92_B_0.woff') format('woff'),url('/orgs/po/307A92_B_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-UltraLightItalic';src: url('/orgs/po/307A92_C_0.eot');src: url('/orgs/po/307A92_C_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_C_0.woff2') format('woff2'),url('/orgs/po/307A92_C_0.woff') format('woff'),url('/orgs/po/307A92_C_0.ttf') format('truetype');}
+@font-face {font-family: 'Geogrotesque-LightItalic';src: url('/orgs/po/307A92_D_0.eot');src: url('/orgs/po/307A92_D_0.eot?#iefix') format('embedded-opentype'),url('/orgs/po/307A92_D_0.woff2') format('woff2'),url('/orgs/po/307A92_D_0.woff') format('woff'),url('/orgs/po/307A92_D_0.ttf') format('truetype');}
+
+div.header {
+	padding-bottom: 0 !important;
+}
+	div.header > div.header-bar {
+		margin-bottom: 0 !important;
+	}
+	
+.page, .jqx-widget-content {
+	font-family: Geogrotesque-Regular !important;
+	color: #333;
+}
+
+.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9{
+		float:left
+	}
+	.col-md-12{
+		width:100%
+	}
+	.col-md-11{
+		width:91.66666667%
+	}
+	.col-md-10{
+		width:83.33333333%
+	}
+	.col-md-9{
+		width:75%
+	}
+	.col-md-8{
+		width:66.66666667%
+	}
+	.col-md-7{
+		width:58.33333333%
+	}
+	.col-md-6{
+		width:50%
+	}
+	.col-md-5{
+		width:41.66666667%
+	}
+	.col-md-4{
+		width:33.33333333%
+	}
+	.col-md-3{
+		width:25%
+	}
+	.col-md-2{
+		width:16.66666667%
+	}
+	.col-md-1{
+		width:8.33333333%
+	}
+
+
+#footNav,#mainMenu,#sitemap ul {
+	list-style-type: none;
+	font-family: Geogrotesque-Medium;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 21px;
+	letter-spacing: 0.03em;
+	margin: 0;
+	padding: 0;
+}
+a:focus, a:hover { text-decoration: none; }
+.section { float: left; width: 100%; }
+.header-in { display: block; background-color: #003087; width: 100%; height: 100px; }
+#mainMenu {
+	padding-right: 30px;
+	margin: 33px 0 0 0;
+	float: right;
+	font-size: 17px;
+}
+#mainMenu li {
+	margin: 0;
+	float: left;
+	position: relative;
+	height: 65px;
+}
+	#mainMenu li a.sub {
+		display: block;
+		line-height: 22px;
+		color: #fff;
+		margin: 21px 0;
+		padding: 0 15px;
+		font-weight: 400;
+	}
+		#mainMenu li a.lvbar {
+			border-left: 1px solid #5499d3;
+		}
+		#mainMenu li a.sub {
+			font-size: 14px;
+			text-decoration: none;
+		}
+		
+	
+#footNav a, #mainMenu a, #socialLinks a, #topMenu *, .leftmenu a {
+	-webkit-transition: all .25s ease;
+	-moz-transition: all .25s ease;
+	transition: all .25s ease;
+}
+a {
+	color: #337ab7;
+	text-decoration: none;
+}
+.subBox {
+	position: absolute;
+	left: 0;
+	width: auto;
+	height: auto;
+	background: #003087;
+	text-align: left;
+	display: none;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+	z-index: 9999;
+}
+#mainMenu li a.sub:hover,#mainMenu li.active a.sub{
+	color:#fcb331;
+}
+.submenuLinks {
+	text-align: left; float:left;
+	min-width: 220px;
+}
+	.submenuLinks a {
+		display: block; color: #fff; line-height:44px; font-size: 14px; text-decoration: none; border-top: 1px solid rgba(255, 255, 255, 0.3); margin: 0 15px; padding: 0 20px 0 0;
+	}
+		.submenuLinks a:hover {
+			color: #FCB52E;
+			font-weight: 500;
+			padding-left: 0;
+		}
+
+#sitemap h4 {
+	color: #004a80;
+	font-size: 16px;
+	font-weight: 500;
+	padding-bottom: 5px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #004a80;
+	margin: 0 10px;
+}
+#footNav li a {
+	float: left;
+	display: block;
+	line-height: 60px;
+	color: #fff;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-decoration: none;
+}
+#footNav { margin: 0 }
+
+.our-company:hover .subBox { display: block; }
+.prod-serv:hover .subBox { display: block; }
+.cu-supp:hover .subBox { display: block; }
+.contact-us:hover .subBox { display: block; left: inherit; right: 0; }
+
+.leftmenu a { display:block; color: #333; border-top: 1px solid #d8d8d8; line-height: 40px; text-transform: uppercase; font-size: 14px; text-indent: 12px; }
+.leftmenu a:hover, .current-page-item { background: #003087; color: #fff; }
+.current-page-item a { color: #fff; }
+
+.pageTitle {
+	background: url("/orgs/po/customersupport1150.jpg") no-repeat scroll 100%;
+	width: 100%;
+	height: 364px;
+}
+	.pageTitle h2 {
+		color: #003087;
+		display: inline-block;
+		font-family: Geogrotesque-UltraLightItalic;
+		font-size: 68px;
+		line-height: 68px;
+		margin: 0;
+		padding: 30px 0 0 30px;;
+	}
+.mainLogo {
+	float: left;
+	height: 30px;
+	position: relative;
+	top: 25px;
+	left: 30px;
+	width: 122px;
+}
+
+.breadcrumb {
+	border-radius: 4px;
+	list-style: outside none none;
+	margin-bottom: 22px;
+	padding: 8px 15px;
+}
+.breadcrumb > li {
+	display: inline-block;
+}
+.breadcrumb > li + li::before {
+	color: #ccc;
+	content: "> ";
+	padding: 0 5px;
+}
+.breadcrumb > .active {
+	color: #c4c4c6;
+}
+
+#footerId {
+	margin-top: 30px;
+	width: 100%;
+	background-color: #003087;
+	color: rgb(217, 217, 217);
+	padding: 28px;
+	box-sizing: border-box;
+}
+
+	#footerId ul.menu { float: left; list-style:none; padding: 0 15px 0 10px; border-left: 1px solid rgba(255, 255, 255, 0.4); }
+	#footerId ul.menu a {color:#d9d9d9; font-size: 13px; }
+	#footerId ul.menu a:hover { color: #FCB52E;}
+
+
+.footerLogo {
+	float: right;
+	height: 35px;
+	margin-bottom: 20px;
+	width: 195px;
+}
+.copyright {
+	clear: right;
+	color: rgba(255, 255, 255, 0.4);
+	font-size: 12px;
+	text-align: right;
+}
+
+
+table#claim-types {
+	width: 100%; border-collapse: collapse; border-spacing: 1px;
+}
+
+	table#claim-types th, table#claim-types td {
+		padding: 5px;
+	}
+
+.polar-list {
+	
+}
+.polar-list label {
+	display: inline-block;
+	width: 150px;
+}
+
+</style>}
+	<div class="header-in">
+		<a href="https://www.polaraircargo.com">
+			<img src="/orgs/po/polar-logo_white.svg" class="mainLogo">
+		</a>
+		<ul id="mainMenu">
+			<li class="our-company">
+				<a href="https://www.polaraircargo.com/our-company/overview/" class="sub products-services">OUR COMPANY</a>
+				<div class="subBox">
+					<div>
+						<div class="submenuLinks">
+							<a href="https://www.polaraircargo.com/our-company/overview/" target="">OVERVIEW</a>
+							<a href="https://www.polaraircargo.com/our-company/polar-air-at-a-glance/" target="">AT-A-GLANCE</a>
+							<a href="https://www.polaraircargo.com/our-company/history/" target="">HISTORY</a>
+							<a href="https://www.polaraircargo.com/our-company/management/" target="">MANAGEMENT</a>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="prod-serv">
+				<a href="https://www.polaraircargo.com/products-services/overview/" class="sub products-services lvbar">PRODUCTS &amp; SERVICES</a> 
+				<div class="subBox">
+					<div>
+						<div class="submenuLinks"> 
+							<a href="https://www.polaraircargo.com/products-services/overview/" target="">OVERVIEW</a>
+							<a href="https://www.polaraircargo.com/products-services/polar-premier/" target="">POLAR PREMIER</a>
+							<a href="https://www.polaraircargo.com/products-services/trucking-services/" target="">TRUCKING SERVICES</a>
+							<a href="https://www.polaraircargo.com/products-services/special-cargo/" target="">SPECIAL CARGO</a>
+							<a href="https://www.polaraircargo.com/products-services/our-fleet/" target="">OUR FLEET</a>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="cu-supp">
+				<a href="https://www.polaraircargo.com/customer-support/overview/" class="sub products-services lvbar" style="color: #FCB52E;">CUSTOMER SUPPORT</a> 
+				<div class="subBox">
+					<div>
+						<div class="submenuLinks"> 
+							<a href="https://www.polaraircargo.com/customer-support/overview/" target="">OVERVIEW</a>
+							<a href="https://www.polaraircargo.com/customer-support/procurement/" target="">PROCUREMENT</a>
+							<a href="https://www.polaraircargo.com/customer-support/shipping-guides/" target="">SHIPPING GUIDES</a>
+							<a href="https://www.polaraircargo.com/customer-support/claims/" target="" style="color: #FCB52E;">CLAIMS</a>
+							<a href="https://www.polaraircargo.com/customer-support/customs-updates/" target="">CUSTOMER UPDATES</a>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="contact-us">
+				<a href="https://www.polaraircargo.com/contact-us/local-contact-information/" class="sub products-services lvbar">CONTACT US</a> 
+				<div class="subBox">
+					<div>
+						<div class="submenuLinks"> 
+							<a href="https://www.polaraircargo.com/contact-us/local-contact-information/" target="">LOCAL CONTACT INFO</a>
+							<a href="https://www.polaraircargo.com/contact-us/oal-jumpseat/" target="">OAL JUMPSEATS</a>
+							<a href="https://www.polaraircargo.com/contact-us/couriers-grooms/" target="">COURIERS/GROOMS</a>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="pageTitle">
+		<div class="titleWrap">
+			<h2 class="light">Cargo Claims</h2>
+		</div>
+	</div>
+	
+	<div>
+		<ol class="breadcrumb">
+			<li><span><a href="https://www.polaraircargo.com/">Home</a></span></li>
+			<li><span><a href="https://www.polaraircargo.com/customer-support/">Customer Support</a></span></li>
+			<li><strong>Claims</strong></li>
+		</ol>
+	</div>
+
+	<div class="col-md-3" id="sitemap">
+		<ul>
+			<li class="leftmenu"><a href="https://www.polaraircargo.com/customer-support/overview/">Overview</a></li>
+			<li class="leftmenu"><a href="https://www.polaraircargo.com/customer-support/procurement/">PROCUREMENT</a></li>
+			<li class="leftmenu"><a href="https://www.polaraircargo.com/customer-support/shipping-guides/">SHIPPING GUIDES</a></li>
+			<li class="leftmenu current-page-item"><a href="https://www.polaraircargo.com/customer-support/claims/" style="border-bottom: 1px solid #ddd;">Claims</a></li>
+			<li class="leftmenu"><a href="https://www.polaraircargo.com/customer-support/customs-updates/">CUSTOMS UPDATES</a></li>
+		</ul>
+	</div>
+	
+	<div class="col-md-9">
+
+	{#plugin:recordgate}{!
+			<div style="margin: 1.5em auto; width: 744px;">
+				<a href="/issue?action=form&group=158&mawbp=369" id="submit" class="xlink">
+					<h1><img src="/img/icons/ist/cargoclaim_general.png" alt="Cash">Submit Cargo Claim</h1>
+					<p style="margin-top: 4px;">Fill in the form and upload documents</p>
+				</a>
+				<div style="width: 20px; float: left;">&nbsp;</div>
+		
+				<a href="/contact/account?hash=issues" class="xlink">
+					<h1><img src="/img/icons/magnifier.png" alt="Lupe">Search submitted claims</h1>
+					<p style="margin-top: 4px;">Review your existing claims <i>(requires log-in)</i></p>
+				</a>
+				<div class="clear"></div>
+			</div>
+	}		
+		{#plugin:jqxtabs}
+		<br />
+		<div id="tabs-claiminfo">
+			<ul>
+				<li style="margin-left: 20px;">Filing a claim</li>
+				<li>Requirements for claim</li>
+				<li>Need more information?</li>
+			</ul>
+			<div>
+				<div class="spacey">
+					<p>A cargo claim is a written complaint demanding financial compensation from Polar Air Cargo Worldwide for loss of, damage or<br /> delay to cargo whilst in care and control pursuant to a contract of carriage.</p>
+					<p>In the case of damage or delay, the person entitled to delivery must complain to Polar Air Cargo Worldwide within the time lines stated below. If no complaint is made within the times indicated below, then no action can be brought against Polar Air Cargo Worldwide.</p>
+				</div>
+				
+				<table id="claim-types">
+					<tr bgcolor="#c7c7c7" style="color: #ffffff;">
+						<th width="5%" style="text-align: center; color: #fff;">No.</th>
+						<th width="15%" style="color: #fff;">Claim Type</th>
+						<th width="40%" style="color: #fff;">Description</th>
+						<th width="40%" style="color: #fff;">Time Limit</th>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">1</td>
+						<td style="text-align: left;">Loss.</td>
+						<td style="text-align: left;">Loss of whole consignment.</td>
+						<td style="text-align: left;"><span class='impno'>120</span> days from the AWB issuing date.</td>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">2</td>
+						<td style="text-align: left;">Damage.</td>
+						<td style="text-align: left;">To consignment whole or in part.</td>
+						<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">3</td>
+						<td>Partial Loss.</td>
+						<td style="text-align: left;">Loss of part of the consignment.</td>
+						<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">4</td>
+						<td>Delay.</td>
+						<td style="text-align: left;">To complete consignment or part of it</td>
+						<td style="text-align: left;"><span class='impno'>21</span> days from the placing date.</td>
+					</tr>
+					<tr>
+						<td align="center" style="text-align: center;">5</td>
+						<td>Pilferage.</td>
+						<td style="text-align: left;">To consignment whole or in part</td>
+						<td style="text-align: left;"><span class='impno'>14</span> days from receiving consignment.</td>
+					</tr>
+				</table>
+				<div>&nbsp;</div>
+			</div>
+			<div>
+				<div class="spacey">
+				<p>If a preliminary claim was not submitted through our e-Claims portal, then a copy of the official complaint made to Polar Air Cargo must be uploaded into your formal claim file. Also an official claim from the person entitled to delivery must also be uploaded.</p>
+				<p>The following lists documentation that may be required and should also be uploaded into your formal claim file if available.</p>
+				<hr />
+				<ul class="polar-list">
+					<li>Claim type: total loss, partial loss, damage or delay</li>
+					<li>Mishandled weight and pieces</li>
+					<li>Claimed amount</li>
+					<li>Commercial  Invoices (highlighting the mishandled goods only in the invoices)</li>
+					<li>Packing List (highlighting the mishandled goods only)</li>
+					<li>Customs Report (if available)</li>
+					<li>Proof of delivery (POD) (if available), not required for total loss claims</li>
+					<li>Subrogation letter (in case claimant is not the shipper or consignee) and it should be on an official company letter head, stamped and signed by an authorized person.</li>
+					<li>Proof of contract: Copy of the master air waybill and house air waybill</li>
+					<li>Detailed statement of Claim fully describing details of loss/damage</li>
+					<li>Proof of mitigation of loss: Salvage receipts or repair invoices</li>
+					<li>Dump certificate proving cargo was destroyed as per local, state or governmental regulations. If a shipment is destroyed a letter from the claimant is required indicating why the cargo could not be used, repaired or salvaged</li>
+					<li>Cargo survey:  Performed by a licensed Marine Surveyor (if available)</li>
+				</ul>
+				</div>
+			</div>
+			<div>
+				<div class="spacey">
+				<p>You may use one of the following channels:</p>
+				<ul class="polar-list">
+					<li><label>Claims Administration:</label><b>Tamilla Suleymanova</b></li>
+					<li><label>Email:</label><a href="mailto:preliminaryclaims@polaraircargo.com">preliminaryclaims@polaraircargo.com</a></li>
+					<li><label>Mail:</label>1 North Lexington Avenue, White Plains, NY 10601 </li>
+					<li>The nearest Polar Air Cargo office.</li>
+					<li><label>Phone:</label>+1 914 318 4729</li>
+					<li><label>Fax (NYC):</label>+1 914 697 5092</li>
+				</ul>
+				<p>Please note that the calculation of the time limit will be based on the date of receipt of your request and not the letter date.<br>
+				In order for you to reserve your right to claim for two years, we advise you to submit your intention to claim letter immediately after discovering the damaged, missing or delayed shipment.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	
+	<footer id="footerId" class="lightWhite">
+		<nav class="col-md-7">
+			<div id="nav_menu-11" class="widget widget_nav_menu"><div class="menu-footer-col-1-menu-container">
+				<ul class="menu" >
+					<li class="menufooter"><a href="https://www.polaraircargo.com/our-company/overview/">Our Company</a></li>
+					<li class="menufooter"><a href="https://www.polaraircargo.com/products-services/overview/">Products &amp; Services</a></li>
+					<li class="menufooter"><a href="https://www.polaraircargo.com/customer-support/overview/">Customer Support</a></li>
+					<li class="menufooter"><a href="https://www.polaraircargo.com/contact-us/local-contact-information/">Contact Us</a></li>
+				</ul></div></div>
+			<div id="nav_menu-12" class="widget widget_nav_menu"><div class="menu-footer-col-2-menu-container">
+				<ul class="menu" >
+					<li class="menufooter"><a href="https://www.atlasairworldwide.com/our-companies/atlas-air/">Our Companies</a></li>
+					<li class="menufooter"><a href="https://www.atlasairworldwide.com/investors/atlas-air-worldwide-glance/">Investors</a></li>
+					<li class="menufooter"><a href="https://employees.atlasair.com/Pages/Home.aspx">Employee Login</a></li>
+				</ul></div></div>
+			<div class="widget widget_nav_menu"><div class="menu-footer-col-3-menu-container">
+				<ul class="menu" >
+					<li class="menufooter"><a href="https://www.atlasairworldwide.com/newsroom/press-releases/">Newsroom</a></li>
+					<li class="menufooter"><a href="https://careers.atlasairworldwide.com/">Careers</a></li>
+					<li class="menufooter"><a href="http://www.atlasairtrainingcenter.com/">Training Center</a></li>
+			</ul></div></div>
+			<div class="widget widget_nav_menu"><div class="menu-footer-col-4-menu-container">
+				<ul class="menu" >
+					<li class="menufooter"><a href="https://www.atlasairworldwide.com/partners-and-suppliers/">Partners and Suppliers</a></li>
+					<li class="menufooter"><a href="https://www.polaraircargo.com/legal/">Legal</a></li>
+					<li class="menufooter"><a href="https://www.atlasairworldwide.com/general-conditions-of-carriage/">General Conditions of Carrriage</a></li>
+				</ul></div></div>
+		</nav>
+		<div class="col-md-5">
+			<a href="https://www.polaraircargo.com/"><img src="https://www.polaraircargo.com/wp-content/themes/polarair/images/svg/polar-logo_white.svg" alt="Polar" class="footerLogo"></a>
+			<div class="copyright">&copy; Copyright 2020 Polar Air Cargo Worldwide, Inc.<br />
+				An Atlas Air Worldwide Holdings, Inc. Company</div>
+		</div>
+		<div class="clear"></div>
+	</footer>

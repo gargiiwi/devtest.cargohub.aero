@@ -1,0 +1,53 @@
+/** Send Options Area **/
+
+#record-send-options table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	#record-send-options td.rs-column {
+		width: 33.3%;
+		padding: 4px;
+		vertical-align: top;
+	}
+
+		#record-send-options td.rs-column h2 {
+			text-indent: 26px;
+		}
+
+	#record-send-options th.rs-radio {
+		width: 24px;
+		padding-top: 2px;
+		vertical-align: top;
+	}
+
+	#record-send-options td.rs-option {
+		height: 95px;
+		vertical-align: top;
+	}
+
+		#issue-com-options td.rs-option > p {
+			margin: 8px 0;
+		}
+
+	#record-send-options #content-controls > div {
+		margin-bottom: 5px;
+	}
+
+	#record-send-options .option-block {
+		margin: 8px 0 4px;
+		padding: 5px;
+		border: 1px solid lightgray;
+		background-color: #F0F0F8;
+	}
+
+#content-controls, #content-controls-placeholder {
+	margin-left: 20px;
+}	
+
+	
+	#content-controls label.ctrl-title {
+		display: inline-block;
+		margin-bottom: 2px;
+		text-indent: 4px;
+	}

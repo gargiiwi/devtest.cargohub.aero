@@ -1,0 +1,423 @@
+{@<style type="text/css">
+
+#saudia-menu {
+	height: 32px;
+	background-color: #a18f5f;
+}
+	#saudia-menu a {
+		display: block;
+		color: white;
+		border: 1px solid transparent;
+		border-top-color: #776841;
+		border-right-color: #776841;
+		line-height: 30px;
+		padding: 0px 13px;
+		float: left;
+		text-transform: uppercase;
+		font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+		font-size: 13px;
+	}
+	#saudia-menu a:hover {
+		background-color: #bca263;
+		text-decoration: none;
+	}
+	
+#saudia-body {
+	font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+	font-size: 14px;
+}	
+	
+	#saudia-body #saudia-left {
+		background-image: url("/orgs/saudia/container-left.png");
+		background-repeat: no-repeat;
+		width: 330px;
+		min-height: 600px;
+		background-position: 0 -300px;
+		float: left;
+	}
+	
+	#saudia-body #saudia-mega-header {
+		background-image: url("/orgs/saudia/main_side_bg.png");
+		background-repeat: no-repeat;
+		background-position: 14px 12px;
+		height: 55px;
+		color: white;
+		text-transform: uppercase;
+		font-size: 18px;
+		padding-top: 25px;
+		text-indent: 40px;
+	}
+	
+	#saudia-body #saudia-left-menu ul {
+		color: white;
+		font-size: 18px;
+		list-style-type: none;
+		margin: 0;
+	}
+	
+		#saudia-body #saudia-left-menu a {
+			color: white;
+		}
+		
+		#saudia-body #saudia-left-menu a:hover {
+			color: white;
+			text-decoration: underline;
+		}
+	
+	#saudia-body #saudia-mini-header {
+		background-image: url("/orgs/saudia/head_bg.png");
+		background-repeat: no-repeat;
+		background-position: 30px 14px;
+		height: 45px;
+		color: white;
+		text-transform: uppercase;
+		font-size: 18px;
+		padding-top: 21px;
+		text-indent: 55px;
+	}
+	
+	#saudia-body #saudia-right {
+		width: 750px;
+		float: right;
+		margin: 26px 20px;	
+	}
+	
+	#saudia-body #saudia-right a {
+		color: #111111;
+		text-decoration: underline;
+	}
+	#saudia-body #saudia-right a:hover {
+		color: #746a4c;
+	} 	
+	
+div.contentblock {
+	padding: 6px;
+	border: 1px solid lightgray;
+	border-radius: 8px;
+}
+
+	div.contentblock h2 {
+		color: #746a4c;
+	}
+	
+div.xlink {
+	margin: 0 auto 20px auto;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	height: 80px;
+	width: 360px;
+	float: left;
+}
+
+	div.xlink a {
+		font-size: 20px;
+		display: block;
+		margin-top: 14px;
+		color: #746a4c;
+}
+	
+	div.xlink img {
+		float: left;
+		margin: 10px 20px 20px 20px;
+		text-decoration: none;
+		border: none;
+	}
+	
+table#saudia-claim-types {
+	margin-bottom: 20px;
+}
+	
+	table#saudia-claim-types td {
+		border: 1px solid gray;
+		padding: 2px;
+	}
+
+/* 
+Saudia Dropdown CSS 
+Last edited: 17-04-2015
+*/
+.saudia-dropdown {
+  	background: #a18f5f;
+  	border-top: 1px solid #776841;
+	border-right: 1px solid #776841;
+}
+
+.saudia-dropdown ul {
+	text-align: left;
+	display: inline;
+	margin: 0;
+	padding: 15px 4px 17px 0;
+	list-style: none;
+	text-transform: uppercase;
+	color: #FFF;
+  	font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+  	font-size: 13px;			
+	}
+
+.saudia-dropdown ul li a:link, a:hover, a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+.saudia-dropdown ul li {
+	height: 32px;
+	line-height: 32px;
+	padding-left: 15px;
+	padding-right: 15px;
+	display: inline-block;
+	margin-right: -3px;
+	position: relative;
+	background: #a18f5f;
+	border-right: 1px solid #776841;
+	cursor: pointer;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+	color: #fff;
+}
+
+.saudia-dropdown ul li:hover {
+	background: #BCA263;
+	color: #fff;
+}
+
+.saudia-dropdown ul li ul {
+	padding: 0;
+	position: absolute;
+	top: 31px;
+	left: 0;
+	width: 190px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	display: none;
+	opacity: 0; 
+	visibility: hidden;
+	-webkit-transiton: opacity 0.2s;
+	-moz-transition: opacity 0.2s;
+	-ms-transition: opacity 0.2s;
+	-o-transition: opacity 0.2s;
+	-transition: opacity 0.2s;
+}
+.saudia-dropdown ul li ul li { 
+	background: #a18f5f; 
+	display: block; 
+	color: #fff;
+    border-bottom:1px solid #776841;
+}
+
+.saudia-dropdown ul li ul li:hover { 
+	background: #BCA263; 
+}
+
+.saudia-dropdown ul li:hover ul {
+	display: block;
+	opacity: 1;
+	visibility: visible;
+}
+
+.saudia-dropdown ul #last {
+  float: right;
+  margin-right: -1px;
+}
+
+.saudia-dropdown ul #last ul {
+  left: -102px !important;
+}
+</style>}
+<div class="saudia-dropdown">
+<ul>
+	<a href="http://saudiacargo.com/"><li>Home</li></a>
+	<li>Our Company
+  <ul>
+    <a href="http://saudiacargo.com/about-us/"><li>About us</li></a>
+    <a href="http://saudiacargo.com/vision-mission/"><li>Vision and Mission</li></a>
+    <a href="http://saudiacargo.com/executive-team/"><li>Executive Team</li></a>
+	<a href="http://saudiacargo.com/our-fleet/"><li>Our Fleet</li></a>
+	<a href="http://saudiacargo.com/awards-and-certifications/"><li>Awards &amp; Certifications</li></a>
+    </ul>
+</li>
+  <li>
+    Products
+    <ul>
+	<a href="http://saudiacargo.com/general-cargo/"><li>General Cargo</li></a>
+	<a href="http://saudiacargo.com/prime-cargo/"><li>Prime Cargo</li></a>
+	<a href="http://saudiacargo.com/special-cargo/"><li>Special Cargo</li></a>
+	<a href="http://saudiacargo.com/bellyflex/"><li>BellyFlex</li></a>
+	<a href="http://saudiacargo.com/charter-cargo/"><li>Charters</li></a>
+
+    </ul>
+  </li>
+  <li>
+    Services
+    <ul>
+	<a href="http://saudiacargo.com/ground-handling-services/"><li>Ground Handling</li></a>
+	<a href="http://saudiacargo.com/road-feeder-services-rfs/"><li>Road Feeder</li></a>
+	<a href="http://saudiacargo.com/warehousing/"><li>Warehousing</li></a>
+	<a href="http://saudiacargo.com/network/"><li>Network</li></a>
+	<a href="http://saudiacargo.com/freighter-schedules/"><li>Schedules</li></a>
+	<a href="http://saudiacargo.com/ok2ksa/"><li>OK2KSA</li></a>
+	<a href="http://ebooking.champ.aero/index.asp?airline_id=SV"><li>E-Booking</li></a>
+	<a href="http://saudiacargo.com/generate-barcode-label/"><li>Generate Barcode</li></a>
+
+    </ul>
+  </li>
+  <li>
+	Customer Care
+	<ul>
+	<a href="http://saudiacargo.com/customer-information-center-cic/"><li>About CIC</li></a>
+	<a href="http://www.cargohub.nl/wp-content/uploads/2015/11/How-to-submit-a-claim.pdf"><li>How to submit a claim</li></a>
+	<a href="http://saudiacargo.com/customer-feedback/"><li>Customer Feedback</li></a>
+	<a href="http://saudiacargo.com/faqs/"><li>FAQ's</li></a>
+	
+    </ul>
+  </li>
+  <li>
+	Communications
+	<ul>
+	<a href="http://saudiacargo.com/press-room/"><li>Press Room</li></a>
+	<a href="http://saudiacargo.com/screen-saver/"><li>Screen Saver</li></a>
+    </ul>
+  </li>
+ 
+	<a href="http://saudiacargo.com/contact-us/"><li>Contact Us</li></a>
+  <li id="last">
+	Language
+	<ul>
+	  <a href="http://sv.cargoclaims.aero/"><li>English</li></a>
+	  <a href="http://sv-ara.cargoclaims.aero/"><li>Arabic</li></a>
+	</ul>
+  </li>
+</ul>
+</div>
+<div id="saudia-body">
+	<img src="/orgs/saudia/featured-image.jpg" alt="Saudia Cargo" style="margin-bottom: -4px;" />
+	<div id="saudia-left">
+		<div id="saudia-mega-header">Quick Links</div>
+		<div id="saudia-left-menu"><ul>
+			<li><a href="/issue?action=form">Submit Cargo Claim</a></li>
+			<li><a href="/contact/account?hash=issues">Find my claims</a></li>
+			<li><a href="http://saudiacargo.com/tracker/">Track Your Shipment</a></li>
+			<li><a href="http://saudiacargo.com/customer-feedback/">Customer Feedback</a></li>
+			<li><a href="http://saudiacargo.com/career/">Careers</a></li>
+			<li><a href="http://saudiacargo.com/route-mapper.php">Route mapper</a></li>
+			<li><a href="#">Support Questions</a></li>
+		</ul></div>
+		<div id="saudia-mini-header">Customer Care</div>
+		<div id="saudia-left-menu"><ul style="padding-left: 55px;">
+			<li><a href="http://saudiacargo.com/customer-information-center-cic/">Information Center</a></li>
+			<li><a href="http://www.cargohub.nl/wp-content/uploads/2015/11/How-to-submit-a-claim.pdf">Claim process</a></li>
+			<li><a href="http://saudiacargo.com/faqs/">FAQ's</a></li>
+		</ul></div>
+	</div>
+	<div id="saudia-right">
+
+		<div class="xlink">
+			<b><a href="/issue?action=select"><img src="/img/icons/ist/cargoclaim_general.png" alt="Money">Submit Cargo Claim</a></b>
+			<p style="margin-top: 4px;">Fill in the claim form and submit to us</p>
+		</div>
+		<div style="width: 20px; float: left;">&nbsp;</div>
+
+		<div class="xlink">
+			<b><a href="/contact/account?hash=issues"><img src="/img/icons/magnifier.png" alt="Lupa">Search submitted claims</a></b>
+			<p style="margin-top: 4px;">List and view existing claims <b>(requires login)</b></p>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<form action="http://saudiacargo.com/tracker/" name="track" id="track" style="padding: 0; margin: 0;">
+			<table style="width: 745px; border: 1px solid lightgray; border-radius: 7px;">
+			<tr>
+				<td width="39" style="width:90px; padding:8px;color:#2c1c6b;font-weight:bolder;font-size:14px;text-align:center;">Shipment<br>Tracking</td>
+				<td width="55" style="padding: 8px;"><input type="text" value="065" name="pref" style="border: #2c1c6b solid thin; width: 45px; border-radius: 6px; padding-left: 6px; font-size: 14px; height: 34px; font-weight: bold;" id="pref"></td>
+				<td width="48" style="padding: 8px;"><label style="font-weight: bolder;font-size: 14px;" for="basic5">AWB#:</label></td>
+				<td width="281" style="padding: 8px;"><input type="text" value="" name="number" maxlength="8" style="border: #2c1c6b solid thin; width: 260px; border-radius: 6px; padding-left: 6px; font-size: 14px; height: 34px; font-weight: bold;" id="number"></td>
+				<td style="padding: 8px;"><input type="submit" style="background-color: #BCA263; color: #ffffff; width: 165px; height: 30px; border-radius: 12px; border: none;cursor: pointer;" data-inline="true" data-role="button" data-mini="true" data-theme="c" value="Submit" name="submitBtn" id="submitBtn"></td>
+			</tr>
+			</table>
+		</form>		
+	
+		<div>
+		<p>A cargo claim is a written complaint demanding financial compensation from Saudi Airlines Cargo Co. for loss of, damage or delay to cargo whilst in care and control pursuant to a contract of carriage.</p>
+		<h2>Types of claims:</h2>
+		<p>In order for us to accept a claim, the written request must be submitted before the time limit as shown below:</p>
+		
+		<table style="width: 740px; border-collapse: collapse; border-spacing: 1px;" id="saudia-claim-types">
+		<tbody>
+		<tr bgcolor="#5f5b5a" style="color: #ffffff;">
+		<td width="3%" style="text-align: center; color: #fff;">No.</td>
+		<td width="17%" style="text-align: center; color: #fff;">Claim Type</td>
+		<td width="40%" style="text-align: center; color: #fff;">Description</td>
+		<td width="40%" style="text-align: center; color: #fff;">Time Limit</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">1</td>
+		<td style="text-align: left;">Loss.</td>
+		<td style="text-align: left;">Loss of whole consignment .</td>
+		<td style="text-align: left;">120 days from the AWB issuing date.</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">2</td>
+		<td style="text-align: left;">Damage.</td>
+		<td style="text-align: left;">To consignment whole or in part.</td>
+		<td style="text-align: left;">14 days from receiving consignment.</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">3</td>
+		<td>Partial Loss.</td>
+		<td style="text-align: left;">Loss of part of the consignment.</td>
+		<td style="text-align: left;">14 days from receiving consignment.</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">4</td>
+		<td>Delay.</td>
+		<td style="text-align: left;">To complete consignment or part of it</td>
+		<td style="text-align: left;">21 days from the placing date.</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">5</td>
+		<td>Pilferage.</td>
+		<td style="text-align: left;">To consignment whole or in part</td>
+		<td style="text-align: left;">14 days from receiving consignment.</td>
+		</tr>
+		</tbody>
+		</table>
+		
+		<h2>Requirements for claim:</h2>
+		<p>Intent to claim/preliminary letter (if submitted earlier and attach the email sent to claims department or our station/GSA)<br />
+		Official claim letter with claimed amount and detailed description about the claim from either shipper or consignee mentioned on the master AWB, stamped and signed mentioning the following:</p>
+		<ul class="main_text">
+		<li>Claim type:  total loss, partial loss, damage or delay</li>
+		<li>Mishandled  weight</li>
+		<li>Mishandled pieces</li>
+		<li>Claimed amount</li>
+		<li>Commercial  Invoices (highlighting the mishandled goods only in the invoices)</li>
+		<li>Packing List (highlighting the mishandled goods only)</li>
+		<li>Customs Report (if available)</li>
+		<li>Proof of delivery “POD“ (if available), not required for total loss claims</li>
+		<li>Subrogation letter (in case claimant is not the shipper or consignee) and it should be on an official company letter head, stamped and signed by an authorized person.</li>
+		</ul>
+		
+        <h2>Submit your online e-Cargo Claim</h2>
+Saudia Cargo offers an easy and efficient online claims process. <a href="http://www.cargohub.nl/wp-content/uploads/2015/11/How-to-submit-a-claim.pdf"> Click here</a> to see how it works.
+
+		<p>Alternatively you may use one of the following channels:</p>
+		<ul>
+		<li>First read this <a href="http://www.saudiacargo.com/downloads/2014/may/CONDITIONS OF CONTRACT.pdf" target="_blank" class="highlight-blue-large">CONDITIONS OF CONTRACT</a></li>
+		<!--<li class="main_text">E-Mail: <a href="mailto:cargoclaims@saudiairlines.com" class="highlight-blue-large">cargoclaims@saudiairlines.com</a> (you may use this email for previous claim status).</li>-->
+		<li class="main_text">Please us our online <a href="http://sv.cargoclaims.aero/issue?action=form">CargoClaims Services</a> or send your written claim to the below address</li>
+		<li class="main_text">Mail: P.O. Box: 620 CC: 12772130 Jeddah: 21231, K.S.A.</li>
+		<li class="main_text">The nearest Saudi Cargo Station or Saudi Arabian Airlines office.</li>
+		<li class="main_text">Fax: +966 2 686 1947.</li>
+		<li class="main_text">Inquiries: +966 920001668 ext.: 3  or Email: cargoclaims@saudiacargo.com</li>
+		</ul>
+		<p>Please note that the calculation of the time limit will be based on the date of receipt of your request and not the letter date.<br>
+		In order for you to reserve your right to claim for two years, we advise you to submit your intention to claim letter immediately after discovering the damaged, missing or delayed shipment.</p>
+		</div>
+		
+		
+	</div>
+	<div class="clear"></div>
+</div>

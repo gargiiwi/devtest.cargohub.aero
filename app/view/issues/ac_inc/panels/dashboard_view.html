@@ -1,0 +1,38 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">(Please write this field!)</span>}</td></tr>
+		<tr><th>{class.n}:</th><td>{^xfields.class.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Incident Date &amp; Time:</th><td>
+			{#if:^xfields.inc_date:{^xfields.inc_date}~date("Y-m-d")~ &middot; {^xfields.inc_time:<span class="gray">---</span>}}
+			{#ifnot:^xfields.inc_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{flt_num.n}:</th><td>{^xfields.flt_num:<span class='gray'>---</span>}
+		<div class="ra_250">
+			<label class="ra_label">Flight Date:</label>
+			{#if:^xfields.flt_date:{^xfields.flt_date}~date("Y-m-d")~}{#ifnot:^xfields.flt_date:<span class='gray'>---</span>}
+		</div></td></tr>
+	</table> 
+	<hr />
+	<table>
+{!				<tr><th>{station.n}:</th>
+				{#if:^xfields.station.value:
+					<td class="info-tip" data-tooltip="Country: <span class='darkblue'>{^xfields.station.value.country}</span>"><b>{^xfields.station.value.IATA}</b>: {^xfields.station.value.name}</td>}
+				{#ifnot:^xfields.station.value:
+					<td class="red">(Please complete station !)</td>}
+				</tr>
+}
+		<tr><th>Flight Route:</th><td>{^xfields.flt_route:<span class="gray">---</span>}</td></tr>
+		<tr><th>{flt_regno.n}:</th><td>{^xfields.flt_regno:<span class="gray">---</span>}</td></tr>
+		<tr><th>{flt_actype.n}:</th><td>{^xfields.flt_actype:<span class="gray">---</span>}</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>	
+		<tr><th>Exact location:</th><td>{^xfields.inc_location:<span class="gray">---</span>}</td></tr>
+		<tr><th>{phase_ops.n}:</th><td>{^xfields.phase_ops:<span class="gray">---</span>}</td></tr>
+		<tr><th>{flt_delayed.n}</th>
+		<td>
+			{#if:^xfields.flt_delayed.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.flt_delayed.key: checked="checked"}> {^xfields.flt_delayed.value}</label>}
+			{#ifnot:^xfields.flt_delayed.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>Flight delay:</th><td>{^xfields.flt_delayamt:<span class="gray">---</span>}</td></tr>
+		<tr><th>{sched_gt.n}:</th><td>{^xfields.sched_gt:<span class="gray">---</span>}</td></tr>
+	</table>
+}

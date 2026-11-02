@@ -1,0 +1,42 @@
+{! Airline Search Redirector }
+<div id='cms_airlinesearch'>
+	<div id='airline_searchbox'></div>
+	<input type='hidden' id='airline_id' name='airline' />
+	<p style='color: gray;'>Airlines will be automatically searched as you type<br />There is a limit of maximum 10 results shown at one time.</p>
+	
+	<div id="airline_info" style='display: none;'></div>
+</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+{@<script id="template_airlineinfo" type="text/dryjstpl">
+	<div>
+		<img id='airline_logo' src='/img/logos/{$logo_image}' alt="{$airline_name}" />
+		<div id='airline_details'>
+			<h3 title="{#exists:IATA:IATA: {$IATA}}{#exists:ICAO: | ICAO: {$ICAO}}{#exists:AWB_prefix: | AWB Prefix: {$AWB_prefix}}">{$fullname}</h3>
+			<p><span style='color: gray;'>Country: </span>{$country}</p>
+			{#exists:domain:<p><a href="http://{$domain}/" target='_top'>http://{$domain}/</a></p>}
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div>
+		<div id='ist_selector'>
+			{#exists:mawb:<div id='mawb'>MAWB: {$mawb}</div>}	
+			{#exists:ist_choices:<p>Select what to submit:</p>
+			<p><select name='issue_type'>
+				{#loop:ist_choices:_id:_val:<option value="{$_id}">{$_val.name}</option>}
+			</select></p>
+			}
+			{#exists:ist_preselect:<div style='line-height: 60px; font-size: 1.1em;'>Click on the green button to submit a <b>{$ist_preselect.name}</b>:</div>}
+			{#missing:ord.org_id:<p><span style='color: red; font-size: 14px;'>We are sorry,</span><br />this airline isn't yet active in <b>CARGO Connect</b> database.</p>}
+		</div>
+		<div id='go_button'>
+			{#exists:ord.org_id:
+				{#missing:nosubmit:<img id="go_submit" src='/img/extra/gogreen.png' alt='Go!' title='Go!' />}
+				{#exists:nosubmit:<img id="no_submit" src='/img/extra/denyred.png' alt='Cannot submit to this airline' title='Currently it is not possible to submit information to this airline.' />}
+			}
+			{#missing:ord.org_id:<img id="no_submit" src='/img/extra/denyred.png' alt='Airline Not In System !' title="This airline isn't yet connected to CargoHub 365.
+			No operation is available at the moment." />}
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>}

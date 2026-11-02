@@ -1,0 +1,130 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+
+	
+	{#use:name_title:<tr>
+		<th><label>Company name:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+
+	{#use:reference:<tr>
+		<th><label>Reference:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+    <!-- {#use:contract:<tr>
+	<th><label>{display.label}:</label></th>
+	<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+</tr>} -->
+{#use:address:<tr class="">
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:cham_com:<tr class="">
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+<!-- {#use:contract_type:<tr>
+	<th><label>{display.label}:</label></th>
+	<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+</tr>} -->
+<!-- <tr>{#use:contract_type:
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select id='{id}' name='{name}' class="dropselect" data-width="180" data-dwidth="180" data-dheight="144">
+				<option value=''></option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>
+}</tr> -->
+
+	<!-- {#use:Company name:<tr>
+		<th><label>Company name:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>} -->
+
+	<!-- <tr>
+		<th><label>Valid from:</label></th>
+		<td>
+			{#use:issue_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'></div>}
+			{#use:expire_date:<span class="left" style="height: 22px; line-height: 22px; margin: 2px 8px;">Expire Date: </span><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'></div>}
+		</td>
+	</tr> -->
+	<tr>
+    <th><label>Reviewed Date:</label></th>
+    <td>
+        {#use:expire_date:
+            <div id="{id}" name="{name}" data-value="{#if:value:{value}~date('Y/M/d')~}" class="calendar left"></div>
+        }
+    </td>
+</tr>
+	<tr><td colspan="2"><br /></td></tr>
+
+	{#use:location:<tr class="">
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+
+	{#use:country:<tr class="">
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+
+	{#use:department:<tr class="">
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	<!-- {#use:contract_val_year:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:contract_val_year_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='EUR' selected='selected'>EUR</option>
+					{#repeat:options:
+						{#if:value!=EUR:
+							<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+						}
+					}
+			</select>}
+		</td>
+	</tr> -->
+	{#use:contract_val_year:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:contract_val_year_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+	
+
+<!-- {#use:contract_val_month:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:contract_val_month_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				 <option value='EUR'{#if:active: selected='selected'}>EUR</option>
+					{#repeat:options:
+						{#if:value!=EUR:
+							<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+						}
+					}
+			</select>}
+		</td>
+	</tr> -->
+	{#use:contract_val_month:<tr>
+		<th><label for='{id}'>{display.label}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:contract_val_month_curr:<select id='{id}' name='{name}' style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected' hidden='hidden'>Select:</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>
+<tr><td colspan="2"><br /></td></tr>
+
+
+
+	
+</table>
+
+
+</form>}

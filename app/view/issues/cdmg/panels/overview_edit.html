@@ -1,0 +1,99 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<h4>Incident classification:</h4>
+{#use:class:<div>
+	<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;"><tr>
+		{#repeat:options:<td style="width: 20%;"><label><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}><br />{display}</label></td> }
+	</tr></table>
+</div>}
+<hr />
+<table>
+	{#use:title:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}' /></td>
+	</tr>}
+	<tr><th><label>Incident Date &amp; Time:</label></th>
+	<td>
+		{#use:idate:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'></div>}
+		{#use:itime:<input style="margin-left: 8px;" type="text" id='{id}' name='{name}' data-value='{value}' class='theclock jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+	</td></tr>
+	<tr>{#use:loc:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:process:
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+	}</tr>
+	<tr>{#use:carr_type:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><select id='{id}' name='{name}' class='left jqx-input jqx-input-{%jqxtheme} long'>
+			<option value='' class='gray'>(Choose an option)</option>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+		</select></td>
+	}</tr>
+	<tr>
+		<th><label for='{id}'>{ftnr.display.label}:</label></th>
+		<td>
+			{#use:ftnr:<input type='text' id='{id}' name='{name}' value='{value}' style='height: 24px;' class='left medium whitebg jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			<label class='left' style='line-height: 24px; margin: 0 4px;'>Date:</label>
+			{#use:ftdate:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+		</td>
+	</tr>
+</table>
+<hr />
+<table style="width: 99%;">
+	<tr>
+		<td style="width: 50%; text-align: center;">{orig.display.label} &raquo;</td>
+		<td style="width: 50%; text-align: center;">&raquo; {dest.display.label}</td>
+	</tr>
+	<tr>
+		{#use:orig:<td style="text-align: center;"><input type='text' id='{id}' name='{name}' value='{value}' class='center jqx-input jqx-input-{%jqxtheme} short' /></td>}
+		{#use:dest:<td style="text-align: center;"><input type='text' id='{id}' name='{name}' value='{value}' class='center jqx-input jqx-input-{%jqxtheme} short' /></td>}
+	</tr>
+</table>
+<h4 style="margin-top: 8px; background-image: url('/img/icons16/hash.png'); background-repeat: no-repeat; background-position: 4px;">References:</h4>
+<table>
+	{#use:ref_ex:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}  /></td>
+	</tr>}
+	{#use:ref_in:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}  /></td>
+	</tr>}
+</table>
+<hr />
+<table>
+	<tr>{#use:docid_air:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:docid_land:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>{#use:docid_ocean:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+</table>
+<hr />
+<table>
+	{#use:shipper:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}  /></td>
+	</tr>}	
+	{#use:consignee:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}  /></td>
+	</tr>}
+</table>
+
+{#use:documents:
+<h4 style="margin-top: 8px; background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">{display.label}:</h4>
+<div class='twocolcbox'>
+	{#repeat:options:<label><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label>}
+	<input type='hidden' name='{name}' value='' />
+</div>}
+<div class="clear"></div>
+</form>}

@@ -1,0 +1,42 @@
+/** Contacts Labels and Folders Tree **/
+#ctx-tree {
+	border: none;
+}
+
+	#ctx-tree li img {
+		float: left;
+		margin-right: 5px;
+	}
+	
+	#ctx-tree ul.jqx-tree-dropdown-root {
+		margin-top: 16px;
+	}
+	
+/** Contact View/Edit Tab **/
+#contact-left-side {
+	float: left;
+	width: 650px;
+}
+
+#contact-right-side {
+	float: right;
+	width: 450px;
+}
+
+	#contact-right-side div.right-side-block {
+		border: 1px solid lightgray;
+		padding: 8px;
+	}
+	
+	#contact-right-side div.right-side-block h2 {
+		height: 16px;
+		line-height: 16px;
+	}
+
+	#contact-right-side div.right-side-block h3 {
+		padding-left: 25px;	
+	}
+	
+	#contact-right-side h4.iss-comm-target-remove {
+		cursor: url(/img/extra/cursor_delete.png), auto;
+	}

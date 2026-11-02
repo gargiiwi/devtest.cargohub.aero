@@ -1,0 +1,73 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{resp.n}:</th><td>{^xfields.resp.value:<span class="gray">(no option chosen)</span>}</td></tr>
+	</table>
+
+	<h4>Involved individuals:</h4>
+	<table>
+		<tr><th>{inv_emp.n}:</th><td>{^xfields.inv_emp:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{inv_role.n}:</th><td>{^xfields.inv_role.value:<span class='gray'>(undetermined)</span>}</td></tr>
+		<tr><th>{workg.n}:</th><td>{^xfields.workg:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{shift.n}:</th><td>{^xfields.shift:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{rep_by.n}:</th><td>{^xfields.rep_by:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{rep_func.n}:</th><td>{^xfields.rep_func:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{officer.n}:</th><td>{^xfields.officer:<span class='gray'>---</span>}</td></tr>
+	</table>
+
+	<h4>Investigation:</h4>
+	<table>
+		<tr><th>{inv_done.n}</th>
+		<td>
+			{#if:^xfields.inv_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.inv_done.key: checked="checked"}> {^xfields.inv_done.value}</label>}
+			{#ifnot:^xfields.inv_done.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{inv_pers.n}:</th><td>{^xfields.inv_pers:<span class="gray">(no information provided)</span>}</td></tr>
+		<tr><th>{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<h5>{inv_descr.n}</h5>
+	{#if:^xfields.inv_descr:<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.inv_descr}~nl2br~</div>}
+	{#ifnot:^xfields.inv_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h4 style="margin-top: 8px;">Contributing factors:</h4>
+	<table>
+		<tr><th>{cf_behav.n}:</th><td>{#repeat:^xfields.cf_behav:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{cf_behav_oth.n}:</th><td>{^xfields.cf_behav_oth}</td></tr>
+		<tr><th>{cf_org.n}:</th><td>{#repeat:^xfields.cf_org:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{cf_org_oth.n}:</th><td>{^xfields.cf_org_oth}</td></tr>
+		<tr><th>{cf_eq.n}:</th><td>{#repeat:^xfields.cf_eq:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{cf_eq_oth.n}:</th><td>{^xfields.cf_eq_oth}</td></tr>
+		<tr><th>{cf_rules.n}:</th><td>{#repeat:^xfields.cf_rules:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{cf_rules_oth.n}:</th><td>{^xfields.cf_rules_oth}</td></tr>
+	</table>
+
+	<h4 style="margin-top: 8px;">Corrective/Preventive actions (CaPa):</h4>
+	<table>
+		<tr><th>{capa_done.n}</th>
+		<td>
+			{#if:^xfields.capa_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.capa_done.key: checked="checked"}> {^xfields.capa_done.value}</label>}
+			{#ifnot:^xfields.capa_done.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{capa_dl.n}:</th><td>{#if:^xfields.capa_dl:{^xfields.capa_dl}~date("Y-m-d")~}{#ifnot:^xfields.capa_dl:<span class='gray'>(none)</span>}</td></tr>
+		<tr><th>{capa_pers.n}:</th><td>{^xfields.capa_pers:<span class="gray">(no information provided)</span>}</td></tr>
+		<tr><th>{capa_date.n}:</th><td>{#if:^xfields.capa_date:{^xfields.capa_date}~date("Y-m-d")~}{#ifnot:^xfields.capa_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	{#if:^xfields.capa_descr:<h5>{inv_capa.n}</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa_descr}~nl2br~</div>}
+	{#ifnot:^xfields.capa_descr:<div class="gray" style="text-indent: 20px;">(no corrective/preventive actions)</div>}
+	
+	<h4 style="margin-top: 8px;">Evaluation/Closure:</h4>
+	<table>
+		<tr><th>{eval_done.n}</th>
+		<td>
+			{#if:^xfields.eval_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eval_done.key: checked="checked"}> {^xfields.eval_done.value}</label>}
+			{#ifnot:^xfields.eval_done.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{eval_pers.n}:</th><td>{^xfields.eval_pers:<span class="gray">(no information provided)</span>}</td></tr>
+		<tr><th>{eval_date.n}:</th><td>{#if:^xfields.eval_date:{^xfields.eval_date}~date("Y-m-d")~}{#ifnot:^xfields.eval_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	{#if:^xfields.eval_descr:<h5>{inv_capa.n}</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.eval_descr}~nl2br~</div>}
+	{#ifnot:^xfields.eval_descr:<div class="gray" style="text-indent: 20px;">(no evaluation yet)</div>}
+	<hr style="margin-top: 4px;" />
+	<table>
+		<tr><th>{close_date.n}:</th><td>{#if:^xfields.close_date:{^xfields.close_date}~date("Y-m-d")~}{#ifnot:^xfields.close_date:<span class='gray'>(...still open)</span>}</td></tr>
+	</table>
+}

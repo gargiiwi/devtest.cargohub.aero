@@ -1,0 +1,5 @@
+User images that need to be displayed (so they are accessible in /htdocs)
+
+* thms - Small thumbnails, generated from warehouse images (used as tiny previews in tables and other places)
+* thml - Large thumbnails, generated from warehouse images (used inside e-mails as direct-view content, or as preview via jquery-fancybox2)
+* uup - User Uploads - Images to be used inside Rich-Text documents (only .jpg and .png supported, and get automatically scaled under certain size limits)

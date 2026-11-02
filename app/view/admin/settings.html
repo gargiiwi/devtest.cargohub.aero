@@ -1,0 +1,15 @@
+{!<h2>v0.9 convert to v1.0</h2>
+<ol>
+<li><a href="?action=CommPreConvert">Insert new table fields, Create new tables related to communication</a></li>
+<li><a href="?action=UsersContacts">System users receive contacts, link contacts to users</a></li>
+<li><a href="?action=PrepareMessages">Prepare the messages table, so they can be inserted into conversations. This also creates isspost contacts</a></li>
+<li><a href="?action=IssueContacts">Create issue contact links (from all issue-linked Messages)</a></li>
+<li><a href="?action=IssueConversations">Issue messages are transformed into conversations</a></li>
+<li><a href="?action=UserLabelConvos">All conversations including system user contacts get placed in inbox/sentbox labels of that user</a></li>
+<li><a href="?action=ContactAccounts">All "submitter" contacts will receive an "contact_accounts" record</a></li>
+<li><a href="?action=RebuildIssuePrimaryExtras">Rebuilds missing or incorrect data in issues: access_key, cache_primary/secondary/tertiary (ONLY CLAIMS for now)</a></li>
+<li><a href="?action=RemContactXFields">Contact XFields are removed from all issue types and deleted from the DB</a> (now part of contacts)</li>
+<li><a href="?action=Finalize">Add and convert extra tables to new code, set values, reset changed user preferences. Cleanup obsolete fields and tables.</a></li>
+</ol>}
+<hr />
+<p style='text-align: center;'><img src="/img/extra/octopussy.jpg" alt="How to train your octopuss" /></p>

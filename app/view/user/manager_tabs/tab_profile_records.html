@@ -1,0 +1,21 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/table_gear.png" /><span>User's profile records</span>
+	</div>		
+	<div id='profile_edit_operations' style='display: none;'>
+		<button data-op="view" title="View stored data"><img src='/img/icons16/eye.png' /> View data</button>
+		<button data-op="edit-descr" title="Edit description"><img src='/img/icons16/pencil.png' /> Edit description</button>
+		<div class='toolbar-separator'></div>
+		<button data-op="reset" title="Reset/Delete profile record"><img src='/img/icons16/reset.png' /> Reset/Delete</button>
+		<button data-op="set_default" title="Set as organization default"><img src='/img/icons16/user_go.png' /> Set as org. default</button>
+		<div class='toolbar-accessory selected-item'></div>
+	</div>
+</div>
+<div id="records_grid"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="template-profile-record" type="text/dryjstpl">{@
+	<h3>{$pname:(Has no description)}</h3>
+	<textarea rows="1" style="width: 99%; height: 360px; resize: none;" readonly="readonly"></textarea>
+	<div class="gray">This cannot be edited here for safety reasons.<br />It can however be copy/pasted out and back into the database after being verified.</div>
+}</script>

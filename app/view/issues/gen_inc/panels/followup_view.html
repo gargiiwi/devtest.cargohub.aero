@@ -1,0 +1,83 @@
+{#use:%ist.xfield_def:
+	<h4>Assessed risk</h4>
+	<table>
+		<tr><th>{class.n}:</th><td>{^xfields.class.value:<span class="gray">(not spcified)</span>}</td></tr>
+		<tr><th>{probability.n}:</th><td>{^xfields.probability.value:<span class="gray">(not spcified)</span>}</td></tr>
+		<tr><th>{risk.n}:</th><td>{#if:^xfields.risk.value:<span class='red'>{^xfields.risk.value}</span> <span class='gray'>(auto calculated)</span>}{#ifnot:^xfields.risk.value:<span class="gray">-- not calculated --</span>}</td></tr>
+	</table>
+	<div style="text-align: center;">
+		<input style="margin: 8px;" type="button" class="info-window" value="Risk calculation matrix" data-window="650,375,Risk calculation" data-template='risk-calc' />
+	</div>
+	
+	<h4 style="margin-top: 15px;">Investigation</h4>
+	<table>
+		<tr><th>{inv_done.n}</th>
+		<td>
+			{#if:^xfields.inv_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.inv_done.key: checked="checked"}> {^xfields.inv_done.value}</label>}
+			{#ifnot:^xfields.inv_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{inv_by.n}:</th><td>{^xfields.inv_by:<span class="gray">---</span>}</td></tr>
+		<tr><th>{inv_date.n}:</th><td>{#if:^xfields.inv_date:{^xfields.inv_date}~date("Y-m-d")~}{#ifnot:^xfields.inv_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{inv_details.n}:</th><td>{#repeat:^xfields.inv_details:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+
+	<h5>{inv_remarks.n}:</h5>
+	{#if:^xfields.inv_remarks:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.inv_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.inv_remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h5>{inv_cause.n}:</h5>
+	{#if:^xfields.inv_cause:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.inv_cause}~nl2br~</div>}
+	{#ifnot:^xfields.inv_cause:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h4 style="margin-top: 15px;">Weather conditions</h4>
+	<table>
+		<tr><th>{cir_vis.n}:</th><td>{^xfields.cir_vis:<span class="gray">---</span>} <span class="gray">meters</span></td></tr>
+		<tr><th>{cir_wind.n}:</th><td>{^xfields.cir_wind:<span class="gray">---</span>} <span class="gray">knots</span></td></tr>
+		<tr><th>{cir_temp.n}:</th><td>{^xfields.cir_temp:<span class="gray">---</span>} <span class="gray">celcius</span></td></tr>
+		<tr><th>{cir_light.n}:</th><td>{^xfields.cir_light.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{cir_surface.n}:</th><td>{#repeat:^xfields.cir_surface:<span class="itembox">{value}</span>}</td></tr>
+	</table>
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/check_box.png'); background-repeat: no-repeat; background-position: 4px;">Contributing factors</h4>
+	<table>
+		<tr><th>{cf_behav.n}:</th><td>{#ifnot:^xfields.cf_behav:<span class='gray'>---</span>}{#repeat:^xfields.cf_behav:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.cf_behav_oth:<tr><th>{cf_behav_oth.n}:</th><td>{^xfields.cf_behav_oth}</td></tr>}
+		<tr><th>{cf_rules.n}:</th><td>{#ifnot:^xfields.cf_rules:<span class='gray'>---</span>}{#repeat:^xfields.cf_rules:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.cf_rules_oth:<tr><th>{cf_rules_oth.n}:</th><td>{^xfields.cf_rules_oth}</td></tr>}
+		<tr><th>{cf_eq.n}:</th><td>{#ifnot:^xfields.cf_eq:<span class='gray'>---</span>}{#repeat:^xfields.cf_eq:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.cf_eq_oth:<tr><th>{cf_eq_oth.n}:</th><td>{^xfields.cf_eq_oth}</td></tr>}
+		<tr><th>{cf_org.n}:</th><td>{#ifnot:^xfields.cf_org:<span class='gray'>---</span>}{#repeat:^xfields.cf_org:<span class="itembox">{value}</span>}</td></tr>
+		{#if:^xfields.cf_org_oth:<tr><th>{cf_org_oth.n}:</th><td>{^xfields.cf_org_oth}</td></tr>}
+	</table>
+	
+	<h4 style="margin-top: 15px;">Corrective/Preventive actions (CaPa)</h4>
+	<table>
+		<tr><th>{capa_done.n}</th>
+		<td>
+			{#if:^xfields.capa_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.capa_done.key: checked="checked"}> {^xfields.capa_done.value}</label>}
+			{#ifnot:^xfields.capa_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{capa_deadline.n}:</th><td>{#if:^xfields.capa_deadline:{^xfields.capa_deadline}~date("Y-m-d")~}{#ifnot:^xfields.capa_deadline:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{capa_responsible.n}:</th><td>{^xfields.capa_responsible:<span class="gray">---</span>}</td></tr>
+		<tr><th>{capa_date.n}:</th><td>{#if:^xfields.capa_date:{^xfields.capa_date}~date("Y-m-d")~}{#ifnot:^xfields.capa_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	{#if:^xfields.capa_remarks:<h5>{capa_remarks.n}</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.capa_remarks}~nl2br~</div>}
+	{#ifnot:^xfields.capa_remarks:<div class="gray" style="text-indent: 20px;">(no corrective/preventive actions)</div>}  
+		
+	<h4 style="margin-top: 8px;">Evaluation/Closure</h4>
+	<table>
+		<tr><th>{eva_done.n}</th>
+		<td>
+			{#if:^xfields.eva_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eva_done.key: checked="checked"}> {^xfields.eva_done.value}</label>}
+			{#ifnot:^xfields.eva_done.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{eva_by.n}:</th><td>{^xfields.eva_by:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eva_date.n}:</th><td>{#if:^xfields.eva_date:{^xfields.eva_date}~date("Y-m-d")~}{#ifnot:^xfields.eva_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	{#if:^xfields.eva_details:<h5>{eva_details.n}</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.eva_details}~nl2br~</div>}
+	{#ifnot:^xfields.eva_details:<div class="gray" style="text-indent: 20px;">(no evaluation yet)</div>}
+	<hr style="margin-top: 4px;" />
+	<table>
+		<tr><th>{eva_cdate.n}:</th><td>{#if:^xfields.eva_cdate:{^xfields.eva_cdate}~date("Y-m-d")~}{#ifnot:^xfields.eva_cdate:<span class='gray'>(...still open)</span>}</td></tr>
+	</table>  
+}

@@ -1,0 +1,194 @@
+{! Some styles specific to claims }{@<style>
+.iss_claim_type {
+	padding: 1px 4px;
+	margin-right: 5px;
+	color: white;		
+}
+#iss_ct_Delay {
+	border: 1px solid darkblue;
+	background-color: blue;
+}
+#iss_ct_Damage {
+	border: 1px solid brown;
+	background-color: red;
+}
+#iss_ct_Loss {
+	border: 1px solid black;
+	background-color: gray;
+}
+.iss_document {
+	padding: 1px 4px;
+	margin-right: 5px;
+	color: green;
+	border: 1px solid lightgray;		
+}
+</style>}
+{#use:iss:<h2>{xfields.pstage.value} Ocean Cargo Claim from {submitter.xdata.company_name:{submitter.name}}</h2>
+<div id='issue_view' class='zone jqx-rc-all'>
+<form action="?action=view&track={track}" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">
+{!Left column}
+<div class='column2'>
+
+<h4>Contact information:</h4>
+<table class="infotable">
+	{#repeat:%contacts:
+		<tr><th>{label}:</th><td class='contact-item' data-con_id='{contact.id}'>{contact.name} &lt;{contact.email}&gt;</td></tr>
+	}
+</table>
+
+<h4>Shipment information:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{project_no.n}:</th><td>{^xfields.project_no:<span class='gray'>(not set / unknown)</span>}</td></tr>
+	<tr><th>{nature_of_goods.n}:</th><td>{^xfields.nature_of_goods:<span class='gray'>(not set / unknown)</span>}</td></tr>
+	<tr><th>{purch_no.n}:</th><td>{^xfields.purch_no:<span class='gray'>(not set / unknown)</span>}</td></tr>
+	<tr><th>{shipm_no.n}:</th><td>{^xfields.shipm_no:<span class='gray'>(not set / unknown)</span>}</td></tr>
+	<tr><th>{lading_no.n}:</th><td>{^xfields.lading_no:<span class='gray'>(not set / unknown)</span>}</td></tr>
+</table>}
+
+<h4>Carriage information:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{carry_date.n}:</th><td>{#if:^xfields.carry_date:{^xfields.carry_date}~date("Y-m-d")~}{#ifnot:^xfields.carry_date:<span class='gray'>(missing)</span>}</td></tr>
+	<tr><th>Origin location:</th><td>{^xfields.dep_raw:<span class='gray'>(not set / unknown)</span>}</td></tr>
+	<tr><th>Destination loc.:</th><td>{^xfields.dest_raw:<span class='gray'>(not set / unknown)</span>}</td></tr>
+</table>}
+
+<h4>Claim information:</h4>
+<table class="infotable">
+	{#use:%form.pstage:<tr{#if:display.req: class='required'}>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left;'><input{#if:%iss.xfields.pstage.key="fpr": disabled="disabled"} name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#if:%iss.xfields.pstage.key="prel":
+	{#use:%form.claim_amount:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}' style="font-weight: bold;">{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input style='width: 130px; font-weight: bold; height: 14px;' type='text' id='{id}' name='{name}' value='{value}'{#if:display.error: class='field_error' data-tooltip='{display.error}'} />}
+			{#use:%form.claim_curr:<select id='{id}' name='{name}' style='width: 70px'>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}
+		</td>
+	</tr>}
+	{#if:%iss.xfields.pstage.key="fpr":
+	<tr><th style="font-weight: bold;">{%ist.xfield_def.claim_amount.n}:</th><td><b>{xfields.claim_curr.value}~cut(4)~{xfields.claim_amount}~numberformat(2)~</b></td></tr>}	
+	{#use:%ist.xfield_def:<tr><th>{claim_type.n}:</th><td>{#repeat:^xfields.claim_type:<span class='iss_claim_type' id='iss_ct_{key}'>{value}</span>}</td></tr>
+	{#if:^xfields.dmg_pieces:<tr><th>Damage:</th><td><b>{^xfields.dmg_pieces}</b> Pieces ; <b>{^xfields.dmg_weight}</b> Kg</td></tr>}
+	{#if:^xfields.loss_pieces:<tr><th>Loss:</th><td><b>{^xfields.loss_pieces}</b> Pieces ; <b>{^xfields.loss_weight}</b> Kg</td></tr>}
+	{#if:^xfields.delay_pieces:<tr><th>Delay:</th><td><b>{^xfields.delay_pieces}</b> Pieces ; <b>{^xfields.delay_weight}</b> Kg</td></tr>}
+	<tr><td colspan='2'><hr /></td></tr>
+	<tr><th>{insurance.n}:</th><td>
+		{#if:^xfields.insurance.key!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.insurance.value="Yes": checked="checked"}> {^xfields.insurance.value}</label>}
+		{#ifnot:^xfields.insurance.key!=-1:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+	<tr><th>{freight_value.n}:</th><td><b>{^xfields.freight_curr.value}~cut(4)~{^xfields.freight_value}~numberformat(2)~</b></td></tr>
+	<tr><th>{dmg_repair.n}:</th><td>
+		{#if:^xfields.dmg_repair.key!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.dmg_repair.value="Yes": checked="checked"}> {^xfields.dmg_repair.value}</label>}
+		{#ifnot:^xfields.dmg_repair.key!=-1:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+	<tr><th>{repair_value.n}:</th><td><b>{^xfields.repair_curr.value}~cut(4)~{^xfields.repair_value}~numberformat(2)~</b></td></tr>
+	<tr><th>{salvage_value.n}:</th><td><b>{^xfields.salvage_curr.value}~cut(4)~{^xfields.salvage_value}~numberformat(2)~</b></td></tr>
+	<tr><th>{invoice.n}:</th><td><b>{^xfields.invoice_curr.value}~cut(4)~{^xfields.invoice}~numberformat(2)~</b></td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+	<tr>{#use:%form.what_happened:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><textarea style='width: 95%;' rows="4" id='{id}' name='{name}'{#if:display.error: class='field_error' data-tooltip='{display.error}'}>{value}</textarea></td>
+	}</tr>	
+	}
+</table>
+
+<h4>Communication area:</h4>
+<div id='message-box' style="margin-bottom: 8px;">
+	{#ifnot:messages:<div class="gray" style="text-align: center;">Currently, there are no messages to be displayed</div>}
+	{#repeat:messages:
+	<div id='issue-message-{id}'>
+		<div class="issue-message-header jqx-rc-all">
+			{#if:mood:<img class="mood" src="/img/icons/emotion_{mood}.png" alt="{mood}~ucfirst~" />}
+			<table>
+				<tbody>
+					{#if:sender.name:<tr><th>Sent by:</th><td>{sender.name} (<a href="mailto:{sender.email}">{sender.email}</a>)</td></tr>}
+					{#ifnot:sender.name:<tr><th>Sent by:</th><td>{%iss.xfields.name} (<a href="mailto:{%iss.xfields.e_mail}">{%iss.xfields.e_mail}</a>)</td></tr>}
+					<tr><th>On date:</th><td>{dt}</td></tr>			
+					{#if:subject:<tr><th>Subject:</th><td>{subject}</td></tr>}
+				</tbody>
+			</table>
+		</div>
+		<div class="issue-message">{content}~nl2br~</div>
+	</div>			
+	}
+</div>
+
+</div>
+{!Right column}
+<div class='column2'>
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+{!	<div class="gray" style="font-size: 0.9em;">In case you uploaded files or changed some values, please explain to the operator the content of uploaded files or the reason for changing information</div>}
+</table>
+
+{#if:files:<h4>Attached documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a> {#if:description:<span class='gray'>({description})</span>}<br />
+	<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+	<div class='clear'></div></div>
+}
+</div>}
+{#ifnot:files:
+<h4>Currently, there are no documents attached to this Cargo Claim !</h4>
+<p style='text-align: left; padding-left: 28px;'><input type="button" value="Guidelines for submitting documents" data-action="open-window" data-window="1000,600,Guidelines for submitting documents" data-template='guidelines' /></p>
+<script id="guidelines" type="text/dryjstpl">
+	<div style='height: 510px; overflow: auto;'>{#include::static/claim_documents.html}</div>
+</script>
+}
+
+<h4>Add more documents (Upload computer files):</h4>
+<div id="uploads-dropzone" class="dropzone">
+	<div class="fallback">
+		<div style='margin: 0 0 0 26px;'>
+			<h3>Choose documents from your computer</h3>
+			<h5>(Hover your mouse on a field to reveal the Cancel Upload button.)</h5>
+		</div>
+		<div id="file-submit-area">
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+			<span><input type="file" name="uploads[]" /></span>
+		</div>
+		<input type="button" style="margin-left: 26px;" value="Attach more documents..." data-action="add-file-input" />
+		<p class="gray" style="font-size: 0.9em;">If you were using a modern browser like <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, this area would be a fancy interactive upload box which supports progress feedback on the upload, multiple file selection, drag & drop uploading and it also looks much cooler ;)<br />
+		Please stop using the outdated Internet Explorer from the prehistoric ages... Thank you !</p>
+	</div>
+</div>
+<div id="uploads-helper" style="display: none;">
+	Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+</div>
+
+{!End of right column}</div>
+<div class='clear'></div>
+
+<hr />
+<div class='column2'>
+	<div style='text-align: center;'><span style='padding: 5px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> Please make sure the changes are correct before pressing the button!</span></div>
+</div>
+<div class='column2'>
+	<div style='text-align: center;'>
+		<input type='button' value='Update Cargo Claim' data-action="form-submit" style="width: 250px; font-weight: bold;" />
+	</div>
+</div>
+<div class='clear'></div>
+
+}
+</form>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{#raw:includes/issue_view_jstpl.html}
+{#if:update_by_mail:{#raw:includes/issue2message.html}}

@@ -1,0 +1,62 @@
+{#if:acls.privileges.org_user_manager|acls.unrestricted:
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/users.png" /><span>Organization's members:</span>
+	</div>		
+	<button data-op="user-add" title="Create new user"><img src='/img/icons16/add.png' /> Create user</button>
+	<div id='user_edit_operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="login-as" title="Login as user"><img src='/img/icons16/user_go.png' /> Login as user</button>
+		<div class='toolbar-separator'></div>
+		<button data-op="user-edit" title="View/Edit selected"><img src='/img/icons16/eye.png' /> View/Edit</button>
+		<button data-op="user-del" title="Delete selected"><img src='/img/icons16/delete.png' /> Delete selected</button>
+		<!--<div class='toolbar-accessory' id='selected_user'></div>-->
+	</div>
+        <button data-op="user-publication-access" title="Publication Access" style="float: right;">
+            <a  href="/manager/organization?id={current_org_modify}&publication">
+            <img src='/img/icons16/eye.png' /> Publication Access
+            </a>
+        </button>
+</div>
+}
+
+{#if:has_users:<div id="users_splitter" class='jqx-rc-all'>
+	<div>
+		<div style="border: none;" id="users_quicklist"></div>
+	</div>
+	<div id="user_view" style="overflow: auto;">
+		<div class="clear" style='padding: 18px 56px;'>
+			<h2>Please select an user from the left side.</h2>
+			<hr />
+			{#ifnot:acls.privileges.org_user_manager|acls.unrestricted:
+			<p>Once selected, you will be able to view information about the user and also perform certain operations,<br />depending on your access privileges.</p>}
+			{#if:acls.privileges.org_user_manager|acls.unrestricted:
+			<p>As a user manager, you will be able to view full information about the selected user, modify data, choose the user's department and delete users from your organization.</p>
+			<p>You can also add new users to the organization by pressing the <b>[ Create user ]</b> button</p>}
+		</div>
+	</div>
+</div>}
+{#ifnot:has_users:<div class='jqx-rc-all'>
+	<div class="clear" style='padding: 18px 56px;'>
+		<h2>Currently this organization doesn't have any members.</h2>
+		<hr />
+		<p>Please use the <b>[ Create user ]</b> button to create an user, then you will be able to configure the user, set user level access if that user has been connected to a department and other user-related operations.</p>
+		<p>It is possible for an organization to exist without users, by choosing the option <i>Active: <b>OFF</b></i> in the <a href="#org_admin">Setup</a> tab. In this case other rules apply on what happens when issues are submitted to this organization.</p> 
+	</div>
+</div>}
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template_add-user" type="text/dryjstpl">
+	<form class='vertiform' name='adduser' action="/manager/user?action=add" method="post">
+		<ul>
+		<li><label for="usr_user">Account ID:</label><input id="usr_user" name="usr[user]" type="text" value="" /></li>
+		<li><label for="usr_password">Password:</label><input id="usr_password" name="usr[password]" type="password" value="" /></li>
+		<li><label for="usr_passwordr">Repeat password:</label><input id="usr_passwordr" name="usr[passwordr]" type="password" value="" /></li>
+		<li><label>Generate password:</label><input id="gen_password" type="button" value="New random password" /></li>
+		<li><label for="usr_name">Person's name:</label><input id="usr_name" name="usr[name]" type="text" value="" /></li>
+		<li><label for="usr_email">E-mail Address:</label><input id="usr_email" name="usr[email]" type="text" value="" /></li>
+		<li><label>Welcome message:</label><div id="welcome_message"></div>
+		</ul>
+	</form>
+	<p style='text-align: center;'>Please note: <b>All fields are mandatory !</b></p>
+</script>}

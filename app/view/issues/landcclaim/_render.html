@@ -1,0 +1,91 @@
+{!Template for rendering the Cargo Claim as a string (html). This kind of view doesn't use any javascript for displaying the information and could be used to save a HTML file or send as a message/email
+  Contacts have a "mailto:" href in them; Attachments are sent as links back into the system; All other values are simply formatted text}
+{!TODO: A way to reorder these components (user, system, includes, issue data)}
+{!The system might add it's own piece of text in certain situations}
+{#if:_contents_system:<div class="system_contents">{_contents_system}</div>}
+{!Users are able to add their own text}
+{#if:_contents_user:<div class="user_contents">{_contents_user}</div>}
+{!User signature can be added after the issue data}
+{#if:_user_signature:<br /><hr /><div class="user_signature">{_user_signature}</div><br /><br />}
+{!Support including extra templates here, which use the same data as this main template}
+{#if:_includes:{#repeat:_includes:
+	<div class="included_contents">{#include:%:{$}}</div>}}
+{#use:issue:
+<h4>Processing overview:</h4>
+<table>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='http://{%html.domain}/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='http://{%html.domain}/img/icons16/priorities/{priority_key}.png' alt="{priority}" /> {priority}</span></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Submitted on date:</th><td>{ctime}~date("Y-m-d (H:i)")~</td></tr>
+	{#if:ttime:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Transferred on:</th><td>{ttime}~date("Y-m-d (H:i)")~</td></tr>}			
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{%ist.xfield_def.pstage.n}:</th><td>{xfields.pstage.value}</td></tr>
+</table>
+
+{#if:%parts.contacts:<h4>Contact(s) information</h4>
+<table>
+	{#repeat:contact_links:
+		<tr><th valign="top">{label}:</th><td class='contact-item' data-con_id='{contact.id}'><div>{contact.name} &lt;<a href="mailto:{contact.email}">{contact.email}</a>&gt;</div>
+		{#if:contact.xdata.company_name:<div><span class="gray">Company name:</span> {contact.xdata.company_name}</div>}
+		{#if:contact.xdata.phone:<div><span class="gray">Phone number:</span> {contact.xdata.phone}</div>}
+		</td></tr>}
+</table>
+}
+
+{#if:%parts.claim-shipment:<h4>Shipment information:</h4>
+{#use:%ist.xfield_def:<table>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{nature_of_goods.n}:</th><td>{^xfields.nature_of_goods:<span class="gray">(unknown)</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{project_no.n}:</th><td>{^xfields.project_no:<span class="gray">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{purch_no.n}:</th><td>{^xfields.purch_no:<span class="gray">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{shipm_no.n}:</th><td>{^xfields.shipm_no:<span class="gray">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{cmr.n}:</th><td>{^xfields.cmr:<span class="gray">---</span>}</td></tr>
+</table>
+<hr />
+<table>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{shipper_n.n}:</th><td>{^xfields.shipper_n:<span class="gray">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{consig_n.n}:</th><td>{^xfields.consig_n:<span class="gray">---</span>}</td></tr>
+</table>}
+}
+
+{#if:%parts.claim-shipment:<h4>Carriage:</h4>
+{#use:%ist.xfield_def:<table>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{feeder.n}:</th><td>{^xfields.feeder:<span class="gray">---</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{carry_date.n}:</th><td>{#if:^xfields.carry_date:{^xfields.carry_date}~date("Y-m-d")~}{#ifnot:^xfields.carry_date:<span class='gray'>(missing)</span>}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Origin location:</th><td>{^xfields.dep_raw}</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Destination loc.:</th><td>{^xfields.dest_raw}</td></tr>
+</table>}
+}
+
+{#if:%parts.claim-information:<h4>Claim:</h4>
+{#use:%ist.xfield_def:<table>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{claim.n}:</th><td><b>{^xfields.claim.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{claim_type.n}:</th><td>{#repeat:^xfields.claim_type:<span class='iss_claim_type' id='iss_ct_{key}'>{value}</span>}</td></tr>
+	{#if:^xfields.dmg_pieces:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Damage:</th><td><b>{^xfields.dmg_pieces}</b> Pieces ; <b>{^xfields.dmg_weight}</b> Kg</td></tr>}
+	{#if:^xfields.loss_pieces:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Loss:</th><td><b>{^xfields.loss_pieces}</b> Pieces ; <b>{^xfields.loss_weight}</b> Kg</td></tr>}
+	{#if:^xfields.delay_pieces:<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">Delay:</th><td><b>{^xfields.delay_pieces}</b> Pieces ; <b>{^xfields.delay_weight}</b> Kg</td></tr>}
+	<tr><td colspan='2'><hr /></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{insurance.n}:</th><td>
+		{#if:^xfields.insurance.key!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.insurance.value=1: checked="checked"}> {^xfields.insurance.value}</label>}
+		{#ifnot:^xfields.insurance.key!=-1:<span class='gray'>---</span>}
+	</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{freight.n}:</th><td><b>{^xfields.freight.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{dmg_repair.n}:</th><td>
+		{#if:^xfields.dmg_repair.key!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.dmg_repair.value=1: checked="checked"}> {^xfields.dmg_repair.value}</label>}
+		{#ifnot:^xfields.dmg_repair.key!=-1:<span class='gray'>---</span>}
+	</td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{repair.n}:</th><td><b>{^xfields.repair.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{salvage.n}:</th><td><b>{^xfields.salvage.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+	<tr><th style="font-weight: normal; padding-right: 6px; text-align: right; width: 180px;">{invoice.n}:</th><td><b>{^xfields.invoice.serialized:<span style="color: #999;">---</span>}</b></td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+	<tr><td colspan='2'><h4>{what_happened.n}:</h4>{^xfields.what_happened:<span class='gray'>-----</span>}~nl2br~<br />&nbsp;</td></tr>
+</table>}
+}
+
+{#if:%parts.attachments:{#if:files:<h4>Attached documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-download'><a target='_blank' href='http://{%html.domain}/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='http://{%html.domain}/img/mime/{mimetype}.png' alt="{mimetype}"> {name}</a> ({size}~numberformat~ bytes)<br />
+	<span>{description}</span><div class='clear'></div></div>}
+</div>}
+}
+
+}

@@ -1,0 +1,3 @@
+jQuery TimeEntry 2.0.1
+
+http://keith-wood.name/timeentry.html

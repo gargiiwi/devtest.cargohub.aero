@@ -1,0 +1,35 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:feeder:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><select id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} medium'>
+			<option value=''>Please select:</option>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+			}
+		</select></td>
+	</tr>}
+	{#use:truck_no:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} medium' /></td>
+	</tr>}
+	<tr><td colspan="2"><hr /></td></tr>
+	<tr>{#use:origin:
+		<th><label>{display.label}:</label></th>
+		<td><div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+		<input type='hidden' id='{id}' name='{name}' value='{value}' />
+		</td>
+	}</tr>
+	{#use:origin_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+	<tr>{#use:destination:
+		<th><label>{display.label}:</label></th>
+		<td><div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+		<input type='hidden' id='{id}' name='{name}' value='{value}' />
+		</td>
+	}</tr>
+	{#use:destination_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+	{#use:non_airp:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input-{%jqxtheme} maxlen' /></td>
+	</tr>}
+</table>
+</form>}

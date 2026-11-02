@@ -1,0 +1,55 @@
+<div class='toolbar jqx-widget jqx-rc-all'><div class='longjohnson'>
+	<div id="xfilter-org"></div>
+
+	<button data-op='add' title='Create draft contact (has no purpose currently)'><img src='/img/icons16/add.png' alt="Add" /> Create</button>
+
+	<div class='edit-operations' style='display: none;'>
+		<button data-op='edit' title="View and edit"><img src='/img/icons16/vcard_edit.png' /> View/Edit</button>
+		<button class="right" data-op='delete' title="Delete selected" data-confirm="true" data-confirm_msg="Delete selected contact ?"><img src='/img/icons16/bin.png' /> Delete</button>
+	</div>
+	{!Next bars appear and disappear depending on the type of contact}
+	<div class='special-ops' id='type-org_ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op='related' data-type='org' title="View organization"><img src='/img/icons16/company-building-icon.png' alt="Org." /> View organization</button>
+	</div>
+	<div class='special-ops' id='type-dep_ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op='related' data-type='org' title="View department"><img src='/img/icons16/plugin.png' alt="Dep." /> View department</button>
+	</div>
+	<div class='special-ops' id='type-user_ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op='related' data-type='user' title="View system user"><img src='/img/icons16/user_go.png' alt="User" /> View user</button>
+	</div>
+	<div class='special-ops' id='type-issue_ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op='caclogin' title="Login as Contact Account"><img src='/img/icons16/key.png' /> Login as</button>
+{!		<button data-op='related' data-type='issue' title="Submitted records"><img src='/img/icons16/table_export.png' alt="Table" /> Submitted records</button>}
+	</div>
+	<div class='toolbar-accessory'>
+		<span id='selected-item'></span>
+	</div>
+</div></div>
+<p>The organization selector refers to <b>contacts created by that organization's users</b>, and has nothing to do with contacts for records submitted or shared to that organization</p> 
+<div id="contacts-grid"></div>
+
+<br /><div class='info-expander'>
+	<div>How to use the Global Contacts Management module (click to open/close)</div>
+	<div class='spacey'>
+		<h3>This module allows searching and editing any registered contact records (Except for users, those have to be edited from the User Management interface).</h3>
+		<p>The list of Types:</p>
+		<ul>
+			<li>system - This contact is internal to the software and should cannot be altered from this editor</li>
+			<li>global - &quot;Yellow pages&quot; type contact, visible to all users</li>
+			<li>organization - Organization wide contacts, visible by all users of a specific organization</li>
+			<li>org_self - Represents the name and details of system organization accounts</li>
+		</ul>
+		<p>Note: Currently it's not possible to change the contact type</p>
+{!		<p class='gray'>(to be implemented later) It is also possible to merge multiple contacts that belong to the same organization</p>} 
+	</div>
+</div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="template-contact-editor" type="text/dryjstpl">{@
+	<div id="contact-container"></div>
+	<div class="gray" style="font-size: 0.9em; text-align: center; margin-top: 12px;">Click on any of the detail lines to edit them. The [Ok] button will save the changes to this contact.<div>
+}</script>

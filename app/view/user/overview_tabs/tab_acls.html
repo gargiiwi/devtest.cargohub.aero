@@ -1,0 +1,20 @@
+{#if:acls.is_admin:<div class="center"><h1>I'm Batman</h1>
+	<hr />
+	<p>This means I have unrestricted access everywhere in the system !<br />I should be really careful what actions I perform because my actions can and will affect other people</p>
+	<br />
+	<iframe width="640" height="360" src="//www.youtube.com/embed/YpIQQeL2ZYk?autoplay=1&rel=0" style="border: none;"></iframe>
+	<h2>... Because I'm Batman !</h2>
+</div>
+}
+{#ifnot:acls.is_admin:
+	<div class='toolbar jqx-widget jqx-rc-all'>
+		<div class='toolbar-accessory'>
+			<img src="/img/icons/lock.png" /><span>Displaying my current access inside the organization</span>
+		</div>
+	</div>
+	{#if:acls.privileges:	
+		<label style='display: block; float: left; text-align: right; width: 140px; height: 26px; line-height: 26px; margin-right: 8px;'>Privileges:</label><div style='width: 840px; margin-left: 148px;'>
+		{#include:acls.privileges:private/privileges_matrix.html}
+		</div><div class='clear'></div>	
+	}
+}

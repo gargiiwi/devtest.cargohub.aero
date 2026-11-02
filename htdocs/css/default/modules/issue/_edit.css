@@ -1,0 +1,105 @@
+/* Column layout variants. Multiple sequences of colums of different arrangements possible in the same form */
+
+/* General field table styles */
+.issue_form table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+	.issue_form table .field_error {
+		background-color: Orange;
+		color: Black;
+		border: 1px solid black;
+		padding: 2px;
+	}
+
+	.issue_form div.column2 th {
+		width: 175px;
+		text-align: right;
+		padding-right: 5px;
+		font-weight: normal;
+	}
+	
+		.issue_form th label {
+			cursor: pointer;
+		}
+		
+/* Form field styling */
+.issue_form td > input[type='text'], .issue_form td > textarea, .issue_form td > select, span.fake-input {
+	border-style: solid;
+	border-width: 1px;
+}
+
+	/* Standardized height and lengths of inputs, for uniform styling */
+	.issue_form input[type='text'] {
+		line-height: 20px;
+		height: 20px;
+	}
+	.issue_form .inline-text {
+		line-height: 22px;
+		height: 22px;
+		display: inline-block;
+		margin-right: 6px;
+	}
+	.issue_form .inline-container {
+		display: inline-block;
+		width: 160px;
+	}
+	.issue_form .maxlen {
+		width: 358px;
+	}
+	.issue_form .long {
+		width: 220px;
+	}
+	.issue_form .medium {
+		width: 135px;
+	}
+	.issue_form .short {
+		width: 83px;
+	}
+	.issue_form .tiny {
+		width: 50px;
+	}
+	
+	.issue_form span.fake-input {
+		background-color: white;
+	}
+
+.issue_form .required {
+}
+	.issue_form th {
+		height: 27px;
+	}
+
+	.issue_form .required th, .issue_form .required td, .issue_form td.required, .issue_form div.required {
+		background-color: #cedaeb;
+	}
+	
+	.issue_form .required label span, .req_bullet {
+		background: url("/img/extra/required2.png") no-repeat;
+		display: inline-block;
+		width: 12px;
+		height: 12px;
+	}
+
+.issue_form label.cb {
+	display: block;
+	float: left;
+	width: 49%;
+}
+
+.issue_form table.dual_col_table td {
+	border: 1px solid lightgray;
+	padding: 3px 3px 12px 3px;
+	width: 49%;
+}
+.issue_form table.dual_col_table td label, .issue_form table.radiotable td label, .issue_form td.radiotable label {
+	display: block;
+	width: 100%;
+	cursor: pointer;
+}
+.issue_form table.dual_col_table td label:HOVER, .issue_form table.radiotable td label:HOVER, .issue_form td.radiotable label:HOVER {
+	background-color: #F9F3DE;	
+}
+

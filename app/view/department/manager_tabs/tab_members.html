@@ -1,0 +1,51 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/group.png" /><span>Department's members</span>
+	</div>		
+	{#if:acls.privileges.org_user_manager|acls.unrestricted:
+	<button data-op="member-add" title="Connect new member"><img src='/img/icons16/add.png' /> Connect new</button>
+	<div id='member_edit_operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="member-edit" title="Manage the selected user"><img src='/img/icons16/eye.png' /> Manage</button>
+		<button data-op="member-del" class='right' title="Disconnect user"><img src='/img/icons16/delete.png' /> Disconnect</button>
+		<div class='toolbar-accessory' id='selected_user'></div>
+	</div>
+	}
+</div>
+
+{#if:count_members:<div id="members_splitter" class='jqx-rc-all'>
+	<div>
+		<div style="border: none;" id="members_quicklist"></div>
+	</div>
+	<div id="user_view" style="overflow: auto;">
+		<div class="spacey clear">
+			<h2 style='text-align: center;'>Please select an user from the left side.</h2>
+			<hr />
+			{#ifnot:acls.privileges.org_user_manager|acls.unrestricted:
+			<p>Once selected, you will be able to view information about the user in relation to this department</p>}
+			{#if:acls.privileges.org_user_manager|acls.unrestricted:
+			<p>As a user manager, you will be able to view full user information, modify data, and also add and remove users from this department.</p>}
+		</div>
+	</div>
+</div>}
+{#ifnot:count_members:<div class='jqx-rc-all'>
+	<h2 style='text-align: center;'>Currently there are no members in this department.</h2>
+	{#if:acls.privileges.org_user_manager|acls.unrestricted:<hr />
+	<p>Please use the &quot;Add new&quot; button to add a member, then you will be able to modify that user's access control in relation to the department</p>}
+</div>}
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template_loading" type="text/dryjstpl">
+	<h2 style='text-align: center; margin-top: 100px;'>Please wait, loading information for &quot;{$name}&quot; ...</h2>	
+</script>}
+
+{@<script id="template_member-add" type="text/dryjstpl">
+	<form class='vertiform spacey' name='addmember' action="?action=member_connect" method="post">
+		<ul>
+			<li><label>Choose user:</label><div id='choose_user' name="member[user_id]"></div></li>
+			<li class='row_dep_info' style='height: auto;'><label for="dep_comment">Comments for user:</label><textarea class="jqx-rc-all jqx-input {$_itc}" rows='4' id="dep_comment" name="member[comment]" style='width: 400px; height: 60px; resize: none; overflow: auto;'></textarea></li>
+			<li class='row_dep_info dep_info_cb'><label for="dep_disabled">User disabled ?</label><div id="dep_disabled" name="member[disabled]" data-hint="(If checked, the user cannot login if this is his active department)"><span></span></div></li>
+			<li class='row_dep_info dep_info_cb'><label for="dep_hidden">User hidden ?</label><div id="dep_hidden" name="member[hidden]" data-hint="(If checked, the user is invisible as long as this is his active department)"><span></span></div></li>
+		</ul>
+	</form>
+</script>}

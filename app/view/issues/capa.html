@@ -1,0 +1,443 @@
+{#if:capaExist:
+<div id="caPaReportViewSec" class="cv4-page">
+
+    <div class="cv4-wrapper">
+
+        <!-- HEADER -->
+        <div class="cv4-header">
+            <h2>Action Report Dashboard</h2>
+        </div>
+        <div class="innerContainer">
+            <!-- TABS -->
+            <div class="cv4-tabs">
+                <button class="cv4-tab active" data-tab="table">
+                    <i class="fa fa-table"></i> Table View
+                </button>
+
+                <button class="cv4-tab" data-tab="analytics">
+                    <i class="fa fa-bar-chart"></i> Analytics
+                </button>
+            </div>
+
+            <!-- CARDS -->
+
+
+            <!-- ================= TABLE VIEW ================= -->
+            <div id="cv4_table" class="cv4-content active">
+                <div class="cv4-cards">
+
+                    <!-- TOTAL -->
+                    <div class="cv4-kpi">
+                        <div class="kpi-title">
+                            <span id="title_action_report">Total Actions (Active)</span>
+                            <strong id="kpi_total">0</strong>
+                        </div>
+
+                        <div class="kpi-grid">
+                            <div><label>Active</label><b id="kpi_active">0</b></div>
+                            <div><label>Closed</label><b id="kpi_closed">0</b></div>
+                        </div>
+                    </div>
+
+                    <!-- TYPE -->
+                    <div class="cv4-kpi" >
+                        <div class="kpi-title">
+                            <span id="title_type">Type Wise Report (Active)</span>
+                            <strong id="kpi_type_total">0</strong>
+                        </div>
+
+                        <div class="kpi-grid">
+                            <div><label>Finding</label><b id="kpi_finding">0</b></div>
+                            <div><label>Observation</label><b id="kpi_observation">0</b></div>
+                            <div><label>Opportunity</label><b id="kpi_opportunity">0</b></div>
+                        </div>
+                    </div>
+
+                    <!-- RISK -->
+                    <div class="cv4-kpi">
+                        <div class="kpi-title">
+                            <span id="title_risk">Risk Wise Report (Active)</span>
+                            <strong id="kpi_risk_total">0</strong>
+                        </div>
+
+                        <div class="kpi-grid">
+                            <div><label>Minor</label><b id="kpi_minor">0</b></div>
+                            <div><label>Major</label><b id="kpi_major">0</b></div>
+                            <div><label>Critical</label><b id="kpi_critical">0</b></div>
+                        </div>
+                    </div>
+
+                    <!-- ASSIGNMENT -->
+                    <div class="cv4-kpi">
+                        <div class="kpi-title">
+                            <span id="title_assign">Assignment (Active)</span>
+                            <strong id="kpi_assign_total">0</strong>
+                        </div>
+
+                        <div class="kpi-grid">
+                            <div><label>Assigned</label><b id="kpi_assigned">0</b></div>
+                            <div><label>Unassigned</label><b id="kpi_unassigned">0</b></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="cv4-topbar">
+
+                    <div class="cv4-left">
+                        <div class="cv4-filter">
+                            <button class="cv4-status active" data-status="active">Active</button>
+                            <button class="cv4-status" data-status="closed">Closed</button>
+                        </div>
+                    </div>
+
+                    <div class="cv4-center">
+                        <!-- DataTables search will go here -->
+                    </div>
+
+                    <div class="cv4-right">
+                        <!-- Excel button will go here -->
+                    </div>
+
+                </div>
+
+                <div id="cv4_tableWrap"></div>
+            </div>
+
+            <!-- ================= ANALYTICS ================= -->
+            <div id="cv4_analytics" class="cv4-content">
+                <div class="cv4-analytics-topbar">
+
+                    <!-- LEFT: TITLE -->
+                    <!-- <div class="cv4-analytics-title">
+                        <h3 id="an_header">Analytics - Last 12 Months</h3>
+                    </div> -->
+
+                    <!-- RIGHT: DROPDOWN -->
+                    <div class="cv4-analytics-filter" style="margin-left: 1529px;position: relative;">
+                        <select id="cv4_timeDropdown" class="cv4-dropdown">
+                            <option value="12">Last 12 Months</option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="cv4-cards" id="cv4_analytics_cards">
+
+                    <!-- TOTAL -->
+                    <div class="cv4-kpi" style="grid-column: span 2;">
+                        <div class="kpi-title">
+                            <span id="total_kpi_actions">Total Actions</span>
+                            <strong id="an_total">0</strong>
+                        </div>
+
+                        <div class="kpi-grid" style="grid-template-columns: repeat(2, 1fr);">
+                            <div><label>Active</label><b id="an_active">0</b></div>
+                            <div><label>Closed</label><b id="an_closed">0</b></div>
+                        </div>
+                    </div>
+
+                    <!-- TYPE -->
+                    <div class="cv4-kpi" >
+                        <div class="kpi-title">
+                            <span id="type_kpi_title">Type Wise (Active)</span>
+                            <strong id="an_type_total">0</strong>
+                        </div>
+
+                        <div class="kpi-grid">
+                            <div><label>Finding</label><b id="an_finding">0</b></div>
+                            <div><label>Observation</label><b id="an_observation">0</b></div>
+                            <div><label>Opportunity</label><b id="an_opportunity">0</b></div>
+                        </div>
+                    </div>
+
+                    <!-- RISK --> 
+                    <div class="cv4-kpi" >
+                        <div class="kpi-title">
+                            <span id="risk_kpi_title">Risk Wise (Active)</span>
+                            <strong id="an_risk_total">0</strong>
+                        </div>
+
+                        <div class="kpi-grid">
+                            <div><label>Minor</label><b id="an_minor">0</b></div>
+                            <div><label>Moderate</label><b id="an_major">0</b></div>
+                            <div><label>Critical</label><b id="an_critical">0</b></div>
+                        </div>
+                    </div>
+
+                    <!-- AREA -->
+                    <!-- <div class="cv4-kpi">
+                        <div class="kpi-title">
+                            <span>Area</span>
+                            <strong id="an_area_total">0</strong>
+                        </div>
+
+                        <div class="kpi-grid">
+                            <div><label>Operations</label><b id="an_operations">0</b></div>
+                            <div><label>Quality</label><b id="an_quality">0</b></div>
+                            <div><label>IT</label><b id="an_it">0</b></div>
+                        </div>
+                    </div> -->
+
+                </div>
+
+                <!-- ROW 1 -->
+                <div class="cv4-row">
+                    <div class="cv4-col-8">
+                        <div class="cv4-card" style="height: 368px !important;">
+                            <h4>Total Actions Report</h4>
+                            <div id="cv4_totalChartEmpty" class="text-center p-4 d-none">No data found</div>
+                            <canvas id="cv4_totalChart" style="height: 312px !important;"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="cv4-col-4">
+                        <div class="cv4-card">
+                            <h4>Active vs Closed</h4>
+                            <div id="cv4_activeClosedChartEmpty" class="text-center p-4 d-none">No data found</div>
+                            <canvas id="cv4_activeClosedChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 2 -->
+
+
+                <div class="cv4-row">
+
+                    <!-- BAR -->
+                    <div class="cv4-col-8">
+
+                        <div class="cv4-card" style="border-top:none;">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <h4 id="title_type">
+                                    Type Wise Report
+                                </h4>
+
+                                <!-- SWITCH -->
+                                <div class="cv4-switch">
+
+                                    <button class="typeChartFilter active"
+                                            data-status="active">
+                                        Active
+                                    </button>
+
+                                    <button class="typeChartFilter"
+                                            data-status="closed">
+                                        Closed
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <!-- LEGEND -->
+                            <div class="cv4-chart-legend">
+
+                                <span class="legend-item">
+                                    <span class="legend-color"
+                                          style="background:#1565C0;"></span>
+                                    Finding
+                                </span>
+
+                                <span class="legend-item">
+                                    <span class="legend-color"
+                                          style="background:#C62828;"></span>
+                                    Observation
+                                </span>
+
+                                <span class="legend-item">
+                                    <span class="legend-color"
+                                          style="background:#F9A825;"></span>
+                                    Opportunity
+                                </span>
+
+                            </div>
+
+                            <!-- EMPTY -->
+                            <div id="cv4_typeChartEmpty"
+                                 class="text-center p-4 d-none">
+                                No data found
+                            </div>
+
+                            <!-- BAR -->
+                            <canvas id="cv4_typeChart"></canvas>
+
+                        </div>
+                    </div>
+
+                    <!-- PIE -->
+                    <div class="cv4-col-4">
+
+                        <div class="cv4-card" style="border-top:none;">
+
+                            <h4>
+                                Type Analysis
+                            </h4>
+
+                            <!-- LEGEND -->
+                            <div class="cv4-chart-legend">
+
+                                <span class="legend-item">
+                                    <span class="legend-color"
+                                          style="background:#1565C0;"></span>
+                                    Finding
+                                </span>
+
+                                <span class="legend-item">
+                                    <span class="legend-color"
+                                          style="background:#C62828;"></span>
+                                    Observation
+                                </span>
+
+                                <span class="legend-color"
+                                      style="background:#F9A825;"></span>
+                                Opportunity
+
+                            </div>
+
+                            <!-- EMPTY -->
+                            <div id="cv4_typePieChartEmpty"
+                                 class="text-center p-4 d-none">
+                                No data found
+                            </div>
+
+                            <!-- PIE -->
+                            <canvas id="cv4_typePieChart"></canvas>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- RISK WISE -->
+                <!-- ========================= -->
+
+                <div class="cv4-row mt-4">
+
+                    <!-- BAR -->
+                    <div class="cv4-col-8">
+
+                        <div class="cv4-card" style="border-top:none;">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <h4 id="title_risk">
+                                    Risk Wise Report
+                                </h4>
+
+                                <!-- SWITCH -->
+                                <div class="cv4-switch">
+
+                                    <button class="riskChartFilter active"
+                                            data-status="active">
+                                        Active
+                                    </button>
+
+                                    <button class="riskChartFilter"
+                                            data-status="closed">
+                                        Closed
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <!-- LEGEND -->
+                            <div class="cv4-chart-legend"
+                                 id="riskLegend">
+                            </div>
+
+                            <!-- EMPTY -->
+                            <div id="cv4_riskChartEmpty"
+                                 class="text-center p-4 d-none">
+                                No data found
+                            </div>
+
+                            <!-- BAR -->
+                            <canvas id="cv4_riskChart"></canvas>
+
+                        </div>
+                    </div>
+
+                    <!-- PIE -->
+                    <div class="cv4-col-4">
+
+                        <div class="cv4-card" style="border-top:none;">
+
+                            <h4>
+                                Risk Analysis
+                            </h4>
+
+                            <!-- LEGEND -->
+                            <div class="cv4-chart-legend"
+                                 id="riskPieLegend">
+                            </div>
+
+                            <!-- EMPTY -->
+                            <div id="cv4_riskPieChartEmpty"
+                                 class="text-center p-4 d-none">
+                                No data found
+                            </div>
+
+                            <!-- PIE -->
+                            <canvas id="cv4_riskPieChart"></canvas>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ROW 3 -->
+                <!--                <div class="cv4-row">
+                                    <div class="cv4-col-8">
+                                        <div class="cv4-card">
+                                            <h4>Risk Type</h4>
+                                            <canvas id="cv4_riskChart"></canvas>
+                                        </div>
+                                    </div>
+                
+                                    <div class="cv4-col-4">
+                                        <div class="cv4-card">
+                                            <h4>Risk Analysis</h4>
+                                            <canvas id="cv4_riskPieChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+                <!-- ROW 4
+                <div class="cv4-row">
+                    <div class="cv4-col-8">
+                        <div class="cv4-card">
+                            <h4>Area Analysis</h4>
+                            <canvas id="cv4_areaChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="cv4-col-4">
+                        <div class="cv4-card">
+                            <h4>Action Type</h4>
+                            <canvas id="cv4_actionChart"></canvas>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+}
+
+{#ifnot:capaExist:
+<div id="caPaReportViewSec-not-access-page">
+    <div class="capa_img" style="text-align: center;">
+        <img src="/img/icons/capa_no_data.png" style="width: 80%;">
+        <h1>You do not have access to this report from your account.</h1>
+    </div>
+</div>
+}

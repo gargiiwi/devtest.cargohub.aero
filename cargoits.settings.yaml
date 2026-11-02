@@ -1,0 +1,132 @@
+# The Settings system for CargoHub Connect
+
+# Core settings go directly here
+core:
+  version: 2026.10.30.0340 &version
+  debug:
+    level: ALL 
+    mode: console
+    settings:
+      file: debug.log
+    heartbeat: Yes         # Enable or disable the auto-repeating requests to the server
+    hb_interval: 8         # Number of seconds heartbeat repeats
+  default_language: English 
+  security: 
+    salt: CC-1337-WIHE-42
+    multi_login: Yes       # "No" is a bit bugged at the moment, if you don't logout and just close the browser, you have to wait for the session to expire...
+    # It should allow you to get back into the old session if you attempt to login from the same IP address before the session has expired
+    max_failed_logins: 15
+    ip_ban_time: 600       # IP is banned for 10 minutes in case of cracking attempts ( or stupid user which forgot his password and keeps trying over and over again )
+    invalid_domain_redirect: https://www.cargoclaims.aero/  # Go here when attempting to load the application from an unregistered domain
+  session_expiration: 7200 # Auto expire a session after 120 minutes of inactivity (defaults to the ini setting session.gc_maxlifetime, or if that not present, to 1 hour ( 3600s )
+  janitor_ratio: 10	       # The system self-cleanup procedure is called statistically one in N calls. (this number should be much higher for a busy site)
+
+# Database connection related settings
+database:
+  host: localhost 
+  name: anirban_ITS1_NEW_DB
+  user: anirban_caroits
+  pass: ajVCWLmeDrPym8yQUKfb
+  debug: 2
+  # All table reference keys will be present here (with a function in the MVC_Database module to access this setting quickly)
+  tables:
+    org: organizations        # Organizations primary table
+    ord: org_domains          # The domain name determines how the application looks
+    par: partnerships         # N2N relations between Organizations ( list of partners )
+    iss: issues               # The issues primary table
+    ist: issue_types          # Definition for issue types, necessary to construct the proper issue data
+    xfd: issue_xfdef          # X(extra) field definitions for issue types
+    isu: issue_updates        # Update history for issues
+    ixf: issue_fields         # The data for extra fields
+    iod: issue_orgdata        # Organization-specific issue data, different for each organization sharing access to a certain issue
+    rmk: rec_markers 	      # Record user markers/indicators (like: last access date, export date)
+    rst: rec_statistics       # Record statistics (counters of attached elements and other details)
+    rqi: rec_quickindex       # Record quick index - Used to locate record ID's by fixed values (exact match)
+    usr: users                # The users primary table
+    upr: user_profiles        # ... and their personal profile data
+    upd: user_profile_defs    # ... and default profile data per organization
+    grp: groups               # Data group definitions (used to group issues and possibly other items)
+    ipr: ip_rules             # Restricitons and permissions on certain IP addresses (an organization feature)
+    tsk: tasks                # Tasks primary table
+    tsu: task_updates         # Task updates (recorded history of task changes) + notes
+    nte: notes                # Notes data
+    dep: departments          # Departments inside organizations primary table
+    drl: deps_reclinks        # Automatic linking of records to multiple departments on creation
+    u2d: user2dep             # N2N relations between User to Department ( User membership )
+    g2o: group2org            # N2N relations between Organizations and Groups ( Access connections )
+    ass: active_sessions      # List of online users, which department they are active in, last visited page and IP address
+    crk: pwcrack_protect      # Used to disable IP addresses in case of consecutive failed logins
+    ssh: session_history      # Session history ( All user logins, successful or failed, how long they stayed active, from what IP addresses )
+    rep: report_types         # Reports are a feature of an organization
+    msg: comm_messages        # All messages that the system handles (there are several types)
+    lab: comm_labels          # Communication organizational labels ( visually they appear as a tree )
+    can: comm_canned          # Canned messages (templates), used for quick composing of messages
+    ctx: comm_contacts        # Contacts (Address book)
+    cnv: comm_convos          # Conversations (Sets of communication messages related to each other)
+    c2l: comm_cnv2lab         # N2N relations between Conversations and Labels ( organization of conversations for users ) 
+    mtp: comm_smtp            # SMTP server info, used for e-mailing as the actual users - instead of using mail()
+    fil: files                # Files uploaded into the system
+    fcb: files_clipboard      # Temporary buffer for copy/pasting files between diffrent entities
+    u2g: user2group           # N2N relations between Users and Groups ( per group user preferences, ... )
+    cac: contact_accounts     # Automatically generated accounts connected to a contact record, with which outside contacts can use to manage data inside the system ( by using their e-mail address and a password )
+    fva: view_accounts        # Frontend issue viewing accounts (actually, email/password + other data) --- DEPRECATED, replaced with contact_accounts (cac)
+    cms: cms_pages            # Content Management System Pages
+    blg: cms_blog             # System Blog Entires (A way to push/organize software updates and other calendar-oriented entries)
+    c2i: issue_contacts       # Links between issues and contacts, to support the multi-contacts per issue
+    stx: statistics           # Global statistics system data cache
+    evn: notifications        # External notifications for users - Part of the EVAN model.
+    nsu: notify_subscriptions # User Subscription to events that would generate a notification. If and the way the user is notified is stored here
+    i2o: ist2org              # Issuetypes to Organizations - Very clear configuration on which issue types an organization can access (will be used in several places)
+    otc: org_target_contacts  # Organization related issue submit/share target contacts (can be chosen from any and all contacts linked to the organization)
+    tpl: org_templates        # Data output templates (related to organizations and issuetypes)
+    prt: privileges_templates # Templates for the Privileges matrix, to set all buttons with a single click
+    gvw: grid_views           # The way users see the grid, for different record types (Also stores extra information about how the grid works)
+    api: webapi               # HTTP data access API credentials
+    apl: webapi_log           # Access log to the Web API
+    apc: webapi_commands      # Predefined commands which the API "Execute" action can run. The commands are per-organization
+    act: actions              # Time-based actions, handled by Skynet
+    aar: actions_archive      # Archive of already executed time-based actions, along with their result
+    log: system_log           # Admin/Superuser activity log (used to track changes to the system config) - May include activity from bot users (sorters, janitors)
+    ursrl: user_read_sign_reminder_log   # all log regarding read and sign reminder mail sent 
+
+communication:
+  system_email: no-reply@cargoclaims.aero
+  system_name: CargoHub Connect
+  support_email: no-reply@cargoclaims.aero
+
+# Default settings related to the visual appearance of the application (these go into the output HTML) - Can be overwritten by the domain html_settings
+html:
+  css_theme: default
+  tpl_theme: default
+  title: CargoHub Connect
+  logo: cargoclaimsv3.png
+  jqx_theme: classic
+  index_route: /issue?action=present
+  appbar: No                  # Show or hide the CargoHub Link/Application bar
+  footer: Yes                 # Show or hide the CargoHub Logo (Powered by CargoHub) 
+javascript:
+  preloader: # DonReY configuration
+    DRY: /js/lib/DonReY.js?v=2026.10.30.0340 # DonReY base class (first required, since it contains LAB)
+    CFG:
+      debug: true
+      debugLAB: false
+      minified: false         # If true, modules and components will be loaded from the "MIN" folders, instead of the normal one.
+      paths:
+        lib: /js/lib/
+        jquery: /js/lib/jquery/
+        modules: /js/modules/
+        modules_min: /js/modules.min/
+        components: /js/components/
+        components_min: /js/components.min/
+    load: # List of JS code to run before initializing the application itself
+      - /js/lib/jquery/jquery-1.12.4.js  # jQuery - write less, do more.
+      - /js/cargo_its.js?v=2026.10.30.0340
+  cargohub: # Application configuration
+    version: *version
+    fullwidth: 1128
+    date_format: "yyyy-MM-dd"
+    datetime_format: "yyyy-MM-dd HH:mm:ss"
+
+# Available languages
+languages: 
+  - [ English, en ]

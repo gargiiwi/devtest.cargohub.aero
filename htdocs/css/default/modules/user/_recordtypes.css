@@ -1,0 +1,53 @@
+/* Record Types (modules) listing */
+#rt-list {
+	width: 250px;
+	float: left;
+}
+
+#rt-description {
+	width: 800px;
+	float: right;
+	margin-right: 20px;
+}
+
+	#rt-description .rt-no_access {
+		padding: 8px;
+		background-color: orange;
+		color: black;
+		border: 1px solid red;
+		text-align: center;
+	}
+	
+	#rt-description .rt-functions {
+		width: 200px;
+		border: 1px solid lightgray;
+		padding: 8px 8px 0 8px;
+		margin-left: 20px;
+		margin-bottom: 20px;	
+	}
+
+.chart-container {
+	border: 1px solid lightgray;
+	margin: 0 0 16px 0;
+	position: relative;
+	background-color: white;
+}
+	/* Aligned to the right, over the chart itself */
+	.chart-container .chart-controls {
+		position: absolute;
+		right: 6px;
+		top: 8px;
+		z-index: 1;
+	}
+	
+		.chart-container .chart-controls > * {
+			float: left;
+			margin-right: 4px;
+		}
+	
+	.chart-container .chart-process {
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		z-index: 1;
+	}

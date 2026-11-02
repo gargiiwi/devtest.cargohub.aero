@@ -1,0 +1,17 @@
+  {#use:%ist.xfield_def:
+	<table>
+		<tr><th>{type.n}:</th><td><b>{^xfields.type.value}</b></td></tr>
+		<tr><th>{supplier.n}:</th><td>{^xfields.supplier:<span id="sup_asset"> ---</span>}</td></tr>
+		<tr><th>{invoice_number.n}:</th><td>{^xfields.invoice_number:<span class="gray"> ---</span>}</td></tr>
+		<tr><th>{date_purchase.n}:</th><td>{^xfields.date_purchase:<span class="gray"> ---</span>}</td></tr>
+		<tr><th>{warranty_date.n}:</th><td>{^xfields.warranty_date:<span class="gray"> ---</span>}</td></tr>
+		<tr><th>{pur_price.n}:</th><td><b>{^xfields.pur_price.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{rest_price.n}:</th><td><b>{^xfields.rest_price.serialized:<span class='gray'>---</span>}</b></td></tr>
+	</table>
+	<h5 style="margin-left: 20px;">{remarks.n}:</h5>
+	{#if:^xfields.remarks:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+	}
+
+

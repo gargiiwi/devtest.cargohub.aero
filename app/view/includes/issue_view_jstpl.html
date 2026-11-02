@@ -1,0 +1,24 @@
+<script id="field-delete-button" type="text/dryjstpl">
+	<button title="Cancel this upload" />
+</script>
+
+<script id="template-contact-result" type="text/dryjstpl">
+<table class="infotable contact-result-row">
+<tr>
+	{#exists:id:<th><img id="contact-picture" src="/global/contact?action=get_picture&amp;ireq=1&amp;id={$id}" style="width: 48px" /></th>}
+	<td valign="top">
+		<div class='contact-name'><span>{$name}</span></div>
+		<div class='contact-email' style='white-space: normal;'><span>{$email}</span></div>
+	</td>
+</tr>
+{#exists:xdata.company_name:<tr>
+	<th><label>Company</label></th>
+	<td>{$xdata.company_name}</td>
+</tr>}
+{#exists:xdata.address:<tr>
+	<th><label>Address</label></th>
+	<td>{$xdata.address}</td>
+</tr>}
+</table>
+<hr style="margin: 0;" />
+</script>

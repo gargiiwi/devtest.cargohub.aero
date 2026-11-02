@@ -1,0 +1,70 @@
+{!Assembles a conversation block and involved contacts to be displayed within a communication module} 
+<div class="spacey" id="convo-left-side">
+    {#repeat:messages:
+    <div class="convo-msg" data-msg_id="{id}" data-from_id="{from_id}" data-dt="{dt}">
+        <div class="convo-msg-closed">
+            <img class='icon' src="/img/icons/email.png" alt="Closed message" />	
+            <span class='contact-item from-name' data-con_id="{from_id}">{from.name}</span>
+            {#if:content_length:<span style="margin-left: 8px;">{content}~striptags;cut(67,"...")~</span>}
+            {#ifnot:content_length:<span class="gray">(Message is empty)</span>}
+            <span class="right">{dt}~date("d M Y")~ {#if:age:({age})}</span>
+        </div>
+        <div class="convo-msg-open" style="display: none;">
+            <div class="msg-header">
+                <img class='icon' src="/img/icons/email_open.png" alt="Open message" />
+                <span class='contact-item from-name' data-con_id="{from_id}">{from.name}</span>
+                {!					{#if:to_id:<span class="gray">to <span class="contact-item to-name" data-con_id="{to_id}">{to.name}</span></span>}}
+                <div class="right">
+                    <span class="message-date">{dt}~date("d M Y")~ {#if:age:({age})}</span> 
+                    <!--IWI  to view sender details, resend mail and print this mail in add / edit message  start-->                  
+                    <div class="msgFuncIconSec msg-buttons">
+                        <button data-op="msg_sender_details"><img src='/img/icons16/vcard.png' alt="Sender details" title="sender_details"/></button>
+                        <button data-op="msg_send_email"><img src='/img/icons16/email_send.png' alt="(Re)Send E-mail" title="send_email" /> </button>
+                        <button data-op="msg_print_message"><img src='/img/icons16/printer_old.png' alt="Print Message" title="print_message"/> </button>
+                    </div>
+                    <!--<div class="msg-buttons unselectable"><button style="height: 18px; width: 80px; line-height: 18px;"><img role="button" src="/img/icons16/vcard.png" style="float: left; padding-left: 5px;"> Details</button><button style="height: 18px;"><img role="button" src="/img/icons16/bullet_arrow_down.png"></button></div>-->
+
+                    <!--IWI  to view sender details, resend mail and print this mail in add / edit message end-->
+                </div>
+            </div> 
+            <div class="msg-recipients">
+                <div>To:{#repeat:recipients.to: <span class='contact-item' data-con_id="{id}">{name}</span>}</div>
+                {#if:recipients.cc:<div>Cc:{#repeat:recipients.cc: <span class='contact-item' data-con_id="{id}">{name}</span>}</div>}
+                {#if:recipients.bcc:<div>Bcc:{#repeat:recipients.bcc: <span class='contact-item' data-con_id="{id}">{name}</span>}</div>}
+            </div>
+            <hr />
+            {!TODO: There should be an optional message title bar here as well !}
+            {#if:content_length:<div class="msg-content">{content}</div>}
+            {#ifnot:content_length:<div class="msg-content gray" data-empty="true">(Message is empty)</div>}
+            {#if:files:
+            <h4>Attachments:</h4>
+            {#repeat:files:
+            <div style="margin-bottom: 5px; padding: 5px 0px 5px 2px; border-bottom: 1px dotted lightgray;">
+                <a target='_blank' href='/dlch/{chash}'>
+                    <img style="float: left; margin-right: 10px; border: none;" src='/img/mime/{mimetype}.png' alt="{mimetype}">
+                    {name}</a>{#if:description: <span style="color: #999;">({description})</span>}<br />
+                <span style="color: #999;">Size:</span> {size}~numberformat~ bytes
+                <div style="clear: both; height: 0px !important;"></div>
+            </div>
+            }
+            }
+        </div>
+    </div>
+    }
+</div>
+<div class="spacey" id="convo-right-side">
+    <div class="right-side-block">
+        <h4>Involved contacts:</h4>
+        {#repeat:contacts:
+        <div class="convo-contact jqx-rc-all">
+            <h3 class="contact-item" data-con_id="{id}"><button class='cmd16 user16' title='View details for {name}'></button>{name}</h3>
+            <h5>{email}</h5>
+            <div>Type:
+                {#if:type="isspost":Submitter}
+                {#if:type="user_self":Staff member}
+            </div>
+        </div>
+        }
+    </div>
+</div>
+<div class="clear"></div>

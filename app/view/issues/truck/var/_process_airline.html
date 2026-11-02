@@ -1,0 +1,159 @@
+{@<style type="text/css">
+/* Some styles specific to Trucking Plans */
+/* Toolbar buttons - Issue specific */	
+div.page div.command button#btn-truck-overview { background-image: url("/img/icons/ist/truck.png"); }
+div.page div.command button#btn-truck-schedule { background-image: url("/img/icons/clock.png"); }
+div.page div.command button#btn-truck-docs { background-image: url("/img/icons/page.png"); }
+div.page div.command button#btn-truck-customs { background-image: url("/img/icons/customs_officer.png"); }
+
+.iss_document {
+	padding: 1px 4px;
+	margin: 0px 5px 2px 0px;
+	color: green;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="truck-overview" data-panel='0' style='height: 510px;'>
+	<div><img src='/img/icons16/ist/truck.png' alt="{track}" />Truck Identification
+		{#if:%acls.privileges.issue_edit_xfields|%acls.unrestricted:<span class='panel-commands toggle-cmds'>	
+			<button class='op-button' data-op="panel" data-cmd="edit-xf" data-target="core-issue-data" data-template="ident" title="Edit identification"><img src="/img/icons16/pencil.png" />Edit</button>
+		</span>
+		<span class='panel-commands toggle-cmds' style="display: none;">
+			<button class='op-button' data-op="panel" data-cmd="save-xf" data-target="core-issue-data" title="Save identification"><img src="/img/icons16/save.png" />Save</button>
+			<button class='op-button' data-op="panel" data-cmd="cancel-xf" data-target="core-issue-data" title="Cancel editing"><img src="/img/icons16/cancel.png" />Cancel</button>
+		</span>}
+	</div>
+	{#if:%acls.privileges.issue_overview|%acls.unrestricted:<div class="datatable" id="core-issue-data">
+		<table>
+			<tbody>
+				<tr><th>Airline:</th><td style='font-weight: bold;'>{group.name}</td></tr>
+				<tr><td colspan='2'><hr /></td></tr>
+				<tr><th>Submiter name:</th><td><a href="mailto:{submitter.email}">{submitter.name}</a></td></tr>
+				{#if:submitter.xdata.company_name:<tr><th>Submiter company:</th><td> {submitter.xdata.company_name}</td></tr>}
+				<tr><th>Submit IP Address:</th><td><a target="_blank" href="http://ipaddress.is/{submitter.ip}"><img src="/img/icons16/map.png" alt="IP Address" /> {submitter.ip}</a></td></tr>
+				<tr><td colspan='2'><hr /></td></tr>
+				{#if:status_key:<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>}			
+				{#if:priority_key:<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>}
+				<tr><th>Created on:</th><td>{ctime}~date("Y-m-d (H:i)")~</td></tr>			
+				<tr><th>Record updated:</th><td>{utime}~date("Y-m-d (H:i)")~</td></tr>
+				{#if:edtime:<tr><th>Data edited:</th><td>{edtime}~date("Y-m-d (H:i)")~</td></tr>}			
+				{#if:commtime:<tr><th>Last comm.:</th><td>{commtime}~date("Y-m-d (H:i)")~</td></tr>}			
+				{#if:assigned.id:<tr><th>Assigned to:</th><td><span id='claim_owner'>{assigned.name}</span></td></tr>}
+				{#ifnot:assigned.id:<tr><th style="font-weight: bold;">Unassigned</th><td>{#if:%acls.privileges.issue_self_assign: <input class='op-button' data-op="link" data-url="?action=assign_to&amp;track={track}&amp;user_id={%session.user.id}" type="button" value="Assign to myself" />}</td></tr>}
+			</tbody>
+		</table>
+		<hr />
+		{#use:%ist.xfield_def:<table>
+			<tr><th>{feeder.n}:</th><td>{^xfields.feeder.value}</td></tr>
+			<tr><th>{truck_no.n}:</th><td>{^xfields.truck_no:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{origin.n}:</th>{#if:^xfields.origin.value:<td>{^xfields.origin.value.name} ({^xfields.origin.value.IATA})</td></tr>
+			<tr><th>Origin Country:</th><td>{^xfields.origin.value.country}</td>}
+			{#ifnot:^xfields.origin.value:<td class="gray">(Location not specified)</td>}</tr>
+			<tr><th>{destination.n}:</th>{#if:^xfields.destination.value:<td>{^xfields.destination.value.name} ({^xfields.destination.value.IATA})</td></tr>
+			<tr><th>Destination Country:</th><td>{^xfields.destination.value.country}</td>}
+			{#ifnot:^xfields.destination.value:<td class="gray">(Location not specified)</td>}</tr>
+			<tr><th>{non_airp.n}:</th><td>{^xfields.non_airp:<span class="gray">(not specified)</span>}</td></tr>
+		</table>}
+	</div>}
+	{#ifnot:%acls.privileges.issue_overview|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to issue overview is restricted.</div></div></div>}	
+</div>
+
+<div id="truck-schedule" data-panel='1' style='height: 450px;'>{#use:%ist.xfield_def:
+	<div><img src='/img/icons16/menus/truck-schedule.png' />Truck Schedule
+		{#if:%acls.privileges.issue_edit_xfields|%acls.unrestricted:<span class='panel-commands toggle-cmds'>	
+			<button class='op-button' data-op="panel" data-cmd="edit-xf" data-target="schedule-fields" data-template="schedule" title="Edit travel plan"><img src="/img/icons16/pencil.png" />Edit</button>
+		</span>
+		<span class='panel-commands toggle-cmds' style="display: none;">
+			<button class='op-button' data-op="panel" data-cmd="save-xf" data-target="schedule-fields" title="Save plan information"><img src="/img/icons16/save.png" />Save</button>
+			<button class='op-button' data-op="panel" data-cmd="cancel-xf" data-target="schedule-fields" title="Cancel editing"><img src="/img/icons16/cancel.png" />Cancel</button>
+		</span>}
+	</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" id='schedule-fields'>
+		<h3 style="text-indent: 30px;">Handler information:</h3>
+		<table>
+			<tr><th>{arrival.n}:</th><td>{^xfields.arrival}</td></tr>
+			<tr><th>{arrival_date.n}:</th><td>{#if:^xfields.arrival_date:{^xfields.arrival_date}~date("Y-m-d")~}{#ifnot:^xfields.arrival_date:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{license.n}:</th><td>{^xfields.license:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{mrn_no.n}:</th><td>{^xfields.mrn_no:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{mrn_status.n}:</th><td>{^xfields.mrn_status.value:<span class='gray'>(not specified)</span>}</td></tr>
+		</table>
+		<h3 style="text-indent: 30px;">Cargo pickup:</h3>
+		<table>
+			<tr><th>{pick_date.n}:</th><td>{#if:^xfields.pick_date:{^xfields.pick_date}~date("Y-m-d")~}{#ifnot:^xfields.pick_date:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{pick_time.n}:</th><td>{^xfields.pick_time:<span class="gray">(not specified)</span>}</td></tr>
+			<tr><th>{pick_est_time.n}:</th><td>{^xfields.pick_est_time.value:<span class="gray">(not specified)</span>}</td></tr>
+		</table>
+		{#if:^xfields.pick_addr:<h3 style="text-indent: 30px;">{pick_addr.n}:</h3>
+		<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.pick_addr}~nl2br~</div>}
+		<h3 style="text-indent: 30px;">Cargo delivery:</h3>
+		<table>
+			<tr><th>{deliv_date.n}:</th><td>{#if:^xfields.deliv_date:{^xfields.deliv_date}~date("Y-m-d")~}{#ifnot:^xfields.deliv_date:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{deliv_time.n}:</th><td>{^xfields.deliv_time:<span class="gray">(not specified)</span>}</td></tr>
+			<tr><th>{deliv_est_time.n}:</th><td>{^xfields.deliv_est_time.value:<span class="gray">(not specified)</span>}</td></tr>
+		</table>
+		{#if:^xfields.deliv_addr:<h3 style="text-indent: 30px;">{deliv_addr.n}:</h3>
+		<div style="border: 1px solid lightgray; padding: 4px;">{^xfields.pick_addr}~nl2br~</div>}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+}</div>
+
+<div id="truck-docs" data-panel='1' style='height: 300px;'>{#use:%ist.xfield_def:
+	<div><img src='/img/icons16/menus/truck-docs.png' />Documentation
+		{#if:%acls.privileges.issue_edit_xfields|%acls.unrestricted:<span class='panel-commands toggle-cmds'>	
+			<button class='op-button' data-op="panel" data-cmd="edit-xf" data-target="docs-fields" data-template="docs" title="Edit travel plan"><img src="/img/icons16/pencil.png" />Edit</button>
+		</span>
+		<span class='panel-commands toggle-cmds' style="display: none;">
+			<button class='op-button' data-op="panel" data-cmd="save-xf" data-target="docs-fields" title="Save documents"><img src="/img/icons16/save.png" />Save</button>
+			<button class='op-button' data-op="panel" data-cmd="cancel-xf" data-target="docs-fields" title="Cancel editing"><img src="/img/icons16/cancel.png" />Cancel</button>
+		</span>}
+	</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" id='docs-fields'>
+		<table>
+			<tr><th>{documents.n}:</th><td>{#repeat:^xfields.documents:<span class='iss_document' id='iss_doc_{key}'>{value}</span>}</td></tr>
+			<tr><td colspan='2'><hr /></td></tr>
+			<tr><th>{awb1.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb1:<span class='gray'>(missing)</span>}</span> Pieces: <span>{^xfields.awb2_p}</span></td></tr>
+			{#if:^xfields.awb2:<tr><th>{awb2.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb2}</span> Pieces: <span>{^xfields.awb2_p}</span></td></tr>}
+			{#if:^xfields.awb3:<tr><th>{awb3.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb3}</span> Pieces: <span>{^xfields.awb3_p}</span></td></tr>}
+			{#if:^xfields.awb4:<tr><th>{awb4.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb4}</span> Pieces: <span>{^xfields.awb4_p}</span></td></tr>}
+			{#if:^xfields.awb5:<tr><th>{awb5.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb5}</span> Pieces: <span>{^xfields.awb5_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+			{#if:^xfields.awb6:<tr><th>{awb6.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb6}</span> Pieces: <span>{^xfields.awb6_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+			{#if:^xfields.awb7:<tr><th>{awb7.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb7}</span> Pieces: <span>{^xfields.awb7_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+			{#if:^xfields.awb8:<tr><th>{awb8.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb8}</span> Pieces: <span>{^xfields.awb8_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+			{#if:^xfields.awb9:<tr><th>{awb9.n}:</th><td><span style="width: 120px; display: inline-block;">{^xfields.awb9}</span> Pieces: <span>{^xfields.awb9_p:<span class='gray'>(unkn)</span>}</span></td></tr>}
+		</table>
+		{#if:^xfields.cnotes:
+		<h4>{cnotes.n}:</h4><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.cnotes}~nl2br~</div>}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+}</div>
+
+<div id="truck-customs" data-panel='1' style='height: 350px;'>{#use:%ist.xfield_def:
+	<div><img src='/img/icons16/menus/truck-customs.png' />Customs
+		{#if:%acls.privileges.issue_edit_xfields|%acls.unrestricted:<span class='panel-commands toggle-cmds'>	
+			<button class='op-button' data-op="panel" data-cmd="edit-xf" data-target="customs-fields" data-template="customs" title="Edit customs information"><img src="/img/icons16/pencil.png" />Edit</button>
+		</span>
+		<span class='panel-commands toggle-cmds' style="display: none;">
+			<button class='op-button' data-op="panel" data-cmd="save-xf" data-target="customs-fields" title="Save customs info."><img src="/img/icons16/save.png" />Save</button>
+			<button class='op-button' data-op="panel" data-cmd="cancel-xf" data-target="customs-fields" title="Cancel editing"><img src="/img/icons16/cancel.png" />Cancel</button>
+		</span>}
+	</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" id='customs-fields'>
+		<table>
+			{#if:^status_key:<tr><th style="height: 30px; line-height: 30px;">Status:</th><td>
+			<span class='status_{^status_key}' style="height: 30px; line-height: 30px;"><img class="inline-icon16" style="margin-top: 7px;" src='/img/icons16/statuses/{^status_key}.png' alt="Status" /> {^status}</span></td></tr>}
+			<tr><th>{coll_date.n}:</th><td>{#if:^xfields.coll_date:{^xfields.coll_date}~date("Y-m-d")~}{#ifnot:^xfields.coll_date:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{coll_amount.n}:</th><td>{^xfields.coll_amount:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{coll_risk.n}:</th><td>{^xfields.coll_risk:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{coll_final.n}:</th><td>{^xfields.coll_final:<span class='gray'>(not specified)</span>}</td></tr>
+			<tr><th>{procedure.n}:</th><td>{^xfields.procedure.value:<span class='gray'>(not specified)</span>}</td></tr>
+		</table>
+		{#if:^xfields.remarks:
+		<hr />
+		<h4>{remarks.n}:</h4><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.remarks}~nl2br~</div>}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+}</div>

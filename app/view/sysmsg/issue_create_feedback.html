@@ -1,0 +1,12 @@
+{!This message is sent to the submitter of a new issue, containing a link back to the issue that has just been created.}
+{#store:subject:{html.title} - {issue.type.name} submitted by {contact.name}}
+<h2>Dear {contact.name},</h2>
+<p>You received this message because you have submitted a(n) {issue.type.name} in the CargoHub Connect communication platform.</p>
+
+<hr />
+<p>You can view the status of your {issue.type.name} by <a href="https://{html.domain}/issue?action=view&amp;track={issue.track}&amp;email={email}&amp;password={password}">[clicking here]</a>.</p>
+<p>Please note: <b>THIS IS NOT A CONFIRMATION OF RECEIPT !</b>{!<br />
+It only indicates that your information has been recorded in the database.<br />In case you did not proceed to <i>STEP 2 - Sending</i>, click the link above and finish the process.}</p>
+<hr />
+<p>The message <i>contains confidential information</i>, addressed only to <b>{contact.name}</b>. If this message arrived to your e-mail address by accident and you did not submit an {issue.type.name}, please delete this message immediately and contact <a href="mailto:{settings.support_email}">{settings.support_email}</a> to investigate the erroneous mailing. Please read our <a href="https://www.cargoclaims.aero/cms?path=terms-of-use">terms of use</a> and <a href="https://www.cargoclaims.aero/cms?path=terms-of-use">privacy policy</a> before continuing using our services.</p>
+<h4>Thank you for using {settings.system_name} !</h4>

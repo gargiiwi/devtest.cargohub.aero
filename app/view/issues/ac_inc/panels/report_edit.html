@@ -1,0 +1,145 @@
+{@<style type="text/css">
+label.twocolcbox {
+	display: block;
+	width: 250px;
+	float: left;
+}
+.inputblock {
+	border: 1px solid lightgray;
+	padding: 8px;
+}
+	.inputblock:HOVER {
+		background-color: #f6f8fA;
+	}
+
+	.inputblock div {
+		margin: 0 4px 6px 2px;
+	} 
+	.inputblock label {
+		display: block;
+		margin-bottom: 2px;
+		font-size: 90%;
+		color: gray;
+	}
+	.inputblock input {
+		position: relative;
+		width: 100%;
+		height: 20px;
+		line-height: 20px;
+		background-color: white;
+	}
+</style>}
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<h4>Notifications to:</h4>
+<table class='dual_col_table' style="margin-bottom: 8px;">
+	<tr>
+		<td valign="top">
+			{!<h3 style="text-indent: 12px;">Carrier:</h3>
+			{#use:cntf_pers:<div>
+				<label for='{id}'>Contect person:<br />
+					<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+				</label>
+			</div>}
+			{#use:cntf_date:<div>
+				<label><img src="/img/icons16/question.png" alt="Info" class="info-tip info-click" data-tooltip="ISO 8601 date format: Year-Month-Day" style='margin-left: 6px; vertical-align: middle;' /> Date and Time:<br />
+					<div style="margin-left: 12px; float: left;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+					{#use:cntf_time:<input type="text" id='{id}' name='{name}' data-value='{value}' class='theclock jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+					<div class="clear"></div>
+				</label>
+			</div>}
+		</td>
+		{#use:gh_notify:<td align="center" valign="top">
+			<h3>Ground Handler:</h3>
+			<select id='{id}' data-name='{name}' class="dropselect multi-select" data-width="200" data-dwidth="200" data-dheight="148">
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select>
+		</td>}
+	</tr>
+</table>
+
+
+<h4>Incident/Accident reported by:</h4>
+<table>
+	{#use:rep_name:<tr>
+		<th><label for='{id}'>Name:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:rep_func:<tr>
+		<th><label for='{id}'>Function:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{!{#use:rep_phone:<tr>
+		<th><label for='{id}'>Telephone:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}}
+	{#use:documents:<tr>
+	<th><label for='{id}'>{display.label}:</label></th>
+	<td>
+		<select id='{id}' data-name='{name}' class="dropselect multi-select" data-width="220" data-dwidth="220" data-dheight="148">
+			{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+		</select>
+	</td>
+	}</tr>
+</table>
+
+<h4>Witnesses (first, second, third):</h4>
+<table style="border-collapse: collapse;">
+	<col width="33%"><col width="33%"><col width="33%">
+	<tr>
+		<td valign="top" class="inputblock">
+			{#use:w1_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w1_org:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w1_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w1_id:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+		</td>
+		<td valign="top" class="inputblock">
+			{#use:w2_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w2_org:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w2_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w2_id:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+		</td>
+	  	<td valign="top" class="inputblock">
+			{#use:w3_name:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Name:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w3_org:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Company:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w3_phone:<div{#if:display.req: class='required'}>
+				<label for='{id}'>Telephone:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+			{#use:w3_id:<div{#if:display.req: class='required'}>
+				<label for='{id}'>ID:{#if:display.req: <span>&nbsp;</span>}</label>
+				<input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' />
+			</div>}
+		</td>
+	</tr>
+</table>
+</form>}

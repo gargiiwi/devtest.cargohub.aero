@@ -1,0 +1,1 @@
+CSS related to certain components. It is not loaded automatically, so if the component needs it, it should load it when it is initializing itself.

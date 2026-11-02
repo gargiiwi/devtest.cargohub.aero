@@ -1,0 +1,55 @@
+{@<style type="text/css">
+div.ra_250 {
+	display: inline-block;
+	float: right;
+	width: 250px;
+}
+label.ra_label {
+	display: inline-block;
+	margin-right: 5px;
+	width: 100px;
+	text-align: right;
+}
+.itembox {
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+div.ra_250 {
+	display: inline-block;
+	float: right;
+	width: 250px;
+}
+
+label.threecolcbox {
+	display: block;
+	width: 175px;
+	float: left;
+}
+</style>}
+{!These are the issue-type specific panels}
+<div id="ulddr-report" data-panel='0' style='height: 600px;' data-editable="1" data-edittpl="report" data-editheight="750">
+	<div><img src='/img/icons16/report.png' />Damage Report</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/report_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>
+
+<div id="ulddr-overview" data-panel='0' style='height: 300px;' data-editable="1" data-edittpl="ident" data-editheight="330">
+	<div><img src='/img/icons16/ist/ulddr.png' alt="ULDDR" />ULD Information</div>
+	<div class="datatable">
+{#include::panels/ident_view.html}
+	</div>
+</div>
+
+<div id="ulddr-followup" data-panel='1' style='height: 1250px;' data-editable="1" data-edittpl="followup" data-editheight="1575">
+	<div><img src='/img/icons16/menus/gen_inc-followup.png' alt="Glass" />Event Followup</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/followup_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}	
+</div>

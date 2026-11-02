@@ -1,0 +1,40 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/jar_empty.png" /><span>Canned messages</span>
+	</div>
+	<button data-op="can-add" title="Add new canned message"><img src='/img/icons16/add.png' /> Add new</button>
+	<div id='canned-row-ops' style='display: none;'>
+		<button data-op="can-copy" title="Duplicate"><img src='/img/icons16/page_copy.png' /> Duplicate</button>
+		<div id='canned-modify-ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+			<button data-op="can-edit" title="Edit selected"><img src='/img/icons16/pencil.png' /> Edit</button>
+			<button data-op="can-del" title="Delete selected"><img src='/img/icons16/delete.png' /> Delete selected</button>
+		</div>
+	<div class='toolbar-accessory' id='selected-canned-message'></div>
+</div>
+</div>
+<div id="canned-grid"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template_canned_editor" type="text/dryjstpl">
+	<form method="post" action="?action=save_canned_message">
+		<div><label>Usage class:</label><div id='can_usage_class' name='can[usage_class]'></div></div>
+		{#missing:id:{!Create variant - Choose visibility and Issue type - if necessary - before creating}
+			<div><label>Visibility:</label><div id='can_visibility' name='can[visibility]'></div></div>			
+			{#exists:link_id:<div class="link_related_row"><label>Issue type:</label><div class='static'>{$link_name}</div></div>
+				<input type='hidden' name='can[link_id]' value='{$link_id}' />}
+			{#missing:link_id:<div class="link_related_row"><label>Issue type:</label><div id='can_link_id' name='can[link_id]'></div></div>}
+			</div>}
+		{#exists:id:{!Edit variant - Visibility and issue type can't be changed, only displayed}
+			<div><label>Visibility:</label><div class='static'>{$visibility_text}</div></div>
+			<div class="link_related_row"><label>Issue type:</label><div class='static'>{$link_name}</div></div>
+			<input type='hidden' name='id' value='{$id}' />}
+		<div><label for='can_description'>Description:</label><input type='text' id='can_description' name='can[description]' class="jqx-input jqx-rc-all {$_itc}" value="{$description}" style='width: 725px;' /></div>
+		<div><label for='can_title'>Subject:</label><input type='text' id='can_title' name='can[title]' class="jqx-input jqx-rc-all {$_itc}" value="{$title}" style='width: 725px;' /></div>
+		<div><label>&nbsp;</label><div class='static'>Subject can contain the same variables as the Template. Copy/Paste placeholders from Template.</div></div>  
+		<div><label for='can_template'>Template:</label><div id='can_template' name='can[template]'>{$template}</div></div>  
+	</form>
+</script>}
+
+{!<div class="link_related_row"><label>Insert field key:</label><div id='issue_field_keys'></div> <input type="button" id="insert_field" value="Insert" style="margin-left: 8px;" /></div>}
+

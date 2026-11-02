@@ -1,0 +1,458 @@
+cargohub.issue_chart_supplier_contracts = donrey.BASE._extend(function () {
+
+    let tableInstance = null;
+    let currentStatus = 'active';
+    function loadDataTable(callback) {
+
+        if (typeof jQuery === "undefined") {
+            console.error("jQuery is not loaded.");
+            return;
+        }
+
+        if ($.fn && $.fn.DataTable) {
+            callback();
+            return;
+        }
+
+        if (!document.querySelector("#dt_css")) {
+            var link = document.createElement("link");
+            link.id = "dt_css";
+            link.rel = "stylesheet";
+            link.href = "/js/components/datatable2/datatables.min.css";
+            document.head.appendChild(link);
+        }
+
+        var script = document.createElement("script");
+        script.src = "/js/components/datatable2/datatables.min.js";
+
+        script.onload = function () { 
+            console.log("DataTable loaded.");
+            callback();
+        };
+
+        script.onerror = function () {
+            console.error("Failed to load datatables.min.js");
+        };
+
+        document.body.appendChild(script);
+    }
+    $(document).ready(function () {
+        setTimeout(function () {
+            try {
+                loadDataTable(function () {
+                    try {
+                        initSupplierContracts();
+                    } catch (e) {
+                        console.error("initSupplierContracts failed", e);
+                    }
+                });
+            } catch (e) {
+                console.error("Page initialization failed", e);
+            }
+
+        }, 1000);
+
+    });
+    function initSupplierContracts() {
+
+        console.log("initSupplierContracts started");
+
+        try {
+            bindStatusFilter();
+            bindSearch();
+            bindApplyFilter();
+            bindResetFilter();
+            bindExport();
+            loadSupplierFilter();
+            loadGroupFilter();
+            currentStatus = 'active';
+            $('.crv-status-btn').removeClass('active');
+            $('.crv-status-btn[data-status="active"]').addClass('active');
+            loadTable();
+        } catch (e) {
+            console.error("ERROR inside initSupplierContracts:", e);
+        }
+    }
+    // function loadSupplierFilter() {
+    //     $.ajax({
+    //         url: "/record/process?action=load_suppliers",
+    //         type: "POST",
+    //         dataType: "json",
+    //         success: function (response) {
+    //             let rows = response.data || [];
+    //             $("#filter_supplier").html(
+    //                     '<option value="">All Suppliers</option>'
+    //                     );
+    //             rows.forEach(function (row) {
+    //                 $("#filter_supplier").append(
+    //                         '<option value="' + row.value + '">' +
+    //                         row.label +
+    //                         '</option>'
+    //                         );
+    //             });
+    //         }
+    //     });
+    // }
+        function loadSupplierFilter() {
+    $.ajax({
+        url: "/record/process?action=load_suppliers",
+        type: "POST",
+        dataType: "json",
+        success: function (response) {
+
+            let rows = response.data || [];
+
+            // Sort alphabetically by label
+            rows.sort(function (a, b) {
+                let nameA = (a.label || "").trim().toLowerCase();
+                let nameB = (b.label || "").trim().toLowerCase();
+
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+            });
+
+            $("#filter_supplier").html('<option value="">All Suppliers</option>');
+
+            rows.forEach(function (row) {
+                $("#filter_supplier").append(
+                    '<option value="' + row.value + '">' +
+                    row.label +
+                    '</option>'
+                );
+            });
+        }
+    });
+}
+    function loadGroupFilter() {
+        $.ajax({
+            url: "/record/process?action=load_groups",
+            type: "POST",
+            data: {
+                group_type: 'asset',
+            },
+            dataType: "json",
+            success: function (response) {
+                let rows = response.data || [];
+                $("#filter_group").html(
+                        '<option value="">All Groups</option>'
+                        );
+                rows.forEach(function (row) {
+                    $("#filter_group").append(
+                            '<option value="' + row.id + '">' +
+                            row.name +
+                            '</option>'
+                            );
+                });
+            }
+        });
+    }
+    function loadTable() {
+        if (tableInstance) {
+            return;
+        }
+        $('#contract_report_table').html(`<table id="supplier_contract_table" class="display nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Supplier ID</th>
+                    <th>Supplier Name</th>
+                    <th>Contract Name</th>
+                    <th>Contract Type</th>
+                    <th>Contract Period</th>
+                    <th>Contract Nr</th>
+                    <th>Group</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Notice Date</th>
+                    <th>Location</th>
+                    <th>Country</th>
+                    <th>Year Value (&euro;)</th>
+                    <th>Month Value (&euro;)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+        </table>`);
+
+        tableInstance = $('#supplier_contract_table').DataTable({
+            processing: true,
+            serverSide: false,
+            dom: 't<"bottom d-flex justify-content-between align-items-center mt-2"ilp>',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'Contract_Management_Report',
+                    text: 'Export Excel',
+                    className: 'd-none',
+                    exportOptions: {
+                        columns: ':visible,:hidden'
+                    }
+                }
+            ],
+            destroy: true,
+            pageLength: 50, //by_default 50 rows 
+            lengthChange: true,
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            searching: true,
+            ordering: true,
+            responsive: false,
+            scrollX: true,
+            scrollCollapse: true,
+            autoWidth: false,
+            ajax: {
+                url: "/record/process?action=load_all_contract_management",
+                type: "POST",
+                cache: false,
+                data: function (d) {
+                    d.status = currentStatus;
+                    d.supplier = $("#filter_supplier").val();
+                    d.group = $("#filter_group").val();
+                    d.contract_type = $("#filter_contract_type").val();
+                    d.start_date = $("#filter_start_date").val();
+                    d.end_date = $("#filter_end_date").val();
+                    d.terminate = $("#filter_terminate").val();
+                },
+                dataSrc: function (json) {
+                    let rows = json.data || [];
+                    $("#kpi_total_contract").html(json.total_contracts);
+                    $("#kpi_active_contract").html(json.total_active);
+                    $("#kpi_closed_contract").html(json.total_closed);
+
+                    updateKPIs(rows);
+                    return rows;
+                }
+            },
+            columns: [
+                {
+                    data: 'track',
+                    render: function (data) {
+                        return '<a target="_blank" href="/record/process:' + data + '#panels">' + data + '</a>';
+                    }
+                },
+                {
+                    data: 'supplier_name'
+                },
+                {
+                    data: 'contract_name'
+                },
+                {
+                    data: 'contract_type'
+                },
+                {
+                    data: 'contract_period'
+                },
+
+                {
+                    data: 'contract_nr'
+                },
+                {data: 'group_name'}, //IWI changes in contract management report page 09062026          
+                {data: 'start_date'},
+                {data: 'end_date'},
+                {data: 'notice_date'},
+                {
+                    data: 'location'
+                },
+
+                {
+                    data: 'country'
+                },
+
+//                {
+//                    data: 'assign_to_name'
+//                },
+
+                // {
+                //     data: 'year_value',
+                //     render: function (data) {
+                //         let val = parseFloat(data || 0);
+                //         return val.toLocaleString('en-US', {
+                //             minimumFractionDigits: 2,
+                //             maximumFractionDigits: 2
+                //         }) + ' &euro;';
+                //     }
+                // },
+                {//year_value sort
+                    data: 'year_value',
+                    render: function (data, type, row) {
+
+                        let val = parseFloat(data);
+
+                        if (isNaN(val)) {
+                            val = 0;
+                        }
+
+                        if (type === 'sort' || type === 'type') {
+                            return val;
+                        }
+
+                        return val.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }) + ' &euro;';
+                    }
+                },
+                {
+                    data: 'month_value',
+                    render: function (data) {
+                        let val = parseFloat(data || 0);
+                        return val.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }) + ' &euro;';
+                    }
+                },
+                {
+                    data: 'status',
+                    visible: false,
+                    render: function (data) {
+                        if (data === 'active') {
+                            return `
+                            <span style="
+                                padding:4px 10px;
+                                background:#dcfce7;
+                                color:#15803d;
+                                border-radius:20px;
+                                font-size:12px;
+                                font-weight:600;
+                            ">
+                                ACTIVE
+                            </span>
+                        `;
+                        }
+                        return `
+                        <span style="
+                            padding:4px 10px;
+                            background:#fee2e2;
+                            color:#b91c1c;
+                            border-radius:20px;
+                            font-size:12px;
+                            font-weight:600;
+                        ">
+                            CLOSED
+                        </span>
+                    `;
+                    }
+                }
+            ],
+            initComplete: function () {
+                console.log("Contract table loaded");
+            }
+        });
+    }
+    function updateKPIs(rows) {
+
+        let terminate30 = 0;
+        let terminate60 = 0;
+        let terminate90 = 0;
+        let total_fixed = 0;
+        let total_auto = 0;
+        let total_open = 0;
+        let total_leased = 0;
+        let total_owned = 0;
+        let totalYearValue = 0; // year value summation 
+        let today = new Date();
+        rows.forEach(function (row) {
+            totalYearValue += parseFloat(row.year_value || 0);   // year value summation
+            if (row.contract_period === 'Fixed Term') {
+                total_fixed++;
+            }
+            if (row.contract_period === 'Auto renewal') {
+                total_auto++;
+            }
+            if (row.contract_period === 'Open ended') {
+                total_open++;
+            }
+            if (row.contract_type === 'Leased') {
+                total_leased++;
+            }
+            if (row.contract_type === 'Owned') {
+                total_owned++;
+            }
+            if (row.terminate_date) {
+                let terminateDate = new Date(row.terminate_date);
+                let diffDays = Math.ceil(
+                        (terminateDate - today) / (1000 * 60 * 60 * 24)
+                        );
+                if (diffDays > 0 && diffDays <= 30) {
+                    terminate30++;
+                } else if (diffDays > 30 && diffDays <= 60) {
+                    terminate60++;
+                } else if (diffDays > 60 && diffDays <= 90) {
+                    terminate90++;
+                }
+            }
+        });
+        //  $("#kpi_contract_period_total").html(totalYearValue + ' €');  // year value summation
+        $("#kpi_contract_period_total").html(
+                totalYearValue.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) + ' €'
+                );                    // year value summation 
+        // $("#kpi_contract_period_total").html(total_fixed + total_auto + total_open);
+        $("#kpi_fixed_term").html(total_fixed);
+        $("#kpi_auto_renewal").html(total_auto);
+        $("#kpi_open_ended").html(total_open);
+        $("#kpi_contract_type_total").html(total_leased + total_owned);
+        $("#kpi_leased").html(total_leased);
+        $("#kpi_owned").html(total_owned);
+        $("#kpi_terminate_total").html(terminate30 + terminate60 + terminate90);
+        $("#kpi_terminate_30").html(terminate30);
+        $("#kpi_terminate_60").html(terminate60);
+        $("#kpi_terminate_90").html(terminate90);
+    }
+
+    function bindExport() {
+        $(document)
+                .off('click', '.crv-btn-export')
+                .on('click', '.crv-btn-export', function () {
+
+                    if (tableInstance) {
+
+                        tableInstance.button('.buttons-excel').trigger();
+                    }
+                });
+    }
+    function bindStatusFilter() {
+        $(document).off('click', '.crv-status-btn').on('click', '.crv-status-btn', function () {
+            $('.crv-status-btn').removeClass('active');
+            $(this).addClass('active');
+            currentStatus = $(this).data('status');
+            if (tableInstance) {
+                tableInstance.ajax.reload();
+            }
+        });
+    }
+    function bindSearch() {
+        $(document).off('keyup', '#contract_search').on('keyup', '#contract_search', function () {
+            let value = $(this).val();
+            if (tableInstance) {
+                tableInstance.search(value).draw();
+            }
+        });
+    }
+    function bindApplyFilter() {
+        $(document).off('click', '#btn_apply_filter').on('click', '#btn_apply_filter', function () {
+            if (tableInstance) {
+                tableInstance.ajax.reload();
+            }
+        });
+    }
+    function bindResetFilter() {
+        $(document).off('click', '#btn_reset_filter').on('click', '#btn_reset_filter', function () {
+            $("#contractReportPage select").val("");
+            $("#filter_terminate").val("active");
+            $("#contractReportPage input[type='date']").val("");
+            $('#contract_search').val('');
+            currentStatus = 'active';
+            $('.crv-status-btn').removeClass('active');
+            $('.crv-status-btn[data-status="active"]').addClass('active');
+            if (tableInstance) {
+                tableInstance.search('').draw();
+                tableInstance.ajax.reload();
+            }
+        });
+    }
+});

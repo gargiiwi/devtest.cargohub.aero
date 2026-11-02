@@ -1,0 +1,13 @@
+@import url("../sp_render.css");
+
+/* Frontend issue finder */
+div.query-area {
+	margin-bottom: 15px;
+	padding-left: 24px;
+}
+
+div#tid-query form > input[type="text"] {
+    height: 23px;
+    padding: 1px 0;
+	text-align: center;
+}

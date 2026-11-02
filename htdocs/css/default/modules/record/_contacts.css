@@ -1,0 +1,20 @@
+div#contact-label {
+	height: 26px;
+	padding: 1px;
+}
+div#contact-label label {
+	color: #808080;
+	float: left;
+	line-height: 24px;
+	margin-right: 6px;
+	text-align: right;
+	width: 142px;
+}
+div#contact-label input {
+	border-style: solid;
+	border-width: 1px;
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	width: 150px;
+}

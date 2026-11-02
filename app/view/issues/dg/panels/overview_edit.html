@@ -1,0 +1,42 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:shp_id:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+{!	{#use:subclass:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}}
+	{#use:imex:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:f_un:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='medium jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:pg:<tr>
+		<th><label>{display.label}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+</table>
+<hr />
+<table>
+	{#use:sh_descr:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	<tr>
+		<th><label class="info-tip" data-tooltip="Type the number of pieces and weight (if known), not the AWB number !">Pieces and Qty /piece:</label></th>
+		<td>
+			{#use:sh_pcs: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' onChange='dg_autocalc_tqty();' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pcs}
+			{#use:sh_qtypce: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' onChange='dg_autocalc_tqty();' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> items}
+		</td>
+	</tr>
+	{#use:sh_tqty:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' readonly="readonly" id='{id}' name='{name}' value='{value}' class='tiny jqx-rc-all jqx-input jqx-input-{%jqxtheme} only-numbers{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> <span class='gray'>(auto calculated)</span></td>
+	</tr>}
+</table>
+</form>}

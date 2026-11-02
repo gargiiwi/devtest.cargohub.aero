@@ -1,0 +1,84 @@
+{@<style type="text/css">
+#support-links {
+	float: left;
+	width: 290px;
+	border: 1px solid lightgray;
+	padding: 5px;	
+}
+
+	#support-links > a, #support-links > div {
+		display: block;
+		padding-left: 8px;
+		height: 24px;
+		line-height: 24px;
+		font-size: 1.1em;
+	}
+		#support-links > div {
+			color: gray;
+		}
+	
+	#support-links img {
+		float: left;
+		margin: 4px;
+	}
+	
+	#support-links > a:hover {
+		background-color: #166eb7;
+		color: white;
+		text-decoration: none;
+	}
+
+#tech-updates {
+	float: right;
+	width: 800px;
+}
+
+	#tech-updates > h3 {
+		cursor: pointer;
+	}
+</style>}
+
+<h2 style="margin: 8px 0 20px 20px;">Customer Support{! and Updates}</h2>
+
+<div id="support-links" class="jqx-rc-all">
+<!-- <a href="http://www.cargohub.nl/wp-content/uploads/2016/01/CargoHub-User-Guide-2.8.2.pdf" target="_blank"><img src="/img/icons16/file_extension_pdf.png" alt="(pdf)" />User Guide v2.8.2</a>
+	<hr />-->
+	<a href="mailto:support@cargohub.nl"><img src="/img/icons16/help.png" alt="(pdf)" />Customer Support (E-mail)</a>
+	
+	<br /><h4>Documentation</h4>
+	<a href="https://docs.google.com/document/d/1ULY8wGa-zGVBBRsfR2hX5a1WHPXZmTPD34pPMuvJxm8" target="_blank"><img src="/img/icons16/information.png" alt="(I)" />User Manual (General)</a>
+	<a href="https://docs.google.com/document/d/1CB1wJG0eWVkSot1aLbonz4ipahxAIZsgMYPr37UrQq4" target="_blank"><img src="/img/icons16/information.png" alt="(I)" />Integrated Address Book</a>
+	
+	<br /><h4>Cargohub Modules</h4>
+	<a href="https://docs.google.com/document/d/1E7Tf_sl6kvoEj6jd8EqqkLV8CHpCuK84ICwymrWSYbA" target="_blank"><img src="/img/icons16/ist/cargoclaim.png" alt="(o)">Air Cargo Claim</a>
+	<a href="https://docs.google.com/document/d/1QnSQKa5YjXD7uimVF8t7g9gRMFxXk8ham_s_5nEjq6k" target="_blank" style="margin-left: 22px;"><img src="/img/icons16/information.png" alt="(I)" />Reference for Claimants</a>
+	<a href="https://docs.google.com/document/d/16MlnHdr_UzAUWFYdQH67FKhdW5EMsSa1pKgCZssWvp0" target="_blank" style="margin-left: 22px;"><img src="/img/icons16/information.png" alt="(I)" />Reference for Airlines</a>
+	<a href="https://docs.google.com/document/d/1o47JUIWJ_Xjkk707zoeiw3ecIM53AqQbTkrSQzZopmc" target="_blank" style="margin-left: 22px;"><img src="/img/icons16/information.png" alt="(I)" />Reference for Forwarders</a>
+	<div><img src="/img/icons16/ist/ac_inc.png" alt="acc">Aircraft Incident [draft]</div>
+	<a href="https://docs.google.com/document/d/1PL1ARZrycUdoJXeKaO__IEIUQkPZLJgehpCWPTlC5EM" target="_blank"><img src="/img/icons16/ist/audit.png" alt="(o)">Audit Manager</a>
+	<a href="https://docs.google.com/document/d/1h8sKfuini1mxqse_BcfZ2aWDzXypuSh3LFTziu_hGeI" target="_blank"><img src="/img/icons16/ist/damage.png" alt="(o)">Cargo Damage Report</a>
+	<a href="https://docs.google.com/document/d/1K2kD9FPzcobfAIesOwKWLoKQa2xDoAYVWWAtqqB8f2Y" target="_blank"><img src="/img/icons16/ist/csr.png" alt="(o)">Cargo Service Recovery</a>
+	<a href="https://docs.google.com/document/d/15Pd_bp9k0tUltTp3BBBFMmJY83F4vh3p-HEiTwtEYZU" target="_blank"><img src="/img/icons16/ist/doc.png" alt="(o)">Document Manager</a>
+	<div><img src="/img/icons16/ist/gen_inc.png" alt="(o)">General Damage [draft]</div>
+	<div><img src="/img/icons16/ist/claim.png" alt="(o)">General Claim [draft]</div>
+	<div><img src="/img/icons16/ist/cert.png" alt="(o)">License Monitor [draft]</div>
+	<div><img src="/img/icons16/ist/marinecclaim.png" alt="(o)">Ocean Cargo Claim [draft]</div>
+	<a href="https://docs.google.com/document/d/17PauA_jtjBPPeodJyNVvgC892jSfA2JP21X---tQaeo" target="_blank"><img src="/img/icons16/ist/event.png" alt="(o)">Quality &amp; AEO Event</a>
+	<div><img src="/img/icons16/ist/landcclaim.png" alt="(o)">Road Cargo Claim [draft]</div>
+	<a href="https://docs.google.com/document/d/1IYVj1KY6kmhro6IMosXTu7l7IPKAH5bS47ZCo9Lukks" target="_blank"><img src="/img/icons16/ist/train.png" alt="(o)">Training Records</a>
+	<div><img src="/img/icons16/ist/truck.png" alt="(o)">Transit monitor [draft]</div>
+	<div><img src="/img/icons16/ist/ulddr.png" alt="(o)">ULD Damage Report [draft]</div>
+</div>
+
+<div id="tech-updates">
+<h4><img src="/img/icons16/system_updated.png" alt="(up)" style="float: left; margin-left: 16px;"> Software Updates (Technical)</h4>
+
+{#repeat:updates:
+<h3 onclick="$(this).next().toggle('slow');">{title}</h3>
+<div{#if:*: style="display: none;"}>
+{content}
+</div>
+<hr style="margin-bottom: 30px;" />
+}
+
+</div>

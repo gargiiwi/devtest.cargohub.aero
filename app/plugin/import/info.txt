@@ -1,0 +1,3 @@
+Data import plugins:
+- Convert external formats (JSON, YAML, XML CSV-table, XLSX-table, others... into system records), to create records
+- Supports updating existing records with new data

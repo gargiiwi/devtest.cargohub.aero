@@ -1,0 +1,7 @@
+jQuery Cookie Plugin (v1.4.1)
+	https://github.com/carhartl/jquery-cookie/releases
+
+Auto Expanding Text Area (1.2.2)
+	http://www.chrysbader.com
+
+pwstrength (0.1.1) - Modified

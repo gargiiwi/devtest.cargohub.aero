@@ -1,0 +1,440 @@
+{@<style>
+.taag-container {
+width: 1130px;
+margin: 0 auto;
+background: #e9dac9;
+height: auto;
+}
+
+div.xlink {
+	margin: 0 auto 20px auto;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	height: 80px;
+	width: 360px;
+	float: left;
+}
+
+	div.xlink a {
+		font-size: 17px;
+		display: block;
+		margin-top: 14px;
+		color: #005EB1;
+}
+	
+	div.xlink img {
+		float: left;
+		margin: 10px 20px 20px 20px;
+		text-decoration: none;
+		border: none;
+	}
+
+.taag-box {
+display: inline-block;
+width: 46%;
+height: 300px;
+background: #f5efe7;
+margin-left: 30px;
+margin-right: 7.5px;
+vertical-align: top;
+border: 1px solid #fff;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.taag-buttons {
+width: 1130px;
+margin-top: 40px;
+margin-left: 30px;
+}
+
+.taag-buttons div {
+display: inline-block;
+width: 23%;
+height: 175px;
+  margin-right: 11px;
+}
+
+.taag-buttons span {
+width: 100%;
+height: 30px;
+background: rgba(0,0,0,0.7);
+display: block;
+color: #fff;
+line-height: 30px;
+text-align: center;
+font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+}
+
+.taag-box li {
+list-style: none;
+display: inline-block;
+font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+  	font-size: 13px;	
+}
+
+.taag-box .findFlights {
+display: block;
+width: 50%;
+height: 50px;
+margin: 0 auto;
+text-align: center;
+line-height: 50px;
+border: 2px solid #D59A58;
+font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+font-size: 18px;
+color: #D59A58;
+font-weight: bold;
+position: relative;
+top: 80px;
+}
+
+.taag-box .findFlights:hover {
+background: #D59A58;
+color: #fff;
+cursor: pointer;
+}
+
+.taag-box .BottomText2 {
+font-size: 13px;
+color: #000;
+font-weight: bold;
+position: relative;
+top: 160px;
+  left: 230px;
+  font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+}
+
+.taag-box .BottomText {
+font-size: 13px;
+color: #000;
+font-weight: bold;
+position: relative;
+top: 160px;
+  left: 100px;
+  font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+}
+
+.taag-box li#field {
+text-align: right;
+width: 100px;
+margin-right: 10px;
+line-height: 30px;
+height: 30px;
+}
+
+.taag-box li#input {
+width: 300px;
+line-height: 30px;
+height: 30px;
+}
+
+.taag-box h3 {
+background: url(http://www.taag.com/images/layout/promo_background.gif);
+display: block;
+width: 100%;
+height: 24px;
+margin: 0;
+margin-bottom: 20px;
+color: #362f2d;
+font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+  	font-size: 14px;	
+	line-height: 24px;
+	text-indent: 20px;
+}
+
+/* 
+Saudia Dropdown CSS 
+Last edited: 17-04-2015
+*/
+.taag-dropdown {
+  	background: url(http://www.taag.com/images/layout/menu_background_line.gif);
+	background-repeat: repeat-x;
+	margin-bottom: 30px;
+}
+
+.taag-dropdown ul {
+	text-align: left;
+	display: inline;
+	margin: 0;
+	padding: 15px 4px 17px 0;
+	list-style: none;
+	color: #000;
+  	font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+  	font-size: 14px;			
+	}
+
+.taag-dropdown ul li a:link, a:hover, a:visited {
+	color: #000;
+	text-decoration: none;
+}
+
+.taag-dropdown ul li {
+	height: 32px;
+	line-height: 32px;
+	padding-left: 15px;
+	padding-right: 15px;
+	display: inline-block;
+	margin-right: -3px;
+	position: relative;
+	cursor: pointer;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+	color: #000;
+	border-left: 1px solid rgba(255,255,255,0);
+	border-right: 1px solid rgba(255,255,255,0);
+}
+
+.taag-dropdown ul li:hover {
+	background: #fff;
+	color: #bf0000;
+}
+
+.taag-dropdown .parent:hover {
+	border-left: 1px solid #F1F1F1;
+	border-right: 1px solid #F1F1F1;
+	}
+
+.taag-dropdown ul li ul {
+	z-index: 999;
+	padding: 0;
+	background: #fff;
+	position: absolute;
+	top: 31px;
+	left: -1px;
+	width: 190px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	display: none;
+	opacity: 0; 
+	visibility: hidden;
+	-webkit-transiton: opacity 0.2s;
+	-moz-transition: opacity 0.2s;
+	-ms-transition: opacity 0.2s;
+	-o-transition: opacity 0.2s;
+	-transition: opacity 0.2s;
+	border-left: 1px solid #F1F1F1;
+	border-right: 1px solid #F1F1F1;
+	border-bottom: 1px solid #F1F1F1;
+}
+.taag-dropdown ul li ul li { 
+	line-height: 25px;
+	height: 25px;
+	width: 130px;
+	margin: 0 auto;
+	background: #fff; 
+	display: block; 
+	color: #000;
+	font-size: 13px;
+    border-bottom:1px solid #F1F1F1;
+}
+
+.taag-dropdown ul li ul li:hover { 
+	color: #bf0000;
+}
+
+.taag-dropdown ul li:hover ul {
+	display: block;
+	opacity: 1;
+	visibility: visible;
+}
+
+.taag-dropdown ul #last {
+  float: right;
+  margin-right: -1px;
+}
+
+.taag-dropdown ul #last ul {
+  left: -102px !important;
+}
+
+.col-50 {
+    float: left;
+  width: 45%;
+  padding: 20px 10px 20px 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #686868;
+  letter-spacing: 0.5px;
+}
+
+</style>}
+<div class="taag-container">
+	<div class="taag-dropdown">
+<ul>
+	<a href="https://taag.sita.aero/itd/itd/"><li>Book Now</li></a>
+	<a href="http://www.taag.com/en/destinations.aspx"><li class="parent">Destinations</a>
+  <ul>
+    <a href="http://www.taag.com/en/new-routes.aspx"><li>New Routes</li></a>
+    <a href="http://www.taag.com/en/route-map.aspx"><li>Route Map</li></a>
+    <a href="http://www.taag.com/en/promotions.aspx"><li>Promotions</li></a>
+    </ul>
+</li>
+  <a href="http://www.taag.com/en/fly-taag.aspx"><li class="parent">
+    Fly TAAG</a>
+    <ul>
+	<a href="http://www.taag.com/en/online-checkin.aspx"><li>Check In Online</li></a>
+	<a href="http://www.taag.com/en/departures-arrivals.aspx"><li>Departures &amp; Arrivals</li></a>
+	<a href="http://www.taag.com/en/fleet.aspx"><li>Fleet</li></a>
+	<a href="http://www.taag.com/en/class.aspx"><li>Class</li></a>
+	<a href="http://www.taag.com/en/inflight-service.aspx"><li>In Flight Service</li></a>
+	<a href="http://www.taag.com/en/baggage.aspx"><li>Baggage</li></a>
+	<a href="http://www.taag.com/en/special-assistance.aspx"><li>Special Assistance</li></a>
+	<a href="http://www.taag.com/en/airports.aspx"><li>Airports</li></a>
+	<a href="http://www.taag.com/en/customs.aspx"><li>Customs</li></a>
+	<a href="http://www.taag.com/en/immigration.aspx"><li>Immigrations</li></a>
+	<a href="http://www.worldtracer.aero/cgi-bin/fileframe.exe?tran=XXXdtXXXXXl1=enCB=Y"><li>Baggage Finder</li></a>
+    </ul>
+  </li>
+  <a href="http://www.taag.com/en/schedule.aspx"><li class="parent">
+    Schedule</a>
+    <ul>
+	<a href="http://www.taag.com/en/domestic-flights.aspx"><li>Domestic Flights</li></a>
+	<a href="http://www.taag.com/en/international-flights.aspx"><li>International Flights</li></a>
+	<a href="http://www.taag.com/en/regional-flights.aspx"><li>Regional Flights</li></a>
+    </ul>
+  </li>
+  <a href="http://www.taag.com/en/about-taag.aspx"><li class="parent">
+	About TAAG</a>
+	<ul>
+	<a href="http://www.taag.com/en/taag-offices.aspx"><li>TAAG Offices</li></a>
+	<a href="http://www.taag.com/en/history.aspx"><li>History</li></a>
+	<a href="http://www.taag.com/en/board.aspx"><li>Board</li></a>
+	<a href="http://www.taag.com/en/org-chart.aspx"><li>Org Chart</li></a>
+	<a href="http://www.taag.com/en/vision.aspx"><li>Vision</li></a>
+	<a href="http://www.taag.com/en/policy.aspx"><li>Management Policy</li></a>
+	<a href="http://www.taag.com/en/safety.aspx"><li>Safety</li></a>
+	<a href="http://www.taag.com/en/press.aspx"><li>TAAG News</li></a>
+	<a href="http://www.taag.com/en/cargo.aspx"><li>Cargo</li></a>
+	<a href="http://www.taag.com/en/jobposting.aspx"><li>Careers at TAAG</li></a>
+    </ul>
+  </li>
+  <a href="http://www.taag.com/en/customer-service.aspx"><li class="parent">
+	Customer Service</a>
+	<ul>
+	<a href="http://www.taag.com/en/testimonials.aspx"><li>Testimonials</li></a>
+	<a href="http://www.taag.com/en/faq.aspx"><li>FAQ</li></a>
+	<a href="http://www.taag.com/en/feedback.aspx"><li>Feedback</li></a>
+	<a href="http://www.taag.com/en/contact.aspx"><li>Contact</li></a>
+	<a href="http://www.taag.com/en/survey2.aspx"><li>TAAG Survey</li></a>
+    </ul>
+  </li>
+ 
+	<a href="http://www.worldtracer.aero/cgi-bin/fileframe.exe?tran=XXXdtXXXXXl1=enCB=Y"><li>Baggage</li></a>
+	<a href="http://www.taag.com/en/press.aspx"><li>TAAG News</li></a>
+	<a href="http://www.taag.com/en/InflightMagazines.aspx"><li>Austral</li></a>
+<a href="http://www.taag.com/en/about-angola.aspx"><li class="parent">
+	About Angola</a>
+	<ul>
+	<a href="http://www.taag.com/en/angola-tourism.aspx"><li>Tourism</li></a>
+	<a href="http://www.taag.com/en/customs2.aspx"><li>Customs</li></a>
+	<a href="http://www.taag.com/en/immigration2.aspx"><li>Immigration</li></a>
+	<a href="http://www.taag.com/en/hotels.aspx"><li>Hotels</li></a>
+	<a href="http://www.taag.com/en/survey2.aspx"><li>TAAG Survey</li></a>
+	<a href="http://www.taag.com/en/rental-cars.aspx"><li>Rent-A-Car</li></a>
+	<a href="http://www.taag.com/en/links.aspx"><li>Links</li></a>
+    </ul>
+  </li>
+</ul>
+</div>
+<div class="taag-box" id="taag-frame">
+	<h3>Flight Finder</h3>
+  <div style=" overflow: hidden; margin: 15px auto; max-width: 455px; height: 255px;">
+		<iframe scrolling="no" src="http://www.taag.com/en/home.aspx" style="border: 0px none; margin-left: -20px; height: 450px; margin-top: -150px; width: 455px;"></iframe>
+  </div>
+  </div>
+
+<div class="taag-box">
+  <h3 style="margin-bottom: 0px;">Destinations</h3>
+  <div style=" overflow: hidden; margin: 15px auto; max-width: 900px; height: 255px;">
+		<iframe scrolling="no" src="http://www.taag.com/en/home.aspx" style="border: 0px none; margin-left: -460px; height: 450px; margin-top: -145px; width: 950px;"></iframe>
+  </div>
+</div>
+
+
+
+	  	<div class="clear"></div>
+	
+	
+		<div style="background: #fff; width: 100%; height: auto;">
+		  <div style="width: 80%; margin: 0 auto; padding: 25px;">
+		  <div class="xlink" style="margin-right: 180px;">
+			<b><a href="/issue?action=select"><img src="/img/icons/ist/cargoclaim_general.png" alt="Money">Submit Cargo Claim</a></b>
+			<p style="margin-top: 4px;">Fill in the claim form and submit to us</p>
+		</div>
+				<div class="xlink">
+			<b><a href="/contact/account?hash=issues"><img src="/img/icons/magnifier.png" alt="Lupa">Search submitted claims</a></b>
+		  <p style="margin-top: 4px;">List and view existing claims <i>requires login</i></p>
+		</div>	
+		  </div>
+		  <div class="clear"></div>
+		 <div style="width: 90%; margin: 0 auto; ">
+		<h2>Filing a claim:</h2>
+		  <p>A cargo claim is a written complaint demanding financial compensation from Polar Air Cargo Worldwide for loss of, damage or<br /> delay to cargo whilst in care and control pursuant to a contract of carriage.</p>
+		<p>In order for us to accept a claim, the written request must be submitted before the time limit as shown below:</p>
+		
+		<table style="width: 100%; border-collapse: collapse; border-spacing: 1px;" id="saudia-claim-types">
+		<tbody>
+		<tr bgcolor="#e9dac9" style="color: #666;">
+		<td width="3%" style="text-align: center; color: #414141;">No.</td>
+		<td width="17%" style="text-align: center; color: #414141;">Claim Type</td>
+		<td width="40%" style="text-align: center; color: #414141;">Description</td>
+		<td width="40%" style="text-align: center; color: #414141;">Time Limit</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">1</td>
+		<td style="text-align: left;">Loss.</td>
+		<td style="text-align: left;">Loss of whole consignment .</td>
+		<td style="text-align: left;">120 days from the AWB issuing date.</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">2</td>
+		<td style="text-align: left;">Damage.</td>
+		<td style="text-align: left;">To consignment whole or in part.</td>
+		<td style="text-align: left;">14 days from receiving consignment.</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">3</td>
+		<td>Partial Loss.</td>
+		<td style="text-align: left;">Loss of part of the consignment.</td>
+		<td style="text-align: left;">14 days from receiving consignment.</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">4</td>
+		<td>Delay.</td>
+		<td style="text-align: left;">To complete consignment or part of it</td>
+		<td style="text-align: left;">21 days from the placing date.</td>
+		</tr>
+		<tr>
+		<td align="center" style="text-align: center;">5</td>
+		<td>Pilferage.</td>
+		<td style="text-align: left;">To consignment whole or in part</td>
+		<td style="text-align: left;">14 days from receiving consignment.</td>
+		</tr>
+		</tbody>
+		</table>
+		   <br /><br />
+
+			<h2>Requirements for claim:</h2>
+		<p>Intent to claim/preliminary letter (if submitted earlier and attach the email sent to claims department or our station/GSA)<br />
+		Official claim letter with claimed amount and detailed description about the claim from either shipper or consignee mentioned on the master AWB, stamped and signed mentioning the following:</p>
+		<ul class="main_text">
+		<li>Claim type:  total loss, partial loss, damage or delay</li>
+		<li>Mishandled  weight</li>
+		<li>Mishandled pieces</li>
+		<li>Claimed amount</li>
+		<li>Commercial  Invoices (highlighting the mishandled goods only in the invoices)</li>
+		<li>Packing List (highlighting the mishandled goods only)</li>
+		<li>Customs Report (if available)</li>
+		<li>Proof of delivery “POD“ (if available), not required for total loss claims</li>
+		<li>Subrogation letter (in case claimant is not the shipper or consignee) and it should be on an official company letter head, stamped and signed by an authorized person.</li>
+		</ul>
+		  </div>
+		  <br />
+		  <div class="clear"></div>
+
+</div>
+	<div class="clear"></div>

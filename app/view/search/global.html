@@ -1,0 +1,23 @@
+<div id='global-search-tabs'>
+	<ul style='margin-left: 16px;'>
+		<li hasclosebutton='false'><img src='/img/icons16/database.png' alt='(DB)' /> Database Search</li>
+	</ul>
+	
+	<div class="spacey">
+		<div class='toolbar jqx-widget jqx-rc-all'>
+			<div id='record-row-ops' style='display: none;'>
+				<button data-op="record-open" title="Open record for editing"><img src='/img/icons16/file_manager.png' /> Open record</button>
+				<button data-op="record-preview" title="Preview the selected record in a tab"><img src='/img/icons16/tab.png' />Preview in tab</button>
+				<div class='toolbar-separator'></div>
+			</div>
+			<button data-op="grid-state-reset" title="Reset grid to default"><img src='/img/icons16/recycle.png' />Reset grid</button>
+{!			<button data-op="grid-options" title="Options for Global Search"><img src='/img/icons16/cog.png' />Options</button> ... no options yet}
+			
+			<div id='preview-tabs-ops' style='display: none;'>
+				<div class='toolbar-separator'></div>
+				<button data-op="opentabs-closeall" title="Close all open tabs and remove persistence"><img src='/img/icons16/cancel.png' />Close all previews</button>
+			</div>
+		</div>
+		<div id="records-grid"></div>
+	</div>
+</div>

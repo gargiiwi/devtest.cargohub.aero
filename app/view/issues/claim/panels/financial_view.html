@@ -1,0 +1,31 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{claim_amt.n}:</th><td><b>{^xfields.claim_amt.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{acdate.n}:</th><td>{#if:^xfields.acdate:{^xfields.acdate}~date("Y-m-d")~}{#ifnot:^xfields.acdate:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{calc_weight.n}:</th><td>{^xfields.calc_weight:<span class='gray'>---</span>} <span class="gray">kg</span></td></tr>
+		<tr><th>{maxliab.n}:</th><td>
+			<a class='right' href='http://www.cargohub.nl/liability-calculators' target='_blank' style='display: inline-block; height: 20px; line-height: 20px;'><img class="inline-icon" src="/img/icons16/calculator.png" style="border: 0; margin-right: 6px;">Liability calculators</a>
+			<b>{^xfields.maxliab.serialized:<span class='gray'>---</span>}</b></td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{expect_amt.n}:</th><td><b>{^xfields.expect_amt.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{ins_amt.n}:</th><td><b>{^xfields.ins_amt.serialized:<span class='gray'>---</span>}</b>
+			<span style="float: right; margin-right: 20px;"><label>Ins. Ref. #:</label> {^xfields.insref:<span class='gray'>---</span>}</span>
+		</td></tr>
+		<tr><th>{provision.n}:</th><td><b>{^xfields.provision_curr.value}~cut(4)~{^xfields.provision}~numberformat(2)~</b></td></tr>
+		<tr><th>{proposal.n}:</th><td><b>{^xfields.proposal_curr.value}~cut(4)~{^xfields.proposal}~numberformat(2)~</b></td></tr>
+		<tr><th>{payedins.n}:</th><td><b>{^xfields.payedins.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{final_costs.n}:</th><td><b>{^xfields.final_curr.value}~cut(4)~{^xfields.final_costs}~numberformat(2)~</b></td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{damage.n}:</th><td><b>{^xfields.damage_curr.value}~cut(4)~{^xfields.damage}~numberformat(2)~</b></td></tr>
+		<tr><th>{recv.n}:</th><td><b>{^xfields.recv_curr.value}~cut(4)~{^xfields.recv}~numberformat(2)~</b></td></tr>
+		<tr><th>{recharge.n}:</th><td>
+			{#if:^xfields.recharge.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.recharge.key: checked="checked"}> {^xfields.recharge.value}</label>}
+			{#ifnot:^xfields.recharge.value:<span class='gray'>(not set / unknown)</span>}
+		</td></tr>
+		<tr><th>{recharge_to.n}:</th><td>{^xfields.recharge_to:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

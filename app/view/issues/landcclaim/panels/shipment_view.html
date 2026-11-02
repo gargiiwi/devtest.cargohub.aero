@@ -1,0 +1,47 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{project_no.n}:</th><td>{^xfields.project_no:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{nature_of_goods.n}:</th><td>{^xfields.nature_of_goods:<span class='gray'>---</span>}</td></tr>
+		{!Lots of optional fields}
+		<tr><th>{purch_no.n}:</th><td>{^xfields.purch_no:<span class="gray">---</span>}</td></tr>
+		<tr><th>{shipm_no.n}:</th><td>{^xfields.shipm_no:<span class="gray">---</span>}</td></tr>
+	</table>
+
+	<h5>{remarks.n}:</h5>
+	{#if:^xfields.remarks:
+	<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<table>
+		<tr><th>{cmr.n}:</th><td>{^xfields.cmr:<span class="gray">---</span>}</td></tr>
+		{#if:^xfields.hawb1:<tr><th>{hawb1.n}:</th><td>{^xfields.hawb1}</td></tr>}
+		{#if:^xfields.hawb2:<tr><th>{hawb2.n}:</th><td>{^xfields.hawb2}</td></tr>}
+		{#if:^xfields.hawb3:<tr><th>{hawb3.n}:</th><td>{^xfields.hawb3}</td></tr>}
+		{#if:^xfields.hawb4:<tr><th>{hawb4.n}:</th><td>{^xfields.hawb4}</td></tr>}
+	</table>
+	<hr />
+	<table>
+		<tr><th>{shipper_n.n}:</th><td>{^xfields.shipper_n:<span class="gray">---</span>}</td></tr>
+		<tr><th>{consig_n.n}:</th><td>{^xfields.consig_n:<span class="gray">---</span>}</td></tr>
+	</table>
+
+	<h4 style="background-image: url('/img/icons16/ist/truck.png'); background-repeat: no-repeat; background-position: 4px;">Carriage:</h4>
+	<table>
+		<tr><th>{feeder.n}:</th><td>{^xfields.feeder:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{carry_date.n}:</th><td>{#if:^xfields.carry_date:{^xfields.carry_date}~date("Y-m-d")~}{#ifnot:^xfields.carry_date:<span class='gray'>(missing)</span>}</td></tr>
+		<tr><th>Origin location:</th><td>{^xfields.dep_raw:<span class='gray'>---</span>}</td></tr>
+		<tr><th>Destination loc.:</th><td>{^xfields.dest_raw:<span class='gray'>---</span>}</td></tr>
+	</table>
+	
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/handshake.png'); background-repeat: no-repeat; background-position: 4px;">Settlement:
+	<a href="https://www.cargohub.nl/liability-calculators" target="_blank" style="float: right; text-indent: 20px; margin-right: 30px; font-weight: bold; background-image: url('/img/icons16/calculator.png'); background-repeat: no-repeat; background-position: left;">Liability Calculators</a></h4>
+	<table>
+		<tr><th>{claim.n}:</th><td><b>{^xfields.claim.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{acdate.n}:</th><td>{#if:^xfields.acdate:{^xfields.acdate}~date("Y-m-d")~}{#ifnot:^xfields.acdate:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{provision.n}:</th><td><b>{^xfields.provision.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{proposal.n}:</th><td><b>{^xfields.proposal.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{insured.n}:</th><td><b>{^xfields.insured.serialized:<span class='gray'>---</span>}</b></td></tr>
+		<tr><th>{paid.n}:</th><td><b>{^xfields.paid.serialized:<span class='gray'>---</span>}</b></td></tr>
+	</table>
+	
+}

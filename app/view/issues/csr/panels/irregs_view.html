@@ -1,0 +1,11 @@
+{#use:%ist.xfield_def:
+{!<table>
+	<tr><th>{orig_stat.n}:</th><td>{^xfields.orig_stat:<span class="gray">---</span>}</td></tr>
+	<tr><th>{dest_stat.n}:</th><td>{^xfields.dest_stat:<span class="gray">---</span>}</td></tr>
+	<tr><th>{liab_stat.n}:</th><td>{^xfields.liab_stat:<span class="gray">---</span>}</td></tr>
+</table>
+<hr />}
+{#ifnot:^xfields.irreg_code:<div class='gray center'>-----</div>}
+{#repeat:^xfields.irreg_code:<span class="itembox">{value}</span>}
+<div class="clear"></div>
+}

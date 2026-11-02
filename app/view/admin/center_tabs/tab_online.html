@@ -1,0 +1,24 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<button data-op="exportxlsx" title="Export table as ExcelX"><img src='/img/icons16/table_export.png' /> Export XLSX</button>
+	<div id='online_user_operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="login_as" title="Login as user"><img src='/img/icons16/lock_go.png' /> Login as</button>
+		<button data-op="edit" title="Manage the selected user"><img src='/img/icons16/eye.png' alt="Eye" /> Manage</button>
+		<button class="right" data-op="disconnect" title="Forcibly disconnect user" data-confirm="true" data-confirm_msg="disconnect selected user ?"><img src='/img/icons16/disconnect.png' alt="U" /> Disconnect</button>
+	</div>
+	<div class='toolbar-accessory'>
+		<span id='selected_user'>Select an user</span>
+	</div>
+</div>
+<div id="online_grid"></div>
+
+<br /><div><b>Note:</b> The list automatically updates every 60 seconds</div>
+<br /><div class='info-expander'>
+	<div>Operational information (click to open)</div>
+	<div class='spacey'>
+		<h3>Currently online users.</h3>
+		<p>All users that are currently online (logged in and performed operations in the last two hours) are listed here, allowing the administrator to check on the system activity.<br />
+		The search system is server-side filtered and sorted, so if the server load is high please be patient after typing something in the filter bar until the grid reloads</p>
+		<p>When selecting a row, it is possible to view details about that user, login as that user or disconnect the user (forcibly log-out)</p>
+	</div>
+</div>

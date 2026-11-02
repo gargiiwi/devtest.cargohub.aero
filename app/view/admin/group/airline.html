@@ -1,0 +1,38 @@
+<br /><div class='info-expander'>
+	<div>Operational information (click to open)</div>
+	<div class='spacey'>
+		<p>An <b>Airline</b> group represents the &quot;name&quot; of an air transportation service, and not the company itself.
+		When choosing the Airline (or Carrier) on submitting an issue like Claim, Incident, Damage Report, the issue is placed in this group, and it doesn't mean that the company which has this name will receive the Claim.
+		In order for the organization to access the issue, they must have an account in the system and must receive &quot;ownership&quot; of that issue. Only then they will be able to see and operate the issue.</p>
+		<p>Ownership is given in the following ways:</p>
+		<ul>
+			<li>When submitting an issue from the public area, the setting &quot;Master Handler&quot; which is present in this grid is checked. The organization that is the Master Handler for a certain Airline Group will become the initial owner of the issue.<br />
+			The Master Handler does not need to be the Airline company itself, it could be an Agent, GSA or other companies involved.<br />
+			Only the organizations connected to this group can be chosen as the Master Handler, so in order to change this setting connect first the appropriate groups to an organization.</li>
+			<li>When submitting an issue by a user which is logged in as a staff member, the owner of the issue will always be the organization in which the user is.</li>
+			<li>Issue ownership can change with a special &quot;Give To&quot; function which organizations (will) have. (Feature which is planned to be implemented soon)</li>
+		</ul>
+		<p>Some data in this grid is taken from a database with all the airlines in the world (<b>AirWayBill</b> Prefix, <b>IATA and ICAO</b> allocated codes, the <b>Country</b> where this Airline organization has it's headquarters and of course, the official <b>Name</b>). These informations cannot be changed here (and there's no need, as these are international allocations which very rarely change)</p>
+		<p>The last two columns are related to the <a href="http://www.cargohub.aero/search">Airline Search System</a> but also the submit forms:</p>
+		<ul>
+			<li><b>Redirect Domain</b>: When this airline is chosen in the search system, clicking on the GO! button will redirect to this domain and present the submit form for the chosen issue type (or the implicit one)<br />The domain names must be previously created in the Organization's Control Panel before they can be set here.</li>
+			<li><b>Submit On</b>: If checked, this Airline group allows submitting from the Airline Search. If set to Off, submitting is denied.</li>  
+		</ul>
+	</div>
+</div>
+
+<script id="template_edit_airline" type="text/dryjstpl">
+	<form method="post" action="?action=save_group&amp;type={group_config.type}">{@
+		{#missing:airline_id:
+			<div><label for="airline_id">Find airline:</label><div id="airline_id" name="group[airline][id]"></div></div>}
+		{#exists:airline_id:
+			<input type='hidden' name="id" value="{$uid}" />
+			<div><label>Connected airline:</label><div class='static'>{$fullname}</div></div>
+			<input type='hidden' name='group[airline][id]' value='{$airline_id}' />}
+		<div><label for='group_name'>Custom name:</label><input type='text' id='{!}group_name' name='group[name]' class='jqx-input jqx-rc-all {$_itc}' value='{$name}' style='width: 320px;' /></div>
+		{#exists:uid:		
+			<div><label>Master handler:</label><div id='{!}master_handler' name='group[xdata][master_id]'></div></div>
+			<div><label>Redirect domain:</label><div id='{!}redirect_domain' name='group[airline][domain]'></div></div>}
+		<div><label>Submit active?</label><div id='{!}submiton' name='group[airline][submiton]'></div></div>
+	}</form>	
+</script>

@@ -1,0 +1,559 @@
+body{
+    /*background: url(/img/bgs/gray_patt4_tiled.png) no-repeat 0 0;*/
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+}
+.container{
+    width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bg{
+    a{
+        /*color: #0269dc;*/
+        color: #000000;
+        text-decoration: none;
+        font-size: 30px;
+        font-family: "Kanit", sans-serif;
+    }
+}
+/*
+            .bg{
+                background: #fff;
+                border: 1px solid #ccc;
+                margin-top: 4rem;
+            }
+*/
+header{
+    background: transparent;
+    padding: 10px 10px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
+.main{
+    /*margin: 2rem;*/
+    /*
+                    background: #fff;
+                    border: 1px solid #ccc;
+                    padding: 2rem;
+                    min-height: 400px;
+    */
+    /*border: 1px solid #e7e7e759;*/
+    
+        border-top: 2px solid #ccc;
+        min-height: 300px;
+    padding: 10px 10px;
+}
+footer{
+    background: #202020;
+    padding: 1rem;
+    /*display: flex;*/   /* Document view footer change IWI 10-01-2024*/
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: #fff;
+    font-size: 11px;
+    font-family: Verdana, sans-serif;
+
+}
+.print{
+    background: transparent;
+    padding: 8px ;
+    color: #8d8d8d;
+    font-size: 30px;
+    position: absolute;
+    /*right: 0;*/
+    /*top: -50px;*/
+    border-radius: 2px;
+    border: none;
+    right: -16px;
+}
+.main > table, .main > div.site{
+    width: 100%;
+}
+
+
+
+/*Document view footer change IWI 10-01-2024 start*/
+.footer-div-contain{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+.footer_bottom{
+    font-size: 13px;
+}
+.doc_sign_sec{
+    padding: 15px 0px;
+    /*text-align: right;*/
+    /* background: #efefef; */
+    /* border: 1px solid #efefef; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.rasubm{
+    background: #0078d4;
+    border: 1px solid #0078d4;
+    color: #fff;
+    padding: 5px 15px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+table th{
+    background: #f5f5f5;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+/*Document view footer change IWI 10-01-2024 end*/
+
+.racheck {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size:16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.racheck input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+/*    height: 18px;
+    width: 18px;
+    border: 1px solid #ccc;*/
+    background-color: #fff;
+    height: 16px;
+    width: 16px;
+    border: 2px solid #2866c2;
+}
+
+/* On mouse-over, add a grey background color */
+.racheck:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.racheck input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.racheck input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.racheck .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+.swal2-title{
+    font-weight: 500 !important;
+    color: #565656 !important;
+    font-size: 16px !important;
+    padding: 1.2em 2em 0 !important;
+}
+.swal2-styled.swal2-confirm{
+    background: #6690e0 !important;
+}
+.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 3px rgb(102 144 224) !important;
+}
+.swal2-icon-success{
+    background: #91d39f !important;
+
+}
+.swal2-icon-success .swal2-title{
+    color: #fff !important;
+}
+img{
+    max-width: 800px;
+}
+@page {
+    size: A4;
+    /*margin: 11mm 17mm 17mm 17mm;*/
+}
+/*            @page :footer {
+                display: none
+            }
+
+            @page :header {
+                display: none
+            }*/
+@media print {
+
+    .main {
+        page-break-inside:  auto ;
+    }
+    body {
+        width: 239mm;
+        height: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Tahoma, sans-serif;
+        font-size: 12px;
+
+
+    }
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+
+    /*
+                                    header{
+                                            position: fixed;
+                        top: 0;
+                        width: 100%;
+                                            left:0;
+                                    }
+                                    
+    */
+
+    header{
+        font-family: Verdana, sans-serif;
+        font-size: 11px;
+        padding: 15px 35px;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left:0;
+        margin-right: 20px;
+        font-family: Verdana, sans-serif;
+        font-size: 11px;
+    }
+    .main{
+        padding: 15px 25px;
+        /*border: 1px solid #ccc;*/
+        border-top: 2px solid #ccc;
+        height: 100%;
+        margin: 0 30px;
+    }
+
+    .container {
+        page-break-inside: auto;
+    }
+    .doc_sign_sec{
+        padding: 15px 35px; 
+    }
+
+    #showHistory{
+        display: none !important;
+    }
+    @page {
+        size: A4;    /*auto is the initial value */
+        margin: 10mm 10mm 10mm 10mm;   /*this affects the margin in the printer settings */
+    }
+
+    .print{
+        display: none;
+    }
+
+    .footer-div-contain{
+        width: 95%;
+    }
+    img{
+        max-width: 800px;
+    }
+
+}
+.main{
+    word-wrap: break-word;
+}
+
+
+
+#showHistory{
+    line-height: 30px;
+    font-size: 16px;
+    text-align: center;
+    background: #8d8d8d;
+    border: solid 1px #8d8d8d;
+    color: #ffffff;
+    border-radius: 3px;
+    user-select: none;
+    cursor: pointer;
+    padding: 0px 10px;
+}
+
+
+
+.historySec {
+    box-sizing: border-box;
+    padding: 25px;
+    border: 1px solid #ccc;
+}
+
+/* The actual timeline (the vertical ruler) */
+.historySec .timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.historySec .timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #dcdcdc;
+    top: 0;
+    bottom: 0;
+    margin-left: -3px;
+}
+
+/* Container around content */
+.historySec .container {
+    padding: 10px;
+    position: relative;
+    background-color: inherit;
+}
+
+/* The circles on the timeline */
+.historySec .container::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: white;
+    border: 4px solid #0078D4;
+    top: 30px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Fix the circle for containers on the right side */
+.historySec .right::after {
+    left: -16px;
+}
+
+/* The actual content */
+.historySec .content {
+    padding-left: 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+    max-width:90%;
+    word-wrap: break-word;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+    /* Place the timelime to the left */
+    .historySec  .timeline::after {
+        left: 31px;
+    }
+
+    /* Full-width containers */
+    .historySec .container {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    /* Make sure that all arrows are pointing leftwards */
+    .historySec  .container::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+    }
+
+    /* Make sure all circles are at the same spot */
+    .historySec .right::after {
+        left: 15px;
+    }
+
+    .historySec  .right {
+        left: 0%;
+    }
+}
+
+
+.oldDetailsHide{
+    display: none;
+}
+
+
+.new {
+  background-color: #14c6168f;
+}
+
+.del {
+  text-decoration: line-through;
+  background-color: #ff000061;
+}
+
+.kanit-regular {
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* 22-11-24 css start */
+
+.top_header{
+    background-color: #141414;
+    padding: 30px 10px;
+    margin-top: -10px;
+}
+
+/* IWI Create section fornotification div wrap add start 27-01-25 */
+    .IWI_create_sec_wrap{
+        display: flex;
+        align-items: center;
+        margin-top: 75px;
+    }
+/* IWI Create section fornotification div wrap add end 27-01-25 */
+
+
+
+/*IWI doc section file upload start*/
+/* Container for the document viewer */
+.document-viewer {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.document-viewer h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* Grid for the file cards */
+.file-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Each file card box */
+.file-card {
+  width: 100px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+  position: relative;
+}
+
+.file-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Thumbnail area */
+.file-thumb {
+  position: relative;
+  height: 60px;
+  padding: 8px;
+  background: #fefefe;
+}
+
+/* Image inside file card */
+.file-thumb img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Stylish circular download button */
+.overlay-download {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 123, 255, 0.6); /* semi-transparent blue */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+  font-size: 18px;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.file-thumb:hover .overlay-download {
+  opacity: 1;
+}
+
+.overlay-download i {
+  pointer-events: none;
+  position: relative;
+  color: #fff;
+}
+
+/* File name styling */
+.file-name {
+  padding: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+}
+
+
+/*IWI doc section file upload end*/

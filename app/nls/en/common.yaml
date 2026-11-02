@@ -1,0 +1,13 @@
+# Common strings for English language
+---
+format:
+	date:     "Y/m/d"
+	datetime: "Y/m/d H:i:s"
+
+basic:
+  yes:         "Yes"
+  no:          "No"
+  ok:          OK
+  cancel:      Cancel
+q:
+  delete:     Are you sure you want to delete %s ?

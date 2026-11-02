@@ -1,0 +1,367 @@
+<div class="qualityEventChartPage">
+
+
+
+    <!-- FILTER CARD -->
+    <!-- FILTER CARD -->
+    <!--    <div class="qec-card filters">
+    
+            <h3 class="filter-title">Filters</h3>
+    
+            <div class="filter-row">
+    
+                <div class="filter-item">
+                    <label>Total Records</label>
+                    <select id="filterTotalRecord">
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                </div>
+    
+                <div class="filter-item">
+                    <label>Claim Type</label>
+                    <select id="filterClaimType">
+                        <option value="all">All</option>
+                        <option value="preliminary">Preliminary</option>
+                        <option value="formal">Formal</option>
+                    </select>
+                </div>
+    
+                <div class="filter-item">
+                    <label>Claimant Type</label>
+                    <select id="filterClaimantType">
+                        <option value="all">All</option>
+                        <option value="shipper">Shipper</option>
+                        <option value="consignee">Consignee</option>
+                        <option value="forwarder">Forwarder</option>
+                        <option value="insurance agent">Insurance Agent</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+    
+                <div class="filter-item">
+                    <label>Movement</label>
+                    <select>
+                        <option>All</option>
+                        <option>Inbound</option>
+                        <option>Outbound</option>
+                        <option>Transit</option>
+                        <option>Not Set</option>
+                    </select>
+                </div>
+    
+                <div class="filter-item">
+                    <label>Carrier Liability</label>
+                    <select>
+                        <option>All</option>
+                        <option>Yes (Contractual compensation)</option>
+                        <option>No (Commercial compensation)</option>
+                        <option>No (Claim rejected)</option>
+                        <option>Unknown yet</option>
+                    </select>
+                </div>
+    
+                <div class="filter-item">
+                    <label>Claim Aspects</label>
+                    <select>
+                        <option>All</option>
+                        <option>Damage</option>
+                        <option>Total Loss</option>
+                        <option>Delay</option>
+                        <option>Partial Loss</option>
+                        <option>Pilferage</option>
+                    </select>
+                </div>
+    
+                <button class="apply-btn">Apply Filters</button>
+    
+            </div>
+    
+    
+        </div>-->
+
+    <!-- PAGE TABS -->
+    <div class="qec-tabs">
+        <div class="tabs-left">
+            <button class="qec-tab active" data-target="#tabChartView">Chart View</button>
+            <button class="qec-tab" data-target="#tabDataView">Data View</button>
+        </div>
+    </div>
+
+    <!-- TAB CONTENT: CHART VIEW -->
+    <div id="tabChartView" class="qec-tab-content active">
+        <div class="qec-card chart-card">
+            <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="qec-card-header">
+                <h3>Total Records</h3>
+                <div class="tabs-right">
+                    <div class="filter-item" style="margin-left: -184px;">
+                        <select data-for="TotalRecord" class="chartSelectionTimePeriod" id="chartSelectionTotalRecord">
+                            <option value="Months">Months</option>
+                            <option value="Years">Year</option>
+                            <!-- <option value="Quarters">Quarter</option> -->
+                        </select>
+                    </div>
+                    <i class="fa fa-download chart-download"  title="Download" style="margin-top: -34px;position: absolute; margin-left: -41px;"></i>
+                </div>
+            </div>
+            <canvas id="chartTotalRecords"></canvas>
+        </div>
+        <div class="qec-card chart-card">
+            <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="qec-card-header">
+                <h3>Events per Category</h3>
+                <div class="tabs-right">
+                    <div class="filter-item" style="margin-left: -184px;">
+                        <select data-for="EventsperCategory" class="chartSelectionTimePeriod"  id="chartSelectionEventsperCategory">
+                            <option value="Months">Months</option>
+                            <option value="Years">Year</option>
+                            <!-- <option value="Quarters">Quarter</option> -->
+                        </select>
+                    </div>
+                    <i class="fa fa-download chart-download"  title="Download" style="margin-top: -34px;position: absolute; margin-left: -41px;"></i>
+                </div>
+            </div>
+            <canvas id="chartEventCategory"></canvas>
+        </div>
+
+
+        <div class="qec-card chart-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="qec-card-header">
+                <h3>Investigation Status</h3>
+                <div class="tabs-right">
+                    <div class="filter-item" style="margin-left: -184px;">
+                        <select data-for="InvestigationStatus" class="chartSelectionTimePeriod"  id="chartSelectionInvestigationStatus">
+                            <option value="Months">Months</option>
+                            <option value="Years">Year</option>
+                            <!-- <option value="Quarters">Quarter</option> -->
+                        </select>
+                    </div>
+                    <i class="fa fa-download chart-download"  title="Download" style="margin-top: -34px;position: absolute; margin-left: -41px;"></i>
+                </div>
+            </div>
+            <canvas id="chartInvestigation"></canvas>
+        </div>
+        <div class="qec-card chart-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="qec-card-header">
+                <h3>Event Severity</h3>
+                <div class="tabs-right">
+                    <div class="filter-item" style="margin-left: -184px;">
+                        <select data-for="EventSeverity" class="chartSelectionTimePeriod"  id="chartSelectionEventSeverity">
+                            <option value="Months">Months</option>
+                            <option value="Years">Year</option>
+                            <!-- <option value="Quarters">Quarter</option> -->
+                        </select>
+                    </div>
+                    <i class="fa fa-download chart-download"  title="Download" style="margin-top: -34px;position: absolute; margin-left: -41px;"></i>
+                </div>
+            </div>
+            <canvas id="chartEventSeverity"></canvas>
+        </div>
+
+        <div class="qec-card chart-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="qec-card-header">
+                <h3>Risk Classification</h3>
+                <div class="tabs-right">
+                    <div class="filter-item" style="margin-left: -184px;">
+                        <select data-for="RiskClassification" class="chartSelectionTimePeriod"  id="chartSelectionRiskClassification">
+                            <option value="Months">Months</option>
+                            <option value="Years">Year</option>
+                            <!-- <option value="Quarters">Quarter</option> -->
+                        </select>
+                    </div>
+                    <i class="fa fa-download chart-download"  title="Download" style="margin-top: -34px;position: absolute; margin-left: -41px;"></i>
+                </div>
+            </div>
+            <canvas id="chartRiskClassification"></canvas>
+        </div>
+
+        <div class="qec-card chart-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="qec-card-header">
+                <h3>Commodity Type</h3>
+                <div class="tabs-right">
+                    <div class="filter-item" style="margin-left: -184px;">
+                        <select data-for="CommodityType" class="chartSelectionTimePeriod"  id="chartSelectionCommodityType">
+                            <option value="Months">Months</option>
+                            <option value="Years">Year</option>
+                            <!-- <option value="Quarters">Quarter</option> -->
+                        </select>
+                    </div>
+                    <i class="fa fa-download chart-download"  title="Download" style="margin-top: -34px;position: absolute; margin-left: -41px;"></i>
+                </div>
+            </div>
+            <canvas id="chartCommodityType"></canvas>
+        </div>
+
+        <div class="qec-card chart-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="qec-card-header">
+                <h3>Irregularity Code</h3>
+                <div class="tabs-right">
+                    <div class="filter-item" style="margin-left: -184px;">
+                        <select data-for="IrregularityCode" class="chartSelectionTimePeriod"  id="chartSelectionIrregularityCode">
+                            <option value="Months">Months</option>
+                            <option value="Years">Year</option>
+                            <!-- <option value="Quarters">Quarter</option> -->
+                        </select>
+                    </div>
+                    <i class="fa fa-download chart-download"  title="Download" style="margin-top: -34px;position: absolute; margin-left: -41px;"></i>
+                </div>
+            </div>
+            <canvas id="chartIrregularityCode"></canvas>
+        </div>
+
+    </div>
+
+    <!-- TAB CONTENT: DATA VIEW -->
+    <div id="tabDataView" class="qec-tab-content">
+
+        <div class="qec-card table-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="tabs-right" style="margin-bottom: 15px;">
+                <div class="filter-item" style="margin-left: 835px;">
+                    <select data-for="TotalRecord" class="tableSelectionTimePeriod"  id="tableSelectionTotalRecords">
+                        <option value="Months">Months</option>
+                        <option value="Years">Year</option>
+                        <!-- <option value="Quarters">Quarter</option> -->
+                    </select>
+                </div>
+                <i class="fa fa-download chart-download" data-chart="chartTotalRecords" title="Download" style="margin-top: -34px;position: absolute;margin-left: 1043px;"></i>
+            </div>
+            <h3>Total Records</h3>
+            <div id="tableTotalRecords" class="scrollable-table"></div>
+        </div>
+
+        <div class="qec-card table-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="tabs-right" style="margin-bottom: 15px;">
+                <div class="filter-item" style="margin-left: 835px;">
+                    <select data-for="EventsperCategory" class="tableSelectionTimePeriod" id="tableSelectionEventCategories">
+                        <option value="Months">Months</option>
+                        <option value="Years">Year</option>
+                        <!-- <option value="Quarters">Quarter</option> -->
+                    </select>
+                </div>
+                <i class="fa fa-download chart-download"  title="Download" style="margin-top: -34px;position: absolute;margin-left: 1043px;"></i>
+            </div>
+            <h3>Event Categories</h3>
+            <div id="tableEventCategory" class="scrollable-table"></div>
+        </div>
+
+        <div class="qec-card table-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="tabs-right" style="margin-bottom: 15px;">
+                <div class="filter-item" style="margin-left: 835px;">
+                    <select data-for="InvestigationStatus" class="tableSelectionTimePeriod" id="tableSelectionInvestigationStatus">
+                        <option value="Months">Months</option>
+                        <option value="Years">Year</option>
+                        <!-- <option value="Quarters">Quarter</option> -->
+                    </select>
+                </div>
+                <i class="fa fa-download chart-download" data-chart="chartTotalRecords" title="Download" style="margin-top: -34px;position: absolute;margin-left: 1043px;"></i>
+            </div>
+            <h3>Investigation Status</h3>
+            <div id="tableInvestigation" class="scrollable-table"></div>
+        </div>
+
+        <div class="qec-card table-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="tabs-right" style="margin-bottom: 15px;">
+                <div class="filter-item" style="margin-left: 835px;">
+                    <select data-for="EventSeverity" class="tableSelectionTimePeriod" id="tableSelectionEventSeverity">
+                        <option value="Months">Months</option>
+                        <option value="Years">Year</option>
+                        <!-- <option value="Quarters">Quarter</option> -->
+                    </select>
+                </div>
+                <i class="fa fa-download chart-download" data-chart="chartTotalRecords" title="Download" style="margin-top: -34px;position: absolute;margin-left: 1043px;"></i>
+            </div>
+            <h3>Event Severity</h3>
+            <div id="tableEventSeverity" class="scrollable-table"></div>
+        </div>
+
+        <div class="qec-card table-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="tabs-right" style="margin-bottom: 15px;">
+                <div class="filter-item" style="margin-left: 835px;">
+                    <select data-for="RiskClassification" class="tableSelectionTimePeriod" id="tableSelectionRiskClassification">
+                        <option value="Months">Months</option>
+                        <option value="Years">Year</option>
+                        <!-- <option value="Quarters">Quarter</option> -->
+                    </select>
+                </div>
+                <i class="fa fa-download chart-download" data-chart="chartTotalRecords" title="Download" style="margin-top: -34px;position: absolute;margin-left: 1043px;"></i>
+            </div>
+            <h3>Risk Classification</h3>
+            <div id="tableRiskClassification" class="scrollable-table"></div>
+        </div>
+
+        <div class="qec-card table-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="tabs-right" style="margin-bottom: 15px;">
+                <div class="filter-item" style="margin-left: 835px;">
+                    <select data-for="CommodityType" class="tableSelectionTimePeriod" id="tableSelectionCommodityTypes">
+                        <option value="Months">Months</option>
+                        <option value="Years">Year</option>
+                        <!-- <option value="Quarters">Quarter</option> -->
+                    </select>
+                </div>
+                <i class="fa fa-download chart-download" data-chart="chartTotalRecords" title="Download" style="margin-top: -34px;position: absolute;margin-left: 1043px;"></i>
+            </div>
+            <h3>Commodity Types</h3>
+            <div id="tableCommodityType" class="scrollable-table"></div>
+        </div>
+
+
+        <div class="qec-card table-card">
+             <div class="chart-loader" aria-hidden="true">
+                <div class="spinner"></div>
+            </div>
+            <div class="tabs-right" style="margin-bottom: 15px;">
+                <div class="filter-item" style="margin-left: 835px;">
+                    <select data-for="IrregularityCode" class="tableSelectionTimePeriod" id="tableSelectionIrregularityCode">
+                        <option value="Months">Months</option>
+                        <option value="Years">Year</option>
+                        <!-- <option value="Quarters">Quarter</option> -->
+                    </select>
+                </div>
+                <i class="fa fa-download chart-download" data-chart="tableIrregularityCode" title="Download" style="margin-top: -34px;position: absolute;margin-left: 1043px;"></i>
+            </div>
+            <h3>Irregularity Code</h3>
+            <div id="tableIrregularityCode" class="scrollable-table"></div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,393 @@
+body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .qualityEventChartPage{
+            max-width: 98%;
+    margin: auto;
+        }
+
+        /* Tabs */
+/*        .qec-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }*/
+
+        .qec-tab {
+            background: #f1f1f1;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .qec-tab.active {
+            background: #24559A;
+            color: #fff;
+        }
+
+        /* Tab content */
+        .qec-tab-content {
+            display: none;
+        }
+
+        .qec-tab-content.active {
+            display: block;
+        }
+
+        /* Cards */
+        .qec-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* Card header */
+        .qec-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .qec-card-header h3 {
+            font-size: 18px;
+            /* font-weight: 700; */
+            color: #24559A;
+        }
+
+        /* Filters inside card */
+        .filters .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            max-width: 18%;
+        }
+
+        .filter-item label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        select {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #f9fafc;
+            min-width: 130px;
+        }
+
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+            background: #fff;
+        }
+
+        .apply-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            height: 40px;
+            align-self: flex-end;
+        }
+
+        .apply-btn:hover {
+            background-color: #005ec4;
+        }
+
+        /* Chart cards */
+        .chart-card canvas {
+            width: 80% ;
+            max-height: 350px !important;
+        }
+
+        /* Table cards */
+        .table-card h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #24559A;
+        }
+
+        /* Scrollable table wrapper */
+        .scrollable-table {
+    /*overflow-x: auto;  enable horizontal scroll only if needed */
+}
+.scrollable-table table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* allows table to shrink columns to fit */
+}
+
+
+
+
+/*        .scrollable-table th,
+        .scrollable-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+            font-size: 14px;
+        }*/
+
+        /* Header row */
+        .scrollable-table th {
+/*            background-color: #16476A;
+            color: #fff;*/
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        /* Zebra stripes */
+/*        .scrollable-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }*/
+
+        /* Scrollbar styling */
+        .scrollable-table::-webkit-scrollbar {
+            height: 8px;
+        }
+        .scrollable-table::-webkit-scrollbar-thumb {
+            background: #bbb;
+            border-radius: 4px;
+        }
+        .scrollable-table::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+.dropdown-checkbox {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    padding: 8px 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+    width: 172px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    z-index: 1000;
+    width: 151px;
+}
+
+.dropdown-menu label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.dropdown-checkbox.open .dropdown-menu {
+    display: block;
+}
+
+
+
+
+.qec-tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.tabs-left {
+    display: flex;
+    gap: 10px;
+}
+
+.tabs-right i {
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    padding: 7px 14px;
+    border-radius: 6px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tabs-right i:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    background: linear-gradient(45deg, #20c997, #28a745);
+}
+        
+        
+        
+ .qec-card.table-card {
+    font-family: Arial, sans-serif;
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e6ea;
+}
+
+.qec-card.table-card h3 {
+    margin: 0;
+    padding: 12px;
+    background: linear-gradient(to right, #e7f3fb, #d6ecfa);
+    color: #1e4e72;
+    border-radius: 6px 6px 0 0;
+    font-weight: 600;
+    font-size: 18px;
+    border: 1px solid #d0e3f2;
+}
+
+
+  
+/* Chart card wrapper */
+.qec-card.chart-card {
+    height: 400px;              /* FIXED height so scroll works */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;           /* prevents legend escaping */
+    position: relative;
+    padding: 12px;              /* keep a little inner padding */
+    box-sizing: border-box;
+}
+
+/* Flex container that holds chart + legend */
+.chart-flex {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: stretch;       /* stretch children vertically */
+    overflow: hidden;           /* keeps children inside */
+    gap: 20px;                  /* 20px horizontal gap between chart and legend */
+}
+
+/* Chart-area (left) - 80% */
+.chart-area {
+    flex: 1 1 80%;              /* grow, shrink, base 80% */
+    min-width: 0;               /* IMPORTANT: allow flex child to shrink properly */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    max-height: 400px;
+}
+
+/* Make the canvas fill the chart-area */
+.chart-area canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Legend 20% on the right - scrollable */
+.chart-legend {
+    flex: 0 0 20%;              /* fixed ~20% width */
+    min-width: 140px;           /* ensures checkboxes don't collapse */
+    max-width: 28%;             /* safety on very wide screens */
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+/* Styling for legend items */
+.chart-legend label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* Make the legend text wrap if needed */
+.chart-legend span {
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Color checkboxes where supported (modern browsers) */
+.chart-legend input[type="checkbox"] {
+    accent-color: currentColor; /* uses the label's color (we set it inline in JS) */
+}
+
+/* Ensure axis labels not cut off: allow some padding at bottom */
+.chart-area .chartjs-render-monitor {
+    padding-bottom: 8px;
+}
+
+/*loader section css start*/
+
+.chart-card {
+  position: relative; /* important */
+  overflow: hidden;   /* prevents overlay from escaping card */
+}
+
+/* overlay that covers the card while loading */
+.chart-loader {
+  position: absolute;
+  inset: 0;                    /* top:0; right:0; bottom:0; left:0; */
+  display: none;               /* show/hide via JS */
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.75); /* soft veil, NOT blur */
+  z-index: 50;
+  pointer-events: auto;        /* blocks clicks while loading */
+}
+
+/* the spinner element */
+.chart-loader .spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 5px solid #e6e6e6;
+  border-top-color: #1e88e5;   /* spinner color */
+  animation: spin 0.9s linear infinite;
+}
+
+/* fallback tiny text for accessibility if spinner blocked */
+.chart-loader[aria-hidden="false"] {
+  display: flex;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.chart-card .chart-loader + .qec-card-header,
+.chart-card .chart-loader + canvas {
+}
+
+
+/*loader section css end*/ 

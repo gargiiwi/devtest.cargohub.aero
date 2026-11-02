@@ -1,0 +1,13 @@
+{!Left side of the splitter - Tree of labels}
+<div id='label-tree'>
+	<ul>{#repeat:label_tree:
+		<li{#ifnot:children: id='label_{id}' data-name='{name}' data-count='{count_items}' data-type='{type}' data-selectable='true'}><img src='/img/icons16/commlabel/{type}.png' alt="{name}" /><span>{name}{#if:count_el: ({count_el})}</span>
+			{#if:children:<ul id='lset_{type}'>{#repeat:children:
+				<li id='label_{id}' data-type='{type}' data-selectable='true'><img src='/img/icons16/commlabel/{#if:color:tag_{color}}{#ifnot:color:{type}}.png' alt="{name}" /><span>{name}{#if:count_el: ({count_el})}</span></li>
+			}</ul>}
+		</li>
+	}</ul>
+</div>
+{!Right side of the splitter - Grid with conversations}
+<div id='convo-grid'>
+</div>

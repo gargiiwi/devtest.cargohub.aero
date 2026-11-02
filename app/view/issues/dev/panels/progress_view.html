@@ -1,0 +1,22 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{prog_hrs.n}:</th><td>{^xfields.prog_hrs:0} hrs.</td></tr>
+		<tr><th>{dwork_start.n}:</th><td>{#if:^xfields.dwork_start:{^xfields.dwork_start}~date("Y-m-d")~}{#ifnot:^xfields.dwork_start:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{dwork_end.n}:</th><td>{#if:^xfields.dwork_end:{^xfields.dwork_end}~date("Y-m-d")~}{#ifnot:^xfields.dwork_end:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<hr />
+<h5>{prog_notes.n}</h5>
+	{#if:^xfields.prog_notes:
+		<div>{^xfields.prog_notes}~nl2br~</div>}
+	{#ifnot:^xfields.prog_notes:<div class="gray"><br />-----</div>}
+	<hr />
+<h5>{tech_notes.n}</h5>
+	{#if:^xfields.tech_notes:
+		<pre style="overflow-x: scroll;">{^xfields.tech_notes}</pre>}
+	{#ifnot:^xfields.tech_notes:<div class="gray"><br />-----</div>}
+<h4 style="margin-top: 8px;">Deployment</h4>
+	<table>
+		<tr><th>{ddep.n}:</th><td>{#if:^xfields.ddep:{^xfields.ddep}~date("Y-m-d")~}{#ifnot:^xfields.ddep:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{dep_ver.n}:</th><td>{^xfields.dep_ver:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

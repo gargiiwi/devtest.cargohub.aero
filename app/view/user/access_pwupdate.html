@@ -1,0 +1,38 @@
+{!This template is used to create a new password for a user who followed the password recovery link}
+{#raw:includes/pwindicator.css}
+<div id="pwupdate">
+	<div id="pwlogo" class="left">
+		<img src="/img/extra/keys.png" alt="Update my password" />
+	</div>
+	<div id="pwform" class="left">
+		<form action="?action=Set_PWNew" method="post">
+			<h3>Your Account ID:</h3>
+			<div class="jqx-rc-all field"><input type="text" name="username" value="{username}" readonly="readonly" class="gray" /></div>
+			
+			<h3>Enter your new password twice</h3>
+			<div class="left jqx-rc-all field"><input type="password" name="password" id="pass1Box" autocomplete="off" data-indicator="pwindicator" /></div>
+			<div class="left" id="pwindicator">
+				<div class="bar"></div>
+				<div class="label"></div>
+			</div><div class="clear"></div>
+			<div class='jqx-rc-all field'><input type='password' name="passwordr" id="pass2Box" autocomplete="off" /></div>
+			<input type="hidden" name="email" value="{email}" />
+			<input type="hidden" name="code" value="{code}" />
+			<input type="submit" value="Set new password" />
+		</form>
+	</div>
+	<div class="clear"></div>
+	<div class="gray" style="margin: 20px 0;">
+		<hr />
+		<h3>Hints for entering a strong password:</h3>
+		<p>
+		- It should contain at least <b>8</b> characters<br />
+		- Both <i>small letters</i> and <i>CAPITAL LETTERS</i> should exist in your password<br />
+		- Add a few <i>numbers</i> too, preferably not 1234... <br />
+		- <i>Punctuation</i> like % $ , : ! - greatly increase the strength of the password<br />
+		- Password can contain <i>space</i>s [&nbsp;&nbsp;&nbsp;]<br />
+		- For maximum security, unusual characters like |, ~, ] or * which aren't normally used for text are making sure the password is impossible to guess.
+		</p>
+		<p class='red'><b>Never</b> use your name, birthday, phone number, e-mail or other easily identifiable personal information as your password (or as part of your password)!</p>
+	</div>
+</div>

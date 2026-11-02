@@ -1,0 +1,74 @@
+{@<style type="text/css">
+/* Some styles specific to Air Cargo Claims */
+table.claim-aspects td {
+	width: 20%;
+	text-align: center;
+	color: lightgray;
+	padding: 3px !important;
+}
+
+	table.claim-aspects td.ca-active {
+		color: black;
+	}
+
+	table.claim-aspects td#ca-Damage {
+		background-color: red;
+		color: white;
+	}
+	table.claim-aspects td#ca-cl {
+		background-color: black;
+		color: lightgray;
+	}
+	table.claim-aspects td#ca-Delay {
+		background-color: blue;
+		color: white;
+	}
+	table.claim-aspects td#ca-pl {
+		background-color: brown;
+		color: lightgray;
+	}
+	table.claim-aspects td#ca-Pilferage {
+		background-color: orange;
+		color: white;
+	}
+	
+	div.twocolcbox label {
+		display: block;
+		width: 260px;
+		float: left;
+	}
+	
+.itembox {
+	line-height: 18px;
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="claim-dashboard" style="height: 1200px;" data-panel="0" data-editable="1" data-edittpl="dashboard" data-editheight="1840">
+	<div><img src='/img/icons16/menus/claim-dashboard.png' />Claim dashboard</div>
+	<div class="datatable">
+{#include::../panels/dashboard_view.html}		
+	</div>
+</div>
+
+<div id="claim-forwarder" style="height: 650px;" data-panel="1" data-editable="1" data-edittpl="forwarder" data-editheight="800">
+	<div><img src='/img/icons16/menus/claim-forwarder.png' />Forwarder Area</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::../panels/forwarder_view.html}	
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>
+
+<div id="claim-fwfollowup" data-panel='1' style='height: 730px;' data-editable="1" data-edittpl="fwfollowup" data-editheight="730">
+	<div><img src='/img/icons16/check_box.png' />Claim follow-up</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::../panels/fwfollowup_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>

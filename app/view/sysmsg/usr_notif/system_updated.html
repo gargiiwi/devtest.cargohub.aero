@@ -1,0 +1,8 @@
+{#store:subject:{html.title} - {notif.title}}
+<div style="background-color: #F0F0F0; border: 1px solid lightgray; padding: 8px; height: 64px; min-height: 64px;">
+	<div style="text-align: center; width: 120px; float: right; font-size: 12px; border: 1px solid gray; padding: 5px;"><a href="https://{html.domain}/global/notify/?action=confirm_notification&amp;id={notif.id}">Click here to confirm this notification.</a><br />Thank you !</div>
+	<div style="font-size: 1.2em; font-style: italic; line-height: 32px;">Dear {user.name},</div>
+	<div>You have received a {#if:notif.importance=="high":<b>very important</b>}{#if:notif.importance=="med":general interest}{#if:notif.importance=="low":low priority} System Update notification:</div>
+</div>
+<h2><img alt="{notif.type}" src="cid:embed0@{html.domain}" style="float: left; text-align: center; margin: 0 8px;">{notif.title}</h2>
+<p>{notif.description}~nl2br~</p>

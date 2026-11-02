@@ -1,0 +1,59 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/wrench.png" /><span>Preferences</span>
+	</div>
+	<div class='change-ops' style='display: none;'>
+		<button data-op="save" title="Save preferences"><img src="/img/icons16/save.png" alt="Save" /> Save</button>
+		<div class="toolbar-separator"></div>
+		<button data-op="discard" title="Discard changes"><img src="/img/icons16/cancel.png " alt="Cancel" /> Discard changes</button>
+	</div>
+	<button data-op="reset" style="float: right;" title="Reset to default"><img src="/img/icons16/reset.png" alt="Reset" /> Load Defaults</button>
+</div>
+<div id="preferences-navbar">
+	<div>Operation preferences</div>
+	<div class='spacey'>
+		{#if:acls.privileges.issue_add|acls.unrestricted: 
+		<h5>Submit options:</h5>
+		<span class="option_help">Your contact information is automatically added as the &quot;Submitter&quot; when creating new records</span>
+		<div class="pref-checkbox" data-group='oper' data-item="auto_contact"><span>Set my own contact as submitter</span></div>
+		<span class="option_help">Records that you create are directly assigned to yourself and start as &quot;in progress&quot;</span>
+		<div class="pref-checkbox" data-group='oper' data-item="auto_assign"><span>Self-assign my new records</span></div>}
+		<div class="pref-checkbox" data-group='oper' data-item="send_bymail"><span>Share directly by <i>E-mail</i> after submission</span></div>
+		<h5>E-mail options:</h5>
+		<span class="option_help">Automatically include yourself (Sender address) as a Bcc recipient</span>
+		<div class="pref-checkbox" data-group='oper' data-item="email_cc"><span>Add my address as Bcc</span></div>
+		<div class="pref-checkbox" data-group='oper' data-item="email_sig"><span>Append personal signature to E-mails</span></div>
+		{#if:aliases:
+			<h5>Default Sender Contact (Aliases):</h5>
+			{#repeat:aliases:
+			<div class="pref-radio" data-group="send_alias" data-choice="{id}"><span>{name} &lt;{email}&gt;</span></div>}
+		}
+	</div>
+	
+	<div>Interface configuration</div>
+	<div class='spacey'>
+		<h5>List and Search grid options:</h5>
+		<span class="option_help">Switch record types with a single click or tap by on large buttons</span>
+		<div class="pref-checkbox" data-group='grid' data-item="istswitcher"><span>&quot;Modules&quot; buttons</span></div>
+		<span class="option_help">Moving away from the grid keeps filters, sorting and pager. Grid is reset manually.</span>
+		<div class="pref-checkbox" data-group='grid' data-item="preserve"><span>Preserve search system while navigating</span></div>
+		<div class="pref-checkbox" data-group='grid' data-item="altrows"><span>Alternate grid row color</span></div>
+		<h5>Record overview options:</h5>
+		<span class="option_help">Switch record types with a single click or tap on large buttons</span>
+		<div class="pref-checkbox" data-group='item' data-item="istswitcher"><span>&quot;Modules&quot; buttons</span></div>
+		<h5>Global visual settings:</h5>
+{!		<span class="option_help">Saves some space by hiding the company header/logo which is on top of the screen.<br />Might also decrease loading time on slow connections.</span>
+		<div class="pref-checkbox" data-group='gfx' data-item="header"><span>Company header</span></div>}
+		<span class="option_help">Show or hide the background image (can speed up loading).</span>
+		<div class="pref-checkbox" data-group='gfx' data-item="clouds"><span>Application background</span></div>
+		<span class="option_help">Some buttons can hide their text (keeps only the icon).</span>
+		<div class="pref-checkbox" data-group='gfx' data-item="hidebtntxt"><span>Hide button text</span></div>
+		<h5 style='text-align: center; background-color: yellow;'>Some settings are effective only after next login</h5>
+	</div>
+
+	<div>Module to load after login</div>
+	<div class='spacey'>
+		{#repeat:landing_choices:{#if:break:<hr />}
+		<div class="pref-radio" data-group="logon_redirect" data-choice="{url}"><span>{page}</span></div>}
+	</div>
+</div>

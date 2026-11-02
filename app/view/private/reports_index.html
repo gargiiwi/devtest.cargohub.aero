@@ -1,0 +1,92 @@
+<h2>Reports and analysis</h2>
+<div id="reports_overview">
+	<div>
+		<div class='command'><button id='report_add' data-cmd='add-report' title='Create a report type'></button>Create a report type</div>
+		<div style="border: none;" id="reports_quicklist">
+		</div>
+	</div>
+	<div id="reports_op" style='overflow: auto;'>
+		<div class='spacey clear'>
+			Select a report from the left side.
+		</div>
+	</div>
+</div>
+
+<div class='clear'></div>
+{!Templates used by javascript to generate on-the-fly content. These are not visible initially even if they are part of the DOM}
+<div style="display: none;">{@
+<div id="template_choose_ist">
+	<div class="spacey">
+	<h3>Choose the issue type for the new report type</h3>
+	<hr />
+	<form class='vertiform'>
+		<ul>
+		<li><label>Issue type:</label><div id='report_ist'></div></li>
+		<li><label>&nbsp;</label><input type="button" value="Choose issue type" /></li>
+		</ul>
+	</form>
+	</div>
+</div>
+<div id="template_editreport">
+	<div class="spacey">
+	<h3>{#exists:id:Edit report type: {$name}}{#missing:id:Add a new report type}</h3>
+	<hr />
+	<form class='vertiform' name='editreport' action="?action=save" method="post">
+		<ul>
+		<li><label for="report_name">Report type name:</label><input id="report_name" name="report[name]" type="text" value="{$name}" /></li>
+    	<li style='height: 230px;'><label for="columns-select">Columns:</label>
+    		<div style="float: left; width: 180px; height: 230px;">
+    			<h4 style='margin-bottom: 4px;'>Selected columns</h4>
+	            <div id="columns-select"></div>
+    		</div>
+    		<div style="float: left; width: 36px; height: 230px;">
+    			&nbsp;
+    		</div>
+    		<div style="float: left; width: 180px; height: 230px;">
+    			<h4 style='margin-bottom: 4px;'>Available columns</h4>
+	            <div id="columns-avail"></div>
+    		</div>
+    	</li>
+    	<li><label>&nbsp;</label><span style='color: gray;'><b>Tip:</b> Drag and drop to choose and reorder</span></li>
+		<li><label>&nbsp;</label><input type="submit" value="{#exists:id:Update report type}{#missing:id:Add report type}" /></li>
+		</ul>
+	</form>
+	</div>
+</div>
+<div id="template_viewreport">
+	<div class='command' style='width: 50%; float: left;'><button id='report_edit' data-index='{$index}' data-cmd='edit-report' title='Modify {$name}'></button>Modify {$name}</div>
+	<div class='command' style='width: 50%; float: left;'><button id='report_delete' data-id='{$id}' data-cmd='delete-report' title='Remove {$name}'></button>Remove {$name}</div>
+	<div class='spacey clear' style='height: 335px; overflow: auto;'>
+		<div id='output_report'>
+			<form method="get" target="_blank" action="?">
+			<input type='hidden' name='action' value='generate'><input type='hidden' name='id' value='{$id}'>
+			<h4>Output as:</h4>
+			<ul>
+				<li><label><input type="radio" name="type" value="html" checked="checked"> HTML Document</label></li>
+				<li><label><input type="radio" name="type" value="pdf"> PDF Document</label></li>
+			</ul>
+			<h4>Date range:</h4>
+			<ul>
+				<li><label style='width: 40px; float: left;'>From:</label><div id='{!}date_start' class='calendar'></div></li>
+				<li><label style='width: 40px; float: left;'>To:</label><div id='{!}date_end' class='calendar'></div></li>
+			</ul>
+			<h4>Filters:</h4>
+			<ul>
+				<li><label style='width: 70px; float: left;'>{$group_name}:</label><div id='{!}group'></div></li>
+				<li><label style='width: 70px; float: left;'>Status:</label><div id='{!}status'></div></li>
+			</ul>
+			<input type='submit' value='Generate report' />
+			</form>
+		</div>
+		<b>Name:</b> {$name}<br />
+		<b>Created by:</b> {$creator_name} ({$creator_email})<br />
+		{#exists:org_id:<b>Organization:</b> {$org_name}<br />}
+		<b>Issue type:</b> {$ist_name}<br />
+		<b>Report columns:</b><br />
+		<blockquote>
+			{#loop:columns:_k:_v:{$_v.label}<br />}
+		</blockquote>
+		<hr />
+	</div>
+</div>
+}</div>

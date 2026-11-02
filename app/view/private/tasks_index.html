@@ -1,0 +1,65 @@
+<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/to_do_list_cheked_1.png" /><span>{#if:%CFG.tasks_main.viewtasks="all":All Tasks in the system}{#if:%CFG.tasks_main.viewtasks="org":Organization's tasks}{#if:%CFG.tasks_main.viewtasks="self":My assigned tasks}</span>
+	</div>		
+	{!The ADD button disabled here, can only add from the Issue overview, to avoid confusion} 
+	<button style='display: none;' data-op="add" title='Add new task'>Add new task</button>
+	{!<div class='toolbar-separator'></div>}
+	{#if:%CFG.tasks_main.viewtasks="self"|acls.privileges.tasks_operate|acls.unrestricted:<button data-op="edit" title="Edit selected task">Edit selected task</button>}
+	{#if:acls.privileges.tasks_operate|acls.unrestricted:<button data-op="delete" title="Delete selected task">Delete selected task</button>}
+	<div class='toolbar-separator'></div>
+	<button data-op="open-issue" title="Open issue for selected task">Open issue for selected task</button>
+</div>
+<div style="text-align: right; padding: 2px;">Please note: All dates are in <a href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO 8601</a> format: Year - Month - Day ( YYYY-MM-DD )</div>
+<div id="tasks_grid"></div>
+
+{!Templates}<div style="display: none;">
+
+<div id="modal_window">
+	{!Window title}<div></div>
+    {!Window body}<div>
+    	<div id='modal_content'>
+    	</div>
+		<div id='modal_buttons'>
+			<input type="button" id="modal_ok" value="Ok" />
+			<input type="button" id="modal_cancel" value="Cancel" />
+		</div>
+    </div>
+</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="template_edit_task" type="text/dryjstpl">
+	<form method="post" action="?action=save_task">{@
+		<div><label for='task_issue_track'>Issue Tracking #</label><input maxlength="12" type='text' id='task_issue_track' name='issue[track]' class="jqx-input jqx-rc-all jqx-widget" value="{$issue_track}" style='width: 130px;' /><span>Type to search</span></div>
+		<div><label for='task_title'>Task title:</label><input type='text' id='task_title' name='title' class="jqx-input jqx-rc-all jqx-widget jqx-widget-content{$themeclasses}" value="{$title}" style='width: 260px;' /></div>
+		<div style='height: 104px;'><label for='task_description'>Description:</label><textarea rows='1' id='task_description' name='description' class="jqx-input jqx-rc-all jqx-widget jqx-widget-content{$themeclasses}" style='width: 260px; height: 100px; resize: none; overflow: auto;'>{$description}</textarea></div>
+		{#exists:id:
+		<div><label>Created on:</label><div class='static'>{$dt}</div></div>
+		<div><label>Created by:</label><div class='static'>{$creator_name}</div></div>
+		}		
+		<div><label for='task_deadline'>Deadline:</label><div id='task_deadline' name='deadline' data-value='{$deadline}' class='calendar'></div></div>}{!Two modes of operation, a search for admin, or a dropdown for company member}
+		{#if:acls.unrestricted:{@<div><label for='task_assignee'>Assign{#exists:id:ed} to:</label><input type='text' id='task_assignee' name='assigned_to[name]'  class="jqx-input jqx-rc-all jqx-widget" value='{$assignee_name}' style='width: 160px;' /><span>Type to search</span></div>}}
+		{#ifnot:acls.unrestricted:{@<div><label for='task_assignee'>Assign{#exists:id:ed} to:</label><div id='task_assignee' name='assigned_to[id]'></div></div>}}
+		{@{#exists:id:
+		<div><label for='task_status'>Status:</label><div id='task_status' name='status' data-value='{$status}'></div></div>
+		<div><label for='task_progress'>Progress %</label><div id='task_progress' name='progress' data-value="{$progress:0}"></div><div style='margin-left: 15px;'><div id='task_progress_slider' data-value='{$progress:0}'></div></div></div>
+		<input type='hidden' name='id' value='{$id}' />}
+		}
+	</form>	
+</script>
+
+<script id="template_my_task" type="text/dryjstpl">{@
+	<form method="post" action="?action=save_task"> 
+		<div><label>Issue Tracking #</label><div class='static'>{$issue_track}</div></div>
+		<div><label>Task title:</label><div class='static'>{$title}</div></div>
+		<div style='height: 104px;'><label>Description:</label><div id='task_description' style='height: 100%; width: 268px; overflow: auto; border: 1px solid lightgray;'>{$description}</div></div>
+		<div><label>Created on:</label><div class='static'>{$dt}</div></div>
+		<div><label>Created by:</label><div class='static'>{$creator_name}</div></div>
+		<div><label>Deadline:</label><div class='static'>{$deadline}</div></div>
+		<div><label for='task_status'>Status:</label><div id='task_status' name='status' data-value='{$status}'></div></div>
+		<div><label for='task_progress'>Progress %</label><div id='task_progress' name='progress' data-value="{$progress:0}"></div><div style='margin-left: 15px;'><div id='task_progress_slider' data-value='{$progress:0}'></div></div></div>
+		<input type='hidden' name='id' value='{$id}' />
+	</form>	
+}</script>
+
+</div>

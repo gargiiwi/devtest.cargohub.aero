@@ -1,0 +1,55 @@
+{!version 2019.05.02}
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>Items:</th><td>{^xfields.intact_units:<span class="gray">---</span>}</td></tr>
+		<tr><th>Total weight:</th><td>{^xfields.pack_weight:<span class="gray">---</span>} kg</td></tr>
+		<tr><th>Pieces:</th><td>{^xfields.loose_pieces:<span class="gray">---</span>}</td></tr>
+		<tr><th>{packing.n}:</th><td>{#ifnot:^xfields.packing:<span class="gray">---</span>}{#repeat:^xfields.packing:<span class='itembox'>{value}</span>}</td></tr>
+		<tr><th>{trucktype.n}:</th><td>{^xfields.trucktype.value:<span class="gray">---</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>{awb1.n}:</th><td><span class="awb">{^xfields.awb1:<span class='gray'>(missing)</span>}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb1_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb1_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+		<tr><th>{awb1_goods.n}:</th><td>{^xfields.awb1_goods:<span class='gray'>---</span>}</td></tr>
+		{#if:^xfields.awb2:<tr><th>{awb2.n}:</th><td><span class="awb">{^xfields.awb2}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb2_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb2_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb2_goods.n}:</th><td>{^xfields.awb2_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb3:<tr><th>{awb3.n}:</th><td><span class="awb">{^xfields.awb3}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb3_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb3_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb3_goods.n}:</th><td>{^xfields.awb3_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb4:<tr><th>{awb4.n}:</th><td><span class="awb">{^xfields.awb4}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb4_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb4_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb4_goods.n}:</th><td>{^xfields.awb4_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb5:<tr><th>{awb5.n}:</th><td><span class="awb">{^xfields.awb5}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb5_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb5_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb5_goods.n}:</th><td>{^xfields.awb5_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb6:<tr><th>{awb6.n}:</th><td><span class="awb">{^xfields.awb6}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb6_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb6_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb6_goods.n}:</th><td>{^xfields.awb6_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb7:<tr><th>{awb7.n}:</th><td><span class="awb">{^xfields.awb7}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb7_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb7_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb7_goods.n}:</th><td>{^xfields.awb7_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb8:<tr><th>{awb8.n}:</th><td><span class="awb">{^xfields.awb8}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb8_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb8_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb8_goods.n}:</th><td>{^xfields.awb8_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb9:<tr><th>{awb9.n}:</th><td><span class="awb">{^xfields.awb9}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb9_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb9_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb9_goods.n}:</th><td>{^xfields.awb9_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb10:<tr><th>{awb10.n}:</th><td><span class="awb">{^xfields.awb10}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb10_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb10_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb10_goods.n}:</th><td>{^xfields.awb10_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb11:<tr><th>{awb11.n}:</th><td><span class="awb">{^xfields.awb11}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb11_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb11_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb11_goods.n}:</th><td>{^xfields.awb11_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb12:<tr><th>{awb12.n}:</th><td><span class="awb">{^xfields.awb12}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb12_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb12_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb12_goods.n}:</th><td>{^xfields.awb12_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb13:<tr><th>{awb13.n}:</th><td><span class="awb">{^xfields.awb13}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb13_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb13_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb13_goods.n}:</th><td>{^xfields.awb13_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb14:<tr><th>{awb14.n}:</th><td><span class="awb">{^xfields.awb14}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb14_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb14_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb14_goods.n}:</th><td>{^xfields.awb14_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+		{#if:^xfields.awb15:<tr><th>{awb15.n}:</th><td><span class="awb">{^xfields.awb15}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb15_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb15_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+			<tr><th>{awb15_goods.n}:</th><td>{^xfields.awb15_goods:<span class='gray'>---</span>}</td></tr>		
+		}
+	</table>
+}

@@ -1,0 +1,59 @@
+/** Expanders **/
+#tabs-container div.ctrl-line {
+	margin-bottom: 4px;
+	height: 26px;
+}
+
+	#tabs-container div.ctrl-line label {
+		display: inline-block;
+		float: left;
+		line-height: 26px;
+		padding-right: 8px;
+		text-align: right;
+		width: 135px;
+	}
+
+	#tabs-container div.ctrl-line .form-control {
+		float: left;
+		display: inline-block;
+	}
+
+	#tabs-container div.ctrl-line input.form-control {
+		height: 24px;
+		padding-left: 3px;
+		box-sizing: border-box;
+	}
+
+	#tabs-container div.ctrl-line .static {
+		display: inline-block;
+		color: gray;
+		height: 26px;
+		line-height: 26px;
+		text-shadow: 0 1px 0 lightgray;
+	}
+	
+	#tabs-container div#task-status-line > * {
+		float: left;
+	}
+	
+	#tabs-container div#task-descr-ro {
+		padding: 10px;
+	}
+	
+#tabs-container div.info-line {
+	margin-bottom: 4px;
+	height: 26px;
+}
+
+	#tabs-container div.info-line label {
+		display: inline-block;
+		float: left;
+		line-height: 26px;
+		padding-right: 8px;
+		text-align: right;
+		width: 135px;
+	}
+	
+	#tabs-container div.info-line div {
+		line-height: 26px;
+	}

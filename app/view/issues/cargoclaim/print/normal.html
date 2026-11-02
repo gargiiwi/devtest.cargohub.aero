@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>{html.title}{#if:header.zone: | {header.zone}}</title>
+	<link href="/css/{html.css_theme}/cargo_its_embed.css?v=2.4.1" type="text/css" rel="stylesheet" />
+	{! Some styles specific to claims }{@<style type="text/css">
+	.iss_claim_type {
+		padding: 1px 4px;
+		margin-right: 5px;
+		color: black;		
+	}
+	#iss_ct_Delay {
+		border: 1px solid blue;
+	}
+	#iss_ct_Damage {
+		border: 1px solid red;
+	}
+	#iss_ct_Loss {
+		border: 1px solid gray;
+	}
+	.iss_document {
+		padding: 1px 4px;
+		margin-right: 5px;
+		color: green;
+		border: 1px solid lightgray;		
+	}
+	</style>}
+	{@<style type="text/css">
+	#issue_print {
+		border: 1px solid lightgray;
+		border-collapse: separate;
+		border-spacing: 8px;
+	}
+
+	#issue_print table {
+		width: 100%;
+		margin-bottom: 16px;
+	}
+	
+		#issue_print table.infotable th {
+			height: 20px
+		}
+	
+		#issue_print .field_error {
+			background-color: OrangeRed;
+			color: white;
+			border: 1px solid black;
+			padding: 2px;
+		}
+		
+		#issue_print th {
+			width: 140px;
+			text-align: right;
+			padding-right: 6px;
+			font-weight: normal;
+		}
+		
+	div#attachments {
+		overflow: auto;
+	}
+	
+		div#attachments div.file-listing {
+			margin-bottom: 6px;
+			padding: 4px 0px 6px 2px;
+			border-bottom: 1px dotted lightgray;
+		}
+		
+		div#attachments div.file-listing img {
+			float: left;
+			margin-right: 10px;
+			border: none;
+		}
+		
+		
+	</style>}
+</head>
+<body>
+{#if:header:{header}}
+{#use:iss:<h2>{xfields.pstage.value} Air Cargo Claim {xfields.mawb.p}-{xfields.mawb.s} from {submitter.xdata.company_name}</h2>
+<table id='issue_print' class='zone jqx-rc-all'><tr>
+{!Left column}
+<td valign="top" style="width: 50%;">
+
+<h4>Shipment information:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{mawb.n}:</th><td><b><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>
+	<tr><th>Carrier:</th><td>{^group.name}</td></tr>
+	<tr><th>{nature_of_goods.n}:</th><td>{^xfields.nature_of_goods:<span class='gray'>(not specified)</span>}</td></tr>
+	<tr><th>{project_no.n}:</th><td>{^xfields.project_no:<span class="gray">(not specified)</span>}</td></tr>
+	<tr><th>MAWB Total:</th><td>{#if:^xfields.mawb_pieces:<b>{^xfields.mawb_pieces}</b> Pieces ; <b>{^xfields.mawb_weight}</b> Kg}{#ifnot:^xfields.mawb_pieces:<span class='gray'>(not specified)</span>}</td></tr>
+	<tr><th>{hawb1.n}:</th><td>{#if:^xfields.hawb1:{^xfields.hawb1}}{#ifnot:^xfields.hawb1:<span class='gray'>(missing)</span>}</td></tr>
+	{#if:^xfields.hawb2:<tr><th>{hawb2.n}:</th><td>{^xfields.hawb2}</td></tr>}
+	{#if:^xfields.hawb3:<tr><th>{hawb3.n}:</th><td>{^xfields.hawb3}</td></tr>}
+	{#if:^xfields.hawb4:<tr><th>{hawb4.n}:</th><td>{^xfields.hawb4}</td></tr>}
+</table>}
+
+<h4>Flight information:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{carry_date.n}:</th><td>{#if:^xfields.carry_date:{^xfields.carry_date}~date("Y-m-d")~}{#ifnot:^xfields.carry_date:<span class='gray'>(missing)</span>}</td></tr>
+	<tr><th>{arrival_date.n}:</th><td>{#if:^xfields.arrival_date:{^xfields.arrival_date}~date("Y-m-d")~}{#ifnot:^xfields.arrival_date:<span class='gray'>(missing)</span>}</td></tr>
+	<tr><th>{flight_no.n}:</th><td>{^xfields.flight_no:<span class='gray'>(missing)</span>}</td></tr>
+	<tr><th>{flight_no_2.n}:</th><td>{^xfields.flight_no_2:<span class='gray'>(not specified)</span>}</td></tr>
+	<tr><td colspan='2'><hr /></td></tr>
+	<tr><th>{orig_loc.n}:</th><td>{^xfields.orig_loc.value.name} ({^xfields.orig_loc.value.IATA})</td></tr>
+	<tr><th>Departure Country:</th><td>{^xfields.orig_loc.value.country}</td></tr>
+	{#if:^xfields.viaa.value:<tr><th>{viaa.n}:</th><td>{^xfields.viaa.value.name} ({^xfields.viaa.value.IATA})</td></tr>
+	<tr><th>Mid-point Country:</th><td>{^xfields.viaa.value.country}</td></tr>}
+	<tr><th>{dest_loc.n}:</th><td>{^xfields.dest_loc.value.name} ({^xfields.dest_loc.value.IATA})</td></tr>
+	<tr><th>Destination Country:</th><td>{^xfields.dest_loc.value.country}</td></tr>
+</table>}
+
+<h4>Claim information:</h4>
+{#use:%ist.xfield_def:<table class="infotable">
+	<tr><th>{pstage.n}:</th><td><b>{^xfields.pstage.value}</b></td></tr>
+	<tr><th>{claim_amount.n}:</th><td><b>{^xfields.claim_curr.value}~cut(4)~{^xfields.claim_amount}~numberformat(2)~</b></td></tr>
+	<tr><th>{insurance.n}:</th><td>
+		{#if:^xfields.insurance.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.insurance.key: checked="checked"}> {^xfields.insurance.value}</label>}
+		{#ifnot:^xfields.insurance.value:<span class='gray'>(not set / unknown)</span>}
+	</td></tr>
+	<tr><th>{claim_type.n}:</th><td>{#repeat:^xfields.claim_type:<span class='iss_claim_type' id='iss_ct_{key}'>{value}</span>}</td></tr>
+	{#if:^xfields.dmg_pieces:<tr><th>Damage:</th><td><b>{^xfields.dmg_pieces}</b> Pieces ; <b>{^xfields.dmg_weight}</b> Kg</td></tr>}
+	{#if:^xfields.loss_pieces:<tr><th>Loss:</th><td><b>{^xfields.loss_pieces}</b> Pieces ; <b>{^xfields.loss_weight}</b> Kg</td></tr>}
+	{#if:^xfields.delay_pieces:<tr><th>Delay:</th><td><b>{^xfields.delay_pieces}</b> Pieces ; <b>{^xfields.delay_weight}</b> Kg</td></tr>}
+	<tr><th>{invoice.n}:</th><td>{^xfields.invoice_curr.value}~cut(4)~{^xfields.invoice}~numberformat(2)~</td></tr>
+	<tr><th>{what_happened.n}:</th><td>{^xfields.what_happened:<span class='gray'>(no information provided)</span>}~nl2br~</td></tr>
+</table>}
+
+</td>
+{!Right column}
+<td valign="top" style="width: 50%;">
+
+<h4>Processing tracking:</h4>
+<table class="infotable">
+	<tr><th>Submitted on date:</th><td>{ctime}~date("Y-M-d (H:i)")~</td></tr>
+	<tr><th>Tracking ID:</th><td><b>{track}</b></td></tr>
+	<tr><th>Organization:</th><td>{organization.name}</td></tr>
+	<tr><th>Assigned person:</th><td>{#if:assigned.id:{assigned.name}}{#ifnot:assigned.id:<span class='gray'>(none yet or unknown to this application)</span>}</td></tr>
+	{#if:assigned.id:<tr><th>Assignee E-mail:</th><td>{assigned.email}</td></tr>}
+	<tr><th>Status:</th><td><span class='status_{status_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/statuses/{status_key}.png' alt="{status}" /> {status}</span></td></tr>			
+	<tr><th>Priority:</th><td><span class='prio_{priority_key}'><img style="float: left; margin-right: 6px;" src='/img/icons16/priorities/{priority_key}.png' alt="{priority}~cut(100,2)~" /> {priority}~cut(100,2)~</span></td></tr>
+</table>
+
+<h4>Submitted by:</h4>
+<table class="infotable">
+	<tr><th>Name:</th><td>{submitter.name}</td></tr>
+	{#if:submitter.xdata.company_name:<tr><th>Company:</th><td> {submitter.xdata.company_name}</td></tr>}
+	<tr><th>IP Address:</th><td><img style="float: left; margin-right: 6px;" src="/img/icons16/map.png" alt="IP Address" /> {submitter.ip}</td></tr>
+</table>
+
+{#if:files:<h4>Attached pictures and documents:</h4>
+<div id='attachments' style="margin-bottom: 8px;">
+{#repeat:files:
+	<div class='file-listing'><img src='/img/mime/{mimetype}.png' alt="{mimetype}"> {name}{#if:description: <span class='gray'>({description})</span>}<br />
+		<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~<br />
+		<span class="gray">Size:</span> {size}~numberformat~ bytes
+		<div class='clear'></div>
+	</div>
+}
+</div>}
+{#ifnot:files:<h4>Currently, there are no documents attached to this Cargo Claim !</h4>}
+
+{!End of right column}</td>
+</tr></table>
+}
+{#if:footer:{footer}}
+<script type="text/javascript">
+	print();
+</script>
+</body>
+</html>

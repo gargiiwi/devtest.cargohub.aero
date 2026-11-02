@@ -1,0 +1,8 @@
+{!This text is included with the issue data (prefixing it) when an Incident Report is being transferred between organizations. It includes a title, like a canned message, formatted from the same data as the outer template}
+{#store:_subject:{#use:issue.xfields:{cat.value} Cargo Incident Report for MAWB: {mawb.p}-{mawb.s} from {^issue.submitter.xdata.company_name:{^issue.submitter.name}}}}
+{#use:issue:
+	<h3>Cargo Damage Notification</h3>
+	<p>We hereby would like to notify you about the enclosed cargo incident</p>
+	<p>This report was submitted by, <b>{submitter.xdata.company_name:{submitter.name}}</b>.
+	Please contact us should you require any additional information</p>
+}

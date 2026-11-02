@@ -1,0 +1,104 @@
+/** Task Manager **/
+div.task-content {
+	overflow: auto;
+	white-space: nowrap;
+   -moz-user-select: text;
+   -khtml-user-select: text;
+   -webkit-user-select: text;
+   -o-user-select: text;
+	user-select: text;
+}
+
+div.modal_content #task-title, div.modal_content #update-comment {
+	width: 450px;
+}
+
+div.modal_content #task-description, div.modal_content #task-update {
+	overflow: auto;
+	resize: none;
+	padding: 5px;
+	margin: 0;
+	width: 685px;
+	height: 150px;
+} 
+
+
+/*IWI All Task grid changes 16072026 start*/
+#modal_task-editor .jqx-window-header {
+    border-bottom: 1px solid #e5e7eb !important;
+    font-size: 16px;
+}
+
+#modal_task-editor h5 {
+    background: none !important;
+    border: 0;
+    padding: 0;
+    text-indent: 0 !important;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+div.modal_content form > div {
+    display: flex;
+}
+
+div.modal_content form > div > label {
+    text-align: left;
+    padding-right: 0;
+}
+
+div.modal_content #task-title {
+    max-width: 60%;
+    margin-right: 10px;
+}
+
+.jqx-input,
+.jqx-dropdownlist-state-normal,
+.jqx-combobox,
+.jqx-numberinput {
+    border: 1px solid #d1d5db !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+
+.jqx-input:focus {
+    border-color: #2563eb !important;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ececec;
+}
+
+.modal_buttons {
+    background: #fafafa;
+    border-top: 1px solid #e5e7eb !important;
+    padding: 0 !important;
+    position: inherit !important;
+}
+
+#task-description {
+    height: 140px !important;
+    overflow: auto !important;
+    resize: vertical;
+}
+
+.modal_content hr {
+    margin: 10px 0;
+}
+
+#modal_task-editor {
+    width: 820px;
+}
+div.site {
+    width: 90%;
+}
+.record-module-info{
+    margin-top: -10px;
+}
+.swal2-select{
+    border-radius: .25em;
+}
+
+/*IWI All Task grid changes 16072026 end*/

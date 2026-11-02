@@ -1,0 +1,63 @@
+{#use:%ist.xfield_def:
+	{!Various types of data output customizations that are specific to this issue type, directly in the template}
+	<table>
+        <b style="margin-left: 168px;">Buying</b>
+        <b style="margin-left: 149px;">Selling</b>
+     
+            <tr>
+                <th>{air_freight_buying.n}:</th>
+                <td><b>{^xfields.air_freight_buying.serialized:<span class='gray'>---</span>}</b></td>
+                <td><b>{^xfields.air_freight_selling.serialized:<span class='gray'>---</span>}</b></td>
+            </tr>
+           
+
+        <tr>
+            <th>{fuel_surcharge_buying.n}:</th>
+            <td><b>{^xfields.fuel_surcharge_buying.serialized:<span class='gray'>---</span>}</b> </td>
+            <td><b>{^xfields.fuel_surcharge_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr> 
+        <tr>
+            <th>{security_surcharge_buying.n}:</th>
+            <td><b>{^xfields.security_surcharge_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.security_surcharge_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>      
+        <tr>
+            <th>{terminal_handling_fee_buying.n}:</th>
+            <td><b>{^xfields.terminal_handling_fee_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.terminal_handling_fee_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>     
+        <tr>
+            <th>{trucking_buying.n}:</th>
+            <td><b>{^xfields.trucking_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.trucking_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>  
+        <tr>
+            <th>{customs_clearance_buying.n}:</th>
+            <td><b>{^xfields.customs_clearance_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.customs_clearance_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>
+        <tr>
+            <th>{security_scanning_buying.n}:</th>
+            <td><b>{^xfields.security_scanning_buying.serialized:<span class='gray'>---</span>}</b> </td>
+            <td><b>{^xfields.security_scanning_selling.serialized:<span class='gray'>---</span>}</b> </td>
+        </tr>
+
+        <tr>
+            <th>{handling_fee_buying.n}:</th>
+            <td><b>{^xfields.handling_fee_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.handling_fee_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>
+        <tr>
+            <th>{packing_fee_buying.n}:</th>
+            <td><b>{^xfields.packing_fee_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.packing_fee_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>
+        <tr>
+            <th>{profit_buying.n}:</th>
+            <td><b>{^xfields.profit_buying.serialized:<span class='gray'>---</span>}</b></td>
+            <td><b>{^xfields.profit_selling.serialized:<span class='gray'>---</span>}</b></td>
+        </tr>
+
+        </table>
+  
+    }

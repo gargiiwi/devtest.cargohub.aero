@@ -1,0 +1,57 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr>
+			<!--<th>{^xfields.mrn_type.value:?}</th>-->
+			<th>NCTS</th>
+			<td><a href="http://ec.europa.eu/taxation_customs/dds2/tra/transit_home.jsp?Lang=en&MRN={^xfields.mrn_no}~uppercase~&Expand=true" target="_blank">[ Tracking ]</a>
+		{#ifnot:^xfields.mrn_no:<span class="gray">---</span>}</td>
+		</tr>
+		<tr><th>{mrn_date.n}:</th><td>{#if:^xfields.mrn_date:{^xfields.mrn_date}~date("Y-m-d")~}{#ifnot:^xfields.mrn_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{open_days.n}:</th><td>{^xfields.open_days}</td></tr>
+		<tr><th>{mrn_no.n}:</th><td>{#if:^xfields.mrn_no:{^xfields.mrn_no}~uppercase~ ({^xfields.mrn_type.value:?})}</td></tr>
+		<tr><th>{sub_nbr.n}:</th><td>{^xfields.sub_nbr:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{dec_code.n}:</th><td>{^xfields.dec_code:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{movement.n}:</th><td>{^xfields.movement.value:<span class='gray'>---</span>}</td></tr>
+		
+		
+		<tr><th>Truck number:</th><td>{^xfields.truck_no:<span class='gray'>---</span>}
+		<div class="ra_250">
+			<label class="ra_label">Truck date:</label>
+			{#if:^xfields.truck_date:{^xfields.truck_date}~date("Y-m-d")~}{#ifnot:^xfields.truck_date:<span class='gray'>---</span>}
+		</div></td></tr>
+		<tr><th>{consig.n}:</th><td>{^xfields.consig:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{cust_name.n}:</th><td>{^xfields.cust_name:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{file_refnr.n}:</th><td>{^xfields.file_refnr:<span class='gray'>---</span>}</td></tr>
+	</table>
+
+	<hr />
+	<div><table style="width: 99%;">
+		<tr>
+			<td style="width: 50%; text-align: center;">{orig.n}:</td>
+			<td style="width: 50%; text-align: center;">{dest.n}:</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">{^xfields.orig:<span class="gray">---</span>}</td>
+			<td style="text-align: center;">{^xfields.dest:<span class="gray">---</span>}</td>
+		</tr>
+	</table></div>
+
+	<h4 style="margin-top: 12px;">Reported discrepancies</h4>
+	<table>
+		<tr><th>{ndis.n}:</th><td>{^xfields.ndis.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{awb1.n}:</th><td><span class="awb">{^xfields.awb1:<span class='gray'>(missing)</span>}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb1_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb1_kg:<span class='gray'>---</span>}</span> kg</td></tr>
+		{#if:^xfields.awb2:<tr><th>{awb2.n}:</th><td><span class="awb">{^xfields.awb2}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb2_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb2_kg:<span class='gray'>---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb3:<tr><th>{awb3.n}:</th><td><span class="awb">{^xfields.awb3}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb3_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb3_kg:<span class='gray'>---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb4:<tr><th>{awb4.n}:</th><td><span class="awb">{^xfields.awb4}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb4_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb4_kg:<span class='gray'>---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb5:<tr><th>{awb5.n}:</th><td><span class="awb">{^xfields.awb5}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb5_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb5_kg:<span class='gray'>---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb6:<tr><th>{awb6.n}:</th><td><span class="awb">{^xfields.awb6}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb6_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb6_kg:<span class='gray'>---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb7:<tr><th>{awb7.n}:</th><td><span class="awb">{^xfields.awb7}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb7_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb7_kg:<span class='gray'>---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb8:<tr><th>{awb8.n}:</th><td><span class="awb">{^xfields.awb8}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb8_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb8_kg:<span class='gray'>---</span>}</span> kg</td></tr>}
+		{#if:^xfields.awb9:<tr><th>{awb9.n}:</th><td><span class="awb">{^xfields.awb9}</span><span class='gray'> Pieces: </span><span class="awbp">{^xfields.awb9_p:<span class='gray'>---</span>}</span><span class='gray'> Weight: </span><span class="awbkg">{^xfields.awb9_kg:<span class='gray'>---</span>}</span> kg</td></tr>}
+	<tr><td colspan='2'><hr /></td></tr>
+		<tr><th>{packing.n}:</th><td>{#ifnot:^xfields.packing:<span class="gray">---</span>}{#repeat:^xfields.packing:<span class='itembox'>{value}</span>}</td></tr>
+		<tr><th>{loose_pieces.n}:</th><td>{^xfields.loose_pieces:<span class="gray">---</span>}</td></tr>
+		<tr><th>{intact_units.n}:</th><td>{^xfields.intact_units:<span class="gray">---</span>}</td></tr>
+		<tr><th>{trucktype.n}:</th><td>{^xfields.trucktype.value:<span class="gray">---</span>}</td></tr>
+	</table>
+}

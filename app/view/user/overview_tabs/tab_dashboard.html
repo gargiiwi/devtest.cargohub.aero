@@ -1,0 +1,177 @@
+
+<div class="clear"></div>
+
+<!--IWI new dashboard design 11082026 start-->      
+
+<div id="dashboard-kpi">
+    <div class="erp-kpi-row"> 
+        <a href="/user/publication?action=get_all_read_sign" target="_blank" class="erp-kpi org"> 
+            <div class="erp-kpi-title">Read & Sign Publication</div> 
+            <div class="erp-kpi-bottom"> 
+                <span class="erp-kpi-value" id="kpi_read_and_sign_count" ><span class="kpi-loader"> <i class="fa fa-spinner fa-spin"></i> <span>Loading...</span> </span></span> 
+                <i class="fa fa-files-o"></i> 
+            </div> 
+        </a> 
+        <a href="/issue/capa" class="erp-kpi dept"> 
+            <div class="erp-kpi-title">CaPa Report</div> 
+            <div class="erp-kpi-bottom"> 
+                <span class="erp-kpi-value">{session_count.capaCount}</span>  
+                <i class="fa fa-crosshairs"></i>  
+            </div>  
+        </a> 
+        <a href="/manager/tasks:record?myassigned=true" class="erp-kpi task"> 
+            <div class="erp-kpi-title">My Active Tasks</div> 
+            <div class="erp-kpi-bottom">  
+                <span class="erp-kpi-value">{session_count.taskCount}</span> 
+                <i class="fa fa-check-square-o"></i> 
+            </div> 
+        </a> 
+        <a href="/user/overview#notify" class="erp-kpi notify"> 
+            <div class="erp-kpi-title">Notifications</div> 
+            <div class="erp-kpi-bottom"> 
+                <span class="erp-kpi-value">{session_count.notificationCount}</span> 
+                <i class="fa fa-bell-o"></i> 
+            </div> 
+        </a> 
+    </div>
+</div>
+<div class="dashboard-layout">
+
+    <div class="dashboard-card" id="dashboard_module_list">
+
+    </div>
+    
+    
+   <!--IWI new dashboard design 17082026 start-->
+    
+    <div class="dashboard-card ">
+    <div class="dashboard-card-header">
+
+    <div class="todo-header-left">
+        <div class="dashboard-title">
+            <i class="fa fa-check-square-o"></i>
+            Todo List
+        </div>
+    </div>
+
+    <div class="todo-header-right">
+
+        <a href="javascript:void(0)"
+           class="todo-add-btn"
+           onclick="openTodoPopup();">
+            <i class="fa fa-plus"></i>
+            Add
+        </a>
+
+<!--        <a href="/user/overview?action=alltodo" class="todo-view-all-btn" >
+            Dashboard
+            <i class="fa fa-angle-right"></i>
+        </a>-->
+<a href="/user/overview?action=alltodo" class="todo-view-all-btn">
+    <i class="fa fa-th-large"></i>
+</a>
+
+    </div>
+
+</div>
+    <div class="todo-list" id="todo-list">
+    </div>
+</div>
+    <!--IWI new dashboard design 17082026 end-->
+
+    <div class="dashboard-card">
+        <div class="dashboard-card-header">
+            <div class="dashboard-title">
+                <i class="fa fa-bullhorn"></i>
+                Announcement
+            </div>
+        </div>
+        <div class="activity-list" id="announcement-list">
+        </div>
+    </div>
+</div>
+
+<!--<div id="rt-list11" style="padding-right: 140px;" ></div>-->
+
+<!--IWI new dashboard design 11082026 end-->  
+    
+    <!--IWI new dashboard design 17082026 start-->   
+    <div id="todo-popup" class="todo-popup">
+    <div class="todo-popup-overlay"></div>
+    <div class="todo-popup-box">
+        <div class="todo-popup-header">
+            <div class="todo-popup-title">
+                <i class="fa fa-check-square-o"></i>
+                <span id="todo-popup-heading">Add Todo</span>
+            </div>
+            <a href="javascript:void(0)"
+               class="todo-popup-close"
+               onclick="closeTodoPopup();">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+
+        <div class="todo-popup-body">
+            <input type="hidden" id="todo-id" value="">
+            <div class="todo-form-group">
+                <label>Title</label>
+                <input type="text"
+                       id="todo-title-input"
+                       class="todo-form-input"
+                       placeholder="Enter task title">
+            </div>
+            <div class="todo-form-row">
+                <div class="todo-form-group">
+                    <label>Due Date</label>
+                    <input type="date"
+                           id="todo-date-input"
+                           class="todo-form-input"
+                           placeholder="DD-MM-YYYY">
+                </div>
+                <div class="todo-form-group">
+                    <label>Priority</label>
+                    <select id="todo-priority-input"
+                            class="todo-form-input">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+            <div class="todo-form-group">
+                <label>Description</label>
+                <textarea id="todo-description-input"
+                          class="todo-form-input todo-form-textarea"
+                          placeholder="Add description"></textarea>
+            </div>
+            
+            <div class="todo-form-group">
+                <label>Closing Remark</label>
+                <textarea id="todo-remark-input" class="todo-form-input todo-form-textarea" placeholder="Add remark"></textarea>
+            </div>
+        </div>
+        <div class="todo-popup-footer">
+            <button type="button"
+                    id="todo-delete-btn"
+                    class="todo-delete-btn"
+                    onclick="deleteTodo();">
+                <i class="fa fa-trash-o"></i>
+                Delete
+            </button>
+            <div class="todo-popup-actions">
+                <button type="button"
+                        class="todo-cancel-btn"
+                        onclick="closeTodoPopup();">
+                    Cancel
+                </button>
+                <button type="button"
+                        class="todo-save-btn"
+                        onclick="saveTodo();">
+                    <i class="fa fa-check"></i>
+                    <span id="todo-save-text">Add Todo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+   <!--IWI new dashboard design 17082026 end-->

@@ -1,0 +1,113 @@
+/** Mail **/
+div.site > div.page > div#messages {
+}
+
+	/** Command **/
+	div#messages div.command {
+		height: 52px;
+		line-height: 52px;
+		font-size: 120%;
+		white-space: nowrap;
+		border-bottom: 1px solid lightgray;
+		margin: 0px;
+	}
+
+	div#messages div.command button {
+		margin: 6px 12px;
+	}
+
+	div#messages div.command button#mail_compose { background-image: url("/img/icons/email_add.png"); }
+	div#messages div.command button#mail_read { background-image: url("/img/icons/email_open.png"); }
+	div#messages div.command button#mail_reply { background-image: url("/img/icons/email_edit.png"); }
+	div#messages div.command button#mail_forward { background-image: url("/img/icons/email_go.png"); }
+	div#messages div.command button#mail_move { background-image: url("/img/icons/folder_go.png");	}
+	div#messages div.command button#mail_container { background-image: url("/img/icons/application.png");	}
+	div#messages div.command button#mail_delete { background-image: url("/img/icons/email_delete.png"); }
+	div#messages div.command button#mail_send { background-image: url("/img/icons/email_go.png"); }
+	div#messages div.command button#mail_attach { background-image: url("/img/icons/email_attach.png"); }
+	div#messages div.command button#mail_discard { background-image: url("/img/icons/cancel.png"); }
+
+	/** Tree **/
+	div#messages #con_tree {
+		border: none;
+	}
+
+	div#messages #con_tree li img,
+	div#win_move_to #move_tree li img {
+		float: left;
+		margin-right: 5px;
+	}
+
+	/** Grid **/
+	div.jqx-grid-pager {
+		border: none;
+	}
+
+	/** Header & Body Mail **/
+	div#messages div.header {
+		background: #f0f0ee;
+		overflow: hidden;
+		border-bottom: 1px solid lightgray;
+		padding: 5px 6px 6px 6px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	div#messages div.header_form {
+		padding: 6px;
+	}
+
+	div#messages div.body {
+		overflow: auto;
+		height: 341px;
+	}
+
+	/** Form **/
+	div#messages label {
+		display: block;
+		text-align: right;
+		margin: 0px 8px;
+		float: left;
+		height: 26px;
+		line-height: 26px;
+	}
+
+	div#messages label:first-child {
+		margin-left: 0px;
+	}
+
+	div#messages div.start {
+		display: block;
+		position: relative;
+		margin-left: 306px;
+		margin-right: 10px;
+	}
+
+	div#messages input#mail_subject {
+		padding: 4px;
+		margin: 0px;
+		border: 1px solid lightgray;
+		border-radius: 3px;
+		left: 0px;
+		right: 0px;
+		width: 100%;
+		position: absolute;
+	}
+
+	div#dropdownlistContentmail_to input {
+		padding-left: 4px !important;
+	}
+
+	/** TinyMCE **/
+	div#messages .defaultSkin table.mceLayout {
+		border-left: none !important;
+		border-right: none !important;
+	}
+
+	div#messages .defaultSkin table.mceLayout tr.mceFirst td {
+		border-top: none !important;
+	}
+
+	div#messages .defaultSkin table.mceLayout tr.mceLast td {
+		border-bottom: none !important;
+	}

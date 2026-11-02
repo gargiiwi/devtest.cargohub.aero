@@ -1,0 +1,22 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/book_addresses.png" /><span>Managed contacts</span>
+	</div>
+	
+	<button data-op="vcard-add" title="Create new contact"><img src="/img/icons16/vcard_add.png" alt="New contact" /> New contact</button>
+	<button data-op="ctx-refresh" title="Refresh contacts"><img src="/img/icons16/arrow_refresh.png" alt="Refresh" /> Refresh</button>
+	{!Toolbar buttons that are shown when only one single basic contact is clicked in the grid}
+	<div id="contact_single_select" style="display: none;">
+		<div class="toolbar-separator"></div>
+		<button data-op="ctx-details" title="Details"><img src="/img/icons16/vcard.png" alt="Details" /> Details</button>
+	</div>
+	{!Toolbar buttons shown when one or multiple standard conversations are selected in the grid}
+	<div id="contact_any_select" style="display: none;">
+		<div class="toolbar-separator"></div>
+		<button data-op="ctx-delete" title="Delete one or more contact(s)"><img src="/img/icons16/delete.png" alt="Delete" /> Delete</button>
+		<div class='toolbar-accessory' id='selected-contact'></div>
+	</div>
+</div>
+<p>This tab will show extra contacts managed by the logged in contact (for example, multiple people using the same organization e-mail)</p>
+<p>Work on the "extra contacts" list is in progress...</p>
+<div id="ctx-grid"></div>

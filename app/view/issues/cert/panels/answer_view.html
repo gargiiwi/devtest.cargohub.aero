@@ -1,0 +1,48 @@
+{#use:%ist.xfield_def:
+	
+	
+	<table>
+		<tr><th>{respo.n}:</th><td>{^xfields.respo:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{code_loc.n}:</th><td>{^xfields.code_loc:<span class="gray">---</span>}</td></tr>
+		<tr><th>{code_iso2.n}:</th><td>{^xfields.code_iso2.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{dep.n}:</th><td>{^xfields.dep:<span class='gray'>---</span>}</td></tr>
+		
+		<tr><th>{doc_ref.n}:</th><td  class="doc_ref_value"><!-- 01072024 changes by iwi -->
+			<!-- 28062024 added by iwi -->
+			{#if:^xfields.doc_ref:{^xfields.doc_ref}}
+			<!-- {#if:^xfields.doc_ref:<a href="/record/process:{^xfields.doc_ref}#panels" target="_blank">{^xfields.doc_ref}</a>} -->
+			{#ifnot:^xfields.doc_ref:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><td colspan="2"><hr /></td></tr>
+                	<tr><th>{revw_date.n}:</th><td>{#if:^xfields.revw_date:{^xfields.revw_date}~date("Y-m-d")~}{#ifnot:^xfields.revw_date:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{score_sc.n}:</th><td>{^xfields.score_sc.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{concl.n}:</th><td>{^xfields.concl.value:<span class='gray'>---</span>}</td></tr>
+		
+	</table>
+        
+        {#ifnot:^xfields.answer:<div class="gray" style="text-indent: 20px;">-----</div>}
+        <h5>{answer.n}</h5>
+	{#if:^xfields.answer:<div style="border: 1px solid lightgray; padding: 4px; max-height: 300px; overflow: auto; background-color: white;">{^xfields.answer}~nl2br~</div>}
+        
+        
+	<h5>{risk.n}</h5>
+	{#if:^xfields.risk:<div style="border: 1px solid lightgray; padding: 4px; background-color: white;">{^xfields.risk}~nl2br~</div>}
+	{#ifnot:^xfields.risk:<div class="gray" style="text-indent: 20px;">-----</div>}
+	<h5>{solution.n}</h5>
+	{#if:^xfields.solution:<div style="border: 1px solid lightgray; padding: 4px; background-color: white;">{^xfields.solution}~nl2br~</div>}
+	{#ifnot:^xfields.solution:<div class="gray" style="text-indent: 20px;">-----</div>}
+<h4 style="margin-top: 15px; background-image: url('/img/icons16/flag_finish.png'); background-repeat: no-repeat; background-position: 4px;">Evaluation</h4>
+	<table>
+		<tr><th>{eval_done.n}</th>
+		<td>
+			{#if:^xfields.eval_done.value!=-1:<label><input type='checkbox' disabled="disabled"{#if:^xfields.eval_done.key: checked="checked"}> {^xfields.eval_done.value}</label>}
+			{#ifnot:^xfields.eval_done.value:<span class='gray'>---</span>}
+		</td></tr>
+                <tr><th>{score_n.n}:</th><td>{^xfields.score_n:<span class='gray'>---</span>} {^xfields.score_gr.value:<span class="gray">-</span>}</td></tr>
+		<tr><th>{eval_pers.n}:</th><td>{^xfields.eval_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>{eval_date.n}:</th><td>{#if:^xfields.eval_date:{^xfields.eval_date}~date("Y-m-d")~}{#ifnot:^xfields.eval_date:<span class='gray'>---</span>}</td></tr>
+	</table>
+	<h5>{eval_descr.n}</h5>
+	{#if:^xfields.eval_descr:<div class="whitebg" style="border: 1px solid lightgray; padding: 4px;">{^xfields.eval_descr}~nl2br~</div>}
+	{#ifnot:^xfields.eval_descr:<div class="gray" style="text-indent: 20px;">-----</div>}
+}

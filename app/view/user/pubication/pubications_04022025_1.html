@@ -1,0 +1,63 @@
+<div style="float:left;width:93%;padding-top: 20px;" id="" class="readonly_publish_documents_div_section "> 
+    
+    <!--Add option to set or change logo from organization start-->
+    <h4 style="text-indent:0px;"> </h4>
+    <div>
+        <img class="org_logo_sec" style="max-width:  90%;padding-left: 20px;padding-right: 20px;" alt="" src="{orgLogo}">
+    </div>
+    <!--Add option to set or change logo from organization end-->
+    <div>
+
+        <div class="ratbsearch" style="padding: 0 10px;">
+            <div>
+                <span><b>Search by : </b></span>
+                <label class="sacheck">Name
+                    <input type="checkbox" name="search_publish_documents_type" value="by_name" >
+                    <span class="checkmark"></span>
+                </label>
+                <label class="sacheck">Description
+                    <input type="checkbox"  name="search_publish_documents_type" value="by_desc" >
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div>
+                <input type="hidden" id="search_publish_documents_type" value="department" />
+                <input type="text" name="search_publish_documents" placeholder="Document Name" id="search_publish_documents" class="search_publish_documents" style="width: 260px;" />
+                <!-- <button class="rasearch" id="doments_rasearch">Search</button> -->
+            </div>
+
+        </div>
+
+        <div class="ratabs">
+            <div class="simple-spinner">
+                <span></span>
+              </div>
+              
+            <div id="tabsall">
+                <ul class="nav nav-tabs" id="user-nav-tabs">
+                    <li role="presentation" id="fetch_all_data"><button>Organizations</button></li>
+                    <li role="presentation" class="active"  id="fetch_department_data"><button>Departments</button></li>
+                </ul>
+            </div>
+
+            <div id="content">
+                <div id="content1">
+                    <div class="rafiltertab">
+                        <label for="search_by_department_list">Filter by : </label>
+                        <select name="search_by_department_list" id="search_by_department_list">
+                            <option value="" disabled="disabled" selected>Select Department </option>
+                            {assign_departments_list}
+                        </select>
+                    </div>
+                    <div>
+                        <table border="0" cellspacing="0"  id="publish_documents" style="border-spacing:0 5px;">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div> 

@@ -1,0 +1,14 @@
+/** Contacts Labels and Folders Tree **/
+
+#ctx-tree {
+	border: none;
+}
+
+	#ctx-tree li img {
+		float: left;
+		margin-right: 5px;
+	}
+
+	#ctx-tree ul.jqx-tree-dropdown-root {
+		margin-top: 16px;
+	}

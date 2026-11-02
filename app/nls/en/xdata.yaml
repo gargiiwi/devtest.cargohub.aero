@@ -1,0 +1,9 @@
+# Supported X-data Strings
+---
+
+keys:
+  header: banner~Logo/Header
+  link: link~Website URL
+  phone: text~Telephone number
+  email: text~Primary contact e-Mail
+  info: html~Detailed information

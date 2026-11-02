@@ -1,0 +1,197 @@
+/* External Communication */
+table.infotable.contact-result-row {
+	color: inherit;
+}
+
+	table.infotable.contact-result-row th {
+		text-align: right;
+		width: 60px;
+	}
+	
+	table.infotable.contact-result-row div.contact-name {
+		font-size: 16px;
+		font-weight: bold;
+		margin-bottom: 4px;
+	}
+	
+	table.infotable.contact-result-row div.contact-email {
+		text-decoration: underline;
+	}
+	
+h4.login-warn {
+	background-color: ForestGreen;
+	color: White;
+	padding: 6px 0;
+	border: none;
+	text-align: center;
+	font-weight: normal;
+	box-shadow: 1px 4px 2px LightGray;
+}
+
+	h4.login-warn a {
+		color: white;
+		text-decoration: underline;
+	}
+
+/** Some styles present on multiple tabs **/
+div.right-side-block {
+	margin-bottom: 12px;
+	width: 100%;
+}
+
+/** Conversation Tab **/
+div#convo-left-side {
+	float: left;
+	width: 770px;
+}
+
+	div.convo-empty {
+		text-align: center;
+		margin: 40px;
+	}
+
+	div#convo-left-side div.convo-msg-closed {
+		height: 32px;
+		line-height: 32px;
+		padding: 4px;
+		background-color: #EEEEEE;
+		border-top: 1px solid lightgray;
+		font-size: 0.9em;
+	}
+	
+	div#convo-left-side div.convo-msg-open .msg-header {
+		height: 42px;
+		line-height: 32px;
+		padding: 4px;
+		border-top: 1px solid lightgray;
+		font-size: 0.9em;			
+	}
+	
+		div.convo-msg-closed img.icon, div.convo-msg-open .msg-header img.icon {
+			position: absolute;
+		}
+		
+		div.convo-msg-open .msg-header .msg-buttons {
+			float: right;
+			height: 24px;
+			margin-left: 8px;
+		}
+		
+		div.convo-msg-open .msg-header div.msg-buttons img {
+			position: relative;
+			margin: 0px !important;
+		}
+		
+		div#convo-left-side div.convo-msg-open .msg-content {
+			margin-left: 40px;
+			margin-bottom: 16px;
+			word-wrap: break-word;
+		}
+		
+		div#convo-left-side div.convo-msg-open .msg-recipients {
+			margin-left: 30px;
+		}
+		div#convo-left-side div.convo-msg-open .msg-recipients span.contact-item {
+			border: 1px solid lightgray;
+			box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.4);
+			display: inline-block;
+			margin: 0 7px 6px 0;
+			padding: 2px 6px;
+			white-space: nowrap;
+		}		
+
+	div#convo-left-side span.from-name {
+		font-weight: bold;
+		margin-left: 40px;
+	}
+		
+	div#convo-left-side div#convo-quickreply {
+		padding-top: 8px;			
+		margin-bottom: 30px;
+	}
+	
+		div#convo-left-side div#convo-quickreply div#quickreply-help {
+			font-style: italic;
+			padding: 7px 0px;
+			color: gray;
+		}
+		
+			div#quickreply-help span {
+				text-decoration: underline;
+				cursor: pointer;
+			}
+			
+			div#quickreply-help span:HOVER {
+				color: black;
+			}
+
+		div#convo-quickreply div#quickreply-frame {
+			border: 1px solid #D3D3D3;
+		}
+		
+		div#convo-quickreply div#reply-recipient {
+			border: 1px solid #D3D3D3;
+		    background-color: #FFFFFF;
+			padding: 4px 6px 1px 8px;
+		}
+		
+			div#convo-quickreply div#reply-recipient > * {
+				display: inline-block; 		
+			}
+			
+			div#convo-quickreply div#reply-recipient > img {
+				float: left;
+				margin: 4px 4px 0px 0px;
+			}
+			
+			div#convo-quickreply div#reply-recipient > b {
+				float: left;
+				height: 27px;
+				line-height: 23px;
+				margin-right: 4px;
+			}
+			
+			div#convo-quickreply div#reply-recipient > span {
+				height: 27px;
+				line-height: 23px;
+				text-indent: 3px;
+			}
+			
+			div#convo-quickreply div#reply-recipient > span.contact-error {
+				text-decoration: line-through;
+				color: red;
+			}
+			
+		div#convo-quickreply div#reply-subject {
+			border-left: 1px solid #D3D3D3;
+			border-right: 1px solid #D3D3D3;
+			border-bottom:  1px solid #D3D3D3;
+			background-color: #FFFFFF;
+			padding: 6px;
+			margin-bottom: 4px;
+		}
+			
+			div#reply-subject input {
+				width: 100%;
+				padding: 0;
+				height: 20px;
+				line-height: 20px;
+				font-size: 16px;
+				border: none;
+			}
+		
+		div#convo-quickreply div.jqx-editor {
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+	
+	div#convo-right-side {
+		float: right;
+		width: 335px;
+	}
+	
+		div#convo-right-side div.convo-contact {
+			margin: 3px 3px;
+			padding: 5px;
+			border: 1px solid lightgray;
+		}

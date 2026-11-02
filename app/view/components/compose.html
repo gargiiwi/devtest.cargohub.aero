@@ -1,0 +1,26 @@
+<div id="message-recipients" class='spacey'>
+	<div id="rec-to">
+		<img id="recipients-bcc" alt="BCC" src="/img/icons24/bcc.png" />
+		<img id="recipients-cc" alt="CC" src="/img/icons24/cc.png" />
+		<label><img alt="[To]" src="/img/icons16/email_go.png"> To:</label>
+		<div class='con-sortable con-empty' style="width: 970px;"></div>
+	</div>
+	<div style="display: none;" id="rec-cc">
+		<label><img alt="[Cc]" src="/img/icons16/cc16.png"> Cc:</label>
+		<div class='con-sortable con-empty'></div>
+	</div>
+	<div style="display: none;" id="rec-bcc">
+		<label><img alt="[Bcc]" src="/img/icons16/ghost-2-icon.png"> Bcc:</label>
+		<div class='con-sortable con-empty'></div>
+	</div>
+</div>
+	
+<div id="message-subject" class='spacey'>
+	<img id="template-toggle" alt="[t]" src="/img/icons/template.png" />
+	<input maxlength="150" type="text" placeholder="&laquo; ... Choose a Template or type your Subject" class="gray" />
+</div>
+<div id="email-compose-atts" style="display: none;"></div>
+<p class="gray center" style="margin: 9px auto 5px auto;"><b>E-mail contents / preview</b> <img src="/img/icons16/information.png" class="info-tip inline-icon" data-tooltip_position="top" data-tooltip="There might be differences in the way the recipient(s) see the message,<br />depending on which operating system and e-mail clients they are using" /></p>
+<!-- components.tinymce -->
+<textarea id="message-content" style="display: none; width: 1px; height: 1px;"></textarea>
+<div id="message-content-placeholder" class="loading-pleasewait" style='height: 190px;'></div>

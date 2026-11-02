@@ -1,0 +1,115 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/template.png" /><span>Templates</span>
+	</div>
+	<button data-op="tpl-add" title="Add new template"><img src='/img/icons16/add.png' /> Add new</button>
+	<div id='templates-row-ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="tpl-edit" title="Edit selected"><img src='/img/icons16/pencil.png' /> Edit</button>
+		<button data-op="tpl-copy" title="Edit as a copy"><img src='/img/icons16/page_copy.png' /> Duplicate</button>
+		<button data-op="tpl-del" title="Delete selected"><img src='/img/icons16/delete.png' /> Delete</button>
+	</div>
+	<div id='templates-editor-ops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="tpl-save" title="Save template"><img src='/img/icons16/save.png' /> Save</button>
+		<button data-op="tpl-close" title="Close editor"><img src='/img/icons16/cross.png' /> Close</button>
+	</div>
+	<div class="toolbar-separator"></div>
+	<button data-op="grid-state-reset" title="Reset grid to default"><img src='/img/icons16/recycle.png' />Reset grid</button>
+	<button data-op="tpl-options" title="Options"><img src="/img/icons16/check_box.png" alt="Options" /> Options</button>
+	<div class="toolbar-accessory" id="texted_name">{texted}</div>
+</div>
+<div id="template-editor" style="margin-bottom: 6px; display: none;">
+	<div style="padding-left: 2px;"></div>
+	<div style="padding: 6px;">
+		<form method="post" action="?action=Save_Template">
+			<div id="tpl-edit-rt_select_ctrl" style="float: right; width: 545px; height: 26px; display: none;">
+				<label>Module <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="... and for which module ?"></label>
+				<div class="form-control" id='tpl-rt_id' name='tpl[rt_id]'></div>
+			</div>
+			<div style="width: 545px; height: 26px;">
+				<label>Role <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="In which area will this template be used ?"></label>
+				<div class="form-control" id='tpl-role' name='tpl[role]'></div>
+			</div>
+			<div style="height: 26px;">
+				<label for='tpl-description'>Description <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="The description is used in all template selectors and is mandatory!"></label>
+				<input type='text' id='tpl-description' name='tpl[description]' class="form-control jqx-input jqx-rc-all" value="" style='width: 855px;' />
+			</div>
+			<div style="height: 26px;">
+				<label for='tpl-title'>Title/Subject <img src='/img/icons16/information.png' class="inline-icon info-tip" data-tooltip="The title supports variables (fields) just like the Content"></label><input type='text' id='tpl-title' name='tpl[title]' class="form-control jqx-input jqx-rc-all" value="" style='width: 855px;' />
+				<input type='button' id='tpl-insert-title' value="Insert field" />
+			</div>
+			<div id="tpl-xdata" style="display: none;"></div>
+			<h4 style="margin-top: 20px;"><label for='tpl-content'>Template content: <span class="gray">(using {texted})</span></label></h4>
+			{#if:texted="TinyMCE":<div style="height: 26px; text-align: center;"><span class="form-control static"><b>IMPORTANT!</b> This Editor is changing the underlying code! Use the <b>Programmer</b> editor for final tuning (HTML/CSS knowledge required)</span></div>}
+			<textarea id="tpl-content" rows='1' readonly="readonly" style="height: 1px; width: 1px;"></textarea>
+			<div id="tpl-content-placeholder" class="loading-pleasewait" style='height: 235px;'></div>  
+		</form>
+		<div id="content-extra-commands" class='toolbar jqx-widget jqx-rc-all'>
+			<div class='toolbar-accessory'>
+				<span>Content-Editor Commands</span>
+			</div>
+			<button data-op="tpl-insert-field" title="Insert Field"><img src='/img/icons16/textfield.png' /> Insert Field</button>		
+		</div>
+	</div>
+</div>
+<div id="templates-grid"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="window-tpl_editor_options" type="text/dryjstpl">{@
+	<form name="tpl_options" action="?action=tpl_editor_options" method="post" style="margin: 8px;">
+		<div class="texted_option" data-value="CodeMirror">CodeMirror (Programer Editor)</div>
+		<div class="texted_option" data-value="TinyMCE">TinyMCE (Visual Editor)</div>
+		<p style="color: gray; margin-bottom: 4px;">Each type of editor has it's strengths and weaknesses.
+		It's recommended to use a Visual Editor when changing e-mail templates, view templates and , and a Programmer Editor for the automatic responses and data output.</p>
+	</form>
+}</script>
+
+<script id="window-insert_field" type="text/dryjstpl">{@
+	<div id="insert_field-listbox"></div>
+	<div class="gray center">Select the field you want to insert and then press OK</div>
+}</script>
+
+<script id="template-role_task" type="text/dryjstpl">{@
+	<label for='xdata-deadline_days'>Due date after...</label><div id='xdata-deadline_days' name='xdata[deadline_days]' data-value="{$xdata_parsed.deadline_days:30}"></div>
+		<div style="line-height: 24px; margin: 0 16px 0 2px;">days</div><div><div class='unselectable' id='xdata-deadline_days_slider' data-value='{$xdata_parsed.deadline_days:30}'></div></div>
+		<div class='static' style="margin-left: 16px;">(<span class='deadline_days-link' data-days="1">&quot;Tomorrow&quot;</span>,
+		<span class='deadline_days-link' data-days="7">A week</span>,
+		<span class='deadline_days-link' data-days="30">A month</span>,
+		<span class='deadline_days-link' data-days="91">Three months</span>,
+		<span class='deadline_days-link' data-days="365">One year</span>,
+		<span class='deadline_days-link' data-days="731">Two years</span>)
+	</div><div class='clear'></div>
+	<label style="margin-top: 4px;">Automatic Assign:</label><div style="margin-top: 4px;" id='xdata-auto_assign' name='xdata[auto_assign]'></div>
+		<input type='button' id='xdata-assign_clear' value="Clear" style="margin-top: 4px; margin-left: 6px;" /><div class='clear'></div>
+	<label style="margin-top: 4px;">Overdue notif.:</label><div style="margin-top: 4px;" id='xdata-ovd_intv' name='xdata[ovd_intv]'></div>  
+        
+<!--        when template will create , there will be a option to check , for auto selected this template for those record which have this issue type, claim type etc 03-01-2023  start -->
+        <div class='clear'></div>        
+        <span id="autoAssignSec"  style=" display:none; ">
+        <label style="margin-top: 4px;">Automatic Assign:</label><div style="margin-top: 4px;  float: left;" id='xdata-claim_id' name='xdata[claim_id]'></div>
+        <input type='button' id='xdata-claim_id_clear' value="Clear" style="margin-top: 4px; margin-left: 6px;" /><div class='clear'></div>        
+        <label style="margin-top: 4px;">Automatic Assign:</label><div style="margin-top: 4px; float: left; " id='xdata-assigned_user' name='xdata[assigned_user]'></div>
+        <input type='button' id='xdata-assigned_user_clear' value="Clear" style="margin-top: 4px; margin-left: 6px;" /><div class='clear'></div>
+        </span>
+        <div class='clear'></div>
+<!--         when template will create , there will be a option to check , for auto selected this template for those record which have this issue type, claim type etc 03-01-2023  end -->
+
+}</script>
+
+<script id="template-role_arem" type="text/dryjstpl">{@
+	<label for='xdata-arem_event'>Triggering event:</label><div id='xdata-arem_event' name='xdata[arem_event]'></div>
+		<div class='static' style="line-height: 24px; margin: 2px 10px 0 10px;"><span>Selection Keyword/Value:</span>
+		<input type='text' id='xdata-arem_kw' name='xdata[arem_kw]' class="form-control jqx-input jqx-rc-all" value="{$xdata_parsed.arem_kw}" style='width: 120px;' />
+	</div><div class='clear'></div>
+	<label for='xdata-arem_contact' style="margin-top: 4px;">Responder contact:</label><div style="margin-top: 4px;" id='xdata-arem_contact' name='xdata[arem_contact]'></div>
+}</script>
+
+<script id="template-role_ntf" type="text/dryjstpl">{@
+	<label for='tpl-locator_key'>Locator key:</label>
+		<input type='text' id='tpl-locator_key' name='tpl[locator_key]' class="form-control jqx-input jqx-rc-all" value="{$xdata_parsed.ntf_kw}" style='width: 185px;' />
+		<div class='clear'></div>
+	<label for='xdata-ntf_contact' style="margin-top: 4px;">Sender contact:</label><div style="margin-top: 4px;" id='xdata-ntf_contact' name='xdata[ntf_contact]'></div>
+		<input type='button' id='xdata-ntf_contact_clear' value="Clear" style="margin-top: 4px; margin-left: 6px;" />
+		<div class='static' style="line-height: 24px; margin: 2px 10px 0 10px;"> (When no contact is selected, Notification is sent from default system E-mail)</div>
+}</script>

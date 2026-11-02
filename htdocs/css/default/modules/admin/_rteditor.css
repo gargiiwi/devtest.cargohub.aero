@@ -1,0 +1,127 @@
+/* Record Type Editor v2 */
+
+#sidebar {
+	width: 300px;
+	height: 220px;
+	border: 1px solid lightgray;
+}
+
+	#sidebar button {
+		margin: 5px 0 5px 5px;
+	}
+
+form.vertiform {
+	
+}
+	
+	form.vertiform input[type='text'], form.vertiform input[type='password'] {
+		width: 320px;
+		height: 23px;
+		border: 1px solid lightgray;
+		border-radius: 3px;
+	}
+	
+	form.vertiform li.xfline {
+		height: 27px;
+	}
+	
+	form.vertiform li.xfline > label > div:first-child {
+		float: right;
+		margin-top: 6px;
+	}
+	
+	form.vertiform li.xfline > div > * {
+		float: left;
+		margin-left: 2px;
+		margin-right: 4px;
+	}
+	
+	form.vertiform li.xfline > div > span {
+		line-height: 27px;
+	}
+	
+	form.vertiform li.xfline > div > input[type="text"] {
+		width: 199px;
+	}
+
+/* Grid stuff */
+.choice {
+	display: inline-block;
+	background-color: white;
+	color: black;
+	padding: 1px;
+	margin-right: 6px;
+	box-shadow: 2px 2px 2px gray;
+}
+
+
+#rt-field-editor div.ctrl-line {
+	margin-bottom: 4px;
+	min-height: 26px;
+}
+
+	#rt-field-editor div.ctrl-line label {
+		display: inline-block;
+		float: left;
+		line-height: 26px;
+		padding-right: 8px;
+		text-align: right;
+		min-width: 150px;
+	}
+
+	#rt-field-editor div.ctrl-line .form-control {
+		display: inline-block;
+	}
+
+	#rt-field-editor div.ctrl-line input.form-control {
+		height: 24px;
+		padding-left: 3px;
+		box-sizing: border-box;
+	}
+
+	#rt-field-editor div.ctrl-line .static {
+		color: gray;
+		line-height: 26px;
+		text-shadow: 0 1px 0 lightgray;
+	}
+	
+	#rt-field-editor #field-options-area label {
+		text-align: left;
+		min-width: 180px;
+	}
+	#rt-field-editor #field-options-area div.jqx-checkbox-default, #field-save-alterdata div.jqx-checkbox-default, #field-delete-removedata div.jqx-checkbox-default {
+		margin-top: 5px;
+		margin-right: 8px;
+	}
+	
+/* Styles for the associative data editor */
+
+.command {
+	float: right;
+	width: 78px;
+	text-align: center;
+	line-height: 30px !important;
+}
+	.command > button {
+		margin-left: 18px;
+	}
+	.command > div {
+		width: 78px;
+		float: left;
+	}
+
+	.command button.button-moveup { background-image: url("/img/icons/bullet_arrow_up.png"); }
+	.command button.button-movedown { background-image: url("/img/icons/bullet_arrow_down.png"); }
+	.command button.button-movetop { background-image: url("/img/icons/bullet_arrow_top.png"); }
+	.command button.button-movebottom { background-image: url("/img/icons/bullet_arrow_bottom.png"); }
+	.command button.button-create { background-image: url("/img/icons/bullet_add.png"); }
+	.command button.button-delete { background-image: url("/img/icons/bullet_delete.png"); }
+	
+#assoc-new {
+	margin-top: 30px;
+}
+	#assoc-new input {
+		padding: 2px;
+		box-sizing: border-box;
+		margin-right: 2px;
+	}

@@ -1,0 +1,200 @@
+{!The privileges matrix}
+<table class='jqx-grid jqx-reset jqx-rc-all jqx-widget jqx-widget-content datatable'>
+
+	{#if:issues_view|issues_view_unassgn|issues_view_assgn_oth|issues_list_customize_columns:
+	<tr class='tab-header'><th>{%privilege_groups.issue_grid}</th><th style='width: 130px;'>Feature access?</th><th style='width: 130px;'>Modify/Write?</th></tr>}
+	{#if:issues_view:<tr>
+		<td><img alt="Table" src="/img/icons16/table.png"> {issues_view}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:issues_view_unassgn:<tr>
+		<td><img alt="Unknown" src="/img/icons16/question.png"> {issues_view_unassgn}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:issues_view_assgn_oth:<tr>
+		<td><img alt="Woman" src="/img/icons16/user_female.png"> {issues_view_assgn_oth}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:issues_list_customize_columns:<tr>
+		<td><img alt="Table" src="/img/icons16/column_double.png"> {issues_list_customize_columns}</td>
+		<td>&nbsp;</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+	</tr>}
+
+	{#if:issue_add|issue_reply|issue_set_status|issue_set_priority|issue_set_group|issue_self_assign|issue_assign_to|issue_partner_share|issue_transfer|issue_sendby_mail|issue_access_deps|issue_close|issue_delete:
+	<tr class='tab-header'><th>{%privilege_groups.issue_metadata}</th><th style='width: 130px;'>Feature A?</th><th style='width: 130px;'>Feature B?</th></tr>}
+	{#if:issue_add:<tr>
+		<td><img alt="Add" src="/img/icons16/add.png"> {issue_add}</td>
+		<td>&nbsp;</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+	</tr>}
+	{#if:issue_set_group:<tr>
+		<td><img alt="Move" src="/img/icons16/transform_move.png"> {issue_set_group}</td>
+		<td>&nbsp;</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+	</tr>}
+	{#if:issue_self_assign|issue_assign_to:<tr>
+		<td><img alt="Assign" src="/img/icons16/user_go.png"> {issue_self_assign}</td>
+		<td style='text-align: center;'>{#if:issue_self_assign:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>		
+		<td style='text-align: center;'>{#if:issue_assign_to:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:issue_set_status|issue_set_priority:<tr>
+		<td><img alt="Status" src="/img/icons16/vslider.png"> {issue_set_status}</td>
+		<td style='text-align: center;'>{#if:issue_set_status:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:issue_set_priority:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:issue_sendby_mail:<tr>
+		<td><img alt="Email" src="/img/icons16/bricks.png"> {issue_sendby_mail}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+{!	{#if:issue_partner_share|issue_transfer:<tr>
+		<td><img alt="Share" src="/img/icons16/handshake.png"> {issue_partner_share:{issue_transfer}}</td>
+		<td style='text-align: center;'>{#if:issue_partner_share:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:issue_transfer:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}}
+	{#if:issue_access_deps:<tr>
+		<td><img alt="Dep" src="/img/icons16/plugin.png"> {issue_access_deps}</td>
+		<td>&nbsp;</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+	</tr>}
+	{#if:issue_close|issue_delete:<tr>
+		<td><img alt="Ghost" src="/img/icons16/ghost-2-icon.png"> {issue_close:{issue_delete}}</td>
+		<td style='text-align: center;'>{#if:issue_close:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:issue_delete:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	
+	{#if:issue_xfields|issue_edit_xfields|issue_view_comm|issue_manage_comm|issue_view_attachs|issue_edit_attachs|issue_view_notes|issue_edit_notes|issue_view_contacts|issue_edit_contacts|issue_view_sharing|issue_view_history:
+	<tr class='tab-header'><th>{%privilege_groups.issue_detail}</th><th style='width: 130px;'>Access to tab</th><th style='width: 130px;'>Change/Manage</th></tr>	
+	{#if:issue_xfields|issue_edit_xfields:<tr>
+		<td><img alt="Panels" src="/img/icons16/application_view_tile.png"> {issue_xfields}</td>
+		<td style='text-align: center;'>{#if:issue_xfields:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:issue_edit_xfields:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:issue_view_comm|issue_manage_comm:<tr>
+		<td><img alt="Chat" src="/img/icons16/comments.png"> {issue_view_comm}</td>
+		<td style='text-align: center;'>{#if:issue_view_comm:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:issue_manage_comm:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:issue_view_attachs|issue_edit_attachs:<tr>
+		<td><img alt="File" src="/img/icons16/attach.png"> {issue_view_attachs}</td>
+		<td style='text-align: center;'>{#if:issue_view_attachs:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:issue_edit_attachs:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:issue_view_notes|issue_edit_notes:<tr>
+		<td><img alt="Note" src="/img/icons16/note.png"> {issue_view_notes}</td>
+		<td style='text-align: center;'>{#if:issue_view_notes:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:issue_edit_notes:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:issue_view_contacts|issue_edit_contacts:<tr>
+		<td><img alt="Contact" src="/img/icons16/vcard.png"> {issue_view_contacts}</td>
+		<td style='text-align: center;'>{#if:issue_view_contacts:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:issue_edit_contacts:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:issue_view_sharing:<tr>
+		<td><img alt="Hands" src="/img/icons16/handshake.png"> {issue_view_sharing}</td>
+		<td style='text-align: center;'>{#if:issue_view_sharing:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:issue_view_history:<tr>
+		<td><img alt="Clock" src="/img/icons16/clock_history_frame.png"> {issue_view_history}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	}
+
+	{#if:tasks_access|tasks_manager|tasks_access_dep|tasks_access_org:
+	<tr class='tab-header'><th>{%privilege_groups.tasks}</th><th style='width: 130px;'>View access</th><th style='width: 130px;'>Change/Manage</th></tr>	
+	{#if:tasks_access|tasks_manager:<tr>
+		<td><img alt="Task" src="/img/icons16/to_do_list_checked_1.png"> {tasks_access}</td>
+		<td style='text-align: center;'>{#if:tasks_access:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:tasks_manager:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:tasks_access_dep:<tr>
+		<td><img alt="Dep" src="/img/icons16/plugin.png"> {tasks_access_dep}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:tasks_access_org:<tr>
+		<td><img alt="Org" src="/img/icons16/company-building-icon.png"> {tasks_access_org}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	}
+
+	{#if:view_online|org_view_stats|dep_contacts_view|dep_contacts_manager|org_deps_view|org_deps_manager|org_users_view|org_user_manager|org_partners_view|org_groups_view|org_templates_manager:
+	<tr class='tab-header'><th>{%privilege_groups.org}</th><th style='width: 130px;'>Feature access?</th><th style='width: 130px;'>Management</th></tr>}
+{!Not implemented	{#if:view_online:<tr>
+		<td><img alt="Online" src="/img/icons16/user_green.png"> {view_online}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}}
+	{#if:dep_contacts_view|dep_contacts_manager:<tr>
+		<td><img alt="Contact" src="/img/icons16/vcard.png"> {dep_contacts_manager:{dep_contacts_view}}</td>
+		<td style='text-align: center;'>{#if:dep_contacts_view:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:dep_contacts_manager:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:org_contacts_view|org_contacts_manager:<tr>
+		<td><img alt="Contact" src="/img/icons16/vcard.png"> {org_contacts_manager:{org_contacts_view}}</td>
+		<td style='text-align: center;'>{#if:org_contacts_view:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:org_contacts_manager:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:org_view_stats:<tr>
+		<td><img alt="Org" src="/img/icons16/company-building-icon.png"> {org_view_stats}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:org_deps_view|org_deps_manager:<tr>
+		<td><img alt="Dep" src="/img/icons16/plugin.png"> {org_deps_manager:{org_deps_view}}</td>
+		<td style='text-align: center;'>{#if:org_deps_view:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:org_deps_manager:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:org_users_view|org_user_manager:<tr>
+		<td><img alt="Users" src="/img/icons16/users.png"> {org_user_manager:{org_users_view}}</td>
+		<td style='text-align: center;'>{#if:org_users_view:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:org_user_manager:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:org_partners_view:<tr>
+		<td><img alt="Handhshake" src="/img/icons16/handshake.png"> {org_partners_view}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:org_groups_view:<tr>
+		<td><img alt="Group" src="/img/icons16/folders.png"> {org_groups_view}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:grid_manage_views:<tr>
+		<td><img alt="Eye" src="/img/icons16/eye.png"> {grid_manage_views}</td>
+		<td>&nbsp;</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+	</tr>}
+	{#if:org_templates_manager:<tr>
+		<td><img alt="Template" src="/img/icons16/template.png"> {org_templates_manager}</td>
+		<td>&nbsp;</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+	</tr>}
+
+	{!Only admin can grant these access rights, as they are extremely sensitive settings!}
+	
+	{#if:issues_view_orgowned|org_domains_view|org_domains_manager|org_access_manager:
+	<tr class='tab-header'><th>{%privilege_groups.superuser}</th><th style='width: 130px;'>Feature A</th><th style='width: 130px;'>Feature B</th></tr>}
+	{#if:issues_view_orgowned:<tr>
+		<td><img alt="Manager" src="/img/icons16/administrator.png"> {issues_view_orgowned}</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+		<td>&nbsp;</td>
+	</tr>}
+	{#if:org_domains_view|org_domains_manager:<tr>
+		<td><img alt="Domains" src="/img/icons16/www_page.png"> {org_domains_manager:{org_domains_view}}</td>
+		<td style='text-align: center;'>{#if:org_domains_view:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+		<td style='text-align: center;'>{#if:org_domains_manager:<input type="checkbox" disabled="disabled" checked="checked" /> YES}</td>
+	</tr>}
+	{#if:org_access_manager:<tr>
+		<td><img alt="Access" src="/img/icons16/lock.png"> {org_access_manager}</td>
+		<td>&nbsp;</td>
+		<td style='text-align: center;'><input type="checkbox" disabled="disabled" checked="checked" /> YES</td>
+	</tr>}
+</table>

@@ -1,0 +1,109 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<table>
+	{#use:title:<tr>
+		<th><label>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}' /></td>
+	</tr>}
+	<tr><th><label>Incident Date &amp; Time:</label></th>
+	<td>
+		{#use:idate:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'></div>}
+		{#use:itime:<input style="margin-left: 8px;" type="text" id='{id}' name='{name}' data-value='{value}' class='theclock jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+	</td></tr>
+	<tr>
+		<th><label for='{mawb_p.id}'>{mawb_p.display.label}:</label></th>
+		<td>
+			<input type='text' id='{mawb_p.id}' name='{mawb_p.name}' value='{mawb_p.value}' maxlength="3" style='width: 30px;' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> - 
+			<input type='text' id='{mawb_s.id}' name='{mawb_s.name}' value='{mawb_s.value}' maxlength="8" style='width: 70px;' class='jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+		</td>
+	</tr>
+<tr><td colspan="2"><hr /></td></tr>
+	<tr>{#use:process:
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 90px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value="{value}"{#if:active: checked='checked'}> {display}</label>}</td>
+	}</tr>
+	<tr>
+		<th><label>{ftnr.display.label}:</label></th>
+		<td>
+			{#use:ftnr:<input style="height: 22px;" maxlength="8" type='text' id='{id}' name='{name}' value='{value}' class='left whitebg short jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:ftdate:<span class="left" style="height: 22px; line-height: 22px; margin: 0 4px;"> Date:</span><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'></div>}
+		</td>
+	</tr>
+	<tr>{#use:airp_dep:
+		<th><label>{display.label}:</label></th>
+		<td><div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+		<input type='hidden' id='{id}' name='{name}' value='{value}' />
+		</td>
+	}</tr>
+	{#use:airp_dep_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+	<tr>{#use:airp_dest:
+		<th><label>{display.label}:</label></th>
+		<td><div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+		<input type='hidden' id='{id}' name='{name}' value='{value}' />
+	}</tr>
+	{#use:airp_dest_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+	{#use:non_airp:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen' /></td>
+	</tr>}
+	<tr>{#use:nature:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}'class='maxlen whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	}</tr>
+	<tr>
+		<th><label for='{id}'>{com_type.display.label}:</label></th>
+		<td>{#use:com_type:<select id='{id}' name='{name}' class="left dropselect" data-name='{name}' data-width="150" data-dwidth="360" data-dheight="286" data-filterable="1">
+				<option value='' class='gray'>(Select option)</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select>}
+			{#use:com_note:
+				<label style='margin-left: 8px;' for='{id}'>Note:</label>
+				<input maxlength="20" style="height: 25px; line-height: 25px; width: 125px;" type='text' id='{id}' name='{name}' value='{value}' class='skipcheck short whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+				<img src="/img/icons16/question.png" alt="Info" class="info-tip info-click" data-tooltip="This field can be used for notes related to the commodity type, for example:<br />Dangerous goods: UN Number<br />Mail: Depeche nr. + Item nr." style='margin-left: 6px; vertical-align: middle;' />
+			}
+		</td>
+	</tr>
+<tr><td colspan="2"><hr /></td></tr>
+	<tr>
+		<th style='height: 22px;'>&nbsp;</th>
+		<td class='gray' valign="bottom"><span style='display: inline-block; width: 90px;'>Pieces</span><span>Kilograms</span></td>
+	</tr>
+	<tr>
+		<th><label>MAWB Total:</label></th>
+		<td>
+		{#use:mawb_pieces: <input type='text' id='{id}' name='{name}' value='{value}' class='tiny only-numbers whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pc}
+		{#use:mawb_weight: <input type='text' id='{id}' name='{name}' value='{value}' style='margin-left: 20px;' class='tiny only-numbers whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Kg}
+		</td>
+	</tr>
+	<tr>
+		<th><label>Received:</label></th>
+		<td>
+		{#use:preceive: <input type='text' id='{id}' name='{name}' value='{value}' class='tiny only-numbers whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> pc}
+		{#use:preceive_weight: <input type='text' id='{id}' name='{name}' value='{value}' style='margin-left: 20px;' class='tiny only-numbers whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Kg}
+		</td>
+	</tr>
+	{#use:shipper:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}  /></td>
+	</tr>}	
+	{#use:consignee:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}  /></td>
+	</tr>}
+	{#use:agent:<tr>
+		<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'}  /></td>
+	</tr>}
+</table>
+
+<h4>Documents which should be attached:</h4>
+<table>
+	<tr>
+		{#use:photo_appendix:<td style="padding: 0;"><h3>{display.label}:</h3>
+			{#repeat:options:<label><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}
+		</td>}
+		{#use:copyawb:<td style="padding-left: 2px;"><h3>{display.label}:</h3>
+			{#repeat:options:<label><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}
+		</td>}
+	</tr>
+</table>
+</form>}

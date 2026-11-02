@@ -1,0 +1,137 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	{#use:ref_prec:<input type="hidden" name='{name}' value='{value}' />}
+	{#use:coll_ref:<input type="hidden" name='{name}' value='{value}' />}
+	{#use:ref_nond:<input type="hidden" name='{name}' value='{value}' />}
+<table>
+	{#use:movement:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:mrn_no:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme}' style="width: 150px;" />}
+			{#use:mrn_type:{#repeat:options:<label style="line-height: 14px;"><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}}
+		</td>
+	</tr>
+	<tr>{#use:mrn_date:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	}</tr>
+	<tr{#if:display.req: class='required'}>
+		<th><label>Truck number:</label></th>
+		<td>
+			{#use:truck_no:<span style="display: inline-block; width: 120px; float: left;"></span><input maxlength="10" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input left jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:truck_date:<span class="left" style="height: 25px; line-height: 25px; margin: 0 14px;"> Truck date:</span><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar left'></div>}
+		</td>
+	</tr>
+	{#use:consig:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen' /></td>
+	</tr>}
+	{#use:cust_name:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen' /></td>
+	</tr>}
+	{#use:file_refnr:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} long' /></td>
+	</tr>}
+</table>
+<hr />
+<table>
+	{#use:orig:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium' /></td>
+	</tr>}
+	{#use:dest:<tr{#if:display.req: class='required'}>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} medium' /></td>
+	</tr>}
+</table>
+
+<h4>Reported discrepancies</h4>
+<table>
+	{#use:ndis:<tr>
+		<th><label>{display.label}:</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:awb1:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb1_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}
+			{#use:awb1_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg		
+		</td>
+	</tr>
+	{#use:awb2:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb2_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}		
+			{#use:awb2_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg
+		</td>
+	</tr>
+	{#use:awb3:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb3_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}
+			{#use:awb3_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg
+		</td>
+	</tr>
+	{#use:awb4:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb4_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}
+		  	{#use:awb4_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg
+		</td>
+	</tr>
+	{#use:awb5:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb5_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}
+			{#use:awb5_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg
+		</td>
+	</tr>
+	{#use:awb6:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb6_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}
+			{#use:awb6_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg
+		</td>
+	</tr>
+	{#use:awb7:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb7_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}
+			{#use:awb7_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg
+		</td>
+	</tr>
+	{#use:awb8:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb8_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}
+			{#use:awb8_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg
+		</td>
+	</tr>
+	{#use:awb9:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} short' style="float: left;" />}
+			{#use:awb9_p:&nbsp;Pieces: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />}
+			{#use:awb9_kg:&nbsp;Weight: <input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} only-numbers tiny' />} kg
+		</td>
+	</tr>
+	<tr><td colspan="2"><hr /></td></tr>
+	<tr>
+		<th><label>{packing.display.label}:{#if:packing.display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			<div style='width: 100px; float: left;'>{#repeat:packing.options:<label style='height: 24px; line-height: 24px;'><input name='{name}' type='checkbox' value='{value}'{#if:active: checked='checked'}> {display}</label><br />}</div>
+			<div>
+				<label class='inline' style="width: 60px; height: 24px; line-height: 24px;">Pieces:</label>{#use:loose_pieces:<input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} short only-numbers' />}<br />
+				<label class='inline' style="width: 60px; height: 24px; line-height: 24px;">Units:</label>{#use:intact_units:<input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} short only-numbers' />}
+			</div>
+		</td>
+	</tr>
+	{#use:trucktype:<tr>
+		<th><label>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>		
+	</tr>}
+</table>
+</form>}

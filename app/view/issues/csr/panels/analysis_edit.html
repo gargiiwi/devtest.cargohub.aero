@@ -1,0 +1,141 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+<h4>Responsibility:</h4>
+{#use:resp:	
+<div{#if:display.req: class='required'}>
+	<table class="radiotable" style="text-align: center;margin: 8px 0 4px 0;"><tr>
+		{#repeat:options:<td style="width: 25%;"><label><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}><br />{display}</label></td> }
+	</tr></table>
+</div>}
+
+<h4>Investigation</h4>
+<table>
+	{#use:inv_done:<tr>
+		<th><label>{display.label}{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 100px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		{!<td>{#use:inv_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}</td>}
+	</tr>}
+	{#use:inv_pers:<tr>
+		<th><label for='{id}'>Done by:{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			<input style="margin-right: 8px;" type='text' id='{id}' name='{name}' value='{value}' class='left jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+		</td>
+	</tr>}
+</table>
+
+
+{#use:inv_descr:
+	<h5 style="margin-top: 8px;">{display.label}:</h5>
+	<textarea rows="7" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;" placeholder="(Please keep this information short)">{value}</textarea>
+}
+<br />
+
+<h4>Involved:</h4>
+<table>
+	{#use:inv_part:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:inv_dept:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:dur_check:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:dur_mov:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+	{#use:dur_load:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+	</tr>}
+</table>
+
+<h4>Contributing factors:</h4>
+{#use:cf_behav:
+	<h5>{display.label}:{#if:display.req: <span>&nbsp;</span>}</h5>
+	<div>
+		{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+		<input type='hidden' name='{name}' value='' />
+	</div>}
+{#use:cf_behav_oth:<input style='float: right; width: 180px; height: 20px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} whitebg medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+<div class="clear" style="margin-bottom: 8px;"></div>
+
+{#use:cf_rules:
+	<h5>{display.label}:{#if:display.req: <span>&nbsp;</span>}</h5>
+	<div>
+		{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+		<input type='hidden' name='{name}' value='' />
+	</div>}
+{#use:cf_rules_oth:<input style='float: right; width: 180px; height: 20px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} whitebg medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+<div class="clear" style="margin-bottom: 8px;"></div>
+
+{#use:cf_eq:
+	<h5>{display.label}:{#if:display.req: <span>&nbsp;</span>}</h5>
+	<div>
+		{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+		<input type='hidden' name='{name}' value='' />
+	</div>}
+{#use:cf_eq_oth:<input style='float: right; width: 180px; height: 20px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} whitebg medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+<div class="clear" style="margin-bottom: 8px;"></div>
+
+{#use:cf_org:
+	<h5>{display.label}:{#if:display.req: <span>&nbsp;</span>}</h5>
+	<div>
+		{#repeat:options:<label class='threecolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+		<input type='hidden' name='{name}' value='' />
+	</div>}
+{#use:cf_org_oth:<input style='float: right; width: 180px; height: 20px;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} whitebg medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+<div class="clear" style="margin-bottom: 8px;"></div>
+
+<h4>Corrective/Preventive actions (CaPa)</h4>
+<table>
+	{#use:capa_done:<tr>
+		<th><label>{display.label}{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	<tr>{#use:capa_dl:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	}</tr>
+	{#use:capa_pers:<tr>
+		<th><label for='{id}'>Done by (on date):{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			<input style="margin-right: 8px;" type='text' id='{id}' name='{name}' value='{value}' class='left long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:capa_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+		</td>
+	</tr>
+</table>
+{#use:capa_descr:
+	<h5>{display.label}:</h5>
+	<textarea rows="7" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;" placeholder="(Please keep this information short)">{value}</textarea>
+}
+
+<h4>Evaluation/Closure</h4>
+<table>
+	{#use:eval_done:<tr>
+		<th><label>{display.label}{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+	</tr>}
+	{#use:eval_pers:<tr>
+		<th><label for='{id}'>Done by (on date):{#if:display.req: <span>&nbsp;</span>}</label></th>
+		<td>
+			<input style="margin-right: 8px;" type='text' id='{id}' name='{name}' value='{value}' class='left long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:eval_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+		</td>
+	</tr>
+</table>
+{#use:eval_descr:
+	<h5>{display.label}:</h5>
+	<textarea rows="7" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;" placeholder="(Please keep this information short)">{value}</textarea>
+}
+<table>
+	<tr>{#use:close_date:
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+	}</tr>
+</table>
+
+</form>}

@@ -1,0 +1,68 @@
+<div>
+	<div>{! First column }
+		<div id="panel-shortcuts" style='height: 490px;'>
+			<div><img alt="Go" src="/img/icons16/lightning_go.png">Welcome! What's next?</div>
+			<div>
+				{#if:acls.privileges.issue_add|acls.unrestricted:<div class='command'><button id='btn_issue_add' data-op='link' data-link='/issue?action=form' title='Add'></button> Submit new <i>{current_rt.name:Record}</i></div>}
+				{#if:acls.privileges.issues_view|acls.unrestricted:<div class='command'><button id='btn_issues' data-op='link' data-link='/issue/list' title='Records' style='background-image: url("/img/icons/ist/{current_rt.key:general}.png")'></button>List and Search <i>{current_rt.short_plural:Records}</i></div>{!#exfilter=assigned}
+				<div class='command'><button id='btn_modules' data-op='link' data-link='/user/overview#modules' title='Modules'></button> Data modules</div>
+				<hr />
+{!
+				<div class='command'><button id='btn_compose' data-op='link' data-link='/user/commcenter#compose' title='Compose message'></button> Compose message</div>
+				<div class='command'><button id='btn_messages' data-op='link' data-link='/user/commcenter?action=custom_load&config=%7B%22mode%22%3A%22list%22%2C%22label%22%3A%22inbox%22%7D' title='My inbox'></button>My inbox <span>({#if:session.user.count.unread:{session.user.count.unread} unread}{#ifnot:session.user.count.unread:No new mails})</span></div>
+}
+				{#if:acls.privileges.tasks_access|acls.unrestricted:<div class='command'>
+					{#if:count.tasks:<span class="right gray" style="margin-right: 20px;">[ {count.tasks} ]</span>}
+					<button id='btn_tasks' data-op='link' data-link='/manager/tasks:record?list=self' title='Tasks'></button>Check my Tasks</div>}}
+				<div class='command'><button id='btn_contacts' data-op='link' data-link='/manager/contacts' title='Address book'></button> Open Address Book</div>
+				<div class='command'><button id='btn_myorg' data-op='link' data-link='/manager/organization#overview' title='My Organization'></button>My Organization</div>
+				<hr />
+				<div class='command'><button id='btn_settings' data-op='link' data-link='/user/settings#preferences' title='Settings and Preferences'></button>Settings and Preferences</div>
+				<div class='command'><button id='btn_ntfsub' data-op='link' data-link='/user/settings#notifysub' title='Notifications'></button>Notification subscriptions</div>
+				<div class='command'><button id='btn_exit' data-op='link' data-link='/?action=logout' title='Logout'></button>Log Out</div>
+				{!<div class='command'><button id='btn_reports' data-op='link' data-link='/issue/reports' title='Generate report'></button>Generate report</div> -- Reports are not yet fully operational}
+			</div>
+		</div>
+	</div>
+	<div>{! Second column }
+		<div id="panel-tools" style='height: 490px;'>
+			<div><img alt="Hammer" src="/img/icons16/hammer.png">Tools</div>
+			<div>
+				{#if:acls.privileges.issues_view|acls.unrestricted:<div id='record_search'>
+					<label for='open_trackid' class="info-tip" data-tooltip_position="top" data-tooltip="Type your record's tracking ID here to open the overview directly"><img src="/img/icons16/magnifier.png" alt='[find]' />Search TrackID</label><br />
+					<input id='open_trackid' maxlength="12" type='text' name='track' class="jqx-input jqx-rc-all jqx-widget" value="" autocomplete="off" />
+					<button>Open</button>
+				</div>}
+				<div id='mini_notepad'>
+					<label for='mini_notepad_text' class="info-tip" data-tooltip_position="top" data-tooltip="Anything you type here is automatically saved<br />and maintained between work sessions"><img src="/img/icons16/note.png" alt='[note]' />Micro Notepad &nbsp;</label>
+					<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" id='mini_notepad_text' class="jqx-input jqx-rc-all jqx-widget jqx-rc-all spacey" placeholder="(What you type here is auto-saved)">{mini_notepad}</textarea>
+				</div>
+				<div id="cargohub">
+					<label><img src="/img/icons16/help.png" alt='?' />Contact and Help</label><hr /><ul>
+						<li>E-mail: <a href="mailto:support@cargohub.nl">support@cargohub.nl</a></li>
+						<li><a href="https://www.cargohub.nl/contactus" target="_black">Web contact Form</a></li>
+{!						<li><a href="/cms/?path=/docs/index">Online Documentation</a></li>}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>{! Third column }
+	</div>
+</div>
+
+{!Windows which start outside the docking, are dynamically added and support events}
+{#if:acls.privileges.issues_view|acls.unrestricted:{#if:recent_issues_count:<div id="panel-recent_issues" style='height: 490px; display: none;'>
+	<div><img src='/img/icons16/clock_history_frame.png' alt="History" />Recent records (<span id="count-recent_issues">{recent_issues_count}</span>)
+		<span class='panel-commands toggle-cmds'>
+			<button data-cmd="clear" title="Clear this list"><img src="/img/icons16/recycle.png" />Clear</button>
+		</span>
+		<span class='panel-commands toggle-cmds' style="display: none;">
+			<button data-cmd="open" title="Open selected item"><img src="/img/icons16/open_folder.png" />Open</button>
+			<button data-cmd="remove" title="Remove item from list"><img src="/img/icons16/delete.png" />Remove</button>
+		</span>
+	</div>
+	<div>
+		<div id="list-recent_issues" style="border: none; background: none;"></div>
+	</div>
+</div>}}

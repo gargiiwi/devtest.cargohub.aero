@@ -1,0 +1,30 @@
+<div id="submit-proceed-box" class="jqx-rc-all">
+<h4 style="background-image: url('/img/icons16/mail_forward.png'); background-repeat: no-repeat; background-position: 4px;">Complete your submission:</h4>
+{#ifnot:%hide_tos:
+	<div id="submit-disclaimer">
+		<h5 style="margin-top: 0; font-size: 1.2em;">Please read and accept our <a href="/cms?path=terms-of-use" target="_blank">terms of use:</a></h5>
+		<p>This software is managed by CargoHub B.V. and is using E-mail technology to forward the information submitted in this form to the intended recipient. Although we are updating our contacts in accordance with the latest information available, we strongly recommend to verify if the recipient information is correct before sending your claim.<br /><br />
+		CargoHub B.V. shall not accept any liability in case your data doesn't reach the recipient, for any reason, technical or caused by human error. If you did not receive a copy of the submitted data by email you can contact <b>support@cargohub.nl</b> or by telephone: <b>+31 6 43 21 64 57</b>.</p>
+	</div>
+	<div id="accept-disclaimer" class="jqx-rc-all"><span>I have read and accepted the <a href="/cms?path=terms-of-use" target="_blank">terms of use</a></span></div>
+	<hr />
+}
+
+{#if:%session.user:{#include::includes/issue_submit_useropts.html}}
+{#ifnot:%session.user:
+	<h3>E-mail address verification:</h3>
+	<div class='center'><input class="jqx-rc-all whitebg jqx-input" type="text" placeholder="Enter your E-mail address again" id="subm-email-verif" style="text-indent:4px; width: 378px; margin: 6px 20px; line-height: 25px !important; box-shadow: 5px 3px 8px lightgray;" /></div>
+}
+	<hr />
+	<h3>Everything checked?</h3>
+	
+	<div class="center rasubmit"><input type='button' value='Submit &raquo;' data-action="form-check" style="width: 380px; margin-top: 6px; height: 45px; font-weight: bold; box-shadow: 5px 3px 8px lightgray;" /></div>
+	<div class="gray spacey center" style="text-align: justify; font-size: 0.9em; margin-top: 20px;">If errors are detected you will be returned to this form to correct your information</div>
+</div>
+{!Pass on the pre-recorded record for updating before e-mail sending}
+{#if:%stored_issue:
+	<input type="hidden" name="stored_issue[id]" value="{%stored_issue.id}" />
+	<input type="hidden" name="stored_issue[track]" value="{%stored_issue.track}" />
+	<input type="hidden" name="stored_issue[type_key]" value="{%stored_issue.type_key}" />
+}
+{#if:%CFG.issue_submit.auto_group:<input type='hidden' id='issue_group' name='issue[group]' value='{%CFG.issue_submit.auto_group}' />}

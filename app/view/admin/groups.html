@@ -1,0 +1,73 @@
+{!Version 2019.01.20}
+<div id="groups-menubar">
+	<ul>
+		<li><img src="/img/icons16/folders.png" alt="Select group type" /> Select group type
+			<ul style="width: 200px;">
+				<li><img src="/img/icons16/groups/general.png" alt="Category"> <a href="?type=general">Category (general)</a></li>
+				<li><img src="/img/icons16/groups/airline.png" alt="Airline"> <a href="?type=airline">Airline (Carrier)</a></li>
+				<li><img src="/img/icons16/groups/marine.png" alt="Marine"> <a href="?type=marine">Shipping line/Agent</a></li>
+				<li><img src="/img/icons16/groups/dept.png" alt="Dept"> <a href="?type=dept">Organization department</a></li>
+				<li><img src="/img/icons16/groups/cert.png" alt="Cert"> <a href="?type=cert">License type</a></li>
+				<li><img src="/img/icons16/groups/customer.png" alt="Customer"> <a href="?type=customer">Primary customer</a></li>
+				<li><img src="/img/icons16/groups/area.png" alt="Area"> <a href="?type=area">Platform area</a></li>
+				<li><img src="/img/icons16/groups/class.png" alt="Class"> <a href="?type=class">Class of item</a></li>
+				<li><img src="/img/icons16/groups/training.png" alt="Class"> <a href="?type=training">Training</a></li>
+                                <li><img src="/img/icons16/groups/asset.png" alt="Class"> <a href="?type=asset">Asset</a></li>
+				{#if:group_config.type:<li ty{!}pe="separator"></li>
+				<li><img src="/img/icons16/folders.png" alt="Folders"> <a href="/admin/groups" style="font-style: italic;">* Unselect *</a></li>}				
+			</ul>
+		</li>
+		{#if:group_config.type:
+		<li data-op="create"><img src="/img/icons16/add.png" alt="Register {group_config.name}" /> Register {group_config.name}</li>
+		<li><img src="/img/icons16/groups/{group_config.type}.png" alt="Selected {group_config.name}" /> Selected {group_config.name}
+			<ul style="width: 150px;">
+				<li data-op="action" data-action="view"><img src="/img/icons16/eye.png" alt="Details" /> Details</li>
+				<li data-op="action" data-action="edit"><img src="/img/icons16/pencil.png" alt="Edit" /> Edit</li>
+				<li ty{!}pe="separator"></li>
+				<li data-op="action" data-action="delete" data-confirm="true"><img src="/img/icons16/folder_delete.png" alt="Unregister" /> Unregister</li>
+			</ul> 
+		</li>
+		{#if:group_config.type=airline:
+			<li><img src="/img/icons16/folder.png " alt="[_]" /> Extras and links
+				<ul style="width: 150px;">
+					<li><img src="/img/icons16/table_gear.png" alt="[#]" /> <a href="/admin/sysdata?type=airline">Airline database</a></li>
+				</ul>
+			</li>
+		}
+		}
+	</ul>
+</div>
+<br />
+
+{#if:group_config.type:
+	<h2>Listing registered {group_config.name_plural}</h2>
+	<div id="groups-grid"></div>
+	{!Group specific info and operational templates}
+	{#include::admin/group/{group_config.type}.html}
+}
+{#ifnot:group_config.type:
+	<h2>Data Groups Editor</h2><hr />
+	<p>Please select a group type from the menu to see available groups in a grid.<br />
+	The other menu options related to a specific group type will also appear when the group is selected</p>
+	<div class='info-expander' data-expanded="true">
+		<div>What are &quot;Groups&quot; ?</div>
+		<div class='spacey'>
+			<p>A group is a collection of related issue records.<br />It is used to determine visibility/access of organizations to a certain information and can be used in the security system.</p>
+			<p>Different types of groups provide custom functionality, so it is necessary to choose a type.<br />
+			The system currently supports these group types:</p>
+			<ul>
+				<li><a href="?type=general">General Category</a> - For various other issue types. It's possible to select only certain groups when defining an issue type.</li>
+				<li><a href="?type=airline">Airline/Carrier</a> - Used primarily for <b>Air Cargo Claims</b> but also for Truck orders, Airport/Airline Cargo Incidents and others.</li>
+				<li><a href="?type=marine">Shipping line/Agent</a> - Used for <b>Oceam Cargo Claims</b>, these are used to sort organizations involved in Ocean/Marine trade.</li>
+				<li><a href="?type=dept">Name of department</a> - Used by some modules which distribute their data over organization departments</li>
+				<li><a href="?type=cert">License type</a> - Used by the <b>License monitor</b></li>
+				<li><a href="?type=customer">Primary Customer</a> - Currently used only by <b>Road Cargo Claims</b>.</li>
+				<li><a href="?type=area">Platform area</a> - Used in the <b>Development items</b> and <b>Support tickets</b>. It's possible to select only certain groups when defining the record type.</li>
+				<li><a href="?type=class">Class of item</a> - Used for the <b>Dangerous Goods</b> module. It's possible to select only certain groups when defining the record type.</li>
+				<li><a href="?type=training">Training</a> - Used for the <b>Training</b> module.</li>
+                                <li><a href="?type=asset">Asset</a> - Currenly only used for <b>Road Cargo Claims</b></li> 
+{!				<li><a href="?type=transport">Transport methods</a> - Currenly only used for <b>Road Cargo Claims</b></li>}
+			</ul>
+		</div>
+	</div>
+}

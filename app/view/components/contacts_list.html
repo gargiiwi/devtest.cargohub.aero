@@ -1,0 +1,16 @@
+{!Left side of the splitter - Tree of labels}
+<div id='ctx-tree'>
+	<ul>{#repeat:ctx_tree:
+		<li{#ifnot:children: id='{id}' data-name='{name}' data-columnset='{columnset}' data-count='{count_el}' data-type='{type}' data-edit='{edit}' data-selectable='true'}><img src='/img/icons16/commlabel/{type}.png' alt="{name}" class='left' /><span>{name}{#if:count_el: ({count_el})}</span>
+			{#if:children:<ul id='lset_{type}'>{#repeat:children:
+				<li{#ifnot:children: id='{id}' data-parent='{par_id}' data-name='{name}' data-columnset='{columnset}' data-count='{count_el}' data-type='{type}' data-edit='{edit}' data-selectable='true'{#if:color: data-color='{color}'}}><img src='/img/icons16/commlabel/{#if:color:tag_{color}}{#ifnot:color:{type}}.png' alt="{name}" /><span>{name}{#if:count_el: ({count_el})}</span>
+					{#if:children:<ul id='lset_{type}'>{#repeat:children:
+						<li id='{id}' data-parent='{par_id}' data-name='{name}' data-columnset='{columnset}' data-edit='{edit}' data-count='{count_el}' data-type='{type}' data-selectable='true'{#if:color: data-color='{color}'}><img src='/img/icons16/commlabel/{#if:color:tag_{color}}{#ifnot:color:{type}}.png' alt="{name}" /><span>{name}{#if:count_el: ({count_el})}</span></li>
+					}</ul>}
+				</li>
+			}</ul>}
+		</li>
+	}</ul>
+</div>
+{!Right side of the splitter - Grid with contacts info}
+<div id='ctx-table'></div>

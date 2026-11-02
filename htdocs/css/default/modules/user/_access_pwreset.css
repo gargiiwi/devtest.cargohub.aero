@@ -1,0 +1,33 @@
+/** User Password Reset **/
+div.site > div.page > div#pwreset {
+}
+
+	div.site > div.page > div#pwreset small {
+		color: #666666;
+	}
+
+	div.site > div.page > div#pwreset > div.logo {
+		padding: 20px 40px 20px 300px;
+	}
+
+	div.site > div.page > div#pwreset > div.form {
+		width: 256px;
+		padding: 20px 10px;
+	}
+
+	div.site > div.page > div#pwreset > div.form div.field {
+		background-color: white;
+		width: 250px;
+		border: 1px solid #C7C7C7;
+		padding: 2px;
+		margin-bottom: 15px;
+	}
+
+		div.site > div.page > div#pwreset > div.form div.field > input {
+			width: 100%;
+			border: none;
+			resize: none;
+			font-size: 14px;
+			text-indent: 8px;
+			line-height: 19px;
+		}

@@ -1,0 +1,95 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{title.n}:</th><td>{^xfields.title:<span class="gray">---</span>}</td></tr>
+		<tr><th>Event Date &amp; Time:</th><td>
+			{#if:^xfields.event_date:{^xfields.event_date}~date("Y-m-d")~ &middot; {^xfields.event_time:<span class="gray">---</span>}}
+			{#ifnot:^xfields.event_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{event_theory.n}:</th><td>{^xfields.event_theory.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{event_result.n}:</th><td>
+			{#repeat:^xfields.event_result:<span class="itembox">{value}</span>}
+		</td></tr>
+		<tr><th>{inc_type.n}:</th><td>{#ifnot:^xfields.inc_type:<span class='gray'>---</span>}{#repeat:^xfields.inc_type:<span class="itembox">{value}</span>}</td></tr>
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{x_cust.n}:</th><td>{^xfields.x_cust:<span class="gray">---</span>}</td></tr>
+		<tr><th>{frisk.n}</th><td>{#if:^xfields.frisk.amount_format:{^xfields.frisk.serialized}}{#ifnot:^xfields.frisk.amount_format:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{event_loc.n}:</th><td>{^xfields.event_loc:<span class="gray">---</span>}</td></tr>
+		<tr><th>{station.n}:</th><td>{#use:^xfields.station:
+			{#if:value:<span class="thick info-tip" data-tooltip="{value.name}<br /><span class='darkblue'>{value.country}</span>">{value.IATA}</span>}
+			{#ifnot:value:<span class='gray'>---</span>}
+		}</td></tr>
+{!		<tr><th>{code_iso2.n}:</th><td>{^xfields.code_iso2.value:<span class="gray">---</span>}</td></tr>}
+	<tr><td colspan="2"><hr /></td></tr>
+		<tr><th>{cargo_event.n}:</th><td>{^xfields.cargo_event.value:<span class="gray">---</span>}</td></tr>
+	</table>
+
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/ist/ulddr.png'); background-repeat: no-repeat; background-position: 4px;">Incident and Shipment <span style="font-weight: lighter;">(for Cargo-related events)</span></h4>
+	<table>
+		<tr><th>Involved cargo:</th><td>{#if:^xfields.ci_pieces:<b>{^xfields.ci_pieces}</b> Pieces ; <b>{^xfields.ci_weight}</b> Kg}{#ifnot:^xfields.ci_weight:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{mawb.n}:</th><td><b style='font-size: 16px;'><span style='color: brown'>{^xfields.mawb.p}</span>-{^xfields.mawb.s}</b></td></tr>		
+		<tr><th>{sea_waybill_evnt.n}:</th><td>{^xfields.sea_waybill_evnt:<span class="gray">---</span>}</td></tr>
+		<tr><th>{x_shpm_no.n}:</th><td>{^xfields.x_shpm_no:<span class="gray">---</span>}</td></tr>
+		</table>
+	<hr />
+	<table>
+		<tr><th>{com_type.n}:</th><td>{#ifnot:^xfields.com_type:<span class='gray'>---</span>}{#repeat:^xfields.com_type:<span class="itembox">{value}</span>}</td></tr>
+		 <tr><th>{x_ctfnr.n}:</th><td>{^xfields.x_ctfnr:<span class="gray">---</span>}</td></tr>
+		 <tr><th>{evnt_trans_type.n}:</th><td>{^xfields.evnt_trans_type.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{x_orig.n}:</th><td>{^xfields.x_orig:<span class="gray">---</span>}</td></tr>
+		<tr><th>{x_dest.n}:</th><td>{^xfields.x_dest:<span class="gray">---</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{x_impexp.n}:</th><td>{^xfields.x_impexp.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{x_incident_occ.n}:</th><td>{^xfields.x_incident_occ.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Details:</th><td>{^xfields.x_incident_oth:<span class="gray">---</span>}</td></tr>
+		<!--Praneeth changes-->
+		<tr><th>{irr_code.n}:</th><td>{#ifnot:^xfields.irr_code:<span class='gray'>---</span>}{#repeat:^xfields.irr_code:<span class="itembox">{value}</span>}</td></tr>
+		<!--Praneeth changes end-->
+	</table>
+ 
+	<h4 style="background-image: url('/img/icons16/users.png'); background-repeat: no-repeat; background-position: 4px; margin-top: 20px;">Involved parties</h4>
+	<table>
+		<tr><th>{inv_deps_list.n}:</th><td>{#ifnot:^xfields.inv_deps_list|^xfields.inv_deps:<span class='gray'>---</span>}{#repeat:^xfields.inv_deps_list:<span class="itembox">{value}</span>}
+			{#if:^xfields.inv_deps:<span class="itembox">{^xfields.inv_deps}</span>}
+		</td></tr>
+		<tr><th>{inv_emps.n}:</th><td>{^xfields.inv_emps:<span class="gray">---</span>}</td></tr>
+		<tr><th>{event_time_ws.n}:</th><td>{^xfields.event_time_ws.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>{inv_orgs.n}:</th><td>{^xfields.inv_orgs:<span class="gray">---</span>}</td></tr>
+	</table>
+	
+	<h4 style="background-image: url('/img/icons16/exclamation.png'); background-repeat: no-repeat; background-position: 4px; margin-top: 20px;">Event risk description</h4>
+	<h5>What happened:</h5>
+	{#if:^xfields.event_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.event_descr}~nl2br~</div>}
+	{#ifnot:^xfields.event_descr:<div class="gray" style="text-indent: 20px;">---</div>}
+
+	<h5>Report by <span class='gray'>(Name and Function)</span></h5>
+	<p>{^xfields.rep_pers:<div class="gray" style="text-indent: 20px;">---</div>}</p>
+
+	<h5>Impact of event:</h5>
+	{#if:^xfields.impact:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.impact}~nl2br~</div>}
+	{#ifnot:^xfields.impact:<div class="gray" style="text-indent: 20px;">---</div>}
+
+	<h5>{risk_class.n}:<h5>
+	{#ifnot:^xfields.risk_class:<div class="gray" style="text-indent: 20px;">---</div>}{#repeat:^xfields.risk_class:<span class="itembox">{value}</span>}
+	<div class='clear'></div>
+
+	<h5>{recov_descr.n}:</h5>
+	{#if:^xfields.recov_descr:<div class="whitebg walloftext-view" style="border: 1px solid lightgray; padding: 4px; max-height: 100px; overflow: auto;">{^xfields.recov_descr}~nl2br~</div>}
+	{#ifnot:^xfields.recov_descr:<div class="gray" style="text-indent: 20px;">---</div>}
+{!	<table>
+		<tr><th>Recovery done by:</th><td>{^xfields.recov_pers:<span class="gray">---</span>}</td></tr>
+		<tr><th>On date:</th><td>{#if:^xfields.recov_date:{^xfields.recov_date}~date("Y-m-d")~}{#ifnot:^xfields.recov_date:<span class='gray'>---</span>}</td></tr>
+	</table>}
+
+{!	<h4 style="margin-top: 20px; background-image: url('/img/icons16/menus/event-notifications.png'); background-repeat: no-repeat; background-position: 4px;">To be notified</h4>		
+	<table>
+		<tr><th>{copy_sent.n}:</th><td>{#ifnot:^xfields.copy_sent:<span class='gray'>---</span>}{#repeat:^xfields.copy_sent:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{rep_sent.n}:</th><td>{#ifnot:^xfields.rep_sent:<span class='gray'>---</span>}{#repeat:^xfields.rep_sent:<span class="itembox">{value}</span>}</td></tr>
+		<tr><th>{rep_oth.n}:</th><td>{^xfields.rep_oth:<span class="gray">---</span>}</td></tr>
+	</table>}
+	
+{!	{#if:^xfields.remarks:
+	<h5>{remarks.n}:</h5><div style="border: 1px solid lightgray; padding: 4px;">{^xfields.remarks}~nl2br~</div>}
+	{#ifnot:^xfields.remarks:<div class="gray" style="text-indent: 20px;">(no remarks at this time)</div>}}
+}

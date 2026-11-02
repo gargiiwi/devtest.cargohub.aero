@@ -1,0 +1,121 @@
+#admin-dashboard {
+	margin: -5px;
+}
+
+#panel-configuration p.warning {
+	background-color: Orange;
+	color: White;
+	text-align: center;
+	padding: 5px 0px;
+	margin: 0px 0px 8px 0px;
+	font-weight: bold;
+	text-shadow: 2px 1px 2px Black;
+}
+
+div.command > button {
+}
+	div.command > button#btn_orgs { background-image: url("/img/icons/company-building-icon.png"); }
+	div.command > button#btn_users { background-image: url("/img/icons/users.png"); }
+	div.command > button#btn_messages { background-image: url("/img/icons/messages.png"); }
+	div.command > button#btn_contacts { background-image: url("/img/icons/vcard.png"); }
+	div.command > button#btn_groups { background-image: url("/img/icons/folders.png"); }
+	
+	div.command > button#btn_issues { background-image: url("/img/icons/table.png"); }
+	div.command > button#btn_tasks { background-image: url("/img/icons/to_do_list_cheked_1.png"); }
+	div.command > button#btn_deps { background-image: url("/img/icons/plugin.png"); }
+
+	div.command > button#btn_blog { background-image: url("/img/icons/blog.png"); }
+	div.command > button#btn_cmsys { background-image: url("/img/icons/cmsys.png"); }
+	div.command > button#btn_templates { background-image: url("/img/icons/document_image_ver.png"); }
+	div.command > button#btn_ist { background-image: url("/img/icons/bricks.png"); }
+	div.command > button#btn_sysdata { background-image: url("/img/icons/database.png"); }
+	div.command > button#btn_settings { background-image: url("/img/icons/wrench_orange.png"); }
+	
+	div.command > button#btn_ntf_message { background-image: url("/img/icons/evan/ntf/system_message.png"); }
+	div.command > button#btn_ntf_shutdown { background-image: url("/img/icons/evan/ntf/system_shutdown.png"); }
+	div.command > button#btn_ntf_boot { background-image: url("/img/icons/evan/ntf/system_boot.png"); }
+	div.command > button#btn_ntf_updated { background-image: url("/img/icons/evan/ntf/system_updated.png"); }
+	div.command > button#btn_ntf_error { background-image: url("/img/icons/evan/ntf/system_error.png"); }
+
+div.command > label, div.faux-table div > label {
+	display: inline-block;
+	width: 180px;
+}
+
+div.faux-table div.sum {
+	background-color: lightgray;
+	font-weight: bold;
+	margin: 4px 0px 8px 0px;
+}
+
+div.command > span {
+}
+
+div.information {
+	width: 32px;
+	height: 32px;
+	margin: 4px;
+	cursor: pointer;
+	float: right;
+	background-image: url("/img/icons/information.png");
+}
+
+a.cmd_link {
+	display: inline-block;
+	margin: 2px;
+	height: 25px;
+	line-height: 25px;
+	padding: 0px 8px;
+	border: 1px solid #D0D0E0;
+	background-image: url("/img/bgs/glass-white-25.png");
+	color: gray;
+}
+
+	a.cmd_link:HOVER {
+		background-image: url("/img/bgs/glass-gray-25.png");
+		border-color: gray; 
+		color: black;
+		text-decoration: none;
+	}
+	
+	div.modal_content form li > * {
+		float: left;
+	}
+
+	div.modal_content form li > label {
+		display: block;
+		line-height: 25px;
+		width: 110px;
+		text-align: right;
+		padding-right: 8px;
+	}
+
+	div.modal_content form li > input {
+		padding: 1px 0px;
+		height: 25px;
+	}
+	/** Other content, not editable **/	
+	div.modal_content form > div.static {
+		line-height: 25px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}	
+	
+	div.modal_content form li > span {
+		display: block;
+		height: 25px;
+		line-height: 25px;
+		font-size: 85%;
+		margin-left: 6px;
+		color: gray;
+	}
+
+/** Adjustments **/
+#table-online_users {
+	border: none;
+	padding: 0px;
+}
+
+#filtertable-online_users > div:first-child {
+	margin-top: -7px !important;
+}

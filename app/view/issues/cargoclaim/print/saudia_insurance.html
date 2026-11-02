@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Insurance Form</title>
+<style>{@
+body, table {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8.6pt;
+}
+
+@media screen {
+	body {
+		background-color: #e6e6e6;
+		margin: 0;
+	}
+	
+    .sa-paper {
+		background: #fff;
+		width: 192mm;
+		margin: 1em auto 1em auto;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.56);
+	}
+	
+	.sa-header {
+		height: 20mm;
+		padding-top: 4mm;
+	    position: relative;
+	}
+
+	.sa-content {
+		margin: 1cm 0.6cm;
+	}
+}
+
+@media print {
+	.sa-paper {
+		background: #fff;
+		width: 170mm;
+		margin: 0;
+	    position: relative;
+	}
+	
+	.sa-content {
+		margin: 0;
+	}
+	
+	.sa-header {
+		height: 18mm;
+	}
+	
+	body, table {
+		font-size: 8.6pt;
+	}
+}
+
+h2		{
+  	font-size: 150%; 
+}
+  
+p {
+	margin: 0.75mm 0 3mm 0;
+}
+
+textarea	{
+    resize: none;
+    overflow: hidden;
+  	width: 98%;
+	height: 98%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8.6pt;
+    padding: 0.7mm;
+    border: 0;
+}
+  textarea:HOVER {
+	background-color: yellow;
+}
+  
+.editable {
+	border: 0;
+	padding: 0.7mm;
+    width: 90%;
+    font-size: 90%;
+} 
+	.editable:HOVER {
+		background-color: yellow;
+	}  
+.editable50 {
+	border: 0;
+	padding: 0.7mm;
+    width: 50%;
+    font-size: 90%;
+} 
+	.editable50:HOVER {
+		background-color: yellow;
+	}  
+
+
+.graybg			{
+    background-color: #DADADA;
+}
+
+.lefttext		{
+  	text-align: left;
+}
+.righttext		{
+  	text-align: right;
+}
+.centertext		{
+  	text-align: center;
+}
+.center-me {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+  
+.bold			{
+  font-weight: bold;
+}
+
+.table100		{
+  width: 100%;
+  border: 0.5mm solid #000;
+  border-collapse: collapse;
+  font-weight: bold;
+}
+
+.border > td {  
+  border: 0.5mm solid #000;
+  border-collapse: collapse;
+}
+  
+.pleft			{  
+  padding-left: 2mm;
+}
+.ptop			{  
+  padding-top: 15mm;
+}  
+.footer		{
+  padding-left: 10mm;
+  padding-right: auto;
+  font-size: 120%;
+}
+.marginbot	{
+  margin-bottom: 5mm;
+}
+.marginlef	{
+  margin-left: 4mm;
+}
+  
+}</style>
+</head>
+<body>
+{#use:iss:<form style="margin: 0; padding: 0;">
+<div class="sa-paper"><div class="sa-content">
+  <div class="sa-header marginbot">
+    <button style="position: absolute; top: 0.5cm; right: 2cm;" onClick="print();">Print</button>
+    <img class="center-me" style="width: 8cm;" src="/orgs/saudia/logo_big.png">
+	<h2 class="centertext">Cargo Customer Care Center (12772130)</h2>
+  </div>
+  
+<table class="table100"> 
+  <tr>
+    <td style="width: 6%;">Date:</td>
+    <td style="width: 10%;"></td>
+	<td style="width: 20%;"><input type="text" class="editable bold" value="YYYY-MM-DD"></td>
+	<td style="width: 10%;"></td>
+    <td style="width: 25%;" class="centertext">SCF</td>
+	<td style="width: 5%;"></td>
+	<td style="width: 25%;"><input type="text" class="editable bold"></td>
+  </tr>
+  <tr>
+    <td style="width: 6%;">AWB</td>
+    <td style="width: 10%;" class="righttext">065-</td>
+	<td style="width: 20%;"><input type="text" class="editable bold" value="{xfields.mawb.s}"></td>
+	<td style="width: 10%;">Date:</td>
+    <td style="width: 25%;"><input type="text" class="editable bold" value="{xfields.carry_date}"></td>
+	<td style="width: 5%;">Issued:</td>
+	<td style="width: 25%;"><input type="text" class="editable bold"></td>
+  </tr>
+  <tr>
+	<td style="width: 6%;"><br></td>
+	<td style="width: 10%;"><br></td>
+	<td style="width: 20%;"><br></td>
+	<td style="width: 10%;"><br></td>
+	<td style="width: 25%;"><br></td>
+	<td style="width: 5%;"><br></td>
+	<td style="width: 25%;"><br></td>
+  </tr>
+  <tr>
+    <td style="width: 6%;">Orgin:</td>
+    <td style="width: 10%;"><input type="text" class="editable bold" value="{xfields.orig_loc.value.IATA}"></td>
+	<td style="width: 20%;" class="righttext">Destination:</td>
+	<td style="width: 10%;"><input type="text" class="editable bold" value="{xfields.dest_loc.value.IATA}"></td>
+    <td style="width: 25%;">Weight/kgs: <input type="text" class="editable50 bold" value="{xfields.mawb_weight}"></td>
+	<td style="width: 5%;">Goods:</td>
+	<td style="width: 25%;"><input type="text" class="editable bold" value="{xfields.nature_of_goods}"></td>
+  </tr>  
+</table>
+  
+<table class="table100"> 
+  <tr class="graybg border">
+    <td style="width: 20%;" class="centertext">Carrier</td>
+    <td style="width: 20%;" class="centertext">Flight</td>
+	<td style="width: 30%;" class="centertext">Date</td>
+	<td style="width: 15%;" class="centertext">From</td>
+    <td style="width: 15%;" class="centertext">To</td>
+  </tr>
+  <tr class="border">
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 30%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 15%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 15%;"><input type="text" class="centertext editable"></td>
+  </tr>
+  <tr class="border">
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 30%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 15%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 15%;"><input type="text" class="centertext editable"></td>
+  </tr>
+  <tr class="border">
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 30%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 15%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 15%;"><input type="text" class="centertext editable"></td>
+  </tr>
+  <tr class="border">
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 30%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 15%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 15%;"><input type="text" class="centertext editable"></td>
+  </tr>
+  <tr class="border">
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 20%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 30%;"><input type="text" class="centertext editable"></td>
+	<td style="width: 15%;"><input type="text" class="centertext editable"></td>
+    <td style="width: 15%;"><input type="text" class="centertext editable"></td>
+  </tr>
+  </table>
+  
+  <table class="table100">
+	<tr class="graybg">
+	  <td style="width: 60%;" class="pleft">Shipper</td>
+	  <td style="width: 10%;">Claimant</td>
+	  <td style="width: 30%;"><input type="checkbox" name="Claimant" value="Claimant"></td>
+	  </tr>
+  </table>
+  <table class="table100">
+	<tr class="border">
+	  <td style="width: 100%;" class="pleft">Name: <input type="text" class="editable marginlef"></td>
+	</tr>
+	<tr class="border">
+	  <td style="width: 100%;" class="pleft">Address: <input type="text" class="editable"></td>
+	</tr>
+  </table>
+  
+  <table class="table100">
+	<tr class="graybg">
+	  <td style="width: 60%;" class="pleft">Consignee</td>
+	  <td style="width: 10%;">Claimant</td>
+	  <td style="width: 30%;"><input type="checkbox" name="Claimant" value="Claimant"></td>
+	</tr>
+  </table>
+  <table class="table100">
+	<tr class="border">
+	  <td style="width: 100%;" class="pleft">Name: <input type="text" class="editable marginlef"></td>
+	</tr>
+	<tr class="border">
+	  <td style="width: 100%;" class="pleft">Address: <input type="text" class="editable"></td>
+	</tr>
+  </table>
+  
+  <table class="table100">
+	<tr class="graybg">
+	  <td style="width: 60%;" class="pleft">Third Party</td>
+	  <td style="width: 10%;">Claimant</td>
+	  <td style="width: 30%;"><input type="checkbox" name="Claimant" value="Claimant"></td>
+	</tr>
+  </table>
+  <table class="table100">
+	<tr class="border">
+	  <td style="width: 100%;" class="pleft">Name: <input type="text" class="editable marginlef"></td>
+	</tr>
+	<tr class="border">
+	  <td style="width: 100%;" class="pleft">Address: <input type="text" class="editable"></td>
+	</tr>
+  </table>
+
+  
+  <table class="table100">
+	<tr class="graybg">
+	  <td style="width: 15%;" class="pleft">Claim Detals:</td>
+	  <td style="width: 85%;"><input type="text" class="graybg editable"></td>
+	</tr>
+  </table>
+  
+  <table class="table100">
+	<tr>
+	  <td style="width: 30%;" class="pleft">Claim Type:</td>
+	  <td style="width: 20%;">Damage <input type="checkbox" name="Damage" value="Damage"></td>
+	  <td style="width: 20%;">Lost <input type="checkbox" name="Lost" value="Lost"></td>
+	  <td style="width: 30%;">Delay <input type="checkbox" name="Delay" value="Delay"></td>
+	</tr>
+  </table>
+  
+  <table class="table100">
+	<tr>
+	  <td style="width: 20%" class="pleft">PCS. Delivered:</td>
+	  <td style="width: 10%"><input type="text" class="editable" value="0"></td>
+	  <td style="width: 20%" class="righttext">Weight (kg):</td>
+	  <td style="width: 10%"><input type="text" class="righttext editable" value="0"></td>
+	  <td style="width: 15%"><br></td>
+	  <td style="width: 25%"><br></td>
+	</tr>
+	<tr>
+	  <td style="width: 20%" class="pleft">PCS. Mishandled:</td>
+	  <td style="width: 10%"><input type="text" class="editable" value="0"></td>
+	  <td style="width: 20%" class="righttext">Weight (kg):</td>
+	  <td style="width: 10%"><input type="text" class="righttext editable" value="0"></td>
+	  <td style="width: 15%"><br></td>
+	  <td style="width: 25%"><br></td>
+	</tr>
+	<tr>
+	  <td style="width: 20%" class="pleft">Claimed Amount:</td>
+	  <td style="width: 10%"><input type="text" class="editable" value="0.00"></td>
+	  <td style="width: 20%">Currency:</td>
+	  <td style="width: 10%"><input type="text" class="editable"></td>
+	  <td style="width: 15%">SAR ex. rate:</td>
+	  <td style="width: 25%"><input type="text" class="editable"></td>
+	</tr>
+	<tr>
+	  <td style="width: 20%" class="pleft">SAR Equivalent:</td>
+	  <td style="width: 20%"><input type="text" class="editable"></td>
+	  <td style="width: 20%">USD Equivalent:</td>
+	  <td style="width: 10%"><input type="text" class="editable"></td>
+	  <td style="width: 15%">USD ex. rate:</td>
+	  <td style="width: 25%"><input type="text" class="editable"></td>
+	</tr>
+	</table>
+  
+    <table class="table100">
+	<tr>
+	  <td style="width: 30%;" class="pleft">Liability:</td>
+	  <td style="width: 20%;">MC <input type="checkbox" name="MC" value="MC"></td>
+	  <td style="width: 20%;">WS <input type="checkbox" name="WS" value="WS"></td>
+	  <td style="width: 30%;">None <input type="checkbox" name="None" value="None"></td>
+	</tr>
+    </table>
+  
+  <table class="table100 marginbot">
+	<tr class="border">
+	  <td class="graybg pleft">Conclusion & Recommendations:</td>
+	</tr>
+	<tr>
+	  <td class="border pleft" style="height: 90px"><textarea></textarea></td>
+	</tr>
+  </table>
+  
+  
+<p class="footer">Best Regards,</p>
+<p class="ptop">...................................................................................................</p>  
+<table class="bold marginbot">
+  <tr>
+    <td>Name:</td>
+    <td><input type="text" class="editable bold" style="width: 250px;"></td>
+  </tr>
+  <tr>
+	<td>Title:</td>
+	<td><input type="text" class="editable bold" style="width: 250px;" value="Officer, Claims"></td>
+  </tr>
+</table>  
+
+<div style="height: 0.5cm;"></div>
+</div></div>
+</form>}
+</body>  
+  

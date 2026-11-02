@@ -1,0 +1,143 @@
+/** Message Builder Styles **/
+
+div#message-controls {
+	margin-bottom: 5px;
+	width: 636px;
+}
+
+	div#message-controls img#recipient-add, div#message-controls img#canned-toggle {
+		width: 25px;
+		margin: 4px;
+		cursor: pointer;
+		float: right;
+	}
+
+	div#message-controls div#message-recipient {
+		border: 1px solid #D3D3D3;
+		background-color: #FFFFFF;
+		padding: 4px 5px 1px 7px;
+	}
+		div#message-controls div#message-recipient > * {
+			display: inline-block; 		
+		}
+	
+		div#message-controls div#message-recipient > img {
+			float: left;
+			margin: 4px 4px 0px 0px;
+		}
+		
+		div#message-controls div#message-recipient > b {
+			float: left;
+			height: 27px;
+			line-height: 24px;
+			margin-right: 4px;
+		}
+		
+		div#message-controls div#message-recipient > span {
+			height: 27px;
+			line-height: 24px;
+			text-indent: 3px;
+		}
+		
+		div#message-controls div#message-recipient > span.contact-error {
+			text-decoration: line-through;
+			color: red;
+		}
+		
+	div#message-controls div#message-subject {
+		border-left: 1px solid #D3D3D3;
+		border-right: 1px solid #D3D3D3;
+		border-bottom:  1px solid #D3D3D3;
+		background-color: #FFFFFF;
+		padding: 4px 5px;
+		margin-bottom: 4px;
+	}
+	
+	div#message-controls div#message-subject input {
+		width: 590px;
+		padding: 0;
+		height: 24px;
+		line-height: 22px;
+		font-size: 14px;
+		border: none;
+	}
+	
+	div#message-controls div#message-text {
+		padding: 6px;
+	}
+	
+	div#message-controls div#message-text textarea {
+		width: 544px;
+		resize: none;
+	    border: none;
+	    font-size: 13px;
+	    height: 112px;
+		font-family: monospace;
+	}
+	
+div#content-controls > div {
+	height: 26px;
+	margin-bottom: 4px;
+}
+
+	div#content-controls > div > * {
+		float: left;
+	}
+
+	div#content-controls > div > label {
+		display: block;
+		line-height: 26px;
+		width: 120px;
+		text-align: right;
+		padding-right: 8px;
+	}
+
+	div#content-controls > div > input {
+		padding: 1px 0px;
+		height: 24px;
+	}
+	/** Other content, not editable **/	
+	div#content-controls > div > div.static {
+		line-height: 26px;
+		color: gray;
+		text-shadow: 0 1px 0 lightgray;	
+	}
+
+div#message-builder-sidebar {
+	float: right;
+	width: 350px;
+	overflow: hidden;
+}
+
+	div#message-builder-sidebar #extra-recipients {
+		border: 1px solid lightgray;
+	}
+
+	div#message-builder-sidebar #extra-recipients ul {
+		display: block;
+		list-style: none;
+		margin: 6px 0px;
+		padding-left: 0px;
+	}
+	
+		div#message-builder-sidebar #extra-recipients ul li {
+			text-overflow: ellipsis;
+			height: 21px;
+			line-height: 21px;
+			margin-top: 2px;
+			display: block;
+			padding-left: 8px;
+			border-bottom: 1px solid #F0F0F0;
+			cursor: url(/img/extra/cursor_delete.png), auto;
+		}
+		
+		div#message-builder-sidebar #extra-recipients ul li:HOVER {
+			background-color: red;
+			color: white;
+		}
+		
+	div#message-builder-sidebar #copy-myself {
+		padding: 6px;
+		border: 1px solid lightgray;
+		background-color: #f9f9f9;
+	}

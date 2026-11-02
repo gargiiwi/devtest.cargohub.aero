@@ -1,0 +1,138 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+		{#use:money_auto:<tr>
+			<th class="info-tip" data-tooltip="To disable or enable Auto Calculation, select the option then press <b>Save.</b><br />Edit operational mode depends on this option.<br /><br />Note that disabling Auto-Calculation will not erase existing value."><label for='{id}'>Auto-Calculation <img class="inline-icon" src="/img/icons16/question.png" alt="?" /></label></th>
+			<td>
+				<label style='display: block; width: 120px; float: left; margin-top: -3px;' class='red'><input name='{name}' type='radio' value="{options.0.value}"{#if:options.0.active: checked='checked'}> {options.0.display}</label>
+				<label style='display: block; width: 120px; float: left; margin-top: -3px;' class='thick green'><input name='{name}' type='radio' value="{options.1.value}"{#if:options.1.active: checked='checked'}> {options.1.display}</label>
+			</td>
+		</tr>}
+	</table>
+	<div class="whitebg jqx-rc-all" style="border: 1px solid lightgray; padding: 4px; margin: 2px;">
+		When <span class='blue'>Auto-Calculation</span> is <b>On</b> (default), the following processes are automated:
+		<ul style="padding: 15px; margin: 0;">
+			<li><b>Max liability</b> in USD is calculated from <i>Mishandled Weight</i> according to <i>Convention</i>, using XDR at the specified <i>Exchange Date</i>, or <i>Today</i>'s rate if no date specified.</li>
+			<li>All financial fields are converted from <b>USD</b> to the <i>Local Currency</i> (if specified), and the <b>Formal Claim</b> field currency</li>
+		</ul>
+		If <i>Auto-Calculation</i> is off, all fields require manual input with no currency exchange. 
+	</div>
+	<table style="width: 100%;">
+		<tr style="height: 20px;">
+			<td style="text-align: center; width: 33%;">{calc_weight.display.label}</td>
+			<td style="text-align: center; width: 33%;">{convention.display.label}</td>
+			<td style="text-align: center; width: 33%;">{xchg_date.display.label}</td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align: center;">{#use:calc_weight:<input style="width: 90px;" type='text' id='{id}' name='{name}' value='{value}' class='only-numbers jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />} <span class='gray'>(kg)</span></td>
+			<td style="text-align: center;">{#use:convention:<select id='{id}' name='{name}'>
+				<option value='' selected='selected'></option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>}</td>
+			{#use:xchg_date:<td><div id='{id}' style="margin: 0 auto;" name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar'></div></td>}
+		</tr>
+	</table>
+	
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/money.png'); background-repeat: no-repeat; background-position: 4px;">Financial details</h4>
+	<table>
+		<tr>
+			<th><label>Select local currency:</label></th>
+			<td>{#use:claim_local_curr:<select id='{id}' name='{name}' style='width: 120px;' class='jqx-input jqx-input-{%jqxtheme}'>
+				<option value='' selected='selected'>Select or Clear</option>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+				}
+			</select>} &nbsp; <span class='gray'>(enables <b>Local</b> currency calculation)</span></td>
+		</tr>
+	</table>
+	
+	<hr />
+	<table style="width: 100%;">
+		<tr>
+			<td style="width: 31%;">&nbsp;</td>
+			<td style="width: 23%;">Value in <b>USD $</b></td>
+			<td style="width: 23%;">Value in <b>{claim_local_curr.value_display:<span class='gray'>Local</span>}</b></td>
+			<td style="width: 23%;">Value in <b>{claim_amt_curr.value_display:???}</b></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 0;">{claim_usd.display.label}:</td>
+			{#use:claim_usd:<td><span style="display: block; width: 90px; height: 22px;"
+				class="fake-input jqx-input jqx-input-{%jqxtheme} only-numbers green">{+value:---}</span></td>}
+			{#use:claim_local:<td><input type='text' id='{id}' name='{name}' value='{+value:{#if:^money_auto.current=1:(Auto)}}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+			{#use:claim_amt:<td><span style="display: block; width: 90px; height: 22px;"
+				class="fake-input jqx-input jqx-input-{%jqxtheme} only-numbers green">{+value:---}</span></td>}
+		</tr>
+		<tr><td colspan="4" class='gray center'><img class="inline-icon" src="/img/icons16/lightbulb.png" alt="!" /> The claim amount is not entered here - Find it in the <b>Dashboard</b> panel</td></tr>
+		<tr>
+			<td style="padding-left: 0;">{maxliab_amt.display.label}:</td>
+			{#use:maxliab_usd:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+			{#use:maxliab_local:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+			{#use:maxliab_amt:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+		</tr>
+{! Insurance and provision }
+		<tr><td colspan="4">
+			<h5 style="background-image: url('/img/icons16/umbrella.png'); background-repeat: no-repeat; background-position: 4px; text-indent: 24px; line-height: 16px;">Insurance and provision</h5>
+		</td></tr>
+		<tr>
+			<td style="padding-left: 0;">{insured_amt.display.label}:</td>
+			{#use:insured_usd:<td><input type='text' id='{id}' name='{name}' value='{value}'
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}' /></td>}
+			{#use:insured_local:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+			{#use:insured_amt:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+		</tr>
+		<tr>
+			<td style="padding-left: 0;">{provision_amt.display.label}:</td>
+			{#use:provision_usd:<td><input type='text' id='{id}' name='{name}' value='{value}'
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}' /></td>}
+			{#use:provision_local:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+			{#use:provision_amt:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+		</tr>
+		{#use:ins_ref_no:<tr>
+			<td style="padding-left: 0;">{display.label}:</td>
+			<td colspan="3"><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:provi_date:<tr>
+			<td style="padding-left: 0;">{display.label}:</td>
+			<td colspan="3"><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y-m-d")~}' class='calendar left'></div></td>
+		</tr>}
+{! Settlement }
+		<tr><td colspan="4">
+			<h5 style="background-image: url('/img/icons16/handshake.png'); background-repeat: no-repeat; background-position: 4px; text-indent: 24px; line-height: 16px;">Settlement (payment)</h5>
+		</td></tr>
+		<tr>
+			<td style="padding-left: 0;">{suggested_amt.display.label}:</td>
+			{#use:suggested_usd:<td><input type='text' id='{id}' name='{name}' value='{value}'
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}' /></td>}
+			{#use:suggested_local:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+			{#use:suggested_amt:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+		</tr>
+		<tr>
+			<td style="padding-left: 0;">{paid_amt.display.label}:</td>
+			{#use:paid_usd:<td><input type='text' id='{id}' name='{name}' value='{value}'
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:display.error: field_error}' /></td>}
+			{#use:paid_local:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+			{#use:paid_amt:<td><input type='text' id='{id}' name='{name}' value='{value}'{#if:^money_auto.current=1: placeholder="(Auto)" readonly="readonly"}
+				class='jqx-input jqx-input-{%jqxtheme} only-numbers short{#if:^money_auto.current=1: green}' /></td>}
+		</tr>
+		{#use:settle_date:<tr>
+			<td style="padding-left: 0;">{display.label}:</td>
+			<td colspan="3"><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y-m-d")~}' class='calendar left'></div></td>
+		</tr>}
+		{#use:settle_basis:<tr>
+			<td style="padding-left: 0;">{display.label}:</td>
+			<td colspan="3"><select id='{id}' name='{name}'>
+				{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>
+		</tr>}
+	</table>
+</form>}

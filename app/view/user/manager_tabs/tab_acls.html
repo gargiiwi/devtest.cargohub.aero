@@ -1,0 +1,47 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/lock.png" /><span>User level access</span>
+	</div>
+	<button data-op="acls-submit" title="Activate/Update Overrides"><img src='/img/icons16/lock_go.png' /> Activate/Update Overrides</button>
+	<button style="display: none;" data-op="acls-clear" title="Remove all Overrides"><img src='/img/icons16/lock_delete.png' /> Remove all Overrides</button>
+</div>
+
+<div style="text-align: center; display: none;" id="overrides_off">
+	<h1 style="color: red;">User-Level override is OFF</h1>
+	<p>To turn on, choose the settings and press the <b>Activate/Update</b> button.</p>
+</div>
+<div style="text-align: center; display: none;" id="overrides_on">
+	<h1 style="color: green;">User-Level override is ACTIVE</h1>
+	<p>To turn off, press the <b>Remove all Overrides</b> button.</p>
+</div>
+<div style="padding: 5px; border: 1px solid lightgray; background-color: yellow; text-align: center; margin-bottom: 10px;">
+These settings are the access overrides for the user in the active department.<br />To configure another departement, please move the user to that department first.
+</div>
+
+{!First part - ACLs, split in two columns}
+<table style="width: 100%;"><tr>
+	<td style="width: 49%;" valign="top">{!Left side}
+		<h4>Basic settings</h4>
+		<p class="gray" style="text-align: center;">The organization needs to have the <b>Record Modules</b> enabled first.</p>			
+		<table>
+			<tr class="acl">
+				<th>Access to Modules:</th>
+				<td><div id="acls_access-ids_ist"></div></td>
+			</tr>
+		</table>
+	</td>
+	<td style="width: 49%;" valign="top">{!Right side}
+		<h4>Data groups access</h4>
+		<p class="gray" style="text-align: center;">Use the organization <b>Record Groups</b> tab to manage group-to-org. links.</p>  
+		<div id="acls_access-groups"></div>
+		<div id="groups-select-commands" style="text-align: center; margin-top: 4px;">
+			<input type="button" value="Select all" data-cmd="check_all" /> &nbsp;
+			<input type="button" value="Select visible" data-cmd="check_visible" /> &nbsp;
+			<input type="button" value="Clear selection" data-cmd="clear_all" />
+			<input type="button" value="Invert selection" data-cmd="check_invert" />
+		</div>
+	</td>
+</tr></table>
+		
+<h4 style="margin-top: 16px;">Access privileges matrix</h4>
+{#include::private/privileges_editor.html}

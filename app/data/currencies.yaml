@@ -1,0 +1,195 @@
+# Currencies available for the Monetary Value field plugin
+# Source: https://en.wikipedia.org/wiki/Currency
+# Codes: https://en.wikipedia.org/wiki/ISO_4217
+-
+  curr: 840
+  name: United States Dollar
+  iso: USD
+  sym: $
+  sym_before: true
+-
+  curr: 608
+  name: Philippine peso
+  iso: PHP
+  sym: ₱
+-
+  curr: 978
+  name: Euro
+  iso: EUR
+  sym: €
+  sym_before: true
+-
+  curr: 392
+  name: Japanese Yen
+  iso: JPY
+  sym: ¥
+-
+  curr: 826
+  name: Pound sterling
+  iso: GBP
+  sym: £
+-
+  curr: 036
+  name: Australian Dollar
+  iso: AUD
+  sym: $
+  sym_before: true
+-
+  curr: 756
+  name: Swiss Franc
+  iso: CHF
+  sym: Fr
+-
+  curr: 124
+  name: Canadian Dollar
+  iso: CAD
+  sym: $
+-
+  curr: 484
+  name: Mexican Peso
+  iso: MXN
+  sym: $
+-
+  curr: 156
+  name: Yuan Renminbi
+  iso: CNY
+  sym: ¥
+-
+  curr: 554
+  name: New Zealand dollar
+  iso: NZD
+  sym: $
+-
+  curr: 752
+  name: Swedish Krona
+  iso: SEK
+  sym: kr
+-
+  curr: 643
+  name: Russian Ruble
+  iso: RUB
+  sym: ₽
+-
+  curr: 344
+  name: Hong Kong Dollar
+  iso: HKD
+  sym: $
+-
+  curr: 578
+  name: Norwegian Krone
+  iso: NOK
+  sym: kr
+-
+  curr: 702
+  name: Singapore Dollar
+  iso: SGD
+  sym: $
+-
+  curr: 949
+  name: Turkish Lira
+  iso: TRY
+  sym: ₺
+-
+  curr: 410
+  name: Won
+  iso: KRW
+  sym: ₩
+-
+  curr: 710
+  name: Rand
+  iso: ZAR
+  sym: R
+-
+  curr: 986
+  name: Brazilian Real
+  iso: BRL
+  sym: R$
+-
+  curr: 356
+  name: Indian Rupee
+  iso: INR
+  sym: ₹
+  
+# Others, less used
+-
+  curr: 682
+  name: Saudi Ryal
+  iso: SAR
+  sym: ﷼
+-
+  curr: 208
+  name: Danish Krone
+  iso: DKK
+  sym: kr 
+-
+  curr: 946
+  name: Romanian Leu
+  iso: RON
+  sym: L
+-
+  curr: 950
+  name: CFA franc BEAC
+  iso: XAF
+  sym: FCFA
+-
+  curr: 952
+  name: CFA franc BCEAO
+  iso: XOF
+  sym: CFA
+-
+  curr: 784
+  name: Emirati dirham
+  iso: AED
+  sym: د.إ
+-
+  curr: 214
+  name: Dominican peso
+  iso: DOP
+  sym: RD$
+-
+  curr: 332
+  name: Haitian gourde
+  iso: HTG
+  sym: G
+-
+  curr: 052
+  name: Barbados dollar
+  iso: BBD
+  sym: Bds$
+-
+  curr: 780
+  name: Trinidad and Tobago dollar
+  iso: TTD
+  sym: TT$
+-
+  curr: 951
+  name: East Caribbean dollar
+  iso: XCD
+  sym: $
+-
+  curr: 532
+  name: Netherlands Antillean guilder
+  iso: ANG
+  sym: NAƒ
+-
+  curr: 170
+  name: Colombian peso
+  iso: COP
+  sym: $
+  
+# Special, non-national currencies or other types of values
+-
+  curr: 960
+  name: SDR (Special Drawing Right)
+  iso: XDR
+  sym:
+-
+  curr: 1001
+  name: Bitcoin
+  iso: XBT
+  sym: Ƀ
+-
+  curr: 1002
+  name: Max Liability Weight
+  iso: WGH
+  sym: W

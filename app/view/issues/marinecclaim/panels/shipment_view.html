@@ -1,0 +1,25 @@
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{project_no.n}:</th><td>{^xfields.project_no:<span class="gray">(not set / unknown)</span>}</td></tr>
+		<tr><th>{nature_of_goods.n}:</th><td>{^xfields.nature_of_goods:<span class='gray'>(not set / unknown)</span>}</td></tr>
+		{!Lots of optional fields}
+		<tr><th>{purch_no.n}:</th><td>{^xfields.purch_no:<span class="gray">(not set / unknown)</span>}</td></tr>
+		<tr><th>{shipm_no.n}:</th><td>{^xfields.shipm_no:<span class="gray">(not set / unknown)</span>}</td></tr>
+		<tr><th>{lading_no.n}:</th><td>{^xfields.lading_no:<span class="gray">(not set / unknown)</span>}</td></tr>
+		{#if:^xfields.hawb1:<tr><th>{hawb1.n}:</th><td>{^xfields.hawb1}</td></tr>}
+		{#if:^xfields.hawb2:<tr><th>{hawb2.n}:</th><td>{^xfields.hawb2}</td></tr>}
+		{#if:^xfields.hawb3:<tr><th>{hawb3.n}:</th><td>{^xfields.hawb3}</td></tr>}
+		{#if:^xfields.hawb4:<tr><th>{hawb4.n}:</th><td>{^xfields.hawb4}</td></tr>}
+	</table>
+	<h4>Carriage information:</h4>
+	<table>
+		<tr><th>{carry_date.n}:</th><td>{#if:^xfields.carry_date:{^xfields.carry_date}~date("Y-m-d")~}{#ifnot:^xfields.carry_date:<span class='gray'>(missing)</span>}</td></tr>
+		<tr><th>{dep_raw.n}:</th><td>{^xfields.dep_raw:<span class='gray'>(not set / unknown)</span>}</td></tr>
+		<tr><th>{dest_raw.n}:</th><td>{^xfields.dest_raw:<span class='gray'>(not set / unknown)</span>}</td></tr>
+	</table>
+	<hr />
+	<table>
+		<tr><th>{shipper_n.n}:</th><td>{^xfields.shipper_n:<span class="gray">(not specified)</span>}</td></tr>
+		<tr><th>{consig_n.n}:</th><td>{^xfields.consig_n:<span class="gray">(not specified)</span>}</td></tr>
+	</table>
+}

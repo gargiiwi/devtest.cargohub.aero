@@ -1,0 +1,54 @@
+{@<style type="text/css">
+/* Some styles specific to claims */
+.iss_claim_type {
+	padding: 1px 4px;
+	margin: 0px 5px 2px 0px;
+	color: white;
+	white-space: nowrap;
+	float: left;		
+}
+#iss_ct_Delay {
+	border: 1px solid darkblue;
+	background-color: blue;
+}
+#iss_ct_Damage {
+	border: 1px solid brown;
+	background-color: red;
+}
+#iss_ct_Loss {
+	border: 1px solid black;
+	background-color: gray;
+}
+.iss_document {
+	padding: 1px 4px;
+	margin: 0px 5px 2px 0px;
+	color: green;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="claim-information" data-panel='1' style='height: 550px;' data-editable="1" data-edittpl="claim" data-editheight="950">	
+	<div><img src='/img/icons16/menus/claim-information.png' />Submitted claim information</div>
+	<div class="datatable">
+{#include::panels/claim_view.html}
+	</div>
+</div>
+
+<div id="claim-shipment" data-panel='1' style='height: 350px;' data-editable="1" data-edittpl="shipment" data-editheight="550">
+	<div><img src='/img/icons16/menus/claim-shipment.png' />Shipment information</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable" id='shipment-fields'>
+{#include::panels/shipment_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>
+
+<div id="claim-fwd" style="height: 600px;" data-panel="1" data-editable="1" data-edittpl="forwarder" data-editheight="820">
+	<div><img src='/img/icons16/menus/claim-private.png' />Forwarder Area</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/forwarder_view.html}	
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>

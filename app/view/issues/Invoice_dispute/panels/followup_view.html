@@ -1,0 +1,19 @@
+{#use:%ist.xfield_def:
+<table>
+<tr><th>{val_yn.n}:</th><td>{^xfields.val_yn.value:<span class="gray">---</span>}</td></tr>
+ <tr><th>{ae_rem.n}:</th><td>
+			{#if:^xfields.ae_rem.value!=-1:{^xfields.ae_rem.value}}
+			{#ifnot:^xfields.ae_rem.value:<span class='gray'>---</span>}
+		</td></tr>
+   <tr><th>{cca.n}:</th><td>
+			{#if:^xfields.cca.value!=-1:{^xfields.ae_rem.value}}
+			{#ifnot:^xfields.cca.value:<span class='gray'>---</span>}
+		</td></tr>
+  <tr><th>{c_rate.n}:</th><td>{^xfields.c_rate}</td></tr>
+  
+  <tr><th>{rad_rem.n}:</th><td>{^xfields.rad_rem}</td></tr>
+  <tr><th>{await_con.n}:</th><td>{^xfields.await_con.value}</td></tr>
+  <tr><th>{sac.n}:</th><td>{^xfields.sac}</td></tr>
+ <tr><th>{san.n}:</th><td>{^xfields.san}</td></tr>
+  <tr><th>{date_close.n}:</th><td>{#if:^xfields.date_close:{^xfields.date_close}~date("Y-m-d")~}{#ifnot:^xfields.date_close:<span class='gray'>(missing)</span>}</td></tr>
+</table>}

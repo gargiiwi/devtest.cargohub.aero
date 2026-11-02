@@ -1,0 +1,28 @@
+#secu-search > div {
+	margin-bottom: 4px;
+}
+
+#secu-search > div label {
+	display: inline-block;
+	float: left;
+	line-height: 26px;
+	padding-right: 8px;
+	text-align: right;
+	width: 135px;
+}
+
+#secu-search > div .form-control {
+	display: inline-block;
+}
+
+#secu-search > div input.form-control {
+	height: 24px;
+	padding-left: 3px;
+	box-sizing: border-box;
+}
+
+#secu-search > div .static {
+	color: gray;
+	line-height: 26px;
+	text-shadow: 0 1px 0 lightgray;
+}

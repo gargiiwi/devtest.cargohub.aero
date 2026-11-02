@@ -1,0 +1,56 @@
+<script id="template-issue2message_builder" type="text/dryjstpl">
+{#exists:header:{$header}}
+<div id="message-builder">
+	<div id="message-builder-sidebar">
+		<div id="copy-myself" class="jqx-rc-all" style="margin-bottom: 10px;">
+			<div id="email-cc-self" class='thick'> Include me in <span class='red'>CC</span></div>
+			<div style="margin-top: 6px;">{$sender.name} &lt;{$sender.email}&gt;</div>
+		</div>
+		<div id="extra-recipients" class="jqx-rc-all" style="display: none;">
+			<h4 style="background-image: url('/img/icons16/cc16.png'); background-repeat: no-repeat; background-position: 4px;">Carbon-Copy recipients:</h4>
+			<ul>
+			</ul>
+			<p style="color: gray; margin: 4px; font-size: 0.85em; text-align: center;">Click on an e-mail address to remove it.</p>
+		</div>
+		<div style="text-align: center; margin: 16px 0;"><input style="cursor: pointer;" class='green thick' type="button" id="email-preview" value="Preview your E-mail before sending it" /></div>
+		<hr /> 
+		<div style="font-size: 0.85em; margin-bottom: 8px;" class="gray">
+			It's possible that our automatic target E-mail addresses are outdated or we might not have an address at all.<br /><br />
+			Please double-check the E-mail address you are sending to, as we accept no liability in case the message doesn't reach your intended recipient.
+		</div>
+	</div>
+	<div id="message-controls" class="jqx-rc-all">
+		<img id="recipient-add" alt="Add carbon-copy recipient" src="/img/icons/cc32.png" />
+		<div id="message-recipient" tabindex="0">
+			<img alt="{$symbol_alt:Recipient}" src="/img/icons16/{$symbol:mail_forward}.png"> <b>To:</b> <span class='gray'>(CLICK HERE to search for a recipient or to enter an E-mail address)</span>
+		</div>
+		<div id="message-cc-list" style="display: none;"><label>Recipients:</label></div>  
+		<div id="message-extra-recipients"></div>
+			{#exists:user_mode:<img id="canned-toggle" alt="Canned toggle" src="/img/icons/jar_empty.png" />}
+		<div id="message-subject">
+			<input type="text" placeholder="(message subject)" class="gray" />
+		</div>
+		<div id="message-text">
+		</div>
+		<p style="color: gray; margin: 4px 0 12px; text-align: center; font-size: 85%;">Your submitted data is appended to this header. Use preview to see complete E-mail</p>
+	</div>
+	<div id="content-controls">
+		{#exists:user_mode:<div><label>Signature:</label><div id="user-signature" style="margin: 5px 0px;"> <span>Add my signature to the message</span></div></div>}
+		<div><label>Included data:</label><div id="parts_selector" style="width: 400px;"></div></div>
+		<div style="display: none;"><label>Contacts:</label><div id="contacts_selector" style="width: 400px;"></div></div>
+		<div><label>Attachments:</label><div id="files_selector" style="width: 400px;"></div></div>
+		<div style="height: 40px; margin-top: 8px;"><label>Method:</label>
+			<div id="files-mode-off" style="line-height: 16px;">Attachments are stored in the cloud - Links are provided in the E-mail <span class='gray'>(produces a very small E-mail)</span></div>
+			<div id="files-mode-on" style="line-height: 16px;">Documents and pictures are contained inside the email <span class='red'>(Might be rejected if message is too large!)</span></div>
+		</div>
+		{#exists:submit_mode:
+		<div style='float: right; border: 1px solid gray; padding: 3px; background-color: #EEEEEE; width: 550px; height: 44px;'>
+			<p style="margin: 3px; color: #CC7710; font-size: 0.90em;"><b>ATTENTION!</b> Primary information fields won't be editable after file locking !</p>
+			<p style="margin: 3px; color: blue;">Private attached data (notes, contacts, tasks) can still be operated at any time.</p>
+		</div>
+		<div><label>Finalize:</label><div id="finalize-option" style="margin: 5px 0px;"> <span>Lock complete {$issue.type}.</span></div>}
+	</div>
+</div>
+
+{#exists:footer:{$footer}}
+</script>

@@ -1,0 +1,71 @@
+<div id='org-control-panel'>
+	<ul>
+		<li><img src='/img/icons16/company-building-icon.png' alt='Overview' /> Overview</li>
+		{#repeat:user_tabs:
+			<li><img src='/img/icons16/{icon}' alt='{title}' /> {title}</li>}
+	</ul>
+	
+	<div class='spacey' id='tab_overview'>
+		{#use:org_info:<div id="org-info">
+			<div id="org-vcard">
+				{#include:contact:includes/vcard.html}
+			</div>
+			<div id="org-details">
+				<h4>About this organization</h4>
+				<table class="infotable">
+					<tr><th>Type:</th><td>{orgtype.name}</td></tr>
+					<tr><th>Primary domain:</th><td>{features.primary_domain}</td></tr>
+					<tr><th>Manager:</th><td><a href="mailto:{manager.email}" title="{manager.email}">{manager.name}</a></td></tr>				
+				</table>
+			{#if:^acls.privileges.org_view_stats|^acls.unrestricted:
+				<h4 style="margin-top: 8px;">Statistics</h4>
+				<table class="infotable">
+					<tr><th>Departments:</th><td>{features.departments}</td></tr>
+					<!--<tr><th>Users:</th><td>{count.users}</td></tr>-->
+                                        <tr><th>Users:</th><td>{tot_active_users}</td></tr> <!-- IWI Get Total active users count of this org -->
+					{#if:count.deps:<tr><th valign="top">Departments:</th><td>{count.deps}</td></tr>}
+					<tr><th>Records:</th><td>{count.issues}</td></tr>
+					<tr><th>Conn. groups:</th><td>{features.groups_total}</td></tr>
+					<tr><th>Messages:</th><td>{count.msgs}</td></tr>
+					<tr><th>Uploaded files:</th><td>{count.files}</td></tr>
+					<tr><th>Size of uploads:</th><td>{files_total_kbytes}~numberformat(0,".",",")~ KBytes</td></tr>
+				</table>}
+			</div>
+			<div class="clear"></div>
+		</div>}
+		{#if:display_acls.privileges:	
+			<label style='display: block; float: left; text-align: right; width: 140px; height: 26px; line-height: 26px; margin-right: 8px;'>Base privileges:</label><div style='width: 840px; margin-left: 148px;'>
+				{#include:display_acls.privileges:private/privileges_matrix.html}
+				<h3>(all these are inherited by every user which doesn't have department or individual overrides)</h3>
+			</div>
+			<div class='clear'></div>	
+		}
+		{#if:acls.unrestricted:{#ifnot:display_acls.privileges:
+			<h3 style='text-align: center;'>This organization doesn't have any base privileges, users without overrides will not be able to see or do anything !</h3>}}
+	</div>
+	
+	{#repeat:user_tabs:
+		<div class='spacey' id='{id}'>
+			<div style='text-align: center; padding: 30px;'><img src="/img/extra/loader3.gif" /></div>
+		</div>}
+</div>
+{#if:acls.unrestricted:<div style="margin: 4px auto; white-space: nowrap; width: 210px;">
+	<img class="inline-icon16" src='/img/icons16/superman.png' alt="su" /><a href="/admin/orgs">Locate another organization</a>
+</div>}
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="template_loading" type="text/dryjstpl">{@
+	<h2 style='text-align: center; margin-top: 100px;'>Please wait, loading information for &quot;{$name}&quot; ...</h2>
+}</script>
+
+{#if:acls.unrestricted:<script id="template_attach_group" type="text/dryjstpl">{!Used by the Groups tabs}{@
+	<h3>Select {$name_plural} to connect:</h3>
+	<div id="select_connect_groups"></div>
+	<div class="multiselect_buttons">
+		<button data-cmd="check_all">Select all</button>
+		<button data-cmd="clear_all">Clear selection</button>
+		<button data-cmd="check_invert" style="margin-right: 0px;">Invert selection</button>
+	</div>
+	<p>Comment on the connection(s):<br />
+	<input type='text' id="connect_comment" style='width: 352px; height: 20px; line-height: 25px;' /></p>
+}</script>}

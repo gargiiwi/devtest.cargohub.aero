@@ -1,0 +1,184 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+		{#use:inc_date:<tr>
+			<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td><div style="float: left;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}</td>
+		</tr>
+		{#use:procDate:<tr>
+			<th><label for='{id}'>{display.label}:{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td><div style="float: left;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}</td>
+		</tr>
+		
+		<tr>
+			<th><label class="info-tip" data-tooltip="Type the number of pieces and weight (if known)">Involved pieces:</label></th>
+			<td>
+			{#use:invo_pcs:<span style="display: inline-block; width: 90px; float: left;"></span><input maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='only-numbers tiny jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+			{#use:invo_weight:<span style="display: inline-block; width: 70px;">pc(s) </span><input maxlength="8" type='text' id='{id}' name='{name}' value='{value}' class='only-numbers tiny jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> Kg}
+			</td>
+		</tr>
+		<tr>{#use:rep_stat:
+			<th><label>{display.label}:</label></th>
+			<td><div class='searchbox' data-id='#{id}' data-sourceurl='?action=suggest_airport'></div>
+				<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+				{#use:rep_stat_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+			</td>
+		</tr>
+		<tr>
+			<th><label for='{id}'>{last_loc.display.label}:</label></th>
+			<td>
+				{#use:last_loc:<input style ="width: 100px;" type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+				&nbsp; {#use:phys_check: {display.label}: {#repeat:options:<label style='display: block; width: 50px; display: inline-block;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}}
+			</td>
+		</tr>
+	</table>
+	<table class='dual_col_table' style="margin-bottom: 6px;">
+		<tr>
+			{#use:trc_aspct:<td valign="top">
+				<h3>{display.label}:</h3>
+				{#repeat:options:<label><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+				<input type='hidden' name='{name}' value='' />
+			</td>}
+			{#use:add_aspct:<td{#if:display.req: class='required'} valign="top">
+				<h3>{display.label}:</h3>
+				{#repeat:options:<label><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+				<input type='hidden' name='{name}' value='' />
+			</td>}
+		</tr>
+	</table>
+	<table>
+		{#use:tracer:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 60px; float: left;'><input class='tracercustomevent' name='{^name}' type='radio' value='{value}'{#if:active: checked='checked' data-original='{value}'}> {display}</label>}</td>
+		</tr>}
+		{#use:trc_status:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 80px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+		{#use:trc_date:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div></td>
+		</tr>}
+		<tr>{#use:inc_stat:
+			<th><label>{display.label}:</label></th>
+			<td><div class='searchbox' data-id='#{id}' data-sourceurl='?action=suggest_airport'></div>
+				<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+				{#use:inc_stat_text:<input type='hidden' id='{id}' name='{name}' value='{value}' />}
+			</td>
+		</tr>
+		  {#use:sr_result:<tr>
+		<th><label for='{id}'>{display.label}:</label></th>
+		<td><select class="dropselect" name='{name}' data-width="361" data-dwidth="361" data-dheight="224" data-dalign="left" data-filterable="1" id='{id}'>
+			<option value=''>---</option>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+		</select></td>
+	</tr>}
+	  
+	  
+	  
+	  
+		{#use:outcome:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+	   
+	  
+	  {#use:inv_type:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><select class="dropselect multi-select" data-name='{name}' data-width="300" data-dwidth="350" data-dheight="224" data-dalign="right" data-filterable="1" id='{id}'>
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select>
+			<input type='hidden' name='{name}' value='' /></td>
+		</tr>}
+	  
+	</table>
+	{@<script type="text/javascript">
+	cargohub.temp_tracer = null;
+	$('input.tracercustomevent').each(function() {
+		var traceroption = $(this);
+		if(traceroption.data('original'))
+			cargohub.temp_tracer = traceroption.data('original');
+		traceroption.on('click', function(e) {
+			var newval = $(this).val();
+			if(!cargohub.temp_tracer)
+				return;
+			if(newval == "Final")
+				if(cargohub.temp_tracer=="4")
+					return;
+				else
+					return alert("Setting Final without tracer steps.\nPlease check !");
+			if(newval <= cargohub.temp_tracer)
+				return alert("Moving tracer backwards is incorrect. Please verify !");
+			if(newval > cargohub.temp_tracer+1)
+				return alert("Skipping steps is not recommended. Please verify !");
+		});
+	});
+	</script>}
+	<hr />
+	<table>
+			<tr{#if:display.req: class='required'}>
+			<th><label>Reported to customs:</label></th>
+			<td>
+			{#use:rep_cust:{#repeat:options:<label style='display: block; width: 50px; float: left;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}}
+			</td>
+			<td style="width:90px">Report date:</td>
+			<td style="width:130px">
+			{#use:rep_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			</td>
+		</tr>
+		<tr{#if:display.req: class='required'}>{#use:act_cust:
+			<th><label for='{id}'>Customs actions:</label></th>
+			<td><select id='{id}' name='{name}'>
+			{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+			</select></td>}
+			<td style="width:90px">Final date:</td>
+			<td style="width:130px">
+			{#use:act_date:<div id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}
+			</td>
+		</tr>
+	{!	{#use:ref_cust:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='long jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}}
+	</table>
+	{#use:remrks:
+		<h5>{display.label}:</h5>
+		<textarea rows="22" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: none; border-width: 1px; width: 99%; margin-bottom: 16px;" placeholder="">{value}</textarea>
+	}
+	
+	<!-- <h5>Customs reporting:</h5> -->
+
+	
+	<hr />
+	<h4 style="margin-top: 8px; background-image: url('/img/icons16/page.png'); background-repeat: no-repeat; background-position: 4px;">Documents:</h4>
+	<div>{#use:documents:
+			{#repeat:options:<label class='twocolcbox'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'} /> {display}</label>}
+			<input type='hidden' name='{name}' value='' />
+	}</div>
+	<table>
+		{#use:docrmk:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:docreq:<tr>
+			<th><label for='{id}'>{display.label}:</label></th>
+			<td><input type='text' id='{id}' name='{name}' value='{value}' class='maxlen jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+		</tr>}
+		{#use:doc_full:<tr>
+			<th><label>{display.label}{#if:display.req: <span>&nbsp;</span>}</label></th>
+			<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+		</tr>}
+	</table>
+	<hr />
+	<table>
+		<tr style="height: 20px;">
+			<td style="width: 33%;">Docs shared with:</td>
+			<td style="text-align: center; width: 33%;">(customs) authority</td>
+			<td style="text-align: center; width: 33%;">Principal</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="width: 33%;">&nbsp;</td>
+			<td>{#use:doc_share_auth:<div style="margin: 0 auto;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}</td>
+			<td>{#use:doc_share_princ:<div style="margin: 0 auto;" id='{id}' name='{name}' data-value='{#if:value:{value}~date("Y/M/d")~}' class='calendar'></div>}</td>
+		</tr>
+	</table>
+</form>}

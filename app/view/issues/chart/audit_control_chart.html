@@ -1,0 +1,350 @@
+<div class="auditControlChartPage">
+    <section id="audit-control-overview" class="sub-tab-content active">
+
+
+        <!-- KPI -->
+        <div class="overview-kpis" id="auditControlOverviewKPI">
+
+    <!-- Total Records -->
+    <div class="kpi-card">
+        <div class="kpi-title">Total Records</div>
+
+        <div class="kpi-subline">
+            <span>Active <b id="kpiActive">0</b></span>
+            <span>Closed <b id="kpiClosed">0</b></span>
+        </div>
+    </div>
+
+
+    <!-- Claims Assignment -->
+    <div class="kpi-card">
+        <div class="kpi-title">Active Audit Assignment</div>
+
+        <div class="kpi-subline">
+            <span>Assigned <b id="totalAuditAssigned">0</b></span>
+
+            <span>
+                <a href="/user/overview?action=Export_Record_Unassigned"
+                   target="_blank">
+                   Unassigned <b id="totalAuditUnassigned">0</b>
+                   <!-- <i class="fa fa-eye"></i> -->
+                </a>
+            </span>
+        </div>
+    </div>
+
+
+    <!-- Type Wise -->
+    <div class="kpi-card">
+        <div class="kpi-title">Type Wise Report</div>
+
+        <div class="kpi-subline">
+            <span>Investigation<b id="TotalReportTypeWiseInvestigation">7</b></span>
+            <span>Corrective <b id="TotalReportTypeWiseCorrective">7</b></span>
+            <span>Preventive <b id="TotalReportTypeWisePreventive">3</b></span>
+        </div>
+    </div>
+
+
+    <!-- Risk Wise -->
+    <div class="kpi-card">
+        <div class="kpi-title">Risk Wise Report</div>
+
+        <div class="kpi-subline">
+            <span>Minor <b id="TotalReportRiskWiseMinor">34</b></span>
+            <span>Major <b id="TotalReportRiskWiseMajor">17</b></span>
+            <span>Critical <b id="TotalReportRiskWiseCritical">1</b></span>
+        </div>
+    </div>
+
+</div>
+
+
+
+        <!-- HEADER -->
+        <div class="chart-card-header">
+            <div class="chart-header-left">
+                <i class="fa fa-line-chart"></i>
+                Audit Control Overview (<span class="chart-year-label">Year 2026</span>)
+            </div>
+            <div class="chart-header-right">
+                <select name="chart_period_select" class="chart-period-select"></select>
+            </div>
+        </div>
+
+
+
+        <!-- ================= CHARTS ================= -->
+        <div class="chart-grid">
+
+            <!-- TOTAL RECORDS -->
+            <div class="chart-card">
+
+                <h3>Total Records
+                    <span class="chart-actions"><i class="fa fa-file-pdf-o chart-pdf" style="cursor:pointer; float:right;"></i></span>
+                </h3>
+
+                <div class="chart-layout">
+
+                    <div class="chart-container">
+                        <canvas id="totalRecordsChart"></canvas>
+                    </div>
+
+                    <div id="totalRecordsCheckboxes" class="chart-checkboxes"></div>
+
+                </div>
+
+                <hr>
+
+                <div class="claims-table-wrapper">
+                    <table class="claims-table">
+
+                        <thead>
+                            <tr id="totalRecordsTableHead"></tr>
+                        </thead>
+
+                        <tbody id="totalRecordsTableBody"></tbody>
+
+                        <tfoot>
+                            <tr id="totalRecordsTableFoot"></tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+            <!-- <div class="chart-card">
+
+                <h3>Category 
+                    <span class="chart-actions"><i class="fa fa-file-pdf-o chart-pdf" style="cursor:pointer; float:right;"></i></span>
+                </h3>
+
+                <div class="chart-layout">
+
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+
+                    <div id="categoryCheckboxes" class="chart-checkboxes"></div>
+
+                </div>
+
+                <hr>
+
+                <div class="claims-table-wrapper">
+                    <table class="claims-table">
+
+                        <thead>
+                            <tr id="categoryTableHead"></tr>
+                        </thead>
+
+                        <tbody id="categoryTableBody"></tbody>
+
+                        <tfoot>
+                            <tr id="categoryTableFoot" class="table-total-row"></tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+
+            </div> -->
+
+
+            <!-- STATUS -->
+            <div class="chart-card">
+
+                <h3>Status <span class="chart-actions"><i class="fa fa-file-pdf-o chart-pdf" style="cursor:pointer; float:right;"></i></span></h3>
+
+                <div class="chart-layout">
+
+                    <div class="chart-container">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+
+                    <div id="statusCheckboxes" class="chart-checkboxes"></div>
+
+                </div>
+
+                <hr>
+
+                <div class="claims-table-wrapper">
+                    <table class="claims-table">
+
+                        <thead>
+                            <tr id="statusTableHead"></tr>
+                        </thead>
+
+                        <tbody id="statusTableBody"></tbody>
+
+                        <tfoot>
+                            <tr id="statusTableFoot" class="table-total-row"></tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+            <!-- PRIORITY -->
+            <div class="chart-card">
+
+                <h3>Priority <span class="chart-actions"><i class="fa fa-file-pdf-o chart-pdf" style="cursor:pointer; float:right;"></i></span></h3>
+
+                <div class="chart-layout">
+
+                    <div class="chart-container">
+                        <canvas id="priorityChart"></canvas>
+                    </div>
+
+                    <div id="priorityCheckboxes" class="chart-checkboxes"></div>
+
+                </div>
+
+                <hr>
+
+                <div class="claims-table-wrapper">
+                    <table class="claims-table">
+
+                        <thead>
+                            <tr id="priorityTableHead"></tr>
+                        </thead>
+
+                        <tbody id="priorityTableBody"></tbody>
+
+                        <tfoot>
+                            <tr id="priorityTableFoot" class="table-total-row"></tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+            <!-- SCORE -->
+            <!-- <div class="chart-card">
+
+                <h3>Score <span class="chart-actions"><i class="fa fa-file-pdf-o chart-pdf" style="cursor:pointer; float:right;"></i></span></h3>
+
+                <div class="chart-layout">
+
+                    <div class="chart-container">
+                        <canvas id="scoreChart"></canvas>
+                    </div>
+
+                    <div id="scoreCheckboxes" class="chart-checkboxes"></div>
+
+                </div>
+
+                <hr>
+
+                <div class="claims-table-wrapper">
+                    <table class="claims-table">
+
+                        <thead>
+                            <tr id="scoreTableHead"></tr>
+                        </thead>
+
+                        <tbody id="scoreTableBody"></tbody>
+
+                        <tfoot>
+                            <tr id="scoreTableFoot" class="table-total-row"></tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+
+            </div> -->
+            
+            
+            <!-- TYPE WISE REPORT -->
+<div class="chart-card">
+
+    <h3>
+        Type Wise Report
+        <span class="chart-actions">
+            <i class="fa fa-file-pdf-o chart-pdf" style="cursor:pointer; float:right;"></i>
+        </span>
+    </h3>
+
+    <div class="chart-layout">
+
+        <div class="chart-container">
+            <canvas id="typeWiseChart"></canvas>
+        </div>
+
+        <div id="typeWiseCheckboxes" class="chart-checkboxes"></div>
+
+    </div>
+
+    <hr>
+
+    <div class="claims-table-wrapper">
+        <table class="claims-table">
+
+            <thead>
+                <tr id="typeWiseTableHead"></tr>
+            </thead>
+
+            <tbody id="typeWiseTableBody"></tbody>
+
+            <tfoot>
+                <tr id="typeWiseTableFoot" class="table-total-row"></tr>
+            </tfoot>
+
+        </table>
+    </div>
+
+</div>
+
+
+<!-- RISK WISE REPORT -->
+<div class="chart-card">
+
+    <h3>
+        Risk Wise Report
+        <span class="chart-actions">
+            <i class="fa fa-file-pdf-o chart-pdf" style="cursor:pointer; float:right;"></i>
+        </span>
+    </h3>
+
+    <div class="chart-layout">
+
+        <div class="chart-container">
+            <canvas id="riskWiseChart"></canvas>
+        </div>
+
+        <div id="riskWiseCheckboxes" class="chart-checkboxes"></div>
+
+    </div>
+
+    <hr>
+
+    <div class="claims-table-wrapper">
+        <table class="claims-table">
+
+            <thead>
+                <tr id="riskWiseTableHead"></tr>
+            </thead>
+
+            <tbody id="riskWiseTableBody"></tbody>
+
+            <tfoot>
+                <tr id="riskWiseTableFoot" class="table-total-row"></tr>
+            </tfoot>
+
+        </table>
+    </div>
+
+</div>
+
+        </div>
+
+
+    </section>
+
+</div>

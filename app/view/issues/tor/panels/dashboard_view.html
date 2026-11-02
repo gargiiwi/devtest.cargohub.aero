@@ -1,0 +1,42 @@
+{!version 2019.05.02}
+{#use:%ist.xfield_def:
+	<table>
+		<tr><th>{movement.n}:</th><td>{^xfields.movement.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{flight_no.n}:</th><td>
+			<div style="display: inline-block; width: 160px;">{^xfields.flight_no:<span class='gray'>---</span>}</div>
+			<span class='gray'>Date:</span> {#if:^xfields.flight_date:{^xfields.flight_date}~date("Y-m-d")~}{#ifnot:^xfields.flight_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{trans_name.n}:</th><td>
+			<div style="display: inline-block; width: 160px;">{^xfields.trans_name:<span class='gray'>---</span>}</div>
+			<span class='gray'>{trans_id.n}:</span>{^xfields.trans_id:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{consignor.n}:</th><td style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="{^xfields.consignor}">{^xfields.consignor:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{consignee.n}:</th><td style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="{^xfields.consignee}">{^xfields.consignee:<span class='gray'>---</span>}</td></tr>
+	</table>
+
+	<hr />
+	<div><table style="width: 99%;">
+		<tr>
+			<td style="width: 33%; text-align: center;">{origin.n}</td>
+			<td style="width: 33%; text-align: center;">{destination.n}</td>
+			<td style="width: 33%; text-align: center;">{non_airp.n}</td>
+		</tr>
+		<tr>
+			{#if:^xfields.origin.value:<th class="info-tip center" data-tooltip="{^xfields.origin.value.name}<br /><span class='darkblue'>{^xfields.origin.value.country}</span>">{^xfields.origin.value.IATA}</th>}
+				{#ifnot:^xfields.origin.value:<td class="gray center">---</td>}
+			{#if:^xfields.destination.value:<th class="info-tip center" data-tooltip="{^xfields.destination.value.name}<br /><span class='darkblue'>{^xfields.destination.value.country}</span>">{^xfields.destination.value.IATA}</th>}
+				{#ifnot:^xfields.destination.value:<td class="gray center">---</td>}
+			<td style="text-align: center;">{^xfields.non_airp:<span class="gray">---</span>}</td>
+		</tr>
+	</table></div>
+
+	<h4 style="margin-top: 15px; background-image: url('/img/icons16/blueprint.png'); background-repeat: no-repeat; background-position: 4px;">Planning</h4>
+	<table>
+		<tr><th>{pick_est_time.n}:</th><td>{^xfields.pick_est_time.value:<span class="gray">---</span>}</td></tr>
+		<tr><th>Estimated arrival (ETA):</th><td>
+			<div style="display: inline-block; width: 160px;"><span class="gray">Time:</span> {^xfields.atd_time:<span class="gray">---</span>}</div>
+			<span class="gray">Date:</span> {#if:^xfields.pick_date:{^xfields.pick_date}~date("Y-m-d")~}{#ifnot:^xfields.pick_date:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{trans_id.n}:</th><td>{^xfields.trans_id:<span class='gray'>---</span>}</td></tr>
+	</table>
+}

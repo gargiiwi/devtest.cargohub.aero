@@ -1,0 +1,14 @@
+<div id="submit-proceed-box" class="jqx-rc-all">
+	<h2 style="text-align: center;">هل بياناتك صحيحة وجاهزة للإرسال؟</h2>
+	<hr style="margin-bottom: 20px;" />
+	<h4><span class="gray">1.</span> يرجى قراءة وقبول شروط الإستخدام</h4>
+	<span id="submit-disclaimer">(disclaimer text, to be provided)</span>
+	<div id="accept-disclaimer"><span>I have read and accepted the <a href="/cms?path=terms-of-use" target="_blank">terms of use</a>.</span></div>
+	
+	{#if:%session.user:{#include::includes/ara/issue_submit_useropts.html}}	
+	{#ifnot:%session.user:<h4><span class="gray">2.</span> البريد الإلكتروني للمرسل</h4>
+	<div class="center"><input type="text" placeholder="Enter E-mail address again..." id="subm-email-verif" style="width: 274px; height: 24px; line-height: 24px; margin: 2px 0 10px 0;" /></div>}
+	<h4><span class="gray">3.</span> يرجى الضغط على الزر أدناه للإستمرار</h4>
+	<div class="center"><input type='button' value='&laquo; إستمرار' data-action="form-check" style="width: 280px; height: 30px; font-weight: bold;" /></div>
+	<p class="gray">يرجى ملاحظة: في حال إكتشاف النظام أخطاء في البيانات المدخلة سوف يتم إعادتك لنفس الإستمارة مرة أخرى حتى تتأكد من صحتها.</p>
+</div>

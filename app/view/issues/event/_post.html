@@ -1,0 +1,1383 @@
+{@<style type="text/css">
+	div#file-submit-area input {
+		width: 500px;
+	}
+	label.documents {
+		display: block;
+		width: 250px;
+		float: left;
+		line-height: 24px;
+	}
+	.steps{
+	margin:10px 0px;
+	background:#d4d6dd;
+	padding:55px 0px;
+	}
+	
+	.steps .step-btn{
+	width:45px;
+	height:45px;
+	background:#ffff;
+	margin-bottom:60px;
+	display:flex;
+	justify-content:center; 
+	color:#000080;
+	border-radius:30px;
+	align-items:center;
+	}
+	
+	#issue_form{
+	display:flex;
+	justify-content:center;
+	padding: 0 30px;
+	}
+	.btn-text{
+	color:black;
+	margin-left: 20px;
+	}
+	.btn-text span{
+		display: block;
+		margin-bottom: 5px;
+		color: black;
+	}
+	.steps-container{
+	margin:0px 24px;
+	/* display:flex;
+	justify-content:space-between; */
+	}
+	.step-position1{
+	position:relative;
+	display: flex;
+	}
+	.line1{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		border-left: 3px dashed #fff;
+	}
+	.step-position2{
+	position:relative;
+	display: flex;
+	}
+	.line2{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+	   border-left: 3px dashed #fff;
+	}
+	.step-position3{
+	position:relative;
+	display: flex;
+	}
+	.line3{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+		border-left: 3px dashed #fff;
+	}
+	.step-position4{
+	position:relative;
+	display: flex;
+	}
+	.step-position4 .step-btn{
+		margin-bottom: 0;
+	}
+	.line4{
+		position: absolute;
+		left: 21px;
+		top: 46px;
+		width: 3px;
+		height: 58px;
+	   border-left: 3px dashed #fff;
+	}
+	.nav-btn{
+	margin:0px 0px 0px 250px;
+	padding:10px 50px;
+	background:#000080;
+	color:#ffff;
+	border:none;
+	}
+	#next-btn{
+		width: 60px;
+		background: #2866c2;
+		color: #ffff;
+		padding: 10px 15px;
+		text-align: center;
+		border: none;
+		margin-left: 0;
+		text-transform: capitalize;
+		font-size: 14px;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.prv-next-btns{
+		margin-top: 40px;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+	
+	div.site > div.page{
+		display: flex;
+	  width:99%;
+	}
+	.steps{
+		width: 30%;
+		margin: 0;
+		border-radius: 10px 0 0 10px;
+	}
+	.steps1{
+		width: 30%;
+		margin: 0;
+		border-radius: 10px 0 0 10px;
+		margin:0px 0px;
+		background:#d4d6dd;
+	   padding:55px 0px;
+	   
+	   
+	}
+	div.site > div.page div.zone{
+		width: 70%;
+		margin-bottom: 0;
+		background: #F2F5FF;
+		border-radius: 0 10px 10px 0;
+		padding: 30px 0;
+	   /* max-height: 410px; */
+		overflow: auto;
+	} 
+	#issue_form .required{
+		background: #F2F5FF;
+	}
+	#issue_form div.clabel, #issue_form div.column2 th{
+		text-align: left;
+	}
+	#issue_form td > input[type='text'], #issue_form td > select{
+		height: 25px !important;
+		background: none !important;
+		border-radius: 0px;
+		padding: 0px 0;
+		margin-bottom: 5px;
+		border:none;
+		border-bottom:2px solid #ccc;
+	}
+	.raprv{
+		background: #e1e1e1 !important;
+		color: #000 !important;
+	}
+	.steps .steps-container .step-btn.active{
+		background-color: #fff !important;
+	}
+	.steps .steps-container .completed .step-btn{
+		background-color: #2866C2 !important;
+		position: relative;
+	}
+	.steps .steps-container .completed .step-btn > img{
+		display: none;
+	}
+	.steps .steps-container .notCompleted {
+		opacity: 0.5;
+	}
+	.steps .steps-container .notCompleted.active {
+		opacity: 1;
+	}
+	.steps .steps-container .completed .step-btn::after{
+	content: "";
+	background-image: url(/img/icons/tick.png);
+	background-repeat: no-repeat;
+	width: 19px;
+	height: 13px;
+	position: absolute;
+	left: 14px;
+	top: 16px;
+	}
+	.steps .steps-container .completed .line1, .steps .steps-container .completed .line2, .steps .steps-container .completed .line3, .steps .steps-container .completed .line4{
+		background: #2866C2;
+		border-left:0px;
+	}
+	.steps .steps-container .completed .step-number{
+		visibility:hidden;
+	}
+	#issue_form h5{
+		font-size: 12px;
+		margin-bottom: 0;
+		margin-top: 0;
+		font-weight: 400;
+	}
+	.jqx-datetimeinput{
+		width: 264px !important;
+		height: 25px !important;
+	}
+	.jqx-datetimeinput .jqx-rc-all-fresh{
+		width: 100% !important;
+		margin-top: 0 !important;
+		text-align: left ;
+		height: 25px !important ;
+		background: none !important;
+	}
+	.jqx-datetimeinput .jqx-action-button	{
+		width: 35px !important;
+		left: 238px !important;
+		border-left: none;
+		background: none !important;
+		box-shadow: none;
+	}
+	.step-btn {
+		background-color: #ffffff !important;
+	}
+	#issue_form table tr td:first-of-type{
+		width: 150px;
+	}
+	
+	#issue_form table tr td .dropselect {
+		width: 356px !important;
+		border: none;
+		border-bottom: 2px solid #ccc;
+		box-shadow: none;
+		background: none !important;
+		border-radius: 1px;
+	}
+	#content4{
+		width: 514px;
+	}
+	div#submit-proceed-box{
+		margin-top: 20px;
+	}
+	#issue_form div#issue-contacts div.issue-contact{
+		height: 50px;
+	}
+	#issue-contacts div.issue-contact > span{
+		width: 470px;
+	}
+	#issue-contacts div.issue-contact button{
+		top: 29px;
+	
+	}
+	/* .jqx-widget-content-fresh{
+		background:none !important;
+	} */
+	.step-number {
+		font-size: 18px;   
+		color: #000;
+	}
+	
+	.box {
+		width: 286px;
+		min-height: 184px;
+		max-height: 300px; /* Set a maximum height */
+		overflow-y: auto; /* Allows scrolling if content exceeds max height */
+		background-color: white;
+		border: 1px solid #d4d6dd;
+		border-radius: 10px;
+		padding: 20px;
+		margin-left:-13px;
+		margin-top: -38px;
+		
+		 }
+		 .box1 {
+			width: 286px;
+			height: 184px; /* Set a fixed height */
+			overflow-y: auto; /* Adds a scroll bar if content exceeds the fixed height */
+			background-color: white;
+			border: 1px solid #d4d6dd;
+			border-radius: 10px;
+			padding: 20px;
+			margin-left: -13px;
+			margin-top: 17px;
+			white-space: normal; /* Allows text to wrap to the next line */
+			word-wrap: break-word; /* Ensures long words break properly */
+		}
+		 .event-report-header {
+		font-size: 20px; /* Heading size */
+		font-weight: bold; /* Make the title bold */
+		color:  black; /* Blue color for the text */
+		margin: 0; /* Remove margin to fit well with the hr */
+		padding: 0; /* Remove padding to fit well with the hr */
+		
+	}
+	
+	hr {
+		/* border: 1px solid #d4d6dd;  */
+		margin: 10px 0; 
+	}
+	#selectedEventReport >  div{
+		margin-bottom: 10px;
+	}
+	#selectedRiskDescription > div{
+		margin-bottom: 10px;
+	}
+	#selectedRiskValue > div {
+			margin-bottom: 10px; 
+		}	
+	.header{
+		width: 114%;
+	}
+	div.site > div.page {
+		display: flex;
+		width: 113%;
+	}
+	#record-module-info{
+		background-color: white;
+	}
+	
+	
+	</style>} 
+	
+	<!-- <script>
+	function myFunction() {
+	document.getElementById('inputxfd_event_date').value= Date();
+	}
+	</script> -->
+	
+	
+	<div class="steps">
+		<div class="steps-container">
+		<div class="step-position1">
+			<div class="step-btn" id="btn1" onclick="cargoClaimStep(1)" data-step="1" style=" background-color:  rgb(255, 255, 255) "><span class="step-number">01</span></div>
+			<div class="btn-text"><span>Step 1</span> Event report</div>
+			<div class="line1"></div>
+		</div>
+		
+		<!--<div class="step-position2"> 
+			<div class="step-btn" id="btn2" onclick="showStep(2)">2</div>
+			<div class="btn-text">Involved Parties</div>
+			<div class="line2"></div>
+		</div>-->
+		<div class="step-position2">
+			<div class="step-btn" id="btn2" onclick="cargoClaimStep(2)" data-step="2"><span class="step-number">02</span></div>
+			<div class="btn-text"><span>Step 2</span> Event Risk Description</div>
+			<div class="line2"></div>
+		</div>
+		<div class="step-position3">
+			<div class="step-btn" id="btn3" onclick="cargoClaimStep(3)" data-step="3"><span class="step-number">03</span></div>
+			<div class="btn-text"><span>Step 3</span> Risk assessement</div>
+			<div class="line4"></div>
+		</div>
+		
+		  <div class="step-position4">
+			<div class="step-btn" id="btn4" onclick="cargoClaimStep(4)" data-step="4"><span class="step-number">04</span></div>
+			<div class="btn-text"><span>Step 4</span> Submit</div>
+			
+		</div>
+		  
+		</div>
+	
+	</div>
+	
+	
+	<div id='issue_submit' style="background-color: #fff;"   class='zone jqx-rc-all'><form action="?action=form" autocomplete="off" enctype="multipart/form-data" id="issue_form" name="issue_form" method="post">{#use:form:
+	{!Left column}
+	
+	 
+	<div id="content1" class="content">
+		<div id="step-1-info">
+			<table style="margin-bottom: 8px;">
+				<tr{#if:event_date.display.req: class=''}>
+		   <td colspan="2"><h5 style="margin: 0; margin-bottom: 15px;">Event Date &amp; Time: <span style="color: red;">*</span></h5></td> 
+	</tr>
+			  
+	<tr>
+		<td>
+			{#use:event_date:<div id='e_date' style="text-align: left; background: none !important; border-radius: 0px; padding: 0px 0; margin-bottom: 5px; border: none; border-bottom: 2px solid #ccc; width: 150px;" name='{name}' data-value='{#if:value:{value}~date("Y/m/d")~}' class='calendar left' onchange="updateEventDate()"></div>}
+		</td>
+		<td>
+			{#use:event_time:<input value='' style="margin-left: -60px; height: 22px; width: 63px;" type="text" id='e_time' name='{name}' data-value='{value}' class='theclock whitebg skipcheck jqx-rc-all jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} onchange="updateEventTime()" />}
+		</td>
+	</tr>
+			  <tr><td><br/></td></tr>
+				{#use:title:
+	<tr{#if:display.req: class='required'}>
+		<td colspan="2" style="background-color: #fff;"><h5 for='{id}' style="margin: 0; margin-bottom: 6px;">{display.label}:<span class="mandatory-field">*</span></h5></td> 
+	</tr>
+	<tr>
+		<td>
+			<input style="width:363px;" type='text' id='title_event' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} onkeyup="updateTitle(this)"/>
+			<!-- <span id="titleError" class="error-message" style="color:red;"></span> -->
+			<span id="titleError" class="error-message" style="color:red; display:none;">This field is required</span>
+		</td>
+		<td></td> 
+	</tr>
+	}
+	
+			  <tr><td><br/></td></tr>
+			  {#if:%CFG.issue_submit.groups:
+				{#use:group:
+					<tr{#if:display.req: class='required'}>
+						<td colspan="2" style="background-color: #fff;"><h5 style="margin: 0; margin-bottom: 15px;">Category:<span class="mandatory-field">*</span></h5></td> 
+					</tr>
+					<tr>
+						<td>
+							<div id='{id}_combo' style="text-align: left; background: none !important; border-radius: 0px; padding: 0px 0; margin-bottom: 5px; border: none; border-bottom: 2px solid #ccc;" onchange="updateCategoryEvent(this)"></div><input type='hidden' id='{id}' name='{name}' value='{value}' />
+						<span id="groupError" class="error-message" style="color:red; display:none;">This field is required</span>
+						</td>
+						<td></td> 
+					</tr>
+				}
+			}
+			
+					  <tr><td><br/></td></tr>
+				
+					<!-- {#use:event_result:
+	<tr{#if:display.req: class='required'}>
+		<td colspan="2"><h5 for='{id}'style="margin: 0; margin-bottom: 15px;" >{display.label}:</h5></td>
+	</tr>
+	<tr>
+		<td>
+			<select id="event_result" class="dropselect multi-select" data-name='{name}'data-width="180" data-dwidth="274" data-dheight="274" data-dalign="left" data-filterable="1" id='{id}' onchange="updateDisplay()">
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'} >{display}</option>}
+			</select>
+		</td>
+		<td></td> 
+	</tr>
+	} -->
+	 <!-- {#use:event_result:
+		<tr{#if:display.req: class='required'}>
+			<td colspan="2" style="background-color: #fff;"><h5 for='{id}' style="margin: 0; margin-bottom: 15px;">{display.label}:</h5></td>
+		</tr>
+		<tr>
+			<td>
+				
+				<select id='dropdownlistContentissue_group_combo' class="dropselect multi-select" data-name='{name}' data-width="180" data-dwidth="274" data-dheight="274" data-dalign="left" data-filterable="1" onchange="copyttltoval()">
+					{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+				</select>
+			</td>
+			<td></td> 
+		</tr>
+		} -->
+
+		{#use:event_result:
+			<tr {#if:display.req: class='required'} >
+			  <td colspan="2" style="background-color: #fff;">
+				<h5 for='{id}' style="margin: 0; margin-bottom: 15px;">{display.label}:<span style="color: red;">*</span></h5>
+			  </td>
+			</tr>
+			<tr>
+			  <td colspan="2">
+				<div id="dropdownlistContentissue_group_combo_event" style="display: flex; flex-wrap: wrap; gap: 10px;">
+				  {#repeat:options:
+					<label style="display: flex; align-items: center; gap: 4px;">
+					  <!--<input type="checkbox" name="{name}" value="{value}" {#if:active: checked="checked"} onchange="copyttltoval()" />-->
+					  <input type="checkbox" name="{name}" value="{value}" {#if:active: checked="checked"} onchange="copyeventtoval()" />
+					  {display}
+					</label>
+				  }
+				</div>
+				<!--<input type="hidden" id="category_event" name="{name}" value="{value}" />-->
+				<input type="hidden" id="event_result" name="xfd[event_result]" value="" />
+			  </td>
+			</tr>
+		  }
+		  
+	
+			  <tr><td><br/></td></tr>
+			 
+			  {#use:inc_type:
+                          
+                          
+                          <tr {#if:display.req: class='required'} >
+                              <td colspan="2" style="background-color: #fff;"><h5 for='{id}' style="margin: 0; margin-bottom: 15px;">{display.label}:</h5></td>
+                          </tr>
+                          <tr>
+                              <td>
+
+                                  <select id='dropdownlistContentissuecombo2' class="dropselect multi-select" data-name='{name}' data-width="180" data-dwidth="274" data-dheight="274" data-dalign="left" data-filterable="1" >
+                                      {#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+                                  </select>
+                              </td>
+                              <td></td> 
+                          </tr>
+                
+                
+                
+<!--				<tr{#if:display.req: class=''}>
+					<td colspan="2" style="background-color: #fff;">
+						<h5 for='{id}' style="margin: 0; margin-bottom: 10px;">{display.label}:</h5>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					
+						<select id='dropdownlistContentissuecombo2' class="dropselect multi-select" data-name='{name}' data-width="180" data-dwidth="274" data-dheight="300" data-dalign="left" data-filterable="1" >
+							{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+						</select>
+					</td>
+					<td></td> 
+				</tr>-->
+				} 
+
+				<tr><td><br/></td></tr>
+	  
+	
+				
+				<!-- {#use:station:
+	<tr{#if:display.req: class='required'}>
+		<td colspan="2"><h5 style="margin: 0; margin-bottom: 15px;" >{display.label}:</h5></td> 
+	</tr>
+	<tr>
+		<td>
+			<div data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox'></div>
+			<input type='hidden' id='{id}' name='{name}' value='{value}' />
+			{#use:station_text:<input type='hidden' id='station' name='{name}' value='{value}' />}
+		</td>
+		<td></td> 
+	</tr>
+	} -->
+	{#use:station:
+		<tr{#if:display.req: class='required'}>
+			<td colspan="2" style="background-color: #fff;"><h5 style="margin: 0; margin-bottom: 6px;">{display.label}:</h5></td> 
+		</tr>
+		<tr>
+			<td>
+				<input type="text" data-id='#{id}' data-sourceurl='?action=suggest_airport' class='searchbox' onkeyup="updateStationEvent(this)" />
+				<input type='hidden' id='{id}' name='{name}' value='{value}' />
+				{#use:station_text:<input type='hidden' id='station' name='{name}' value='{value}' />}
+			</td>
+			<td></td> 
+		</tr>
+	}
+	
+	
+				
+				 
+					
+					
+	
+				<!--{#use:event_theory:<tr>
+					<th><label>{display.label}:</label></th>
+					<td>{#repeat:options:<label style='display: block; width: 120px; float: left; margin-top: -3px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}</td>
+				</tr>}
+				{#use:event_result:<tr{#if:display.req: class='required'}>
+				<th><label>{display.label}:</label></th>
+					<td>
+						{#repeat:options:<label style='display: block; width: 120px; float: left; height: 22px;'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+					</td>
+				</tr>}
+				{#use:inc_type:<tr{#if:display.req: class='required'}>
+					<th><label for='{id}'>{display.label}:</label></th>
+					<td><select class="dropselect multi-select" data-name='{name}' data-width="180" data-dwidth="210" data-dheight="296" data-dalign="left" data-filterable="1" id='{id}'>
+						{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+					</select></td>
+				</tr>}
+			<tr><td colspan="2"><hr /></td>
+				{#use:event_loc:<tr{#if:display.req: class='required'}>
+					<th><label>{display.label}:</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+				</tr>}-->
+				
+				<!--{#use:x_cust:<tr{#if:display.req: class='required'}>
+					<th><label for='{id}'>{display.label}:</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+				</tr>}
+				{#use:frisk:<tr{#if:display.req: class='required'}>
+					<th><label for='{id}'>{display.label}</label></th>
+					<td><input type='text' id='{id}' name='{name}' value='{value}' class='left skipcheck jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style='height: auto;' />}
+						{#use:frisk_curr:<select id='{id}' name='{name}' style='float: left; margin-left: 5px; width: 80px; font-family: monospace; height: 24px;' class='currency_select_secondary whitebg skipcheck jqx-input jqx-input-{%jqxtheme}'>
+							<option value='' selected='selected' hidden='hidden'>Select:</option>
+							{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+							}
+						</select>}
+					</td>
+				</tr>-->
+			  <tr><td><br/></td></tr>
+			{!	{#use:code_iso2:<tr{#if:display.req: class='required'}>
+					<td><h5 style="margin: 0; margin-bottom: 15px;">{display.label}:</h5></td>
+					<td><select id='{id}' name='{name}' class="left dropselect" data-name='{name}' data-width="110" data-dwidth="110" data-dheight="290" data-filterable="1">
+						<option value=''><span>--</span></option>
+						{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+					</select></td>
+				</tr>}}
+			<tr><td colspan="2"></td></tr>
+				  {#use:cargo_event:<tr {#if:display.req} class='required'{/if}>
+		  <td colspan="2" style="background-color: #fff;">
+			  <h5 style="margin: 0; margin-bottom: 15px;">Cargo related event:</h5> 
+		  </td>
+	  </tr>
+	  <tr>
+		  <td colspan="2"> 
+			  <div style="display: inline-block; width: 20%;border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin-right: 10px;">
+				  <label style='display: block;'>
+					  <input name="{name}" value="{options.0.value}" checked="checked" {#if:options.0.active} type="radio" onClick='$("#area-cargo-event").hide(); $(".hint-cargo").show();updateCargoEvent(this)'> 
+					  {options.0.display}
+				  </label>
+			  </div>
+
+			  <div style="display: inline-block;width: 20%; border: 1px solid #ccc; border-radius: 8px; padding: 10px;">
+				  <label style='display: block;'>
+					  <input name="{name}" value="{options.1.value}"  type="radio" onClick='$("#area-cargo-event").show(); $(".hint-cargo").hide();updateCargoEvent(this)'> 
+					  {options.1.display}
+				  </label>
+			  </div>
+		  </td>
+	  </tr>}
+
+				<tr class="hint-cargo"><td colspan="2" class="gray" style="font-size: 80%;">* When selecting Yes, more fields related to cargo will appear</td></tr>
+			</table>
+			<input type="hidden" id="eventDateHiddenInput" name="event_date" value="">
+			<input type="hidden" id="eventTimeHiddenInput" name="event_time" value="">
+			<input type="hidden" id="eventTitleHiddenInput" name="title" value="">
+			<input type="hidden" id="selectedCargoEvent" name="cargo_event" value="">
+			<input type='hidden' id='category_event' name='group' value='{value}' />
+			<input type='hidden' id='category_event_aspects' name='group'value='{value}'/>
+			<input type='hidden' id='category_station' name='group' value='{value}' />
+			<input type='hidden' id='category_event_result' name='group' value='' />
+			
+	
+			<div id="area-cargo-event" style="display: none;">
+				<!-- <h4 style="background-image: url('/img/icons16/ist/ulddr.png'); background-repeat: no-repeat; background-position: 4px;">Incident and Shipment: <span style="font-weight: normal;">(for Cargo-related events)</span></h4> -->
+				<table style="margin-bottom: 8px;">
+					<tr{#if:ci_pieces.display.req: class='required'}>
+						<td><h5 class="info-tip" data-tooltip="Only the number of pieces and the weight involved in the incident,<br />not the amounts for the entire shipment !">Involved:</h5></td>
+						<td>
+							{#use:ci_pieces: Pieces <input style="width:80px;" maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> }
+							{#use:ci_weight: Kg <input style="width:80px;" maxlength="6" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} only-numbers tiny{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /> }
+						</td>
+					</tr>
+					<tr{#if:mawb_p.display.req: class='required'}>
+						<td><h5 class="info-tip" data-tooltip="You can Copy/Paste MAWB in the yellow prefix box, it will auto-fill the complete number" for='{mawb_p.id}'><img src="/img/icons16/question.png" style="vertical-align: middle;" /> {mawb_p.display.label}:</h5></td>
+						<td>
+							<input class="center jqx-rc-all jqx-input jqx-input-{%jqxtheme} only-numbers auto-move" data-automove_len="3" data-automove_to="{mawb_s.id}" 
+								type='text' id='{mawb_p.id}' name='{mawb_p.name}' value='{mawb_p.value}' maxlength="3" style='width: 70px; background-color: yellow;'{#if:mawb_p.display.error: class='field_error' data-tooltip='{mawb_p.display.error}'} /> - 
+							<input class="center jqx-rc-all jqx-input whitebg jqx-input-{%jqxtheme} only-numbers" type='text' id='{mawb_s.id}' name='{mawb_s.name}' value='{mawb_s.value}' maxlength="8" style='width: 140px; padding-left: 3px; text-align: left;'{#if:mawb_s.display.error: class='field_error' data-tooltip='{mawb_s.display.error}'} />
+						</td>
+					</tr>
+				  {#use:sea_waybill_evnt:<tr{#if:display.req: class='required'}>
+						<td><h5 for='{id}'>{display.label}:</h5></td>
+						<td><input style="width: 363px; box-sizing: content-box;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+					</tr>}
+				  
+				  
+					{#use:x_shpm_no:<tr{#if:display.req: class='required'}>
+						<td><h5 for='{id}'>{display.label}:</h5></td>
+						<td><input style="width: 363px; box-sizing: content-box;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+					</tr>}
+				  
+			  </table>
+			  <hr>
+			  <table style="margin-bottom: 8px;">
+					{#use:com_type:<tr{#if:display.req: class='required'}>
+						<td><h5 for='{id}'>{display.label}:</h5></td>
+						<td>
+							<select class="dropselect multi-select" data-name='{name}' data-width="180" data-dwidth="274" data-dheight="274" data-dalign="left" data-filterable="1" id='{id}'>
+								{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+							</select>
+						</td>
+					</tr>}
+					{#use:irr_code:<tr{#if:display.req: class='required'}>
+						<td><h5 for='{id}' >{display.label}:</h5></td>
+						<td style="padding-top: 8px;"><select class="dropselect multi-select" data-name='{name}' data-width="180" data-dwidth="210" data-dheight="296" data-dalign="left" data-filterable="1" id='{id}'>
+							{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+						</select></td>
+					</tr>}
+					<tr{#if:x_incident_occ.display.req: class='required'}>
+						<td><h5>{x_incident_occ.display.label}:<h5></td>
+						<td>
+							{#use:x_incident_occ:<select class="dropselect multi-select left" data-name='{name}' data-width="180" data-dwidth="180" data-dheight="196" data-dalign="left" data-filterable="1" id='{id}'>
+								{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+							</select>}
+							<!--Other? field hidding by raoul requirement-->
+							<!--{#use:x_incident_oth:<input style='width: 172px; margin-left: 7px; height: 27px; box-sizing: border-box;' type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all left whitebg jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} placeholder="(other?)" />}-->
+						</td>
+					</tr>
+						  
+					  </table>
+				<hr>
+				<table style="margin-bottom: 8px;">
+			<tr><td colspan="2"> </td></tr>
+					{#use:x_impexp:<tr{#if:display.req: class='required'}>
+					<td><h5>{display.label}:</h5></td>
+						<td>
+							{#repeat:options:<label style='display: block; width: 120px; float: left; height: 22px;'><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}> {display}</label>}
+						</td>
+					</tr>}
+				  
+				  {#use:evnt_trans_type:<tr{#if:display.req: class='required'}>
+						<td><h5 for='{id}' >{display.label}:</h5></td>
+						<td style="padding-top: 8px;"><select class="dropselect" data-name='{name}' data-width="180" data-dwidth="210" data-dheight="296" data-dalign="left" data-filterable="1" id='{id}'>
+						<option value='' selected='selected' hidden='hidden'>Select:</option>	
+						  {#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+						</select></td>
+					</tr>}
+				  
+					{#use:x_ctfnr:<tr{#if:display.req: class='required'}>
+						<td><h5 for='{id}'>{display.label}:</h5></td>
+						<td><input style="width: 363px; box-sizing: content-box;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme}{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} /></td>
+					</tr>}
+					
+					<tr{#if:x_orig.display.req: class='required'}>
+						<td><h5>{x_orig.display.label}:</h5></td>
+						<td>
+							{#use:x_orig: <input type='text' style="width: 363px; box-sizing: content-box;" id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+							 </td>
+					</tr>
+				  <tr{#if:x_dest.display.req: class='required'}>
+						<td><h5>{x_dest.display.label}:</h5></td>
+						<td>
+								 {#use:x_dest:<input type='text' style="width: 363px; box-sizing: content-box;" id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} short{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}
+						</td>
+					</tr>
+					<!--Praneeth changes start -->
+						<!--Praneeth changes end -->
+				</table>
+			</div>
+		
+	<!--<h4 style="margin-top: 8px; background-image: url('/img/icons16/ist/ulddr.png'); background-repeat: no-repeat; background-position: 4px;">Incident and Shipment <span style="font-weight: lighter;">(for Cargo-related events)</span></h4>
+	<table style="margin-bottom: 8px;">
+	{#use:irr_code:<tr{#if:display.req: class='required'}>
+			<th><label for='{id}'  style="padding: 56px;">{display.label}:</label></th>
+			<td><select class="dropselect multi-select" data-name='{name}' data-width="180" data-dwidth="210" data-dheight="296" data-dalign="left" data-filterable="1" id='{id}'>
+				{#repeat:options:<option value='{value}'{#if:active: data-checked='1'}>{display}</option>}
+			</select></td>
+	</tr>}
+	</table>-->
+			<div class="prv-next-btns">
+				<div class=""></div>
+			<div id="next-btn"onclick="cargoClaimStep(2)">next</div>
+			</div>
+			<div class='required d-none' style='text-align: center; margin-top: 10px;'><span style='padding: 7px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> <!--(You must fill the data marked with this color in order to submit)-->Fields marked with the blue background are mandatory</span></div>
+		</div>
+	</div>
+	
+	<div id="content2" class="content">
+	
+	   {#use:event_loc:<tr{#if:display.req: class='required'}>
+				<td><h5>{display.label}:</h5></td>
+				<td><input style="width:514px; height: 25px;background: none !important;border-radius: 1px;border: none;border-bottom: 1px solid #ccc;" type='text' id='e_location' name='{name}' value='{value}' class='whitebg jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} onkeyup="updateEventLocationValue(this)"/></td>
+			</tr>}
+			
+			{#use:event_descr:<div{#if:display.req: class='required'} style="background-color: #fff;">
+		<h5 style="margin-left:0; margin-top:10px; padding-bottom: 5px; margin-bottom: 16px;">What happened ? <span class="mandatory-field">*</span></h5>
+	   <tr><td colspan="1" style="height: 10px;"></td></tr>
+	  <textarea rows="9" id='w_happen' name='{name}' class='whitebg jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: vertical; border-width: 1px;height:94px; width:514px;border-radius: 8px;" placeholder="(Describe the event)" onkeyup="updateWhatHappened(this)">{value}</textarea>
+	  <span id="wHappenError" class="error-message" style="color:red; display:none;">This field is required</span>
+	</div>}
+	
+		 <input type="hidden" id="eventLocationHiddenInput" name="event_loc" value=""> 
+		 <input type="hidden" id="eventDescriptionHiddenInput" name="event_descr" value=""> 
+		 <input type="hidden" id="recoveryDescriptionHiddenInput" name="recov_descr" value=""> 
+	
+	<table>
+	  
+			<tr><td><br /><br /></td></tr>
+			
+	{#use:recov_descr:<tr{#if:display.req: class='required'}>
+	<!--<th><label>Recovery actions</label></th>-->
+				<td colspan='2'>
+		<textarea rows="9" id='r_descr' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: vertical; border-width: 1px; width: 514px;height:94px;border-radius: 8px;background-color: white;" placeholder="(What was done to minimize damage or risk and by who?)" onkeyup="updateRecoveryDescrip(this)">{value}</textarea>
+		</td>
+			</tr>}
+	<!--
+	{#use:event_descr:<div{#if:display.req: class='required'}>
+		<h5>What happened ?</h5>
+		<textarea rows="7" id='{id}' name='{name}' class='whitebg jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: vertical; border-width: 1px; width: 542px;" placeholder="(Describe the event)">{value}</textarea>
+	</div>}
+	-->
+	<!--
+	{#use:risk_class:<div{#if:display.req: class='required'}>
+		<h5>{display.label}:</h5>
+		{#repeat:options:<label style='display: block; width: 137px; float: left; height: 24px;'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+	<div class='clear'></div></div>}
+	
+	{#use:impact:<div{#if:display.req: class='required'}>
+		<h5>Impact description:</h5>
+		<textarea rows="7" id='{id}' name='{name}' class='whitebg jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: vertical; border-width: 1px; width: 542px; margin-bottom: 16px;" placeholder="(What and who might be affected by the event)">{value}</textarea>
+	</div>}
+	-->
+	<tr><td colspan="2"><!--<hr />--></td>
+	{!	{#use:recov_pers:
+		<h5>Recovery done by</h5>
+		<input style="margin-right: 8px; height: 22px;" type='text' id='{id}' name='{name}' value='{value}' class='jqx-rc-all jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />
+	}	</td>
+			</tr>}
+	
+	{!<input style="margin: 8px 0px 8px 180px;" type="button" value="Click me for instructions" data-action="open-window" data-window="750,520,Event severity" data-template='severity' />}
+	
+	<!--<div class='required' style='text-align: center; margin-top: 10px;'><span style='padding: 7px; border: 1px solid red; display: block;'><span class='req_bullet'>&nbsp;</span> (You must fill the data marked with this color in order to submit)</span></div>	-->
+	</table>
+	
+	{!Right column}
+	
+	
+	
+	<!--
+	<h4 class="info-tip info-click" data-tooltip="Action to eliminate a detected nonconformity (so basically damage control / an on-the-spot reaction)" style="background-image: url('/img/icons16/question.png'); background-repeat: no-repeat; background-position: 4px;">Recovery actions</h4>
+	
+	{#use:recov_descr:
+		<textarea rows="9" id='{id}' name='{name}' class='jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: vertical; border-width: 1px; width: 542px;" placeholder="(What was done to minimize damage or risk and by who?)">{value}</textarea>
+	}
+	
+	-->
+	<!--Praneeth -->
+	<div class="prv-next-btns">
+	<div id="next-btn"onclick="cargoClaimPreviousStep(2)">Previous</div>
+	<div id="next-btn" onclick="cargoClaimStep(3)">Next</div>
+	</div>
+	<div class='required d-none' style='text-align: center; margin-top: 50px;'><span style='padding: 7px; border: 1px solid red; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+	
+	</div>
+	
+	<div id="content3" class="content">
+		<!--<h4 style="background-image: url('/img/icons16/balance_unbalance.png'); background-repeat: no-repeat; background-position: 4px; margin-top: 0px;">Risk assessement</h4>-->
+	
+		<h5>How severe is the outcome of the event that occured? </h5>
+		
+	   
+	<!-- {#use:severity:
+	<div{#if:display.req: class='required'}>
+		<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;">
+			<tr>
+				<td style="width: 20%;">
+					<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;"> 
+						<label style="display: flex; align-items: center;">
+							<input name='{name}' type='radio' value='{options.0.value}'{#if:options.0.active: checked='checked'} style="margin-right: 8px;"> 
+							{options.0.display}
+						</label>
+					</div>
+				</td>
+				{! onClick='$(".inv_cb").prop("checked", false); $("#inv_req_0").prop("checked", true);' ... /0/1/2/2}
+				<td style="width: 20%;">
+					<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;"> 
+						<label style="display: flex; align-items: center;">
+							<input name='{name}' type='radio' value='{options.1.value}'{#if:options.1.active: checked='checked'} style="margin-right: 8px;"> 
+							{options.1.display}
+						</label>
+					</div>
+				</td>
+				<td style="width: 20%;">
+					<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;"> 
+						<label style="display: flex; align-items: center;">
+							<input name='{name}' type='radio' value='{options.2.value}'{#if:options.2.active: checked='checked'} style="margin-right: 8px;"> 
+							{options.2.display}
+						</label>
+					</div>
+				</td>
+				<td style="width: 20%;">
+					<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;"> 
+						<label style="display: flex; align-items: center;">
+							<input name='{name}' type='radio' value='{options.3.value}'{#if:options.3.active: checked='checked'} style="margin-right: 8px;"> 
+							{options.3.display}
+						</label>
+					</div>
+				</td>
+				<td style="width: 20%;">
+					<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;"> 
+						<label style="display: flex; align-items: center;">
+							<input name='{name}' type='radio' value='{options.4.value}'{#if:options.4.active: checked='checked'} style="margin-right: 8px;"> 
+							{options.4.display}
+						</label>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>} -->
+	{#use:severity:
+		<div {#if:display.req: class='required'} style="background-color: white;">
+			<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;">
+				<tr>
+                                    <!--IWI Risk calculation matrix calculation should be the same when adding a new record in the quality event start-->
+<!--					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.0.value}'{#if:options.0.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.0.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.1.value}'{#if:options.1.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.1.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.2.value}' checked='checked' {#if:options.2.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.2.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.3.value}'{#if:options.3.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.3.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.4.value}'{#if:options.4.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.4.display}
+							</label>
+						</div>
+					</td>-->
+                                        <td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.0.value}' {#if:%CFG.matrix_val.default_severity=={options.0.value}:  checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.0.display}</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.1.value}'  {#if:%CFG.matrix_val.default_severity=={options.1.value}: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.1.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.2.value}' checked='checked' {#if:%CFG.matrix_val.default_severity=={options.2.value}: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.2.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.3.value}' {#if:%CFG.matrix_val.default_severity=={options.3.value}: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.3.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.4.value}' {#if:%CFG.matrix_val.default_severity=={options.4.value}: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.4.display}
+							</label>
+						</div>
+					</td>
+                                        <!--IWI Risk calculation matrix calculation should be the same when adding a new record in the quality event end-->
+				</tr>
+			</table>
+		</div>
+		}
+	
+		<h5 style="margin-top: 20px;">What is the chance that the same event could happen again?</h5>
+		 <!-- {#use:probability:
+		   <div{#if:display.req: class='required'}>
+				<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;">
+					<tr>
+						{#repeat:options:	
+                                            
+						<td style="width: 20%;"> 
+							<div style="border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin-right: 10px; display: inline-block;">
+								<label style="display: flex; align-items: center;">
+									<input name='{^name}' type='radio' value='{value}' {#if:%CFG.matrix_val.default_probability=={value}:  checked='checked'}  style="margin-right: 8px;"onchange="updateProbabilityValue(this)">		
+									{display}
+								</label>
+							</div>
+						</td>
+                                                
+                                                 }
+					</tr>
+				</table>
+			</div>
+		  } -->
+
+		  {#use:probability:
+		   <!-- <div{#if:display.req: class='required'}>
+				<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;">
+					<tr>
+						{#repeat:options:	
+						<td style="width: 20%;">
+							<div style="border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin-right: 10px; display: inline-block;">
+								<label style="display: flex; align-items: center;">
+									<input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'} style="margin-right: 8px;"onchange="updateProbabilityValue(this)">		
+									{display}
+								</label>
+							</div>
+						</td>}
+					</tr>
+				</table>
+			</div> -->
+			<div {#if:display.req: class='required'} style="background-color: white;">
+			<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;">
+				<tr>
+                                    <!--IWI Risk calculation matrix calculation should be the same when adding a new record in the quality event start-->
+                                    
+                                    <!-- <td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.0.value}' {#if:%CFG.matrix_val.default_probability=={options.0.value}:  checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.0.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.1.value}'  {#if:%CFG.matrix_val.default_probability=={options.1.value}:  checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.1.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.2.value}' {#if:%CFG.matrix_val.default_probability=={options.2.value}:  checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.2.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.3.value}' {#if:%CFG.matrix_val.default_probability=={options.3.value}:  checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.3.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.4.value}' {#if:%CFG.matrix_val.default_probability=={options.4.value}:  checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.4.display}
+							</label>
+						</div>
+					</td> -->
+
+
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.0.value}'{#if:options.0.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.0.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.1.value}'  {#if:options.1.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.1.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.2.value}' {#if:options.2.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.2.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.3.value}' {#if:options.3.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.3.display}
+							</label>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin: 5px; display: flex; align-items: center;">
+							<label style="display: flex; align-items: center;">
+								<input name='{name}' type='radio' value='{options.4.value}'{#if:options.4.active: checked='checked'} style="margin-right: 8px;" onchange="updateRadioValue(this)">
+								{options.4.display}
+							</label>
+						</div>
+					</td>
+                                        
+                                        
+                                        <!--IWI Risk calculation matrix calculation should be the same when adding a new record in the quality event end-->
+				</tr>
+			</table>
+		</div>
+		}
+	<hr> 
+	  
+		<table>		
+			{#use:event_theory:
+				<div>
+					<h5 style="margin: 0; margin-bottom: 15px;">{display.label}: <span style="color: red;">*</span></h5>
+			
+					<div>
+						{#repeat:options:
+						<div style="border: 1px solid #ccc; border-radius: 8px; padding: 10px; display: inline-block; margin-right: 10px; margin-bottom: 5px; width: 150px;">
+							<label style='display: block;'>
+								<input name='{^name}' type='radio' value='{value}' {#if:active: checked='checked'} onchange="updateEventTheory(this)">
+								{display}
+							</label>
+						</div>
+						}
+					</div>
+					<div id="eventTheoryError" style="display: none; color: red;">Please select an event theory.</div>
+					
+				</div>
+				}
+			   
+				<input type="hidden" id="severityHiddenInput" name="severity" value="">
+				<input type="hidden" id="probabilityHiddenInput" name="probability" value="">
+			   <input type="hidden" id="selectedevent" name="event_theory" value="">
+			   <input type="hidden" id="selectedBusiness" name="event_theory" value="">
+	
+		  <hr>
+	
+			
+		<tr><td colspan="2" style="background-color: white;"><br/><br/></td></tr> 
+		 {#use:frisk:
+		  <tr {#if:display.req} class='required'{/if}>
+			  <td colspan="2" style="background-color: white;" >
+				  <h5 style="margin: 0; margin-bottom: 15px;" for='{id}'>{display.label}:</h5>
+			  </td>
+		  </tr>
+		 <!--
+		  <tr>
+			  <td colspan="2">
+				  <input type='text' id='r_num' name='{name}' value='{value}' class='left skipcheck jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}' {#if:display.error} data-tooltip='{display.error}' {/if} style='height: auto;' onchange="updateDisplay()" />
+	
+				  {#use:frisk_curr:<select id='{id}' name='{name}' style='float: left; margin-left: 5px; width: 80px; font-family: monospace; height: 24px;' class='currency_select_secondary whitebg skipcheck jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>}
+				  
+			  </td>
+		  </tr>
+		  } -->
+		  <tr> 
+			<td colspan="2" style="background-color: white;">
+				<input type='text' id='r_num' name='{name}' value='{value}' class='left skipcheck jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}' {#if:display.error} data-tooltip='{display.error}' {/if} style='height: auto;' onchange="updateDisplay()" />
+				<!-- {#use:frisk_curr:<select id='{id}' name='{name}' style='float: left; margin-left: 5px; width: 80px; font-family: monospace; height: 24px;' class='currency_select_secondary whitebg skipcheck jqx-input jqx-input-{%jqxtheme}'>
+					<option value='' selected='selected' hidden='hidden'>Select:</option>
+					{#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+					}
+				</select>} -->
+				{#use:frisk_curr:
+					<select id='{id}' name='{name}' style='float: left; margin-left: 5px; width: 80px; font-family: monospace; height: 24px;' class='currency_select_secondary whitebg skipcheck jqx-input jqx-input-{%jqxtheme}' onchange="updateDisplayRisk()">
+						<option value='' selected='selected' hidden='hidden'>Select:</option>
+						{#repeat:options:
+						<option value='{value}'{#if:active: selected='selected'}>{display}</option>
+						}
+					</select>}
+			</td>
+			</tr>
+			<input type="hidden" id="rNumHiddenInput" name="r_number" value="">
+			<input type="hidden" id="currencyHiddenInput" name="currency" value="">
+		  
+		  <tr><td colspan="2"><br/><br/></td></tr>
+			{#use:cus_sup:
+		   <tr>
+			<td colspan="2">
+				<h5 style="margin: 0; margin-bottom: 15px;">{display.label}:</h5>
+			</td>
+		   </tr>
+		<tr>
+			<td colspan="2">
+				{#repeat:options:
+				<!-- Outer box for each option -->
+				<div style="border: 1px solid #ccc; border-radius: 8px; padding: 10px; display: inline-block; margin-right: 10px; margin-bottom: 10px;">
+					<label style='display: block; width: 95px;'>
+						<input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'} onchange="updateBusinessTheory(this)"> 
+						{display}
+					</label>
+				</div>
+				}
+			</td>
+		</tr>
+	}
+	
+	
+		  <tr><td colspan="2"><br/><br/></td></tr>
+		   {#use:x_cust:
+			<tr {#if:display.req} class='required'{/if}>
+				<td colspan="2" style="background-color: white;">
+					<h5 for='{id}' style="margin: 0; margin-bottom: 10px;">{display.label}:</h5>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input style='width:302px;' type='text' id='{id}' name='{name}' val1ue='{value}' class='jqx-input jqx-input-{%jqxtheme} maxlen{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} onkeyup="updateCustomValue(this)" />
+				</td>
+			</tr>
+			}
+		<input type="hidden" id="customHiddenInput" name="x_cust" value="">
+			
+		</table>
+		{!<hr />
+		<table style="margin: 12px 0;">
+			<tr{#if:inv_done.display.req: class='required'}>
+				<th style="text-align: left;"><h5>{inv_done.display.label}:</h5></th>
+				<td>
+					{#use:inv_done.options.0:<label style="width: 116px; display: inline-block;"><input class='inv_cb' id="inv_req_0" name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}
+					{#use:inv_done.options.1:<label style="width: 116px; display: inline-block;"><input class='inv_cb' id="inv_req_1" name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}
+					{#use:inv_done.options.2:<label style="width: 116px; display: inline-block;"><input class='inv_cb' id="inv_req_2" name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}
+				</td>
+			</tr>
+		</table>}
+	
+	
+		{#use:impact:<div{#if:display.req: class='required'}>
+			<h5 style="margin-bottom: 15px;">Impact description:</h5>
+			<textarea rows="7" id='{id}' name='{name}' class='whitebg jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: vertical; border-width: 1px; width: 514px; margin-bottom: 16px;border-radius:5px;" placeholder="(What and who might be affected by the event)" onkeyup="updateImpactValue(this)">{value}</textarea>
+		</div>}
+		<input type="hidden" id="impactHiddenInput" name="impact" value="">
+	  
+		<!--{#use:risk_class:<div{#if:display.req: class='required'}>
+			<h5>{display.label}:</h5>
+			{#repeat:options:<label style='display: block; width: 137px; float: left; height: 24px;'><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}
+		<div class='clear'></div></div>}-->
+	
+		<!--{#use:impact:<div{#if:display.req: class='required'}>
+			<h5>Impact description:</h5>
+			<textarea rows="7" id='{id}' name='{name}' class='whitebg jqx-input jqx-input-{%jqxtheme} {#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} style="resize: vertical; border-width: 1px; width: 542px; margin-bottom: 16px;" placeholder="(What and who might be affected by the event)">{value}</textarea>
+		</div>}
+		-->
+		<!-- Praneeth changes end-->
+		<!--
+		<h4 style="background-image: url('/img/icons16/balance_unbalance.png'); background-repeat: no-repeat; background-position: 4px; margin-top: 20px;">Risk assessement</h4>
+	
+		<h5>How severe is the outcome of the event that occured?</h5>
+		{#use:severity:<div{#if:display.req: class='required'}>
+			<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;"><tr>
+				<td style="width: 20%;"><label><input name='{name}' type='radio' value='{options.0.value}'{#if:options.0.active: checked='checked'}><br />{options.0.display}</label></td>{! onClick='$(".inv_cb").prop("checked", false); $("#inv_req_0").prop("checked", true);' ... /0/1/2/2}
+				<td style="width: 20%;"><label><input name='{name}' type='radio' value='{options.1.value}'{#if:options.1.active: checked='checked'}><br />{options.1.display}</label></td>
+				<td style="width: 20%;"><label><input name='{name}' type='radio' value='{options.2.value}'{#if:options.2.active: checked='checked'}><br />{options.2.display}</label></td>
+				<td style="width: 20%;"><label><input name='{name}' type='radio' value='{options.3.value}'{#if:options.3.active: checked='checked'}><br />{options.3.display}</label></td>
+				<td style="width: 20%;"><label><input name='{name}' type='radio' value='{options.4.value}'{#if:options.4.active: checked='checked'}><br />{options.4.display}</label></td>
+			</tr></table>
+		</div>}
+	
+		<h5 style="margin-top: 20px;">What is the chance that the same event could happen again?</h5>
+		{#use:probability:<div{#if:display.req: class='required'}>
+			<table class="radiotable" style="text-align: center; margin: 8px 0 4px 0;"><tr>
+				{#repeat:options:<td style="width: 20%;"><label><input name='{^name}' type='radio' value='{value}'{#if:active: checked='checked'}><br />{display}</label></td> }
+			</tr></table>
+		</div>}
+		{!<hr />
+		<table style="margin: 12px 0;">
+			<tr{#if:inv_done.display.req: class='required'}>
+				<th style="text-align: left;"><h5>{inv_done.display.label}:</h5></th>
+				<td>
+					{#use:inv_done.options.0:<label style="width: 116px; display: inline-block;"><input class='inv_cb' id="inv_req_0" name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}
+					{#use:inv_done.options.1:<label style="width: 116px; display: inline-block;"><input class='inv_cb' id="inv_req_1" name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}
+					{#use:inv_done.options.2:<label style="width: 116px; display: inline-block;"><input class='inv_cb' id="inv_req_2" name='{name}' type='checkbox' disabled="disabled" value='1'{#if:active: checked='checked'}> {display}</label>}
+				</td>
+			</tr>
+		</table>}
+		-->
+		{!<h4>To be notified</h4>
+		<table class='dual_col_table' style="margin-bottom: 8px;">
+			<tr>
+				<td class='spacey' valign="top">{#use:copy_sent:
+					<h3 style='font-weight: bold;'>Internal:</h3>
+					{#repeat:options:<label><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}}
+				</td>
+				<td class='spacey' valign="top">{#use:rep_sent:
+					<h3 style='font-weight: bold;'>External:</h3>
+					{#repeat:options:<label><input name='{name}' type='checkbox' value='1'{#if:active: checked='checked'}> {display}</label>}}
+					{#use:rep_oth:<input type='text' id='{id}' name='{name}' value='{value}' style="margin-top: 6px;" class='jqx-input jqx-input-{%jqxtheme} long{#if:display.error: field_error}'{#if:display.error: data-tooltip='{display.error}'} />}	
+				</td>
+			</tr>
+		</table>}
+	  
+		 <div class="prv-next-btns">
+		<div id="next-btn"onclick="cargoClaimPreviousStep(3)">Previous</div>
+		<div id="next-btn"onclick="cargoClaimStep(4)">Next</div>
+		</div>
+	  
+	 </div>  
+	<div id="content4" class="content">
+		{#if:%attachments:<br /><h4>Attached pictures and documents:</h4>{!Fallback mode, showing files on IE8}
+		<div id='attachments' style="margin-bottom: 8px; display: none;">
+		{#repeat:%attachments:
+			<div class='file-download'><a target='_blank' href='/files?action=download_attachment&amp;track={^track}&amp;ch={chash}'><img src='/img/mime/{type}.png' alt="{type}"> {name}</a>{#if:description: <span class='gray'>({description})</span>}<br />
+			<span class="gray">Uploaded:</span> {mtime}~date("Y-M-d H:i:s")~ | <span class="gray">Size:</span> {size}~numberformat~ bytes
+			<div class='clear'></div></div>
+		}
+		</div>}
+		<br />
+		<!--<h4 style="background-image: url('/img/icons16/upload.png'); background-repeat: no-repeat; background-position: 4px;">Upload pictures and documents</h4>-->
+	
+		<h5>Upload pictures and documents</h5>
+		<div id="uploads-dropzone" class="dropzone">{!The fancy DropZone}</div>
+		<div id="uploads-helper" style="display: none;">
+			Click anywhere on the white space in the box above this text<br />or drag & drop your files there to <b>upload more documents</b>
+		</div>
+	
+	
+	
+	<div id="issue-contacts" style="display:none;"></div>
+	{!<div style="margin-bottom: 20px; height: 27px; padding-top: 2px;">
+		<input type="button" value="Add another contact..." data-action="add-contact" style="margin-left: 182px;" />
+		<img src="/img/icons16/question.png" alt="Info" class="info-tip" data-tooltip="Use this button if you need to specify other e-mail addresses besides your own." style='margin-left: 6px;' />
+	</div>}
+	
+		  <div class="prv-next-btns">
+				  <div id="next-btn"onclick="cargoClaimPreviousStep(4)">Previous</div>
+				 <div class="submit" > {#include::includes/submit_proceed_box1.html} </div>
+			  </div>
+				  <div class='required d-none' style='text-align: center; margin-top: 0;'><span style='padding: 7px; border: 1px solid #c3dbff; display: block; font-weight: bold; font-size:10px;'><span class='req_bullet'>&nbsp;</span> Fields marked with the blue background are mandatory</span></div>
+		  </div>
+	
+	</div>
+	
+	<div class="steps1" id="step-box" >
+		<div class="steps-container">
+			<div class="box" id="infoBox" style="background-color: #f3f3f3;">	
+				<h2 class="event-report-header">Event Report &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 01</h2>
+				<hr>
+				<div id="selectedEventReport">
+					<div id="eventDate" style="color: black;"></div>
+					<div id="eventTime" style="color: black;"></div>
+					<div id="eventTitle" style="color: black;"></div>
+					<div id="eventReason" style="color: black;"></div>
+					<div id="eventAspects" style="color: black;"></div>
+					<div id="eventcategory" style="color: black;"></div>
+					<div id="stationDisplay" style="color: black;"></div>
+					<div id="cargoRelatedEvent" style="color: black;"></div>
+				</div>
+			</div>
+			<div class="box1" id="additionalInfoBox" style="background-color: #f3f3f3;">
+				<h2 class="event-report-header">Event Risk Description &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 02</h2>
+				<hr>
+				<div id="selectedRiskDescription">
+					<div id="eventLocation" style="color: black;"></div>
+					<div id="whatHappened" style="color: black;"></div>
+					<div id="recoveryDescription" style="color: black;"></div>
+				</div>
+	
+			</div>
+			<div class="box1" id="riskBox" style="background-color: #f3f3f3;">
+				<h2 class="event-report-header">Risk Assessment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03</h2>
+				<hr>
+				
+				<div id="selectedRiskValue">
+					<div id="severityResult" style="color: black;"></div>
+					<div id="probabilityResult" style="color: black;"></div>
+					<div id="eventTheoryResult" style="color: black;"></div>
+					<div id="displayResult" style="color: black;"></div>
+					<div id="eventBusinessResult" style="color: black;"></div>
+					<div id="customValueResult" style="color: black;"></div>
+					<div id="impactValueResult" style="color: black;"></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
+	{!End of right column}</div>
+	<div class='clear'></div>
+	
+	}
+	</form></div>
+	
+	{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+	{#raw:includes/issue_submit_jstpl.html}
+	{#raw:includes/issue2message.html}
+	
+	<script id="severity" type="text/dryjstpl">
+		<div class="spacey" style='height: 430px; overflow: auto;'>{#include::static/event_severity.html}</div>
+	</script>

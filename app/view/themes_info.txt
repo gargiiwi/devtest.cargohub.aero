@@ -1,0 +1,12 @@
+"default" theme is directly here in view's root
+
+- public.html => main HTML for when not logged in
+- /public => html subsections for the "public" area
+- private.html => main HTML for logged in users
+- /private => html subsections for the "private" area
+- /? other directories which are important for the theme (only the theme knows about them)
+
+All other themes are in subfolders with name: "/theme_{name}"
+Inside each themes directory, the same pattern ( public, private )
+
+Example: /theme_hyper/public/index_root.html => this would be the home page for the "hyper" theme

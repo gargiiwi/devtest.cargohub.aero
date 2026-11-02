@@ -1,0 +1,64 @@
+/* Tab Preferences */
+#preferences-navbar label {
+	display: block;
+	margin-bottom: 4px;
+}
+
+#preferences-navbar div.pref-checkbox, #preferences-navbar div.pref-radio {
+	margin-bottom: 6px;
+}
+
+	#preferences-navbar .pref-checkbox > span, #preferences-navbar .pref-radio > span {
+		display: block;
+		padding-left: 26px;
+	}
+
+#preferences-navbar h5 {
+	margin-top: 20px;
+	text-indent: 26px;
+	background-color: #EEEEEE;
+	padding: 2px;
+	border: 1px solid #CCCCCC;
+}
+	
+#preferences-navbar span.option_help {
+	display: block;
+	float: right;
+	width: 666px;
+	color: gray;
+	background-image: url("/img/icons16/question.png");
+	background-repeat: no-repeat;
+	background-position: 0px 2px;
+	text-indent: 20px;
+}
+
+/* Tab Subscriptions */
+.jqx-cell .jqx-checkbox > div {
+	margin: 9px 0 0 49px !important;
+}
+
+.jqx-cell .jqx-cell-editor {
+	text-indent: 28px;
+}
+
+#filtertreegrid-notifysub > div:nth-of-type(1) {
+	margin-top: -9px !important;
+}
+
+#mini-help {
+	background-color: #f4f494;
+	border: 1px solid lightgray;
+	color: black;
+	margin-bottom: 6px;
+	padding: 3px;
+	text-align: center;
+	line-height: 18px;
+}
+
+/* UI Mods */
+.jqx-expander-arrow {
+	left: 8px;
+}
+.jqx-expander-header-content {
+	margin-left: 29px !important;
+}

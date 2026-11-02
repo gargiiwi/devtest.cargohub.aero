@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+<head>
+	<meta charset="utf-8" />
+	<title>{title}{#if:header.zone: | {header.zone}}</title>
+	<script src="/js/lib/tiny_mce/tinymce.min.js"></script>
+</head>
+<body style="width: 100%; height: 100%; margin: 0; padding: 0;">
+<textarea id="tinymce_source">{body}</textarea>
+{@<script>
+tinymce.baseURL = "/js/lib/tiny_mce";
+tinymce.suffix = '.min';
+tinymce.init({
+	selector: "textarea",
+	menubar: false,
+//	save_enablewhendirty: true,
+	plugins: "print link autolink autoresize paste textcolor image hr fullscreen lists table colorpicker charmap searchreplace insertdatetime",
+	toolbar: "printbutton | bold italic underline | alignleft aligncenter alignright | formatselect fontselect fontsizeselect | hr link image table bullist numlist charmap insertdatetime | forecolor backcolor removeformat | undo redo | searchreplace fullscreen",
+	toolbar_items_size: 'small',
+	fontsize_formats: "8pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 24pt 28pt 32pt 36pt 40pt",	
+	// Fixes
+	convert_fonts_to_spans: true, fix_list_elements: true, browser_spellcheck: false, convert_urls: false, relative_urls: false, paste_webkit_styles: "all",
+	// Layout
+	content_css: "/css/default/cargo_tiny.css", // Todo, this should be more flexible...
+	height: document.body.clientHeight - 72,
+	plugin_preview_width: 1080,
+	setup: function(editor) {
+		editor.on('init', function(e) {
+			// Small delay to let the browser fix it's height
+			setTimeout(function() {
+				editor.execCommand('mceFullScreen');	
+			}, 1000)
+		});
+		editor.addButton('printbutton', {
+			text: 'PRINT Document',
+			icon: "print",
+			cmd: "mcePrint"
+		});
+	}
+});
+</script>}
+</body>
+</html>

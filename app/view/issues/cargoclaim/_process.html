@@ -1,0 +1,141 @@
+{@<style type="text/css">
+/* Some styles specific to Air Cargo Claims */
+table.claim-aspects td {
+	width: 20%;
+	text-align: center;
+	color: lightgray;
+	padding: 3px !important;
+}
+
+	table.claim-aspects td.ca-active {
+		color: black;
+	}
+
+	table.claim-aspects td#ca-Damage {
+		background-color: red;
+		color: white;
+	}
+	table.claim-aspects td#ca-cl {
+		background-color: black;
+		color: lightgray;
+	}
+	table.claim-aspects td#ca-Delay {
+		background-color: blue;
+		color: white;
+	}
+	table.claim-aspects td#ca-pl {
+		background-color: brown;
+		color: lightgray;
+	}
+	table.claim-aspects td#ca-Pilferage {
+		background-color: orange;
+		color: white;
+	}
+
+table#claim-aspects-edit {
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+	table#claim-aspects-edit tr#claim-aspects-header td {
+		border-bottom: 1px solid gray;
+		-webkit-user-select: none;  /* Chrome all / Safari all */
+		-moz-user-select: none;     /* Firefox all */
+		-ms-user-select: none;      /* IE 10+ */		
+		user-select: none;
+	}
+	
+	table#claim-aspects-edit tr#claim-aspects-header label {
+		display: block;
+	}
+	
+	table#claim-aspects-edit td {
+		width: 20%;
+		white-space: nowrap;
+		overflow: visible;
+		padding: 5px 0 5px 7px !important;
+		border-left: 1px solid lightgray;
+	}
+	
+	table#claim-aspects-edit td:FIRST-CHILD {
+		border-left: none;'
+	}
+	
+	table#claim-aspects-edit td#ca-Damage-edit.active {
+		background-color: red;
+		color: white;
+	}
+	table#claim-aspects-edit td#ca-cl-edit.active {
+		background-color: black;
+		color: white;
+	}
+	table#claim-aspects-edit td#ca-Delay-edit.active {
+		background-color: blue;
+		color: white;
+	}
+	table#claim-aspects-edit td#ca-pl-edit.active {
+		background-color: brown;
+		color: white;
+	}
+	table#claim-aspects-edit td#ca-Pilferage-edit.active {
+		background-color: orange;
+		color: white;
+	}
+
+	div.twocolcbox label {
+		display: block;
+		width: 260px;
+		float: left;
+	}
+	
+.itembox {
+	line-height: 18px;
+	padding: 1px 8px;
+	margin: 0px 7px 5px 0px;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+.rigidlabels label {
+	display: inline-block;
+}
+.three_cel {
+	display: inline-block;
+	width: 116px;
+	margin-right: 5px;
+	text-indent: 0;
+}
+</style>}
+
+{!These are the issue-type specific panels}
+<div id="claim-dashboard" style="height: 1200px;" data-panel="0" data-editable="1" data-edittpl="dashboard" data-editheight="1840">
+	<div><img src='/img/icons16/menus/claim-dashboard.png' />Claim dashboard</div>
+	<div class="datatable">
+{#include::panels/dashboard_view.html}
+	</div>
+</div>
+
+<div id="claim-followup" data-panel='0' style='height: 700px;' data-editable="1" data-edittpl="followup" data-editheight="950">
+	<div><img src='/img/icons16/check_box.png' />Charge-back and follow-up</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/followup_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>
+
+<div id="claim-airline" style="height: 1300px;" data-panel="1" data-editable="1" data-edittpl="airline" data-editheight="1250">
+	<div><img src='/img/icons16/menus/claim-airline.png' />Handling and Investigation</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/airline_view.html}	
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>
+
+<div id="claim-financial" style="height: 630px;" data-panel="1" data-editable="1" data-edittpl="financial" data-editheight="775">
+	<div><img src='/img/icons16/menus/claim-calc.png' />Liability calculation and Settlement</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/financial_view.html}	
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div>

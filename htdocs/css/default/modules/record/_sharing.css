@@ -1,0 +1,176 @@
+#tab_sharing td.grid-cell-master_org {
+	background-color: #32CD32;
+}
+
+#tab_sharing td.grid-cell-disabled_org {
+	background-color: #ff7f7f;
+}
+
+#tab_sharing td.grid-cell-perspective_org {
+	font-style: italic;
+}
+
+/*IWI Record Details Page Redesign 10092026 start*/
+
+
+#tab_sharing .toolbar {
+    height: 44px !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid #e1e6ed;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+    font-family: Arial, sans-serif;
+}
+
+#tab_sharing .toolbar-accessory {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 14px 0 0 !important;
+    padding-right: 16px;
+    border-right: 1px solid #e5e9ef;
+    color: #26364a;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+#tab_sharing .toolbar-accessory img {
+    width: 18px;
+    height: 18px;
+    margin: 0 8px 0 0 !important;
+    object-fit: contain;
+}
+
+#tab_sharing .toolbar-accessory span {
+    font-size: 14px !important;
+}
+
+#tab_sharing .toolbar > div:not(.toolbar-accessory) {
+    display: flex;
+    align-items: center;
+}
+
+#tab_sharing .jqx-button {
+    height: 30px !important;
+    min-width: auto;
+    padding: 0 12px !important;
+    margin: 0 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid #d8dee7 !important;
+    border-radius: 5px !important;
+    background: #fff !important;
+    color: #344054 !important;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 28px;
+    box-shadow: none !important;
+    cursor: pointer;
+    transition: all .15s ease;
+}
+
+#tab_sharing .jqx-button img {
+    width: 16px;
+    height: 16px;
+    margin: 0 5px 0 0 !important;
+    object-fit: contain;
+}
+
+#tab_sharing .jqx-button:hover {
+    background: #f5f8fc !important;
+    border-color: #b9c6d6 !important;
+    color: #2866c2 !important;
+}
+
+#tab_sharing .jqx-button:active {
+    background: #eef3f9 !important;
+}
+
+#tab_sharing #sharing-link-activity-create-op .jqx-button:first-child {
+    background: #2866c2 !important;
+    border-color: #2866c2 !important;
+    color: #fff !important;
+}
+
+#tab_sharing #sharing-link-activity-create-op .jqx-button:first-child:hover {
+    background: #2058aa !important;
+    border-color: #2058aa !important;
+}
+
+#tab_sharing #sharing-link-activity-create-op .jqx-button:first-child img {
+    filter: brightness(0) invert(1);
+}
+
+#tab_sharing #taskXls {
+    color: #287a4b !important;
+    border-color: #cfe4d7 !important;
+    background: #f7fcf9 !important;
+}
+
+#tab_sharing #taskXls:hover {
+    background: #edf8f1 !important;
+    border-color: #a9d2b8 !important;
+}
+
+#tab_sharing #sharing-link-activity-open-ops {
+    gap: 5px;
+}
+
+#tab_sharing #sharing-link-activity-open-ops .toolbar-separator {
+    height: 22px;
+    width: 1px;
+    margin: 0 8px !important;
+    background: #e1e6ed;
+}
+
+#tab_sharing #sharing-link-activity-row-ops {
+    margin-right: 0 !important;
+    margin-left: 4px;
+}
+
+#tab_sharing #sharing-link-activity-row-ops .toolbar-separator {
+    height: 22px;
+    width: 1px;
+    margin: 0 10px 0 4px;
+    background: #e1e6ed;
+}
+
+#tab_sharing #sharing-link-activity-delete {
+    color: #c0392b !important;
+    border-color: #efcfcb !important;
+    background: #fffafa !important;
+}
+
+#tab_sharing #sharing-link-activity-delete:hover {
+    background: #fff1f0 !important;
+    border-color: #e7aaa3 !important;
+}
+
+#tab_sharing #sharing-link-activity-close {
+    color: #667085 !important;
+}
+
+#tab_sharing #sharing-link-activity-save {
+    background: #eef7f1 !important;
+    border-color: #c9e2d1 !important;
+    color: #267348 !important;
+}
+
+#tab_sharing #sharing-link-activity-save:hover {
+    background: #e3f3e9 !important;
+    border-color: #a9d2b8 !important;
+}
+.jqx-grid-cell-selected-arctic span.goDetailFrmPnl{
+	color: #ffffff !important;
+}
+
+/*IWI Record Details Page Redesign 10092026 end*/

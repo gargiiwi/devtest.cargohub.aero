@@ -1,0 +1,142 @@
+# Supported Contact Fields structure
+primary:
+  meta:
+    img: /img/icons16/vcard.png
+    menu: Primary info...
+    title: Primary contact information
+    width: 140
+    autogen: Yes
+  fields:
+    company_name: Company name
+    dept: Department
+    company_jobtitle: Job title/Function    
+    phone: Phone number
+    address: Postal address
+    rem: Remarks
+email:
+  meta:
+    img: /img/icons16/email.png
+    menu: E-mail...
+    title: E-mail addresses
+    width: 90
+  fields:
+    email_personal: Personal E-mail~Personal
+    email_business: Business E-mail~Business
+    eml_extra1: Extra E-mail 1~Extra 1
+    eml_extra2: Extra E-mail 1~Extra 2
+    eml_extra3: Extra E-mail 1~Extra 3
+    eml_extra4: Extra E-mail 1~Extra 4
+    eml_extra5: Extra E-mail 1~Extra 5
+address:
+  meta:
+    img: /img/icons16/postage_stamp.png
+    menu: Address...
+    title: Postal address
+    width: 120
+  fields:
+    address: Postal address
+    postcode: Postal code
+    city: City or Place
+    ctry: Country
+  
+phone:
+  meta:
+    img: /img/icons16/phone.png
+    menu: Phone...
+    title: Telephone/Fax/Internet numbers
+    width: 120
+  fields:
+    phone_mobile: Mobile Phone~Mobile
+    phone_landline: Landline Phone~Landline
+    phone_business: Business Phone~Business
+    phone_fax: FAX Number
+    phone_skype: Skype Call-In~Skype Number
+    phone_google: Google Voice~Google Number
+    
+company:
+  meta:
+    img: /img/icons16/company-building-icon.png
+    menu: Company...
+    title: Company information
+    width: 140
+  fields:
+    company_name: Company name~Name
+    dept: Department
+    brand: Brand/Division
+    company_jobtitle: Job title/Function
+    company_address: Work address~Address
+    company_postcode: Work postcode~Postal code
+    company_city: Workplace city~City
+    company_ctry: Workplace country~Country
+
+social:
+  meta:
+    img: /img/icons16/facebook.png
+    menu: Social network...
+    title: Social networking
+    width: 100
+  fields:
+    social_facebook: Facebook
+    social_twitter: Twitter
+    social_googlep: Google+
+    social_linkedin: Linked In
+    social_pinterest: Pinterest
+    social_instagram: Instagram
+    social_flickr: Flickr
+    social_tumblr: Tumblr
+#    social_bebo: Bebo
+#    social_habbo: Habbo
+#    social_netlog: Netlog
+#    social_myspace: myspace
+#    social_tagged: Tagged
+#    social_hi5: Hi5
+    social_other: Other social net~(other)
+
+im:
+  meta:
+    img: /img/icons16/emotion_happy.png
+    menu: Messengers...
+    title: Instant messengers
+  fields:
+    msg_skype: Skype
+    msg_yahoo: Yahoo Messenger
+    msg_google: Google Talk
+    msg_aim: AIM
+    msg_jabber: Jabber
+    msg_other: Other IM~(other)
+
+personal:
+  meta:
+    img: /img/icons16/user_green.png
+    menu: Person info...
+    title: Person information
+    width: 140
+  fields:
+    pers_nickname: Nickname
+    pers_birthday: Birthday
+    pers_anniversary: Anniversary
+    pers_title: Title (Sir,Dr. ...)
+    pers_callsign: Radio Callsign
+    pers_extra: Extra info
+
+relationship:
+  meta:
+    img: /img/icons16/users.png
+    menu: Relationships...
+    title: Relationship information
+    width: 100
+  fields:
+#    rel_spouse: Spouse
+#    rel_child: Child
+#    rel_son: Son
+#    rel_daughter: Daughter
+#    rel_parent: Parent
+#    rel_mother: Mother
+#    rel_father: Father
+#    rel_sibling: Sibling
+#    rel_brother: Brother
+#    rel_sister: Sister
+    rel_partner: Partner
+    rel_manager: Manager
+    rel_assitant: Assistant
+    rel_other: Other relation~(other)

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>{html.title}</title>
+	<style>
+{#raw:loading_overlay.css}
+	</style>
+	<link href="/css/{html.css_theme}/cargo_its_embed.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<body>
+	<div id="loading_overlay"></div>
+	<div id="spinner_overlay" class="jqx-rc-all" style="display: none;">
+		<div id="spinner_line0">Processing</div>
+		<div id="spinner_line1">Please wait ...</div>
+	</div>
+	<div class="site">
+		{#if:site_section:<div class="page">
+			{#include::{site_section}}
+		</div>}
+	</div>
+	<script>
+	var
+	preloader = JSON.parse('{DONREY.preloader}~json~'), // DonReY JS Config (will be removed)
+	cargohub = JSON.parse('{DONREY.cargohub}~json~'), // CargoHub main container
+	CFG=JSON.parse('{CFG}~json~'); // Loaded Modules config
+{#raw:preloader.js}
+	</script>
+</body>
+</html>

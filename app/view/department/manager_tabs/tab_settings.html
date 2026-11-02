@@ -1,0 +1,64 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/plugin.png" />
+		<span>Department</span>
+	</div>
+	<div id="dep-config-ops">
+		<button data-op="dep-update" title="Update department information"><img src='/img/icons16/save.png' /> Update</button>
+		<button data-op="dep-del" class='right' title="Delete department"><img src='/img/icons16/delete.png' /> Delete</button>
+	</div>
+	<div class='toolbar-separator'></div>
+	<button data-op="back-to-org" title="Back to Organization"><img src='/img/icons16/company-building-icon.png'>Organization</button>
+	<div class='toolbar-separator'></div>
+	<div id="reclinks-ops">
+		<button data-op="reclink-add" title="Add department links"><img src='/img/icons16/link_add.png' /> Add links</button>
+	</div>
+	<div id="reclinks-select-ops" style='display: none;'>
+		<button data-op="reclink-edit" title="Edit selected link"><img src='/img/icons16/link_edit.png' /> Edit/View</button>
+		<button data-op="reclink-del" title="Remove selected link"><img src='/img/icons16/link_delete.png' /> Unlink</button>
+	</div>
+</div>
+
+<table style="width: 100%;"><tr>
+	<td style="width: 40%; padding: 5px;" valign="top">{!Left side}
+		<form class='vertiform' name='dep-setup' action="?action=update" method="post">
+			<h4>Primary department information:</h4>
+			<ul style="margin-bottom: 24px;">
+				<li><label for="dep_name">Name:</label><input id="dep_name" name="dep[name]" type="text" style="width: 300px;" /></li>
+				<li><label>Chief:</label><div id='dep_chief_id' name="dep[chief_id]"></div></li>
+			</ul>
+			<h4>Incoming data settings:</h4>
+		<p class='gray' style="font-size: 85%;">If <b class='green'>ON</b>, the department may appear in the Email or Share functions.<br />If <b class='red'>OFF</b>, the rest of the settings have no effect</p>
+			<ul style="margin-bottom: 24px;">
+				<li><label>Show in list:</label><div id="features-listed"></div></li>
+				<li><label>
+					<img style="vertical-align: middle;" data-tooltip_width="250" data-tooltip="Use this for departments which should be visible outside the organization. (For example, an Airline's &quot;Claims&quot; department)" class="info-tip" alt="Info" src="/img/icons16/question.png">
+					Record type:
+				</label><div id="features-use4ist"></div></li>
+				<li style="height: 235px;"><label>
+					<img style="vertical-align: middle;" data-tooltip_width="250" data-tooltip="When this filter is active, the department is only shown as an option when record is in one of the checked data groups" class="info-tip" alt="Info" src="/img/icons16/question.png">
+					Data groups:
+				</label><div id="features-use4grp"></div></li>
+				<li><label>&nbsp;</label><input type="button" id='use4grp-clear' value="Clear selection" /><input type="button" id='use4grp-invert' value="Invert selection" /></li>
+			</ul>
+			
+		</form>
+	</td>
+	<td style="width: 60%; padding: 5px;" valign="top">{!Right side}
+		<h4>New record department links:</h4>
+		<div id='reclinks-matrix'></div>
+		<p class='gray'>When an user creates a record or the department receives it externally, this controls which other deparments get access to the record of mentioned type.</p>
+		<p class='gray'>This takes effect only on initial submit or receipt, any other changes to Access Control are not affected by these settings.<br />
+		Note: The linking is per record type, so each record type has it's own list of also-linked departments!</p>
+	</td>
+</tr></table>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+{@<script id="template_edit-reclinks" type="text/dryjstpl">
+	<form name="grid-options" class="spacey">
+		<div><label for="erl-rt">Record type:</label>{#exists:rt_name:<div class='static'>{$rt_name}</div>}{#missing:rt_name:<div id="erl-rt_key"></div>}</div>
+		<div><label>Linked depts.:</label><div id="erl-link_deps"></div></div>
+		<div><label>Comment</label><input type='text' maxlength="200" id="erl-comment" class='jqx-input {$_itc}' style='width: 308px; height: 25px; line-height: 25px;' /></div>
+		<p class='gray'>Select the departments which also get access to a new record of specified type, when created by an user of this department, or when receiving an external record (from outside the organization)</p>
+	</form>
+</script>}

@@ -1,0 +1,15 @@
+{!These are the issue-type specific panels}
+<div id="doc-overview" style='height: 750px;' data-panel="0" data-editable="1" data-edittpl="meta" data-editheight="750">
+	<div><img src='/img/icons16/menus/doc-overview.png' alt="O" />Overview</div>
+	<div class="datatable">
+{#include::panels/meta_view.html}
+	</div>
+</div>
+
+<div id="doc-info" style='height: 630px;' data-panel="1" data-editable="1" data-edittpl="info" data-editheight="630">
+	<div><img src='/img/icons16/menus/doc-info.png' alt="I" />Ownership & financials</div>
+	{#if:%acls.privileges.issue_xfields|%acls.unrestricted:<div class="datatable">
+{#include::panels/info_view.html}
+	</div>}
+	{#ifnot:%acls.privileges.issue_xfields|%acls.unrestricted:<div><div class='restricted-panel'><div><img src="/img/icons/stop.png" /><br />Access to this data panel is restricted.</div></div></div>}
+</div> 

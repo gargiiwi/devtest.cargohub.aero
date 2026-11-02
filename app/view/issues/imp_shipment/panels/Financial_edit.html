@@ -1,0 +1,169 @@
+{#use:form:<form action="" autocomplete="off" enctype="application/x-www-form-urlencoded" class="issue_form" name="issue_form" method="post">
+	<table>
+        <b style="margin-left: 204px;">Buying</b>
+        <b style="margin-left: 118px;">Selling</b>
+       
+        <tr>
+            <th><label for='{id}'>{trucking_buying.display.label}:</label></th>
+            <td>
+                {#use:trucking_buying:<input type='text' id='{id}' name='{name}' value='{value}'
+                 class='jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}'
+                 {#if:display.error: data-tooltip='{display.error}'} 
+                 style="margin-right: 10px;"/>}
+                
+            </td>
+            <td style="display: none;">
+                {#use:trucking_buying_curr:
+                <select id="trucking_buying_curr" name="{name}" style="width: 70px;margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            
+            <td>
+                {#use:trucking_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:trucking_selling_curr:
+                    <select id='trucking_selling_curr' name='{name}' style='width: 70px;margin-left: 44px;' class='jqx-input jqx-input-{%jqxtheme}' 
+                    onchange="
+                        document.getElementById('courier_selling_curr').value = this.value;
+                        document.getElementById('dg_selling_curr').value = this.value;
+                        
+                        document.getElementById('trucking_buying_curr').value = this.value;
+                        document.getElementById('courier_buying_curr').value = this.value;
+                        document.getElementById('dg_buying_curr').value = this.value;">
+                <!-- <option value='' selected='selected' hidden='hidden'>Select:</option>
+                {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>} -->
+                <option value='' selected='selected' hidden='hidden'>Select:</option>
+                {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                <option value="978" selected="selected">EUR €</option>
+            </select>}
+            </td>
+            
+        </tr>
+        
+
+        <tr>
+            <th>
+                <label>{courier_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:courier_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:courier_buying_curr:
+                <select id="courier_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:courier_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:courier_selling_curr:
+                <select id="courier_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+
+        <!-- <tr>
+            <th>
+                <label>{courier_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:courier_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td>
+                {#use:courier_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:courier_selling_curr:
+                <select id="courier_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr> -->
+     
+     
+        <tr>
+            <th>
+                <label>{dg_buying.display.label}:</label>
+            </th>
+            <td>
+                {#use:dg_buying:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-right: 10px;" />}
+            </td>
+            <td style="display: none;">
+                {#use:dg_buying_curr:
+                <select id="dg_buying_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+            <td>
+                {#use:dg_selling:
+                <input type="text" id="{id}" name="{name}" value="{value}" 
+                       class="jqx-input jqx-input-{%jqxtheme} only-numbers medium{#if:display.error: field_error}" 
+                       {#if:display.error: data-tooltip="{display.error}"} 
+                       style="margin-left: 23px;" />}
+            </td>
+            <td>
+                {#use:dg_selling_curr:
+                <select id="dg_selling_curr" name="{name}" style="width: 70px; margin-left: 44px;" 
+                        class="jqx-input jqx-input-{%jqxtheme}">
+                        <option value='' selected='selected' hidden='hidden'>Select:</option>
+                        {#repeat:options:<option value='{value}'{#if:active: selected='selected'}>{display}</option>}
+                        <option value="978" selected="selected">EUR €</option>
+                </select>}
+            </td>
+        </tr>
+        
+
+
+    
+
+              
+    </table>
+    
+   
+} 
+</form>

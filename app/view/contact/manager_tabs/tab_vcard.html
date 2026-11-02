@@ -1,0 +1,45 @@
+<div class="spacey">{#if:contact:
+	<div id="contact-left-side">
+		{#include:contact:includes/vcard.html}
+	</div>
+	<div id="contact-right-side">
+		{#if:target_info:<div class="right-side-block jqx-rc-all" id="iss-comm-target">
+			<img src="/img/icons16/commlabel/issue_target.png" style="float: left; margin-right: 8px;"><h2>This contact is used as issue communication target</h2>
+			{#repeat:target_info:<div style="margin-top: 12px;" data-istkey="{istkey}">
+				<h4 class="iss-comm-target-remove" title="Remove as target">{istname}</h4>{#if:departments:<h3 style="padding-left: 25px;">Listed for the departments:</h3><ul style="margin: 6px 0;">
+					{#repeat:departments:<li>{$}</li>}
+				</ul>}{#ifnot:departments:<h3>Listed for entire organization</h3>}
+			</div>}
+			<hr />
+			<p class="gray" style="font-size: 0.85em;">Click on any of the issue types to disconnect this contact from that specific issue type. After confirming, the contact will not be used anymore as a recipient for sending that issue type to the organization</p>
+		</div>}
+		{#if:create_info:<div class="right-side-block jqx-rc-all" id="vcard-create_info">
+			<h4>{create_info.title}</h4>
+			<p>{create_info.description:&nbsp;}~nl2br~</p>
+			<hr />
+			<p class='gray'>The Save button only appears if name a correct e-mail address are entered. If you don't see the button it means that you might have typed something wrong in the e-mail area, or the name is too short (minimum 4 characters)</p>
+		</div>}
+		{#if:special_info:<div class="right-side-block jqx-rc-all" style="margin-bottom: 12px;">
+			<h4>{special_info.title}</h4>
+			<p>{special_info.description:&nbsp;}~nl2br~</p>
+		</div>}
+	</div>
+	<div class="clear"></div>
+}{#ifnot:contact:
+	<div style="margin: 24px;">
+		<h2 class="center">Invalid contact ID specified or contact not found.<br />Cannot load any content !</h2>
+		<hr />
+		<p class="center" style="padding: 8px;">Please press the <b>[Close]</b> button to reset this tab or the <b>[Back]</b> button to go to your previous location.<br /><br />
+		<img src="/img/extra/nothinghere.jpg" alt="Move along, there's nothing to see here." /></p>
+	</div>
+}</div>
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="modal-issue-target" type="text/dryjstpl">{@
+	<form class='vertiform' name='setistgt' action="?action=setas_issue_target" method="post">
+	<ul>
+		<li><label>Issue type:</label><div id="istarget-istselect" name="istkey"></div></li>
+		<li><label>Department:</label><div id="istarget-depselect" name="dep_id"></div></li>
+	</ul>
+	</form>
+	<p style='text-align: center;'>This contact will show for incoming submits and shares</p>
+}</script>

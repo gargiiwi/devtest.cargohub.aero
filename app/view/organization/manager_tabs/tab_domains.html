@@ -1,0 +1,40 @@
+<div class='toolbar jqx-widget jqx-rc-all'>
+	<div class='toolbar-accessory'>
+		<img src="/img/icons/www_page.png" /><span>Internet Domains</span>
+	</div>		
+	<button data-op="dom-add" title="Add a domain"><img src='/img/icons16/add.png' /> Add a domain</button>
+	<div id='domain-edit-operations' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="dom-visit" title="Visit domain"><img src='/img/icons16/link_go.png' /> Visit domain</button>
+		<button data-op="dom-edit" title="View/Edit"><img src='/img/icons16/eye.png' /> View/Edit</button>
+		<button data-op="dom-del" title="Delete selected"><img src='/img/icons16/delete.png' /> Delete selected</button>
+		<div class='toolbar-accessory' id='selected-domain'></div>
+	</div>
+</div>
+<div id="domains-grid"></div>
+
+{!Templates - Stored as "custom" scripts, so the browser doesn't attempt to interpret the content}
+<script id="template_domain_editor" type="text/dryjstpl">{@
+	<form method="post" action="?action=save_domain">
+		{#missing:domain:
+			<div><label for='edit_dom_domain'>Domain:</label><input type='text' id='edit_dom_domain' name='dom[domain]' class="jqx-input jqx-rc-all {$_itc}" value="{$domain}" style='width: 238px;' /></div>}
+		{#exists:domain:
+			<div><label>Domain:</label><div class="static" style="width: 238px; overflow:hidden; white-space: nowra; text-overflow: ellipsis;" title="{$domain}">{$domain}</div></div>
+			<input type='hidden' name='domain_update' value='{$domain}' />}
+		<hr style='margin: 12px 0 4px;' />
+		<div><label>&nbsp;</label><div class='static'>HTML Settings</div></div>
+		<div><label for='edit_dom_html_title'>Site Title:</label><input type='text' id='edit_dom_html_title' name='dom[html_settings][title]' class="jqx-input jqx-rc-all {$_itc}" value="{$html_settings.title}" style='width: 238px;' /></div>
+		<div><label for='edit_dom_html_logo'>Logo (Header):</label><input type='text' id='edit_dom_html_logo' name='dom[html_settings][logo]' class="jqx-input jqx-rc-all {$_itc}" value="{$html_settings.logo}" style='width: 238px;' /></div>
+		<div><label for='edit_dom_html_index'>Index redirect:</label><input type='text' id='edit_dom_html_index' name='dom[html_settings][index_route]' class="jqx-input jqx-rc-all {$_itc}" value="{$html_settings.index_route}" style='width: 238px;' /></div>
+		<div><label>CSS Theme:</label><div id='edit_dom_html_css_theme' name='dom[html_settings][css_theme]'></div></div>
+		<div><label>CargoHub Logo:</label><div id='edit_dom_html_footer'></div></div>
+		<hr style='margin: 12px 0 4px;' />
+		<div><label>&nbsp;</label><div class='static'>Public area settings</div></div>
+		<div><label>Text group:</label><div id='edit_dom_pub_string_set'></div></div>
+		<div><label style='width: 200px;'>Allow choosing an issue type:</label><div id='edit_dom_ist_select'></div></div>
+		<div><label id='label_ist_select'>&nbsp;</label><div id='edit_dom_public_ist'></div></div>
+		<div><label style='width: 200px;'>Allow choosing a data group:</label><div id='edit_dom_group_select'></div></div>
+		<div><label id='label_group_select'>&nbsp;</label><div id='edit_dom_public_group'></div></div>
+		<div><label>Auto sharing:</label><div id='edit_auto_sharing'></div></div>
+	</form>	
+}</script>

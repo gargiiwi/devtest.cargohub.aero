@@ -1,0 +1,107 @@
+{#raw:includes/pwindicator.css}
+<form class='vertiform' id="edit-account" action="?action=update_user" method="post">{#use:account:
+	<div class='toolbar jqx-widget jqx-rc-all'>
+		<div class='toolbar-accessory'>
+			<img src="/img/icons/user_gray.png" /><span>User editor and general information</span>
+		</div>		
+		<button data-op="user-save" title="Update information"><img src='/img/icons16/save.png' /> Update account</button>
+		<div class='toolbar-separator'></div>
+		<button data-op="login-as" title="Login as user"><img src='/img/icons16/user_go.png' /> Login as...</button>
+		<button data-op="link" data-link="/manager/contacts?user_id={id}#search" title="User's address book"><img src="/img/icons16/book_addresses.png" alt="Abook"> Address book</button>
+		<div class='toolbar-separator'></div>
+		<button data-op="link" data-link="/manager/organization{#if:%acls.privileges.org_user_manager|%acls.unrestricted:?id={org_id}}#users"><img src='/img/icons16/company-building-icon.png'> Organization</button>
+		{#if:cdep_id:<button data-op="link" data-link="/manager/department{#if:%acls.privileges.org_user_manager|%acls.unrestricted:?id={cdep_id}}#members"><img src='/img/icons16/plugin.png'> Department</button>}
+		<button data-op="user-del" title="Delete this user" class="right"><img src='/img/icons16/delete.png' /> Delete</button>
+	</div>
+	<div id="user-account">
+		<h4>Account information:</h4>
+		<ul>
+			{#if:%features.status_ops:<li><label>User status:</label>{!Some users statuses cannot be changed from the interface (admin, supervisor)}
+				{#if:%features.status_ops="edit":<div id='usr_status' name="usr[status]"></div>}
+				{#if:%features.status_ops="view":<div class="static">{status}~capfirst~</div>}
+			</li>}{!This is an admin/supervisor feature, to enable/disable users or hide/make them visible}
+{!			<div id="jumper_control">
+				<li><label>Select org:</label><div id="usr_org_id" name="usr[org_id]"></div></li> <button class='inline'>Disconnect</button>
+				<li><label>Add new org:</label><div id="cynosural_add"></div></li>
+			</div>}
+			<li><label for="usr_account">Account ID:</label><input id="usr_account" name="usr[user]" type="text" value="{user}" /> (used for login)</li>
+			<li><label for="usr_name">Person's name:</label><input id="usr_name" name="usr[name]" type="text" value="{name}" /></li>
+			<li><label for="usr_email">Email Address:</label><input id="usr_email" name="usr[email]" type="text" value="{email}" /></li>
+			<li {#if:oath_key=1: style="display:none;"}>
+				<label>Disable Oauth:</label>
+				<div id='usr_oauth' name="usr[oath_key_switch]"></div>
+				<input type="hidden" value="{oath_key}" id="oauth_hid">
+			</li>
+			<li style="height: auto;"><label for="usr_signature_ifr">Signature:</label><div class="clear"></div>
+				<div style="display: inline-block;">{!Container for TinyMCE}
+					<textarea id="usr_signature">{signature}</textarea>{!xjs.tinymce}
+				</div>
+			</li>
+			<li><label>&nbsp;</label><div class="static">Only fill the password fields if you want to change the password</div></li>
+			<li><label class="left" for="usr_password">Change password:</label>
+				<input class="left" id="usr_password" name="usr[password]" type="password" autocomplete="off" data-indicator="pwindicator" />
+				<div class="left" id="pwindicator">
+					<div class="bar"></div>
+					<div class="label"></div>
+				</div>
+			</li>
+			<li><label for="usr_passwordr">Repeat password:</label><input id="usr_passwordr" name="usr[passwordr]" type="password" autocomplete="off" /></li>
+			<li><label>Generate:</label><input id="gen_password" type="button" value="Secure random password" /></li>
+		</ul>
+		<div class="gray" style="margin: 20px;">
+			<hr />
+			<h3>Hints for entering a strong password:</h3>
+			<p>
+			- It should contain at least <b>8</b> characters<br />
+			- Both <i>small letters</i> and <i>CAPITAL LETTERS</i> should exist in the password<br />
+			- Add a few <i>numbers</i> too, preferably not 1234... <br />
+			- <i>Punctuation</i> like % $ , : ! - greatly increase the strength of the password<br />
+			- Password can contain <i>space</i>s [&nbsp;&nbsp;&nbsp;]<br />
+			- For maximum security, unusual characters like |, ~, ] or * which aren't normally used for text are making sure the password is impossible to guess.
+			</p>
+			<p class='red'><b>Never</b> use the person's name, birthday, phone number, e-mail or other easily identifiable personal information as the password (or as part of the password)!</p>
+		</div>
+	</div>
+	
+	{#if:^has_deps:<div id="user-department">
+		<h4>Department configuration:</h4>
+		<p><span style='color: gray;'><img src="/img/icons16/lock.png" alt="lock" class="inline16"> <b>User level access</b> can only be configured on the selected active department. Without one selected, the tab is disabled.</span></p>
+		<ul>
+			<li><label for="dep_select">Department:</label><div id="dep_select" name="usr[cdep_id]"></div></li>
+			<li class='row_dep_info dep_info_cb'><label>Is the chief ?</label><div id='dep_is_chief' data-checked='{department.is_chief}' data-disabled='1'><span></span></div></li>
+			<li class='row_dep_info' style='height: auto;'><label for="dep_comment">Comments for user:</label><textarea rows='3' id="dep_comment" name="dep[comment]" style='width: 500px; height: 40px;'>{department.comment}</textarea></li>
+			<li class='row_dep_info dep_info_cb'><label for="dep_disabled">User disabled ?</label><div id='dep_disabled' name="dep[disabled]" data-checked='{status_ex.disabled}' data-hint="(If checked the user cannot login if this is his active department)"><span></span></div></li>
+			<li class='row_dep_info dep_info_cb'><label for="dep_hidden">User hidden ?</label><div id='dep_hidden' name="dep[hidden]" data-checked='{status_ex.hidden}' data-hint="(If checked, the user is invisible as long as this is his active department)"><span></span></div></li>
+		</ul>
+	</div>}
+
+	<div id="user-statistics">	
+		<h4>Statistics:</h4>
+		<table class="infotable"><tbody>
+			<tr><th>Messages sent:</th><td>{count.msgs}</td></tr>
+			<tr><th>Unread convos:</th><td>{count.unread}</td></tr>
+			<tr><th>Uploaded files:</th><td>{count.files}</td></tr>
+			<tr><th>Assigned issues:</th><td>{count.issues}</td></tr>
+			<tr><th>Assigned tasks:</th><td>{count.tasks}</td></tr>
+			<tr><th>Contact records:</th><td>{count.ctx}</td></tr>
+		</tbody></table>
+	</div>
+	
+	<div class="clear"></div>
+	
+	{!User's current access - Privileges and Access Ids}
+	<h4 style="margin-top: 20px;">Access control lists (ACLs):</h4>
+	{#if:is_admin:<div style='margin-left: 152px;'><h2>The user is a global administrator</h2><hr />
+		<p>This means he or she has unrestricted access everywhere in the system !</p>
+		<p style='font-weight: bold;'>&quot;With great power comes great responsibility.&quot;</p>
+	</div>}
+	{#ifnot:is_admin:<ul>
+		{#if:acls.privileges:<li style="height: auto;"><label>Privileges:</label>
+		<div style='margin-left: 152px;'><h3 style="line-height: 26px;">{^strings.privileges_mode}</h3>
+			{#include:acls.privileges:private/privileges_matrix.html}
+		</div></li>}
+		{#ifnot:acls.privileges:<div style='margin-left: 152px;'><h2>Warning:</h2>
+			<p>This account does not have any privileges set. Operation of the system is not possible under this condition. Please check access rights !</p>
+		</div>}
+	</ul>}
+}</form>

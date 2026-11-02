@@ -1,0 +1,53 @@
+<div class='toolbar' class='jqx-widget jqx-rc-all'>
+	<button data-op="entry-post" title="Post new update"><img alt="(post)" src="/img/icons16/system_updated.png"> Post update</button>
+	<div id='updates-rowops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="entry-edit" title="Edit this entry"><img alt="(/)" src="/img/icons16/pencil.png"> Edit</button>
+		<button data-op="entry-delete" title="Delete this entry"><img alt="(-)" src="/img/icons16/delete.png"> Delete</button>
+	</div>
+	<div id='updates-editorops' style='display: none;'>
+		<div class='toolbar-separator'></div>
+		<button data-op="editor-save" title="Save entry"><img src='/img/icons16/save.png' /> Save</button>
+		<button data-op="editor-close" title="Close editor"><img src='/img/icons16/cross.png' /> Close</button>
+	</div>
+	<div class='toolbar-separator'></div>
+	<button data-op="editor-options" title="Options"><img src="/img/icons16/check_box.png" alt="Options" /> Options</button>
+	<div class="toolbar-accessory" id="texted_name">{texted}</div>
+	
+	<button class='right' data-op="grid-state-reset" title="Reset grid to default"><img src='/img/icons16/recycle.png' />Reset grid</button>
+</div>
+
+<div id="entry-editor" style="margin-bottom: 6px; display: none;">
+	<div style="padding-left: 2px;"></div>
+	<div>
+		<form method="post" action="?action=Save_Blog_Entry" style="margin: 8px;">
+			<div style="height: 26px;"><label for='entry-title'>Title/Subject:</label><input type='text' id='entry-title' name='entry[title]' class="form-control jqx-input jqx-rc-all" value="" style='width: 855px;' /></div>
+			<div style="height: 26px;"><label for='entry-taglist'>Tag list:</label><input type='text' id='entry-taglist' name='entry[taglist]' class="form-control jqx-input jqx-rc-all" value="" style='width: 855px;' /></div>			
+			<h4><label for='entry-content'>Blog entry content: <span class="gray">(using {texted})</span></label></h4>
+			{#if:texted="TinyMCE":<div style="height: 26px; text-align: center;"><span class="form-control static"><b>IMPORTANT!</b> This Editor is changing the underlying code! Use the <b>Programmer</b> editor for final tuning (HTML/CSS knowledge required)</span></div>}
+			<textarea id="entry-content" rows='1' readonly="readonly" style="height: 1px; width: 1px;"></textarea>
+		</form>
+		<div id="entry-content-placeholder" class="loading-pleasewait" style='height: 270px;'></div>  
+	</div>
+</div>
+
+<div id="entries-grid"></div>
+
+<br /><div class='info-expander'>
+	<div>Operational information (click to open/close)</div>
+	<div class='spacey'>
+		<h3>Global system updates editor:</h3>
+		<hr />
+		<p>(TODO: add information here)</p>
+	</div>
+</div>
+
+{!Runtime templates, stored as script type="text/dryjstpl"}
+<script id="window-entry_editor_options" type="text/dryjstpl">{@
+	<form name="editor_options" action="?action=Entry_Editor_Options" method="post" style="margin: 8px;">
+		<div class="texted_option" data-value="CodeMirror">CodeMirror (Programer Editor)</div>
+		<div class="texted_option" data-value="TinyMCE">TinyMCE (Visual Editor)</div>
+		<p style="color: gray; margin-bottom: 4px;">Each type of editor has it's strengths and weaknesses.
+		It's recommended to use a Visual Editor when changing data views or e-mail layouts, and a Programmer Editor for the print and output templates.</p>
+	</form>
+}</script>

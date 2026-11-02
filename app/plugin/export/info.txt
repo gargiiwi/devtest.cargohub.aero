@@ -1,0 +1,3 @@
+Data export plugins:
+- Extract partial or complete record data into a supported format (JSON, YAML, XML,...)
+- Allows extracting records with the attached files, via ZIP format (data file + attachments)

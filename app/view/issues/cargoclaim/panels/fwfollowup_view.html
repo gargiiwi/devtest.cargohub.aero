@@ -1,0 +1,34 @@
+{#use:%ist.xfield_def:
+	<h4>Investigation:</h4>
+	<table>
+		<tr><th>{fw_cause.n}:</th><td>{^xfields.fw_cause:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{fw_caused_by.n}:</th><td>{^xfields.fw_caused_by.value:<span class='gray'>---</span>}</td></tr>
+		<tr><th>{fw_irreg_code.n}:</th><td>
+			{#ifnot:^xfields.fw_irreg_code:<span class='gray'>---</span>}
+			{#repeat:^xfields.fw_irreg_code:<span class="itembox">{value}</span>}
+		</td></tr>
+		<tr><th>{fw_liable.n}:</th><td>
+			{#if:^xfields.fw_liable.value:<label><input type='checkbox' style="float: left;" disabled="disabled"{#if:^xfields.fw_liable.key=Yes: checked="checked"}> {^xfields.fw_liable.value}</label>}
+			{#ifnot:^xfields.fw_liable.value:<span class='gray'>---</span>}
+		</td></tr>
+		<tr><th>{fw_involved.n}:</th><td>
+			{#if:^xfields.fw_involved.value:<label><input type='checkbox' style="float: left;" disabled="disabled" checked="checked"> {^xfields.fw_involved.value}</label>}
+			{#ifnot:^xfields.fw_involved.value:<span class='gray'>---</span>}
+		</td></tr>
+	</table>
+	<hr />
+	<h5>{fw_findings.n}:</h5>
+	{#if:^xfields.fw_findings:
+	<div style="border: 1px solid lightgray; padding: 4px; background-color: white;">{^xfields.fw_findings}~nl2br~</div>}
+	{#ifnot:^xfields.fw_findings:<div class="gray" style="text-indent: 20px;">-----</div>}
+
+	<h5>{fw_actions_taken.n}:</h5>
+	{#if:^xfields.fw_actions_taken:
+	<div style="border: 1px solid lightgray; padding: 4px; background-color: white;">{^xfields.fw_actions_taken}~nl2br~</div>}
+	{#ifnot:^xfields.fw_actions_taken:<div class="gray" style="text-indent: 20px; margin-top: 8px;">-----</div>}
+	
+	<h5>{fw_outcome.n}:</h5>
+	{#if:^xfields.fw_outcome:
+	<div style="border: 1px solid lightgray; padding: 4px; background-color: white;">{^xfields.fw_outcome}~nl2br~</div>}
+	{#ifnot:^xfields.fw_outcome:<div class="gray" style="text-indent: 20px; margin-top: 8px;">-----</div>}
+}

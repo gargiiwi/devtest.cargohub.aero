@@ -1,0 +1,84 @@
+/** Styles used by standalone HTML containing Transit Irreg data */
+body, table {
+    color: #000000;
+    font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+h4 {
+    background-color: #DFDFDF;
+    border-bottom: 1px solid #A0B0C0;
+    color: #000000;
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 0;
+    padding: 3px;
+    text-indent: 20px;
+}
+table {
+    margin-bottom: 8px;
+    width: 100%;
+}
+th {
+    font-weight: normal;
+    padding-right: 6px;
+    text-align: right;
+    width: 180px;
+}
+*.left { float: left; }
+*.right { float: right; }
+*.center { text-align: center; margin-left: auto; margin-right: auto; }
+*.clear { clear: both; }
+*.red { color: red; }
+*.blue { color: blue; }
+*.darkblue { color: darkblue; }
+*.gray { color: #999; }
+
+a, a:visited {
+	text-decoration: none;
+}
+.iss_document {
+	padding: 2px 8px;
+	margin: 0px 7px 5px 0px;
+	color: #006400;
+	border: 1px solid lightgray;
+	white-space: nowrap;
+	float: left;
+	box-shadow: 2px 2px 4px rgba(127, 127, 127, 0.6) ;
+}
+#xcontainer {
+	width: 700px;
+	margin: 8px auto;
+	padding: 5px;
+	border: 1px solid lightgray;
+}
+span.awb {
+	width: 120px; 
+	display: inline-block;
+}
+span.awbp {
+	margin-right: 15px; 
+	width: 35px; 
+	display: inline-block; 
+	text-align: right;
+}
+span.awbkg {
+	width: 45px; 
+	display: inline-block; 
+	text-align: right;
+}
+
+div#attachments {
+	overflow: auto;
+}
+
+	div#attachments div.file-download {
+		margin-bottom: 6px;
+		padding: 4px 0px 6px 2px;
+		border-bottom: 1px dotted lightgray;
+	}
+	
+	div#attachments div.file-download img {
+		float: left;
+		margin-right: 10px;
+		border: none;
+	}

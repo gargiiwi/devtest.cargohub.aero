@@ -1,0 +1,111 @@
+/** Loading Overlay - Used to hide the website until all CSS and required JavaScript has been loaded **/
+div#loading_overlay {
+	position: fixed;
+	left: 0px; top: 0px;
+	width: 4000px;
+	height: 2500px;
+	z-index: 1000001;
+	overflow: hidden;
+	background: #ffffff;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+	div#loading_overlay > div {
+		width: 640px;
+		height: 48px;
+		line-height: 48px;
+		top: 24px;
+		left: 50%;
+		position: fixed;
+		margin-left: -320px;
+		font-size: 20px;
+		border: 1px solid gray;
+		text-align: center;
+		border-radius: 12px;
+		background: lightgray;
+	}
+	
+	div#loading_console {
+		display: none;
+		margin-top: 10px;
+		font-family: monospace;
+		font-size: 12px;
+		text-align: left;
+		line-height: 16px;
+	}
+
+div#spinner_overlay {
+	position: fixed;
+	top: 40px;
+	right: -250px;
+	overflow: hidden;
+	background: white;
+	width: 250px;
+	height: 72px;
+	background-image: url("/img/extra/spinner.gif");
+	background-position: 8px center;
+	background-repeat: no-repeat;
+	padding: 4px;
+	border: 1px solid lightgray;
+	z-index: 999999999;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+
+	div#spinner_overlay > div {
+		width: 172px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		margin-left: 72px;
+	}
+	
+	div#spinner_overlay #spinner_line0 {
+		margin-top: 8px;
+		font-size: 18px;
+		color: black;
+	}
+	
+	div#spinner_overlay #spinner_line1 {
+		font-size: 14px;
+		color: gray;
+		margin-top: 16px;
+	}
+	
+div#tasty_cookie {
+	overflow: hidden;
+	position: fixed;
+	bottom: 0; left: 0; right: 0;
+	width: 100%; height: 60px;
+	background-color: black;
+	z-index: 999999999;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+	font-size: 15px;
+}
+
+	div#tasty_cookie > span {
+		display: block;
+		height: 40px;
+		line-height: 20px;
+		margin-left: 40px;
+		color: lightgray;
+		margin-top: 10px;
+	}
+	
+	div#tasty_cookie a {
+		color: white;
+		font-weight: bold;
+	}
+	
+	div#tasty_cookie > button {
+		float: right;
+		background-color: lightgray;
+		border: 1px solid green;
+		width: 200px; height: 30px;
+		margin: 15px 40px 15px 0;
+		cursor: pointer;
+		font-weight: bold;
+	}
